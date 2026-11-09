@@ -35,6 +35,15 @@ jobs:
           cache: npm
           cache-dependency-path: remotion-app/package-lock.json
 
+      - name: Install browser system libraries
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-recommends \
+            libgl1 libegl1 libgbm1 libnss3 libasound2t64 libatk1.0-0t64 \
+            libatk-bridge2.0-0t64 libcups2t64 libdrm2 libxkbcommon0 \
+            libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libpango-1.0-0 \
+            libcairo2 libatspi2.0-0t64 fonts-liberation
+
       - name: Install (Remotion scaffold)
         working-directory: remotion-app
         run: npm ci
