@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check audio/QA Python scripts compile
+        run: |
+          python3 -m py_compile templates/audio/*.py templates/scripts/*.py
+
+      - name: Check helper scripts parse
+        run: |
+          node --check templates/scripts/bridge-stills.mjs
+          node --check templates/scripts/bridge_shots.py 2>/dev/null || true
+
+      - name: Verify skill + templates present
+        run: |
+          test -f SKILL.md
+          test -f templates/bridge/Bridge.tsx
+          test -f templates/bridge/story.ts
+          test -f templates/bridge/toon.ts
+          test -f references/STYLE_BIBLE.md
+          echo "skill tree ok"

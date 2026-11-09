@@ -1,0 +1,65 @@
+name: Render short
+
+on:
+  workflow_dispatch:
+    inputs:
+      composition:
+        description: "Remotion composition id (e.g. BridgeShort)"
+        required: true
+        default: "BridgeShort"
+      mix:
+        description: "Voice/mix WAV path in repo (e.g. shoots/bridge/audio/mix.wav)"
+        required: false
+        default: ""
+      crf:
+        description: "x264 CRF (lower is better)"
+        required: false
+        default: "16"
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      REMOTION_TMP: ${{ github.workspace }}/.remotion-tmp
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install ffmpeg (already on runner, verify)
+        run: ffmpeg -version | head -1
+
+      - name: Install (Remotion scaffold)
+        run: |
+          if [ -f remotion-app/package.json ]; then
+            npm ci --prefix remotion-app
+          else
+            echo "::warning::No remotion-app scaffold committed yet — see docs/setup.md."
+            echo "Scaffold the Remotion project (npx create-video) and push it before rendering."
+            exit 1
+          fi
+
+      - name: Render 2K
+        working-directory: remotion-app
+        run: |
+          npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
+            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" --scale 1.3333
+
+      - name: Mux voice mix
+        if: inputs.mix != ''
+        run: |
+          ffmpeg -y -i remotion-app/out/final.mp4 -i "${{ github.event.inputs.mix }}" \
+            -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -shortest remotion-app/out/final-muxed.mp4
+          mv remotion-app/out/final-muxed.mp4 remotion-app/out/final.mp4
+
+      - name: Upload MP4
+        uses: actions/upload-artifact@v4
+        with:
+          name: cartoon-3d-short
+          path: remotion-app/out/final.mp4
+          if-no-files-found: error
+          retention-days: 14

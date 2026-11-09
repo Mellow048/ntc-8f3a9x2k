@@ -1,0 +1,22 @@
+# dependencies
+node_modules/
+
+# render output
+out/
+*.mp4
+!references/**/*.mp4
+
+# Remotion bundle temp (huge; never commit)
+.remotion/
+remotion-webpack-bundle-*/
+puppeteer_dev_chrome_profile-*/
+
+# voice takes (large; commit only final voice.wav per short)
+shoots/*/voice/*.tmp.wav
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
