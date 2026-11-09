@@ -36,7 +36,7 @@ jobs:
           cache-dependency-path: remotion-app/package-lock.json
 
       - name: Install Playwright Chromium (SwiftShader WebGL)
-        run: npx playwright install --with-deps chromium
+        run: npx playwright@1.49.1 install --with-deps chromium
         working-directory: remotion-app
 
       - name: Resolve Playwright Chromium path
