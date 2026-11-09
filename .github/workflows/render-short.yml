@@ -46,8 +46,9 @@ jobs:
       - name: Still preview
         working-directory: remotion-app
         run: |
+          npx remotion browser ensure
           npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
-            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1
+            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --log=verbose
 
       - name: Render 2K
         working-directory: remotion-app
