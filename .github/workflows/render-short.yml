@@ -35,14 +35,15 @@ jobs:
           cache: npm
           cache-dependency-path: remotion-app/package-lock.json
 
-      - name: Install browser system libraries
+      - name: Install Playwright Chromium (SwiftShader WebGL)
+        run: npx playwright install --with-deps chromium
+        working-directory: remotion-app
+
+      - name: Resolve Playwright Chromium path
         run: |
-          sudo apt-get update -y
-          sudo apt-get install -y --no-install-recommends \
-            libgl1 libegl1 libgbm1 libnss3 libasound2t64 libatk1.0-0t64 \
-            xvfb mesa-utils libgl1-mesa-dri libegl-mesa0 libgbm1 libatk-bridge2.0-0t64 libcups2t64 libdrm2 libxkbcommon0 \
-            libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libpango-1.0-0 \
-            libcairo2 libatspi2.0-0t64 fonts-liberation
+          CHROME="$(find ~/.cache/ms-playwright -maxdepth 4 -type f -name chrome -o -name headless_shell | head -1)"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+          ls -lh "$CHROME" || true
 
       - name: Install (Remotion scaffold)
         working-directory: remotion-app
@@ -56,14 +57,14 @@ jobs:
         working-directory: remotion-app
         run: |
           npx remotion browser ensure
-          xvfb-run -a -s "-screen 0 1920x1080x24" npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
-            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --gl=egl --disable-headless --log=verbose
+          npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
+            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
 
       - name: Render 2K
         working-directory: remotion-app
         run: |
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
-            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" --scale 1.3333 --gl=egl --disable-headless
+            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" --scale 1.3333 --gl=swiftshader --browser-executable="$CHROME_PATH"
 
       - name: Mux voice mix
         if: inputs.mix != ''
