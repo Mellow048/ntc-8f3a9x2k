@@ -1,0 +1,127 @@
+[
+  {
+    "word": "I",
+    "start": 0.1,
+    "end": 0.237
+  },
+  {
+    "word": "came",
+    "start": 0.237,
+    "end": 0.783
+  },
+  {
+    "word": "in",
+    "start": 0.783,
+    "end": 1.057
+  },
+  {
+    "word": "for",
+    "start": 1.057,
+    "end": 1.467
+  },
+  {
+    "word": "a",
+    "start": 1.467,
+    "end": 1.604
+  },
+  {
+    "word": "Coke.",
+    "start": 1.604,
+    "end": 2.287
+  },
+  {
+    "word": "But",
+    "start": 2.237,
+    "end": 2.505
+  },
+  {
+    "word": "the",
+    "start": 2.505,
+    "end": 2.774
+  },
+  {
+    "word": "Pepsi",
+    "start": 2.774,
+    "end": 3.221
+  },
+  {
+    "word": "was",
+    "start": 3.221,
+    "end": 3.49
+  },
+  {
+    "word": "sitting",
+    "start": 3.49,
+    "end": 4.116
+  },
+  {
+    "word": "right",
+    "start": 4.116,
+    "end": 4.563
+  },
+  {
+    "word": "there.",
+    "start": 4.563,
+    "end": 5.1
+  },
+  {
+    "word": "Red,",
+    "start": 5.1,
+    "end": 5.836
+  },
+  {
+    "word": "or",
+    "start": 5.836,
+    "end": 6.205
+  },
+  {
+    "word": "blue?",
+    "start": 6.205,
+    "end": 7.125
+  },
+  {
+    "word": "This",
+    "start": 7.125,
+    "end": 7.471
+  },
+  {
+    "word": "is",
+    "start": 7.471,
+    "end": 7.645
+  },
+  {
+    "word": "genuinely",
+    "start": 7.645,
+    "end": 8.424
+  },
+  {
+    "word": "the",
+    "start": 8.424,
+    "end": 8.684
+  },
+  {
+    "word": "hardest",
+    "start": 8.684,
+    "end": 9.29
+  },
+  {
+    "word": "decision",
+    "start": 9.29,
+    "end": 9.983
+  },
+  {
+    "word": "of",
+    "start": 9.983,
+    "end": 10.156
+  },
+  {
+    "word": "my",
+    "start": 10.156,
+    "end": 10.329
+  },
+  {
+    "word": "life.",
+    "start": 10.329,
+    "end": 10.762
+  }
+]

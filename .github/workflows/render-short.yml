@@ -4,17 +4,21 @@ on:
   workflow_dispatch:
     inputs:
       composition:
-        description: "Remotion composition id (e.g. BridgeShort)"
-        required: true
-        default: "BridgeShort"
-      mix:
-        description: "Voice/mix WAV path in repo (e.g. shoots/bridge/audio/mix.wav)"
+        description: "Remotion composition id"
         required: false
-        default: ""
+        default: "SupermarketShort"
+      mix:
+        description: "Voice/mix WAV path in repo"
+        required: false
+        default: "shoots/supermarket/audio/mix.wav"
       crf:
         description: "x264 CRF (lower is better)"
         required: false
         default: "16"
+      still_frame:
+        description: "Frame number for the still preview"
+        required: false
+        default: "100"
 
 jobs:
   render:
@@ -29,19 +33,21 @@ jobs:
         with:
           node-version: 22
           cache: npm
-
-      - name: Install ffmpeg (already on runner, verify)
-        run: ffmpeg -version | head -1
+          cache-dependency-path: remotion-app/package-lock.json
 
       - name: Install (Remotion scaffold)
+        working-directory: remotion-app
+        run: npm ci
+
+      - name: Typecheck
+        working-directory: remotion-app
+        run: npx tsc --noEmit
+
+      - name: Still preview
+        working-directory: remotion-app
         run: |
-          if [ -f remotion-app/package.json ]; then
-            npm ci --prefix remotion-app
-          else
-            echo "::warning::No remotion-app scaffold committed yet — see docs/setup.md."
-            echo "Scaffold the Remotion project (npx create-video) and push it before rendering."
-            exit 1
-          fi
+          npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
+            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1
 
       - name: Render 2K
         working-directory: remotion-app
@@ -60,6 +66,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cartoon-3d-short
-          path: remotion-app/out/final.mp4
+          path: |
+            remotion-app/out/final.mp4
+            remotion-app/out/still.png
           if-no-files-found: error
           retention-days: 14
