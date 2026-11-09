@@ -64,7 +64,7 @@ jobs:
         working-directory: remotion-app
         run: |
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
-            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" --scale 1.3333 --gl=swiftshader --browser-executable="$CHROME_PATH"
+            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" --width=1440 --height=2560 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
 
       - name: Mux voice mix
         if: inputs.mix != ''
