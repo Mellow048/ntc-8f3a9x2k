@@ -51,7 +51,7 @@ const Inner: React.FC<{ id: number; kit: Kit }> = ({ id, kit }) => {
   const { camera, scene } = useThree();
   const world = useMemo(() => new World(kit), [kit]);
   const target = useMemo(() => new THREE.Vector3(), []);
-  const on = useMemo(toggles, []);
+  useMemo(toggles, []);
   const fx = useMemo(() => ({
     ink: new InkPass(scene, camera as THREE.PerspectiveCamera),
     lens: new LensBlur({ maxCoC: 24, nearScale: 1.2 }),
@@ -61,17 +61,18 @@ const Inner: React.FC<{ id: number; kit: Kit }> = ({ id, kit }) => {
     grain: new GrainEffect({ amount: 0.025, cellPx: 1.5 }), // film grain, OFF by default (inputProps post.grain): the reference measures no grain and it quadruples the file size
   }), [camera, scene]);
   useEffect(() => () => fx.ink.dispose(), [fx]);
+  // All toggles default on except grain (skill: no film grain); render the
+  // stack unconditionally to satisfy EffectComposer's Element children.
   const post = useMemo(() => (
     <EffectComposer multisampling={4}>
-      {on.ink ? <primitive object={fx.ink} dispose={null} /> : null}
-      {on.lens && on.pre ? <primitive object={fx.lens.pre} dispose={null} /> : null}
-      {on.lens ? <primitive object={fx.lens.main} dispose={null} /> : null}
-      {on.bloom ? <primitive object={fx.bloom} dispose={null} /> : null}
+      <primitive object={fx.ink} dispose={null} />
+      <primitive object={fx.lens.pre} dispose={null} />
+      <primitive object={fx.lens.main} dispose={null} />
+      <primitive object={fx.bloom} dispose={null} />
       <primitive object={fx.tone} dispose={null} />
-      {on.grade ? <primitive object={fx.grade} dispose={null} /> : null}
-      {on.grain ? <primitive object={fx.grain} dispose={null} /> : null}
+      <primitive object={fx.grade} dispose={null} />
     </EffectComposer>
-  ), [fx, on]);
+  ), [fx]);
   const cam = camera as THREE.PerspectiveCamera;
   target.copy(world.update(id, f, cam, scene));
   noInkFallback(world.root);

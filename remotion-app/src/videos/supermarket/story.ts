@@ -93,7 +93,7 @@ export const guyAt = (id: number, f: number): GuyState => {
   }
 };
 
-export function dofAt(f: number): { cInf: number; focus?: (f: number) => V3 | [number, number, number] } {
+export function dofAt(f: number): { cInf: number; focus?: (f: number) => [number, number, number] } {
   const id = shotAt(f).id;
   // shelves + guy close = shallow DOF; wide aisle = deep.
   const cInf = id === 1 ? 2 : id === 5 ? 4 : 12;
