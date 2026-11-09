@@ -16,9 +16,9 @@ on:
         required: false
         default: "16"
       size:
-        description: "Final size: 1080 (fast trust render) or 2K (1440x2560, slow on CI CPU)"
+        description: "Final size: 720 (720x1280, fastest) or 1080 or 2K (slow on CI CPU)"
         required: false
-        default: "1080"
+        default: "720"
       still_frame:
         description: "Frame number for the still preview"
         required: false
@@ -68,7 +68,7 @@ jobs:
         working-directory: remotion-app
         run: |
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
-            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || '--scale=1' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH"
+            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH"
 
       - name: Mux voice mix
         if: inputs.mix != ''
