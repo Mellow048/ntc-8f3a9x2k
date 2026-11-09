@@ -23,6 +23,10 @@ on:
         description: "Frame number for the still preview"
         required: false
         default: "100"
+      diagnostics:
+        description: "Render only pendulum keyframe diagnostics (true/false)"
+        required: false
+        default: "false"
 
 jobs:
   render:
@@ -65,7 +69,27 @@ jobs:
         working-directory: remotion-app
         run: npx tsc --noEmit
 
+      - name: Pendulum keyframe diagnostics
+        if: inputs.diagnostics == 'true'
+        working-directory: remotion-app
+        run: |
+          mkdir -p out/diagnostics
+          for frame in 80 220 340 475 610 805 1025 1200 1370 1460 1515 1625 1725 1875; do
+            echo "Rendering frame $frame"
+            npx remotion still src/index.ts PendulumShort "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH" >"out/diagnostics/$frame.log" 2>&1 || { msg=$(tail -n 12 "out/diagnostics/$frame.log" | tr '\n' ' '); echo "::error::Frame $frame failed: $msg"; exit 1; }
+            ffmpeg -v error -y -i "out/diagnostics/$frame.png" -vf scale=270:480 -q:v 10 "out/diagnostics/$frame.jpg"
+            echo "::notice title=frame-$frame::$(base64 -w0 "out/diagnostics/$frame.jpg")"
+          done
+      - name: Upload diagnostic stills
+        if: inputs.diagnostics == 'true' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pendulum-keyframes-720p
+          path: remotion-app/out/diagnostics/
+          retention-days: 7
+
       - name: Still preview
+        if: inputs.diagnostics != 'true'
         working-directory: remotion-app
         run: |
           npx remotion browser ensure
@@ -73,6 +97,7 @@ jobs:
             out/still.png --frame="${{ github.event.inputs.still_frame }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
 
       - name: Render video
+        if: inputs.diagnostics != 'true'
         working-directory: remotion-app
         run: |
           set -o pipefail
@@ -90,13 +115,14 @@ jobs:
           exit "$status"
 
       - name: Mux voice mix
-        if: inputs.mix != ''
+        if: inputs.diagnostics != 'true' && inputs.mix != ''
         run: |
           ffmpeg -y -i remotion-app/out/final.mp4 -i "${{ github.event.inputs.mix }}" \
             -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -shortest remotion-app/out/final-muxed.mp4
           mv remotion-app/out/final-muxed.mp4 remotion-app/out/final.mp4
 
       - name: Upload MP4
+        if: inputs.diagnostics != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: cartoon-3d-short
