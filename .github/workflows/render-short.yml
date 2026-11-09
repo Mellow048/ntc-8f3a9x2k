@@ -49,6 +49,14 @@ jobs:
           echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
           ls -lh "$CHROME" || true
 
+      - name: Install ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -y
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -1
+
       - name: Install (Remotion scaffold)
         working-directory: remotion-app
         run: npm ci
@@ -64,7 +72,7 @@ jobs:
           npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
             out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
 
-      - name: Render 2K
+      - name: Render video
         working-directory: remotion-app
         run: |
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
