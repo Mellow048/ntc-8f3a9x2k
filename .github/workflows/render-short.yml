@@ -40,7 +40,7 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y --no-install-recommends \
             libgl1 libegl1 libgbm1 libnss3 libasound2t64 libatk1.0-0t64 \
-            libatk-bridge2.0-0t64 libcups2t64 libdrm2 libxkbcommon0 \
+            xvfb mesa-utils libgl1-mesa-dri libegl-mesa0 libgbm1 libatk-bridge2.0-0t64 libcups2t64 libdrm2 libxkbcommon0 \
             libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libpango-1.0-0 \
             libcairo2 libatspi2.0-0t64 fonts-liberation
 
@@ -56,14 +56,14 @@ jobs:
         working-directory: remotion-app
         run: |
           npx remotion browser ensure
-          npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
-            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --gl=swiftshader --log=verbose
+          xvfb-run -a -s "-screen 0 1920x1080x24" npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
+            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --gl=egl --disable-headless --log=verbose
 
       - name: Render 2K
         working-directory: remotion-app
         run: |
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
-            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" --scale 1.3333 --gl=swiftshader
+            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" --scale 1.3333 --gl=egl --disable-headless
 
       - name: Mux voice mix
         if: inputs.mix != ''
