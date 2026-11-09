@@ -4,3 +4,6 @@ Config.setOverwriteOutput(true);
 // CI: Playwright's bundled Chromium has working SwiftShader WebGL
 // (same browser that bakes ShortSmith's plates). Set via --browser-executable.
 Config.setChromiumOpenGlRenderer("swiftshader");
+
+// Software WebGL (CI SwiftShader) is slow: one frame can take over a minute.
+Config.setDelayRenderTimeoutInMilliseconds(300000);

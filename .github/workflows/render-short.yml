@@ -58,7 +58,7 @@ jobs:
         run: |
           npx remotion browser ensure
           npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
-            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
+            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --timeout=300000 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
 
       - name: Render 2K
         working-directory: remotion-app
