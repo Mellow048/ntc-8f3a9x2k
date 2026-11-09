@@ -70,13 +70,24 @@ jobs:
         run: |
           npx remotion browser ensure
           npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
-            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
+            out/still.png --frame="${{ github.event.inputs.still_frame }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
 
       - name: Render video
         working-directory: remotion-app
         run: |
+          set -o pipefail
+          set +e
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
-            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH"
+            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH" 2>&1 | tee out/render.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            # Surface the actual failure in the check annotation, even if job logs are unavailable.
+            message=$(tail -c 12000 out/render.log | tr '\r' '\n' | tail -n 30)
+            message=${message//'%'/'%25'}
+            message=${message//$'\n'/'%0A'}
+            echo "::error::Render failed (exit $status): $message"
+          fi
+          exit "$status"
 
       - name: Mux voice mix
         if: inputs.mix != ''
