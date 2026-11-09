@@ -27,7 +27,7 @@ on:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 180
     env:
       REMOTION_TMP: ${{ github.workspace }}/.remotion-tmp
     steps:
@@ -62,13 +62,13 @@ jobs:
         run: |
           npx remotion browser ensure
           npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
-            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --timeout=300000 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
+            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
 
       - name: Render 2K
         working-directory: remotion-app
         run: |
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
-            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || '--scale=1' }} --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
+            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || '--scale=1' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH"
 
       - name: Mux voice mix
         if: inputs.mix != ''
