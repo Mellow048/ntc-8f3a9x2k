@@ -100,3 +100,25 @@ and rescue, −17 LU briefly for memorial. This is not a fixed gain increase on
 the old sine-pluck loop. Added timed metallic failure, timber/masonry, water
 and coin effects. Source Arena voice/timing unchanged. Score/stems regenerate
 from Python in ignored out/remaster/audio; CI masters the new premix.
+
+### Motion/music final verification
+
+Full render https://github.com/Mellow048/ntc-8f3a9x2k/actions/runs/42768246354
+succeeded (44m). Reviewing its actual MP4 caught crest/near-plane intersections
+in low flood cameras. Raised just those eye paths above the maximum opaque
+crest; repaired exact ranges 0–98 and 423–567 on GitHub rather than rerendering
+unaffected frames. Repair run 42773437438 succeeded in 6m11s, preserving the
+new AAC soundtrack. Inspected consecutive frames around both former defects
+and the remaining frame-difference warning at 475: the wave now visibly passes
+through the foreground, not through the lens; no road/underside reveal. Warning
+475 is a passing foam crest and remains disclosed in the QA report.
+
+Final: 1,090 frames, 720×1280/30fps, 36.333s; −15.2 LUFS, peak −1.4 dBFS.
+No black/white frames, frozen spans or silence. Mean image difference increased
+from 3.97 to 7.51 (diagnostic, not proof of aesthetic acceptance). 22 camera
+beats and the wading excerpt were visually reviewed. Original approved voice
+is unchanged. Local measurement of old premix minus aligned original voice:
+old music+SFX bed −40.6 LUFS versus new music-only −24.6 LUFS. New stem section
+levels independently checked within 0.05 LU of the stated voice-relative targets.
+Updated repaired-shot stills from the final video, removed obsolete preview
+frames and untracked the redundant picture-only checkpoint again.
