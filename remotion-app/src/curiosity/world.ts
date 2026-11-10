@@ -46,7 +46,7 @@ function barge(p:T.Group,x:number,z:number){const g=new T.Group();g.position.set
 function rig(p:T.Group){const g=new T.Group();p.add(g);box(g,0,.4,0,4,.55,4,'#7b6250','wood');box(g,1.3,1.2,.8,1.1,1.3,1.3,'#ddd0a3');for(let i=0;i<4;i++){const a=i*Math.PI/2+Math.PI/4;beam(g,V(Math.cos(a)*1.4,.7,Math.sin(a)*1.4),V(Math.cos(a)*.3,7,Math.sin(a)*.3),.14,'#776457');}
  for(let y=1;y<7;y+=1){const r=1.5-y*.16;for(const z of [-1,1]){beam(g,V(-r,y,z*r),V(r-.16,y+1,z*(r-.16)),.07,'#9e7a56');beam(g,V(-r,y,z*r),V(r,y,z*r),.08,'#776457');}}
  const drill=cyl(g,0,-1,0,.09,9,'#48494b');return {g,drill};}
-function tunnel(p:T.Group,flood=false){box(p,0,-3.6,0,15,.7,5,'#c9b9a3','brick');box(p,0,-.4,-2.5,15,6,1,'#b8a48d','brick');for(let x=-6;x<8;x+=3){box(p,x,-1.5,0,.6,4,3,'#c9bda9','brick');}if(flood)box(p,0,-3.1,0,14,.25,4,'#4b9fae');}
+function tunnel(p:T.Group,flood=false){box(p,0,-3.6,0,15,.7,5,'#c9b9a3','brick');box(p,0,-.4,-2.5,15,6,1,'#b8a48d','brick');for(let x=-6;x<8;x+=3){if(x===0||x===3)continue;box(p,x,-1.5,-1,.6,4,1,'#c9bda9','brick');}if(flood)box(p,0,-3.1,0,14,.25,4,'#4b9fae');}
 function lantern(p:T.Group,x:number,y:number,z:number){const m=box(p,x,y,z,.38,.6,.38,'#f4c77d');box(p,x,y+.33,z,.46,.08,.46,'#65515a');return m;}
 export class World {
  root=new T.Group();actors:Actor[]=[];animate:Array<(f:number,t:number,u:number)=>void>=[];shot:Shot;slug:Slug;
@@ -70,7 +70,7 @@ export class World {
    const wave=ell(p,0,.4,-3,3,.6,2,'#795235');this.animate.push((f,t,u)=>{wave.position.z=-2+u*10;wave.scale.set(3+u*5,.6+u,2+u*3);bricks.forEach((b,i)=>{const q=smooth((u-.12)*1.5);b.position.z=-2+q*(2+(i%5));b.position.y=Math.max(.3,(Math.floor(i/8)*.6+.3)*(1-q)+Math.sin(q*3.14)*2);b.rotation.x=q*(i%4);});});
   }else if(['flood','aftermath','cellar','rescue'].includes(s)){
    if(s==='cellar'){
-    box(p,0,-1.6,-2,7,4,.4,'#9c8c7a','brick');box(p,-3.5,-1,0,.3,4,5,'#bba68c','brick');box(p,0,-3,0,7,.3,5,'#8d7e70');box(p,0,.5,0,8,.25,6,'#b9a78b','wood');for(let i=0;i<5;i++)box(p,2,0-i*.6,2-i*.5,1.5,.5,.6,'#aa9c8b');const w=box(p,0,-2.9,0,6.5,.3,4.8,'#78583b');this.animate.push((f,t,u)=>{w.position.y=-2.8+u*2;});
+    box(p,0,-1.6,-2,7,4,.4,'#9c8c7a','brick');box(p,-3.5,-1,0,.3,4,5,'#bba68c','brick');box(p,0,-3,0,7,.3,5,'#8d7e70');box(p,0,.5,-3.2,8,.25,1,'#b9a78b','wood');for(let i=0;i<5;i++)box(p,2,0-i*.6,2-i*.5,1.5,.5,.6,'#aa9c8b');const w=box(p,0,-2.9,0,6.5,.3,4.8,'#78583b');this.animate.push((f,t,u)=>{w.position.y=-2.8+u*2;});
    }else{
     town(p);const w=water(p,.12,'#79583b');w.scale.x=8.5;w.scale.z=38;this.animate.push((f,t)=>{w.position.y=-.03+Math.sin(t*1.8)*.04;});
     for(let i=0;i<20;i++){const foam=ell(p,(i%4-1.5)*1.7,.4,Math.floor(i/4)*4-9,.65,.08,.25,i%2?'#c9a86e':'#9e774a');this.animate.push((f,t)=>{foam.position.z=((i*3+t*2)%23)-12;foam.position.y=.4+Math.sin(t*3+i)*.06;});}
@@ -95,7 +95,7 @@ export class World {
    if(s==='home'){house(p,0,-5,'#cdbd9c',true);person(1.4,-2,'neutral',{hat:'hair',hair:'#29262b',dress:'#7c748b'});}
    if(s==='survivor'||s==='blast'){const rubble:T.Mesh[]=[];for(let i=0;i<15;i++){rubble.push(box(p,Math.sin(i*7)*4,.2,-1-Math.abs(Math.cos(i*5))*7,.6,.4,.8,'#8e877b'));}a.expr='dazed';if(s==='blast'){const shock=new T.Mesh(new T.TorusGeometry(1,.12,8,64),mat('#dfc5a0'));shock.rotation.x=Math.PI/2;shock.position.set(0,.2,-8);p.add(shock);this.animate.push((f,t)=>{const q=Math.max(0,t-9.90);shock.visible=q>0;shock.scale.setScalar(1+q*7);a.group.rotation.z=-Math.sin(Math.min(q*7,Math.PI))*.12;});}}
   }else if(s==='shelter'){
-   box(p,0,2,-2,8,4,.6,'#9e968a','brick');box(p,-4,2,0,.4,4,5,'#8f8c82','brick');beam(p,V(-3,.2,-1),V(3,3.8,-1),.25,'#756a5b');const a=hero();a.expr='dazed';const wrap=box(p,-.3,1.05,.12,.32,.75,.2,'#e5ded0');this.animate.push((f,t)=>wrap.rotation.z=-.2+Math.sin(t)*.01);lantern(p,2,.65,0);
+   box(p,0,2,-2,8,4,.6,'#9e968a','brick');box(p,-4,2,0,.4,4,5,'#8f8c82','brick');beam(p,V(-3,.2,-1),V(3,3.8,-1),.25,'#756a5b');const a=hero();a.expr='dazed';lantern(p,2,.65,0);
   }else if(s==='train'){
    for(const x of [-.8,.8])box(p,x,.06,0,.09,.12,48,'#53535a');for(let i=0;i<30;i++)box(p,0,.01,i*1.5-23,2.4,.08,.23,'#786853','wood');
    const train=new T.Group();p.add(train);for(let j=0;j<3;j++){box(train,0,1.8,-j*4.5,2.3,2.4,4,'#61756c');box(train,0,3.1,-j*4.5,2.5,.3,4.2,'#404b50');for(const side of [-1,1]){for(let i=0;i<3;i++)box(train,side*1.17,2.25,-j*4.5-1.3+i*1.2,.05,.75,.75,'#c2c6b2');for(const z of [-1.3,1.3]){const wheel=cyl(train,side*1.05,.5,-j*4.5+z,.4,.18,'#42434b');wheel.rotation.z=Math.PI/2;}}}
@@ -122,7 +122,7 @@ export class World {
    else if(s==='canal'){
     box(p,0,.05,0,5,.2,45,'#65a4af');for(const x of [-4,4])box(p,x,.3,0,3,.6,45,'#93a578');for(let i=0;i<22;i++){const m=box(p,Math.sin(i)*1.6,.2,(i*2)%36-18,.4,.02,1.7,'#b7d8d4');this.animate.push((f,t)=>{m.position.z=((i*2+t*4)%36)-18;});}
    }else if(s==='return'){
-    for(let i=0;i<9;i++){const b=barge(p,(i%3-1)*3,(Math.floor(i/3)-1)*4);this.animate.push((f,t,u)=>{b.position.y=-2+smooth(Math.min(1,u*1.8-i*.035))*2.4;b.rotation.z=Math.sin(t*1.5+i)*.025;});}
+    for(let i=0;i<9;i++){const b=barge(p,(i%3-1)*3,(Math.floor(i/3)-1)*4);this.animate.push((f,t,u)=>{b.position.y=-1.5+smooth(Math.min(1,u*3+.3-i*.03))*1.9;b.rotation.z=Math.sin(t*1.5+i)*.025;});}
    }else{
     const funnelGeo=new T.ConeGeometry(3.6,5,64,8,true);const fun=new T.Mesh(funnelGeo,new T.MeshLambertMaterial({color:'#357b8c',side:T.DoubleSide}));fun.rotation.x=Math.PI;fun.position.y=-2.5;p.add(fun);
     const rings:T.Mesh[]=[];for(let i=0;i<16;i++){const rr=.3+i*.3;const m=new T.Mesh(new T.TorusGeometry(rr,.035,5,72,Math.PI*1.65),mat(i%2?'#a5d1ca':'#467f91'));m.rotation.x=Math.PI/2;m.position.y=rr<3.6?-5+rr/3.6*5:.03;p.add(m);rings.push(m);}
@@ -133,7 +133,7 @@ export class World {
   }else if(['mine','breach','lostmine'].includes(s)){
    tunnel(p,s!=='mine');box(p,0,.6,-1.7,17,1.1,3,'#a29474','brick');box(p,0,1.3,-1.7,17,.25,3,'#5b9eab');const r=rig(p);r.g.position.set(0,1.5,-1);r.g.scale.setScalar(.48);
    if(s==='mine'){person(-3,0,'neutral',{hat:'cap',cap:'#e1bf59',jacket:'#9b7956'}).group.position.y=-3.3;}
-   if(s==='breach'){const stream=box(p,0,-.4,-1, .18,4,.2,'#62adbd');const fill=box(p,0,-3.1,0,14,.05,4,'#5495a5');this.animate.push((f,t,u)=>{stream.scale.x=.5+u*5;fill.scale.y=1+u*18;r.drill.rotation.y=t*5;});}
+   if(s==='breach'){const stream=box(p,0,-.4,-1, .18,4,.2,'#62adbd');const fill=box(p,0,-3.1,0,14,.05,4,'#5495a5');this.animate.push((f,t,u)=>{stream.scale.x=.18+u*.5;fill.scale.y=.05+u*2.4;r.drill.rotation.y=t*5;});}
    if(s==='lostmine'){box(p,0,-1.8,0,14,2.6,3.9,'#547d88');}
   }else if(s==='bathtub'){
    box(p,0,-.3,0,16,.5,14,'#c6beb2','brick');box(p,0,.65,0,4,1.3,6,'#e5ded0');box(p,0,1.35,0,3.8,.2,5.8,'#6eafb8');for(const x of [-2.1,2.1])box(p,x,1.2,0,.3,.8,6.3,'#f1e5d1');for(const z of [-3.1,3.1])box(p,0,1.2,z,4.5,.8,.3,'#f1e5d1');const plug=cyl(p,0,1.5,1.8,.23,.1,'#3d454d');this.animate.push((f,t,u)=>{plug.position.y=1.5+smooth(u)*1.5;plug.position.x=smooth(u)*.8;});
