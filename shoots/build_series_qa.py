@@ -37,4 +37,13 @@ for slug, story in stories.items():
             f=round(time*30)
             planned.append([max(0,f-2), min(story['frames'],f+4)])
         i=next_i
+    if slug == 'breathing-bridge':
+        # The directional arrows fade in/out only on these narrated movement windows.
+        motion=(root.parent/'remotion-app/src/videos/bridge-remaster/motion.ts').read_text()
+        match=re.search(r'MOTION_WINDOWS\s*=\s*\[(.*?)\]\s*as const',motion)
+        if not match:
+            raise ValueError('Bridge motion windows not found')
+        for a,b in re.findall(r'\[(\d+),(\d+)\]',match.group(1)):
+            for f in (int(a),int(b)):
+                planned.append([max(0,f-2),min(story['frames'],f+4)])
     (root/slug/'qa-shots.json').write_text(json.dumps({'frames':story['frames'],'shots':shots,'planned':planned},indent=2)+'\n')

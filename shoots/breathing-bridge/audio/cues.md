@@ -12,3 +12,7 @@ Original synthesized storybook score, speech ducking and timed effects. SFX even
 - frame 1565: bridge (cars roll across)
 
 Integrated -15.01 LUFS; true peak -1.40 dBTP.
+
+## Retention revision
+
+`mix-hook.wav` is generated from the original `mix.wav` by `../boost_hook.py`: a restrained low pulse and brushed rhythm matches the original score tempo for the first 7.4 seconds, then disappears. The added layer peaks at approximately −35 dBFS; the final mix measures −15.0 LUFS and −1.4 dBTP. The original narration and rest of the mix are preserved.

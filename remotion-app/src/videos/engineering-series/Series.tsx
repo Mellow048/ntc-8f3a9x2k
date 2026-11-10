@@ -12,6 +12,7 @@ import {LensBlur} from '../pendulum/lensblur';
 import {World,Beat} from './World';
 import {BridgeWorld} from '../bridge-remaster/BridgeWorld';
 import {loadBridgeAssets,type BridgeAssets} from '../bridge-remaster/assets';
+import {jointCue,MOTION_WINDOWS} from '../bridge-remaster/motion';
 import data from './data.json';
 
 type Word={word:string;start:number;end:number};
@@ -40,7 +41,7 @@ const Scene:React.FC<{slug:Slug;assets:BridgeAssets|null}> = ({slug,assets})=>{
  if(world instanceof BridgeWorld){
   const direction=new THREE.Vector3();camera.getWorldDirection(direction);
   fx.lens.focus=Math.max(.3,world.focus.clone().sub(camera.position).dot(direction));
-  fx.lens.cInf=((frame>=77&&frame<188)||(frame>=842&&frame<950)||(frame>=1665&&frame<1740))?12:0;
+  fx.lens.cInf=world.characterShot?12:0;
  }
  return <><primitive object={world.root} dispose={null}/>{post}</>;
 };
@@ -82,6 +83,22 @@ const TemperatureCue:React.FC=()=>{
  </div>;
 };
 
+// Graphic arrows appear only during the corresponding, narration-timed physical
+// movement. They identify the direction without adding words to the subtitles.
+const JointArrows:React.FC=()=>{
+ const frame=useCurrentFrame();const cue=jointCue(frame);if(!cue)return null;
+ const window=MOTION_WINDOWS.find(([a,b])=>frame>=a&&frame<=b)!;
+ const t=(frame-window[0])/(window[1]-window[0]);
+ const opacity=Math.min(1,(frame-window[0])/4,(window[1]-frame)/4);
+ const inward=cue==='in';const gap=inward?27-13*t:14+13*t;const color=inward?'#ffcf8f':'#b8eaff';
+ const arrow=(x:number,dx:number)=><g transform={`translate(${x} 50) scale(${dx} 1)`}>
+  <path d="M -17 -7 L 5 -7 L 5 -15 L 19 0 L 5 15 L 5 7 L -17 7 Z" fill={color} stroke="#293942" strokeWidth="3" strokeLinejoin="round"/>
+ </g>;
+ return <svg viewBox="0 0 100 100" style={{position:'absolute',left:'9%',top:'34%',width:'82%',height:'18%',opacity,pointerEvents:'none',filter:'drop-shadow(0 3px 2px #2228)'}} aria-hidden="true">
+  {arrow(50-gap,inward?1:-1)}{arrow(50+gap,inward?-1:1)}
+ </svg>;
+};
+
 export const EngineeringShort:React.FC<{slug:Slug}>=({slug})=>{
  const {width,height}=useVideoConfig();
  const [assets,setAssets]=useState<BridgeAssets|null>(null);
@@ -96,6 +113,7 @@ export const EngineeringShort:React.FC<{slug:Slug}>=({slug})=>{
    <Scene slug={slug} assets={assets}/>
   </ThreeCanvas>
   {slug==='breathing-bridge' && <TemperatureCue/>}
+  {slug==='breathing-bridge' && <JointArrows/>}
   <Captions words={stories[slug].words}/>
  </AbsoluteFill>;
 };

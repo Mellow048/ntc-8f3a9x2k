@@ -4,30 +4,45 @@ import * as THREE from 'three';
 import {Pen, bodyFront, HERO, ENGINEER, type Expr} from '../pendulum/toon';
 import {NOINK} from '../pendulum/ink';
 import type {BridgeAssets} from './assets';
+import {jointShift,smooth} from './motion';
 
 type V = [number,number,number];
 type Stage = {root:THREE.Group; cam:V; target:V; fov:number; tick:(n:number)=>void};
 type Shot = {start:number; kind:string; cam:V; target:V; fov:number};
+// Every cut is anchored to an idea in the existing word alignment. The first
+// establishing shot tells you it is a bridge before the detail insert.
 const SHOTS:Shot[]=[
- {start:0,kind:'joint',cam:[1.6,7,4.7],target:[0,2.6,0],fov:40},
+ {start:0,kind:'bridge',cam:[12,8.4,15],target:[4.8,3.7,0],fov:43},
+ {start:23,kind:'joint',cam:[1.6,7,4.7],target:[0,2.6,0],fov:40},
+ {start:49,kind:'traffic',cam:[1.3,5.4,8.5],target:[0,2.9,0],fov:42},
  {start:77,kind:'hero',cam:[1.6,4.3,6.1],target:[1,3.8,1.7],fov:38},
+ {start:141,kind:'bridge',cam:[8.8,6.8,11],target:[4,3.5,0],fov:43},
  {start:188,kind:'bridge',cam:[12,8.4,15],target:[4.8,3.7,0],fov:43},
+ {start:239,kind:'traffic',cam:[2.3,5.4,9.5],target:[0,3,0],fov:43},
  {start:270,kind:'warm',cam:[3.7,6.5,4.1],target:[0,2.6,0],fov:43},
- {start:325,kind:'cool',cam:[-3.7,6.5,4.1],target:[0,2.6,0],fov:43},
+ {start:325,kind:'cool',cam:[3.7,6.5,4.1],target:[0,2.6,0],fov:43},
  {start:380,kind:'traffic',cam:[2.3,5,11],target:[0,3,0],fov:43},
+ {start:430,kind:'bridge',cam:[10.7,7.4,14],target:[4,3.5,0],fov:43},
  {start:480,kind:'ruler',cam:[1.5,5.2,10],target:[0,2.2,0],fov:40},
+ {start:545,kind:'ruler',cam:[-.7,4.3,8.2],target:[0,2.1,0],fov:40},
  {start:585,kind:'pressure',cam:[1.5,5.2,9],target:[0,2.2,0],fov:40},
+ {start:664,kind:'pressure',cam:[-.8,4.6,7.8],target:[0,2.15,0],fov:40},
  {start:725,kind:'traffic',cam:[-2.5,5.3,10],target:[0,3,0],fov:43},
+ {start:790,kind:'bridge',cam:[12,7.8,13],target:[4.8,3.5,0],fov:42},
  {start:842,kind:'engineer',cam:[1.6,4.3,6.1],target:[1,3.8,1.7],fov:38},
- {start:950,kind:'joint',cam:[1.6,7,4.7],target:[0,2.8,0],fov:43},
+ {start:915,kind:'joint',cam:[1.6,7,4.7],target:[0,2.8,0],fov:43},
+ {start:970,kind:'fingers',cam:[.8,7.2,4.7],target:[0,2.75,0],fov:43},
+ {start:994,kind:'seal',cam:[-2.5,6.4,4.3],target:[0,2.75,0],fov:43},
  {start:1078,kind:'warm',cam:[3.7,6.5,4.1],target:[0,2.8,0],fov:43},
- {start:1199,kind:'cool',cam:[-3.7,6.5,4.1],target:[0,2.8,0],fov:43},
+ {start:1199,kind:'cool',cam:[3.7,6.5,4.1],target:[0,2.8,0],fov:43},
  {start:1316,kind:'fingers',cam:[.8,7.2,4.7],target:[0,2.75,0],fov:43},
  {start:1400,kind:'seal',cam:[-2.5,6.4,4.3],target:[0,2.75,0],fov:43},
  {start:1470,kind:'bearing',cam:[4,5.5,9.5],target:[0,2.4,0],fov:42},
  {start:1565,kind:'traffic',cam:[1,5.2,10],target:[0,3,0],fov:43},
+ {start:1615,kind:'traffic',cam:[-1.5,4.3,8.7],target:[0,2.9,0],fov:42},
  {start:1665,kind:'hero',cam:[1.6,4.3,6.1],target:[1,3.8,1.7],fov:38},
  {start:1740,kind:'bridge',cam:[12,8.1,15],target:[4.8,3.7,0],fov:43},
+ {start:1804,kind:'bridge',cam:[10.5,7.3,13],target:[3.5,3.6,0],fov:43},
 ];
 const mats=new Map<string,THREE.MeshLambertMaterial>();
 function material(color:string){if(!mats.has(color)) mats.set(color,new THREE.MeshLambertMaterial({color}));return mats.get(color)!;}
@@ -132,7 +147,7 @@ function road(g:THREE.Group,assets:BridgeAssets,opts:{hero?:boolean;engineer?:bo
  for(let i=0;i<14;i++){const z=-1.52+i*.23;box(g,.37,.045,.105,'#9da8a9',-.06,2.56,z);box(g,.37,.045,.105,'#bac0ba',.06,2.56,z+.115);}
  const cars=[car(g,assets,0,-4,-.65),car(g,assets,1,4,.65,true),car(g,assets,0,-13,-.65)];
  const person=opts.hero?actor(g,1,2.64,2.35,opts.engineer?'engineer':'hero',1.18,opts.engineer?'grin':'nervous'):undefined;
- return (frame:number)=>{const t=frame/30;cars[0].position.x=-2.6+t*.9;cars[1].position.x=3-t*.72;cars[2].position.x=-7+t*.8;if(person)person.animate(frame);};
+ return (frame:number)=>{const t=frame/30;cars[0].position.x=-15+((t*.9+18.8)%30);cars[1].position.x=15-((t*.72+12)%30);cars[2].position.x=-15+((t*.8+8)%30);if(person)person.animate(frame);};
 }
 function closeup(g:THREE.Group,kind:string){
  sky(g,kind==='cool');
@@ -153,7 +168,7 @@ function closeup(g:THREE.Group,kind:string){
    mesh(parent,geo,side<0?'#a5afad':'#b9c2bb',0,2.61,0);
   };
   for(let i=0;i<22;i++){let z=-3+i*.28;tooth(l,-1,z);tooth(r,1,z+.14);}
-  for(const x of [-.40,.40])for(let z=-2.9;z<=3;z+=.32){cylinder(g,.025,.015,'#6f7b7d',x,2.67,z);}
+  for(const x of [-.40,.40])for(let z=-2.9;z<=3;z+=.32){cylinder(x<0?l:r,.025,.015,'#6f7b7d',x,2.67,z);}
 
  }
  // Roadside handrail and upright: grounds the macro in the real bridge.
@@ -161,7 +176,7 @@ function closeup(g:THREE.Group,kind:string){
  if(kind==='warm'||kind==='cool'){
   const s=ball(g,.43,kind==='warm'?'#ffc65c':'#dae9f5',2.5,5.5,-4);if(kind==='warm')for(let i=0;i<8;i++){const a=i*Math.PI/4;rod(g,[2.5+Math.cos(a)*.6,5.5+Math.sin(a)*.6,-4],[2.5+Math.cos(a)*.83,5.5+Math.sin(a)*.83,-4],.035,'#ffd078');}
  }
- return (f:number)=>{const u=Math.min(1,f/105);const shift=kind==='warm'?.16*u:kind==='cool'?-.16*u:.035*Math.sin(f/35);l.position.x=shift;r.position.x=-shift;};
+ return (f:number)=>{const shift=(kind==='warm'||kind==='cool')?jointShift(f):0;l.position.x=shift;r.position.x=-shift;};
 }
 function ruler(g:THREE.Group,pressure:boolean){
  // A real workshop context for the analogy: bench, tiled walls, window and tools.
@@ -179,7 +194,7 @@ function ruler(g:THREE.Group,pressure:boolean){
  box(g,.7,.08,.4,'#75848b',-2.45,.51,1.2);rod(g,[-2.8,.58,1.2],[-2.1,.58,1.2],.035,'#acb9b9');
  // Heater beneath the ruler only appears in the heating/pressure shot.
  if(pressure){box(g,1,.14,.7,'#545f62',0,.62,0);for(let i=0;i<6;i++){const heater=rod(g,[-.42+i*.17,.73,-.18],[-.42+i*.17,.73,.18],.035,'#e87c4f');}}
- return (f:number)=>{const u=pressure?Math.min(1,f/70):0;parts.forEach((p,i)=>{p.position.y=2+u*.5*Math.sin(Math.PI*i/24);p.rotation.z=u*.22*Math.cos(Math.PI*i/24);});};
+ return (f:number)=>{const u=pressure?smooth(f,585,628):0;parts.forEach((p,i)=>{p.position.y=2+u*.5*Math.sin(Math.PI*i/24);p.rotation.z=u*.22*Math.cos(Math.PI*i/24);});};
 }
 function bearing(g:THREE.Group){
  sky(g);const top=grp(g);
@@ -192,23 +207,39 @@ function bearing(g:THREE.Group){
  box(g,2.8,3.4,2.1,'#a9ada3',0,.2,0);box(g,3.1,.25,2.4,'#919b96',0,.05,0);
  for(const x of [-.85,.85])for(const z of [-.63,.63])cylinder(g,.06,.06,'#4c5a5d',x,2.34,z);
  for(const z of [-1.62,1.62]){rod(top,[-4,4.03,z],[4,4.03,z],.04,'#bfc8bf');for(let x=-4;x<=4;x+=.6)rod(top,[x,3.78,z],[x,4.03,z],.025,'#a4b4ac');}
- return (f:number)=>{top.position.x=.15*Math.sin(f/28);};
+ return (f:number)=>{top.position.x=.18*smooth(f,1522,1554);};
 }
 export class BridgeWorld {
- root=new THREE.Group(); stages:Stage[]; focus=new THREE.Vector3();
+ root=new THREE.Group(); stages:Stage[]; focus=new THREE.Vector3(); characterShot=false;
  constructor(assets:BridgeAssets){
-  this.stages=SHOTS.map(s=>{const root=grp(this.root);let tick:(n:number)=>void;
-   if(['joint','warm','cool','fingers','seal'].includes(s.kind))tick=closeup(root,s.kind);
-   else if(s.kind==='ruler'||s.kind==='pressure')tick=ruler(root,s.kind==='pressure');
-   else if(s.kind==='bearing')tick=bearing(root);
-   else tick=road(root,assets,{hero:s.kind==='hero'||s.kind==='engineer',engineer:s.kind==='engineer',traffic:s.kind==='traffic'});
-   root.visible=false;return {root,cam:s.cam,target:s.target,fov:s.fov,tick};
+  // Re-use a set for each kind; hard cuts reposition the camera without
+  // rebuilding dozens of copies of the waterfront and the 3D car assets.
+  const cache=new Map<string,{root:THREE.Group;tick:(n:number)=>void}>();
+  this.stages=SHOTS.map(s=>{
+   let shared=cache.get(s.kind);
+   if(!shared){
+    const root=grp(this.root);let tick:(n:number)=>void;
+    if(['joint','warm','cool','fingers','seal'].includes(s.kind))tick=closeup(root,s.kind);
+    else if(s.kind==='ruler'||s.kind==='pressure')tick=ruler(root,s.kind==='pressure');
+    else if(s.kind==='bearing')tick=bearing(root);
+    else tick=road(root,assets,{hero:s.kind==='hero'||s.kind==='engineer',engineer:s.kind==='engineer',traffic:s.kind==='traffic'});
+    root.visible=false;shared={root,tick};cache.set(s.kind,shared);
+   }
+   return {...shared,cam:s.cam,target:s.target,fov:s.fov};
   });
   this.root.add(new THREE.HemisphereLight('#fff6e9','#9aa9c1',1.7));const light=new THREE.DirectionalLight('#fff1d4',2);light.position.set(-8,15,12);light.castShadow=true;light.shadow.mapSize.set(1024,1024);Object.assign(light.shadow.camera,{left:-12,right:12,top:12,bottom:-12});light.shadow.bias=-.0002;this.root.add(light);
  }
  update(frame:number,camera:THREE.PerspectiveCamera){
   let i=0;while(i+1<SHOTS.length&&frame>=SHOTS[i+1].start)i++;
-  this.stages.forEach((s,j)=>s.root.visible=i===j);const s=this.stages[i];this.focus.set(...s.target);const local=frame-SHOTS[i].start;s.tick(local);
-  const drift=Math.min(.32,local*.0018);camera.position.set(s.cam[0]+.06*Math.sin(frame/80),s.cam[1]+.04*Math.sin(frame/100),s.cam[2]-drift);camera.lookAt(...s.target);camera.fov=s.fov;camera.near=.1;camera.far=200;camera.updateProjectionMatrix();camera.layers.enable(NOINK);
+  for(const stage of this.stages) stage.root.visible=false;
+  const s=this.stages[i];s.root.visible=true;s.tick(frame);
+  this.characterShot=SHOTS[i].kind==='hero'||SHOTS[i].kind==='engineer';
+  this.focus.set(...s.target);
+  const end=i+1<SHOTS.length?SHOTS[i+1].start:1852;
+  const u=smooth(frame,SHOTS[i].start,end);
+  // A deliberate dolly toward the story subject over each shot, not random idle sway.
+  const p=new THREE.Vector3(...s.cam),target=new THREE.Vector3(...s.target);
+  p.lerp(target,u*(i===0?.16:.10));
+  camera.position.copy(p);camera.lookAt(target);camera.fov=s.fov;camera.near=.1;camera.far=200;camera.updateProjectionMatrix();camera.layers.enable(NOINK);
  }
 }
