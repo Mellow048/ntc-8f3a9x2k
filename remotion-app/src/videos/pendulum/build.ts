@@ -362,8 +362,10 @@ export const buildDamperSphere = (parent: THREE.Object3D) => {
   const G = new THREE.Group();
   parent.add(G);
   const B = new Batch();
-  const gold = phong("damperGold", () => ({ map: goldPlate(), color: "#f5c43d", specular: "#fff2be", shininess: 46 }));
-  const seamGold = lam("damperSeam", () => ({ color: "#c98b18" }));
+  // Gallery lighting keeps the famously gold-painted sphere legible even on its
+  // shaded side. The painted bands are unlit, avoiding a muddy shadow tint.
+  const gold = new THREE.MeshBasicMaterial({ map: goldPlate(), color: "#fff0a0" });
+  const seamGold = new THREE.MeshBasicMaterial({ color: "#e5a82c" });
   const cradle = lam("atrSteel", () => ({ color: "#4a5565" }));
 
   const R = 2.08;

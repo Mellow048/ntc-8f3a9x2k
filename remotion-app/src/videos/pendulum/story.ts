@@ -227,8 +227,8 @@ const zoom = (pos: V3, look: V3, fov: number, k: number, rest: Partial<Cam> = {}
 const addV = (a: V3, b: V3): V3 => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
 
 // Shot 1 (Atrium hook): low angle past visitor -> tilts up onto the massive golden sphere ("golden metal ball heavier...")
-const S1a = (f: number) => dolly(addV(ATRIUM, [1.8, 1.55, -7.8]), addV(ATRIUM, [0, 3.3, -0.5]), pushK(f, 0, 0.0026), { fov: 42 });
-const S1b = (f: number) => dolly(addV(ATRIUM, [-0.9, 2.25, -6.4]), addV(ATRIUM, [0, 4.15, 0]), pushK(f, 48, 0.0028, 0.006, 34), { fov: 38, roll: 0.038 });
+const S1a = (f: number) => dolly(addV(ATRIUM, [1.8, 2.0, -11.2]), addV(ATRIUM, [0, 3.4, 0]), pushK(f, 0, 0.0009), { fov: 54 });
+const S1b = (f: number) => dolly(addV(ATRIUM, [-0.9, 2.6, -10.8]), addV(ATRIUM, [0, 4.0, 0]), pushK(f, 48, 0.0009), { fov: 54, roll: 0.025 });
 
 // Shot 2 (City wide): plaza & strolling crowd -> tilts up the 8 bamboo tiers of Taipei 101
 const S2a = (f: number) => zoom([22, 7.5, -58], [0, 26, 0], 46, pushK(f, 142, 0.0022));
@@ -239,17 +239,17 @@ const S3a = (f: number) => dolly([18, 62, -34], [0, 68, 0], pushK(f, 289, 0.0025
 const S3b = (f: number) => dolly([13, 66, -27], [0.8, 72, 0], pushK(f, 326, 0.0028, 0.0055, 28), { fov: 37, roll: 0.04 });
 
 // Shot 4 (90F Office wide): panoramic office swaying like a boat
-const S4a = (f: number) => dolly(addV(OFFICE, [0.4, 1.85, -4.6]), addV(OFFICE, [0, 1.65, 1.2]), pushK(f, 390, 0.0024), { fov: 44 });
-const S4b = (f: number) => dolly(addV(OFFICE, [-0.6, 1.75, -3.7]), addV(OFFICE, [0, 1.6, 0.8]), pushK(f, 460, 0.0026, 0.0055, 30), { fov: 40, roll: -0.042 });
+const S4a = (f: number) => dolly(addV(OFFICE, [0.4, 2.1, 3.75]), addV(OFFICE, [0, 1.55, -0.5]), pushK(f, 390, 0.0008), { fov: 65 });
+const S4b = (f: number) => dolly(addV(OFFICE, [-0.6, 2.0, 3.8]), addV(OFFICE, [0, 1.5, -0.5]), pushK(f, 460, 0.0008), { fov: 64, roll: -0.03 });
 
 // Shot 5 (Office CU): swinging lamps + sliding coffee mug -> cut to seasick worker CU ("seasick")
-const S5a = (f: number) => dolly(addV(OFFICE, [-2.5, 1.45, -2.55]), addV(OFFICE, [-1.55, 1.15, -0.35]), pushK(f, 546, 0.0028), { fov: 36, roll: 0.035 });
-const S5b = (f: number) => dolly(addV(OFFICE, [1.55, 1.58, -1.95]), addV(OFFICE, [1.4, 1.52, 0.55]), pushK(f, 618, 0.0026, 0.006, 30), { fov: 34, roll: -0.04 });
+const S5a = (f: number) => dolly(addV(OFFICE, [-2.4, 1.8, 2.8]), addV(OFFICE, [-1.6, 1.05, -0.4]), pushK(f, 546, 0.001), { fov: 58, roll: 0.025 });
+const S5b = (f: number) => dolly(addV(OFFICE, [1.55, 1.7, 3.0]), addV(OFFICE, [1.4, 1.35, 0.55]), pushK(f, 618, 0.001), { fov: 52, roll: -0.025 });
 
 // Shot 6 (Atrium vertical reveal): high cable mounts -> glides down 8 thick cables to the sphere & engineers
-const S6a = (f: number) => dolly(addV(ATRIUM, [2.6, 7.6, -6.8]), addV(ATRIUM, [0, 6.8, 0]), pushK(f, 694, 0.0022), { fov: 44 });
-const S6b = (f: number) => dolly(addV(ATRIUM, [2.2, 3.1, -7.2]), addV(ATRIUM, [0, 4.0, 0]), pushK(f, 756, 0.0024, 0.006, 34), { fov: 40 });
-const S6c = (f: number) => dolly(addV(ATRIUM, [-1.8, 2.0, -6.2]), addV(ATRIUM, [-0.6, 2.3, -1.2]), pushK(f, 835, 0.0026), { fov: 37 });
+const S6a = (f: number) => dolly(addV(ATRIUM, [2.6, 7.6, -11.5]), addV(ATRIUM, [0, 6.3, 0]), pushK(f, 694, 0.0008), { fov: 56 });
+const S6b = (f: number) => dolly(addV(ATRIUM, [2.2, 3.1, -11.5]), addV(ATRIUM, [0, 4.0, 0]), pushK(f, 756, 0.0008), { fov: 56 });
+const S6c = (f: number) => dolly(addV(ATRIUM, [-1.8, 2.5, -10.8]), addV(ATRIUM, [-0.4, 3.0, 0]), pushK(f, 835, 0.0008), { fov: 58 });
 
 // Shot 7 (Golden harbour rowboat analogy): wave tips deck left -> hero leans hard right to balance
 const S7a = (f: number) => dolly(addV(BOAT, [1.2, 1.75, -6.6]), addV(BOAT, [0, 1.25, 0]), pushK(f, 908, 0.0022), { fov: 40 });
@@ -257,7 +257,7 @@ const S7b = (f: number) => dolly(addV(BOAT, [-0.9, 1.55, -5.3]), addV(BOAT, [0.1
 const S7c = (f: number) => dolly(addV(BOAT, [0.6, 1.6, -4.9]), addV(BOAT, [0.15, 1.4, 0]), pushK(f, 1038, 0.0025, 0.0055, 28), { fov: 36, roll: 0.038 });
 
 // Shot 8 (Counter-sway mechanism + hydraulic bumpers): wide sphere swing -> tight insert on hydraulic pistons
-const S8a = (f: number) => dolly(addV(ATRIUM, [0.4, 3.2, -8.2]), addV(ATRIUM, [0, 3.7, 0]), pushK(f, 1098, 0.0024), { fov: 44 });
+const S8a = (f: number) => dolly(addV(ATRIUM, [0.4, 3.2, -11.8]), addV(ATRIUM, [0, 3.7, 0]), pushK(f, 1098, 0.0008), { fov: 58 });
 const S8b = (f: number) => dolly(addV(ATRIUM, [-2.4, 1.75, -4.8]), addV(ATRIUM, [-1.1, 1.45, -0.4]), pushK(f, 1204, 0.0028, 0.006, 30), { fov: 36, roll: 0.035 });
 
 // Shot 9 (2015 Typhoon Soudelor exterior): dramatic low angle on tower lashed by 100-mph wind
@@ -265,22 +265,22 @@ const S9a = (f: number) => zoom([-19, 14, -44], [0, 52, 0], 45, pushK(f, 1291, 0
 const S9b = (f: number) => zoom([-14, 24, -36], [1.2, 62, 0], 41, pushK(f, 1354, 0.003, 0.0065, 30), { roll: 0.05 });
 
 // Shot 10 (Full 1-meter swing inside atrium): tight dramatic angle as sphere heaves 1m off-center
-const S10a = (f: number) => dolly(addV(ATRIUM, [-1.6, 2.35, -6.1]), addV(ATRIUM, [0.55, 3.95, 0]), pushK(f, 1426, 0.003, 0.0065, 30), { fov: 40, roll: -0.045 });
+const S10a = (f: number) => dolly(addV(ATRIUM, [-1.6, 2.6, -10.8]), addV(ATRIUM, [0.55, 3.95, 0]), pushK(f, 1426, 0.001), { fov: 55, roll: -0.03 });
 
 // Shot 11 ("Luckily, the building stayed completely fine"): bright serene wide of tower & peaceful plaza
 const S11a = (f: number) => zoom([18, 9.5, -52], [0, 36, 0], 44, pushK(f, 1487, 0.0024));
 
 // Shot 12 ("Unluckily for anyone scared of heights..."): nervous visitor gripping deck rail beside massive sphere
 const S12a = (f: number) => dolly(addV(ATRIUM, [1.45, 1.72, -6.6]), addV(ATRIUM, [0.85, 1.62, -4.1]), pushK(f, 1557, 0.0026), { fov: 35 });
-const S12b = (f: number) => dolly(addV(ATRIUM, [2.3, 2.05, -7.9]), addV(ATRIUM, [0.35, 2.85, -1.5]), pushK(f, 1618, 0.0026, 0.0055, 28), { fov: 42, roll: 0.04 });
+const S12b = (f: number) => dolly(addV(ATRIUM, [2.3, 2.3, -10.7]), addV(ATRIUM, [0.35, 3.1, 0]), pushK(f, 1618, 0.0008), { fov: 56, roll: 0.025 });
 
 // Shot 13 ("Most skyscrapers hide their dampers in a dark closet..."): lonely grey block behind steel bars
 const S13a = (f: number) => dolly(addV(CLOSET, [0.6, 1.75, -3.2]), addV(CLOSET, [0, 1.85, 1.2]), pushK(f, 1680, 0.0025), { fov: 40 });
 
 // Shot 14 ("Taipei painted theirs gold, sold tickets, and even gave ... cute cartoon mascot"): golden sunset gallery!
-const S14a = (f: number) => dolly(addV(ATRIUM, [-2.2, 2.4, -8.1]), addV(ATRIUM, [0, 3.6, 0]), pushK(f, 1774, 0.0024), { fov: 44 });
+const S14a = (f: number) => dolly(addV(ATRIUM, [-2.2, 2.4, -11.5]), addV(ATRIUM, [0, 3.6, 0]), pushK(f, 1774, 0.0008), { fov: 56 });
 const S14b = (f: number) => dolly(addV(ATRIUM, [1.9, 1.55, -6.9]), addV(ATRIUM, [2.35, 1.32, -4.3]), pushK(f, 1852, 0.0025, 0.006, 32), { fov: 36, roll: -0.03 });
-const S14c = (f: number) => dolly(addV(ATRIUM, [0.6, 2.15, -8.3]), addV(ATRIUM, [0.8, 2.65, -1.8]), pushK(f, 1916, 0.0022), { fov: 43 });
+const S14c = (f: number) => dolly(addV(ATRIUM, [0.6, 2.6, -11.5]), addV(ATRIUM, [0.5, 3.2, 0]), pushK(f, 1916, 0.0008), { fov: 56 });
 
 export const CAMS: Record<number, Key[]> = {
   1: [
