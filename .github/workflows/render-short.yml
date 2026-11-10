@@ -23,9 +23,22 @@ on:
         description: "Frame number for the still preview"
         required: false
         default: "100"
+      publish_run_id:
+        description: "If set, skip the render and attach this run's cartoon-3d-short artifact to a GitHub release"
+        required: false
+        default: ""
+      release_tag:
+        description: "Release tag for publish mode"
+        required: false
+        default: "darkday-v1"
+      asset_name:
+        description: "File name of the MP4 asset in the release"
+        required: false
+        default: "DarkDay-1780-720p.mp4"
 
 jobs:
   render:
+    if: github.event.inputs.publish_run_id == ''
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -126,3 +139,45 @@ jobs:
             remotion-app/out/still.png
           if-no-files-found: error
           retention-days: 14
+  # Attach a previous run's artifact to a release: direct, no-login asset links.
+  # (dispatch is possible because this workflow is registered on the default branch.)
+  publish:
+    if: github.event.inputs.publish_run_id != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg (sanity check)
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y ffmpeg
+
+      - name: Download artifact from the render run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf artifact && mkdir artifact
+          gh run download ${{ github.event.inputs.publish_run_id }} --repo "${{ github.repository }}" --name cartoon-3d-short --dir artifact
+          ls -laR artifact
+          test -f artifact/final.mp4
+          BYTES=$(stat -c%s artifact/final.mp4)
+          echo "final.mp4: ${BYTES} bytes"
+          [ "$BYTES" -gt 10000000 ] || (echo "artifact suspiciously small" && exit 1)
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate:format=duration -of default=noprint_wrappers=1 artifact/final.mp4
+
+      - name: Create release (if missing) and upload assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view "${{ github.event.inputs.release_tag }}" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            gh release create "${{ github.event.inputs.release_tag }}" --repo "${{ github.repository }}"               --target arena/5a7dfc84-ntc-8f3a9x2k --title "The Dark Day (1780) — 720p short"               --notes "Burned-in English captions (user order). Voice-09. I=-15.2 LUFS / peak -1.1 dBTP. QA: no black/white frames, no frozen spans (shoots/darkday/DELIVERY.md)."
+          fi
+          cp artifact/final.mp4 "${{ github.event.inputs.asset_name }}"
+          gh release upload "${{ github.event.inputs.release_tag }}" "${{ github.event.inputs.asset_name }}" --repo "${{ github.repository }}" --clobber
+          if [ -f artifact/still.png ]; then
+            gh release upload "${{ github.event.inputs.release_tag }}" artifact/still.png#darkday-still-1535.png --repo "${{ github.repository }}" --clobber
+          fi
+          echo "DIRECT_LINK=https://github.com/${{ github.repository }}/releases/download/${{ github.event.inputs.release_tag }}/${{ github.event.inputs.asset_name }}"
