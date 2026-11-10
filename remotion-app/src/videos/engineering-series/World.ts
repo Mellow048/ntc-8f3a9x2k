@@ -82,7 +82,7 @@ function bridge(g:THREE.Group, mode:string):Tick {
  }
  for(const z of [-.85,.85]){link(g,v(-4.1,3.35,z),v(4.1,3.35,z),.06,'#556875');}
  for(let i=0;i<6;i++){let z=-.8+i*.3;box(left,.32,.08,.13,'#d8dbd3',-.08,3.25,z);box(right,.32,.08,.13,'#d8dbd3',.08,3.25,z+.15);}
- const c=car(g,-2.8,3.23,-.15,'#d86750',.72);const engineer=person(g,-3.2,.04,2.1,'engineer',.75);
+ const c=car(g,-2.8,3.23,-.15,'#d86750',.72);const engineer=person(g,-2.2,3.23,1.2,'engineer',.85);
  const indicator=group(g,0,5.8,0);
  if(mode==='heat'){sun(indicator,0,0,0);}
  if(mode==='cold'){for(const [x,y] of [[-1,0],[0,.6],[1,0],[.5,-.8]] as const){const f=sphere(indicator,.12,'#f3fcff',x,y,0);f.scale.set(1,1,.5);}}
@@ -116,7 +116,7 @@ function cityhall(g:THREE.Group, mode:string):Tick {
  for(let i=-3;i<=3;i++){
   const b=group(g,i*1.15,.6,0);cyl(b,.43,.18,'#4a5262',0,.02,0);cyl(b,.38,.20,'#9aacc2',0,.2,0);cyl(b,.43,.17,'#4a5262',0,.38,0);
  }
- const hero=person(g,-2.8,.2,3.5,'hero',1.05,mode==='quake'?'shock':'smile');
+ const hero=person(g,-1.9,.2,4.5,'hero',1.15,mode==='quake'?'shock':'smile');
  tree(g,-5,-1,.8);tree(g,5,-1,.8);
  if(mode==='moat'){box(g,.14,.18,4,'#2a3342',-4.4,.44,0);box(g,.14,.18,4,'#2a3342',4.4,.44,0);}
  return f=>{const t=f/30;const shake=mode==='quake'?.22*Math.sin(t*15):.04*Math.sin(t*1.7);foundation.position.x=shake;top.position.x=shake*.3;hero.rotation.z=.03*Math.sin(t*2);};
@@ -141,13 +141,14 @@ function airport(g:THREE.Group,mode:string):Tick {
  const terminal=group(island,0,0,-.7);box(terminal,5,.85,.8,'#9cc4cd',0,2.15,0);box(terminal,5.4,.14,1,'#e8eee8',0,2.63,0);
  for(let x=-2.2;x<=2.2;x+=.55)box(terminal,.05,.85,.06,'#6d8997',x,2.16,.43);
  const a=plane(island,-1.8,2.7,.45,.9);
+ const worker=person(island,2.8,1.8,1.9,'engineer',.75);
  // bridge to shore on the right, and gentle wave crests
  box(g,3,.2,.8,'#b8b5a5',5,1.75,0);for(let x=3.7;x<6.6;x+=.8)box(g,.13,1.6,.13,'#e0d5b6',x,.8,0);
  for(let x=-5;x<5;x+=1.6){const q=box(g,.7,.035,.06,'#b4e5df',x,.1,3);q.rotation.y=.2;}
  if(mode==='clay'||mode==='sink'){box(g,8,1.35,3.7,'#a56e62',0,.0,.01);for(let x=-3;x<=3;x+=1){box(g,.06,1,.06,'#e8d1ab',x,-.05,2);}}
  if(mode==='build'){const boat=group(g,-3,.5,3);box(boat,1.8,.35,.7,'#b56546',0,0,0);box(boat,.6,.35,.6,'#f4e8d4',-.4,.32,0);}
  if(mode==='seawall'){for(const x of [-4,4])box(g,.35,2.1,4.1,'#9da9a7',x,1.1,0);}
- return f=>{const t=f/30;island.position.y=(mode==='sink'||mode==='clay')?-.35*(.5+.5*Math.sin(t*.5)):0;a.position.x=-2.2+((t*.45)%4.4);};
+ return f=>{const t=f/30;island.position.y=(mode==='sink'||mode==='clay')?-.35*(.5+.5*Math.sin(t*.5)):0;a.position.x=-2.2+((t*.45)%4.4);worker.rotation.z=.025*Math.sin(t*2);};
 }
 function jack(g:THREE.Group):Tick {
  sceneBase(g,'interior');box(g,8,.4,3,'#777782',0,.15,0);box(g,8,.65,3,'#e1d4b7',0,4.3,0);
@@ -186,7 +187,7 @@ function tunnel(g:THREE.Group,mode:string):Tick {
   t.visible=false;
  }
  if(mode==='car'){car(g,0,2.2,2,'#df6b54',.7);}
- person(g,-4.1,0,2,'engineer',.65);
+ person(g,-1.9,0,2.5,'engineer',.85);
  return f=>{const tm=f/30;t.position.x+=0;fishes.forEach((fish,i)=>{fish.position.x=[-2.5,1.4,3][i]+.3*Math.sin(tm+i);});};
 }
 
@@ -203,7 +204,7 @@ function tower(g:THREE.Group,mode:string):Tick {
  for(const y of [3.35,5.8,8.2]){for(const z of [-1.1,1.5]){link(tower,v(-3.2,y,z),v(0,y+.72,z),.09,'#627481');link(tower,v(0,y+.72,z),v(3.2,y,z),.09,'#627481');}}
  // Escalators leading from open plaza to raised entrance.
  for(const x of [-.55,.55]){const e=box(tower,.5,3.4,.32,'#8d999d',x,1.7,1.6);e.rotation.x=-.72;}
- const people=[person(g,-2.2,0,2.4,'folk',.75),person(g,1.9,0,2.4,'hero',.7),person(g,.2,0,2.6,'folk',.6)];
+ const people=[person(g,-2.1,0,3.1,'folk',.9),person(g,1.5,0,3.5,'hero',1.0),person(g,.2,0,2.7,'folk',.75)];
  tree(g,-5,1,.8);tree(g,5,1,.8);
  return f=>{people.forEach((p,i)=>{p.rotation.z=.015*Math.sin(f/17+i);});};
 }

@@ -80,25 +80,7 @@ jobs:
           mkdir -p out/diagnostics
           for frame in 100 400 900 1500; do
             npx remotion still src/index.ts "${{ inputs.composition }}" "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
-            echo "file '$frame.png'" >> out/diagnostics/list.txt
           done
-          ffmpeg -v error -y -f concat -safe 0 -i out/diagnostics/list.txt -vf 'scale=270:480,tile=4x1' -frames:v 1 -q:v 18 out/diagnostics/sheet.jpg
-          base64 -w0 out/diagnostics/sheet.jpg | split -b 3500 -d -a 3 - out/diagnostics/chunk-
-      - name: Diagnostic image chunks 1
-        if: inputs.diagnostics == 'true'
-        working-directory: remotion-app
-        run: |
-          for n in $(seq 0 9); do i=$(printf '%03d' "$n"); f="out/diagnostics/chunk-$i"; [ ! -f "$f" ] || echo "::notice title=sheet-$i::$(cat "$f")"; done
-      - name: Diagnostic image chunks 2
-        if: inputs.diagnostics == 'true'
-        working-directory: remotion-app
-        run: |
-          for n in $(seq 10 19); do i=$(printf '%03d' "$n"); f="out/diagnostics/chunk-$i"; [ ! -f "$f" ] || echo "::notice title=sheet-$i::$(cat "$f")"; done
-      - name: Diagnostic image chunks 3
-        if: inputs.diagnostics == 'true'
-        working-directory: remotion-app
-        run: |
-          for n in $(seq 20 29); do i=$(printf '%03d' "$n"); f="out/diagnostics/chunk-$i"; [ ! -f "$f" ] || echo "::notice title=sheet-$i::$(cat "$f")"; done
       - name: Upload diagnostic stills
         if: inputs.diagnostics == 'true' && always()
         uses: actions/upload-artifact@v4
