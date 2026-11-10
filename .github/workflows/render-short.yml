@@ -27,9 +27,18 @@ on:
         description: "Render only pendulum keyframe diagnostics (true/false)"
         required: false
         default: "false"
+      publish_artifact_run:
+        description: "Run ID of an existing PendulumShort render to commit to this branch"
+        required: false
+        default: ""
+
+permissions:
+  actions: read
+  contents: write
 
 jobs:
   render:
+    if: inputs.publish_artifact_run == ''
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
@@ -151,3 +160,31 @@ jobs:
             remotion-app/out/qa/report.md
           if-no-files-found: error
           retention-days: 14
+
+  publish-pendulum:
+    if: inputs.publish_artifact_run != '' && github.ref == 'refs/heads/arena/2524fc8a-ntc-8f3a9x2k'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/2524fc8a-ntc-8f3a9x2k
+      - name: Download completed render
+        uses: actions/download-artifact@v4
+        with:
+          name: cartoon-3d-short
+          run-id: ${{ inputs.publish_artifact_run }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: downloaded-render
+      - name: Commit the 720p video to this branch
+        run: |
+          set -euo pipefail
+          test -f downloaded-render/final.mp4
+          size=$(stat -c %s downloaded-render/final.mp4)
+          if [ "$size" -ge 100000000 ]; then echo 'Video exceeds GitHub file size limit' >&2; exit 1; fi
+          mkdir -p shoots/pendulum
+          cp downloaded-render/final.mp4 shoots/pendulum/final-720p.mp4
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f shoots/pendulum/final-720p.mp4
+          git commit -m 'Add finished 720p PendulumShort video'
+          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
