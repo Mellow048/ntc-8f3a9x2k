@@ -29,9 +29,8 @@ const makeBloom = () => {
     levels: 6,
     radius: 0.6,
   });
-  const mip = b.mipmapBlurPass;
-  const setSize = mip.setSize.bind(mip);
-  mip.setSize = (w: number, h: number) => setSize(Math.round((1920 * w) / Math.max(h, 1)), 1920);
+  // Use the actual render size. Forcing a 1920px buffer makes a 720p
+  // SwiftShader render substantially slower and wastes memory.
   return b;
 };
 
