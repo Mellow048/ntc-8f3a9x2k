@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {interior} from './interior';
 import {V,box,cyl,sphere,bar,material,wood,timber,iron,stone,lamp,batchStatic} from '../beer-remaster/build';
 import {Character} from '../survivor-remaster/cast';
 import {LIGHTS,LOOK} from '../beer-remaster/style/lights';
@@ -21,7 +22,7 @@ export class World {
   const worker=(x:number,z:number,i=0)=>{const a=new Character(p,x,z,{jacket:['#c17b3c','#6d8b78','#8a697d'][i%3],pants:'#3b4653',boots:'#35333a',hat:i===1?'hair':'cap',cap:i===0?'#dfbb50':'#bdc4c4',hair:i===1?'#573a30':'#333b43',skin:'#e9c9a5',build:i===2?'stout':'adult'});a.seed=11+i*13;a.root.scale.setScalar([1,.93,1.07][i%3]);this.actors.push(a);return a;};
   if(['lake','rig','sinking','return'].includes(place)){
    shoreline(p);const water=new LakeWater(p);const tower=rig(p);const boats=Array.from({length:11},(_,i)=>barge(p,i));
-   const seal=cyl(p,0,-.15,0,.42,.2,new T.MeshBasicMaterial({color:'#286879'}));seal.visible=place==='return';const lead=worker(2,1,0);tower.root.add(lead.root);lead.root.position.set(2,1.15,1);const other=worker(-2,1,1);tower.root.add(other.root);other.root.position.set(-2,1.15,1);
+   const seal=cyl(p,0,-.15,0,.42,.2,new T.MeshBasicMaterial({color:'#286879'}));seal.userData.dynamic=true;seal.visible=place==='return';const lead=worker(2,1,0);tower.root.add(lead.root);lead.root.position.set(2,1.15,1);const other=worker(-2,1,1);tower.root.add(other.root);other.root.position.set(-2,1.15,1);
    this.animations.push((s,f,u)=>{const t=f/30,calm=place==='rig',returning=place==='return';const q=place==='sinking'?smooth((f-617)/99):place==='lake'? .12+u*.3:0;const depth=calm||returning?0:1;water.update(t,depth,calm?.35:1.4);
     tower.root.visible=!returning;tower.root.position.set(Math.sin(t*.7)*.08,-q*20,0);tower.root.rotation.z=q*.55;tower.root.rotation.x=q*.18;tower.pipe.rotation.y=f*.12;
     lead.expr=calm?'neutral':'shock';other.expr=calm?'neutral':'nervous';lead.wave=calm?undefined:.8;other.wave=calm?undefined:.6;lead.lean=calm?Math.sin(t*4)*2:-12;lead.root.visible=calm;other.root.visible=calm;
@@ -29,6 +30,12 @@ export class World {
      if(place==='sinking')r=Math.max(.4,r-(u*18+i*.15));if(returning)r=8+i*.9;
      const x=Math.cos(ang)*r,z=Math.sin(ang)*r;b.visible=!returning||i<9;b.position.set(x,water.height(x,z,t,depth)+(returning?-.15-(1-smooth((f-965)/45))*2.3:-clamp((1.5-r)/1.5)*3),z);b.rotation.set(Math.sin(t*1.6+i)*.045+(!calm&&!returning?clamp((7-r)/7)*.65:0),-ang,(!calm&&!returning?clamp((7-r)/7)*.6:Math.sin(t+i)*.035));
     });
+   });
+  }else if(place==='tunnel'||place==='impact'){
+   const room=interior(p);const people=place==='tunnel'?[worker(1.8,-6,0),worker(-2,-11,1)]:[];
+   this.animations.push((s,f,u)=>{const q=clamp((f-393)/65);const hit=place==='impact';room.bit.position.y=6-clamp((f-377)/35)*2;room.bit.rotation.y=f*.34;room.stream.visible=f>399;room.stream.scale.set(.4+q,1,.4+q);room.flood.visible=f>410;room.flood.position.y=.08+q*.85;
+    room.debris.forEach((d,i)=>{d.visible=f>390;const t=((f-390+i*3)%37)/37;d.position.set(Math.sin(i*2.39)*t*3,4-t*4,-1+Math.cos(i*1.7)*t*3);});
+    people.forEach((a,i)=>{a.walk=q>0;a.expr=q>0?'shock':'neutral';a.lean=q>0?-14:0;a.root.position.set(i?-2:1.8,0,-6-i*5+q*9);});
    });
   }else if(['section','breach','lost'].includes(place)){
    const cut=mine(p);const top=box(p,0,.1,0,24,.12,6,new T.MeshBasicMaterial({color:'#398ca8'}));const small=rig(p);small.root.scale.setScalar(.45);small.root.position.set(0,.1,1);

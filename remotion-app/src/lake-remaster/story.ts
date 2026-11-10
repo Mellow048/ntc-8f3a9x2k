@@ -1,17 +1,17 @@
 import {lake} from '../curiosity/data';
 export const FPS=30,TOTAL=lake.frames;
 export type V3=[number,number,number];
-export type Place='lake'|'rig'|'section'|'breach'|'drain'|'sinking'|'canal'|'escape'|'return'|'lost';
+export type Place='lake'|'rig'|'section'|'breach'|'drain'|'sinking'|'canal'|'escape'|'return'|'lost'|'tunnel'|'impact';
 export type Shot={id:number;a:number;b:number;place:Place;pos:V3;end:V3;look:V3;fov:number;light:'day'|'golden';dof:number};
 const defs:Array<[number,Place,V3,V3,V3,number,boolean?]>=[
  [0,'lake',[19,18,25],[13,14,21],[0,-1,0],54],
  [5,'lake',[-15,9,22],[-11,7,19],[0,-1,0],54],
  [12,'rig',[13,7,16],[10,5.8,13],[0,3,0],52],
- [18,'rig',[8,5.5,14],[6,4.8,12],[0,3.3,.4],51],
+ [18,'rig',[4,3.2,6],[3.2,3,4.8],[0,2,0],56],
  [24,'section',[13,7,23],[10,5.5,20],[0,-3,0],53],
- [30,'section',[-10,1,19],[-7,0,16],[0,-5,0],49],
- [34,'breach',[6,-1,14],[4,-1.7,12],[0,-4,0],46],
- [39,'breach',[-5,-1,13],[-3,-1.7,11],[0,-4,0],48],
+ [30,'tunnel',[3,1.8,7],[1.7,1.7,5],[0,1.5,-5],55],
+ [34,'impact',[2.7,2.2,5],[1.7,2.4,3.7],[0,3,-1],48],
+ [39,'tunnel',[-2,1.3,7],[-1,1.2,5],[0,1,-7],58],
  [43,'drain',[5,4.8,7],[3.6,4.1,6],[0,1,0],48],
  [51,'lake',[12,18,20],[7,16,16],[0,-3,0],54],
  [57,'sinking',[15,10,20],[11,8,16],[0,-1,0],54],
