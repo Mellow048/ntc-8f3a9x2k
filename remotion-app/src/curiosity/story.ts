@@ -1,6 +1,4 @@
-import beer from './beer.json';
-import survivor from './survivor.json';
-import lake from './lake.json';
+import {beer,survivor,lake} from './data';
 export type Slug = 'beer' | 'survivor' | 'lake';
 export const DATA = {beer, survivor, lake};
 export type V3 = [number,number,number];

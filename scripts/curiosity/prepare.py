@@ -78,3 +78,7 @@ for slug, text in TEXT.items():
     target=ROOT/'remotion-app/src/curiosity'/f'{slug}.json'
     target.write_text(json.dumps({'slug':slug,'duration':n,'frames':round(n*30),'words':words},indent=2))
     print(slug,n,len(words),flush=True)
+
+# TypeScript data avoids changing the shared project's tsconfig for JSON imports.
+base=ROOT/'remotion-app/src/curiosity'
+(base/'data.ts').write_text('// Generated from forced-aligned Arena narration.\n'+''.join(f'export const {s} = '+json.dumps(json.loads((base/f'{s}.json').read_text()),separators=(',',':'))+';\n' for s in TEXT))
