@@ -9,7 +9,7 @@ on:
       - 'scripts/curiosity/**'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: curiosity-${{ github.ref }}
   cancel-in-progress: true
@@ -48,6 +48,13 @@ jobs:
           for F in 45 210 420 720 990; do
             npx remotion still src/curiosity/index.tsx Curiosity-${{ matrix.slug }} out/curiosity-${{ matrix.slug }}/frame-$F.png --frame=$F --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000
           done
+      - name: Publish previews on the session branch
+        env:
+          SLUG: ${{ matrix.slug }}
+        run: |
+          mkdir -p deliveries/curiosity-$SLUG/previews
+          cp remotion-app/out/curiosity-$SLUG/*.png deliveries/curiosity-$SLUG/previews/
+          bash scripts/curiosity/publish.sh "Preview curiosity-$SLUG" "deliveries/curiosity-$SLUG/previews"
       - uses: actions/upload-artifact@v4
         with:
           name: curiosity-${{ matrix.slug }}-previews
@@ -65,6 +72,14 @@ jobs:
         run: |
           python -m pip install numpy pillow
           python scripts/curiosity/qa.py ${{ matrix.slug }}
+      - name: Publish MP4 and QA on the session branch
+        env:
+          SLUG: ${{ matrix.slug }}
+        run: |
+          mkdir -p deliveries/curiosity-$SLUG
+          cp remotion-app/out/curiosity-$SLUG/curiosity-$SLUG.mp4 deliveries/curiosity-$SLUG/
+          cp remotion-app/out/curiosity-$SLUG/qa/{report.md,gates.json} deliveries/curiosity-$SLUG/
+          bash scripts/curiosity/publish.sh "Deliver curiosity-$SLUG 720p" "deliveries/curiosity-$SLUG"
       - uses: actions/upload-artifact@v4
         if: always()
         with:

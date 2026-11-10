@@ -39,7 +39,7 @@ function shadow(p:T.Group,x:number,z:number,r=1){const m=new T.Mesh(new T.Circle
 class Actor {
  group=new T.Group(); canvas=document.createElement('canvas');ctx:CanvasRenderingContext2D;tex:T.CanvasTexture; card:T.Mesh; outfit:Outfit; expr:Expr='neutral'; walking=false; old=false;
  constructor(p:T.Group,x:number,z:number,outfit:Outfit){this.canvas.width=300;this.canvas.height=500;this.ctx=this.canvas.getContext('2d')!;this.ctx.scale(.5,.5);this.tex=new T.CanvasTexture(this.canvas);this.tex.colorSpace=T.SRGBColorSpace;this.outfit=outfit;this.card=new T.Mesh(new T.PlaneGeometry(1.8,3),new T.MeshLambertMaterial({map:this.tex,transparent:true,alphaTest:.05,side:T.DoubleSide}));this.card.position.y=1.46;this.card.layers.set(NOINK);this.group.add(this.card);this.group.position.set(x,0,z);p.add(this.group);shadow(p,x,z,.7);}
- update(f:number,cam:T.Camera){this.ctx.clearRect(0,0,600,1000);bodyFront(new Pen(this.ctx),this.outfit,{mode:this.walking?'stroll':'stand',phase:f/24,expr:this.expr,blink:f%79<4,seed:4,headTilt:Math.sin(f*.018)*.025});if(this.old){this.ctx.fillStyle='#dbd9d0';this.ctx.fillRect(201,165,190,22);}this.tex.needsUpdate=true;this.card.quaternion.copy(cam.quaternion);}
+ update(f:number,cam:T.Camera){this.ctx.clearRect(0,0,600,1000);bodyFront(new Pen(this.ctx),this.outfit,{mode:this.walking?'stroll':'stand',phase:f/24,expr:this.expr,blink:f%79<4,seed:4,headTilt:Math.sin(f*.018)*.025});this.tex.needsUpdate=true;this.card.quaternion.copy(cam.quaternion);}
 }
 function vat(p:T.Group){const g=new T.Group();p.add(g);cyl(g,0,3,0,2.4,6,'#b6814a');for(let i=0;i<5;i++){const m=new T.Mesh(new T.TorusGeometry(2.43,.10,8,64),mat('#42434a'));m.rotation.x=Math.PI/2;m.position.y=.55+i*1.2;g.add(m);}cyl(g,0,6.02,0,2.41,.08,'#5a3e2c');return g;}
 function barge(p:T.Group,x:number,z:number){const g=new T.Group();g.position.set(x,.25,z);p.add(g);box(g,0,0,0,1.65,.7,3.3,'#5a6665');box(g,0,.4,0,1.35,.12,2.9,'#9e7552','wood');for(const xx of [-.75,.75])box(g,xx,.55,0,.08,.4,3,'#424d53');return g;}
@@ -114,9 +114,9 @@ export class World {
  }else{
   const lakeScenes=['vortex','rig','sinking','return','canal'];
   if(lakeScenes.includes(s)){
-   box(p,0,-1.2,0,50,1,50,'#70856b');
+   const bank=new T.Mesh(new T.RingGeometry(17,55,72),mat('#88986d'));bank.rotation.x=-Math.PI/2;bank.position.y=-.12;p.add(bank);
    // Annular water surface leaves an actual opening into the funnel.
-   const ring=new T.Mesh(new T.RingGeometry(s==='rig'||s==='return'?0:3.6,24,72),mat('#599eaa'));ring.rotation.x=-Math.PI/2;ring.position.y=-.05;p.add(ring);
+   const ring=new T.Mesh(new T.RingGeometry(s==='rig'||s==='return'?0:3.6,17,72),mat('#599eaa'));ring.rotation.x=-Math.PI/2;ring.position.y=-.05;p.add(ring);
    for(let i=0;i<12;i++)tree(p,Math.cos(i*.52)*18,Math.sin(i*.52)*18);
    if(s==='rig'){const r=rig(p);person(2,1,'neutral',{hat:'cap',cap:'#dfc56a',jacket:'#bb7b4d'});this.animate.push((f,t)=>r.drill.rotation.y=t*5);}
    else if(s==='canal'){
@@ -143,5 +143,5 @@ export class World {
  }
  }
  update(f:number,camera:T.Camera){const u=(f-this.shot.a)/Math.max(1,this.shot.b-this.shot.a);for(const fn of this.animate)fn(f,f/30,u);for(const actor of this.actors)actor.update(f,camera);}
- dispose(){const textures=new Set<T.Texture>(),geos=new Set<T.BufferGeometry>(),mats=new Set<T.Material>();this.root.traverse(o=>{if(o instanceof T.Mesh){geos.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material]){mats.add(m);if(m.map&&!texCache.has(m.map.name)){} }}});for(const g of geos)if(g!==geometry.box&&g!==geometry.sphere)g.dispose();for(const m of mats)m.dispose();for(const a of this.actors)a.tex.dispose();}
+ dispose(){const geos=new Set<T.BufferGeometry>(),mats=new Set<T.Material>();this.root.traverse(o=>{if(o instanceof T.Mesh){geos.add(o.geometry);for(const m of Array.isArray(o.material)?o.material:[o.material]){mats.add(m); }}});for(const g of geos)if(g!==geometry.box&&g!==geometry.sphere)g.dispose();for(const m of mats)m.dispose();for(const a of this.actors)a.tex.dispose();}
 }
