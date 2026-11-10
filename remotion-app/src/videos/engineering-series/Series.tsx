@@ -8,6 +8,7 @@ import {EffectComposer} from '@react-three/postprocessing';
 import {BlendFunction,BloomEffect,ToneMappingEffect,ToneMappingMode} from 'postprocessing';
 import {InkPass,noInkFallback} from '../pendulum/ink';
 import {GradeEffect,GRADES,GRADE_STRENGTH} from '../pendulum/grade';
+import {LensBlur} from '../pendulum/lensblur';
 import {World,Beat} from './World';
 import {BridgeWorld} from '../bridge-remaster/BridgeWorld';
 import data from './data.json';
@@ -22,17 +23,24 @@ const Scene:React.FC<{slug:Slug}> = ({slug})=>{
  const world=useMemo(()=>slug==='breathing-bridge' ? new BridgeWorld() : new World(slug,stories[slug].beats),[slug]);
  const fx=useMemo(()=>({
   ink:new InkPass(scene,camera as THREE.PerspectiveCamera),
+  lens:new LensBlur({maxCoC:24,nearScale:1.2}),
   bloom:new BloomEffect({blendFunction:BlendFunction.ADD,intensity:.35,luminanceThreshold:1,luminanceSmoothing:.2,mipmapBlur:true,levels:5,radius:.55}),
   tone:new ToneMappingEffect({mode:ToneMappingMode.NEUTRAL}),
   grade:new GradeEffect(GRADES.day,GRADE_STRENGTH.day),
  }),[camera,scene]);
- const post=useMemo(()=><EffectComposer multisampling={4}>
-   <primitive object={fx.ink} dispose={null}/>
-   <primitive object={fx.bloom} dispose={null}/>
-   <primitive object={fx.tone} dispose={null}/>
-   <primitive object={fx.grade} dispose={null}/>
- </EffectComposer>,[fx]);
+ const post=useMemo(()=> <EffectComposer multisampling={4}>{[
+   <primitive key="ink" object={fx.ink} dispose={null}/>,
+   ...(slug==='breathing-bridge' ? [<primitive key="lens-pre" object={fx.lens.pre} dispose={null}/>,<primitive key="lens-main" object={fx.lens.main} dispose={null}/>] : []),
+   <primitive key="bloom" object={fx.bloom} dispose={null}/>,
+   <primitive key="tone" object={fx.tone} dispose={null}/>,
+   <primitive key="grade" object={fx.grade} dispose={null}/>,
+ ]}</EffectComposer>,[fx,slug]);
  world.update(frame,camera as THREE.PerspectiveCamera);noInkFallback(world.root);
+ if(world instanceof BridgeWorld){
+  const direction=new THREE.Vector3();camera.getWorldDirection(direction);
+  fx.lens.focus=Math.max(.3,world.focus.clone().sub(camera.position).dot(direction));
+  fx.lens.cInf=((frame>=77&&frame<188)||(frame>=842&&frame<950)||(frame>=1665&&frame<1740))?12:0;
+ }
  return <><primitive object={world.root} dispose={null}/>{post}</>;
 };
 
@@ -60,12 +68,26 @@ const Captions:React.FC<{words:Word[]}>=({words})=>{
  </AbsoluteFill>;
 };
 
+const TemperatureCue:React.FC=()=>{
+ const frame=useCurrentFrame();
+ const hot=(frame>=270&&frame<325)||(frame>=1078&&frame<1199);
+ const cold=(frame>=325&&frame<380)||(frame>=1199&&frame<1316);
+ if(!hot&&!cold)return null;
+ const color=hot?'#e56449':'#5b9fd0';
+ return <div style={{position:'absolute',right:'7%',top:'8%',width:'18%',aspectRatio:'1',borderRadius:'50%',background:'rgba(255,250,231,.94)',boxShadow:'0 3px 0 #3b2b36, 0 6px 14px #2b333b33',display:'grid',placeItems:'center'}}>
+  <svg viewBox="0 0 100 100" style={{width:'68%',height:'68%'}} aria-hidden="true">
+   {hot ? <g fill="none" stroke={color} strokeWidth="6" strokeLinecap="round"><circle cx="50" cy="50" r="18" fill={color}/>{Array.from({length:8},(_,i)=>{const a=i*Math.PI/4;return <line key={i} x1={50+27*Math.cos(a)} y1={50+27*Math.sin(a)} x2={50+38*Math.cos(a)} y2={50+38*Math.sin(a)}/>;})}</g> : <g fill="none" stroke={color} strokeWidth="6" strokeLinecap="round">{Array.from({length:6},(_,i)=>{const a=i*Math.PI/3;return <line key={i} x1="50" y1="50" x2={50+35*Math.cos(a)} y2={50+35*Math.sin(a)}/>;})}<circle cx="50" cy="50" r="5" fill={color}/></g>}
+  </svg>
+ </div>;
+};
+
 export const EngineeringShort:React.FC<{slug:Slug}>=({slug})=>{
  const {width,height}=useVideoConfig();
  return <AbsoluteFill style={{background:'#bce5f2',containerType:'inline-size'}}>
   <ThreeCanvas width={width} height={height} shadows gl={{antialias:false,stencil:false,powerPreference:'high-performance'}} camera={{fov:40,near:.1,far:300}}>
    <Scene slug={slug}/>
   </ThreeCanvas>
+  {slug==='breathing-bridge' && <TemperatureCue/>}
   <Captions words={stories[slug].words}/>
  </AbsoluteFill>;
 };

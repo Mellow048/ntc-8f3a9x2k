@@ -11,18 +11,18 @@ const SHOTS:Shot[]=[
  {start:0,kind:'joint',cam:[1.6,7,4.7],target:[0,2.6,0],fov:40},
  {start:77,kind:'hero',cam:[1.6,4.3,6.1],target:[1,3.8,1.7],fov:38},
  {start:188,kind:'bridge',cam:[8.2,7.2,15],target:[0,2.9,0],fov:43},
- {start:270,kind:'warm',cam:[1.8,7,4.8],target:[0,2.6,0],fov:43},
- {start:325,kind:'cool',cam:[1.8,7,4.8],target:[0,2.6,0],fov:43},
+ {start:270,kind:'warm',cam:[3.7,6.5,4.1],target:[0,2.6,0],fov:43},
+ {start:325,kind:'cool',cam:[-3.7,6.5,4.1],target:[0,2.6,0],fov:43},
  {start:380,kind:'traffic',cam:[2.3,5,11],target:[0,3,0],fov:43},
  {start:480,kind:'ruler',cam:[1.5,5.2,10],target:[0,2.2,0],fov:40},
  {start:585,kind:'pressure',cam:[1.5,5.2,9],target:[0,2.2,0],fov:40},
  {start:725,kind:'traffic',cam:[-2.5,5.3,10],target:[0,3,0],fov:43},
  {start:842,kind:'engineer',cam:[1.6,4.3,6.1],target:[1,3.8,1.7],fov:38},
  {start:950,kind:'joint',cam:[1.6,7,4.7],target:[0,2.8,0],fov:43},
- {start:1078,kind:'warm',cam:[1.9,7,4.9],target:[0,2.8,0],fov:43},
- {start:1199,kind:'cool',cam:[1.9,7,4.9],target:[0,2.8,0],fov:43},
+ {start:1078,kind:'warm',cam:[3.7,6.5,4.1],target:[0,2.8,0],fov:43},
+ {start:1199,kind:'cool',cam:[-3.7,6.5,4.1],target:[0,2.8,0],fov:43},
  {start:1316,kind:'fingers',cam:[.8,7.2,4.7],target:[0,2.75,0],fov:43},
- {start:1400,kind:'seal',cam:[.8,7.2,4.7],target:[0,2.75,0],fov:43},
+ {start:1400,kind:'seal',cam:[-2.5,6.4,4.3],target:[0,2.75,0],fov:43},
  {start:1470,kind:'bearing',cam:[4,5.5,9.5],target:[0,2.4,0],fov:42},
  {start:1565,kind:'traffic',cam:[1,5.2,10],target:[0,3,0],fov:43},
  {start:1665,kind:'hero',cam:[1.6,4.3,6.1],target:[1,3.8,1.7],fov:38},
@@ -103,11 +103,11 @@ function closeup(g:THREE.Group,kind:string){
 }
 function ruler(g:THREE.Group,pressure:boolean){
  const bg=new THREE.Mesh(new THREE.PlaneGeometry(40,30),new THREE.MeshBasicMaterial({color:'#d9e7e6'}));bg.position.set(0,8,-9);bg.layers.set(NOINK);g.add(bg);
- box(g,12,.45,5,'#cc9f74',0,.2,0);for(const x of [-3.35,3.35]){box(g,.5,3.4,1.4,'#a65d50',x,1.95,0);for(let y=.65;y<3.5;y+=.55)box(g,.52,.04,1.42,'#d28f73',x,y,0);}
- const parts:THREE.Mesh[]=[];for(let i=0;i<25;i++){const x=-2.95+i*.245;const seg=box(g,.248,.24,.58,'#ebbb56',x,2,0);parts.push(seg);box(seg,.025,.012,.14,'#6d503d',0,.13,.13);}
- actor(g,1.65,.44,1.65,'engineer',1.1,pressure?'shock':'grin');
- const heat=ball(g,.42,'#f8c65d',-2.4,4.3,-1);
- return (f:number)=>{const u=pressure?Math.min(1,f/70):0;parts.forEach((p,i)=>{p.position.y=2+u*.55*Math.sin(Math.PI*i/24);p.rotation.z=u*.22*Math.cos(Math.PI*i/24);});heat.scale.setScalar(1+.08*Math.sin(f/12));};
+ box(g,12,.45,5,'#cc9f74',0,.2,0);for(const x of [-1.85,1.85]){box(g,.5,3.4,1.4,'#a65d50',x,1.95,0);for(let y=.65;y<3.5;y+=.55)box(g,.52,.04,1.42,'#d28f73',x,y,0);}
+ const parts:THREE.Mesh[]=[];for(let i=0;i<25;i++){const x=-1.57+i*.13;const seg=box(g,.135,.34,.58,'#ebbb56',x,2,0);parts.push(seg);box(seg,.025,.012,.14,'#6d503d',0,.18,.13);}
+ actor(g,1.35,.44,1.65,'engineer',1.15,pressure?'shock':'grin');
+ const heat=ball(g,.42,'#f8c65d',-1.6,4.3,-1);
+ return (f:number)=>{const u=pressure?Math.min(1,f/70):0;parts.forEach((p,i)=>{p.position.y=2+u*.5*Math.sin(Math.PI*i/24);p.rotation.z=u*.22*Math.cos(Math.PI*i/24);});heat.scale.setScalar(1+.08*Math.sin(f/12));};
 }
 function bearing(g:THREE.Group){
  sky(g);const top=grp(g);box(top,5,.45,2.8,'#84929b',0,3.4,0);box(top,5,.12,2.8,'#5c6975',0,3.68,0);
@@ -118,7 +118,7 @@ function bearing(g:THREE.Group){
  return (f:number)=>{top.position.x=.2*Math.sin(f/28);};
 }
 export class BridgeWorld {
- root=new THREE.Group(); stages:Stage[];
+ root=new THREE.Group(); stages:Stage[]; focus=new THREE.Vector3();
  constructor(){
   this.stages=SHOTS.map(s=>{const root=grp(this.root);let tick:(n:number)=>void;
    if(['joint','warm','cool','fingers','seal'].includes(s.kind))tick=closeup(root,s.kind);
@@ -131,7 +131,7 @@ export class BridgeWorld {
  }
  update(frame:number,camera:THREE.PerspectiveCamera){
   let i=0;while(i+1<SHOTS.length&&frame>=SHOTS[i+1].start)i++;
-  this.stages.forEach((s,j)=>s.root.visible=i===j);const s=this.stages[i];const local=frame-SHOTS[i].start;s.tick(local);
+  this.stages.forEach((s,j)=>s.root.visible=i===j);const s=this.stages[i];this.focus.set(...s.target);const local=frame-SHOTS[i].start;s.tick(local);
   const drift=Math.min(.32,local*.0018);camera.position.set(s.cam[0]+.06*Math.sin(frame/80),s.cam[1]+.04*Math.sin(frame/100),s.cam[2]-drift);camera.lookAt(...s.target);camera.fov=s.fov;camera.near=.1;camera.far=200;camera.updateProjectionMatrix();camera.layers.enable(NOINK);
  }
 }

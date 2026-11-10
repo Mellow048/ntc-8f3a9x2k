@@ -5,12 +5,20 @@ frame-difference spikes, not editing mistakes. Keep this grouping in sync with
 captionGroups in engineering-series/Series.tsx.
 """
 import json
+import re
 from pathlib import Path
 
 root = Path(__file__).resolve().parent
 stories = json.loads((root.parent/'remotion-app/src/videos/engineering-series/data.json').read_text())
 for slug, story in stories.items():
     beats = story['beats']
+    if slug == 'breathing-bridge':
+        # The remaster has its own shot list, independent of the old series beats.
+        source=(root.parent/'remotion-app/src/videos/bridge-remaster/BridgeWorld.ts').read_text()
+        starts=[int(n) for n in re.findall(r'\{start:(\d+),kind:', source)]
+        if not starts or starts[0] != 0 or starts != sorted(set(starts)):
+            raise ValueError('Invalid bridge remaster shot starts')
+        beats=[{'frame':n} for n in starts]
     shots = [{'id': i+1, 'a': b['frame'], 'b': beats[i+1]['frame'] if i+1<len(beats) else story['frames']}
              for i,b in enumerate(beats)]
     words=story['words']
