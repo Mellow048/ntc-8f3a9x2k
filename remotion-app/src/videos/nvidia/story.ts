@@ -68,7 +68,7 @@ export const SHOTS: Shot[] = [
   s(127, 'living', 'couch', [0.5, 1.2, 4.0], [0, 1.15, -0.4], 40, {push: 0.1}),
   // 11 "Now the board's investigating, Congress wants a briefing, and Trump says the F.B.I. is looking into it."
   s(135, 'boardroom', 'probe', [0.5, 2.4, 6.0], [0, 1.7, -2.2], 42, {push: 0.12}),
-  s(139, 'capitol', 'front', [-2.4, 1.0, 13.0], [0, 4.6, 0], 44, {push: 0.1}),
+  s(139, 'capitol', 'front', [-2.4, 1.0, 13.0], [0, 3.8, 0], 50, {push: 0.1}),
   s(143, 'pressroom', 'us', [0.9, 1.5, 5.4], [0, 1.65, 0], 40, {push: 0.08}),
   s(147, 'datacenter', 'fbi', [0.3, 1.3, 5.2], [0, 1.4, -0.4], 42, {push: 0.14}),
   // 12 "He says Jensen told him he had absolutely no idea she was a spy."

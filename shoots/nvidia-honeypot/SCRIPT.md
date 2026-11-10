@@ -28,7 +28,7 @@ Checked against news reports on 2026-11-10. Every line of narration maps to one 
 - Jokes target the situation (the timing, the price tag), not Jensen's wife or children.
 - Say "lost $190 billion **in value**", and "investigated over chips **allegedly** smuggled". Do not say $2 billion of chips were smuggled.
 
-## Narration (210 words, about 60 s)
+## Narration (210 words, 67.6 s as read)
 
 1. Nvidia's CEO just admitted to an affair, and U.S. intelligence thinks the woman is a Chinese spy!
 2. This is Jensen Huang, the leather jacket guy who runs the world's most valuable chip company.
@@ -89,18 +89,23 @@ The three quote cards carry the reported wording, not the narrator's paraphrase:
 Arena TTS `voice-15` (en-US, masculine, conversational), picked by the user from six full-length reads after two earlier rounds were rejected as sounding artificial. Voice ids are local to the session that made them, so the files are the reference:
 
 - `voice/raw-take.mp3`: the read as it came (87.5 s).
-- `voice/voice.wav`: the locked narration, 66.6 s. Made by `build_voice.py`: 41 pauses tightened, tone almost untouched, pace lifted 1.2×, −16.3 LUFS.
+- `voice/voice.wav`: the locked narration, 67.8 s. Made by `build_voice.py`: 41 pauses tightened, tone almost untouched, pace lifted 1.2×, −16.3 LUFS. Three beats of silence are then put back so the lines that matter get room: 0.25 s after "Quote:", 0.45 s after "…unfaithful to my wife.", 0.45 s before the closing question (`BEATS` in the script).
 - `voice/words.json`: one entry per word with start and end. The picture, the captions, the graphics and the sound all read their timing from it (copy at `remotion-app/src/videos/nvidia/words.json`).
 
-To change the pace, re-run `build_voice.py` with a different `--target-seconds`, then `audio/build_mix.py`; nothing else needs editing.
+To change the pace, re-run `build_voice.py` with a different `--target-seconds`, then `audio/build_mix.py`; nothing else needs editing. `build_voice.py` needs `pocketsphinx` for the word alignment.
 
 ## Sound
 
-`audio/build_mix.py` writes `audio/mix.wav` (68.03 s, 48 kHz stereo, −15.0 LUFS, true peak −2.0 dBTP) and the cue sheet `audio/cues.md`. Everything but the voice is synthesized in that script with the kit in `templates/audio`; nothing is sampled.
+`audio/build_mix.py` writes `audio/mix.wav` (69.17 s, 48 kHz stereo, −14.5 LUFS, true peak −2.2 dBTP) and the cue sheet `audio/cues.md`, which starts with the measured levels. Everything but the voice is synthesized in that script with the kit in `templates/audio`; nothing is sampled. The build is deterministic: the same inputs give the same file.
 
-- Music: an original spy groove, 112 bpm in A minor (plucked bass, kick, cross-stick, hats, vibraphone, a twangy guitar). It sits about 10 LU under the voice.
-- It stops twice so a line lands in silence: the email quote, and "I can't even pick a movie that fast".
-- Effects follow the picture: stamp thuds, pops for the cards, mail dings as the six laptops ping, typing under the quote, a market bell, a counter that ticks up to the total, running feet, a desk bell on "Five minutes!", camera shutters in the press rooms, a cash register on "expensive date".
+- Music: an original spy groove written for this film, 112 bpm in A minor (plucked bass, kick, cross-stick, hats, vibraphone, a twangy guitar that answers every other bar, brass and timpani on the big words).
+- Level: the music sits **5.5 LU under the voice while someone is speaking, measured after ducking** (the standing benchmark in `IMPORTANT.md` and `VIDEO_HANDOFF.md` on `main`: 5–6 LU was accepted, 9–11 LU was rejected as inaudible). The first render of this film had it 10.5 LU under and was replaced for that reason. Above 300 Hz, which is all a phone speaker plays, it is 6.8 LU under; kick and bass fundamentals are kept modest so the number is not made of sound a phone cannot play.
+- Two things keep the words clear at that level. The music's 1.2–5 kHz band dips 5 dB while someone speaks, which leaves room for consonants. And while a word is being spoken, no 200 ms of music may come closer to the voice than about 3 LU, so a stab or a lick that lands on a word is pulled back to the bed and one that lands in a gap is left alone.
+- It stops twice so a line lands in silence: the email quote (one soft vibraphone chord left ringing) and "I can't even pick a movie that fast".
+- Ending: the last chord lands in the pause after "…most expensive date in history?", rings under "What are your thoughts about this?", and two bass plucks close it. The picture holds 1.5 s after the last word.
+- Effects follow the picture: stamp thuds, pops for the cards, mail dings as the six laptops ping, typing under the quote, a market bell, a counter that ticks up to the total, running feet, a desk bell on "Five minutes!", camera shutters in the press rooms, a cash register on "expensive date". Each is set relative to the voice (`fx(..., lu)` in the script).
+
+Sound was judged with meters only (loudness, true peak, level of the music against the voice per moment). Nobody has listened to it in this session.
 
 ## Render
 

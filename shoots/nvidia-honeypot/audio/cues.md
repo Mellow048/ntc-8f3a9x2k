@@ -2,10 +2,12 @@
 
 Written by `build_mix.py`. All music and effects are synthesized in that script; nothing is sampled.
 
-- length 68.033 s (2041 frames at 30 fps), 48 kHz stereo, 16-bit
-- integrated loudness -15.0 LUFS, true peak -2.0 dBTP, limiter at most 1.0 dB
-- stems at mix gain: voice -15.5 LUFS, music -25.9 LUFS, effects -26.2 LUFS
-- voice over the bed while speaking: median 9.8 LU, 10th percentile 4.8 LU
+- length 69.167 s (2075 frames at 30 fps), 48 kHz stereo, 16-bit
+- integrated loudness -14.5 LUFS, true peak -2.2 dBTP, limiter at most 2.1 dB
+- stems at mix gain: voice -15.6 LUFS, music -21.1 LUFS, effects -27.3 LUFS
+- music after ducking: 5.5 LU under the voice while someone speaks, 5.4 LU under it over the whole film
+- the same above 300 Hz (what a phone speaker plays): 6.8 LU under the voice; loudest 200 ms under a spoken word 3.0 LU under it
+- voice over the bed while speaking: median 5.5 LU, 10th percentile 1.8 LU
 
 | time s | frame | sound | why |
 |---|---|---|---|
@@ -40,39 +42,39 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  30.30 |  909 | mail ding | the email lands on every desk |
 |  30.37 |  911 | mail ding | the email lands on every desk |
 |  31.20 |  936 | music stops | one vibes chord rings; the email quote is read over silence |
-|  31.70 |  951 | typing | each word of the quote is typed on the email card |
-|  33.40 | 1002 | music back, falling | Am - G - F - E while the value drops; brass fall-off on 'Monday' |
-|  33.45 | 1003 | market bell | 'Monday' |
-|  34.47 | 1034 | slide down | the chart turns over on 'lost' |
-|  35.00 | 1050 | counter ticks | the number rolls |
-|  36.37 | 1091 | counter lands | -$190,000,000,000 |
-|  37.53 | 1126 | falling whistle | the red arrow drops in |
-|  37.69 | 1131 | timpani + cymbal + brass | 'In one day!' |
-|  37.77 | 1133 | crash | the arrow stabs the floor, six frames after the cut |
-|  38.53 | 1156 | running feet | 15 steps, left to centre |
-|  38.78 | 1164 | clock ticking | street clock |
-|  39.13 | 1174 | stamp thud | CLASS ACTION FILED stamp |
-|  41.30 | 1239 | desk bell | 'Five minutes!' |
-|  41.97 | 1259 | music stops | one hit, then nothing under 'I can't even pick a movie that fast' |
-|  42.27 | 1268 | menu blips | cursor racing over the movie tiles |
-|  43.87 | 1316 | buzzer | five minutes are up |
-|  44.11 | 1323 | music back | the investigations: full groove |
-|  45.47 | 1364 | gavel | Congress |
-|  46.57 | 1397 | camera shutters | press room |
-|  46.73 | 1402 | pop | name tag: President Trump |
-|  47.37 | 1421 | radio squelch | F.B.I. |
-|  49.50 | 1485 | camera shutters | press room |
-|  51.00 | 1530 | pop | quote card: Trump |
-|  51.67 | 1550 | boing | shrug on 'no idea' |
-|  53.60 | 1608 | camera shutters | press room |
-|  54.70 | 1641 | pop | quote card: China's Foreign Ministry |
-|  56.43 | 1693 | stamp thud | NOT CHARGED stamp |
-|  58.60 | 1758 | pop | quote card: Nvidia's board |
-|  61.30 | 1839 | ding | still CEO |
-|  62.57 | 1877 | pop | card A |
-|  63.93 | 1918 | pop | card B |
-|  64.53 | 1936 | cash register | 'the most expensive date in history' |
-|  65.40 | 1962 | pop | WHAT DO YOU THINK? |
-|  65.54 | 1966 | final chord | Am6/9 rings under 'What are your thoughts'; two plucks to finish |
-|  65.67 | 1970 | pop | card A |
-|  65.87 | 1976 | pop | card B |
+|  31.97 |  959 | typing | each word of the quote is typed on the email card |
+|  34.10 | 1023 | music back, falling | Am - G - F - E while the value drops; brass fall-off on 'Monday' |
+|  34.15 | 1024 | market bell | 'Monday' |
+|  35.17 | 1055 | slide down | the chart turns over on 'lost' |
+|  35.70 | 1071 | counter ticks | the number rolls |
+|  37.07 | 1112 | counter lands | -$190,000,000,000 |
+|  38.23 | 1147 | falling whistle | the red arrow drops in |
+|  38.39 | 1152 | timpani + cymbal + brass | 'In one day!' |
+|  38.47 | 1154 | crash | the arrow stabs the floor, six frames after the cut |
+|  39.23 | 1177 | running feet | 15 steps, left to centre |
+|  39.48 | 1184 | clock ticking | street clock |
+|  39.83 | 1195 | stamp thud | CLASS ACTION FILED stamp |
+|  42.00 | 1260 | desk bell | 'Five minutes!' |
+|  42.67 | 1280 | music stops | one hit, then nothing under 'I can't even pick a movie that fast' |
+|  42.97 | 1289 | menu blips | cursor racing over the movie tiles |
+|  44.57 | 1337 | buzzer | five minutes are up |
+|  44.81 | 1344 | music back | the investigations: full groove |
+|  46.17 | 1385 | gavel | Congress |
+|  47.27 | 1418 | camera shutters | press room |
+|  47.43 | 1423 | pop | name tag: President Trump |
+|  48.07 | 1442 | radio squelch | F.B.I. |
+|  50.20 | 1506 | camera shutters | press room |
+|  51.70 | 1551 | pop | quote card: Trump |
+|  52.37 | 1571 | boing | shrug on 'no idea' |
+|  54.30 | 1629 | camera shutters | press room |
+|  55.40 | 1662 | pop | quote card: China's Foreign Ministry |
+|  57.13 | 1714 | stamp thud | NOT CHARGED stamp |
+|  59.30 | 1779 | pop | quote card: Nvidia's board |
+|  62.00 | 1860 | ding | still CEO |
+|  63.27 | 1898 | pop | card A |
+|  64.63 | 1939 | pop | card B |
+|  65.23 | 1957 | cash register | 'the most expensive date in history' |
+|  66.24 | 1987 | final chord | Am6/9 rings under 'What are your thoughts'; two plucks to finish |
+|  66.57 | 1997 | pop | WHAT DO YOU THINK? |
+|  66.83 | 2005 | pop | card A |
+|  67.03 | 2011 | pop | card B |

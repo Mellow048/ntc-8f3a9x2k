@@ -28,14 +28,19 @@ REPO = os.path.dirname(os.path.dirname(SHOOT))
 sys.path.insert(0, os.path.join(REPO, "templates", "audio"))
 
 from dsp import (SR, TAU, ns, tt, dbg, rng, lp, hp, bp, fades, pan, st, place, make_ir, convolve_st, integrated,  # noqa: E402
-                 momentary, momentary_max, true_peak, read_wav, write_wav, phase, modal, norm_to, shelf)
+                 momentary, momentary_max, true_peak, read_wav, write_wav, phase, modal, norm_to, shelf, kfilt)
 import instruments as I  # noqa: E402
 from sfx_gen import whoosh  # noqa: E402
 
 FPS = 30
-TARGET_LUFS = -15.0
-CEIL_DB = -2.0                 # leaves room for the AAC encode: the finished MP4 must stay under -1 dBFS
-MUSIC_UNDER_VOICE = -10.5      # music loudness while someone is speaking, LU relative to the voice
+TARGET_LUFS = -14.5
+CEIL_DB = -2.3                 # leaves room for the AAC encode: the finished MP4 must stay under -1 dBFS
+MUSIC_UNDER_VOICE = -5.5       # music loudness while someone is speaking, after ducking, LU relative to the voice.
+                               # The user rejected scores 9-11 LU under the voice as inaudible and accepted 5-6 (IMPORTANT.md).
+POCKET_DB = -5.0               # extra dip in the music's 1.2-5 kHz band under speech: room for consonants at that level
+MUSIC_CEIL = -3.5              # while someone speaks, no 200 ms of music may be louder than this (LU relative to the voice,
+                               # both measured above 300 Hz, where speech is understood and where a phone speaker plays):
+                               # a stab that lands on a word is pulled back to the bed, one that lands in a gap is not
 DUCK_DB = -4.0                 # how far the music dips under speech (it comes up for the breaths and the ending)
 
 WORDS = json.load(open(os.path.join(SHOOT, "voice", "words.json")))
@@ -118,6 +123,9 @@ def stab(notes, d=0.3, vel=0.8, fall=0.0):
 
 # ------------------------------------------------------------------------------------------------ music
 BEAT = 60.0 / 112
+# Kick and bass fundamentals count towards the measured loudness but a phone speaker plays almost nothing under 300 Hz,
+# so they are kept modest and the level is carried by the parts a phone does play (mallets, guitar, hats, bass harmonics).
+KICK, BASS_MIX = 0.8, 0.48
 BAR = 4 * BEAT
 SWING = 0.57
 e8 = lambda i: (i // 2 + (SWING if i % 2 else 0.0)) * BEAT      # eighth-note i of a bar (0-7), lightly swung
@@ -162,7 +170,7 @@ def play_bar(t0, chord, k, level, until=None, busy=False):
             put("drums", hat(0.26), t + (0.28 if i % 2 == 0 else 0.22) * BEAT, 1.0, 0.25)
         if level >= 2:
             if i in (0, 4):
-                put("drums", kick(1.0 if i == 0 else 0.85), t)
+                put("drums", kick(KICK * (1.0 if i == 0 else 0.85)), t)
             if i in (2, 6):
                 put("drums", rim(0.8 * R.uniform(0.9, 1.08)), t, 1.0, -0.2)
             if i == 3 or (level == 3 and i == 7):
@@ -170,7 +178,7 @@ def play_bar(t0, chord, k, level, until=None, busy=False):
                     put("comp", vib(m2, 0.9, 0.2), t, 0.33, 0.35)
         if level == 3:
             if i == 3:
-                put("drums", kick(0.5), t)
+                put("drums", kick(KICK * 0.5), t)
             for j in (0, 1):
                 put("drums", shaker(0.5 if j == 0 else 0.3), t + j * 0.25 * BEAT, 1.0, -0.4)
         if level == 1 and i in (0, 5):
@@ -196,8 +204,8 @@ def build_music():
     put("hits", stab([57, 64, 66, 71], 0.12, 0.8), t, 0.6)
     put("hits", stab([57, 64, 67, 72], 0.5, 0.9, fall=-2), t + 0.5 * BEAT, 0.7)
     EVENTS.append((t, "brass 'da-daa'", "straight out of a spy movie"))
-    for m in (57, 60, 64, 71):                                    # the stop: one vibes chord left hanging
-        put("comp", vib(m, 2.6), stop1, 0.5, 0.2)
+    for m in (57, 60, 64, 71):                                    # the stop: one vibes chord left hanging, softly
+        put("comp", vib(m, 2.6), stop1, 0.3, 0.2)
     put("bass", bass_note(33, True), stop1, 0.9)
     EVENTS.append((stop1, "music stops", "one vibes chord rings; the email quote is read over silence"))
 
@@ -213,9 +221,9 @@ def build_music():
     put("hits", stab([57, 60, 64], 0.5, 0.85, fall=-5), t2, 0.6)
     EVENTS.append((t2, "music back, falling", "Am - G - F - E while the value drops; brass fall-off on 'Monday'"))
     t = t2 + 2 * BAR                                              # "In one day!"
-    put("hits", I.timpani(I.m2f(41), 0.9, R, 1.8), t, 0.8)
-    put("hits", I.cymbal(0.7, R, 2.0), t, 0.5)
-    put("hits", stab([53, 57, 60, 65], 0.3, 0.9), t, 0.7)
+    put("hits", I.timpani(I.m2f(41), 0.9, R, 1.8), t, 0.55)        # under the words, not over them
+    put("hits", I.cymbal(0.7, R, 2.0), t, 0.36)
+    put("hits", stab([53, 57, 60, 65], 0.3, 0.9), t, 0.5)
     EVENTS.append((t, "timpani + cymbal + brass", "'In one day!'"))
     t = t2 + 4 * BAR                                              # last hit before the silence
     put("drums", kick(1.0), t)
@@ -229,7 +237,7 @@ def build_music():
     for ts, v in I.snare_roll(a + BEAT, z - 0.02, 0.12, 0.7, R, rate=24):
         put("drums", I.snare(v, R, dur=0.2, buzz=True), ts, 0.6)
     for m in (57, 60, 64, 66, 71):
-        put("comp", vib(m, 3.2), z, 0.55, 0.2)
+        put("comp", vib(m, 3.2), z, 0.42, 0.2)
     put("bass", bass_note(33, True), z, 1.0)
     put("bass", bass_note(45, True), z, 0.5)
     put("drums", kick(1.0), z)
@@ -259,9 +267,10 @@ def build_music():
         n += 1
     EVENTS.append((bar_starts[1] + 2 * BEAT, "guitar / vibes answers", f"{n} short licks, second half of every other bar"))
 
-    # balanced for phone speakers: the bass is carried by its upper octave, mallets and guitar sit forward
-    dry = 1.6 * BUS["drums"] + 0.62 * BUS["bass"] + 1.5 * BUS["comp"] + 1.2 * BUS["lead"] + 0.9 * BUS["hits"]
-    send = 0.1 * BUS["drums"] + 1.0 * BUS["comp"] + 1.0 * BUS["lead"] + 0.45 * BUS["hits"]
+    # balanced for phone speakers: the bass is carried by its upper octave, mallets and guitar sit forward.
+    # The groove carries the level; the accents sit just above it, so the bed can be loud without a hit burying a word.
+    dry = 1.6 * BUS["drums"] + BASS_MIX * BUS["bass"] + 1.5 * BUS["comp"] + 1.2 * BUS["lead"] + 0.5 * BUS["hits"]
+    send = 0.1 * BUS["drums"] + 1.0 * BUS["comp"] + 1.0 * BUS["lead"] + 0.28 * BUS["hits"]
     wet = convolve_st(send, make_ir(1.3, 7, hf=1.1))
     return shelf(hp(dry + 0.2 * wet, 38), 3500, 3.0)[:, :N]
 
@@ -393,7 +402,7 @@ def build_sfx(voice_lufs):
     EVENTS.append((cut_t(1), "swish", f"on {len(CUTS) - 1 - len(quiet)} cuts, alternating left and right"))
 
     for i, why in ((6, "SCANDAL! stamp"), (15, "CHINESE SPY? stamp"), (48, "UNDER INVESTIGATION stamp"), (52, "ALLEGEDLY stamp"), (118, "CLASS ACTION FILED stamp"), (174, "NOT CHARGED stamp")):
-        fx(Wt(i), thud(), -7, 0, "stamp thud", why)
+        fx(Wt(i), thud(), -8.5, 0, "stamp thud", why)
     pops = [(Wt(19), "name tag: Jensen Huang"), (Wt(36), "name tag: Alice Huang"), (Wt(38), "not-equals sign"), (Wt(58), "source: The New York Times"), (cut_t(14), "definition card"),
             (Wt(74), "the jar hops on 'honeypot'"), (Wt(81), "dateline"), (Wt(87) - 2 / FPS, "speech bubble"), (Wt(90), "SUNDAY calendar"), (Wt(144), "name tag: President Trump"),
             (Wt(159), "quote card: Trump"), (Wt(169), "quote card: China's Foreign Ministry"), (Wt(180), "quote card: Nvidia's board"), (Wt(193), "card A"), (Wt(199), "card B"),
@@ -409,7 +418,7 @@ def build_sfx(voice_lufs):
         fx((Wf(92) + d) / FPS, mail(), -11 - 0.5 * j, -0.5 + 0.2 * j, "mail ding", "the email lands on every desk")
     for i in range(97, 103):                                      # the quote types itself, word by word
         for j in range(2 + len(WORDS[i]["word"]) // 3):
-            fx(Wt(i) - 1 / FPS + j * 0.055 * R.uniform(0.8, 1.2), key(), -15, R.uniform(-0.2, 0.2))
+            fx(Wt(i) - 1 / FPS + j * 0.055 * R.uniform(0.8, 1.2), key(), -17, R.uniform(-0.2, 0.2))
     EVENTS.append((Wt(97), "typing", "each word of the quote is typed on the email card"))
     fx(cut_t(20) + 0.05, np.concatenate([bell(1175, 0.5)[: ns(0.13)] for _ in range(5)] + [bell(1175, 1.2)]), -10, 0.25, "market bell", "'Monday'")
     fx(Wt(105), slide(900, 300, 0.45), -13, -0.2, "slide down", "the chart turns over on 'lost'")
@@ -417,12 +426,12 @@ def build_sfx(voice_lufs):
     t = a
     while t < z:
         u = (t - a) / (z - a)
-        fx(t, tick(1500 + 1500 * u), -17 + 3 * u, 0.1)
+        fx(t, tick(1500 + 1500 * u), -21 + 2 * u, 0.1)           # a dozen ticks per 400 ms: the roll sits about 10 LU louder than one tick
         t += 0.05 - 0.02 * u
-    fx(z, kaching()[ns(0.13):], -8, 0, "counter lands", "-$190,000,000,000")
+    fx(z, kaching()[ns(0.13):], -10.5, 0, "counter lands", "-$190,000,000,000")
     EVENTS.append((a, "counter ticks", "the number rolls"))
-    fx(cut_t(22) - 0.04, slide(1500, 240, 0.24), -11, 0, "falling whistle", "the red arrow drops in")
-    fx(cut_t(22) + 6 / FPS, thud(1.3), -7, 0, "crash", "the arrow stabs the floor, six frames after the cut")
+    fx(cut_t(22) - 0.04, slide(1500, 240, 0.24), -12, 0, "falling whistle", "the red arrow drops in")
+    fx(cut_t(22) + 6 / FPS, thud(1.3), -9.5, 0, "crash", "the arrow stabs the floor, six frames after the cut")
     a, z = cut_t(23), (Wf(124) + 6) / FPS                          # the lawyer sprints to the door
     n = 0
     t = a + 0.05
@@ -434,7 +443,7 @@ def build_sfx(voice_lufs):
     for k in range(int((cut_t(25) - cut_t(23)) / 0.5)):
         fx(cut_t(23) + 0.25 + k * 0.5, tick(1300 if k % 2 else 1700), -18, 0.5)
     EVENTS.append((cut_t(23) + 0.25, "clock ticking", "street clock"))
-    fx(Wt(125), bell(1568, 1.3), -8, 0.3, "desk bell", "'Five minutes!'")
+    fx(Wt(125), bell(1568, 1.3), -10, 0.3, "desk bell", "'Five minutes!'")
     a, z = cut_t(25), shot_end(25)                                 # the streaming menu
     for k in range(int((z - a - 0.3) / 0.1)):
         fx(a + 0.02 + k * 0.1, blip(660 if k % 2 else 880), -19, 0.1)
@@ -449,7 +458,7 @@ def build_sfx(voice_lufs):
     fx(Wt(147), squelch(), -11, -0.3, "radio squelch", "F.B.I.")
     fx(Wt(160), boing(), -12, 0, "boing", "shrug on 'no idea'")
     fx(Wt(191), ding(1976, 0.9), -10, 0, "ding", "still CEO")
-    fx(Wt(201) - 2 / FPS, kaching(), -6, 0.2, "cash register", "'the most expensive date in history'")
+    fx(Wt(201) - 2 / FPS, kaching(), -8.5, 0.2, "cash register", "'the most expensive date in history'")
     return buf[:, :N]
 
 
@@ -489,25 +498,76 @@ def limiter(x, ceil_db, look=0.003, rel=0.08):
     return x * out[None, :], out
 
 
-def main():
+GRAPHIC_SOUNDS = {"stamp thud", "pop", "boing", "buzzer", "ding", "mail ding", "counter lands", "crash", "cash register", "desk bell", "menu blips", "slide down"}
+
+
+def planned_changes():
+    """Frame ranges where the picture is meant to jump, for the render check: the frame a caption changes on, and the
+    ten frames in which a graphic that has a sound arrives (a stamp lands, a card pops, somebody hops). Hard cuts are
+    in the shot list. Everything else that jumps is a defect and gets reported."""
+    out = []
+    i = 0
+    while i < len(WORDS):                                         # same grouping as Captions.tsx
+        a, b = WORDS[i], WORDS[i + 1] if i + 1 < len(WORDS) else None
+        pair = bool(b) and not a["ends_sentence"] and a["word"].lower() != "quote" and b["start"] - a["end"] < 0.16 and len(a["word"]) + len(b["word"]) <= 15
+        f = int(np.ceil(max(0.0, a["start"] - 0.03) * FPS - 1e-9))
+        out.append([f, f])
+        i += 2 if pair else 1
+    for t, name, _ in EVENTS:
+        if name in GRAPHIC_SOUNDS:
+            f = int(round(t * FPS))
+            out.append([f, f + 9])
+    return sorted(out)
+
+
+_SPEECH_BAND = signal.butter(4, 300, btype="high", fs=SR, output="sos")
+speech_band = lambda x: signal.sosfilt(_SPEECH_BAND, x, axis=-1)   # what a phone speaker plays, and where words are understood
+DIAG: dict = {}                                                   # intermediate signals, for the report and for checks
+
+
+def short_loudness(x, win=0.2):
+    """K-weighted loudness in a sliding, centred window (so a limiter driven by it sees `win`/2 ahead)"""
+    p = (kfilt(x) ** 2).sum(0)
+    return -0.691 + 10 * np.log10(ndimage.uniform_filter1d(p, ns(win), mode="nearest") + 1e-12)
+
+
+def ride(music, talk, ceil_lufs):
+    """Pull the music back wherever its speech band would be louder than `ceil_lufs` while someone is speaking."""
+    over = np.maximum(0.0, short_loudness(speech_band(music)) - ceil_lufs) * talk
+    over = ndimage.uniform_filter1d(ndimage.maximum_filter1d(over, ns(0.04)), ns(0.06), mode="nearest")
+    return music * dbg(-over)[None, :]
+
+
+def build_stems():
     v, sr = read_wav(os.path.join(SHOOT, "voice", "voice.wav"))
     assert sr == SR, sr
     voice = np.zeros(N)
     voice[: min(N, v.shape[1])] = v.mean(0)[:N]
     voice = st(voice)
-    v_lufs = integrated(voice)
+    v_lufs, v_band = integrated(voice), integrated(speech_band(voice))
 
     music = build_music()
     duck = speech_gain(voice[0], DUCK_DB)
     music = music * duck[None, :]
+    talk = (1 - duck) / (1 - dbg(DUCK_DB))                        # 0 in the gaps, 1 while someone speaks
+    band = signal.sosfiltfilt(signal.butter(2, [1200, 5000], btype="band", fs=SR, output="sos"), music, axis=1)
+    music = music - (1 - dbg(POCKET_DB)) * talk[None, :] * band
     speaking = duck < dbg(DUCK_DB * 0.5)
-    m_speech = integrated(music[:, speaking])
-    music *= dbg(v_lufs + MUSIC_UNDER_VOICE - m_speech)
+    raw, static = music.copy(), 0.0
+    for _ in range(5):                                            # level and ceiling depend on each other: settle both
+        g = v_lufs + MUSIC_UNDER_VOICE - integrated(music[:, speaking])
+        static += g
+        music = ride(music * dbg(g), talk, v_band + MUSIC_CEIL)
     end = np.ones(N)
     end[-ns(0.5):] = np.linspace(1, 0, ns(0.5)) ** 2
+    DIAG.update(duck=duck, talk=talk, v_band=v_band, before_ride=raw * dbg(static), after_ride=music.copy())
     music *= end[None, :]
     sfx = build_sfx(v_lufs) * end[None, :]
+    return voice, music, sfx, v_lufs, speaking
 
+
+def main():
+    voice, music, sfx, v_lufs, speaking = build_stems()
     mix = voice + music + sfx
     gain = dbg(TARGET_LUFS - integrated(mix))
     mix, gr = limiter(mix * gain, CEIL_DB)
@@ -525,11 +585,14 @@ def main():
         f"- length {mix.shape[1] / SR:.3f} s ({TOTAL} frames at {FPS} fps), 48 kHz stereo, 16-bit",
         f"- integrated loudness {integrated(mix):.1f} LUFS, true peak {true_peak(mix):.1f} dBTP, limiter at most {-20 * np.log10(gr.min()):.1f} dB",
         f"- stems at mix gain: voice {integrated(voice * gain):.1f} LUFS, music {integrated(music * gain):.1f} LUFS, effects {integrated(sfx * gain):.1f} LUFS",
+        f"- music after ducking: {v_lufs - integrated(music[:, speaking]):.1f} LU under the voice while someone speaks, {v_lufs - integrated(music):.1f} LU under it over the whole film",
+        f"- the same above 300 Hz (what a phone speaker plays): {DIAG['v_band'] - integrated(speech_band(music)[:, speaking]):.1f} LU under the voice; "
+        f"loudest 200 ms under a spoken word {DIAG['v_band'] - short_loudness(speech_band(music))[DIAG['talk'] > 0.9].max():.1f} LU under it",
         f"- voice over the bed while speaking: median {np.median(margin):.1f} LU, 10th percentile {np.percentile(margin, 10):.1f} LU",
     ]
     print("\n".join(report))
     with open(os.path.join(SHOOT, "qa-shots.json"), "w") as f:
-        json.dump({"shots": [{"id": i + 1, "a": CUTS[i], "b": CUTS[i + 1] if i + 1 < len(CUTS) else TOTAL} for i in range(len(CUTS))]}, f)
+        json.dump({"shots": [{"id": i + 1, "a": CUTS[i], "b": CUTS[i + 1] if i + 1 < len(CUTS) else TOTAL} for i in range(len(CUTS))], "planned": planned_changes()}, f)
         f.write("\n")
     rows = "\n".join(f"| {t:6.2f} | {int(round(t * FPS)):4d} | {name} | {why} |" for t, name, why in sorted(EVENTS))
     with open(os.path.join(HERE, "cues.md"), "w") as f:

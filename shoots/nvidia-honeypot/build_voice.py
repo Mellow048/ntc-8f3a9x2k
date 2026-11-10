@@ -1,6 +1,7 @@
 """Lock the narration for the Nvidia short and derive word timings from it.
 
     python shoots/nvidia-honeypot/build_voice.py [--target-seconds 66] [--max-tempo 1.2]
+    python shoots/nvidia-honeypot/build_voice.py --beats-only     # only add the BEATS to an existing voice.wav
 
 Input   voice/raw-take.mp3  the approved Arena TTS read (voice-15) as it came, kept so the pace can be changed later
                             (voice/v15.tmp.wav, the uncompressed and uncommitted original, is used instead if present)
@@ -8,6 +9,9 @@ Output  voice/voice.wav     mastered narration, 48 kHz mono (pauses tightened, t
         voice/words.json    one entry per spoken word: display text, start and end in seconds
         voice/timing.json   how the track was made (tempo, cuts, duration, loudness)
         remotion-app/src/videos/nvidia/words.json   the same words, read by the picture
+
+The read is brisk, so three deliberate beats (BEATS below) are added at the end: silence after "Quote:", after the
+email quote, and before the closing question. The picture, captions and sound follow words.json, so they move with it.
 
 Word times come from PocketSphinx forced alignment of the *raw* take (natural pace
 aligns best) and are then carried through the pause edits and the tempo change, so
@@ -96,6 +100,63 @@ def align(x48: np.ndarray, tokens: list[str]) -> list[tuple[float, float]]:
     return out
 
 
+# Deliberate beats: (narration line, word, seconds of silence added after that word in the finished read).
+BEATS = [(8, "Quote", 0.25), (8, "wife", 0.45), (15, "history", 0.45)]
+
+
+def add_beats(audio: np.ndarray, words: list[dict], sr: int = vm.SR):
+    """Insert BEATS into a finished read, inside the pause that is already there. Updates `words` in place."""
+    hop, fade = int(0.005 * sr), int(0.005 * sr)
+    index = lambda b: next(k for k, w in enumerate(words) if w["line"] == b[0] and w["word"] == b[1])
+    done = []
+    for line, word, extra in sorted(BEATS, key=index, reverse=True):       # last first: earlier times stay valid
+        i = index((line, word))
+        lo = int((words[i]["end"] - 0.2) * sr)
+        seg = audio[lo:lo + int(0.45 * sr)]
+        n = len(seg) // hop
+        quiet = np.sqrt(np.mean(seg[: n * hop].reshape(n, hop) ** 2, axis=1) + 1e-20) < 10 ** (-50 / 20)
+        best, start = (0, 0), None
+        for k in range(n + 1):
+            if k < n and quiet[k]:
+                start = k if start is None else start
+            elif start is not None:
+                best, start = max(best, (k - start, start)), None
+        if best[0] * hop < 0.04 * sr:
+            raise SystemExit(f"No silence after {word!r} (line {line}) to put a beat in")
+        at = lo + (best[1] + best[0] // 2) * hop
+        t = at / sr
+        head, tail = audio[:at].copy(), audio[at:].copy()
+        ramp = np.linspace(1.0, 0.0, fade)
+        head[-fade:] *= ramp
+        tail[:fade] *= ramp[::-1]
+        audio = np.concatenate([head, np.zeros(int(round(extra * sr))), tail])
+        words[i]["end"] = round(min(words[i]["end"], t), 3)
+        for j in range(i + 1, len(words)):
+            w = words[j]
+            a = (max(w["start"], t) if j == i + 1 else w["start"]) + extra
+            w["start"], w["end"] = round(a, 3), round(max(w["end"] + extra, a + 0.02), 3)
+        done.append({"line": line, "after": word, "at": round(t, 3), "seconds": extra})
+    return audio, done[::-1]
+
+
+def save(audio: np.ndarray, words: list[dict], info: dict) -> None:
+    out = HERE / "voice" / "voice.wav"
+    import wave
+    with wave.open(str(out), "wb") as w:
+        w.setnchannels(1); w.setsampwidth(2); w.setframerate(vm.SR)
+        w.writeframes(np.clip(np.round(audio * 32768), -32768, 32767).astype("<i2").tobytes())
+    duration = len(audio) / vm.SR
+    info.update({"seconds": round(duration, 3), "words": len(words), "words_per_second": round(len(words) / duration, 2), **vm.loudness(str(out))})
+    (HERE / "voice" / "words.json").write_text(json.dumps(words, indent=1) + "\n")
+    PICTURE_WORDS.parent.mkdir(parents=True, exist_ok=True)
+    PICTURE_WORDS.write_text(json.dumps(words) + "\n")
+    (HERE / "voice" / "timing.json").write_text(json.dumps(info, indent=1) + "\n")
+    print(json.dumps(info, indent=1))
+    for li in sorted({w["line"] for w in words}):
+        ws = [w for w in words if w["line"] == li]
+        print(f"L{li:02d} {ws[0]['start']:6.2f}-{ws[-1]['end']:6.2f}  " + " ".join(w["word"] for w in ws))
+
+
 def time_map(edits: list[tuple[float, float, float]]):
     """Raw-take time -> tightened time, mirroring voice_master.tighten()."""
     cuts, removed = [], 0.0
@@ -125,7 +186,17 @@ def main() -> None:
     ap.add_argument("--max-tempo", type=float, default=1.20)
     ap.add_argument("--bass", type=float, default=-1.0)
     ap.add_argument("--presence", type=float, default=1.5)
+    ap.add_argument("--beats-only", action="store_true", help="add the BEATS to the voice.wav that is already there")
     args = ap.parse_args()
+
+    if args.beats_only:
+        info = json.loads((HERE / "voice" / "timing.json").read_text())
+        if info.get("beats"):
+            raise SystemExit("voice.wav already has its beats")
+        words = json.loads((HERE / "voice" / "words.json").read_text())
+        audio, info["beats"] = add_beats(vm.decode(str(HERE / "voice" / "voice.wav")), words)
+        save(audio, words, info)
+        return
 
     words = script_words()
     x = vm.decode(str(RAW))
@@ -177,19 +248,12 @@ def main() -> None:
         if len(gap) > 0.08 * sr and 10 * np.log10(np.mean(gap * gap) + 1e-12) > -30:
             prev["end"] = cur["start"]
 
-    (HERE / "voice" / "words.json").write_text(json.dumps(result, indent=1) + "\n")
-    PICTURE_WORDS.parent.mkdir(parents=True, exist_ok=True)
-    PICTURE_WORDS.write_text(json.dumps(result) + "\n")
     info = {"source": RAW.name, "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
             "raw_seconds": round(len(x) / vm.SR, 2), "tight_seconds": round(len(tight) / vm.SR, 2),
-            "pauses_cut": len(edits), "tempo": round(tempo, 4), "seconds": round(duration, 3),
-            "words": len(result), "words_per_second": round(len(result) / duration, 2),
-            "eq": {"bass_shelf_db": args.bass, "presence_db": args.presence}, **vm.loudness(str(out))}
-    (HERE / "voice" / "timing.json").write_text(json.dumps(info, indent=1) + "\n")
-    print(json.dumps(info, indent=1))
-    for li in sorted({w["line"] for w in result}):
-        ws = [w for w in result if w["line"] == li]
-        print(f"L{li:02d} {ws[0]['start']:6.2f}-{ws[-1]['end']:6.2f}  " + " ".join(w["word"] for w in ws))
+            "pauses_cut": len(edits), "tempo": round(tempo, 4),
+            "eq": {"bass_shelf_db": args.bass, "presence_db": args.presence}}
+    audio, info["beats"] = add_beats(final, result)
+    save(audio, result, info)
 
 
 if __name__ == "__main__":

@@ -150,8 +150,6 @@ export const boardroom: Builder = (root) => {
     actor(root, BOARD(2), {a: {expr: 'stern', mode: 'sit', pose: 'think'}}, spots[2][0], 0.42, spots[2][1], {scale: 1.1, res: 1.0, shadow: 0}),
     actor(root, BOARD(3), {a: {expr: 'stern', mode: 'sit', pose: 'hold', prop: 'paper'}}, spots[3][0], 0.42, spots[3][1], {scale: 1.1, res: 1.0, shadow: 0}),
   ];
-  const plate = grp(root, 0, 0.85, -3.2);
-  box(plate, 0.86, 0.2, 0.06, '#e7c56a', 0, 0.1, 0); soft(panel(plate, 0.8, 0.16, smat(signTex('ceo-plate', 400, 80, '#e7c56a', '#241726', [['CEO', 70]], {border: '#241726'})), 0, 0.1, 0.034));
   const jensen = actor(root, JENSEN, {a: {expr: 'nervous', mode: 'sit', pose: 'desk'}, b: {expr: 'smile', mode: 'sit', pose: 'shrug'}}, 0, 0.42, -3.75, {scale: 1.2, res: 1.2, shadow: 0});
   return {
     light: () => ({...LIGHT.room, amb: 1.6, keyI: 1.0}),
@@ -160,7 +158,7 @@ export const boardroom: Builder = (root) => {
       for (const [k, m] of Object.entries(screens)) m.visible = k === v;
       members.forEach((m, i) => { m.node.visible = v !== 'ceo'; m.node.position.y = 0.42 + 0.02 * Math.sin(f * 0.12 + i * 1.7); m.node.position.x = spots[i][0] + (v === 'probe' ? 0.05 * Math.sin(f * 0.16 + i) : 0); m.tick(f, cam); });
       laptop.visible = v !== 'ceo';
-      jensen.node.visible = plate.visible = v === 'ceo';
+      jensen.node.visible = v === 'ceo';   // no nameplate on the table: the caption sits there, and the screen already says it
       if (v === 'ceo') { jensen.show(f < W(191) ? 'a' : 'b'); jensen.node.position.y = 0.42 + hop(f, W(191), 0.1, 8); jensen.tick(f, cam); }
     },
   };
@@ -187,13 +185,14 @@ export const capitol: Builder = (root) => {
   cyl(b, 0.34, 0.9, C2, 0, 12.0, -3.2, 0.3, 16); ball(b, 0.36, C, 0, 12.5, -3.2); cone(b, 0.12, 0.8, '#b9a56a', 0, 13.2, -3.2, 10);
   const flag = flagPole(grp(b, 6.4, 4.9, -2.4), 0, 0, flagUS(), 3.0);
   const banner = grp(b, 0, 4.78, -0.1);
-  for (const s of [-1, 1]) rod(banner, [s * 1.5, 0, 0], [s * 1.5, -0.5, 0], 0.02, '#3a2c22');
-  panel(banner, 3.4, 0.86, smat(signTex('briefing', 800, 200, '#fffdf2', '#c1272d', [['CLOSED-DOOR', 96, 0.3], ['BRIEFING', 96, 0.74]], {border: '#241726'})), 0, -0.92, 0);
+  for (const s of [-1, 1]) rod(banner, [s * 1.5, 0, 0], [s * 1.5, -0.1, 0], 0.02, '#3a2c22');
+  panel(banner, 3.4, 0.86, smat(signTex('briefing', 800, 200, '#fffdf2', '#c1272d', [['CLOSED-DOOR', 96, 0.3], ['BRIEFING', 96, 0.74]], {border: '#241726'})), 0, -0.5, 0);
   for (const s of [-1, 1]) { tree(root, s * 5.2, 4.2, 1.2); tree(root, s * 7.6, 6.5, 1.5); streetLamp(root, s * 3.2, 6.2, 2.8, '#fff6d0', 1.2); }
-  const reps = [actor(root, BOARD(2), {a: {expr: 'stern', pose: 'think'}}, -1.15, 0.95, 1.0, {scale: 0.95}), actor(root, BOARD(0), {a: {expr: 'stern', pose: 'cross'}}, 1.0, 0.65, 1.5, {scale: 0.95}), actor(root, BOARD(1), {a: {expr: 'neutral', pose: 'both', prop: 'tablet'}}, 0, 1.12, 0.6, {scale: 0.95})];
+  // all three on the top landing, under the banner: their feet stay above the caption line
+  const REP_Y = 1.44, reps = [actor(root, BOARD(2), {a: {expr: 'stern', pose: 'think'}}, -1.12, REP_Y, -0.02, {scale: 0.95}), actor(root, BOARD(0), {a: {expr: 'stern', pose: 'cross'}}, 1.12, REP_Y, -0.02, {scale: 0.95}), actor(root, BOARD(1), {a: {expr: 'neutral', pose: 'both', prop: 'tablet'}}, 0, REP_Y, 0.0, {scale: 0.95})];
   return {
     light: () => LIGHT.day,
-    tick: ({f, cam}) => { banner.rotation.z = 0.03 * Math.sin(f * 0.12); flag.rotation.z = -0.06 + 0.05 * Math.sin(f * 0.2); reps.forEach((r, i) => { r.node.position.y = [0.95, 0.65, 1.12][i] + 0.02 * Math.abs(Math.sin(f * 0.2 + i)); r.tick(f, cam); }); },
+    tick: ({f, cam}) => { banner.rotation.z = 0.03 * Math.sin(f * 0.12); flag.rotation.z = -0.06 + 0.05 * Math.sin(f * 0.2); reps.forEach((r, i) => { r.node.position.y = REP_Y + 0.02 * Math.abs(Math.sin(f * 0.2 + i)); r.tick(f, cam); }); },
   };
 };
 
