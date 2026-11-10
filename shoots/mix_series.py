@@ -56,7 +56,8 @@ def event(kind):
 
 def build(slug, spec, index):
     path=ROOT/slug
-    v,sr=read_wav(str(path/'voice'/'voice.wav'))
+    voice_file=path/'voice'/('action.wav' if slug=='spring-building' else 'voice.wav')
+    v,sr=read_wav(str(voice_file))
     assert sr==SR and v.shape[1]==spec['frames']*(SR//30)
     v=st(v[0]); n=v.shape[1]; duration=n/SR
     ref=integrated(v)
