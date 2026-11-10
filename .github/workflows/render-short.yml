@@ -74,12 +74,12 @@ jobs:
         working-directory: remotion-app
         run: |
           mkdir -p out/diagnostics
-          for frame in 80 220 340 475 610 805 1025 1200 1370 1460 1515 1625 1725 1875; do
+          for frame in 80 610 805 1875; do
             echo "Rendering frame $frame"
             npx remotion still src/index.ts PendulumShort "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH" >"out/diagnostics/$frame.log" 2>&1 || { msg=$(tail -n 12 "out/diagnostics/$frame.log" | tr '\n' ' '); echo "::error::Frame $frame failed: $msg"; exit 1; }
             echo "file '$frame.png'" >> out/diagnostics/list.txt
           done
-          ffmpeg -v error -y -f concat -safe 0 -i out/diagnostics/list.txt -vf 'scale=180:320,tile=7x2' -frames:v 1 -q:v 12 out/diagnostics/sheet.jpg
+          ffmpeg -v error -y -f concat -safe 0 -i out/diagnostics/list.txt -vf 'scale=270:480,tile=4x1' -frames:v 1 -q:v 18 out/diagnostics/sheet.jpg
           base64 -w0 out/diagnostics/sheet.jpg | split -b 3500 -d -a 3 - out/diagnostics/chunk-
       - name: Diagnostic image chunks 1
         if: inputs.diagnostics == 'true'
