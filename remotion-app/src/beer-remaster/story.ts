@@ -52,7 +52,11 @@ export const CAMS=(s:Shot,f:number)=>{
  const idx=beats?beats.reduce((n,b,i)=>u>=b.at?i:n,0):0;
  const b=beats?.[idx];const v=b?clamp((u-b.at)/((beats[idx+1]?.at??1)-b.at)):u;
  const ease=v*v*(3-2*v);const pos=b?.pos??s.pos,end=b?.end??s.end,look=b?.look??s.look,to=b?.to??look;
- return {pos:pos.map((x,i)=>x+(end[i]-x)*(.3*v+.7*ease)) as V3,look:look.map((x,i)=>x+(to[i]-x)*ease) as V3,fov:(b?.fov??s.fov)-v*1.6};
+ const eye=pos.map((x,i)=>x+(end[i]-x)*(.3*v+.7*ease)) as V3;
+ // The flood is opaque: never let its crest cross the near plane and reveal
+ // the road below as a hard-edged slab. Still low, but safely above max crest.
+ if([1,5,6].includes(s.id))eye[1]=Math.max(1.85,eye[1]);
+ return {pos:eye,look:look.map((x,i)=>x+(to[i]-x)*ease) as V3,fov:(b?.fov??s.fov)-v*1.6};
 };
 export const KICKS=[{f:396,amount:.025},{f:433,amount:.014}];
 export const DOF=(s:Shot)=>s.dof;
