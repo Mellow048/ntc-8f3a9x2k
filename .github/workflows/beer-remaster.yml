@@ -44,11 +44,12 @@ jobs:
           cd ..
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
-          python -m pip install numpy pillow
+          python -m pip install numpy pillow scipy
           ffmpeg -version
           ffprobe -version
           mkdir -p shoots/curiosity-beer/out/remaster
-          ffmpeg -y -i shoots/curiosity-beer/audio/premix.wav -af loudnorm=I=-15:TP=-1.5:LRA=5 -ar 48000 shoots/curiosity-beer/out/remaster/mix.wav
+          python scripts/beer-remaster/sound/score.py
+          ffmpeg -y -i shoots/curiosity-beer/out/remaster/audio/premix.wav -af loudnorm=I=-15:TP=-1.5:LRA=5 -ar 48000 shoots/curiosity-beer/out/remaster/mix.wav
       - name: Render editorial beat previews in one bundle
         run: node scripts/beer-remaster/stills.mjs
       - name: Render actual wading motion proof
@@ -79,6 +80,7 @@ jobs:
         if: inputs.stage == 'final'
         run: |
           ffmpeg -y -i shoots/curiosity-beer/out/remaster/silent.mp4 -i shoots/curiosity-beer/out/remaster/mix.wav -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest deliveries/beer-flood-remastered/beer-flood-remastered-720p.mp4
+          cp shoots/curiosity-beer/out/remaster/audio/music-report.md deliveries/beer-flood-remastered/music-report.md
           python scripts/beer-remaster/qa.py
           bash scripts/curiosity/publish.sh "Deliver remastered Beer Flood 720p" deliveries/beer-flood-remastered
       - uses: actions/upload-artifact@v4
