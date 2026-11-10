@@ -199,7 +199,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          for id in 42744027645 42744030949 42744034510 42744038290 42744041209; do
+          for id in 42744027645 42744030949 42749824118 42744038290 42744041209; do
             gh run watch "$id" --repo "$GITHUB_REPOSITORY" --exit-status --interval 60
           done
       - uses: actions/checkout@v4
@@ -220,7 +220,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: cartoon-3d-short
-          run-id: 42744034510
+          run-id: 42749824118
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: delivery/ocean-airport
       - uses: actions/download-artifact@v4
