@@ -3,6 +3,10 @@ name: Render short
 on:
   workflow_dispatch:
     inputs:
+      recover_run:
+        description: "Recover existing diagnostic frames"
+        required: false
+        default: ""
       composition:
         description: "Remotion composition id"
         required: false
@@ -39,6 +43,7 @@ permissions:
 
 jobs:
   render:
+    if: inputs.recover_run == ''
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
@@ -204,3 +209,38 @@ jobs:
             remotion-app/out/qa/report.md
           if-no-files-found: error
           retention-days: 14
+
+  recover:
+    if: inputs.recover_run != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: keyframes-720p
+          path: recovered-frames
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.recover_run }}
+      - name: Recover review sheets
+        run: |
+          python3 -m pip install --user pillow
+          mkdir -p shoots/spring-building/review
+          python3 - <<'PY'
+          from PIL import Image, ImageDraw
+          from pathlib import Path
+          frames=[10,65,108,210,365,430,560,785,973,1050,1240,1294,1430,1520,1650,1840]
+          for n in range(4):
+              sheet=Image.new('RGB',(720,1322),'white')
+              for i,f in enumerate(frames[n*4:n*4+4]):
+                  path=next(Path('recovered-frames').rglob(f'{f}.png'))
+                  tile=Image.open(path).convert('RGB').resize((360,640))
+                  x,y=(i%2)*360,(i//2)*661
+                  sheet.paste(tile,(x,y));ImageDraw.Draw(sheet).text((x+5,y+643),str(f),fill='black')
+              sheet.save(f'shoots/spring-building/review/initial-{n}.jpg',quality=90)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add shoots/spring-building/review/*.jpg
+          git commit -m 'Recover City Hall diagnostic review sheets'
+          git pull --rebase origin arena/2524fc8a-ntc-8f3a9x2k
+          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
