@@ -1,5 +1,5 @@
 import * as T from 'three';
-import {V,box,cyl,sphere,bar,material,wood,timber,iron,stone,brickM,street,warehouse,barrel,lamp,VatRig} from './build';
+import {V,box,cyl,sphere,bar,material,wood,timber,iron,stone,brickM,street,warehouse,barrel,lamp,VatRig,batchStatic} from './build';
 import {Porter} from './water';
 import {Character,CLERK,NEIGHBOUR,WORKER} from './cast';
 import {LIGHTS,LOOK} from './style/lights';
@@ -21,12 +21,12 @@ export class World {
   const actor=(x:number,z:number,o=CLERK)=>{const a=new Character(p,x,z,o);this.actors.push(a);return a;};
   if(place==='street'){
    street(p);this.fluid=new Porter(p,9.1,90);this.fluid.mesh.position.z=-24;
-   const woman=actor(-3.6,-1,NEIGHBOUR);const helper=actor(-1.1,-1.8,WORKER);const distant=actor(4.9,-9,CLERK);distant.root.position.y=.5;
+   const woman=actor(-2.7,-4.2,NEIGHBOUR);const helper=actor(-1.1,-1.8,WORKER);const distant=actor(2.9,-10,CLERK);distant.root.position.y=.5;
    const floating:Array<{o:T.Object3D;x:number;z:number}>=[];
-   for(let i=0;i<12;i++){const x=Math.sin(i*4.7)*3.6,z=-27+i*3.2;const o=i%4===0?barrel(p,x,z,.35):box(p,x,.4,z,.14,.12,1.1+(i%3)*.4,wood());if(i%4===0)o.rotation.z=Math.PI/2;floating.push({o,x,z});}
+   for(let i=0;i<12;i++){const x=Math.sin(i*4.7)*3.6,z=-27+i*3.2;const o=i%4===0?barrel(p,x,z,.35):box(p,x,.4,z,.14,.12,1.1+(i%3)*.4,wood());if(i%4===0)o.rotation.z=Math.PI/2;o.userData.dynamic=true;floating.push({o,x,z});}
    // Broken masonry is scattered at the edges, not in front of faces.
-   const rubble=new T.Group();p.add(rubble);for(let i=0;i<32;i++){const o=box(rubble,(i%2?1:-1)*(3.8+(i%4)*.2),.2+(i%3)*.12,-i*.42,.3,.22,.5,i%4?brickM():stone());o.rotation.set(.2*i,.6*i,.3*i);}
-   const lantern=lamp(p,-1.5,1.1,-.8,true);
+   const rubble=new T.Group();rubble.userData.dynamic=true;p.add(rubble);for(let i=0;i<32;i++){const o=box(rubble,(i%2?1:-1)*(3.8+(i%4)*.2),.2+(i%3)*.12,-i*.42,.3,.22,.5,i%4?brickM():stone());o.rotation.set(.2*i,.6*i,.3*i);}
+   const lantern=lamp(p,-1.5,1.1,-.8,true);lantern.userData.dynamic=true;
    this.animations.push((s,f,u)=>{
     const t=f/30;const aftermath=s.id>=7;const rescue=s.id===10;
     woman.root.visible=!rescue;woman.expr=aftermath?'nervous':'shock';woman.root.position.y=aftermath?.3:smooth(u)*.48;woman.lean=aftermath?0:-5*smooth(u);woman.wave=aftermath?0:.5;
@@ -40,7 +40,7 @@ export class World {
   if(place==='warehouse'){
    this.vat=warehouse(p);const worker=actor(3.8,3,WORKER);const v=this.vat;
    const spilled=new Porter(p,19,22);spilled.mesh.position.z=1;
-   const drops:T.Mesh[]=[];for(let i=0;i<40;i++){const o=sphere(p,0,0,0,.035+(i%5)*.012,material('beer-drop','#875022',undefined,true));drops.push(o);}
+   const drops:T.Mesh[]=[];for(let i=0;i<40;i++){const o=sphere(p,0,0,0,.035+(i%5)*.012,material('beer-drop','#875022',undefined,true));o.userData.dynamic=true;drops.push(o);}
    this.animations.push((s,f,u)=>{
     worker.expr=f>=359?'shock':s.id===2?'neutral':'nervous';worker.wave=f>=359?.8:0;worker.lean=f>=396?-8:0;
     const fail=smooth((f-359)/18);const burst=smooth((f-396)/22);
@@ -55,7 +55,7 @@ export class World {
   }
   if(place==='wall'){
    box(p,0,-.24,0,30,.4,40,material('wall-cobbles','#ffffff',rep(stoneHD(),8,12)));
-   const bricks:T.Mesh[]=[];for(let y=0;y<9;y++)for(let x=0;x<13;x++){const xx=(x-6)*.53+(y%2)*.25;const b=box(p,xx,.25+y*.34,-2,.5,.30,.48,brickM());bricks.push(b);}
+   const bricks:T.Mesh[]=[];for(let y=0;y<9;y++)for(let x=0;x<13;x++){const xx=(x-6)*.53+(y%2)*.25;const b=box(p,xx,.25+y*.34,-2,.5,.30,.48,brickM());b.userData.dynamic=true;bricks.push(b);}
    for(const x of [-4,4]){box(p,x,3,-2,1,6,1,brickM());box(p,x,6.2,-2,1.3,.25,1.3,stone());}
    box(p,0,6,-2,9,.5,1.1,timber());for(let i=0;i<6;i++)box(p,(i-2.5)*1.1,4.5,-2,.85,2.5,.1,material('wall-window','#698395'));
    const w=new Porter(p,10,30);w.mesh.position.z=0;
@@ -67,7 +67,7 @@ export class World {
    for(const z of [-2,1])box(p,0,4.2,z,8.7,.22,.28,timber());
    for(let k=0;k<8;k++)box(p,2.8,k*.4,2-k*.58,1.9,.4,.7,stone());
    box(p,0,1,-1.5,2,.14,1.3,wood());for(const x of [-.8,.8])for(const z of [-1,-2])box(p,x,.5,z,.1,1,.1,timber());
-   const chair=box(p,-1.5,.6,0,.7,.12,.8,wood());box(p,-1.5,1, -.35,.7,.9,.09,wood());for(const x of [-1.8,-1.2])for(const z of [-.3,.3])box(p,x,.28,z,.07,.56,.07,timber());
+   const chair=box(p,-1.5,.6,0,.7,.12,.8,wood());chair.userData.dynamic=true;box(p,-1.5,1, -.35,.7,.9,.09,wood());for(const x of [-1.8,-1.2])for(const z of [-.3,.3])box(p,x,.28,z,.07,.56,.07,timber());
    const w=new Porter(p,8.1,6);w.mesh.position.z=-.2;
    this.animations.push((s,f,u)=>{w.update(f/30,-2+u*8,.05+u*.72,.18);chair.rotation.z=Math.sin(u*3)*.05;});
   }
@@ -75,8 +75,7 @@ export class World {
    box(p,0,-.2,0,18,.3,16,material('memorial-cobble','#ffffff',rep(stoneHD(),6,6)));
    box(p,0,.65,0,5,.35,2.4,stone());box(p,0,.3,0,5.4,.3,2.8,stone());
    box(p,0,3.3,-3.5,12,7,.5,brickM());for(const x of [-3.9,3.9])box(p,x,3.3,-3.1,.4,7,.7,stone());
-   for(let i=0;i<8;i++){const x=(i%4-1.5)*.74,z=(Math.floor(i/4)-.5)*.8;const h=.46+(i%3)*.14;cyl(p,x,.85+h/2,z,.085,h,material('wax','#efe2bf'));const flame=sphere(p,x,.9+h,z,.075,new T.MeshBasicMaterial({color:new T.Color(4,1.8,.3)}));flame.scale.y=1.9;this.animations.push((s,f)=>flame.scale.y=1.8+Math.sin(f*.21+i)*.17);}
-   for(let i=0;i<3;i++){const a=actor(-3+i*2.8,-2.1,i%2?NEIGHBOUR:CLERK);a.expr='stern';a.root.scale.setScalar(.78);}
+   for(let i=0;i<8;i++){const x=(i%4-1.5)*.74,z=(Math.floor(i/4)-.5)*.8;const h=.46+(i%3)*.14;cyl(p,x,.85+h/2,z,.085,h,material('wax','#efe2bf'));const flame=sphere(p,x,.9+h,z,.075,new T.MeshBasicMaterial({color:new T.Color(4,1.8,.3)}));flame.userData.dynamic=true;flame.scale.y=1.9;this.animations.push((s,f)=>flame.scale.y=1.8+Math.sin(f*.21+i)*.17);}
   }
   if(place==='office'){
    box(p,0,-.2,0,15,.3,16,material('office-floor','#ffffff',rep(planksHD(),4,4)));box(p,0,3,-4.5,15,6,.4,material('office-wall','#8c9a9a',rep(stoneHD(),4,2)));
@@ -88,8 +87,10 @@ export class World {
    box(p,.15,1.48,.7,1.2,.025,.85,material('paper','#e4d7b7'));const ink=cyl(p,.8,1.57,.8,.12,.18,iron());bar(p,V(.8,1.62,.8),V(1.1,2.05,.75),.025,material('quill','#e7dfcc'));
    const coins:T.Mesh[]=[];for(let i=0;i<7;i++)coins.push(cyl(p,.65,1.49+i*.055,.1,.14,.05,material('gold-coin','#b69450',undefined,true)));
    lamp(p,-2,2.4,.5,true);box(p,0,.35,-4,2,.5,.7,wood());
+   coins.forEach(c=>c.userData.dynamic=true);
    this.animations.push((s,f,u)=>coins.forEach((c,i)=>{c.position.y=1.49+i*.055+Math.max(0,1-u*4+i*.08)*.4;}));
   }
+  batchStatic(this.root);
  }
  update(s:Shot,f:number,cam:T.PerspectiveCamera,scene:T.Scene){
   const c=CAMS(s,f);cam.position.set(...c.pos);cam.lookAt(...c.look);cam.fov=c.fov;

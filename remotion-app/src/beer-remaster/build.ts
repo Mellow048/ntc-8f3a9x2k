@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {mergeGeometries} from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import {twoTone} from './style/shade';
 import {beamHD,brick,cobbleHD,facadeHD,planksHD,rep,roofHD,stoneHD} from './style/paint';
 export const V=(x:number,y:number,z:number)=>new T.Vector3(x,y,z);
@@ -51,6 +52,7 @@ export function street(p:T.Object3D){
  box(p,0,-.28,-18,60,.45,100,material('street-cobble','#ffffff',rep(cobbleHD(),12,20)));
  for(const side of [-1,1]){box(p,side*5.9,.08,-18,2.4,.25,80,material('pavement','#c2b6a1',rep(stoneHD(),2,18)));box(p,side*4.66,.12,-18,.22,.3,80,stone());for(let i=0;i<8;i++)terrace(p,side,i);}
  for(let i=0;i<10;i++)for(const side of [-1,1]){const z=6-i*5;cyl(p,side*4.8,.55,z,.09,1.1,iron());sphere(p,side*4.8,1.1,z,.12,iron());}
+ for(const x of [-5.5,0,5.5]){const distant=terrace(p,0,9);distant.position.x=x;}
  // Period cart against the far wall, kept outside every core sightline.
  const cart=new T.Group();cart.position.set(4.9,0,-16);p.add(cart);box(cart,0,.8,0,1.3,.18,2,wood());for(const xx of [-.65,.65]){box(cart,xx,1.1,0,.08,.65,2.1,timber());const wh=cyl(cart,xx,.52,0,.48,.10,iron());wh.rotation.z=Math.PI/2;}barrel(cart,0,0,.7);
 }
@@ -70,10 +72,27 @@ export function warehouse(p:T.Object3D){
  for(const x of [-8,-3,3,8]){box(p,x,6,-6.6,2.4,5.7,.1,material('warehouse-window','#9fb1bb',undefined,true));for(const y of [3.3,5.2,7.1,9])box(p,x,y,-6.4,2.55,.09,.14,timber());for(const dx of [-1.25,0,1.25])box(p,x+dx,6,-6.4,.09,5.8,.14,timber());}
  for(const x of [-9,9]){box(p,x,5,0,.5,10,.5,timber());for(const z of [-4,2,7])bar(p,V(x,7.8,z),V(x,9.7,z-2),.25,timber());}
  for(const z of [-5,0,5]){box(p,0,9.7,z,22,.45,.45,timber());bar(p,V(-10,9.5,z),V(0,11.4,z),.3,timber());bar(p,V(0,11.4,z),V(10,9.5,z),.3,timber());}
- const hero=vat(p);vat(p,-7,-3,.77);vat(p,7,-3,.77);
+ const hero=vat(p);hero.group.userData.dynamic=true;vat(p,-7,-3,.77);vat(p,7,-3,.77);
  for(let i=0;i<4;i++)barrel(p,-6+i*1.05,4,.85);
  // A real access ladder and elevated walkway communicate the scale.
  for(const x of [3.6,4.4])bar(p,V(x,.2,1.4),V(x,6.7,-.2),.09,timber());for(let i=0;i<13;i++){const y=.3+i*.49,z=1.4-y/6.7*1.6;bar(p,V(3.6,y,z),V(4.4,y,z),.065,timber());}
  box(p,0,7.45,-3.5,8,.16,1.25,wood());for(const x of [-3.8,0,3.8])bar(p,V(x,7.5,-3),V(x,8.6,-3),.07,iron());bar(p,V(-3.8,8.6,-3),V(3.8,8.6,-3),.07,iron());
  return hero;
+}
+
+/** Bake static architecture by material, like Taipei's Batch builder. Keeps the
+ * rich set dressing but avoids thousands of per-frame SwiftShader draw calls. */
+export function batchStatic(root:T.Group){
+ root.updateMatrixWorld(true);
+ const batches=new Map<T.Material,{geometries:T.BufferGeometry[];objects:T.Mesh[]}>();
+ root.traverse(o=>{
+  if(!(o instanceof T.Mesh)||Array.isArray(o.material)||o.layers.mask!==1||o.material.transparent)return;
+  let parent:T.Object3D|null=o;while(parent&&parent!==root){if(parent.userData.dynamic)return;parent=parent.parent;}
+  const source=o.geometry.index?o.geometry.toNonIndexed():o.geometry.clone();
+  const g=source.clone().applyMatrix4(o.matrixWorld);const record=batches.get(o.material)??{geometries:[],objects:[]};record.geometries.push(g);record.objects.push(o);batches.set(o.material,record);
+ });
+ for(const [mat,record] of batches){
+  const geometry=mergeGeometries(record.geometries,false);if(!geometry)throw new Error('Static beer geometry merge failed');
+  const m=new T.Mesh(geometry,mat);m.castShadow=record.objects.some(o=>o.castShadow);m.receiveShadow=true;root.add(m);record.objects.forEach(o=>o.removeFromParent());record.geometries.forEach(g=>g.dispose());
+ }
 }
