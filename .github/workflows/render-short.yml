@@ -32,10 +32,6 @@ on:
         required: false
         default: ""
 
-permissions:
-  contents: write
-  actions: read
-
 jobs:
   render:
     runs-on: ubuntu-latest
@@ -82,30 +78,9 @@ jobs:
         working-directory: remotion-app
         run: |
           mkdir -p out/diagnostics
-          for frame in 24 190 1450 1830; do
+          for frame in 100 400 900 1500; do
             npx remotion still src/index.ts "${{ inputs.composition }}" "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
           done
-      - name: Publish action review sheets
-        if: inputs.diagnostics == 'true'
-        run: |
-          python3 -m pip install --user pillow
-          mkdir -p shoots/spring-building/review
-          python3 - <<'PY'
-          from PIL import Image,ImageDraw
-          frames=[24,190,1450,1830]
-          for n in range(1):
-              sheet=Image.new('RGB',(720,1322),'white')
-              for i,f in enumerate(frames[n*4:n*4+4]):
-                  im=Image.open(f'remotion-app/out/diagnostics/{f}.png').convert('RGB').resize((360,640))
-                  x,y=i%2*360,i//2*661;sheet.paste(im,(x,y));ImageDraw.Draw(sheet).text((x+5,y+643),str(f),fill='black')
-              sheet.save(f'shoots/spring-building/review/final-action-{n}.jpg',quality=90)
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add shoots/spring-building/review/final-action-*.jpg
-          git commit -m 'Review distinct action sets for City Hall revision'
-          git pull --rebase origin arena/2524fc8a-ntc-8f3a9x2k
-          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
       - name: Upload diagnostic stills
         if: inputs.diagnostics == 'true' && always()
         uses: actions/upload-artifact@v4
@@ -193,25 +168,6 @@ jobs:
               raise SystemExit('QA failed: review report.md in the artifact')
           PYQA
 
-      - name: Publish verified action revision
-        if: inputs.diagnostics != 'true' && inputs.composition == 'SpringBuildingShort' && inputs.qa != ''
-        run: |
-          python3 - <<'PYQA'
-          from pathlib import Path
-          import json
-          frames=json.loads(Path('shoots/spring-building/qa-shots.json').read_text())['frames']
-          report=Path('remotion-app/out/qa/report.md').read_text()
-          for expected in [f'720x1280 30/1 fps, {frames} frames', 'SILENCES none', 'black []', 'unplanned white []', 'frozen spans >=12f []', 'POPS (unplanned frame-diff spikes > 3x local median): []']:
-              assert expected in report, f'Missing QA check: {expected}'
-          PYQA
-          cp remotion-app/out/final.mp4 shoots/spring-building/final-720p.mp4
-          cp remotion-app/out/qa/report.md shoots/spring-building/qa-report.md
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f shoots/spring-building/final-720p.mp4 shoots/spring-building/qa-report.md
-          git commit -m 'Deliver action-led anti-earthquake building revision at 720p'
-          git pull --rebase origin arena/2524fc8a-ntc-8f3a9x2k
-          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
       - name: Upload MP4
         if: inputs.diagnostics != 'true' && always()
         uses: actions/upload-artifact@v4

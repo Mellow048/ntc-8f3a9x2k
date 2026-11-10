@@ -51,5 +51,5 @@ for _ in range(4):
     gain+=delta
 out=fades(out,0,.03)
 write_wav(str(p/'audio/mix-remaster.wav'),out,bits=16)
-(p/'audio/remaster-cues.md').write_text('# Remaster sound cues\n\nApproved Arena voice unchanged; original synthesized score, speech ducking, restrained opening pulse (first 7.4 s), and -6 dB-convention effects.\n\n'+''.join(f'- frame {f}: {k}\n' for f,k in cues)+f'\n{integrated(out):.2f} LUFS; {true_peak(out):.2f} dBTP.\n')
+(p/'audio/remaster-cues.md').write_text('# Remaster sound cues\n\nSame selected Arena narrator with rewritten action-led script; original synthesized score, speech ducking, restrained opening pulse (first 7.4 s), and -6 dB-convention effects.\n\n'+''.join(f'- frame {f}: {k}\n' for f,k in cues)+f'\n{integrated(out):.2f} LUFS; {true_peak(out):.2f} dBTP.\n')
 print(f'{duration:.3f}s; {integrated(out):.2f} LUFS; {true_peak(out):.2f} dBTP')

@@ -1,6 +1,6 @@
 # Remaster sound cues
 
-Approved Arena voice unchanged; original synthesized score, speech ducking, restrained opening pulse (first 7.4 s), and -6 dB-convention effects.
+Same selected Arena narrator with rewritten action-led script; original synthesized score, speech ducking, restrained opening pulse (first 7.4 s), and -6 dB-convention effects.
 
 - frame 16: quake
 - frame 58: reveal

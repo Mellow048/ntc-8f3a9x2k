@@ -1,5 +1,9 @@
 # The Building on Giant Springs — detailed remaster
 
+**Current export: action-led revision in `6da3f5c`, not the older 63-second landmark-tour edit described in the historical notes below.**
+
+Opening: “An anti earthquake building? Watch this.” Thirty cuts across the lab, office, kitchen, workshop, basement and clearance scene; landmark coverage 17.1%. Same selected Arena voice, newly written narration (`voice/action.wav`, `voice/action-words.json`). 1865 frames / 62.167 s, 720×1280, 36,545,230 bytes. Successful run `42807708835`: −15.0 LUFS / −1.4 dBFS, no detected silence, black/unplanned white frames, ≥12-frame freezes or unplanned pops. Twenty final frames reviewed. Awaiting user feedback.
+
 Approved 63-second Arena narration retained; only this next short is being rebuilt. Output remains 720×1280 at 30 fps with synchronized 1–2-word captions.
 
 ## Picture
