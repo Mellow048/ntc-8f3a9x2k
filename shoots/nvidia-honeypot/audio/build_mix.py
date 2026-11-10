@@ -421,8 +421,8 @@ def build_sfx(voice_lufs):
         t += 0.05 - 0.02 * u
     fx(z, kaching()[ns(0.13):], -8, 0, "counter lands", "-$190,000,000,000")
     EVENTS.append((a, "counter ticks", "the number rolls"))
-    fx(cut_t(22) + 0.02, slide(1400, 180, 0.62), -10, 0, "slide whistle down", "the red arrow dives")
-    fx(cut_t(22) + 0.62, thud(1.3), -8, 0, "crash", "the arrow hits the floor")
+    fx(cut_t(22) - 0.04, slide(1500, 240, 0.24), -11, 0, "falling whistle", "the red arrow drops in")
+    fx(cut_t(22) + 6 / FPS, thud(1.3), -7, 0, "crash", "the arrow stabs the floor, six frames after the cut")
     a, z = cut_t(23), (Wf(124) + 6) / FPS                          # the lawyer sprints to the door
     n = 0
     t = a + 0.05

@@ -46,9 +46,9 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  34.47 | 1034 | slide down | the chart turns over on 'lost' |
 |  35.00 | 1050 | counter ticks | the number rolls |
 |  36.37 | 1091 | counter lands | -$190,000,000,000 |
-|  37.59 | 1128 | slide whistle down | the red arrow dives |
+|  37.53 | 1126 | falling whistle | the red arrow drops in |
 |  37.69 | 1131 | timpani + cymbal + brass | 'In one day!' |
-|  38.19 | 1146 | crash | the arrow hits the floor |
+|  37.77 | 1133 | crash | the arrow stabs the floor, six frames after the cut |
 |  38.53 | 1156 | running feet | 15 steps, left to centre |
 |  38.78 | 1164 | clock ticking | street clock |
 |  39.13 | 1174 | stamp thud | CLASS ACTION FILED stamp |
