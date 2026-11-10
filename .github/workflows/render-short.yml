@@ -198,6 +198,23 @@ jobs:
               raise SystemExit('QA failed: review report.md in the artifact')
           PYQA
 
+      - name: Publish verified City Hall MP4
+        if: inputs.diagnostics != 'true' && inputs.composition == 'SpringBuildingShort' && inputs.mix != ''
+        run: |
+          python3 - <<'PYQA'
+          from pathlib import Path
+          report=Path('remotion-app/out/qa/report.md').read_text()
+          for expected in ['720x1280 30/1 fps, 1890 frames', 'SILENCES none', 'black []', 'unplanned white []', 'frozen spans >=12f []', 'POPS (unplanned frame-diff spikes > 3x local median): []']:
+              assert expected in report, f'Missing QA check: {expected}'
+          PYQA
+          cp remotion-app/out/final.mp4 shoots/spring-building/final-720p.mp4
+          cp remotion-app/out/qa/report.md shoots/spring-building/qa-report.md
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -f shoots/spring-building/final-720p.mp4 shoots/spring-building/qa-report.md
+          git commit -m 'Deliver detailed City Hall short at 720p after technical QA'
+          git pull --rebase origin arena/2524fc8a-ntc-8f3a9x2k
+          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
       - name: Upload MP4
         if: inputs.diagnostics != 'true' && always()
         uses: actions/upload-artifact@v4

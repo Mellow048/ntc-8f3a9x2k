@@ -50,6 +50,12 @@ Make entertaining, approximately one-minute engineering/science shorts in the ap
 
 **Active production item: “The Building on Giant Springs” / San Francisco City Hall.** The user asked to move to the next idea after accepting the bridge. They then interrupted to request this handoff document; that interruption was not a rejection of the City Hall work.
 
+### Resumption update — after the user asked for the MP4
+
+The diagnostic run finished rendering all 16 frames; its publishing step failed (a concurrent handoff-document push advanced the branch). Recovery run `42789516662` succeeded and committed `review/initial-*.jpg` in `91686ea`. Those sheets have now been visually inspected. The new MP4 was **not** already finished; the user was explicitly told that the existing export was still the old version.
+
+Follow-up fixes now implemented: the exterior/history plaza follows foundation motion; bearing rubber deforms continuously through its thickness while steel shims remain rigid. Typecheck and motion tests passed. The workflow now publishes the new City Hall MP4 automatically only after its technical QA passes. Full 720p rendering is the next action; no new MP4 has yet been delivered at this checkpoint. The older checkpoint below is retained for context and is superseded by this update.
+
 ### Known checkpoint when this handoff was written
 
 - City Hall implementation commit: `beecdbc` (`Build detailed City Hall isolation short with narration-locked demonstrations`).

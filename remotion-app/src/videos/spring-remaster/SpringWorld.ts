@@ -7,7 +7,7 @@ import {SHOTS,TOTAL,smooth,seismicMotion,jellyMotion,type Kind} from './story';
 type Tick=(f:number)=>void;
 function vehicle(p:THREE.Object3D,a:BridgeAssets,i:number,x:number,z:number,flip=false){const g=grp(p,x,0,z);const model=a[i%a.length].clone(true);model.scale.multiplyScalar(1.15);if(flip)model.rotation.y=Math.PI;g.add(model);return g;}
 function civicCenter(g:THREE.Group,assets:BridgeAssets){
- sky(g);texturedBox(g,85,.2,85,pavementTexture(),0,-.16,0,[24,24]);
+ texturedBox(g,85,.2,85,pavementTexture(),0,-.16,0,[24,24]);
  // Civic plaza axial paths, clipped lawns and a real kerbed street.
  for(const x of [-6.7,6.7]){box(g,6.8,.07,12,'#8c9f7e',x,-.005,13);for(const z of [7,19])box(g,6.9,.12,.14,'#c7c3b3',x,.03,z);}
  texturedBox(g,80,.08,7.7,asphaltTexture(),0,-.04,-11,[10,1]);
@@ -25,12 +25,12 @@ function civicCenter(g:THREE.Group,assets:BridgeAssets){
  return (f:number)=>{cars[0].position.x=-25+((f/30*1.15+17)%50);cars[1].position.x=25-((f/30*.9+13)%50);};
 }
 function hallSet(g:THREE.Group,assets:BridgeAssets,kind:Kind):Tick {
- const road=civicCenter(g,assets);const building=cityHall(g);
+ sky(g);const foundation=grp(g);const road=civicCenter(foundation,assets);const building=cityHall(g);
  const guide=kind==='guide'?actor(g,1.1,0,5.2,'engineer',1.05,'grin'):undefined;
  const cracks=grp(building);for(const x of [-4.5,3.7]){rod(cracks,[x,2.9,3.71],[x+.2,2.45,3.72],.017,'#665d58');rod(cracks,[x+.2,2.45,3.72],[x-.08,2.13,3.72],.017,'#665d58');rod(cracks,[x-.08,2.13,3.72],[x+.13,1.8,3.72],.017,'#665d58');}cracks.visible=false;
  return f=>{
   road(f);guide?.animate(f);
-  const m=seismicMotion(f);
+  const m=seismicMotion(f);foundation.position.x=m.ground;
   if(kind==='history'){building.position.x=m.ground;building.rotation.z=.007*smooth(f,536,552)*Math.sin(f*.22)*(1-smooth(f,574,589));cracks.visible=f>=553;}
   else {building.position.x=m.building;building.rotation.z=0;}
  };
@@ -40,11 +40,26 @@ function hallSet(g:THREE.Group,assets:BridgeAssets,kind:Kind):Tick {
 function isolator(p:THREE.Object3D,x:number,y:number,z:number,scale=1){
  const g=grp(p,x,y,z);g.scale.setScalar(scale);
  const bottom=grp(g),top=grp(g);box(bottom,1.17,.15,1.17,'#819291',0,.08,0);box(top,1.17,.15,1.17,'#a8b4ac',0,1.07,0);
- const layers:THREE.Object3D[]=[];
- for(let i=0;i<9;i++){const layer=grp(g);cylinder(layer,.47,.07,'#424e52',0,.22+i*.087,0);cylinder(layer,.48,.017,'#a7b1aa',0,.262+i*.087,0);layers.push(layer);}
+ const layers:{rubber:THREE.Mesh;shim:THREE.Mesh;original:Float32Array;y:number}[]=[];
+ for(let i=0;i<9;i++){
+  const y=.22+i*.087;
+  const rubber=cylinder(g,.47,.07,'#424e52',0,y,0);
+  const shim=cylinder(g,.48,.017,'#a7b1aa',0,y+.042,0);
+  layers.push({rubber,shim,original:new Float32Array(rubber.geometry.getAttribute('position').array),y});
+ }
  for(const dx of [-.44,.44])for(const dz of [-.44,.44]){cylinder(bottom,.043,.08,'#b3b9ad',dx,.19,dz);cylinder(top,.043,.08,'#d3d3bb',dx,1.18,dz);}
  // On macro shots the column and foundation seats make the load path unmistakable.
- return (a:number,b:number)=>{bottom.position.x=a;top.position.x=b;layers.forEach((q,i)=>q.position.x=a+(b-a)*(i+.5)/9);};
+ return (a:number,b:number)=>{
+  bottom.position.x=a;top.position.x=b;
+  // Rubber shears continuously through its thickness; steel shims stay rigid.
+  // Source vertices are retained so out-of-order renders never accumulate deformation.
+  for(const {rubber,shim,original,y} of layers){
+   const position=rubber.geometry.getAttribute('position') as THREE.BufferAttribute;
+   for(let i=0;i<position.count;i++)position.setX(i,original[i*3]+a+(b-a)*(y+original[i*3+1]-.185)/.78);
+   position.needsUpdate=true;rubber.geometry.computeVertexNormals();
+   shim.position.x=a+(b-a)*(y+.042-.185)/.78;
+  }
+ };
 }
 function cutawaySet(g:THREE.Group,assets:BridgeAssets):Tick {
  sky(g);box(g,48,.35,38,'#b6b8a5',0,-.38,-4);const foundation=grp(g),upper=grp(g);
