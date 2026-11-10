@@ -1,0 +1,54 @@
+name: Beer Flood — repair low camera ranges
+on:
+  push:
+    branches: [arena/044538ca-ntc-8f3a9x2k]
+    paths: ['.github/workflows/beer-camera-repair.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: beer-remaster-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  beer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: remotion-app/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install and preflight
+        run: |
+          cd remotion-app
+          npm ci --no-audit --no-fund
+          npx tsc --noEmit
+          npx playwright@1.49.1 install --with-deps chromium
+          CHROME="$(find ~/.cache/ms-playwright -type f -name chrome | head -1)"
+          test -n "$CHROME"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+          cd ..
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install numpy pillow scipy
+          ffmpeg -version
+          ffprobe -version
+          mkdir -p shoots/curiosity-beer/out/remaster
+          python scripts/beer-remaster/sound/score.py
+          ffmpeg -y -i shoots/curiosity-beer/out/remaster/audio/premix.wav -af loudnorm=I=-15:TP=-1.5:LRA=5 -ar 48000 shoots/curiosity-beer/out/remaster/mix.wav
+      - name: Render only corrected flood ranges
+        working-directory: remotion-app
+        run: |
+          npx remotion render src/beer-remaster/index.tsx BeerFloodRemastered ../shoots/curiosity-beer/out/remaster/opening.mp4 --frames=0-98 --width=720 --height=1280 --codec=h264 --crf=18 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000
+          npx remotion render src/beer-remaster/index.tsx BeerFloodRemastered ../shoots/curiosity-beer/out/remaster/surge.mp4 --frames=423-567 --width=720 --height=1280 --codec=h264 --crf=18 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000
+      - name: Replace exact frame ranges, retaining completed score
+        run: |
+          ffmpeg -y -i deliveries/beer-flood-remastered/beer-flood-remastered-720p.mp4 -i shoots/curiosity-beer/out/remaster/opening.mp4 -i shoots/curiosity-beer/out/remaster/surge.mp4 -filter_complex "[1:v]setpts=PTS-STARTPTS[a];[0:v]trim=start_frame=99:end_frame=423,setpts=PTS-STARTPTS[b];[2:v]setpts=PTS-STARTPTS[c];[0:v]trim=start_frame=568:end_frame=1090,setpts=PTS-STARTPTS[d];[a][b][c][d]concat=n=4:v=1:a=0[v]" -map "[v]" -map 0:a:0 -c:v libx264 -preset medium -crf 18 -r 30 -c:a copy -movflags +faststart shoots/curiosity-beer/out/remaster/repaired.mp4
+          mv shoots/curiosity-beer/out/remaster/repaired.mp4 deliveries/beer-flood-remastered/beer-flood-remastered-720p.mp4
+          python scripts/beer-remaster/qa.py
+          bash scripts/curiosity/publish.sh "Deliver motion edition with corrected waterline cameras" deliveries/beer-flood-remastered

@@ -1,0 +1,242 @@
+{
+  "origin_commit": "d1dea6bac184bca33f64b92bd41304b8629651c2",
+  "origin_video": "deliveries/beer-flood-remastered/beer-flood-remastered-720p.mp4",
+  "files": [
+    {
+      "path": "final-720p.mp4",
+      "sha256": "7563a2f7b9c0ce3d1129a4197a96385d09ea0fced1beb70e7987be13d9af68cd",
+      "bytes": 29754163
+    },
+    {
+      "path": "source/.github/workflows/beer-camera-repair.yml",
+      "sha256": "6e698eba4a6b4a53ec412d4d499bc148e09d5abdbfc7d13e6e457e4e145ce94e",
+      "bytes": 3087
+    },
+    {
+      "path": "source/.github/workflows/beer-remaster.yml",
+      "sha256": "2fe8bde88a5fbd1428e55ec88550c484b24096940c480cc7c055fbe18be5c690",
+      "bytes": 4437
+    },
+    {
+      "path": "source/remotion-app/package-lock.json",
+      "sha256": "9f9fb75fcdfbe2264552bb81d2798d9e2796aa9ca90f322044903c8236431766",
+      "bytes": 161227
+    },
+    {
+      "path": "source/remotion-app/package.json",
+      "sha256": "cb1d27d1eedfccdccc33cb5f890393de7cd592c6b8a4b65aa56cf2a2b2046c4b",
+      "bytes": 813
+    },
+    {
+      "path": "source/remotion-app/remotion.config.ts",
+      "sha256": "f2f70c8410b5bf76fecac310cee020a9ad9902031b8ffedd74a88b0877e3f6c1",
+      "bytes": 443
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/Beer.tsx",
+      "sha256": "7af650ebdcdb26003258b9ead2e0179cc513ca0c38b6b92997a73da04a0d6d2e",
+      "bytes": 2274
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/build.ts",
+      "sha256": "e305fb727a04fb2d1c4d60f39014b566694755122bf1ce006828c16ea0b77620",
+      "bytes": 9617
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/cast.ts",
+      "sha256": "711120ede80e59ef66e053cd21b0ca27ac2fc77f646d02f5f96b7a46b2bcc59c",
+      "bytes": 3140
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/index.tsx",
+      "sha256": "9344804900ef05f70b2a1d6c42f18c894a6b30b14efc0c01958f964ae0df6f59",
+      "bytes": 336
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/story.ts",
+      "sha256": "f9fe371fa64944eb651e762d4fa2a4b10ece7a50271aa8a09c0bf64bcafb8151",
+      "bytes": 4370
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/style/cardshade.ts",
+      "sha256": "b9dd6fbe552ebe93ea51f578460bed08b8b1582c1721c0a160e53aa0afaab4da",
+      "bytes": 6380
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/style/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/style/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/style/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/style/lights.ts",
+      "sha256": "2d5fb50df74902b59fbe8121514afab13174b19100c902ce5621732c04bbd1bd",
+      "bytes": 4247
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/style/paint.ts",
+      "sha256": "0dec7bfb2509494ecea181b17a9bad7990e0ca865529a0601bb1003611ef6881",
+      "bytes": 45684
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/style/shade.ts",
+      "sha256": "7ba7d865a5acc4fb41ab61ba09340f340248616c3f73680abf40b9ff5f1b3d3d",
+      "bytes": 5385
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/style/toon.ts",
+      "sha256": "9caeb5c3c7e58521e629b612f5d8c91deeb4188ddfaa7707bc30d9d5baa807f9",
+      "bytes": 58244
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/water.ts",
+      "sha256": "1de1c2384c6de4a2b6964797e1cc4f965db6aac54a2588da3b83a245cb0520a6",
+      "bytes": 3640
+    },
+    {
+      "path": "source/remotion-app/src/beer-remaster/world.ts",
+      "sha256": "b5640d1a002905619295f7592f43b22946ad70a0ee632584b859515e479d59fe",
+      "bytes": 12706
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/README.md",
+      "sha256": "7cfc5be9c4c09aa19c8f2039314c50f9486bfa738cdbf50788adcfb3c1aae7bd",
+      "bytes": 3183
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/Short.tsx",
+      "sha256": "3bf3fa9a75d662deca53be1cd97aaf5c64b4a5887a2139f8c0a8b6a3755b54ce",
+      "bytes": 3838
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/beer.json",
+      "sha256": "a60b961a522e334368bd224fb759e3c2da0d5e9e772c36a53deec5d30c56f7fe",
+      "bytes": 7021
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/bridge/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/bridge/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/bridge/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/bridge/lights.ts",
+      "sha256": "2d5fb50df74902b59fbe8121514afab13174b19100c902ce5621732c04bbd1bd",
+      "bytes": 4247
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/bridge/paint.ts",
+      "sha256": "a01928e703951b6730354dd615e6f54326ab8e08b028ed2c96a5f68e67d445b2",
+      "bytes": 43718
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/bridge/shade.ts",
+      "sha256": "7ba7d865a5acc4fb41ab61ba09340f340248616c3f73680abf40b9ff5f1b3d3d",
+      "bytes": 5385
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/bridge/toon.ts",
+      "sha256": "ed6823daad4cc5cdb88a7215502af545fe621efc18d58ea175f7464cc02fd725",
+      "bytes": 54503
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/data.ts",
+      "sha256": "6bbddb64a49757b2c18f0dcb4634984606e1df92f4a0f3397068972c99235022",
+      "bytes": 13028
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/index.tsx",
+      "sha256": "b8c0df93c446a6100580992ec7610c8dbf07c8f2a1afda80ec115122514c27b6",
+      "bytes": 428
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/lake.json",
+      "sha256": "69823b784a07aa9c86724d6cfc476ba95e6ad343e889f21db4f42e67da714815",
+      "bytes": 7766
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/story.ts",
+      "sha256": "d961841ecdb0f6ea647c161b4b17d483bbaa93dae1e3f86880f5329098faf7f8",
+      "bytes": 2767
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/survivor.json",
+      "sha256": "fb734596b66cb1f003cba90c82c728029515a536059ef7bb9ce295a6342a8479",
+      "bytes": 8383
+    },
+    {
+      "path": "source/remotion-app/src/curiosity/world.ts",
+      "sha256": "71674bb7c4ab1a068ee7449c170df651f21614e5ec2b437e46c3d8ac6a5f584c",
+      "bytes": 18235
+    },
+    {
+      "path": "source/remotion-app/tsconfig.json",
+      "sha256": "0a321a02bc90805ba8df808098c55058eb670ecd7e727de238af17e9d564462c",
+      "bytes": 321
+    },
+    {
+      "path": "source/scripts/beer-remaster/qa.py",
+      "sha256": "33523be51010282cfe08efabee98e78e18ee971434baa7708ee9c03638d203c8",
+      "bytes": 2209
+    },
+    {
+      "path": "source/scripts/beer-remaster/sound/dsp.py",
+      "sha256": "3b456f4653fde5f30b8a22aa53903e5d4b2b3ca508908978f210fb6934214355",
+      "bytes": 11468
+    },
+    {
+      "path": "source/scripts/beer-remaster/sound/instruments.py",
+      "sha256": "8f66ee6134daefc85021aadab1138a3ce480029c91fc4428d04cba6fd5737fee",
+      "bytes": 13122
+    },
+    {
+      "path": "source/scripts/beer-remaster/sound/score.py",
+      "sha256": "e9e3d40a8de40c999c1f1147c46916d1d0c0dfbbdc15d18f19a72edda72a73d8",
+      "bytes": 5087
+    },
+    {
+      "path": "source/scripts/beer-remaster/stills.mjs",
+      "sha256": "538af903402317d0489fcb10b7802dc6779b139e1587888896fda3f7ff6f67f5",
+      "bytes": 1327
+    },
+    {
+      "path": "source/shoots/curiosity-beer/REMASTER.md",
+      "sha256": "7a8a8a993ac5295ab5b4a8dc6c222d0ea1daba670daa12eba8fc8d400cbd7c3f",
+      "bytes": 7130
+    },
+    {
+      "path": "source/shoots/curiosity-beer/SCRIPT.md",
+      "sha256": "e274cc643fdca7bf0ea964dc85bcc0493a71ba0c4127b8dd68e313efa3448a61",
+      "bytes": 1221
+    },
+    {
+      "path": "source/shoots/curiosity-beer/voice/voice.wav",
+      "sha256": "fa17b057f94d2e06ac1410bd9850c70b7d54c0a197e21edbade45d6743e8e921",
+      "bytes": 3192910
+    },
+    {
+      "path": "source/shoots/curiosity-beer/voice/words.json",
+      "sha256": "ac4fcc6a95d2adc98082790d86488b1287ab8a42c67605aa53205ea5b97cbd94",
+      "bytes": 6024
+    }
+  ],
+  "adaptation": "Standalone registration adapter added; unrelated multi-film Root/index omitted for Taipei. Renderer, animation and audio modules copied without edits; historical workflow recipes included as inert provenance."
+}

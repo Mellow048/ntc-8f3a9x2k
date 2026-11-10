@@ -1,0 +1,167 @@
+{
+  "origin_commit": "04cb77afebaae79f093a8d32ce45eb18c09f0559",
+  "origin_video": "shoots/pendulum/final-720p.mp4",
+  "files": [
+    {
+      "path": "final-720p.mp4",
+      "sha256": "304695350d85673907cbdd60e2c537cc52e4f119470e174d0d1bc698de41d7b8",
+      "bytes": 53910220
+    },
+    {
+      "path": "source/.github/workflows/render-short.yml",
+      "sha256": "eaa421be9790ad07213c93ea73368181a717da4f0ee2649c97fbdc6b5bb1e4a1",
+      "bytes": 7911
+    },
+    {
+      "path": "source/remotion-app/package-lock.json",
+      "sha256": "9f9fb75fcdfbe2264552bb81d2798d9e2796aa9ca90f322044903c8236431766",
+      "bytes": 161227
+    },
+    {
+      "path": "source/remotion-app/package.json",
+      "sha256": "cb1d27d1eedfccdccc33cb5f890393de7cd592c6b8a4b65aa56cf2a2b2046c4b",
+      "bytes": 813
+    },
+    {
+      "path": "source/remotion-app/remotion.config.ts",
+      "sha256": "f2f70c8410b5bf76fecac310cee020a9ad9902031b8ffedd74a88b0877e3f6c1",
+      "bytes": 443
+    },
+    {
+      "path": "source/remotion-app/src/reference-entry.tsx",
+      "sha256": "3084e940062227efcd31fb83473bedfabbdf97c4d51fbcea5e9fcb937dd219e3",
+      "bytes": 437
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/Pendulum.tsx",
+      "sha256": "0d3d76be667b16f7be43aba4adbfd26a1145fc117b9ba37a706d6528abdef421",
+      "bytes": 4855
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/build.ts",
+      "sha256": "309b31fb86cad38e412aa13b7f6f9b1b18dbeb6c05faf567880dcfc9a1534069",
+      "bytes": 28971
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/cardshade.ts",
+      "sha256": "b9dd6fbe552ebe93ea51f578460bed08b8b1582c1721c0a160e53aa0afaab4da",
+      "bytes": 6380
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/cast.ts",
+      "sha256": "9b296907f8a95277685135f372607855fe09500e55a7288c3d0f10a7c07d181a",
+      "bytes": 18958
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/lights.ts",
+      "sha256": "2d5fb50df74902b59fbe8121514afab13174b19100c902ce5621732c04bbd1bd",
+      "bytes": 4247
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/paint.ts",
+      "sha256": "0dec7bfb2509494ecea181b17a9bad7990e0ca865529a0601bb1003611ef6881",
+      "bytes": 45684
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/shade.ts",
+      "sha256": "7ba7d865a5acc4fb41ab61ba09340f340248616c3f73680abf40b9ff5f1b3d3d",
+      "bytes": 5385
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/story.ts",
+      "sha256": "437dc9da9357e3bb493521fdc72644e6c11d112b4d575d532507a595837b4233",
+      "bytes": 23771
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/toon.ts",
+      "sha256": "9caeb5c3c7e58521e629b612f5d8c91deeb4188ddfaa7707bc30d9d5baa807f9",
+      "bytes": 58244
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/world.ts",
+      "sha256": "fe21da358d591a09839c2da65f670dc5f5a2e583be1116efeb1cc28d6eb53cdf",
+      "bytes": 20685
+    },
+    {
+      "path": "source/remotion-app/tsconfig.json",
+      "sha256": "0a321a02bc90805ba8df808098c55058eb670ecd7e727de238af17e9d564462c",
+      "bytes": 321
+    },
+    {
+      "path": "source/shoots/pendulum/SCRIPT.md",
+      "sha256": "107383aae88297cdb95e0fd03204f715febc0383ae918d7195ae62eb4fc8306f",
+      "bytes": 5380
+    },
+    {
+      "path": "source/shoots/pendulum/audio/cues.md",
+      "sha256": "314ca55e6d45d317817aabd2000a6e39b933b079234f198f0e05788d2b2e9c60",
+      "bytes": 4398
+    },
+    {
+      "path": "source/shoots/pendulum/audio/dsp.py",
+      "sha256": "3b456f4653fde5f30b8a22aa53903e5d4b2b3ca508908978f210fb6934214355",
+      "bytes": 11468
+    },
+    {
+      "path": "source/shoots/pendulum/audio/instruments.py",
+      "sha256": "8f66ee6134daefc85021aadab1138a3ce480029c91fc4428d04cba6fd5737fee",
+      "bytes": 13122
+    },
+    {
+      "path": "source/shoots/pendulum/audio/mix.py",
+      "sha256": "0d4fef46911870b4c2f0c50e082101e8779f53561d5f4678df4a4cec5a1d8c74",
+      "bytes": 7582
+    },
+    {
+      "path": "source/shoots/pendulum/audio/music.py",
+      "sha256": "0a8ab2112c7360748a99e31daeabe0e93c471322b722bc56fd454c64936d14c5",
+      "bytes": 12451
+    },
+    {
+      "path": "source/shoots/pendulum/audio/sfx.py",
+      "sha256": "c7c5f55e0ef71b72fe9a5e0379bf54a73df53fc6547292e27f44b0ebad1d9c78",
+      "bytes": 8964
+    },
+    {
+      "path": "source/shoots/pendulum/audio/sfx_gen.py",
+      "sha256": "656e0d04a8fbd05e1b8c9a8a96e201c6033783cb6961eba788544f05f294a651",
+      "bytes": 25699
+    },
+    {
+      "path": "source/shoots/pendulum/audio/timeline.py",
+      "sha256": "417bef26ef900e189cc0b1b1762d2d8caa67ef8b82094cfc4ddef369fb94b4a3",
+      "bytes": 1375
+    },
+    {
+      "path": "source/shoots/pendulum/qa-shots.json",
+      "sha256": "a070415319f0ca3ff31a4791f97e7ba7cb4c8a1056190987d307695ac858ec18",
+      "bytes": 659
+    },
+    {
+      "path": "source/shoots/pendulum/voice/voice.wav",
+      "sha256": "7cc873dcebf3f9eb0691382405a664e7b5136a48dfa685872106448683ea1f68",
+      "bytes": 6288044
+    },
+    {
+      "path": "source/shoots/pendulum/voice/words.json",
+      "sha256": "96588af12e3f5040f2e41d27f870f2dcf2e4763afd614ecb52fd3de4f1a6f926",
+      "bytes": 22060
+    }
+  ],
+  "adaptation": "Standalone registration adapter added; unrelated multi-film Root/index omitted for Taipei. Renderer, animation and audio modules copied without edits; historical workflow recipes included as inert provenance."
+}

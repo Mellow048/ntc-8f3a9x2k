@@ -1,0 +1,462 @@
+{
+  "slug": "beer",
+  "duration": 36.333333333333336,
+  "frames": 1090,
+  "words": [
+    {
+      "word": "london",
+      "start": 0.0,
+      "end": 0.5
+    },
+    {
+      "word": "once",
+      "start": 0.5,
+      "end": 0.81
+    },
+    {
+      "word": "suffered",
+      "start": 0.81,
+      "end": 1.07
+    },
+    {
+      "word": "a",
+      "start": 1.07,
+      "end": 1.11
+    },
+    {
+      "word": "flood",
+      "start": 1.11,
+      "end": 1.55
+    },
+    {
+      "word": "made",
+      "start": 1.55,
+      "end": 1.77
+    },
+    {
+      "word": "entirely",
+      "start": 1.77,
+      "end": 2.31
+    },
+    {
+      "word": "of",
+      "start": 2.31,
+      "end": 2.41
+    },
+    {
+      "word": "beer",
+      "start": 2.41,
+      "end": 2.88
+    },
+    {
+      "word": "on",
+      "start": 3.37,
+      "end": 3.52
+    },
+    {
+      "word": "october",
+      "start": 3.52,
+      "end": 3.93
+    },
+    {
+      "word": "seventeenth",
+      "start": 3.93,
+      "end": 4.73
+    },
+    {
+      "word": "eighteen",
+      "start": 4.99,
+      "end": 5.38
+    },
+    {
+      "word": "fourteen",
+      "start": 5.38,
+      "end": 6.04
+    },
+    {
+      "word": "a",
+      "start": 6.32,
+      "end": 6.39
+    },
+    {
+      "word": "giant",
+      "start": 6.39,
+      "end": 6.84
+    },
+    {
+      "word": "wooden",
+      "start": 6.84,
+      "end": 7.14
+    },
+    {
+      "word": "vat",
+      "start": 7.14,
+      "end": 7.49
+    },
+    {
+      "word": "stood",
+      "start": 7.49,
+      "end": 7.78
+    },
+    {
+      "word": "inside",
+      "start": 7.78,
+      "end": 8.17
+    },
+    {
+      "word": "the",
+      "start": 8.17,
+      "end": 8.25
+    },
+    {
+      "word": "horse",
+      "start": 8.25,
+      "end": 8.59
+    },
+    {
+      "word": "shoe",
+      "start": 8.59,
+      "end": 8.88
+    },
+    {
+      "word": "brewery",
+      "start": 8.88,
+      "end": 9.43
+    },
+    {
+      "word": "iron",
+      "start": 9.82,
+      "end": 10.08
+    },
+    {
+      "word": "hoops",
+      "start": 10.08,
+      "end": 10.48
+    },
+    {
+      "word": "held",
+      "start": 10.48,
+      "end": 10.72
+    },
+    {
+      "word": "it",
+      "start": 10.72,
+      "end": 10.81
+    },
+    {
+      "word": "together",
+      "start": 10.81,
+      "end": 11.33
+    },
+    {
+      "word": "when",
+      "start": 11.6,
+      "end": 11.84
+    },
+    {
+      "word": "one",
+      "start": 11.84,
+      "end": 12.03
+    },
+    {
+      "word": "failed",
+      "start": 12.03,
+      "end": 12.59
+    },
+    {
+      "word": "the",
+      "start": 12.9,
+      "end": 12.98
+    },
+    {
+      "word": "vat",
+      "start": 12.98,
+      "end": 13.28
+    },
+    {
+      "word": "burst",
+      "start": 13.28,
+      "end": 13.87
+    },
+    {
+      "word": "beer",
+      "start": 14.17,
+      "end": 14.44
+    },
+    {
+      "word": "smashed",
+      "start": 14.44,
+      "end": 15.08
+    },
+    {
+      "word": "through",
+      "start": 15.08,
+      "end": 15.45
+    },
+    {
+      "word": "the",
+      "start": 15.45,
+      "end": 15.52
+    },
+    {
+      "word": "brewery",
+      "start": 15.52,
+      "end": 15.98
+    },
+    {
+      "word": "wall",
+      "start": 15.98,
+      "end": 16.34
+    },
+    {
+      "word": "and",
+      "start": 16.34,
+      "end": 16.5
+    },
+    {
+      "word": "poured",
+      "start": 16.5,
+      "end": 16.94
+    },
+    {
+      "word": "into",
+      "start": 16.94,
+      "end": 17.13
+    },
+    {
+      "word": "the",
+      "start": 17.13,
+      "end": 17.23
+    },
+    {
+      "word": "streets",
+      "start": 17.23,
+      "end": 17.67
+    },
+    {
+      "word": "of",
+      "start": 17.67,
+      "end": 17.75
+    },
+    {
+      "word": "saint",
+      "start": 17.75,
+      "end": 18.04
+    },
+    {
+      "word": "giles",
+      "start": 18.04,
+      "end": 18.61
+    },
+    {
+      "word": "but",
+      "start": 18.99,
+      "end": 19.14
+    },
+    {
+      "word": "this",
+      "start": 19.14,
+      "end": 19.33
+    },
+    {
+      "word": "wasn't",
+      "start": 19.33,
+      "end": 19.64
+    },
+    {
+      "word": "free",
+      "start": 19.64,
+      "end": 19.98
+    },
+    {
+      "word": "drinks",
+      "start": 19.98,
+      "end": 20.59
+    },
+    {
+      "word": "it",
+      "start": 20.87,
+      "end": 21.01
+    },
+    {
+      "word": "was",
+      "start": 21.01,
+      "end": 21.2
+    },
+    {
+      "word": "a",
+      "start": 21.2,
+      "end": 21.23
+    },
+    {
+      "word": "disaster",
+      "start": 21.23,
+      "end": 21.85
+    },
+    {
+      "word": "homes",
+      "start": 22.5,
+      "end": 22.82
+    },
+    {
+      "word": "were",
+      "start": 22.82,
+      "end": 22.91
+    },
+    {
+      "word": "damaged",
+      "start": 22.91,
+      "end": 23.51
+    },
+    {
+      "word": "cellars",
+      "start": 23.73,
+      "end": 24.19
+    },
+    {
+      "word": "flooded",
+      "start": 24.19,
+      "end": 24.65
+    },
+    {
+      "word": "eight",
+      "start": 24.97,
+      "end": 25.22
+    },
+    {
+      "word": "people",
+      "start": 25.22,
+      "end": 25.69
+    },
+    {
+      "word": "died",
+      "start": 25.69,
+      "end": 26.16
+    },
+    {
+      "word": "neighbours",
+      "start": 26.47,
+      "end": 26.92
+    },
+    {
+      "word": "searched",
+      "start": 26.92,
+      "end": 27.38
+    },
+    {
+      "word": "the",
+      "start": 27.38,
+      "end": 27.45
+    },
+    {
+      "word": "wreckage",
+      "start": 27.45,
+      "end": 28.02
+    },
+    {
+      "word": "keeping",
+      "start": 28.22,
+      "end": 28.59
+    },
+    {
+      "word": "quiet",
+      "start": 28.59,
+      "end": 29.1
+    },
+    {
+      "word": "so",
+      "start": 29.1,
+      "end": 29.29
+    },
+    {
+      "word": "they",
+      "start": 29.29,
+      "end": 29.43
+    },
+    {
+      "word": "could",
+      "start": 29.43,
+      "end": 29.6
+    },
+    {
+      "word": "hear",
+      "start": 29.6,
+      "end": 29.82
+    },
+    {
+      "word": "anyone",
+      "start": 29.82,
+      "end": 30.35
+    },
+    {
+      "word": "trapped",
+      "start": 30.35,
+      "end": 30.89
+    },
+    {
+      "word": "and",
+      "start": 31.24,
+      "end": 31.86
+    },
+    {
+      "word": "afterward",
+      "start": 31.86,
+      "end": 32.43
+    },
+    {
+      "word": "the",
+      "start": 32.43,
+      "end": 32.75
+    },
+    {
+      "word": "brewery",
+      "start": 32.75,
+      "end": 33.18
+    },
+    {
+      "word": "received",
+      "start": 33.18,
+      "end": 33.81
+    },
+    {
+      "word": "tax",
+      "start": 33.81,
+      "end": 34.13
+    },
+    {
+      "word": "relief",
+      "start": 34.13,
+      "end": 34.5
+    },
+    {
+      "word": "on",
+      "start": 34.5,
+      "end": 34.65
+    },
+    {
+      "word": "the",
+      "start": 34.65,
+      "end": 34.72
+    },
+    {
+      "word": "beer",
+      "start": 34.72,
+      "end": 34.96
+    },
+    {
+      "word": "it",
+      "start": 34.96,
+      "end": 35.36
+    },
+    {
+      "word": "had",
+      "start": 35.36,
+      "end": 35.51
+    },
+    {
+      "word": "lost",
+      "start": 35.51,
+      "end": 35.99
+    }
+  ]
+}

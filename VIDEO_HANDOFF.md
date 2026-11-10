@@ -4,6 +4,44 @@ This is the durable handoff for the user’s cartoon engineering shorts. **Read 
 
 This records explicit user feedback separately from implementation lessons. It is not a guarantee that an unreviewed first render will be accepted. The goal is a strong first delivery, not another round of the same avoidable mistakes.
 
+## Latest durable feedback — curiosity remasters and reference preservation
+
+Read [IMPORTANT.md](IMPORTANT.md) for consolidated current gates and
+[references/approved/README.md](references/approved/README.md) for actual,
+branch-independent approved Taipei and Beer videos **and source** on main.
+The user's latest request explicitly authorizes those two reference MP4s and
+source snapshots on main, superseding the older documentation-only policy
+**for this reference library**, not for every historical export.
+
+- Beer Flood: accepted; use the detailed motion revision, not first cuts.
+- Yamaguchi: accepted as “good enough”; confusing duplicate people, unclear
+  bomb context and repeated angles had required correction. Do not label that
+  qualified acceptance as the primary quality benchmark.
+- Lake Peigneur: second visual revision was kept, then an audio/ending polish
+  received “okay nice nice”. Saved final production checkpoint:
+  `d1dea6bac184bca33f64b92bd41304b8629651c2`,
+  `deliveries/lake-polished/lake-polished-720p.mp4` (38.4 s, 720×1280/30fps).
+  No remaining request to re-render these three shorts.
+- Flat blue water blocks, toy-like assets, static scenery and alternate-angle
+  repetition were rejected. Geometry must be recognizably what it depicts;
+  do not defend generic boxes as cars. Check meaningful on-screen detail.
+- Background music was inaudible at ordinary volume and too depressing.
+  Final Lake polish uses a new brighter 112 BPM cue, music measured after
+  ducking at ~5–6 LU below speech instead of ~9–11, with narration clear.
+  Do not apply the historical “only tiny opening lift” as a blanket instruction
+  to bury every film's score. Write distinct music for each film; reusing DSP
+  is different from reusing melody/recording/timbre blindly. No promise about
+  platform reused-content decisions can be made from musical similarity alone.
+- “The mine did not” ended too abruptly. The accepted polish retains the
+  original Arena words, inserts a 0.5-second pause after “the mine”, and adds
+  a one-second resolved visual/music tail. It does **not** synthesize “Well”.
+  Plan ending cadence before rendering; when only sound/pacing needs repair,
+  reuse picture where practical rather than another hour-long 3D render.
+- The user is deleting branches: reference MP4s + source are now real tracked
+  files in `references/approved/`, not just historical branch links. Other
+  production recovery paths below remain historical; do not assume all media
+  are on main. Preserve the separate City Hall stream's checkpoint below.
+
 ## 1. What the user wants
 
 Make entertaining, approximately one-minute engineering/science shorts in the approved **2D cartoon characters inside a detailed, ink-outlined 3D environment** style. Explain a surprising real mechanism with understandable cause and effect.
@@ -25,7 +63,7 @@ Make entertaining, approximately one-minute engineering/science shorts in the ap
 2. **Immediately readable hook.** At first glance, viewers must know what they are seeing. An unexplained abstract close-up risks a scroll. Establish the recognizable subject, then reveal the surprising detail right on its spoken mention.
 3. **Retention-conscious editing.** Faster cuts inside longer passages, stronger purposeful camera moves, meaningful inserts, and visual progression. Do not leave a single weak shot running while the narrator moves through several ideas.
 4. **Motion must listen to the narrator.** The user specifically disliked an apparent stuck/idle animation unrelated to “expands,” “narrows,” or “opens.” Keyframe the actual mechanism to those words. Hold its end state. Do not wiggle it constantly to make the scene look alive.
-5. **Music: only a tiny early lift in intensity.** The bridge score felt too soothing. The requested correction was a *tiny, tiny* increase at the beginning—not loud trailer music, an overpowering beat, or a buried narrator.
+5. **Audible, film-specific music with clear narration.** The bridge once needed only a tiny opening lift, but Lake later established that buried music and a depressing mood are unacceptable. Assess ordinary-volume playback; the accepted Lake polish used music ~5–6 LU below speech after ducking. Do not make a quiet bridge-specific cue a blanket mix rule.
 6. **Match the first approved Taipei video’s care.** The user loved that original, then said the five-video batch had degraded badly. The approved bridge rebuild/retention pass is now an additional concrete benchmark.
 
 ## 2. Approval history — do not repeat rejected approaches
@@ -144,7 +182,7 @@ These are practical lessons, not permission to ignore later user requests.
 
 - Narration is primary; duck music beneath speech.
 - Original synthesized music/effects, not unlicensed commercial tracks.
-- Standard convention inherited from the production wrapper: music +3 dB, SFX −6 dB, voice unchanged; master to the intended range.
+- Historical +3 dB music/−6 dB SFX conventions are not sufficient release criteria. Measure post-duck music relative to narration and inspect the finished MP4; use the current IMPORTANT.md audio gates.
 - The successful bridge opening pulse was very quiet (about −35 dBFS peak) and faded away within roughly the first 7.4 seconds. Treat that as an implementation reference, not a mandate to reuse exactly the same sound in every film.
 - 48 kHz stereo final mix; aim around −15 LUFS and keep peaks at or below −1 dBFS after mux. Check the finished MP4, not only the WAV.
 - Rebuild the relevant mix after changing timing. Do not accidentally run all-series audio generation for a one-film revision.
@@ -225,7 +263,8 @@ The session that created this guide uses `arena/2524fc8a-ntc-8f3a9x2k`. Follow t
 - [ ] Detailed setting and real attachment/load paths; no toy placeholder assets.
 - [ ] Every physical transition follows the words, in the correct direction, with stable endpoints.
 - [ ] Faster meaningful cuts, purposeful camera movement, and clear demonstration shots.
-- [ ] Music restrained, voice intelligible; opening lift subtle.
+- [ ] Distinct mood-appropriate score audible at normal volume, voice clear; verify finished MP4, not just master loudness.
+- [ ] Deliberate final spoken cadence and resolved short visual/music tail.
 - [ ] 1–2-word subtitles synchronized, legible, and unobstructed.
 - [ ] Typecheck, motion tests and regenerated QA metadata.
 - [ ] Diagnostic visual review against approved originals, then final 720p render.

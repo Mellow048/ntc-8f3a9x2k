@@ -1,0 +1,23 @@
+import React,{useMemo} from 'react';
+import * as T from 'three';
+import {AbsoluteFill,useCurrentFrame,useVideoConfig} from 'remotion';
+import {ThreeCanvas} from '@remotion/three';
+import {useThree} from '@react-three/fiber';
+import {EffectComposer} from '@react-three/postprocessing';
+import {BlendFunction,BloomEffect,ToneMappingEffect,ToneMappingMode} from 'postprocessing';
+import {World} from './world';
+import {shotAt,DOF} from './story';
+import {InkPass,noInkFallback} from './style/ink';
+import {LensBlur} from './style/lensblur';
+import {GradeEffect,GRADES,gradeFor} from './style/grade';
+import {Subtitles} from '../curiosity/Short';
+const Scene:React.FC=()=>{
+ const f=useCurrentFrame(),s=shotAt(f);const {camera,scene}=useThree();
+ const world=useMemo(()=>new World(s.place),[s.place]);
+ const fx=useMemo(()=>({ink:new InkPass(scene,camera as T.PerspectiveCamera),lens:new LensBlur({maxCoC:24,nearScale:1.2}),bloom:new BloomEffect({blendFunction:BlendFunction.ADD,intensity:.5,luminanceThreshold:1,luminanceSmoothing:.2,mipmapBlur:true,levels:6,radius:.6}),tone:new ToneMappingEffect({mode:ToneMappingMode.NEUTRAL}),grade:new GradeEffect(GRADES.day,1)}),[camera,scene]);
+ const focus=world.update(s,f,camera as T.PerspectiveCamera,scene);noInkFallback(world.root);
+ const forward=new T.Vector3();camera.getWorldDirection(forward);fx.lens.focus=Math.max(.3,focus.clone().sub(camera.position).dot(forward));fx.lens.cInf=DOF(s);gradeFor(fx.grade,s.light);
+ const post=useMemo(()=><EffectComposer multisampling={4}><primitive object={fx.ink} dispose={null}/><primitive object={fx.lens.pre} dispose={null}/><primitive object={fx.lens.main} dispose={null}/><primitive object={fx.bloom} dispose={null}/><primitive object={fx.tone} dispose={null}/><primitive object={fx.grade} dispose={null}/></EffectComposer>,[fx]);
+ return <><primitive object={world.root} dispose={null}/>{post}</>;
+};
+export const BeerFloodRemastered:React.FC=()=>{const {width,height}=useVideoConfig();return <AbsoluteFill style={{background:'#b8d0ec'}}><ThreeCanvas width={width} height={height} shadows gl={{antialias:false,stencil:false,powerPreference:'high-performance',toneMappingExposure:1}} camera={{fov:45,near:.15,far:800}}><Scene/></ThreeCanvas><Subtitles slug="beer"/></AbsoluteFill>;};
