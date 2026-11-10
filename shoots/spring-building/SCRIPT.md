@@ -10,3 +10,8 @@ If the tray can slide a little, less of that shaking reaches the jelly. Under Ci
 
 - https://pcad.lib.washington.edu/link/1220/
 
+## Remaster fact and illustration notes
+
+- Seismic retrofit contractor project description: https://www.olsonsteel.com/ability/san-francisco-city-hall/ — Loma Prieta damage; preserving the historic Beaux-Arts building; 530 lead-rubber isolators.
+- City Hall virtual tour, renovation: https://sfch.budryerson.com/ — column-by-column retrofit, elastomeric bearings and controlled horizontal movement.
+- The title's “giant springs” is an analogy, **not literal coil springs**. The picture shows layered rubber/steel bearings, their bolted end plates, and horizontal shear. The simplified cutaway represents the system, not an as-built plan or a literal count of isolators. Displacements are exaggerated for legibility; the building retains smaller, nonzero motion. No earthquake-proof guarantee is implied.

@@ -92,5 +92,6 @@ def build(slug, spec, index):
     (outdir/'cues.md').write_text('# Sound cues\n\nOriginal synthesized storybook score, speech ducking and timed effects. SFX events use the -6 dB convention.\n\n'+''.join(f"- frame {b['frame']}: {b['scene']} ({b['phrase']})\n" for b in spec['beats'][1:])+f'\nIntegrated {integrated(out):.2f} LUFS; true peak {true_peak(out):.2f} dBTP.\n')
     print(slug, f'{duration:.2f}s', f'{integrated(out):.2f} LUFS',f'{true_peak(out):.2f} dBTP',flush=True)
 
-for i,(slug,spec) in enumerate(DATA.items()):
-    build(slug,spec,i)
+if __name__ == '__main__':
+    for i,(slug,spec) in enumerate(DATA.items()):
+        build(slug,spec,i)

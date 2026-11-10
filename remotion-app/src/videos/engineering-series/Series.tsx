@@ -11,6 +11,7 @@ import {GradeEffect,GRADES,GRADE_STRENGTH} from '../pendulum/grade';
 import {LensBlur} from '../pendulum/lensblur';
 import {World,Beat} from './World';
 import {BridgeWorld} from '../bridge-remaster/BridgeWorld';
+import {SpringWorld} from '../spring-remaster/SpringWorld';
 import {loadBridgeAssets,type BridgeAssets} from '../bridge-remaster/assets';
 import {jointCue,MOTION_WINDOWS} from '../bridge-remaster/motion';
 import data from './data.json';
@@ -22,7 +23,7 @@ export const stories=data as Record<Slug,Story>;
 
 const Scene:React.FC<{slug:Slug;assets:BridgeAssets|null}> = ({slug,assets})=>{
  const frame=useCurrentFrame(); const {camera,scene}=useThree();
- const world=useMemo(()=>slug==='breathing-bridge' ? new BridgeWorld(assets!) : new World(slug,stories[slug].beats),[slug,assets]);
+ const world=useMemo(()=>slug==='breathing-bridge' ? new BridgeWorld(assets!) : slug==='spring-building' ? new SpringWorld(assets!) : new World(slug,stories[slug].beats),[slug,assets]);
  const fx=useMemo(()=>({
   ink:new InkPass(scene,camera as THREE.PerspectiveCamera),
   lens:new LensBlur({maxCoC:24,nearScale:1.2}),
@@ -32,13 +33,13 @@ const Scene:React.FC<{slug:Slug;assets:BridgeAssets|null}> = ({slug,assets})=>{
  }),[camera,scene]);
  const post=useMemo(()=> <EffectComposer multisampling={4}>{[
    <primitive key="ink" object={fx.ink} dispose={null}/>,
-   ...(slug==='breathing-bridge' ? [<primitive key="lens-pre" object={fx.lens.pre} dispose={null}/>,<primitive key="lens-main" object={fx.lens.main} dispose={null}/>] : []),
+   ...((slug==='breathing-bridge'||slug==='spring-building') ? [<primitive key="lens-pre" object={fx.lens.pre} dispose={null}/>,<primitive key="lens-main" object={fx.lens.main} dispose={null}/>] : []),
    <primitive key="bloom" object={fx.bloom} dispose={null}/>,
    <primitive key="tone" object={fx.tone} dispose={null}/>,
    <primitive key="grade" object={fx.grade} dispose={null}/>,
  ]}</EffectComposer>,[fx,slug]);
  world.update(frame,camera as THREE.PerspectiveCamera);noInkFallback(world.root);
- if(world instanceof BridgeWorld){
+ if(world instanceof BridgeWorld||world instanceof SpringWorld){
   const direction=new THREE.Vector3();camera.getWorldDirection(direction);
   fx.lens.focus=Math.max(.3,world.focus.clone().sub(camera.position).dot(direction));
   fx.lens.cInf=world.characterShot?12:0;
@@ -104,10 +105,10 @@ export const EngineeringShort:React.FC<{slug:Slug}>=({slug})=>{
  const [assets,setAssets]=useState<BridgeAssets|null>(null);
  const [handle]=useState(()=>delayRender('Load bridge vehicle models'));
  useEffect(()=>{
-  if(slug!=='breathing-bridge'){continueRender(handle);return;}
+  if(slug!=='breathing-bridge'&&slug!=='spring-building'){continueRender(handle);return;}
   loadBridgeAssets().then(a=>{setAssets(a);continueRender(handle);}).catch(e=>cancelRender(e));
  },[slug,handle]);
- if(slug==='breathing-bridge'&&!assets)return null;
+ if((slug==='breathing-bridge'||slug==='spring-building')&&!assets)return null;
  return <AbsoluteFill style={{background:'#bce5f2',containerType:'inline-size'}}>
   <ThreeCanvas width={width} height={height} shadows gl={{antialias:false,stencil:false,powerPreference:'high-performance'}} camera={{fov:40,near:.1,far:300}}>
    <Scene slug={slug} assets={assets}/>

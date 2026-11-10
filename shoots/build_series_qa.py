@@ -19,6 +19,12 @@ for slug, story in stories.items():
         if not starts or starts[0] != 0 or starts != sorted(set(starts)):
             raise ValueError('Invalid bridge remaster shot starts')
         beats=[{'frame':n} for n in starts]
+    if slug == 'spring-building':
+        source=(root.parent/'remotion-app/src/videos/spring-remaster/story.ts').read_text()
+        starts=[int(n) for n in re.findall(r'\{start:(\d+),kind:', source)]
+        if not starts or starts[0] != 0 or starts != sorted(set(starts)):
+            raise ValueError('Invalid spring remaster shot starts')
+        beats=[{'frame':n} for n in starts]
     shots = [{'id': i+1, 'a': b['frame'], 'b': beats[i+1]['frame'] if i+1<len(beats) else story['frames']}
              for i,b in enumerate(beats)]
     words=story['words']
