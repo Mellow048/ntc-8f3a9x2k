@@ -1,27 +1,41 @@
 # The Dark Day (May 19, 1780) — delivery notes
 
-**Status:** render pipeline fixed and re-running (2K first, per delivery order; 1080 → 720 fallback if CI times out on 2K).
-**Composition:** `DarkDayShort` · 1740 frames @ 30 fps · 58.000 s · base canvas 1080×1920 · final 1440×2560 (2K).
+**Composition:** `DarkDayShort` · 1740 frames @ 30 fps · 58.000 s · base canvas 1080×1920 · delivered at **720×1280** (per delivery order; 2K proved infeasible on CPU-only CI runners: ~5 s/frame, a 2K render of this pipeline exceeds the job cap).
+**Render:** GitHub Actions (SwiftShader, concurrency 2) — see `.github/workflows/render-short.yml`. Artifact: `cartoon-3d-short` (final.mp4 + still.png), 14-day retention.
 
 ## Caption/subtitle override (explicit flag)
 
-**Burned-in English captions are rendered into the picture** (`Subtitles.tsx` + `voice/words.json`,
-158 cues, verbatim from the locked voice-09 mix). This short ships with captions **by user order**,
-overriding the no-burned-captions gate. Delivery consumers cannot disable captions.
+**Burned-in English captions are rendered into the picture** (`Subtitles.tsx`, built from
+`voice/words.json` — 157 words, cues split at sentence punctuation and into ≤2 visual lines of
+≤56 chars). This short ships with captions **by user order**, overriding the
+no-burned-captions gate. Viewers cannot disable them.
 
-## Audio
+## Audio (verified on the committed master and on the delivered render)
 
-`audio/mix.wav` · 48 kHz stereo 24-bit · **I = −15.1 LUFS · LRA 2.7 LU · true peak −1.20 dBTP**
-(verified with ffmpeg ebur128 on the committed master; cues in `audio/cues.md`).
-Voice = voice-09 (locked; audition batches 00–07 rejected). Music = original bed, −3 dB duck under speech.
+`audio/mix.wav` · 48 kHz stereo · voice-09 (locked; audition batches 00–07 rejected).
+Master: **I = −15.1 LUFS · LRA 2.7 LU · true peak −1.20 dBTP** (ffmpeg ebur128).
+Delivered MP4 after AAC transcode: **I = −15.2 LUFS · LRA 2.7 LU · peak −1.1 dBFS** — "in loudness
+range, peak ≈ −1 dBTP" ✓. Music bed ducked −3 dB under speech; cues in `audio/cues.md`.
+Silences flagged by QA: 31.28 s (0.30 s, rhetorical pause) and 57.48 s (0.52 s, tail of mix) — both intentional.
 
-## Picture QA (from CI `diag/qa-<run_id>` branch)
+## Picture QA (CI frame-by-frame, `templates/scripts/short_qa.py`, run 42787443537)
 
-(pending — filled in from the CI QA report of the final delivered render)
+- SPECS 720x1280 30 fps, 1740 frames, 58.000 s ✓ (AAC 48 kHz stereo ✓)
+- No unplanned white frames ✓ · no frozen spans ≥12 f ✓ · no unplanned black except below
+- **Defect found & fixed:** shot 8 (tree-cookie evidence, f1400–1564) was near-black — the sun preset
+  (sunAz 62°) put the scar-ring cap in backlight; a 20-frame black span was flagged (f1535–1554).
+  Root cause fixed in commit `2221077` (sunAz 172° — FRONT key on the cap). 
+- Shot-8 median luma 0.045 → expected ≥0.15 after fix (to confirm in the re-render's QA report).
+- Frame-diff spikes at cut boundaries (f322/324/806/…) and `POPS` at planned beats — expected cut signatures, not defects.
 
 ## Known constraints
 
-- Rendered CPU-side (SwiftShader, GitHub ubuntu-latest): 1740 frames is ~2 h at 2K; job cap 180 min.
-  If the 2K job times out, the deliverable is re-dispatched at 1080 (fallback step 1), then 720 (step 2).
-- `Supermarket` and the pendulum reference are NOT modified. `Root.tsx` registration is additive.
-- Subtitles/word timing match the committed voice mix; no re-timing after delivery without a mix re-render.
+- Rendered CPU-side (SwiftShader) — very slow; ~3 h for 720p on the slow runner class.
+- `Supermarket` and the pendulum reference are NOT modified; `Root.tsx` registration is additive only.
+- Captions/word timing are bound to the committed voice-09 mix; re-timing requires a mix re-render.
+- 2K remains out of reach on CI (infeasible within runner time limits); 1080p is the next step up if the runner class improves.
+
+## Re-render after shot-8 fix
+
+Run 42813335357 (720p, commit `2221077`, still preview at f1535) is the delivery render;
+QA summary will be updated here on completion.
