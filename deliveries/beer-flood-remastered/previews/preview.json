@@ -1,0 +1,18 @@
+{
+  "composition": "BeerFloodRemastered",
+  "frames": [
+    45,
+    210,
+    345,
+    410,
+    450,
+    535,
+    650,
+    720,
+    770,
+    855,
+    1010
+  ],
+  "width": 720,
+  "height": 1280
+}
