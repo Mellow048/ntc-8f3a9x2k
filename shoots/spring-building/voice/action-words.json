@@ -1,0 +1,877 @@
+[
+  {
+    "word": "an",
+    "start": 0.12,
+    "end": 0.28
+  },
+  {
+    "word": "anti",
+    "start": 0.28,
+    "end": 0.63
+  },
+  {
+    "word": "earthquake",
+    "start": 0.63,
+    "end": 1.05
+  },
+  {
+    "word": "building",
+    "start": 1.05,
+    "end": 1.53
+  },
+  {
+    "word": "watch",
+    "start": 1.98,
+    "end": 2.24
+  },
+  {
+    "word": "this",
+    "start": 2.24,
+    "end": 2.56
+  },
+  {
+    "word": "the",
+    "start": 2.8,
+    "end": 2.86
+  },
+  {
+    "word": "floor",
+    "start": 2.86,
+    "end": 3.2
+  },
+  {
+    "word": "goes",
+    "start": 3.2,
+    "end": 3.45
+  },
+  {
+    "word": "one",
+    "start": 3.45,
+    "end": 3.68
+  },
+  {
+    "word": "way",
+    "start": 3.68,
+    "end": 3.92
+  },
+  {
+    "word": "the",
+    "start": 4.23,
+    "end": 4.33
+  },
+  {
+    "word": "building",
+    "start": 4.33,
+    "end": 4.73
+  },
+  {
+    "word": "refuses",
+    "start": 4.73,
+    "end": 5.21
+  },
+  {
+    "word": "to",
+    "start": 5.21,
+    "end": 5.29
+  },
+  {
+    "word": "follow",
+    "start": 5.29,
+    "end": 5.7
+  },
+  {
+    "word": "mostly",
+    "start": 6.02,
+    "end": 6.48
+  },
+  {
+    "word": "this",
+    "start": 7.08,
+    "end": 7.26
+  },
+  {
+    "word": "is",
+    "start": 7.26,
+    "end": 7.34
+  },
+  {
+    "word": "not",
+    "start": 7.34,
+    "end": 7.49
+  },
+  {
+    "word": "magic",
+    "start": 7.49,
+    "end": 7.82
+  },
+  {
+    "word": "concrete",
+    "start": 7.82,
+    "end": 8.35
+  },
+  {
+    "word": "the",
+    "start": 8.78,
+    "end": 8.9
+  },
+  {
+    "word": "trick",
+    "start": 8.9,
+    "end": 9.13
+  },
+  {
+    "word": "is",
+    "start": 9.13,
+    "end": 9.24
+  },
+  {
+    "word": "hiding",
+    "start": 9.24,
+    "end": 9.62
+  },
+  {
+    "word": "underneath",
+    "start": 9.62,
+    "end": 9.99
+  },
+  {
+    "word": "san",
+    "start": 9.99,
+    "end": 10.18
+  },
+  {
+    "word": "francisco",
+    "start": 10.18,
+    "end": 10.7
+  },
+  {
+    "word": "city",
+    "start": 10.7,
+    "end": 11.02
+  },
+  {
+    "word": "hall",
+    "start": 11.02,
+    "end": 11.33
+  },
+  {
+    "word": "but",
+    "start": 11.73,
+    "end": 11.87
+  },
+  {
+    "word": "first",
+    "start": 11.87,
+    "end": 12.39
+  },
+  {
+    "word": "imagine",
+    "start": 12.66,
+    "end": 13.01
+  },
+  {
+    "word": "your",
+    "start": 13.01,
+    "end": 13.14
+  },
+  {
+    "word": "kitchen",
+    "start": 13.14,
+    "end": 13.55
+  },
+  {
+    "word": "during",
+    "start": 13.55,
+    "end": 13.81
+  },
+  {
+    "word": "an",
+    "start": 13.81,
+    "end": 13.97
+  },
+  {
+    "word": "earthquake",
+    "start": 13.97,
+    "end": 14.49
+  },
+  {
+    "word": "the",
+    "start": 14.98,
+    "end": 15.06
+  },
+  {
+    "word": "table",
+    "start": 15.06,
+    "end": 15.42
+  },
+  {
+    "word": "jerks",
+    "start": 15.42,
+    "end": 15.73
+  },
+  {
+    "word": "sideways",
+    "start": 15.73,
+    "end": 16.34
+  },
+  {
+    "word": "your",
+    "start": 16.7,
+    "end": 16.86
+  },
+  {
+    "word": "bowl",
+    "start": 16.86,
+    "end": 17.15
+  },
+  {
+    "word": "of",
+    "start": 17.15,
+    "end": 17.24
+  },
+  {
+    "word": "jelly",
+    "start": 17.24,
+    "end": 17.57
+  },
+  {
+    "word": "gets",
+    "start": 17.57,
+    "end": 17.82
+  },
+  {
+    "word": "the",
+    "start": 17.82,
+    "end": 17.88
+  },
+  {
+    "word": "full",
+    "start": 17.88,
+    "end": 18.2
+  },
+  {
+    "word": "ride",
+    "start": 18.2,
+    "end": 18.64
+  },
+  {
+    "word": "now",
+    "start": 19.09,
+    "end": 19.25
+  },
+  {
+    "word": "let",
+    "start": 19.25,
+    "end": 19.45
+  },
+  {
+    "word": "the",
+    "start": 19.45,
+    "end": 19.56
+  },
+  {
+    "word": "tray",
+    "start": 19.56,
+    "end": 19.87
+  },
+  {
+    "word": "slide",
+    "start": 19.87,
+    "end": 20.41
+  },
+  {
+    "word": "the",
+    "start": 20.72,
+    "end": 20.81
+  },
+  {
+    "word": "table",
+    "start": 20.81,
+    "end": 21.17
+  },
+  {
+    "word": "still",
+    "start": 21.17,
+    "end": 21.38
+  },
+  {
+    "word": "shakes",
+    "start": 21.38,
+    "end": 21.83
+  },
+  {
+    "word": "but",
+    "start": 22.15,
+    "end": 22.28
+  },
+  {
+    "word": "much",
+    "start": 22.28,
+    "end": 22.56
+  },
+  {
+    "word": "less",
+    "start": 22.56,
+    "end": 22.73
+  },
+  {
+    "word": "movement",
+    "start": 22.73,
+    "end": 23.16
+  },
+  {
+    "word": "reaches",
+    "start": 23.16,
+    "end": 23.49
+  },
+  {
+    "word": "the",
+    "start": 23.49,
+    "end": 23.57
+  },
+  {
+    "word": "jelly",
+    "start": 23.57,
+    "end": 23.94
+  },
+  {
+    "word": "that's",
+    "start": 24.43,
+    "end": 24.69
+  },
+  {
+    "word": "the",
+    "start": 24.69,
+    "end": 24.8
+  },
+  {
+    "word": "idea",
+    "start": 24.8,
+    "end": 25.23
+  },
+  {
+    "word": "after",
+    "start": 25.6,
+    "end": 25.85
+  },
+  {
+    "word": "the",
+    "start": 25.85,
+    "end": 25.92
+  },
+  {
+    "word": "nineteen",
+    "start": 25.92,
+    "end": 26.32
+  },
+  {
+    "word": "eighty",
+    "start": 26.32,
+    "end": 26.54
+  },
+  {
+    "word": "nine",
+    "start": 26.54,
+    "end": 26.78
+  },
+  {
+    "word": "loma",
+    "start": 26.78,
+    "end": 27.09
+  },
+  {
+    "word": "prieta",
+    "start": 27.09,
+    "end": 27.53
+  },
+  {
+    "word": "earthquake",
+    "start": 27.53,
+    "end": 27.97
+  },
+  {
+    "word": "damaged",
+    "start": 27.97,
+    "end": 28.28
+  },
+  {
+    "word": "city",
+    "start": 28.28,
+    "end": 28.52
+  },
+  {
+    "word": "hall",
+    "start": 28.52,
+    "end": 28.93
+  },
+  {
+    "word": "engineers",
+    "start": 29.27,
+    "end": 29.75
+  },
+  {
+    "word": "couldn't",
+    "start": 29.75,
+    "end": 29.95
+  },
+  {
+    "word": "just",
+    "start": 29.95,
+    "end": 30.15
+  },
+  {
+    "word": "throw",
+    "start": 30.15,
+    "end": 30.39
+  },
+  {
+    "word": "the",
+    "start": 30.39,
+    "end": 30.46
+  },
+  {
+    "word": "historic",
+    "start": 30.46,
+    "end": 30.91
+  },
+  {
+    "word": "building",
+    "start": 30.91,
+    "end": 31.24
+  },
+  {
+    "word": "away",
+    "start": 31.24,
+    "end": 31.64
+  },
+  {
+    "word": "so",
+    "start": 32.1,
+    "end": 32.23
+  },
+  {
+    "word": "they",
+    "start": 32.23,
+    "end": 32.35
+  },
+  {
+    "word": "changed",
+    "start": 32.35,
+    "end": 32.77
+  },
+  {
+    "word": "what",
+    "start": 32.77,
+    "end": 32.91
+  },
+  {
+    "word": "it",
+    "start": 32.91,
+    "end": 32.98
+  },
+  {
+    "word": "stood",
+    "start": 32.98,
+    "end": 33.27
+  },
+  {
+    "word": "on",
+    "start": 33.27,
+    "end": 33.42
+  },
+  {
+    "word": "under",
+    "start": 33.88,
+    "end": 34.09
+  },
+  {
+    "word": "the",
+    "start": 34.09,
+    "end": 34.19
+  },
+  {
+    "word": "columns",
+    "start": 34.19,
+    "end": 34.73
+  },
+  {
+    "word": "they",
+    "start": 35.02,
+    "end": 35.15
+  },
+  {
+    "word": "installed",
+    "start": 35.15,
+    "end": 35.61
+  },
+  {
+    "word": "bearings",
+    "start": 35.61,
+    "end": 36.11
+  },
+  {
+    "word": "made",
+    "start": 36.11,
+    "end": 36.28
+  },
+  {
+    "word": "from",
+    "start": 36.28,
+    "end": 36.47
+  },
+  {
+    "word": "layers",
+    "start": 36.47,
+    "end": 36.81
+  },
+  {
+    "word": "of",
+    "start": 36.81,
+    "end": 36.92
+  },
+  {
+    "word": "rubber",
+    "start": 36.92,
+    "end": 37.23
+  },
+  {
+    "word": "and",
+    "start": 37.23,
+    "end": 37.33
+  },
+  {
+    "word": "steel",
+    "start": 37.33,
+    "end": 37.75
+  },
+  {
+    "word": "heavy",
+    "start": 38.23,
+    "end": 38.51
+  },
+  {
+    "word": "building",
+    "start": 38.51,
+    "end": 38.85
+  },
+  {
+    "word": "on",
+    "start": 38.85,
+    "end": 38.98
+  },
+  {
+    "word": "top",
+    "start": 38.98,
+    "end": 39.3
+  },
+  {
+    "word": "shaking",
+    "start": 39.73,
+    "end": 40.19
+  },
+  {
+    "word": "ground",
+    "start": 40.19,
+    "end": 40.51
+  },
+  {
+    "word": "below",
+    "start": 40.51,
+    "end": 40.9
+  },
+  {
+    "word": "the",
+    "start": 41.51,
+    "end": 41.58
+  },
+  {
+    "word": "rubber",
+    "start": 41.58,
+    "end": 41.89
+  },
+  {
+    "word": "flexes",
+    "start": 41.89,
+    "end": 42.34
+  },
+  {
+    "word": "sideways",
+    "start": 42.34,
+    "end": 42.86
+  },
+  {
+    "word": "between",
+    "start": 42.86,
+    "end": 43.22
+  },
+  {
+    "word": "them",
+    "start": 43.22,
+    "end": 43.39
+  },
+  {
+    "word": "reducing",
+    "start": 43.68,
+    "end": 44.14
+  },
+  {
+    "word": "the",
+    "start": 44.14,
+    "end": 44.21
+  },
+  {
+    "word": "shaking",
+    "start": 44.21,
+    "end": 44.67
+  },
+  {
+    "word": "passed",
+    "start": 44.67,
+    "end": 44.96
+  },
+  {
+    "word": "upward",
+    "start": 44.96,
+    "end": 45.33
+  },
+  {
+    "word": "it",
+    "start": 45.77,
+    "end": 45.85
+  },
+  {
+    "word": "doesn't",
+    "start": 45.85,
+    "end": 46.1
+  },
+  {
+    "word": "cancel",
+    "start": 46.1,
+    "end": 46.45
+  },
+  {
+    "word": "an",
+    "start": 46.45,
+    "end": 46.59
+  },
+  {
+    "word": "earthquake",
+    "start": 46.59,
+    "end": 47.14
+  },
+  {
+    "word": "the",
+    "start": 47.62,
+    "end": 47.71
+  },
+  {
+    "word": "building",
+    "start": 47.71,
+    "end": 48.04
+  },
+  {
+    "word": "still",
+    "start": 48.04,
+    "end": 48.36
+  },
+  {
+    "word": "moves",
+    "start": 48.36,
+    "end": 48.92
+  },
+  {
+    "word": "just",
+    "start": 49.2,
+    "end": 49.4
+  },
+  {
+    "word": "differently",
+    "start": 49.4,
+    "end": 49.99
+  },
+  {
+    "word": "and",
+    "start": 50.59,
+    "end": 50.68
+  },
+  {
+    "word": "that",
+    "start": 50.68,
+    "end": 50.84
+  },
+  {
+    "word": "gap",
+    "start": 50.84,
+    "end": 51.15
+  },
+  {
+    "word": "around",
+    "start": 51.15,
+    "end": 51.41
+  },
+  {
+    "word": "the",
+    "start": 51.41,
+    "end": 51.47
+  },
+  {
+    "word": "base",
+    "start": 51.47,
+    "end": 51.95
+  },
+  {
+    "word": "that's",
+    "start": 52.24,
+    "end": 52.48
+  },
+  {
+    "word": "breathing",
+    "start": 52.48,
+    "end": 52.97
+  },
+  {
+    "word": "room",
+    "start": 52.97,
+    "end": 53.23
+  },
+  {
+    "word": "so",
+    "start": 53.55,
+    "end": 53.7
+  },
+  {
+    "word": "it",
+    "start": 53.7,
+    "end": 53.8
+  },
+  {
+    "word": "can",
+    "start": 53.8,
+    "end": 54.0
+  },
+  {
+    "word": "move",
+    "start": 54.0,
+    "end": 54.32
+  },
+  {
+    "word": "without",
+    "start": 54.32,
+    "end": 54.64
+  },
+  {
+    "word": "hitting",
+    "start": 54.64,
+    "end": 54.95
+  },
+  {
+    "word": "the",
+    "start": 54.95,
+    "end": 55.01
+  },
+  {
+    "word": "ground",
+    "start": 55.01,
+    "end": 55.34
+  },
+  {
+    "word": "beside",
+    "start": 55.34,
+    "end": 55.74
+  },
+  {
+    "word": "it",
+    "start": 55.74,
+    "end": 55.94
+  },
+  {
+    "word": "so",
+    "start": 56.55,
+    "end": 56.69
+  },
+  {
+    "word": "the",
+    "start": 56.69,
+    "end": 56.75
+  },
+  {
+    "word": "secret",
+    "start": 56.75,
+    "end": 57.19
+  },
+  {
+    "word": "isn't",
+    "start": 57.19,
+    "end": 57.38
+  },
+  {
+    "word": "making",
+    "start": 57.38,
+    "end": 57.73
+  },
+  {
+    "word": "a",
+    "start": 57.73,
+    "end": 57.77
+  },
+  {
+    "word": "building",
+    "start": 57.77,
+    "end": 58.19
+  },
+  {
+    "word": "fight",
+    "start": 58.19,
+    "end": 58.45
+  },
+  {
+    "word": "harder",
+    "start": 58.45,
+    "end": 58.93
+  },
+  {
+    "word": "it's",
+    "start": 59.4,
+    "end": 59.57
+  },
+  {
+    "word": "giving",
+    "start": 59.57,
+    "end": 59.86
+  },
+  {
+    "word": "the",
+    "start": 59.86,
+    "end": 60.01
+  },
+  {
+    "word": "earthquake",
+    "start": 60.01,
+    "end": 60.46
+  },
+  {
+    "word": "a",
+    "start": 60.46,
+    "end": 60.5
+  },
+  {
+    "word": "little",
+    "start": 60.5,
+    "end": 60.84
+  },
+  {
+    "word": "less",
+    "start": 60.84,
+    "end": 61.13
+  },
+  {
+    "word": "to",
+    "start": 61.13,
+    "end": 61.22
+  },
+  {
+    "word": "grab",
+    "start": 61.22,
+    "end": 61.82
+  }
+]

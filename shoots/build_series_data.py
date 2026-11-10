@@ -6,7 +6,8 @@ plans = json.loads((ROOT/'series-plan.json').read_text())
 scripts = json.loads((ROOT/'series-scripts.json').read_text())
 result = {}
 for slug, cues in plans.items():
-    words = json.loads((ROOT/slug/'voice/words.json').read_text())
+    wordfile=ROOT/slug/'voice'/('action-words.json' if slug=='spring-building' else 'words.json')
+    words = json.loads(wordfile.read_text())
     timing = json.loads((ROOT/slug/'timing.json').read_text())
     tokens = [w['word'] for w in words]
     events = []

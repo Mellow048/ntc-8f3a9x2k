@@ -2,17 +2,17 @@
 
 Approved Arena voice unchanged; original synthesized score, speech ducking, restrained opening pulse (first 7.4 s), and -6 dB-convention effects.
 
-- frame 45: reveal
-- frame 88: steel
-- frame 138: quake
-- frame 536: quake
-- frame 741: reveal
-- frame 960: jelly
-- frame 1030: slide
-- frame 1170: steel
-- frame 1260: flex
-- frame 1463: slide
-- frame 1588: quake
-- frame 1699: flex
+- frame 16: quake
+- frame 58: reveal
+- frame 180: slide
+- frame 460: jelly
+- frame 593: slide
+- frame 810: quake
+- frame 1015: steel
+- frame 1093: steel
+- frame 1255: flex
+- frame 1430: slide
+- frame 1593: slide
+- frame 1710: quake
 
--15.00 LUFS; -1.40 dBTP.
+-15.01 LUFS; -1.40 dBTP.

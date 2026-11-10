@@ -13,7 +13,7 @@ from mix import limiter
 import instruments as I
 import sfx_gen as S
 p=Path(__file__).resolve().parent
-voice,sr=read_wav(str(p/'voice/voice.wav'))
+voice,sr=read_wav(str(p/'voice/action.wav'))
 assert sr==SR
 voice=st(voice[0]);n=voice.shape[1];duration=n/SR
 assert n==DATA['spring-building']['frames']*(SR//30)
@@ -33,7 +33,7 @@ for k in range(14):
     place(music,pan(hit,(-.08 if k%2==0 else .12)),t,gain=(.017 if k%2==0 else .009)*fade)
 fx=np.zeros_like(voice)
 # Shaking appears only in finite demonstrations; effects follow those same words.
-cues=[(45,'reveal'),(88,'steel'),(138,'quake'),(536,'quake'),(741,'reveal'),(960,'jelly'),(1030,'slide'),(1170,'steel'),(1260,'flex'),(1463,'slide'),(1588,'quake'),(1699,'flex')]
+cues=[(16,'quake'),(58,'reveal'),(180,'slide'),(460,'jelly'),(593,'slide'),(810,'quake'),(1015,'steel'),(1093,'steel'),(1255,'flex'),(1430,'slide'),(1593,'slide'),(1710,'quake')]
 for frame,kind in cues:
     if kind=='quake': sound=S.push_thump(r)
     elif kind=='steel': sound=S.clink(r,1700,.22)

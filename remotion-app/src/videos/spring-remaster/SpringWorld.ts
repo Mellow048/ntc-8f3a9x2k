@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type {BridgeAssets} from '../bridge-remaster/assets';
 import {box,ball,cylinder,grp,rod,ring,lathe,actor,sky,cityBuilding,tree,lamp,texturedBox,pavementTexture,asphaltTexture} from './art';
 import {cityHall} from './building';
+import {office,lab,workshop} from './actionSets';
 import {SHOTS,TOTAL,smooth,seismicMotion,jellyMotion,type Kind} from './story';
 
 type Tick=(f:number)=>void;
@@ -123,7 +124,10 @@ export class SpringWorld {
  private sets=new Map<Kind,{root:THREE.Group;tick:Tick}>();
  constructor(assets:BridgeAssets){
   for(const kind of new Set(SHOTS.map(s=>s.kind))){const root=grp(this.root);let tick:Tick;
-   if(kind==='cutaway')tick=cutawaySet(root,assets);
+   if(kind==='office'||kind==='archive')tick=office(root,kind==='archive');
+   else if(kind==='lab')tick=lab(root);
+   else if(kind==='workshop')tick=workshop(root);
+   else if(kind==='cutaway')tick=cutawaySet(root,assets);
    else if(kind==='bearing'||kind==='layers')tick=bearingSet(root,kind==='layers');
    else if(kind==='jelly')tick=jellySet(root);
    else if(kind==='moat')tick=moatSet(root);
@@ -137,7 +141,7 @@ export class SpringWorld {
   const shot=SHOTS[i],end=i+1<SHOTS.length?SHOTS[i+1].start:TOTAL;
   for(const s of this.sets.values())s.root.visible=false;
   const set=this.sets.get(shot.kind)!;set.root.visible=true;set.tick(f);
-  this.focus.set(...shot.target);this.characterShot=shot.kind==='guide'||shot.kind==='jelly';
+  this.focus.set(...shot.target);this.characterShot=shot.kind==='guide'||shot.kind==='jelly'||shot.kind==='office'||shot.kind==='archive'||shot.kind==='workshop';
   const u=smooth(f,shot.start,end),p=new THREE.Vector3(...shot.cam);p.lerp(this.focus,u*.12);
   // Gentle lateral truck on architecture; mechanism demos retain a fixed axis.
   if(shot.kind==='hall'||shot.kind==='dome')p.x+=u*.65;
