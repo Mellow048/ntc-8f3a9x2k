@@ -38,7 +38,43 @@ permissions:
   checks: read
 
 jobs:
+  deliver-bridge:
+    if: inputs.diagnostics == 'deliver'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Wait for render and quality checks
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run watch 42769436511 --repo "$GITHUB_REPOSITORY" --exit-status --interval 60
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/2524fc8a-ntc-8f3a9x2k
+      - uses: actions/download-artifact@v4
+        with:
+          name: cartoon-3d-short
+          run-id: 42769436511
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: delivery/bridge
+      - name: Publish only the checked remaster
+        run: |
+          set -euo pipefail
+          test -s delivery/bridge/final.mp4
+          test -s delivery/bridge/qa/report.md
+          test "$(stat -c %s delivery/bridge/final.mp4)" -lt 100000000
+          if ! grep -qF 'POPS (unplanned frame-diff spikes > 3x local median): []' delivery/bridge/qa/report.md; then
+            echo "::error::Unplanned frame-difference spikes require review before delivery"
+            exit 1
+          fi
+          cp delivery/bridge/final.mp4 shoots/breathing-bridge/final-720p.mp4
+          cp delivery/bridge/qa/report.md shoots/breathing-bridge/qa-report.md
+          git add -f shoots/breathing-bridge/final-720p.mp4 shoots/breathing-bridge/qa-report.md
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Publish detailed bridge environment remaster'
+          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
   render:
+    if: inputs.diagnostics != 'deliver' 
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
@@ -83,29 +119,9 @@ jobs:
         working-directory: remotion-app
         run: |
           mkdir -p out/diagnostics
-          for frame in 125 230 420 900; do
+          for frame in 100 400 900 1500; do
             npx remotion still src/index.ts "${{ inputs.composition }}" "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
           done
-      - name: Save bridge detail review sheets
-        if: inputs.diagnostics == 'true'
-        run: |
-          python3 -m pip install --user pillow
-          mkdir -p shoots/breathing-bridge/review
-          python3 - <<'PY'
-          from PIL import Image, ImageDraw
-          frames=[125,230,420,900]
-          for n in range(1):
-              sheet=Image.new('RGB',(320*2,590*2),'white')
-              for i,f in enumerate(frames[n*4:n*4+4]):
-                  tile=Image.open(f'remotion-app/out/diagnostics/{f}.png').convert('RGB').resize((320,569))
-                  x,y=(i%2)*320,(i//2)*590;sheet.paste(tile,(x,y));ImageDraw.Draw(sheet).text((x+5,y+572),str(f),fill='black')
-              sheet.save(f'shoots/breathing-bridge/review/detail-{n}.jpg',quality=88)
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add shoots/breathing-bridge/review/detail-*.jpg
-          git commit -m 'Add bridge environment review sheets'
-          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
       - name: Upload diagnostic stills
         if: inputs.diagnostics == 'true' && always()
         uses: actions/upload-artifact@v4
