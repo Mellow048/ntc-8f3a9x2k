@@ -61,7 +61,7 @@ const Inner: React.FC<{ id: number; kit: Kit }> = ({ id, kit }) => {
     grade: new GradeEffect(GRADES.day, GRADE_STRENGTH.day),
     grain: new GrainEffect({ amount: 0.025, cellPx: 1.5 }), // film grain, OFF by default (inputProps post.grain): the reference measures no grain and it quadruples the file size
   }), [camera, scene]);
-  useEffect(() => () => fx.ink.dispose(), [fx]);
+  useEffect(() => () => { try { (fx.ink as unknown as { dispose?: () => void }).dispose?.(); } catch { /* GL teardown is best-effort; the context dies with the canvas */ } }, [fx]);
   // All toggles default on except grain (skill: no film grain); render the
   // stack unconditionally to satisfy EffectComposer's Element children.
   const post = useMemo(() => (

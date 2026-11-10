@@ -101,6 +101,22 @@ jobs:
             -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -shortest remotion-app/out/final-muxed.mp4
           mv remotion-app/out/final-muxed.mp4 remotion-app/out/final.mp4
 
+      # QA pass on the muxed master: report.md (specs, loudness, per-frame stats, per-shot stats) is pushed to diag/qa-<run_id> so it can be inspected (artifacts are not reachable from all clients)
+      - name: QA report
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          COMP=$(echo "${{ github.event.inputs.composition }}" | tr 'A-Z' 'a-z' | sed 's/short$//')
+          python3 -m pip install --quiet --break-system-packages pillow numpy || python3 -m pip install --quiet pillow numpy || true
+          python3 templates/scripts/short_qa.py remotion-app/out/final.mp4 /tmp/qa-out "shoots/${COMP}/qa_shots.json" || echo "QA failed (non-fatal)"
+          rm -rf /tmp/qab && mkdir -p /tmp/qab
+          cp /tmp/qa-out/report.md /tmp/qa-out/perframe.npz /tmp/qab/ 2>/dev/null || true
+          cp remotion-app/out/still.png /tmp/qab/still.png 2>/dev/null || true
+          cd /tmp/qab && git init -q . && git config user.email ci-diag@local && git config user.name ci-diag
+          git add -A && git commit -qm "qa report ${COMP} run ${{ github.run_id }}"
+          git push -q --force "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" HEAD:refs/heads/diag/qa-${{ github.run_id }}
+
       - name: Upload MP4
         uses: actions/upload-artifact@v4
         with:
