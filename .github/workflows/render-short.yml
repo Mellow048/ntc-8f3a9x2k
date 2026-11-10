@@ -3,10 +3,6 @@ name: Render short
 on:
   workflow_dispatch:
     inputs:
-      recover_run:
-        description: "Recover existing diagnostic frames"
-        required: false
-        default: ""
       composition:
         description: "Remotion composition id"
         required: false
@@ -36,14 +32,8 @@ on:
         required: false
         default: ""
 
-permissions:
-  contents: write
-  actions: read
-  checks: read
-
 jobs:
   render:
-    if: inputs.recover_run == ''
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
@@ -88,29 +78,9 @@ jobs:
         working-directory: remotion-app
         run: |
           mkdir -p out/diagnostics
-          for frame in 10 65 108 210 365 430 560 785 973 1050 1240 1294 1430 1520 1650 1840; do
+          for frame in 100 400 900 1500; do
             npx remotion still src/index.ts "${{ inputs.composition }}" "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
           done
-      - name: Save spring remaster review sheets
-        if: inputs.diagnostics == 'true'
-        run: |
-          python3 -m pip install --user pillow
-          mkdir -p shoots/spring-building/review
-          python3 - <<'PY'
-          from PIL import Image, ImageDraw
-          frames=[10,65,108,210,365,430,560,785,973,1050,1240,1294,1430,1520,1650,1840]
-          for n in range(4):
-              sheet=Image.new('RGB',(360*2,661*2),'white')
-              for i,f in enumerate(frames[n*4:n*4+4]):
-                  tile=Image.open(f'remotion-app/out/diagnostics/{f}.png').convert('RGB').resize((360,640))
-                  x,y=(i%2)*360,(i//2)*661;sheet.paste(tile,(x,y));ImageDraw.Draw(sheet).text((x+5,y+643),str(f),fill='black')
-              sheet.save(f'shoots/spring-building/review/initial-{n}.jpg',quality=90)
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add shoots/spring-building/review/*.jpg
-          git commit -m 'Review spring remaster architecture and demonstrations'
-          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
       - name: Upload diagnostic stills
         if: inputs.diagnostics == 'true' && always()
         uses: actions/upload-artifact@v4
@@ -198,23 +168,6 @@ jobs:
               raise SystemExit('QA failed: review report.md in the artifact')
           PYQA
 
-      - name: Publish verified City Hall MP4
-        if: inputs.diagnostics != 'true' && inputs.composition == 'SpringBuildingShort' && inputs.mix != ''
-        run: |
-          python3 - <<'PYQA'
-          from pathlib import Path
-          report=Path('remotion-app/out/qa/report.md').read_text()
-          for expected in ['720x1280 30/1 fps, 1890 frames', 'SILENCES none', 'black []', 'unplanned white []', 'frozen spans >=12f []', 'POPS (unplanned frame-diff spikes > 3x local median): []']:
-              assert expected in report, f'Missing QA check: {expected}'
-          PYQA
-          cp remotion-app/out/final.mp4 shoots/spring-building/final-720p.mp4
-          cp remotion-app/out/qa/report.md shoots/spring-building/qa-report.md
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f shoots/spring-building/final-720p.mp4 shoots/spring-building/qa-report.md
-          git commit -m 'Deliver detailed City Hall short at 720p after technical QA'
-          git pull --rebase origin arena/2524fc8a-ntc-8f3a9x2k
-          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
       - name: Upload MP4
         if: inputs.diagnostics != 'true' && always()
         uses: actions/upload-artifact@v4
@@ -226,38 +179,3 @@ jobs:
             remotion-app/out/qa/report.md
           if-no-files-found: error
           retention-days: 14
-
-  recover:
-    if: inputs.recover_run != ''
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          name: keyframes-720p
-          path: recovered-frames
-          github-token: ${{ github.token }}
-          run-id: ${{ inputs.recover_run }}
-      - name: Recover review sheets
-        run: |
-          python3 -m pip install --user pillow
-          mkdir -p shoots/spring-building/review
-          python3 - <<'PY'
-          from PIL import Image, ImageDraw
-          from pathlib import Path
-          frames=[10,65,108,210,365,430,560,785,973,1050,1240,1294,1430,1520,1650,1840]
-          for n in range(4):
-              sheet=Image.new('RGB',(720,1322),'white')
-              for i,f in enumerate(frames[n*4:n*4+4]):
-                  path=next(Path('recovered-frames').rglob(f'{f}.png'))
-                  tile=Image.open(path).convert('RGB').resize((360,640))
-                  x,y=(i%2)*360,(i//2)*661
-                  sheet.paste(tile,(x,y));ImageDraw.Draw(sheet).text((x+5,y+643),str(f),fill='black')
-              sheet.save(f'shoots/spring-building/review/initial-{n}.jpg',quality=90)
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add shoots/spring-building/review/*.jpg
-          git commit -m 'Recover City Hall diagnostic review sheets'
-          git pull --rebase origin arena/2524fc8a-ntc-8f3a9x2k
-          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k

@@ -18,3 +18,7 @@ Approved 63-second Arena narration retained; only this next short is being rebui
 ## Checks
 
 `node --experimental-strip-types shoots/spring-building/test-motion.mjs` checks finite shaking, nonzero but reduced building motion and the jelly analogy. Visual diagnostic reviews and finished-video technical QA are required before replacing the earlier low-detail export.
+
+## Finished export
+
+Delivered in `788cc88` after successful run `42789733540`: 720×1280, 30 fps, 1890 frames / 63.000 s, stereo 48 kHz AAC, 60,345,284 bytes. Finished-file QA measured −15.0 LUFS / −1.3 dBFS peak with no detected silence, black frames, unplanned white frames, ≥12-frame freezes or unplanned frame-difference spikes. Twenty representative frames from the finished MP4 were visually reviewed, including readable architectural framing, captions, jelly/tray contact, rubber shear and moat clearance. The history/plaza foundation motion and continuous rubber deformation were corrected before the final render. Awaiting user feedback; technical QA is not user approval.
