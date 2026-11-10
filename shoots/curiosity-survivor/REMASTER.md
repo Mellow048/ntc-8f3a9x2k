@@ -66,3 +66,30 @@ were performed on GitHub. Picture-only checkpoint is retained locally but
 untracked. Reviewed preview PNGs archived as JPEG plus a shot sheet to keep
 the repository/snapshot lean. Beer Flood's accepted source and delivery and
 Lake Peigneur were not changed (verified against commit 3b6d10f).
+
+## User-directed clarity revision (after the 85% review)
+
+User identified look-alike characters, softer imagery, unclear bomb causality
+and repeated sets/angles. Changes are confined to this short:
+
+- Independent survivor cast renderer: Yamaguchi consistently wears a navy suit
+  and rust tie; only he has this combination. Six supporting designs vary build,
+  height, head seed, caps/baldness/hair, facial hair and dress silhouette. Removed
+  the second figure from the shelter. Elder Yamaguchi keeps the same signature
+  suit/tie and grey hair through the remembrance shots. Opening identification.
+- Explicit aircraft → falling device → airburst → expanding cloud/ring over
+  labeled Hiroshima (6 August) and Nagasaki (9 August). Devices detonate above
+  the city, not on ground impact. Hiroshima is labeled business trip; Nagasaki
+  is labeled home. Schematic miniature sets, not claimed archival reconstruction.
+  No graphic casualties, pure-white flash frames or celebratory explosion music.
+- Replaced seven repeated setups with new story actions: packing suitcase,
+  rail carriage interior, three-day calendar, two aerial bombing scenes,
+  recognition paperwork/stamp and microphone/testimony insert. 17 unique sets.
+- Reduced bloom .5 → .22; full new source render at CRF17, no second lossy repair
+  encode. Keeps 720×1280/30fps and original Arena voice/music/subtitle timings.
+
+Preview run 42786975709 succeeded; reviewed all 26 frames. Corrected a mirrored
+calendar page, packing prop visibility and microphone crossing the face; added
+a recognizable rising cloud after each brief blast. TypeScript and all-frame
+shot/camera coverage tests passed. Full revision run 42788181999 launched.
+Beer Flood and Lake Peigneur are unchanged against commit 39ac020.
