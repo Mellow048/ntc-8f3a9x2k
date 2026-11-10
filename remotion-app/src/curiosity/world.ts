@@ -56,7 +56,7 @@ export class World {
  const person=(x:number,z:number,expr:Expr='neutral',extra:Partial<Outfit>={})=>{const a=new Actor(p,x,z,{...townsfolk(0),hat:'hair',hair:'#322a30',jacket:'#527a83',...extra});a.expr=expr;this.actors.push(a);return a;};
  const ground=(col='#ad9a83')=>box(p,0,-.2,0,70,.35,70,col,'brick');
  if(slug==='beer'){
-  ground();
+  if(s!=='cellar')ground();
   if(['vat','hoop','burst'].includes(s)){
    box(p,0,4,-5,17,8,.5,'#b38c72','brick');box(p,0,.1,0,17,.2,16,'#b89766','wood');for(const x of [-6,6])box(p,x,4,-1,.35,8,.4,'#68513c','wood');
    const v=vat(p);vat(p).position.set(-6,0,-3);vat(p).position.set(6,0,-3);person(3.5,2,'nervous',{hat:'tophat',jacket:'#7d6657'});

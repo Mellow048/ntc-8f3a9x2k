@@ -2,12 +2,14 @@ name: Curiosity shorts — isolated 720p
 on:
   push:
     branches: [arena/044538ca-ntc-8f3a9x2k]
-    paths:
-      - '.github/workflows/curiosity-shorts.yml'
-      - 'remotion-app/src/curiosity/**'
-      - 'shoots/curiosity-*/**'
-      - 'scripts/curiosity/**'
+    paths: ['scripts/curiosity/RENDER']
   workflow_dispatch:
+    inputs:
+      target:
+        description: 'Which isolated short to render'
+        type: choice
+        options: [all, beer, survivor, lake]
+        default: all
 permissions:
   contents: write
 concurrency:
@@ -20,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        slug: [beer, survivor, lake]
+        slug: ${{ fromJSON(inputs.target && inputs.target != 'all' && format('["{0}"]', inputs.target) || '["beer","survivor","lake"]') }}
     env:
       REMOTION_TMP: ${{ github.workspace }}/.remotion-tmp
     steps:
