@@ -51,7 +51,7 @@ export class World {
    this.animations.push((s,f,u)=>{rig.position.x=-8+(f/30%6)*3;hero.walk=true;hero.expr='nervous';hero.lean=-5;hero.root.position.x=-.6+u*1.3;steam.forEach((d,i)=>{const q=((f+i*8)%70)/70;d.position.set(rig.position.x+6.4-q*3,3.5+q*2.6,0);d.scale.setScalar(.5+q*1.7);});});
   }else if(['shelter','home','office','recognition'].includes(place)){
    room(p,place);hero.root.position.set(0,0,-.5);
-   const companion=person(-2.5,-1.5,{...suit,jacket:'#777361'});companion.root.visible=place!=='shelter';
+   const companion=person(-2.5,-1.5,{...suit,jacket:'#777361'});companion.root.visible=place!=='shelter';if(place==='recognition')companion.outfit={...costumes[2],jacket:'#777b76'};
    hero.root.userData.bandage=['shelter','home','office'].includes(place);
    const certificate=box(p,.5,1.25,.8,1.1,.04,.8,material('certificate','#e4dbc3'));certificate.userData.dynamic=true;certificate.visible=place==='recognition';
    for(let i=0;i<5;i++)box(p,.5,1.28,.58+i*.1,.75,.008,.016,material('certificate-ink','#5a6068'));
