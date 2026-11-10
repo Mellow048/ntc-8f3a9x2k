@@ -1,0 +1,2106 @@
+[90mRemotion root directory:[39m [90m/home/runner/work/ntc-8f3a9x2k/ntc-8f3a9x2k/remotion-app[39m
+[90mApplied configuration from /home/runner/work/ntc-8f3a9x2k/ntc-8f3a9x2k/remotion-app/remotion.config.ts.[39m
+[90mChecking if[39m [90msrc/index.ts[39m [90mis the entry file[39m
+[90m[90mEntry point = /home/runner/work/ntc-8f3a9x2k/ntc-8f3a9x2k/remotion-app/src/index.ts (argument passed - found in cwd)[39m[90m[39m
+[90mEnsuring browser executable[39m
+[90mEnsured browser is available.[39m
+[40m openBrowser() [49m [90mOpening browser: gl = swiftshader, executable = /home/runner/.cache/ms-playwright/chromium_headless_shell-1148/chrome-linux/headless_shell, enableMultiProcessOnLinux = true[39m
+[90mAvailable memory: 14639.75 MiB (/proc/meminfo MemAvailable)[39m
+[90mUsing setpriv --pdeathsig SIGKILL so the browser is killed if the Node parent process dies (Linux).[39m
+Bundling 6%
+Bundling 26%
+Bundling 49%
+Bundling 65%
+Bundling 71%
+Bundling 76%
+Bundling 81%
+Bundling 87%
+Bundling 92%
+Bundling 98%
+Bundling 100%
+[90mBundling done in 3757ms[39m
+[90mCopying done in 0ms[39m
+Getting composition
+[90mBundled under[39m [90m/tmp/remotion-webpack-bundle-zPMTi4[39m
+[90mCreated directory for temporary files[39m [90m/tmp/remotion-v4.0.542-assets15x0fj28az[39m
+[90mAvailable memory: 14050.54 MiB (/proc/meminfo MemAvailable)[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Loading root component - See https://remotion.dev/docs/troubleshooting/loading-root-component if you experience a timeout" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for root component to load - See https://remotion.dev/docs/troubleshooting/loading-root-component if you experience a timeout" handle was cleared after 12ms[39m[90m[39m
+[40m selectComposition() [49m [90mRunning calculateMetadata()...[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Running the calculateMetadata() function for composition DarkDayShort" handle was cleared after 1ms[39m[90m[39m
+[40m selectComposition() [49m [90mcalculateMetadata() took 2ms[39m
+[90mComposition = DarkDayShort (Passed as argument)[39m
+[90mCodec = h264 (from --codec flag)[39m
+[90mOutput = out/final.mp4[39m
+[90mConcurrency = 2x[39m
+[40m renderMedia() [49m [90mUsing concurrency:[39m [90m2[39m
+[40m renderMedia() [49m [90mdelayRender() timeout:[39m [90m300000[39m
+[40m renderMedia() [49m [90mCodec supports parallel rendering:[39m [90mtrue[39m
+[40m renderMedia() [49m [90mParallel encoding is enabled.[39m
+[40m renderMedia() [49m [90mRendering frames 0-1739[39m
+Rendered 0/1740
+[90mAvailable memory: 14019.70 MiB (/proc/meminfo MemAvailable)[39m
+[90mAvailable memory: 14019.70 MiB (/proc/meminfo MemAvailable)[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Loading root component - See https://remotion.dev/docs/troubleshooting/loading-root-component if you experience a timeout" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Loading root component - See https://remotion.dev/docs/troubleshooting/loading-root-component if you experience a timeout" handle was cleared after 0ms[39m[90m[39m
+[90mRemotion shared-memory capture is unavailable. Falling back to encoded screenshots. Reason: Protocol error (Page.remotionCreateFramePool): 'Page.remotionCreateFramePool' wasn't found[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for root component to load - See https://remotion.dev/docs/troubleshooting/loading-root-component if you experience a timeout" handle was cleared after 14ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for Composition "DarkDayShort"" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"darkday kit" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for root component to load - See https://remotion.dev/docs/troubleshooting/loading-root-component if you experience a timeout" handle was cleared after 20ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for Composition "DarkDayShort"" handle was cleared after 9ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"darkday kit" handle was cleared after 1ms[39m[90m[39m
+[40m chrome [49m [31mgles2_cmd_decoder_passthrough.cc:1053: [GroupMarkerNotSet(crbug.com/242999)!:A0901C000C320000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.[39m
+[40m chrome [49m [31mgles2_cmd_decoder_passthrough.cc:1053: [GroupMarkerNotSet(crbug.com/242999)!:A0C0CE000C320000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.[39m
+[40m console.warning [49m [90m[GroupMarkerNotSet(crbug.com/242999)!:A0901C000C320000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.[39m
+[40m chrome [49m [31mgl_utils.cc:426: [.WebGL-0x376400b6d500]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels[39m
+[40m console.warning [49m [90m[GroupMarkerNotSet(crbug.com/242999)!:A0C0CE000C320000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.[39m
+[40m chrome [49m [31mgl_utils.cc:426: [.WebGL-0x3f0c00121b00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels[39m
+[40m Tab 1, node_modules/three/build/three.module.js:9338 [49m [33mTHREE.Material: 'specular' is not a property of THREE.MeshLambertMaterial.[39m
+[40m Tab 1, node_modules/three/build/three.module.js:9338 [49m [33mTHREE.Material: 'shininess' is not a property of THREE.MeshLambertMaterial.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9338 [49m [33mTHREE.Material: 'specular' is not a property of THREE.MeshLambertMaterial.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9338 [49m [33mTHREE.Material: 'shininess' is not a property of THREE.MeshLambertMaterial.[39m
+[40m chrome [49m [31mgles2_cmd_decoder_passthrough.cc:1053: [GroupMarkerNotSet(crbug.com/242999)!:A0F0CE000C320000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.[39m
+[40m chrome [49m [31mgles2_cmd_decoder_passthrough.cc:1053: [GroupMarkerNotSet(crbug.com/242999)!:A0F0CE000C320000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for <ThreeCanvas/> to be created" handle was cleared after 4205ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 1" handle was cleared after 4217ms[39m[90m[39m
+[40m chrome [49m [31mgl_utils.cc:426: [.WebGL-0x376400b6d500]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels[39m
+[40m console.warning [49m [90m[.WebGL-0x376400b6d500]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 1" handle was cleared after 0ms[39m[90m[39m
+[40m console.warning [49m [90m[.WebGL-0x376400b6d500]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels[39m
+[90mSeeking to frame 1 took 16395ms[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for <ThreeCanvas/> to be created" handle was cleared after 16384ms[39m[90m[39m
+[40m chrome [49m [31mgl_utils.cc:426: [.WebGL-0x3f0c00121b00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)[39m
+[40m console.warning [49m [90m[.WebGL-0x3f0c00121b00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 0" handle was cleared after 0ms[39m[90m[39m
+[40m console.warning [49m [90m[.WebGL-0x3f0c00121b00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)[39m
+[90mSeeking to frame 0 took 21707ms[39m
+[40m stitchFramesToVideo() [49m [90mEncoder: libx264, hardware accelerated: false[39m
+[40m prespawnFfmpeg() [49m [90mGenerated FFMPEG command:[39m
+[40m prespawnFfmpeg() [49m [90m-r,30 -f,image2pipe -s,1440x2560 -vcodec,mjpeg -i,- -c:v,libx264 -pix_fmt,yuv420p -video_track_timescale,90000 -crf,16  -y /tmp/react-motion-renderehylOI/pre-encode.mp4[39m
+Rendered 1/1740, time remaining: 10h 46m 9s
+Rendered 2/1740, time remaining: 5h 22m 54s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 2" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 3" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 3" handle was cleared after 18ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 2" handle was cleared after 28ms[39m[90m[39m
+[90mSeeking to frame 3 took 4015ms[39m
+[90mSeeking to frame 2 took 7927ms[39m
+Rendered 3/1740, time remaining: 4h 52m 50s
+Rendered 4/1740, time remaining: 3h 39m 31s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 5" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 4" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 4" handle was cleared after 16ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 5" handle was cleared after 17ms[39m[90m[39m
+[90mSeeking to frame 4 took 7319ms[39m
+[90mSeeking to frame 5 took 7986ms[39m
+Rendered 5/1740, time remaining: 3h 42m 9s
+Rendered 6/1740, time remaining: 3h 5m 10s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 6" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 7" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 7" handle was cleared after 15ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 6" handle was cleared after 17ms[39m[90m[39m
+[90mSeeking to frame 7 took 4887ms[39m
+[90mSeeking to frame 6 took 7899ms[39m
+Rendered 7/1740, time remaining: 3h 11m 27s
+Rendered 8/1740, time remaining: 2h 47m 25s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 8" handle was cleared after 2ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 9" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 9" handle was cleared after 11ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 8" handle was cleared after 14ms[39m[90m[39m
+[90mSeeking to frame 9 took 7433ms[39m
+[90mSeeking to frame 8 took 7893ms[39m
+Rendered 9/1740, time remaining: 2h 54m 25s
+Rendered 10/1740, time remaining: 2h 36m 53s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 11" handle was cleared after 2ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 10" handle was cleared after 2ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 10" handle was cleared after 10ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 11" handle was cleared after 12ms[39m[90m[39m
+[90mSeeking to frame 10 took 4703ms[39m
+Rendered 11/1740, time remaining: 2h 35m 26s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 12" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 12" handle was cleared after 7ms[39m[90m[39m
+[90mSeeking to frame 11 took 7832ms[39m
+[90mSeeking to frame 12 took 6773ms[39m
+Rendered 12/1740, time remaining: 2h 38m 47s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 13" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 13" handle was cleared after 25ms[39m[90m[39m
+Rendered 13/1740, time remaining: 2h 26m 39s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 14" handle was cleared after 2ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 14" handle was cleared after 6ms[39m[90m[39m
+[90mSeeking to frame 13 took 3928ms[39m
+[90mSeeking to frame 14 took 7742ms[39m
+Rendered 14/1740, time remaining: 2h 32m 7s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 15" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 15" handle was cleared after 24ms[39m[90m[39m
+Rendered 15/1740, time remaining: 2h 22m 2s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 16" handle was cleared after 2ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 16" handle was cleared after 5ms[39m[90m[39m
+[90mSeeking to frame 15 took 3926ms[39m
+[90mSeeking to frame 16 took 7800ms[39m
+Rendered 16/1740, time remaining: 2h 27m 11s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 17" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 17" handle was cleared after 30ms[39m[90m[39m
+Rendered 17/1740, time remaining: 2h 18m 37s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 18" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 18" handle was cleared after 7ms[39m[90m[39m
+[90mSeeking to frame 17 took 4057ms[39m
+Rendered 18/1740, time remaining: 2h 23m 24s
+Rendered 19/1740, time remaining: 2h 15m 49s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 19" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 20" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 20" handle was cleared after 12ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 19" handle was cleared after 13ms[39m[90m[39m
+[90mSeeking to frame 20 took 4882ms[39m
+[90mSeeking to frame 19 took 7838ms[39m
+Rendered 20/1740, time remaining: 2h 20m 16s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 21" handle was cleared after 2ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 21" handle was cleared after 11ms[39m[90m[39m
+Rendered 21/1740, time remaining: 2h 13m 39s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 22" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 22" handle was cleared after 16ms[39m[90m[39m
+Rendered 21/1740, time remaining: 2h 13m 39s
+Rendered 21/1740, time remaining: 2h 13m 39s
+Rendered 21/1740, time remaining: 2h 13m 39s
+Rendered 21/1740, time remaining: 2h 13m 39s
+Rendered 21/1740, time remaining: 2h 13m 39s
+Rendered 21/1740, time remaining: 2h 13m 39s
+Rendered 21/1740, time remaining: 2h 13m 39s
+[90mSeeking to frame 21 took 3950ms[39m
+Rendered 21/1740, time remaining: 2h 13m 39s
+Rendered 22/1740, time remaining: 2h 12m 38s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 23" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 23" handle was cleared after 11ms[39m[90m[39m
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+[90mSeeking to frame 22 took 7722ms[39m
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+Rendered 22/1740, time remaining: 2h 12m 38s
+[90mSeeking to frame 23 took 7666ms[39m
+Rendered 23/1740, time remaining: 2h 16m 24s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 24" handle was cleared after 12ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 24" handle was cleared after 26ms[39m[90m[39m
+Rendered 24/1740, time remaining: 2h 10m 44s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 25" handle was cleared after 2ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 25" handle was cleared after 7ms[39m[90m[39m
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+[90mSeeking to frame 24 took 3915ms[39m
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+Rendered 24/1740, time remaining: 2h 10m 44s
+[90mSeeking to frame 25 took 7693ms[39m
+Rendered 25/1740, time remaining: 2h 14m 17s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 26" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 26" handle was cleared after 8ms[39m[90m[39m
+Rendered 26/1740, time remaining: 2h 9m 6s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 27" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 27" handle was cleared after 7ms[39m[90m[39m
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+[90mSeeking to frame 26 took 3869ms[39m
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+Rendered 26/1740, time remaining: 2h 9m 6s
+[90mSeeking to frame 27 took 7705ms[39m
+Rendered 27/1740, time remaining: 2h 12m 27s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 28" handle was cleared after 5ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 28" handle was cleared after 25ms[39m[90m[39m
+Rendered 28/1740, time remaining: 2h 7m 43s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 29" handle was cleared after 2ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 29" handle was cleared after 5ms[39m[90m[39m
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+[90mSeeking to frame 28 took 3878ms[39m
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 28/1740, time remaining: 2h 7m 43s
+Rendered 29/1740, time remaining: 2h 10m 49s
+Rendered 30/1740, time remaining: 2h 6m 25s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 31" handle was cleared after 2ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 31" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 30" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 30" handle was cleared after 14ms[39m[90m[39m
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 30/1740, time remaining: 2h 6m 25s
+[90mSeeking to frame 30 took 7308ms[39m
+Rendered 30/1740, time remaining: 2h 6m 25s
+Rendered 31/1740, time remaining: 2h 9m 25s
+Rendered 32/1740, time remaining: 2h 5m 20s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+Rendered 32/1740, time remaining: 2h 5m 20s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 32" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 33" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 32" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 33" handle was cleared after 10ms[39m[90m[39m
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+[90mSeeking to frame 33 took 6989ms[39m
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 32/1740, time remaining: 2h 5m 20s
+Rendered 33/1740, time remaining: 2h 8m 31s
+Rendered 34/1740, time remaining: 2h 4m 40s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 35" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 35" handle was cleared after 10ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 34" handle was cleared after 10ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 34" handle was cleared after 14ms[39m[90m[39m
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+[90mSeeking to frame 35 took 4700ms[39m
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+Rendered 34/1740, time remaining: 2h 4m 40s
+[90mSeeking to frame 34 took 7708ms[39m
+Rendered 35/1740, time remaining: 2h 7m 23s
+Rendered 36/1740, time remaining: 2h 3m 46s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+Rendered 36/1740, time remaining: 2h 3m 46s
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 36" handle was cleared after 15ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 36" handle was cleared after 17ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 37" handle was cleared after 15ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 37" handle was cleared after 17ms[39m[90m[39m
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+Rendered 36/1740, time remaining: 2h 3m 46s
+[90mSeeking to frame 36 took 7319ms[39m
+Rendered 36/1740, time remaining: 2h 3m 46s
+[90mSeeking to frame 37 took 7775ms[39m
+Rendered 37/1740, time remaining: 2h 6m 21s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 38" handle was cleared after 18ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 38" handle was cleared after 23ms[39m[90m[39m
+Rendered 38/1740, time remaining: 2h 3m 1s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 39" handle was cleared after 2ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 39" handle was cleared after 20ms[39m[90m[39m
+Rendered 38/1740, time remaining: 2h 3m 1s
+Rendered 38/1740, time remaining: 2h 3m 1s
+Rendered 38/1740, time remaining: 2h 3m 1s
+Rendered 38/1740, time remaining: 2h 3m 1s
+Rendered 38/1740, time remaining: 2h 3m 1s
+Rendered 38/1740, time remaining: 2h 3m 1s
+Rendered 38/1740, time remaining: 2h 3m 1s
+Rendered 38/1740, time remaining: 2h 3m 1s
+[90mSeeking to frame 38 took 3908ms[39m
+Rendered 39/1740, time remaining: 2h 2m 39s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 40" handle was cleared after 10ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 40" handle was cleared after 12ms[39m[90m[39m
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+[90mSeeking to frame 39 took 7746ms[39m
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 39/1740, time remaining: 2h 2m 39s
+[90mSeeking to frame 40 took 7644ms[39m
+Rendered 39/1740, time remaining: 2h 2m 39s
+Rendered 40/1740, time remaining: 2h 4m 58s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 41" handle was cleared after 16ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 41" handle was cleared after 24ms[39m[90m[39m
+Rendered 41/1740, time remaining: 2h 1m 54s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 42" handle was cleared after 16ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 42" handle was cleared after 18ms[39m[90m[39m
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+[90mSeeking to frame 41 took 3931ms[39m
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+Rendered 41/1740, time remaining: 2h 1m 54s
+[90mSeeking to frame 42 took 7744ms[39m
+Rendered 42/1740, time remaining: 2h 4m 11s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 43" handle was cleared after 9ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 43" handle was cleared after 26ms[39m[90m[39m
+Rendered 43/1740, time remaining: 2h 1m 16s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 44" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 44" handle was cleared after 11ms[39m[90m[39m
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+[90mSeeking to frame 43 took 4092ms[39m
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+Rendered 43/1740, time remaining: 2h 1m 16s
+[90mSeeking to frame 44 took 7830ms[39m
+Rendered 44/1740, time remaining: 2h 3m 30s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 45" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 45" handle was cleared after 29ms[39m[90m[39m
+Rendered 45/1740, time remaining: 2h 44s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 46" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 46" handle was cleared after 9ms[39m[90m[39m
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+[90mSeeking to frame 45 took 3884ms[39m
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+Rendered 45/1740, time remaining: 2h 44s
+[90mSeeking to frame 46 took 7625ms[39m
+Rendered 46/1740, time remaining: 2h 2m 46s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 47" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 47" handle was cleared after 31ms[39m[90m[39m
+Rendered 47/1740, time remaining: 2h 8s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 48" handle was cleared after 11ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 48" handle was cleared after 18ms[39m[90m[39m
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+[90mSeeking to frame 47 took 4194ms[39m
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+Rendered 47/1740, time remaining: 2h 8s
+[90mSeeking to frame 48 took 7942ms[39m
+Rendered 48/1740, time remaining: 2h 2m 15s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 49" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 49" handle was cleared after 33ms[39m[90m[39m
+Rendered 49/1740, time remaining: 1h 59m 45s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 50" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 50" handle was cleared after 11ms[39m[90m[39m
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+[90mSeeking to frame 49 took 4016ms[39m
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+Rendered 49/1740, time remaining: 1h 59m 45s
+[90mSeeking to frame 50 took 7805ms[39m
+Rendered 50/1740, time remaining: 2h 1m 42s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 51" handle was cleared after 29ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 51" handle was cleared after 32ms[39m[90m[39m
+Rendered 51/1740, time remaining: 1h 59m 18s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 52" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 52" handle was cleared after 28ms[39m[90m[39m
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+[90mSeeking to frame 51 took 4060ms[39m
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+Rendered 51/1740, time remaining: 1h 59m 18s
+[90mSeeking to frame 52 took 7862ms[39m
+Rendered 52/1740, time remaining: 2h 1m 13s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 53" handle was cleared after 22ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 53" handle was cleared after 34ms[39m[90m[39m
+Rendered 53/1740, time remaining: 1h 58m 55s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 54" handle was cleared after 16ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 54" handle was cleared after 28ms[39m[90m[39m
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+[90mSeeking to frame 53 took 4032ms[39m
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 53/1740, time remaining: 1h 58m 55s
+[90mSeeking to frame 54 took 7761ms[39m
+Rendered 53/1740, time remaining: 1h 58m 55s
+Rendered 54/1740, time remaining: 2h 43s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 55" handle was cleared after 18ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 55" handle was cleared after 26ms[39m[90m[39m
+Rendered 55/1740, time remaining: 1h 58m 29s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 56" handle was cleared after 14ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 56" handle was cleared after 25ms[39m[90m[39m
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+[90mSeeking to frame 55 took 3965ms[39m
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+Rendered 55/1740, time remaining: 1h 58m 29s
+[90mSeeking to frame 56 took 7715ms[39m
+Rendered 56/1740, time remaining: 2h 12s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 57" handle was cleared after 18ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 57" handle was cleared after 33ms[39m[90m[39m
+Rendered 57/1740, time remaining: 1h 58m 4s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 58" handle was cleared after 15ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 58" handle was cleared after 18ms[39m[90m[39m
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+[90mSeeking to frame 57 took 4025ms[39m
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+Rendered 57/1740, time remaining: 1h 58m 4s
+[90mSeeking to frame 58 took 7762ms[39m
+Rendered 58/1740, time remaining: 1h 59m 44s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 59" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 59" handle was cleared after 32ms[39m[90m[39m
+Rendered 59/1740, time remaining: 1h 57m 41s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 60" handle was cleared after 10ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 60" handle was cleared after 12ms[39m[90m[39m
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+[90mSeeking to frame 59 took 3995ms[39m
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+Rendered 59/1740, time remaining: 1h 57m 41s
+[90mSeeking to frame 60 took 7699ms[39m
+Rendered 60/1740, time remaining: 1h 59m 16s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 61" handle was cleared after 9ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 61" handle was cleared after 36ms[39m[90m[39m
+Rendered 61/1740, time remaining: 1h 57m 18s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 62" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 62" handle was cleared after 11ms[39m[90m[39m
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+[90mSeeking to frame 61 took 4004ms[39m
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+Rendered 61/1740, time remaining: 1h 57m 18s
+[90mSeeking to frame 62 took 7877ms[39m
+Rendered 62/1740, time remaining: 1h 58m 55s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 63" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 63" handle was cleared after 31ms[39m[90m[39m
+Rendered 63/1740, time remaining: 1h 57m 0s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 64" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 64" handle was cleared after 13ms[39m[90m[39m
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+[90mSeeking to frame 63 took 3962ms[39m
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+Rendered 63/1740, time remaining: 1h 57m 0s
+[90mSeeking to frame 64 took 7664ms[39m
+Rendered 64/1740, time remaining: 1h 58m 28s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 65" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 65" handle was cleared after 36ms[39m[90m[39m
+Rendered 64/1740, time remaining: 1h 58m 28s
+Rendered 65/1740, time remaining: 1h 56m 38s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 66" handle was cleared after 12ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 66" handle was cleared after 15ms[39m[90m[39m
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+[90mSeeking to frame 65 took 4017ms[39m
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+Rendered 65/1740, time remaining: 1h 56m 38s
+[90mSeeking to frame 66 took 7709ms[39m
+Rendered 66/1740, time remaining: 1h 58m 4s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 67" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 67" handle was cleared after 36ms[39m[90m[39m
+Rendered 67/1740, time remaining: 1h 56m 17s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 68" handle was cleared after 10ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 68" handle was cleared after 12ms[39m[90m[39m
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+[90mSeeking to frame 67 took 3947ms[39m
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+Rendered 67/1740, time remaining: 1h 56m 17s
+[90mSeeking to frame 68 took 7709ms[39m
+Rendered 68/1740, time remaining: 1h 57m 41s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 69" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 69" handle was cleared after 35ms[39m[90m[39m
+Rendered 69/1740, time remaining: 1h 55m 57s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 70" handle was cleared after 13ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 70" handle was cleared after 16ms[39m[90m[39m
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+[90mSeeking to frame 69 took 4003ms[39m
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 69/1740, time remaining: 1h 55m 57s
+[90mSeeking to frame 70 took 7700ms[39m
+Rendered 69/1740, time remaining: 1h 55m 57s
+Rendered 70/1740, time remaining: 1h 57m 19s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+Rendered 71/1740, time remaining: 1h 55m 37s
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 71" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 71" handle was cleared after 10ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 72" handle was cleared after 13ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 72" handle was cleared after 15ms[39m[90m[39m
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+[90mSeeking to frame 71 took 3945ms[39m
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+Rendered 71/1740, time remaining: 1h 55m 37s
+[90mSeeking to frame 72 took 7696ms[39m
+Rendered 72/1740, time remaining: 1h 56m 56s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 73" handle was cleared after 15ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 73" handle was cleared after 35ms[39m[90m[39m
+Rendered 73/1740, time remaining: 1h 55m 18s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 74" handle was cleared after 12ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 74" handle was cleared after 14ms[39m[90m[39m
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+[90mSeeking to frame 73 took 4010ms[39m
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+Rendered 73/1740, time remaining: 1h 55m 18s
+[90mSeeking to frame 74 took 7720ms[39m
+Rendered 74/1740, time remaining: 1h 56m 35s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 75" handle was cleared after 11ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 75" handle was cleared after 31ms[39m[90m[39m
+Rendered 75/1740, time remaining: 1h 55m 0s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 76" handle was cleared after 10ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 76" handle was cleared after 15ms[39m[90m[39m
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+[90mSeeking to frame 75 took 3940ms[39m
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+Rendered 75/1740, time remaining: 1h 55m 0s
+[90mSeeking to frame 76 took 7663ms[39m
+Rendered 76/1740, time remaining: 1h 56m 14s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 77" handle was cleared after 14ms[39m[90m[39m
+Rendered 76/1740, time remaining: 1h 56m 14s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 77" handle was cleared after 37ms[39m[90m[39m
+Rendered 77/1740, time remaining: 1h 54m 41s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 78" handle was cleared after 9ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 78" handle was cleared after 16ms[39m[90m[39m
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+[90mSeeking to frame 77 took 4185ms[39m
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 77/1740, time remaining: 1h 54m 41s
+[90mSeeking to frame 78 took 7886ms[39m
+Rendered 77/1740, time remaining: 1h 54m 41s
+Rendered 78/1740, time remaining: 1h 55m 58s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 79" handle was cleared after 11ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 79" handle was cleared after 33ms[39m[90m[39m
+Rendered 79/1740, time remaining: 1h 54m 28s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 80" handle was cleared after 10ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 80" handle was cleared after 23ms[39m[90m[39m
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+[90mSeeking to frame 79 took 3945ms[39m
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+Rendered 79/1740, time remaining: 1h 54m 28s
+[90mSeeking to frame 80 took 7666ms[39m
+Rendered 80/1740, time remaining: 1h 55m 38s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 81" handle was cleared after 11ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 81" handle was cleared after 33ms[39m[90m[39m
+Rendered 81/1740, time remaining: 1h 54m 11s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 82" handle was cleared after 20ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 82" handle was cleared after 24ms[39m[90m[39m
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+[90mSeeking to frame 81 took 4003ms[39m
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+Rendered 81/1740, time remaining: 1h 54m 11s
+[90mSeeking to frame 82 took 7729ms[39m
+Rendered 82/1740, time remaining: 1h 55m 20s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 83" handle was cleared after 26ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 83" handle was cleared after 31ms[39m[90m[39m
+Rendered 83/1740, time remaining: 1h 53m 55s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 84" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 84" handle was cleared after 17ms[39m[90m[39m
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+[90mSeeking to frame 83 took 3967ms[39m
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 83/1740, time remaining: 1h 53m 55s
+[90mSeeking to frame 84 took 7678ms[39m
+Rendered 83/1740, time remaining: 1h 53m 55s
+Rendered 84/1740, time remaining: 1h 55m 2s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 85" handle was cleared after 5ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 85" handle was cleared after 34ms[39m[90m[39m
+Rendered 85/1740, time remaining: 1h 53m 39s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 86" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 86" handle was cleared after 15ms[39m[90m[39m
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+[90mSeeking to frame 85 took 4001ms[39m
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+Rendered 85/1740, time remaining: 1h 53m 39s
+[90mSeeking to frame 86 took 7707ms[39m
+Rendered 86/1740, time remaining: 1h 54m 44s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 87" handle was cleared after 2ms[39m[90m[39m
+Rendered 87/1740, time remaining: 1h 53m 22s
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 87" handle was cleared after 15ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 88" handle was cleared after 12ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 88" handle was cleared after 15ms[39m[90m[39m
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+[90mSeeking to frame 87 took 3921ms[39m
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+Rendered 87/1740, time remaining: 1h 53m 22s
+[90mSeeking to frame 88 took 7668ms[39m
+Rendered 88/1740, time remaining: 1h 54m 26s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 89" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 89" handle was cleared after 30ms[39m[90m[39m
+Rendered 89/1740, time remaining: 1h 53m 6s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 90" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 90" handle was cleared after 10ms[39m[90m[39m
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+[90mSeeking to frame 89 took 4001ms[39m
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+Rendered 89/1740, time remaining: 1h 53m 6s
+[90mSeeking to frame 90 took 7695ms[39m
+Rendered 90/1740, time remaining: 1h 54m 9s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+Rendered 90/1740, time remaining: 1h 54m 9s
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 91" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 91" handle was cleared after 28ms[39m[90m[39m
+Rendered 91/1740, time remaining: 1h 52m 51s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 92" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 92" handle was cleared after 9ms[39m[90m[39m
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+[90mSeeking to frame 91 took 3918ms[39m
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+Rendered 91/1740, time remaining: 1h 52m 51s
+[90mSeeking to frame 92 took 7642ms[39m
+Rendered 92/1740, time remaining: 1h 53m 51s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 93" handle was cleared after 10ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 93" handle was cleared after 27ms[39m[90m[39m
+Rendered 93/1740, time remaining: 1h 52m 36s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 94" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 94" handle was cleared after 11ms[39m[90m[39m
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+[90mSeeking to frame 93 took 4229ms[39m
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+Rendered 93/1740, time remaining: 1h 52m 36s
+[90mSeeking to frame 94 took 7928ms[39m
+Rendered 94/1740, time remaining: 1h 53m 39s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 95" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 95" handle was cleared after 32ms[39m[90m[39m
+Rendered 95/1740, time remaining: 1h 52m 25s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 96" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 96" handle was cleared after 9ms[39m[90m[39m
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+[90mSeeking to frame 95 took 3927ms[39m
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+Rendered 95/1740, time remaining: 1h 52m 25s
+[90mSeeking to frame 96 took 7610ms[39m
+Rendered 96/1740, time remaining: 1h 53m 22s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 97" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 97" handle was cleared after 31ms[39m[90m[39m
+Rendered 97/1740, time remaining: 1h 52m 10s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 98" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 98" handle was cleared after 10ms[39m[90m[39m
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+[90mSeeking to frame 97 took 3987ms[39m
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+Rendered 97/1740, time remaining: 1h 52m 10s
+[90mSeeking to frame 98 took 7680ms[39m
+Rendered 98/1740, time remaining: 1h 53m 6s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 99" handle was cleared after 17ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 99" handle was cleared after 21ms[39m[90m[39m
+Rendered 98/1740, time remaining: 1h 53m 6s
+Rendered 99/1740, time remaining: 1h 51m 55s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 100" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 100" handle was cleared after 21ms[39m[90m[39m
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+[90mSeeking to frame 99 took 3921ms[39m
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+Rendered 99/1740, time remaining: 1h 51m 55s
+[90mSeeking to frame 100 took 7648ms[39m
+Rendered 100/1740, time remaining: 1h 52m 51s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+Rendered 101/1740, time remaining: 1h 51m 41s
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 101" handle was cleared after 19ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 101" handle was cleared after 23ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 102" handle was cleared after 5ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 102" handle was cleared after 40ms[39m[90m[39m
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+[90mSeeking to frame 101 took 4028ms[39m
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+Rendered 101/1740, time remaining: 1h 51m 41s
+[90mSeeking to frame 102 took 7826ms[39m
+Rendered 102/1740, time remaining: 1h 52m 38s
+Rendered 103/1740, time remaining: 1h 51m 29s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 104" handle was cleared after 27ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 104" handle was cleared after 31ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 103" handle was cleared after 42ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 103" handle was cleared after 47ms[39m[90m[39m
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+[90mSeeking to frame 104 took 4729ms[39m
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+Rendered 103/1740, time remaining: 1h 51m 29s
+[90mSeeking to frame 103 took 7893ms[39m
+Rendered 104/1740, time remaining: 1h 52m 26s
+Rendered 105/1740, time remaining: 1h 51m 17s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 105" handle was cleared after 13ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 106" handle was cleared after 20ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 106" handle was cleared after 23ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 105" handle was cleared after 23ms[39m[90m[39m
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+[90mSeeking to frame 106 took 5146ms[39m
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+Rendered 105/1740, time remaining: 1h 51m 17s
+[90mSeeking to frame 105 took 7840ms[39m
+Rendered 106/1740, time remaining: 1h 52m 13s
+Rendered 107/1740, time remaining: 1h 51m 6s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 108" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 108" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 107" handle was cleared after 17ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 107" handle was cleared after 20ms[39m[90m[39m
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+[90mSeeking to frame 108 took 4542ms[39m
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+Rendered 107/1740, time remaining: 1h 51m 6s
+[90mSeeking to frame 107 took 8022ms[39m
+Rendered 108/1740, time remaining: 1h 52m 3s
+Rendered 109/1740, time remaining: 1h 50m 57s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 109" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 110" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 109" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 110" handle was cleared after 10ms[39m[90m[39m
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 109/1740, time remaining: 1h 50m 57s
+Rendered 110/1740, time remaining: 1h 51m 50s
+Rendered 111/1740, time remaining: 1h 50m 45s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 111" handle was cleared after 5ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 111" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 112" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 112" handle was cleared after 11ms[39m[90m[39m
+Rendered 111/1740, time remaining: 1h 50m 45s
+Rendered 111/1740, time remaining: 1h 50m 45s
+Rendered 111/1740, time remaining: 1h 50m 45s
+Rendered 111/1740, time remaining: 1h 50m 45s
+Rendered 111/1740, time remaining: 1h 50m 45s
+Rendered 111/1740, time remaining: 1h 50m 45s
+Rendered 111/1740, time remaining: 1h 50m 45s
+Rendered 111/1740, time remaining: 1h 50m 45s
+Rendered 111/1740, time remaining: 1h 50m 45s
+[90mSeeking to frame 111 took 4677ms[39m
+Rendered 111/1740, time remaining: 1h 50m 45s
+Rendered 112/1740, time remaining: 1h 50m 53s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 113" handle was cleared after 20ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 113" handle was cleared after 23ms[39m[90m[39m
+Rendered 112/1740, time remaining: 1h 50m 53s
+Rendered 112/1740, time remaining: 1h 50m 53s
+Rendered 112/1740, time remaining: 1h 50m 53s
+Rendered 112/1740, time remaining: 1h 50m 53s
+Rendered 112/1740, time remaining: 1h 50m 53s
+[90mSeeking to frame 112 took 7833ms[39m
+Rendered 112/1740, time remaining: 1h 50m 53s
+Rendered 112/1740, time remaining: 1h 50m 53s
+Rendered 112/1740, time remaining: 1h 50m 53s
+Rendered 112/1740, time remaining: 1h 50m 53s
+Rendered 112/1740, time remaining: 1h 50m 53s
+Rendered 112/1740, time remaining: 1h 50m 53s
+Rendered 112/1740, time remaining: 1h 50m 53s
+Rendered 112/1740, time remaining: 1h 50m 53s
+[90mSeeking to frame 113 took 6744ms[39m
+Rendered 113/1740, time remaining: 1h 51m 28s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 114" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 114" handle was cleared after 31ms[39m[90m[39m
+Rendered 114/1740, time remaining: 1h 50m 27s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 115" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 115" handle was cleared after 9ms[39m[90m[39m
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+[90mSeeking to frame 114 took 3905ms[39m
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+Rendered 114/1740, time remaining: 1h 50m 27s
+[90mSeeking to frame 115 took 7604ms[39m
+Rendered 115/1740, time remaining: 1h 51m 13s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 116" handle was cleared after 5ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 116" handle was cleared after 32ms[39m[90m[39m
+Rendered 116/1740, time remaining: 1h 50m 13s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 117" handle was cleared after 11ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 117" handle was cleared after 14ms[39m[90m[39m
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+[90mSeeking to frame 116 took 3950ms[39m
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+Rendered 116/1740, time remaining: 1h 50m 13s
+[90mSeeking to frame 117 took 7661ms[39m
+Rendered 117/1740, time remaining: 1h 50m 59s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 118" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 118" handle was cleared after 34ms[39m[90m[39m
+Rendered 118/1740, time remaining: 1h 50m 0s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 119" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 119" handle was cleared after 8ms[39m[90m[39m
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+[90mSeeking to frame 118 took 3911ms[39m
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+Rendered 118/1740, time remaining: 1h 50m 0s
+[90mSeeking to frame 119 took 7616ms[39m
+Rendered 119/1740, time remaining: 1h 50m 45s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 120" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 120" handle was cleared after 33ms[39m[90m[39m
+Rendered 120/1740, time remaining: 1h 49m 47s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 121" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 121" handle was cleared after 11ms[39m[90m[39m
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+[90mSeeking to frame 120 took 3948ms[39m
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+Rendered 120/1740, time remaining: 1h 49m 47s
+[90mSeeking to frame 121 took 7635ms[39m
+Rendered 121/1740, time remaining: 1h 50m 32s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 122" handle was cleared after 5ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 122" handle was cleared after 32ms[39m[90m[39m
+Rendered 121/1740, time remaining: 1h 50m 32s
+Rendered 122/1740, time remaining: 1h 49m 34s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 123" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 123" handle was cleared after 9ms[39m[90m[39m
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+[90mSeeking to frame 122 took 3888ms[39m
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+Rendered 122/1740, time remaining: 1h 49m 34s
+[90mSeeking to frame 123 took 7731ms[39m
+Rendered 123/1740, time remaining: 1h 50m 19s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 124" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 124" handle was cleared after 30ms[39m[90m[39m
+Rendered 124/1740, time remaining: 1h 49m 23s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 125" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 125" handle was cleared after 8ms[39m[90m[39m
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+[90mSeeking to frame 124 took 3933ms[39m
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+Rendered 124/1740, time remaining: 1h 49m 23s
+[90mSeeking to frame 125 took 7619ms[39m
+Rendered 125/1740, time remaining: 1h 50m 6s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 126" handle was cleared after 13ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 126" handle was cleared after 27ms[39m[90m[39m
+Rendered 126/1740, time remaining: 1h 49m 11s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 127" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 127" handle was cleared after 12ms[39m[90m[39m
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+[90mSeeking to frame 126 took 3922ms[39m
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+Rendered 126/1740, time remaining: 1h 49m 11s
+[90mSeeking to frame 127 took 7647ms[39m
+Rendered 127/1740, time remaining: 1h 49m 53s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 128" handle was cleared after 11ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 128" handle was cleared after 27ms[39m[90m[39m
+Rendered 128/1740, time remaining: 1h 48m 58s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 129" handle was cleared after 10ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 129" handle was cleared after 21ms[39m[90m[39m
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+[90mSeeking to frame 128 took 4038ms[39m
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+Rendered 128/1740, time remaining: 1h 48m 58s
+[90mSeeking to frame 129 took 7768ms[39m
+Rendered 129/1740, time remaining: 1h 49m 41s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 130" handle was cleared after 9ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 130" handle was cleared after 30ms[39m[90m[39m
+Rendered 130/1740, time remaining: 1h 48m 48s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 131" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 131" handle was cleared after 16ms[39m[90m[39m
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+[90mSeeking to frame 130 took 3885ms[39m
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+Rendered 130/1740, time remaining: 1h 48m 48s
+[90mSeeking to frame 131 took 7582ms[39m
+Rendered 131/1740, time remaining: 1h 49m 28s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+Rendered 131/1740, time remaining: 1h 49m 28s
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 132" handle was cleared after 14ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 132" handle was cleared after 23ms[39m[90m[39m
+Rendered 132/1740, time remaining: 1h 48m 35s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 133" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 133" handle was cleared after 28ms[39m[90m[39m
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+[90mSeeking to frame 132 took 3920ms[39m
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+Rendered 132/1740, time remaining: 1h 48m 35s
+[90mSeeking to frame 133 took 7679ms[39m
+Rendered 133/1740, time remaining: 1h 49m 15s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 134" handle was cleared after 17ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 134" handle was cleared after 29ms[39m[90m[39m
+Rendered 134/1740, time remaining: 1h 48m 23s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 135" handle was cleared after 13ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 135" handle was cleared after 16ms[39m[90m[39m
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+[90mSeeking to frame 134 took 3895ms[39m
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 134/1740, time remaining: 1h 48m 23s
+[90mSeeking to frame 135 took 7616ms[39m
+Rendered 134/1740, time remaining: 1h 48m 23s
+Rendered 135/1740, time remaining: 1h 49m 2s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 136" handle was cleared after 16ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 136" handle was cleared after 26ms[39m[90m[39m
+Rendered 136/1740, time remaining: 1h 48m 11s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 137" handle was cleared after 17ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 137" handle was cleared after 20ms[39m[90m[39m
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+[90mSeeking to frame 136 took 3934ms[39m
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+Rendered 136/1740, time remaining: 1h 48m 11s
+[90mSeeking to frame 137 took 7689ms[39m
+Rendered 137/1740, time remaining: 1h 48m 50s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 138" handle was cleared after 16ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 138" handle was cleared after 26ms[39m[90m[39m
+Rendered 138/1740, time remaining: 1h 48m 0s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 139" handle was cleared after 17ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 139" handle was cleared after 24ms[39m[90m[39m
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+[90mSeeking to frame 138 took 4015ms[39m
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+Rendered 138/1740, time remaining: 1h 48m 0s
+[90mSeeking to frame 139 took 7823ms[39m
+Rendered 139/1740, time remaining: 1h 48m 40s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 140" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 140" handle was cleared after 36ms[39m[90m[39m
+Rendered 140/1740, time remaining: 1h 47m 51s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 141" handle was cleared after 11ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 141" handle was cleared after 25ms[39m[90m[39m
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+[90mSeeking to frame 140 took 3941ms[39m
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+Rendered 140/1740, time remaining: 1h 47m 51s
+[90mSeeking to frame 141 took 7621ms[39m
+Rendered 141/1740, time remaining: 1h 48m 28s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 142" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 142" handle was cleared after 25ms[39m[90m[39m
+Rendered 142/1740, time remaining: 1h 47m 39s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 143" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 143" handle was cleared after 8ms[39m[90m[39m
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+[90mSeeking to frame 142 took 3898ms[39m
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 142/1740, time remaining: 1h 47m 39s
+Rendered 143/1740, time remaining: 1h 48m 15s
+Rendered 144/1740, time remaining: 1h 47m 27s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 145" handle was cleared after 9ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 144" handle was cleared after 15ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 144" handle was cleared after 17ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 145" handle was cleared after 20ms[39m[90m[39m
+Rendered 144/1740, time remaining: 1h 47m 27s
+Rendered 144/1740, time remaining: 1h 47m 27s
+Rendered 144/1740, time remaining: 1h 47m 27s
+Rendered 144/1740, time remaining: 1h 47m 27s
+Rendered 144/1740, time remaining: 1h 47m 27s
+Rendered 144/1740, time remaining: 1h 47m 27s
+Rendered 144/1740, time remaining: 1h 47m 27s
+Rendered 144/1740, time remaining: 1h 47m 27s
+Rendered 144/1740, time remaining: 1h 47m 27s
+Rendered 144/1740, time remaining: 1h 47m 27s
+[90mSeeking to frame 144 took 4783ms[39m
+Rendered 145/1740, time remaining: 1h 47m 32s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 146" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 146" handle was cleared after 9ms[39m[90m[39m
+Rendered 145/1740, time remaining: 1h 47m 32s
+Rendered 145/1740, time remaining: 1h 47m 32s
+Rendered 145/1740, time remaining: 1h 47m 32s
+Rendered 145/1740, time remaining: 1h 47m 32s
+Rendered 145/1740, time remaining: 1h 47m 32s
+Rendered 145/1740, time remaining: 1h 47m 32s
+[90mSeeking to frame 145 took 7749ms[39m
+Rendered 146/1740, time remaining: 1h 47m 16s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 147" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 147" handle was cleared after 18ms[39m[90m[39m
+Rendered 146/1740, time remaining: 1h 47m 16s
+Rendered 146/1740, time remaining: 1h 47m 16s
+Rendered 146/1740, time remaining: 1h 47m 16s
+Rendered 146/1740, time remaining: 1h 47m 16s
+Rendered 146/1740, time remaining: 1h 47m 16s
+Rendered 146/1740, time remaining: 1h 47m 16s
+Rendered 146/1740, time remaining: 1h 47m 16s
+Rendered 146/1740, time remaining: 1h 47m 16s
+[90mSeeking to frame 146 took 6709ms[39m
+Rendered 147/1740, time remaining: 1h 47m 10s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 148" handle was cleared after 14ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 148" handle was cleared after 16ms[39m[90m[39m
+Rendered 147/1740, time remaining: 1h 47m 10s
+Rendered 147/1740, time remaining: 1h 47m 10s
+Rendered 147/1740, time remaining: 1h 47m 10s
+Rendered 147/1740, time remaining: 1h 47m 10s
+Rendered 147/1740, time remaining: 1h 47m 10s
+Rendered 147/1740, time remaining: 1h 47m 10s
+Rendered 147/1740, time remaining: 1h 47m 10s
+[90mSeeking to frame 147 took 7697ms[39m
+Rendered 147/1740, time remaining: 1h 47m 10s
+Rendered 148/1740, time remaining: 1h 47m 5s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 149" handle was cleared after 6ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 149" handle was cleared after 13ms[39m[90m[39m
+Rendered 148/1740, time remaining: 1h 47m 5s
+Rendered 148/1740, time remaining: 1h 47m 5s
+Rendered 148/1740, time remaining: 1h 47m 5s
+Rendered 148/1740, time remaining: 1h 47m 5s
+Rendered 148/1740, time remaining: 1h 47m 5s
+Rendered 148/1740, time remaining: 1h 47m 5s
+Rendered 148/1740, time remaining: 1h 47m 5s
+[90mSeeking to frame 148 took 7747ms[39m
+Rendered 149/1740, time remaining: 1h 47m 0s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 150" handle was cleared after 7ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 150" handle was cleared after 16ms[39m[90m[39m
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+[40m chrome [49m [31mgles2_cmd_decoder_passthrough.cc:1053: [GroupMarkerNotSet(crbug.com/242999)!:A0B0C8390C320000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.[39m
+[40m chrome [49m [31mgles2_cmd_decoder_passthrough.cc:1053: [GroupMarkerNotSet(crbug.com/242999)!:A0F0D5390C320000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.[39m
+[40m console.warning [49m [90m[GroupMarkerNotSet(crbug.com/242999)!:A0B0C8390C320000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.[39m
+[40m console.warning [49m [90m[GroupMarkerNotSet(crbug.com/242999)!:A0F0D5390C320000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.[39m
+Rendered 149/1740, time remaining: 1h 47m 0s
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for <ThreeCanvas/> to be created" handle was cleared after 12273ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 149" handle was cleared after 12276ms[39m[90m[39m
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 149/1740, time remaining: 1h 47m 0s
+[90mSeeking to frame 149 took 28876ms[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for <ThreeCanvas/> to be created" handle was cleared after 24971ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 150" handle was cleared after 24977ms[39m[90m[39m
+Rendered 149/1740, time remaining: 1h 47m 0s
+Rendered 150/1740, time remaining: 1h 50m 39s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 151" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 151" handle was cleared after 28ms[39m[90m[39m
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+[90mSeeking to frame 150 took 30971ms[39m
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+Rendered 150/1740, time remaining: 1h 50m 39s
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 151" handle was cleared after 9643ms[39m[90m[39m
+Rendered 151/1740, time remaining: 1h 48m 22s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 152" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 152" handle was cleared after 24ms[39m[90m[39m
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+[90mSeeking to frame 151 took 14596ms[39m
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+Rendered 151/1740, time remaining: 1h 48m 22s
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 152" handle was cleared after 8663ms[39m[90m[39m
+Rendered 152/1740, time remaining: 1h 49m 50s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 1ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 153" handle was cleared after 3ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 153" handle was cleared after 11ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 153" handle was cleared after 17ms[39m[90m[39m
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+[90mSeeking to frame 152 took 13658ms[39m
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 152/1740, time remaining: 1h 49m 50s
+Rendered 153/1740, time remaining: 1h 50m 40s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 154" handle was cleared after 8ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 154" handle was cleared after 22ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 154" handle was cleared after 26ms[39m[90m[39m
+Rendered 153/1740, time remaining: 1h 50m 40s
+[90mSeeking to frame 153 took 13720ms[39m
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 153/1740, time remaining: 1h 50m 40s
+Rendered 154/1740, time remaining: 1h 52m 29s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 155" handle was cleared after 13ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 155" handle was cleared after 32ms[39m[90m[39m
+Rendered 154/1740, time remaining: 1h 52m 29s
+[90mSeeking to frame 154 took 11173ms[39m
+Rendered 154/1740, time remaining: 1h 52m 29s
+Rendered 154/1740, time remaining: 1h 52m 29s
+Rendered 154/1740, time remaining: 1h 52m 29s
+Rendered 154/1740, time remaining: 1h 52m 29s
+Rendered 154/1740, time remaining: 1h 52m 29s
+Rendered 154/1740, time remaining: 1h 52m 29s
+Rendered 154/1740, time remaining: 1h 52m 29s
+Rendered 154/1740, time remaining: 1h 52m 29s
+Rendered 154/1740, time remaining: 1h 52m 29s
+Rendered 154/1740, time remaining: 1h 52m 29s
+Rendered 154/1740, time remaining: 1h 52m 29s
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 155" handle was cleared after 5918ms[39m[90m[39m
+Rendered 155/1740, time remaining: 1h 52m 3s
+[40m Tab 0, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Setting the current frame to 156" handle was cleared after 4ms[39m[90m[39m
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 156" handle was cleared after 16ms[39m[90m[39m
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+[90mSeeking to frame 155 took 12477ms[39m
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+Rendered 155/1740, time remaining: 1h 52m 3s
+[40m Tab 0, delayRender() [49m [90m[90m"Waiting for R3F to render frame 156" handle was cleared after 12342ms[39m[90m[39m
+Rendered 156/1740, time remaining: 1h 54m 9s
+[40m Tab 1, delayRender() [49m [90m[90m"Setting videoEnabled to true and audioEnabled to true" handle was cleared after 0ms[39m[90m[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Setting the current frame to 157" handle was cleared after 15ms[39m[90m[39m
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+[90mSeeking to frame 156 took 20066ms[39m
+[40m Tab 1, delayRender() [49m [90m[90m"Waiting for R3F to render frame 157" handle was cleared after 7697ms[39m[90m[39m
+[40m Tab 1, node_modules/its-fine/dist/index.js:64 [49m [31m[0mTypeError: fx.ink.dispose is not a function[0m[39m
+[31m[0m    at http://localhost:3000/bundle.js:83898:42[0m[39m
+[31m[0m    at Cg (http://localhost:3000/bundle.js:90639:252)[0m[39m
+[31m[0m    at Fg (http://localhost:3000/bundle.js:90641:302)[0m[39m
+[31m[0m    at Fh (http://localhost:3000/bundle.js:90686:386)[0m[39m
+[31m[0m    at Ch (http://localhost:3000/bundle.js:90675:185)[0m[39m
+[31m[0m    at Xc (http://localhost:3000/bundle.js:90535:245)[0m[39m
+[31m[0m    at Th (http://localhost:3000/bundle.js:90685:407)[0m[39m
+[31m[0m    at Nh (http://localhost:3000/bundle.js:90683:394)[0m[39m
+[31m[0m    at Eh (http://localhost:3000/bundle.js:90673:227)[0m[39m
+[31m[0m    at J (http://localhost:3000/bundle.js:90888:203)[0m[39m
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+Rendered 156/1740, time remaining: 1h 54m 9s
+
+Rendered 156/1740, time remaining: 1h 54m 9s
+[31mAn error occurred while rendering frame 157:[39m
+[31m[41m[37m TypeError [39m[31m[49m[39m [31mfx.ink.dispose is not a function[39m
+
+at [4msrc/videos/darkday/DarkDay.tsx:62[24m
+[90m60[39m │ [90m  tone: new ToneMappingEffect({ mode: ToneMappingMode.NEUTRAL }),[39m
+[90m61[39m │ [90m  grade: new GradeEffect(GRADES.day, GRADE_STRENGTH.day),[39m
+62 │   grain: new GrainEffect({ amount: 0.025, cellPx: 1.5 }), // film grain, OFF by default (inputProps post.grain): the reference measures no grain and it quadruples the file size
+[90m63[39m │ [90m}), [camera, scene]);[39m
+[90m64[39m │ [90museEffect(() => () => fx.ink.dispose(), [fx]);[39m
+[90m65[39m │ [90m// All toggles default on except grain (skill: no film grain); render the[39m
+
+[90mat Cg [94m(node_modules/react-reconciler/cjs/react-reconciler.production.min.js:142)[39m[90m[39m
+[90mat Fg [94m(node_modules/react-reconciler/cjs/react-reconciler.production.min.js:144)[39m[90m[39m
+[90mat Fh [94m(node_modules/react-reconciler/cjs/react-reconciler.production.min.js:189)[39m[90m[39m
+[90mat Ch [94m(node_modules/react-reconciler/cjs/react-reconciler.production.min.js:178)[39m[90m[39m
+[90mat Xc [94m(node_modules/react-reconciler/cjs/react-reconciler.production.min.js:38)[39m[90m[39m
+[90mat Th [94m(node_modules/react-reconciler/cjs/react-reconciler.production.min.js:188)[39m[90m[39m
+[90mat Nh [94m(node_modules/react-reconciler/cjs/react-reconciler.production.min.js:186)[39m[90m[39m
+[90mat Eh [94m(node_modules/react-reconciler/cjs/react-reconciler.production.min.js:176)[39m[90m[39m
+[90mat J [94m(node_modules/scheduler/cjs/scheduler.production.min.js:12)[39m[90m[39m
+[90mat R [94m(node_modules/scheduler/cjs/scheduler.production.min.js:13)[39m[90m[39m
+[90mCleaning up...[39m
+[90mCleanup job "Delete /tmp/remotion-webpack-bundle-zPMTi4" done[39m
+[90mCleanup job "Cleanup bundle" done[39m
+[90mCleanup job "Closing browser instance" done[39m
+[90mCleanup job "Close server" done[39m
+[90mCleanup job "Delete /tmp/react-motion-renderehylOI" done[39m
+[90mCleanup done in 154ms[39m
+[90mTrying to kill browser process group -4313[39m
