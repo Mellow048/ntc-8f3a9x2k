@@ -21,33 +21,33 @@ export class World {
   const worker=(x:number,z:number,i=0)=>{const a=new Character(p,x,z,{jacket:['#c17b3c','#6d8b78','#8a697d'][i%3],pants:'#3b4653',boots:'#35333a',hat:i===1?'hair':'cap',cap:i===0?'#dfbb50':'#bdc4c4',hair:i===1?'#573a30':'#333b43',skin:'#e9c9a5',build:i===2?'stout':'adult'});a.seed=11+i*13;a.root.scale.setScalar([1,.93,1.07][i%3]);this.actors.push(a);return a;};
   if(['lake','rig','sinking','return'].includes(place)){
    shoreline(p);const water=new LakeWater(p);const tower=rig(p);const boats=Array.from({length:11},(_,i)=>barge(p,i));
-   const lead=worker(2,1,0);tower.root.add(lead.root);lead.root.position.set(2,1.15,1);const other=worker(-2,1,1);tower.root.add(other.root);other.root.position.set(-2,1.15,1);
-   this.animations.push((s,f,u)=>{const t=f/30,calm=place==='rig',returning=place==='return';const q=place==='sinking'?smooth((f-617)/99):place==='lake'? .65+u*.25:0;const depth=calm?0:returning?.05:1;water.update(t,depth,calm?.35:1.4);
-    tower.root.visible=!returning;tower.root.position.set(Math.sin(t*.7)*.08,-q*9,0);tower.root.rotation.z=q*.55;tower.root.rotation.x=q*.18;tower.pipe.rotation.y=f*.12;
+   const seal=cyl(p,0,-.15,0,.42,.2,new T.MeshBasicMaterial({color:'#286879'}));seal.visible=place==='return';const lead=worker(2,1,0);tower.root.add(lead.root);lead.root.position.set(2,1.15,1);const other=worker(-2,1,1);tower.root.add(other.root);other.root.position.set(-2,1.15,1);
+   this.animations.push((s,f,u)=>{const t=f/30,calm=place==='rig',returning=place==='return';const q=place==='sinking'?smooth((f-617)/99):place==='lake'? .12+u*.3:0;const depth=calm||returning?0:1;water.update(t,depth,calm?.35:1.4);
+    tower.root.visible=!returning;tower.root.position.set(Math.sin(t*.7)*.08,-q*20,0);tower.root.rotation.z=q*.55;tower.root.rotation.x=q*.18;tower.pipe.rotation.y=f*.12;
     lead.expr=calm?'neutral':'shock';other.expr=calm?'neutral':'nervous';lead.wave=calm?undefined:.8;other.wave=calm?undefined:.6;lead.lean=calm?Math.sin(t*4)*2:-12;lead.root.visible=calm;other.root.visible=calm;
     boats.forEach((b,i)=>{const ang=i/11*Math.PI*2+t*(calm?.025:.25);let r=12+(i%3)*2.5;
-     if(place==='sinking')r=Math.max(.4,r-(u*15+i*.15));if(returning)r=8+i*.9;
-     const x=Math.cos(ang)*r,z=Math.sin(ang)*r;b.visible=!returning||i<9;b.position.set(x,water.height(x,z,t,depth)+(returning?-.15-(1-smooth(u))*3:0),z);b.rotation.set(Math.sin(t*1.6+i)*.045+(!calm&&!returning?clamp((7-r)/7)*.65:0),-ang,(!calm&&!returning?clamp((7-r)/7)*.6:Math.sin(t+i)*.035));
+     if(place==='sinking')r=Math.max(.4,r-(u*18+i*.15));if(returning)r=8+i*.9;
+     const x=Math.cos(ang)*r,z=Math.sin(ang)*r;b.visible=!returning||i<9;b.position.set(x,water.height(x,z,t,depth)+(returning?-.15-(1-smooth((f-965)/45))*2.3:-clamp((1.5-r)/1.5)*3),z);b.rotation.set(Math.sin(t*1.6+i)*.045+(!calm&&!returning?clamp((7-r)/7)*.65:0),-ang,(!calm&&!returning?clamp((7-r)/7)*.6:Math.sin(t+i)*.035));
     });
    });
   }else if(['section','breach','lost'].includes(place)){
-   const cut=mine(p);const top=box(p,0,.1,0,24,.12,6,material('section-water','#6fadb7'));const small=rig(p);small.root.scale.setScalar(.45);small.root.position.set(0,.1,1);
+   const cut=mine(p);const top=box(p,0,.1,0,24,.12,6,new T.MeshBasicMaterial({color:'#398ca8'}));const small=rig(p);small.root.scale.setScalar(.45);small.root.position.set(0,.1,1);
    const stream=cyl(p,0,-3,1,.4,7,material('mine-water','#72b8c8'));stream.userData.dynamic=true;
    const droplets:T.Mesh[]=[];for(let i=0;i<18;i++){const d=sphere(p,0,0,0,.06,material('mine-droplet','#a8d3d9'));d.userData.dynamic=true;droplets.push(d);}
-   const flood=box(p,0,-7.6,1,20,.12,6,material('mine-flood','#508eaa'));flood.userData.dynamic=true;
-   this.animations.push((s,f,u)=>{const breached=place==='breach',lost=place==='lost';const q=breached?smooth((f-393)/35):lost?1:0;cut.drill.position.y=1.8-q*2;cut.drill.rotation.y=f*.25;cut.bit.position.y=-2.3-q*2;cut.bit.rotation.y=f*.25;cut.bit.visible=!lost;cut.drill.visible=!lost;small.root.visible=!lost;stream.visible=q>0;stream.scale.set(q,1,q);flood.position.y=-7.6+q*(lost?4.1:1.8);droplets.forEach((d,i)=>{d.visible=breached&&q>0;const v=((f+i*7)%40)/40;d.position.set(Math.sin(i*2.3)*q*.9,-1-v*6,1+Math.cos(i*2.4)*q*.6);});});
+   const flood=box(p,0,-7.6,1,20,.12,6,new T.MeshBasicMaterial({color:'#347894'}));flood.userData.dynamic=true;
+   this.animations.push((s,f,u)=>{const breached=place==='breach',lost=place==='lost';const q=breached?smooth((f-393)/35):lost?1:0;cut.drill.position.y=1.8-q*2;cut.drill.rotation.y=f*.25;cut.bit.position.y=-2.3-q*2;cut.bit.rotation.y=f*.25;cut.bit.visible=!lost;cut.drill.visible=!lost;small.root.visible=!lost;stream.visible=q>0;stream.scale.set(q,1,q);flood.visible=q>0;flood.position.y=-7.6+q*(lost?4.1:1.8);droplets.forEach((d,i)=>{d.visible=breached&&q>0;const v=((f+i*7)%40)/40;d.position.set(Math.sin(i*2.3)*q*.9,-1-v*6,1+Math.cos(i*2.4)*q*.6);});});
   }else if(place==='drain'){
    const plug=bathtub(p);const water=new LakeWater(p,1.1);water.mesh.scale.set(1.5,.08,1);water.mesh.position.y=.9;const chain:T.Mesh[]=[];for(let i=0;i<7;i++){const r=new T.Mesh(new T.TorusGeometry(.04,.009,4,12),iron());r.userData.dynamic=true;p.add(r);chain.push(r);}
-   this.animations.push((s,f,u)=>{const q=smooth(u);plug.position.set(.7*q,.8+q*1.4,0);plug.rotation.z=q*.4;water.update(f/30,q,1);water.mesh.position.y=.9-q*.16;chain.forEach((r,i)=>r.position.set(.7*q*i/7,.9+q*1.4*i/7,0));});
+   this.animations.push((s,f,u)=>{const q=smooth(u);plug.position.set(.7*q,.8+q*1.4,0);plug.rotation.z=q*.4;water.update(f/30,q*.18,1);water.mesh.position.y=.9-q*.16;chain.forEach((r,i)=>r.position.set(.7*q*i/7,.9+q*1.4*i/7,0));});
   }else if(place==='canal'){
    for(const x of [-7,7]){box(p,x,-.2,-9,8,.5,65,material('canal-bank','#8a9a72',rep(stoneHD(),4,12)));for(let i=0;i<6;i++){bar(p,V(x,0,-i*7),V(x,3,-i*7),.13,timber());sphere(p,x,3.7,-i*7,1.7,material('canal-leaves','#658469'));}}
    const water=new CanalWater(p);const foam:T.Mesh[]=[];for(let i=0;i<30;i++){const m=box(p,Math.sin(i*3)*2.2,.07,-i*2,.025,.015,.6+(i%3)*.25,material('canal-foam','#bfd5d2'));m.userData.dynamic=true;foam.push(m);}
    const arrow=new T.Group();arrow.userData.dynamic=true;p.add(arrow);box(arrow,0,.1,0,.22,.03,2,material('flow-arrow','#e5d9a7'));for(const x of [-1,1]){const h=box(arrow,x*.34,.1,-.8,.14,.03,1,material('flow-arrow','#e5d9a7'));h.rotation.y=x*.8;}
-   this.animations.push((s,f,u)=>{const reversed=f>=746;water.update(f/30,reversed?-1:1);arrow.rotation.y=reversed?Math.PI:0;arrow.position.z=-6;foam.forEach((m,i)=>m.position.z=-30+((i*2+(reversed?-2*746/30+3*(f-746)/30:-2*f/30))%55+55)%55);});
+   this.animations.push((s,f,u)=>{const reversed=f>=746;water.update(f/30,reversed?1:-1);arrow.rotation.y=reversed?Math.PI:0;arrow.position.z=-6;foam.forEach((m,i)=>m.position.z=-30+((i*2+(reversed?-2*746/30+3*(f-746)/30:-2*f/30))%55+55)%55);});
   }else if(place==='escape'){
    box(p,0,-.2,0,26,.35,22,material('safe-ground','#a8ad8b',rep(stoneHD(),7,7)));box(p,-3,1.8,-3,5,3.8,.5,stone());box(p,-3,1.4,-2.6,2.1,3,.15,material('mine-opening','#303b48'));for(const x of [-4.4,-1.6])box(p,x,1.6,-2.4,.22,3.2,.3,timber());box(p,-3,3.2,-2.4,3,.25,.3,timber());
    const people=[worker(-2.5,-1.6,0),worker(-3,-3,1),worker(-3.5,-4.5,2)];const cart=box(p,-4,.5,-1,1.2,.7,1.6,steel());for(const x of [-4.65,-3.35])for(const z of [-1.6,-.4]){const w=cyl(p,x,.22,z,.2,.12,iron());w.rotation.z=Math.PI/2;}
-   this.animations.push((s,f,u)=>people.forEach((a,i)=>{a.walk=true;a.expr='neutral';a.root.position.set(-2.5+u*(3.4-i*.3),0,-1.6-i*1.3+u*2.4);a.wave=i===0?.35:undefined;a.lean=-3+Math.sin(f*.14+i)*2;}));
+   this.animations.push((s,f,u)=>people.forEach((a,i)=>{const e=clamp((f-861)/101);a.walk=true;a.expr='neutral';a.root.position.set(-2.5+e*[4.3,2.2,.2][i],0,-1.6-i+e*(3+i*.9));a.wave=i===0?.35:undefined;a.lean=-3+Math.sin(f*.14+i)*2;}));
   }
   batchStatic(this.root);
  }
