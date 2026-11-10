@@ -148,7 +148,8 @@ function airport(g:THREE.Group,mode:string):Tick {
  if(mode==='clay'||mode==='sink'){box(g,8,1.35,3.7,'#a56e62',0,.0,.01);for(let x=-3;x<=3;x+=1){box(g,.06,1,.06,'#e8d1ab',x,-.05,2);}}
  if(mode==='build'){const boat=group(g,-3,.5,3);box(boat,1.8,.35,.7,'#b56546',0,0,0);box(boat,.6,.35,.6,'#f4e8d4',-.4,.32,0);}
  if(mode==='seawall'){for(const x of [-4,4])box(g,.35,2.1,4.1,'#9da9a7',x,1.1,0);}
- return f=>{const t=f/30;island.position.y=(mode==='sink'||mode==='clay')?-.35*(.5+.5*Math.sin(t*.5)):0;a.position.x=-2.2+((t*.45)%4.4);worker.rotation.z=.025*Math.sin(t*2);};
+ // Oscillate continuously instead of wrapping the aircraft across the screen.
+ return f=>{const t=f/30;island.position.y=(mode==='sink'||mode==='clay')?-.35*(.5+.5*Math.sin(t*.5)):0;a.position.x=2.1*Math.sin(t*.30);worker.rotation.z=.025*Math.sin(t*2);};
 }
 function jack(g:THREE.Group):Tick {
  sceneBase(g,'interior');box(g,8,.4,3,'#777782',0,.15,0);box(g,8,.65,3,'#e1d4b7',0,4.3,0);
