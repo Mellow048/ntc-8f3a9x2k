@@ -1,6 +1,6 @@
 # "Nvidia's CEO and the Suspected Spy" — SCRIPT
 
-**Status (2026-11-10):** script approved (narration v5) · voice chosen by the user and locked · picture, graphics and sound built · rendered on GitHub Actions at 720 × 1280: __RENDER__
+**Status (2026-11-10):** script approved (narration v5) · voice chosen by the user and locked · picture, graphics and sound built · rendered on GitHub Actions at 720 × 1280 and committed as `final-720p.mp4` (details under Render) · technically checked, finished picture reviewed on contact sheets · **not yet approved by the user, and nobody has listened to the sound**
 
 ## Researched facts and sources
 
@@ -115,4 +115,22 @@ Sound was judged with meters only (loudness, true peak, level of the music again
 gh workflow run render-short.yml --ref <branch> -f composition=NvidiaShort
 ```
 
-Result: __RESULT__
+A full run takes 8 to 11 minutes (plan about 1 minute, the 20 parts about 5 minutes each in parallel, stitching and checks about 1 minute). When only the sound changed, add `-f parts_from=<run id>`: the picture of that run is reused and the run takes about 2 minutes. Parts are kept for 3 days.
+
+### Result
+
+**`final-720p.mp4`, commit `56cbf5b2b4399c53cfb0a4aef7c2161429ee1e3d`, run `42918009608`.**
+[Open it on GitHub](https://github.com/Mellow048/ntc-8f3a9x2k/blob/56cbf5b2b4399c53cfb0a4aef7c2161429ee1e3d/shoots/nvidia-honeypot/final-720p.mp4)
+
+- 720 × 1280, 30 fps, 2075 frames, 69.17 s, H.264 about 5.8 Mb/s with AAC 48 kHz stereo, 51,611,759 bytes.
+- Finished file: −14.6 LUFS integrated, true peak −1.8 dBFS, loudness range 1.6 LU. No silent stretch, no black frame, no unplanned white frame, no frozen stretch. `qa-report.md` beside the film is the full report.
+
+What was checked on the finished file, and how:
+
+- Size, frame rate, frame count and length, read from the file.
+- The sound in the file is `audio/mix.wav` and starts on frame 0 (the two line up at an offset of 0 samples).
+- Picture: 139 frames (every 15th) on six contact sheets, plus the two shots that were corrected and the last frame at full size. Every caption on them is on one line and clear of faces, signs and props.
+- The three frame jumps the first report of this render listed (frames 658, 988 and 1801) are caption changes. The list of expected caption frames in `qa-shots.json` was one frame early for captions that follow each other without a gap; it is corrected and the report was written again from the same picture.
+- Not checked: nobody has listened to the film, and nobody has watched it in motion. The sound was judged from measurements, the picture from still frames.
+
+Earlier render, replaced: commit `b00addc`, run `42910502857` (2041 frames, 68.03 s). Its music was 10.5 LU under the voice, one caption wrapped onto two lines over the Congress members, and a nameplate sat under a caption.

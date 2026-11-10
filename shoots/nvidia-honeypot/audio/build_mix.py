@@ -505,14 +505,20 @@ def planned_changes():
     """Frame ranges where the picture is meant to jump, for the render check: the frame a caption changes on, and the
     ten frames in which a graphic that has a sound arrives (a stamp lands, a card pops, somebody hops). Hard cuts are
     in the shot list. Everything else that jumps is a defect and gets reported."""
-    out = []
+    out, caps = [], []
     i = 0
-    while i < len(WORDS):                                         # same grouping as Captions.tsx
+    while i < len(WORDS):                                         # same grouping and timing as Captions.tsx
         a, b = WORDS[i], WORDS[i + 1] if i + 1 < len(WORDS) else None
         pair = bool(b) and not a["ends_sentence"] and a["word"].lower() != "quote" and b["start"] - a["end"] < 0.16 and len(a["word"]) + len(b["word"]) <= 15
-        f = int(np.ceil(max(0.0, a["start"] - 0.03) * FPS - 1e-9))
-        out.append([f, f])
         i += 2 if pair else 1
+        last, nxt = (b if pair else a), WORDS[i] if i < len(WORDS) else None
+        caps.append((max(0.0, a["start"] - 0.03), nxt["start"] if nxt and nxt["start"] - last["end"] < 0.3 else last["end"] + 0.14))
+    first = lambda t: int(np.ceil(t * FPS - 1e-9))                # first frame at or after time t
+    for k, (start, end) in enumerate(caps):                       # a caption waits for the one before it to end
+        on = first(max(start, caps[k - 1][1]) if k else start)
+        out.append([on, on])
+        if k + 1 == len(caps) or caps[k + 1][0] > end:            # it goes away before the next one comes
+            out.append([first(end), first(end)])
     for t, name, _ in EVENTS:
         if name in GRAPHIC_SOUNDS:
             f = int(round(t * FPS))
