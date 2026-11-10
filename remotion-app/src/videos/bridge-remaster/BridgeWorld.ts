@@ -11,7 +11,7 @@ type Shot = {start:number; kind:string; cam:V; target:V; fov:number};
 const SHOTS:Shot[]=[
  {start:0,kind:'joint',cam:[1.6,7,4.7],target:[0,2.6,0],fov:40},
  {start:77,kind:'hero',cam:[1.6,4.3,6.1],target:[1,3.8,1.7],fov:38},
- {start:188,kind:'bridge',cam:[8.2,7.2,15],target:[0,2.9,0],fov:43},
+ {start:188,kind:'bridge',cam:[12,8.4,15],target:[4.8,3.7,0],fov:43},
  {start:270,kind:'warm',cam:[3.7,6.5,4.1],target:[0,2.6,0],fov:43},
  {start:325,kind:'cool',cam:[-3.7,6.5,4.1],target:[0,2.6,0],fov:43},
  {start:380,kind:'traffic',cam:[2.3,5,11],target:[0,3,0],fov:43},
@@ -27,7 +27,7 @@ const SHOTS:Shot[]=[
  {start:1470,kind:'bearing',cam:[4,5.5,9.5],target:[0,2.4,0],fov:42},
  {start:1565,kind:'traffic',cam:[1,5.2,10],target:[0,3,0],fov:43},
  {start:1665,kind:'hero',cam:[1.6,4.3,6.1],target:[1,3.8,1.7],fov:38},
- {start:1740,kind:'bridge',cam:[7.2,6.8,13.2],target:[0,2.8,0],fov:43},
+ {start:1740,kind:'bridge',cam:[12,8.1,15],target:[4.8,3.7,0],fov:43},
 ];
 const mats=new Map<string,THREE.MeshLambertMaterial>();
 function material(color:string){if(!mats.has(color)) mats.set(color,new THREE.MeshLambertMaterial({color}));return mats.get(color)!;}
@@ -99,6 +99,9 @@ function road(g:THREE.Group,assets:BridgeAssets,opts:{hero?:boolean;engineer?:bo
   for(let j=0;j<20;j++)box(deck,.55,.012,.045,'#e9e6d7',side*(.42+j*1.08),2.54,0);
   for(const z of [-1.95,1.95]){box(deck,22,.37,.08,'#687a83',x,1.98,z);box(deck,22,.055,.15,'#c9ceca',x,1.75,z);}
  }
+ // Pier and bearing seats support the ends of BOTH deck spans at the joint.
+ box(g,1.1,2.1,3.3,'#a3a9a1',0,.75,0);box(g,1.55,.24,3.5,'#bec2b8',0,1.88,0);
+ for(const x of [-.42,.42]){box(g,.65,.13,1.4,'#5f6b6e',x,2.06,0);box(g,.62,.08,1.4,'#c4c9c0',x,2.14,0);}
  // Main towers are paired columns, cross-members and base plates, not decorative blocks.
  for(const x of [-7.5,7.5]){
   box(g,1.3,.7,5,'#a8a9a0',x,.12,0);
@@ -126,7 +129,7 @@ function road(g:THREE.Group,assets:BridgeAssets,opts:{hero?:boolean;engineer?:bo
  for(let i=0;i<14;i++){const z=-1.52+i*.23;box(g,.37,.045,.105,'#9da8a9',-.06,2.56,z);box(g,.37,.045,.105,'#bac0ba',.06,2.56,z+.115);}
  const cars=[car(g,assets,0,-4,-.65),car(g,assets,1,4,.65,true),car(g,assets,0,-13,-.65)];
  const person=opts.hero?actor(g,1,2.64,2.35,opts.engineer?'engineer':'hero',1.18,opts.engineer?'grin':'nervous'):undefined;
- return (frame:number)=>{const t=frame/30;cars[0].position.x=-9+t*.9;cars[1].position.x=9-t*.72;cars[2].position.x=-16+t*.8;if(person)person.animate(frame);};
+ return (frame:number)=>{const t=frame/30;cars[0].position.x=-2.6+t*.9;cars[1].position.x=3-t*.72;cars[2].position.x=-7+t*.8;if(person)person.animate(frame);};
 }
 function closeup(g:THREE.Group,kind:string){
  sky(g,kind==='cool');
@@ -138,14 +141,15 @@ function closeup(g:THREE.Group,kind:string){
   box(g,.5,.08,6.1,'#303849',0,2.54,0);for(let z=-3.0;z<3.1;z+=.25)box(g,.46,.035,.035,'#68787d',0,2.59,z);
  }else{
   // Tapered, interleaved steel fingers; the actual void remains visible between tips.
+  box(g,.55,.03,6.2,'#293a42',0,2.57,0);
   box(l,.25,.07,6.2,'#9da5a2',-.25,2.59,0);box(r,.25,.07,6.2,'#afb6b1',.25,2.59,0);
   const tooth=(parent:THREE.Group,side:number,z:number)=>{
    const shape=new THREE.Shape();const root=side*.30,tip=-side*.16;
-   shape.moveTo(root,-z-.09);shape.lineTo(tip,-z-.055);shape.lineTo(tip,-z+.055);shape.lineTo(root,-z+.09);shape.closePath();
+   shape.moveTo(root,-z-.07);shape.lineTo(tip,-z-.045);shape.lineTo(tip,-z+.045);shape.lineTo(root,-z+.07);shape.closePath();
    const geo=new THREE.ExtrudeGeometry(shape,{depth:.055,bevelEnabled:false});geo.rotateX(-Math.PI/2);
    mesh(parent,geo,side<0?'#a5afad':'#b9c2bb',0,2.61,0);
   };
-  for(let i=0;i<28;i++){let z=-3+i*.22;tooth(l,-1,z);tooth(r,1,z+.11);}
+  for(let i=0;i<22;i++){let z=-3+i*.28;tooth(l,-1,z);tooth(r,1,z+.14);}
   for(const x of [-.40,.40])for(let z=-2.9;z<=3;z+=.32){cylinder(g,.025,.015,'#6f7b7d',x,2.67,z);}
 
  }
@@ -164,20 +168,28 @@ function ruler(g:THREE.Group,pressure:boolean){
  // Large glazed window has depth and mullions, and a light opening beyond it.
  box(g,4,2.6,.12,'#aac8d0',0,5.7,-3.77);for(const x of [-2,0,2])box(g,.09,2.7,.12,'#e6e6dc',x,5.7,-3.68);for(const y of [4.4,5.7,7])box(g,4.1,.08,.12,'#e6e6dc',0,y,-3.68);
  box(g,12,.45,5,'#a07d61',0,.2,0);texturedBox(g,12,.06,5,canvasTexture('workbench',c=>{const r=random(79);c.fillStyle='#b89470';c.fillRect(0,0,512,512);for(let i=0;i<110;i++){c.strokeStyle='rgba(87,53,36,.14)';c.lineWidth=1+r()*2;c.beginPath();c.moveTo(0,r()*512);c.lineTo(512,r()*512);c.stroke();}}),0,.45,0,[2,1]);
- for(const x of [-1.85,1.85]){box(g,.5,3.4,1.4,'#a65d50',x,1.95,0);for(let y=.65;y<3.5;y+=.55){box(g,.52,.025,1.42,'#d6a18b',x,y,0);for(let z=-.6;z<.7;z+=.55)box(g,.53,.53,.018,'#b76e56',x,y+.28,z);}}
+ const concrete=canvasTexture('concrete-fixture',c=>{const r=random(319);c.fillStyle='#b5b5a8';c.fillRect(0,0,512,512);for(let i=0;i<9000;i++){const v=Math.floor(100+r()*90);c.fillStyle=`rgba(${v},${v},${v},.10)`;c.fillRect(r()*512,r()*512,1+r()*2,1+r()*2);}});
+ for(const x of [-1.85,1.85]){texturedBox(g,.5,3.0,1.4,concrete,x,1.95,0);box(g,.67,.18,1.55,'#727f7d',x,.52,0);box(g,.58,.12,1.5,'#d3d3c3',x,3.5,0);for(const z of [-.48,.48])cylinder(g,.045,.05,'#586767',x,.64,z);}
+
  const parts:THREE.Mesh[]=[];for(let i=0;i<25;i++){const x=-1.57+i*.13;const seg=box(g,.135,.24,.58,'#b7bdba',x,2,0);parts.push(seg);box(seg,.018,.012,i%5===0?.19:.11,'#52636b',0,.13,.13);}
- actor(g,1.35,-.15,2.4,'engineer',1.3,pressure?'shock':'grin');
+ // No miniaturised person on the benchtop: the scale is carried by the fixtures and tools.
+ box(g,.7,.08,.4,'#75848b',-2.45,.51,1.2);rod(g,[-2.8,.58,1.2],[-2.1,.58,1.2],.035,'#acb9b9');
  // Heater beneath the ruler only appears in the heating/pressure shot.
  if(pressure){box(g,1,.14,.7,'#545f62',0,.62,0);for(let i=0;i<6;i++){const heater=rod(g,[-.42+i*.17,.73,-.18],[-.42+i*.17,.73,.18],.035,'#e87c4f');}}
  return (f:number)=>{const u=pressure?Math.min(1,f/70):0;parts.forEach((p,i)=>{p.position.y=2+u*.5*Math.sin(Math.PI*i/24);p.rotation.z=u*.22*Math.cos(Math.PI*i/24);});};
 }
 function bearing(g:THREE.Group){
- sky(g);const top=grp(g);box(top,5,.45,2.8,'#84929b',0,3.4,0);box(top,5,.12,2.8,'#5c6975',0,3.68,0);
- box(top,2,.18,1.6,'#d5dad5',0,3.07,0);box(g,2,.18,1.6,'#d5dad5',0,1.5,0);
- for(let i=0;i<6;i++)box(top,1.7,.2,1.4,i%2?'#9eaeb4':'#455461',0,1.7+i*.22,0);
- box(g,2.3,1,1.8,'#d48c6b',0,.9,0);for(const x of [-.8,.8]){cylinder(g,.08,.12,'#55606c',x,1.65,.55);}
- actor(g,2.5,.45,1.8,'engineer',.85,'grin');
- return (f:number)=>{top.position.x=.2*Math.sin(f/28);};
+ sky(g);const top=grp(g);
+ // Road girder and bearing sit on a full concrete pier which continues below the water line.
+ texturedBox(top,10,.12,3.5,asphaltTexture(),0,3.7,0,[2,1]);box(top,10,.42,3.5,'#8e9b9c',0,3.4,0);
+ for(const z of [-1.55,1.55]){box(top,10,.35,.10,'#596f77',0,3.04,z);box(top,10,.06,.18,'#bdc7c0',0,2.85,z);}
+ box(top,2.2,.16,1.9,'#9ea9a7',0,2.83,0);
+ for(let i=0;i<5;i++)box(top,1.9,.12,1.55,i%2?'#bbc4bb':'#4c5a5c',0,2.38+i*.13,0);
+ box(g,2.4,.18,1.9,'#717d7b',0,2.22,0);box(g,3.5,.25,2.6,'#b8bcb2',0,2.02,0);
+ box(g,2.8,3.4,2.1,'#a9ada3',0,.2,0);box(g,3.1,.25,2.4,'#919b96',0,.05,0);
+ for(const x of [-.85,.85])for(const z of [-.63,.63])cylinder(g,.06,.06,'#4c5a5d',x,2.34,z);
+ for(const z of [-1.62,1.62]){rod(top,[-4,4.03,z],[4,4.03,z],.04,'#bfc8bf');for(let x=-4;x<=4;x+=.6)rod(top,[x,3.78,z],[x,4.03,z],.025,'#a4b4ac');}
+ return (f:number)=>{top.position.x=.15*Math.sin(f/28);};
 }
 export class BridgeWorld {
  root=new THREE.Group(); stages:Stage[]; focus=new THREE.Vector3();
