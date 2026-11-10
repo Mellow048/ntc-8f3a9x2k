@@ -1,5 +1,8 @@
 name: Lake audio and ending polish — no 3D render
 on:
+  push:
+    branches: [arena/044538ca-ntc-8f3a9x2k]
+    paths: ['.github/workflows/lake-polish.yml', 'scripts/lake-polish/**']
   workflow_dispatch:
 permissions:
   contents: write
