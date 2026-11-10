@@ -1,0 +1,547 @@
+[
+  {
+    "word": "he",
+    "start": 0.09,
+    "end": 0.24
+  },
+  {
+    "word": "survived",
+    "start": 0.24,
+    "end": 0.79
+  },
+  {
+    "word": "an",
+    "start": 0.79,
+    "end": 0.87
+  },
+  {
+    "word": "atomic",
+    "start": 0.87,
+    "end": 1.25
+  },
+  {
+    "word": "bomb",
+    "start": 1.25,
+    "end": 1.68
+  },
+  {
+    "word": "then",
+    "start": 2.02,
+    "end": 2.27
+  },
+  {
+    "word": "he",
+    "start": 2.27,
+    "end": 2.38
+  },
+  {
+    "word": "went",
+    "start": 2.38,
+    "end": 2.62
+  },
+  {
+    "word": "home",
+    "start": 2.62,
+    "end": 2.92
+  },
+  {
+    "word": "to",
+    "start": 2.92,
+    "end": 3.01
+  },
+  {
+    "word": "nagasaki",
+    "start": 3.01,
+    "end": 3.75
+  },
+  {
+    "word": "in",
+    "start": 4.06,
+    "end": 4.18
+  },
+  {
+    "word": "august",
+    "start": 4.18,
+    "end": 4.56
+  },
+  {
+    "word": "nineteen",
+    "start": 4.56,
+    "end": 5.04
+  },
+  {
+    "word": "forty",
+    "start": 5.04,
+    "end": 5.35
+  },
+  {
+    "word": "five",
+    "start": 5.35,
+    "end": 5.86
+  },
+  {
+    "word": "tsutomu",
+    "start": 6.05,
+    "end": 6.64
+  },
+  {
+    "word": "yamaguchi",
+    "start": 6.64,
+    "end": 7.33
+  },
+  {
+    "word": "was",
+    "start": 7.33,
+    "end": 7.52
+  },
+  {
+    "word": "in",
+    "start": 7.52,
+    "end": 7.64
+  },
+  {
+    "word": "hiroshima",
+    "start": 7.64,
+    "end": 8.23
+  },
+  {
+    "word": "on",
+    "start": 8.23,
+    "end": 8.4
+  },
+  {
+    "word": "a",
+    "start": 8.4,
+    "end": 8.43
+  },
+  {
+    "word": "business",
+    "start": 8.43,
+    "end": 8.8
+  },
+  {
+    "word": "trip",
+    "start": 8.8,
+    "end": 9.13
+  },
+  {
+    "word": "when",
+    "start": 9.52,
+    "end": 9.66
+  },
+  {
+    "word": "the",
+    "start": 9.66,
+    "end": 9.74
+  },
+  {
+    "word": "bomb",
+    "start": 9.74,
+    "end": 9.96
+  },
+  {
+    "word": "exploded",
+    "start": 9.96,
+    "end": 10.65
+  },
+  {
+    "word": "he",
+    "start": 10.83,
+    "end": 10.95
+  },
+  {
+    "word": "suffered",
+    "start": 10.95,
+    "end": 11.41
+  },
+  {
+    "word": "terrible",
+    "start": 11.41,
+    "end": 11.88
+  },
+  {
+    "word": "burns",
+    "start": 11.88,
+    "end": 12.44
+  },
+  {
+    "word": "he",
+    "start": 12.67,
+    "end": 12.81
+  },
+  {
+    "word": "survived",
+    "start": 12.81,
+    "end": 13.28
+  },
+  {
+    "word": "the",
+    "start": 13.28,
+    "end": 13.35
+  },
+  {
+    "word": "night",
+    "start": 13.35,
+    "end": 13.75
+  },
+  {
+    "word": "then",
+    "start": 14.1,
+    "end": 14.29
+  },
+  {
+    "word": "travelled",
+    "start": 14.29,
+    "end": 14.67
+  },
+  {
+    "word": "home",
+    "start": 14.67,
+    "end": 14.95
+  },
+  {
+    "word": "by",
+    "start": 14.95,
+    "end": 15.1
+  },
+  {
+    "word": "train",
+    "start": 15.1,
+    "end": 15.54
+  },
+  {
+    "word": "home",
+    "start": 15.86,
+    "end": 16.33
+  },
+  {
+    "word": "was",
+    "start": 16.33,
+    "end": 16.51
+  },
+  {
+    "word": "nagasaki",
+    "start": 16.51,
+    "end": 17.23
+  },
+  {
+    "word": "three",
+    "start": 17.55,
+    "end": 17.9
+  },
+  {
+    "word": "days",
+    "start": 17.9,
+    "end": 18.24
+  },
+  {
+    "word": "after",
+    "start": 18.24,
+    "end": 18.51
+  },
+  {
+    "word": "hiroshima",
+    "start": 18.51,
+    "end": 19.11
+  },
+  {
+    "word": "a",
+    "start": 19.41,
+    "end": 19.49
+  },
+  {
+    "word": "second",
+    "start": 19.49,
+    "end": 19.94
+  },
+  {
+    "word": "atomic",
+    "start": 19.94,
+    "end": 20.32
+  },
+  {
+    "word": "bomb",
+    "start": 20.32,
+    "end": 20.7
+  },
+  {
+    "word": "struck",
+    "start": 20.7,
+    "end": 21.15
+  },
+  {
+    "word": "that",
+    "start": 21.15,
+    "end": 21.33
+  },
+  {
+    "word": "city",
+    "start": 21.33,
+    "end": 21.79
+  },
+  {
+    "word": "yamaguchi",
+    "start": 22.14,
+    "end": 22.77
+  },
+  {
+    "word": "survived",
+    "start": 22.77,
+    "end": 23.22
+  },
+  {
+    "word": "again",
+    "start": 23.22,
+    "end": 23.65
+  },
+  {
+    "word": "he",
+    "start": 24.12,
+    "end": 24.2
+  },
+  {
+    "word": "wasn't",
+    "start": 24.2,
+    "end": 24.49
+  },
+  {
+    "word": "the",
+    "start": 24.49,
+    "end": 24.61
+  },
+  {
+    "word": "only",
+    "start": 24.61,
+    "end": 24.86
+  },
+  {
+    "word": "person",
+    "start": 24.86,
+    "end": 25.25
+  },
+  {
+    "word": "to",
+    "start": 25.25,
+    "end": 25.35
+  },
+  {
+    "word": "experience",
+    "start": 25.35,
+    "end": 25.96
+  },
+  {
+    "word": "both",
+    "start": 25.96,
+    "end": 26.18
+  },
+  {
+    "word": "bombings",
+    "start": 26.18,
+    "end": 26.76
+  },
+  {
+    "word": "but",
+    "start": 27.0,
+    "end": 27.16
+  },
+  {
+    "word": "japan",
+    "start": 27.16,
+    "end": 27.7
+  },
+  {
+    "word": "later",
+    "start": 27.7,
+    "end": 28.05
+  },
+  {
+    "word": "officially",
+    "start": 28.05,
+    "end": 28.64
+  },
+  {
+    "word": "recognised",
+    "start": 28.64,
+    "end": 29.3
+  },
+  {
+    "word": "him",
+    "start": 29.3,
+    "end": 29.52
+  },
+  {
+    "word": "as",
+    "start": 29.52,
+    "end": 29.69
+  },
+  {
+    "word": "a",
+    "start": 29.69,
+    "end": 29.73
+  },
+  {
+    "word": "survivor",
+    "start": 29.73,
+    "end": 30.24
+  },
+  {
+    "word": "of",
+    "start": 30.24,
+    "end": 30.49
+  },
+  {
+    "word": "both",
+    "start": 30.49,
+    "end": 30.99
+  },
+  {
+    "word": "he",
+    "start": 31.24,
+    "end": 31.39
+  },
+  {
+    "word": "lived",
+    "start": 31.39,
+    "end": 31.67
+  },
+  {
+    "word": "to",
+    "start": 31.67,
+    "end": 31.75
+  },
+  {
+    "word": "ninety",
+    "start": 31.75,
+    "end": 32.07
+  },
+  {
+    "word": "three",
+    "start": 32.07,
+    "end": 32.51
+  },
+  {
+    "word": "and",
+    "start": 32.84,
+    "end": 32.99
+  },
+  {
+    "word": "spoke",
+    "start": 32.99,
+    "end": 33.35
+  },
+  {
+    "word": "out",
+    "start": 33.35,
+    "end": 33.62
+  },
+  {
+    "word": "against",
+    "start": 33.62,
+    "end": 33.9
+  },
+  {
+    "word": "nuclear",
+    "start": 33.9,
+    "end": 34.28
+  },
+  {
+    "word": "weapons",
+    "start": 34.28,
+    "end": 34.88
+  },
+  {
+    "word": "his",
+    "start": 35.23,
+    "end": 35.42
+  },
+  {
+    "word": "story",
+    "start": 35.42,
+    "end": 35.88
+  },
+  {
+    "word": "wasn't",
+    "start": 35.88,
+    "end": 36.29
+  },
+  {
+    "word": "about",
+    "start": 36.29,
+    "end": 36.53
+  },
+  {
+    "word": "being",
+    "start": 36.53,
+    "end": 36.82
+  },
+  {
+    "word": "lucky",
+    "start": 36.82,
+    "end": 37.29
+  },
+  {
+    "word": "it",
+    "start": 37.64,
+    "end": 37.75
+  },
+  {
+    "word": "was",
+    "start": 37.75,
+    "end": 37.91
+  },
+  {
+    "word": "about",
+    "start": 37.91,
+    "end": 38.23
+  },
+  {
+    "word": "making",
+    "start": 38.23,
+    "end": 38.6
+  },
+  {
+    "word": "sure",
+    "start": 38.6,
+    "end": 39.03
+  },
+  {
+    "word": "nobody",
+    "start": 39.03,
+    "end": 39.54
+  },
+  {
+    "word": "had",
+    "start": 39.54,
+    "end": 39.7
+  },
+  {
+    "word": "to",
+    "start": 39.7,
+    "end": 39.8
+  },
+  {
+    "word": "survive",
+    "start": 39.8,
+    "end": 40.39
+  },
+  {
+    "word": "the",
+    "start": 40.39,
+    "end": 40.48
+  },
+  {
+    "word": "same",
+    "start": 40.48,
+    "end": 40.84
+  },
+  {
+    "word": "horror",
+    "start": 40.84,
+    "end": 41.27
+  },
+  {
+    "word": "again",
+    "start": 41.27,
+    "end": 41.69
+  }
+]

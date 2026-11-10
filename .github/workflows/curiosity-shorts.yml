@@ -1,0 +1,76 @@
+name: Curiosity shorts — isolated 720p
+on:
+  push:
+    branches: [arena/044538ca-ntc-8f3a9x2k]
+    paths:
+      - '.github/workflows/curiosity-shorts.yml'
+      - 'remotion-app/src/curiosity/**'
+      - 'shoots/curiosity-*/**'
+      - 'scripts/curiosity/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: curiosity-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        slug: [beer, survivor, lake]
+    env:
+      REMOTION_TMP: ${{ github.workspace }}/.remotion-tmp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: remotion-app/package-lock.json
+      - name: Install renderer and browser
+        working-directory: remotion-app
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright@1.49.1 install --with-deps chromium
+          CHROME="$(find ~/.cache/ms-playwright -type f -name chrome | head -1)"
+          test -n "$CHROME"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Typecheck
+        working-directory: remotion-app
+        run: npx tsc --noEmit --resolveJsonModule
+      - name: Preview frames
+        working-directory: remotion-app
+        run: |
+          mkdir -p out/curiosity-${{ matrix.slug }}
+          for F in 45 210 420 720 990; do
+            npx remotion still src/curiosity/index.tsx Curiosity-${{ matrix.slug }} out/curiosity-${{ matrix.slug }}/frame-$F.png --frame=$F --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-${{ matrix.slug }}-previews
+          path: remotion-app/out/curiosity-${{ matrix.slug }}/*.png
+      - name: Render 720p on GitHub CPU
+        working-directory: remotion-app
+        run: |
+          npx remotion render src/curiosity/index.tsx Curiosity-${{ matrix.slug }} out/curiosity-${{ matrix.slug }}/silent.mp4 --width=720 --height=1280 --codec=h264 --crf=18 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000 --log=info
+      - name: Mix and mux exact length
+        run: |
+          FOLDER=shoots/curiosity-${{ matrix.slug }}
+          ffmpeg -y -i "$FOLDER/audio/premix.wav" -af loudnorm=I=-15:TP=-1.5:LRA=5 -ar 48000 "$FOLDER/audio/mix.wav"
+          ffmpeg -y -i remotion-app/out/curiosity-${{ matrix.slug }}/silent.mp4 -i "$FOLDER/audio/mix.wav" -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest remotion-app/out/curiosity-${{ matrix.slug }}/curiosity-${{ matrix.slug }}.mp4
+      - name: QA every frame
+        run: |
+          python -m pip install numpy pillow
+          python scripts/curiosity/qa.py ${{ matrix.slug }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: curiosity-${{ matrix.slug }}-720p
+          path: |
+            remotion-app/out/curiosity-${{ matrix.slug }}/curiosity-*.mp4
+            remotion-app/out/curiosity-${{ matrix.slug }}/qa/
+          if-no-files-found: warn
+          retention-days: 14

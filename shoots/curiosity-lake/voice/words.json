@@ -1,0 +1,507 @@
+[
+  {
+    "word": "a",
+    "start": 0.14,
+    "end": 0.22
+  },
+  {
+    "word": "drilling",
+    "start": 0.22,
+    "end": 0.64
+  },
+  {
+    "word": "crew",
+    "start": 0.64,
+    "end": 0.95
+  },
+  {
+    "word": "accidentally",
+    "start": 0.95,
+    "end": 1.66
+  },
+  {
+    "word": "helped",
+    "start": 1.66,
+    "end": 1.98
+  },
+  {
+    "word": "turn",
+    "start": 1.98,
+    "end": 2.21
+  },
+  {
+    "word": "a",
+    "start": 2.21,
+    "end": 2.26
+  },
+  {
+    "word": "lake",
+    "start": 2.26,
+    "end": 2.61
+  },
+  {
+    "word": "into",
+    "start": 2.61,
+    "end": 2.83
+  },
+  {
+    "word": "a",
+    "start": 2.83,
+    "end": 2.87
+  },
+  {
+    "word": "giant",
+    "start": 2.87,
+    "end": 3.25
+  },
+  {
+    "word": "drain",
+    "start": 3.25,
+    "end": 3.72
+  },
+  {
+    "word": "in",
+    "start": 4.14,
+    "end": 4.28
+  },
+  {
+    "word": "nineteen",
+    "start": 4.28,
+    "end": 4.72
+  },
+  {
+    "word": "eighty",
+    "start": 4.72,
+    "end": 5.28
+  },
+  {
+    "word": "an",
+    "start": 5.38,
+    "end": 5.47
+  },
+  {
+    "word": "oil",
+    "start": 5.47,
+    "end": 5.81
+  },
+  {
+    "word": "rig",
+    "start": 5.81,
+    "end": 6.1
+  },
+  {
+    "word": "was",
+    "start": 6.1,
+    "end": 6.28
+  },
+  {
+    "word": "drilling",
+    "start": 6.28,
+    "end": 6.65
+  },
+  {
+    "word": "beneath",
+    "start": 6.65,
+    "end": 6.98
+  },
+  {
+    "word": "louisiana's",
+    "start": 6.98,
+    "end": 7.71
+  },
+  {
+    "word": "lake",
+    "start": 7.71,
+    "end": 7.96
+  },
+  {
+    "word": "peigneur",
+    "start": 7.96,
+    "end": 8.44
+  },
+  {
+    "word": "under",
+    "start": 8.97,
+    "end": 9.18
+  },
+  {
+    "word": "the",
+    "start": 9.18,
+    "end": 9.28
+  },
+  {
+    "word": "lake",
+    "start": 9.28,
+    "end": 9.68
+  },
+  {
+    "word": "was",
+    "start": 9.68,
+    "end": 9.79
+  },
+  {
+    "word": "something",
+    "start": 9.79,
+    "end": 10.19
+  },
+  {
+    "word": "else",
+    "start": 10.19,
+    "end": 10.68
+  },
+  {
+    "word": "a",
+    "start": 11.07,
+    "end": 11.12
+  },
+  {
+    "word": "working",
+    "start": 11.12,
+    "end": 11.62
+  },
+  {
+    "word": "salt",
+    "start": 11.62,
+    "end": 11.94
+  },
+  {
+    "word": "mine",
+    "start": 11.94,
+    "end": 12.33
+  },
+  {
+    "word": "the",
+    "start": 12.68,
+    "end": 12.75
+  },
+  {
+    "word": "drilling",
+    "start": 12.75,
+    "end": 13.17
+  },
+  {
+    "word": "breached",
+    "start": 13.17,
+    "end": 13.5
+  },
+  {
+    "word": "the",
+    "start": 13.5,
+    "end": 13.56
+  },
+  {
+    "word": "mine",
+    "start": 13.56,
+    "end": 14.01
+  },
+  {
+    "word": "and",
+    "start": 14.31,
+    "end": 14.44
+  },
+  {
+    "word": "water",
+    "start": 14.44,
+    "end": 14.88
+  },
+  {
+    "word": "rushed",
+    "start": 14.88,
+    "end": 15.19
+  },
+  {
+    "word": "underground",
+    "start": 15.19,
+    "end": 15.83
+  },
+  {
+    "word": "think",
+    "start": 16.16,
+    "end": 16.48
+  },
+  {
+    "word": "of",
+    "start": 16.48,
+    "end": 16.6
+  },
+  {
+    "word": "pulling",
+    "start": 16.6,
+    "end": 16.95
+  },
+  {
+    "word": "the",
+    "start": 16.95,
+    "end": 17.02
+  },
+  {
+    "word": "plug",
+    "start": 17.02,
+    "end": 17.61
+  },
+  {
+    "word": "in",
+    "start": 17.61,
+    "end": 17.73
+  },
+  {
+    "word": "a",
+    "start": 17.73,
+    "end": 17.77
+  },
+  {
+    "word": "bathtub",
+    "start": 17.77,
+    "end": 18.37
+  },
+  {
+    "word": "except",
+    "start": 18.64,
+    "end": 18.98
+  },
+  {
+    "word": "this",
+    "start": 18.98,
+    "end": 19.15
+  },
+  {
+    "word": "drain",
+    "start": 19.15,
+    "end": 19.52
+  },
+  {
+    "word": "kept",
+    "start": 19.52,
+    "end": 19.73
+  },
+  {
+    "word": "getting",
+    "start": 19.73,
+    "end": 19.97
+  },
+  {
+    "word": "bigger",
+    "start": 19.97,
+    "end": 20.35
+  },
+  {
+    "word": "a",
+    "start": 20.62,
+    "end": 20.69
+  },
+  {
+    "word": "huge",
+    "start": 20.69,
+    "end": 21.03
+  },
+  {
+    "word": "whirlpool",
+    "start": 21.03,
+    "end": 21.56
+  },
+  {
+    "word": "swallowed",
+    "start": 21.56,
+    "end": 21.98
+  },
+  {
+    "word": "the",
+    "start": 21.98,
+    "end": 22.05
+  },
+  {
+    "word": "drilling",
+    "start": 22.05,
+    "end": 22.37
+  },
+  {
+    "word": "rig",
+    "start": 22.37,
+    "end": 22.79
+  },
+  {
+    "word": "and",
+    "start": 22.79,
+    "end": 22.97
+  },
+  {
+    "word": "eleven",
+    "start": 22.97,
+    "end": 23.3
+  },
+  {
+    "word": "barges",
+    "start": 23.3,
+    "end": 23.87
+  },
+  {
+    "word": "a",
+    "start": 24.11,
+    "end": 24.2
+  },
+  {
+    "word": "canal",
+    "start": 24.2,
+    "end": 24.63
+  },
+  {
+    "word": "even",
+    "start": 24.63,
+    "end": 24.89
+  },
+  {
+    "word": "reversed",
+    "start": 24.89,
+    "end": 25.3
+  },
+  {
+    "word": "direction",
+    "start": 25.3,
+    "end": 25.92
+  },
+  {
+    "word": "bringing",
+    "start": 26.11,
+    "end": 26.43
+  },
+  {
+    "word": "water",
+    "start": 26.43,
+    "end": 26.8
+  },
+  {
+    "word": "back",
+    "start": 26.8,
+    "end": 27.04
+  },
+  {
+    "word": "toward",
+    "start": 27.04,
+    "end": 27.4
+  },
+  {
+    "word": "the",
+    "start": 27.4,
+    "end": 27.47
+  },
+  {
+    "word": "disappearing",
+    "start": 27.47,
+    "end": 28.03
+  },
+  {
+    "word": "lake",
+    "start": 28.03,
+    "end": 28.43
+  },
+  {
+    "word": "remarkably",
+    "start": 28.77,
+    "end": 29.51
+  },
+  {
+    "word": "the",
+    "start": 29.51,
+    "end": 29.72
+  },
+  {
+    "word": "miners",
+    "start": 29.72,
+    "end": 30.07
+  },
+  {
+    "word": "escaped",
+    "start": 30.07,
+    "end": 30.62
+  },
+  {
+    "word": "and",
+    "start": 30.86,
+    "end": 31.03
+  },
+  {
+    "word": "nobody",
+    "start": 31.03,
+    "end": 31.38
+  },
+  {
+    "word": "died",
+    "start": 31.38,
+    "end": 31.86
+  },
+  {
+    "word": "as",
+    "start": 32.15,
+    "end": 32.33
+  },
+  {
+    "word": "the",
+    "start": 32.33,
+    "end": 32.41
+  },
+  {
+    "word": "lake",
+    "start": 32.41,
+    "end": 32.69
+  },
+  {
+    "word": "refilled",
+    "start": 32.69,
+    "end": 33.52
+  },
+  {
+    "word": "nine",
+    "start": 33.52,
+    "end": 33.83
+  },
+  {
+    "word": "of",
+    "start": 33.83,
+    "end": 33.92
+  },
+  {
+    "word": "those",
+    "start": 33.92,
+    "end": 34.15
+  },
+  {
+    "word": "barges",
+    "start": 34.15,
+    "end": 34.6
+  },
+  {
+    "word": "came",
+    "start": 34.6,
+    "end": 34.85
+  },
+  {
+    "word": "back",
+    "start": 34.85,
+    "end": 35.05
+  },
+  {
+    "word": "up",
+    "start": 35.05,
+    "end": 35.31
+  },
+  {
+    "word": "the",
+    "start": 35.31,
+    "end": 35.61
+  },
+  {
+    "word": "mine",
+    "start": 35.61,
+    "end": 36.03
+  },
+  {
+    "word": "did",
+    "start": 36.03,
+    "end": 36.19
+  },
+  {
+    "word": "not",
+    "start": 36.19,
+    "end": 36.6
+  }
+]
