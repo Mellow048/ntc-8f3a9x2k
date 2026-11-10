@@ -2,7 +2,7 @@
 
 ## Sources
 - [ScienceBlog, historical marker and university archive synthesis](https://scienceblog.com/t-lake-peigneur-barges-salt-mine-disaster/)
-- [UL Lafayette Special Collections, Lake Peigneur disaster photographs](https://library.louisiana.edu/)
+- [UL Lafayette Special Collections, Lake Peigneur disaster photographs](https://archives.louisiana.edu/repositories/2/resources/335)
 - [Federal investigation caveat reported by Ecoticias](https://www.ecoticias.com/en/louisianas-lake-peigneur-emptied-into-a-salt-mine-within-hours-in-1980-while-a-texaco-rig-drilled-on-the-lake-and-about-50-miners-escaped-but-federal-investigators-never-pinned-down-the-exact-caus/51892/)
 
 ## Fact boundaries
