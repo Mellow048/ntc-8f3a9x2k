@@ -20,3 +20,13 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+# python
+__pycache__/
+
+# our three shorts: CI needs only mix.wav + final voice.wav committed.
+# Stems are reproducible via templates/scripts/short_mix.py; rejected voice auditions stay on disk but out of git.
+shoots/*/audio/stem_*.wav
+shoots/darkday/voice/darkday_voice*.wav
+shoots/*/voice/*_v1.wav
+shoots/*/voice/*_v2.wav

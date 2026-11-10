@@ -1,0 +1,747 @@
+[
+  {
+    "word": "In",
+    "start": 0.09,
+    "end": 0.312
+  },
+  {
+    "word": "Siberia",
+    "start": 0.312,
+    "end": 0.905
+  },
+  {
+    "word": "there",
+    "start": 1.35,
+    "end": 1.685
+  },
+  {
+    "word": "is",
+    "start": 1.685,
+    "end": 1.852
+  },
+  {
+    "word": "a",
+    "start": 1.852,
+    "end": 1.964
+  },
+  {
+    "word": "town",
+    "start": 1.964,
+    "end": 2.243
+  },
+  {
+    "word": "where",
+    "start": 2.243,
+    "end": 2.578
+  },
+  {
+    "word": "minus",
+    "start": 2.578,
+    "end": 2.913
+  },
+  {
+    "word": "fifty",
+    "start": 2.913,
+    "end": 3.248
+  },
+  {
+    "word": "is",
+    "start": 3.248,
+    "end": 3.415
+  },
+  {
+    "word": "a",
+    "start": 3.415,
+    "end": 3.527
+  },
+  {
+    "word": "warm",
+    "start": 3.527,
+    "end": 3.806
+  },
+  {
+    "word": "day.",
+    "start": 3.806,
+    "end": 4.085
+  },
+  {
+    "word": "Oymyakon",
+    "start": 4.84,
+    "end": 5.665
+  },
+  {
+    "word": "population",
+    "start": 6.25,
+    "end": 6.848
+  },
+  {
+    "word": "five",
+    "start": 6.848,
+    "end": 7.12
+  },
+  {
+    "word": "hundred",
+    "start": 7.12,
+    "end": 7.555
+  },
+  {
+    "word": "coldest",
+    "start": 8.21,
+    "end": 8.59
+  },
+  {
+    "word": "permanently",
+    "start": 8.59,
+    "end": 9.16
+  },
+  {
+    "word": "inhabited",
+    "start": 9.16,
+    "end": 9.635
+  },
+  {
+    "word": "place",
+    "start": 9.635,
+    "end": 9.92
+  },
+  {
+    "word": "on",
+    "start": 9.92,
+    "end": 10.063
+  },
+  {
+    "word": "Earth.",
+    "start": 10.063,
+    "end": 10.395
+  },
+  {
+    "word": "Cars",
+    "start": 10.92,
+    "end": 11.206
+  },
+  {
+    "word": "run",
+    "start": 11.206,
+    "end": 11.434
+  },
+  {
+    "word": "all",
+    "start": 11.434,
+    "end": 11.662
+  },
+  {
+    "word": "night",
+    "start": 11.662,
+    "end": 12.005
+  },
+  {
+    "word": "because",
+    "start": 12.36,
+    "end": 12.684
+  },
+  {
+    "word": "if",
+    "start": 12.684,
+    "end": 12.806
+  },
+  {
+    "word": "the",
+    "start": 12.806,
+    "end": 12.968
+  },
+  {
+    "word": "engine",
+    "start": 12.968,
+    "end": 13.252
+  },
+  {
+    "word": "stops",
+    "start": 13.252,
+    "end": 13.495
+  },
+  {
+    "word": "the",
+    "start": 13.84,
+    "end": 14.032
+  },
+  {
+    "word": "oil",
+    "start": 14.032,
+    "end": 14.224
+  },
+  {
+    "word": "gives",
+    "start": 14.224,
+    "end": 14.513
+  },
+  {
+    "word": "up.",
+    "start": 14.513,
+    "end": 14.705
+  },
+  {
+    "word": "The",
+    "start": 15.11,
+    "end": 15.156
+  },
+  {
+    "word": "pipes",
+    "start": 15.156,
+    "end": 15.226
+  },
+  {
+    "word": "froze",
+    "start": 15.226,
+    "end": 15.296
+  },
+  {
+    "word": "decades",
+    "start": 15.296,
+    "end": 15.389
+  },
+  {
+    "word": "ago",
+    "start": 15.389,
+    "end": 15.435
+  },
+  {
+    "word": "so",
+    "start": 15.64,
+    "end": 15.895
+  },
+  {
+    "word": "water",
+    "start": 15.895,
+    "end": 16.404
+  },
+  {
+    "word": "arrives",
+    "start": 16.404,
+    "end": 17.083
+  },
+  {
+    "word": "the",
+    "start": 17.083,
+    "end": 17.422
+  },
+  {
+    "word": "old",
+    "start": 17.422,
+    "end": 17.762
+  },
+  {
+    "word": "fashioned",
+    "start": 17.762,
+    "end": 18.611
+  },
+  {
+    "word": "way.",
+    "start": 18.611,
+    "end": 19.035
+  },
+  {
+    "word": "Schools",
+    "start": 19.9,
+    "end": 20.362
+  },
+  {
+    "word": "close",
+    "start": 20.362,
+    "end": 20.709
+  },
+  {
+    "word": "only",
+    "start": 20.709,
+    "end": 20.998
+  },
+  {
+    "word": "below",
+    "start": 20.998,
+    "end": 21.345
+  },
+  {
+    "word": "minus",
+    "start": 21.345,
+    "end": 21.692
+  },
+  {
+    "word": "fifty",
+    "start": 21.692,
+    "end": 22.038
+  },
+  {
+    "word": "five.",
+    "start": 22.038,
+    "end": 22.385
+  },
+  {
+    "word": "Eyelashes",
+    "start": 22.91,
+    "end": 23.501
+  },
+  {
+    "word": "freeze",
+    "start": 23.501,
+    "end": 23.915
+  },
+  {
+    "word": "mid",
+    "start": 23.915,
+    "end": 24.151
+  },
+  {
+    "word": "blink.",
+    "start": 24.151,
+    "end": 24.565
+  },
+  {
+    "word": "And",
+    "start": 25.45,
+    "end": 25.631
+  },
+  {
+    "word": "the",
+    "start": 25.631,
+    "end": 25.812
+  },
+  {
+    "word": "laundry",
+    "start": 25.812,
+    "end": 26.175
+  },
+  {
+    "word": "it",
+    "start": 26.57,
+    "end": 26.725
+  },
+  {
+    "word": "drops",
+    "start": 26.725,
+    "end": 27.035
+  },
+  {
+    "word": "it",
+    "start": 27.42,
+    "end": 27.601
+  },
+  {
+    "word": "freezes",
+    "start": 27.601,
+    "end": 28.085
+  },
+  {
+    "word": "it",
+    "start": 28.48,
+    "end": 28.67
+  },
+  {
+    "word": "is",
+    "start": 28.67,
+    "end": 28.859
+  },
+  {
+    "word": "dry.",
+    "start": 28.859,
+    "end": 29.175
+  },
+  {
+    "word": "Probably.",
+    "start": 29.69,
+    "end": 30.165
+  },
+  {
+    "word": "In",
+    "start": 30.51,
+    "end": 30.951
+  },
+  {
+    "word": "1933",
+    "start": 30.951,
+    "end": 31.685
+  },
+  {
+    "word": "somebody",
+    "start": 32.3,
+    "end": 32.772
+  },
+  {
+    "word": "recorded",
+    "start": 32.772,
+    "end": 33.243
+  },
+  {
+    "word": "minus",
+    "start": 33.243,
+    "end": 33.558
+  },
+  {
+    "word": "sixty",
+    "start": 33.558,
+    "end": 33.872
+  },
+  {
+    "word": "seven",
+    "start": 33.872,
+    "end": 34.187
+  },
+  {
+    "word": "point",
+    "start": 34.187,
+    "end": 34.501
+  },
+  {
+    "word": "seven",
+    "start": 34.501,
+    "end": 34.816
+  },
+  {
+    "word": "degrees",
+    "start": 34.816,
+    "end": 35.235
+  },
+  {
+    "word": "a",
+    "start": 35.84,
+    "end": 35.921
+  },
+  {
+    "word": "Guinness",
+    "start": 35.921,
+    "end": 36.287
+  },
+  {
+    "word": "record",
+    "start": 36.287,
+    "end": 36.572
+  },
+  {
+    "word": "for",
+    "start": 36.572,
+    "end": 36.735
+  },
+  {
+    "word": "living",
+    "start": 36.735,
+    "end": 37.02
+  },
+  {
+    "word": "humans.",
+    "start": 37.02,
+    "end": 37.345
+  },
+  {
+    "word": "Throw",
+    "start": 38.31,
+    "end": 38.553
+  },
+  {
+    "word": "a",
+    "start": 38.553,
+    "end": 38.635
+  },
+  {
+    "word": "cup",
+    "start": 38.635,
+    "end": 38.797
+  },
+  {
+    "word": "of",
+    "start": 38.797,
+    "end": 38.919
+  },
+  {
+    "word": "boiling",
+    "start": 38.919,
+    "end": 39.243
+  },
+  {
+    "word": "water",
+    "start": 39.243,
+    "end": 39.487
+  },
+  {
+    "word": "into",
+    "start": 39.487,
+    "end": 39.69
+  },
+  {
+    "word": "that",
+    "start": 39.69,
+    "end": 39.893
+  },
+  {
+    "word": "air",
+    "start": 39.893,
+    "end": 40.055
+  },
+  {
+    "word": "and",
+    "start": 40.79,
+    "end": 40.951
+  },
+  {
+    "word": "it",
+    "start": 40.951,
+    "end": 41.072
+  },
+  {
+    "word": "lands",
+    "start": 41.072,
+    "end": 41.313
+  },
+  {
+    "word": "as",
+    "start": 41.313,
+    "end": 41.434
+  },
+  {
+    "word": "snow.",
+    "start": 41.434,
+    "end": 41.675
+  },
+  {
+    "word": "The",
+    "start": 42.09,
+    "end": 42.32
+  },
+  {
+    "word": "droplets",
+    "start": 42.32,
+    "end": 42.836
+  },
+  {
+    "word": "burst",
+    "start": 42.836,
+    "end": 43.181
+  },
+  {
+    "word": "into",
+    "start": 43.181,
+    "end": 43.468
+  },
+  {
+    "word": "mist",
+    "start": 43.468,
+    "end": 43.755
+  },
+  {
+    "word": "and",
+    "start": 44.12,
+    "end": 44.151
+  },
+  {
+    "word": "the",
+    "start": 44.151,
+    "end": 44.182
+  },
+  {
+    "word": "mist",
+    "start": 44.182,
+    "end": 44.221
+  },
+  {
+    "word": "freezes",
+    "start": 44.221,
+    "end": 44.283
+  },
+  {
+    "word": "before",
+    "start": 44.283,
+    "end": 44.337
+  },
+  {
+    "word": "it",
+    "start": 44.337,
+    "end": 44.36
+  },
+  {
+    "word": "touches",
+    "start": 44.36,
+    "end": 44.422
+  },
+  {
+    "word": "the",
+    "start": 44.422,
+    "end": 44.453
+  },
+  {
+    "word": "ground.",
+    "start": 44.453,
+    "end": 44.515
+  },
+  {
+    "word": "Luckily",
+    "start": 44.72,
+    "end": 46.405
+  },
+  {
+    "word": "summer",
+    "start": 46.89,
+    "end": 47.448
+  },
+  {
+    "word": "exists.",
+    "start": 47.448,
+    "end": 48.085
+  },
+  {
+    "word": "Unluckily",
+    "start": 48.97,
+    "end": 51.305
+  },
+  {
+    "word": "it",
+    "start": 52.15,
+    "end": 52.249
+  },
+  {
+    "word": "tops",
+    "start": 52.249,
+    "end": 52.415
+  },
+  {
+    "word": "out",
+    "start": 52.415,
+    "end": 52.547
+  },
+  {
+    "word": "around",
+    "start": 52.547,
+    "end": 52.778
+  },
+  {
+    "word": "minus",
+    "start": 52.778,
+    "end": 52.977
+  },
+  {
+    "word": "five.",
+    "start": 52.977,
+    "end": 53.175
+  },
+  {
+    "word": "And",
+    "start": 53.46,
+    "end": 53.563
+  },
+  {
+    "word": "the",
+    "start": 53.563,
+    "end": 53.666
+  },
+  {
+    "word": "name",
+    "start": 53.666,
+    "end": 53.795
+  },
+  {
+    "word": "of",
+    "start": 53.795,
+    "end": 53.873
+  },
+  {
+    "word": "the",
+    "start": 53.873,
+    "end": 53.976
+  },
+  {
+    "word": "town",
+    "start": 53.976,
+    "end": 54.105
+  },
+  {
+    "word": "Oymyakon",
+    "start": 54.4,
+    "end": 54.714
+  },
+  {
+    "word": "means",
+    "start": 54.714,
+    "end": 54.923
+  },
+  {
+    "word": "the",
+    "start": 54.923,
+    "end": 55.063
+  },
+  {
+    "word": "water",
+    "start": 55.063,
+    "end": 55.272
+  },
+  {
+    "word": "that",
+    "start": 55.272,
+    "end": 55.447
+  },
+  {
+    "word": "does",
+    "start": 55.447,
+    "end": 55.621
+  },
+  {
+    "word": "not",
+    "start": 55.621,
+    "end": 55.761
+  },
+  {
+    "word": "freeze",
+    "start": 55.761,
+    "end": 56.005
+  },
+  {
+    "word": "named",
+    "start": 56.43,
+    "end": 56.703
+  },
+  {
+    "word": "after",
+    "start": 56.703,
+    "end": 56.976
+  },
+  {
+    "word": "the",
+    "start": 56.976,
+    "end": 57.158
+  },
+  {
+    "word": "hot",
+    "start": 57.158,
+    "end": 57.341
+  },
+  {
+    "word": "spring",
+    "start": 57.341,
+    "end": 57.659
+  },
+  {
+    "word": "that",
+    "start": 57.659,
+    "end": 57.887
+  },
+  {
+    "word": "makes",
+    "start": 57.887,
+    "end": 58.16
+  },
+  {
+    "word": "the",
+    "start": 58.16,
+    "end": 58.342
+  },
+  {
+    "word": "whole",
+    "start": 58.342,
+    "end": 58.615
+  },
+  {
+    "word": "place",
+    "start": 58.615,
+    "end": 58.889
+  },
+  {
+    "word": "survivable.",
+    "start": 58.889,
+    "end": 59.435
+  }
+]

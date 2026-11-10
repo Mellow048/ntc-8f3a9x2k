@@ -1,0 +1,747 @@
+[
+  {
+    "word": "In",
+    "start": 0.1,
+    "end": 0.518
+  },
+  {
+    "word": "1969",
+    "start": 0.518,
+    "end": 1.215
+  },
+  {
+    "word": "the",
+    "start": 1.62,
+    "end": 1.817
+  },
+  {
+    "word": "Cuyahoga",
+    "start": 1.817,
+    "end": 2.26
+  },
+  {
+    "word": "River",
+    "start": 2.26,
+    "end": 2.555
+  },
+  {
+    "word": "caught",
+    "start": 2.555,
+    "end": 2.899
+  },
+  {
+    "word": "fire",
+    "start": 2.899,
+    "end": 3.145
+  },
+  {
+    "word": "and",
+    "start": 3.46,
+    "end": 3.636
+  },
+  {
+    "word": "nobody",
+    "start": 3.636,
+    "end": 3.944
+  },
+  {
+    "word": "got",
+    "start": 3.944,
+    "end": 4.121
+  },
+  {
+    "word": "a",
+    "start": 4.121,
+    "end": 4.209
+  },
+  {
+    "word": "picture.",
+    "start": 4.209,
+    "end": 4.605
+  },
+  {
+    "word": "Cleveland",
+    "start": 5.29,
+    "end": 5.675
+  },
+  {
+    "word": "Ohio",
+    "start": 5.92,
+    "end": 6.475
+  },
+  {
+    "word": "the",
+    "start": 6.77,
+    "end": 6.93
+  },
+  {
+    "word": "summer",
+    "start": 6.93,
+    "end": 7.211
+  },
+  {
+    "word": "of",
+    "start": 7.211,
+    "end": 7.332
+  },
+  {
+    "word": "Woodstock",
+    "start": 7.332,
+    "end": 7.733
+  },
+  {
+    "word": "and",
+    "start": 7.733,
+    "end": 7.893
+  },
+  {
+    "word": "the",
+    "start": 7.893,
+    "end": 8.054
+  },
+  {
+    "word": "moon",
+    "start": 8.054,
+    "end": 8.254
+  },
+  {
+    "word": "landing",
+    "start": 8.254,
+    "end": 8.575
+  },
+  {
+    "word": "and",
+    "start": 9.07,
+    "end": 9.259
+  },
+  {
+    "word": "a",
+    "start": 9.259,
+    "end": 9.354
+  },
+  {
+    "word": "river",
+    "start": 9.354,
+    "end": 9.638
+  },
+  {
+    "word": "greased",
+    "start": 9.638,
+    "end": 10.017
+  },
+  {
+    "word": "up",
+    "start": 10.017,
+    "end": 10.159
+  },
+  {
+    "word": "by",
+    "start": 10.159,
+    "end": 10.301
+  },
+  {
+    "word": "a",
+    "start": 10.301,
+    "end": 10.396
+  },
+  {
+    "word": "century",
+    "start": 10.396,
+    "end": 10.775
+  },
+  {
+    "word": "of",
+    "start": 10.775,
+    "end": 10.917
+  },
+  {
+    "word": "dumped",
+    "start": 10.917,
+    "end": 11.248
+  },
+  {
+    "word": "oil.",
+    "start": 11.248,
+    "end": 11.485
+  },
+  {
+    "word": "A",
+    "start": 11.76,
+    "end": 11.86
+  },
+  {
+    "word": "spark",
+    "start": 11.86,
+    "end": 12.159
+  },
+  {
+    "word": "from",
+    "start": 12.159,
+    "end": 12.408
+  },
+  {
+    "word": "a",
+    "start": 12.408,
+    "end": 12.507
+  },
+  {
+    "word": "passing",
+    "start": 12.507,
+    "end": 12.906
+  },
+  {
+    "word": "train",
+    "start": 12.906,
+    "end": 13.205
+  },
+  {
+    "word": "right",
+    "start": 13.62,
+    "end": 13.835
+  },
+  {
+    "word": "above",
+    "start": 13.835,
+    "end": 14.05
+  },
+  {
+    "word": "a",
+    "start": 14.05,
+    "end": 14.122
+  },
+  {
+    "word": "trestle.",
+    "start": 14.122,
+    "end": 14.445
+  },
+  {
+    "word": "Poof",
+    "start": 14.76,
+    "end": 14.915
+  },
+  {
+    "word": "twenty",
+    "start": 15.63,
+    "end": 15.961
+  },
+  {
+    "word": "five",
+    "start": 15.961,
+    "end": 16.197
+  },
+  {
+    "word": "minutes",
+    "start": 16.197,
+    "end": 16.575
+  },
+  {
+    "word": "two",
+    "start": 17.07,
+    "end": 17.275
+  },
+  {
+    "word": "railroad",
+    "start": 17.275,
+    "end": 17.735
+  },
+  {
+    "word": "bridges",
+    "start": 17.735,
+    "end": 18.144
+  },
+  {
+    "word": "scorched",
+    "start": 18.144,
+    "end": 18.605
+  },
+  {
+    "word": "no",
+    "start": 19.12,
+    "end": 19.345
+  },
+  {
+    "word": "photo",
+    "start": 19.345,
+    "end": 19.795
+  },
+  {
+    "word": "no",
+    "start": 20.05,
+    "end": 20.208
+  },
+  {
+    "word": "crew",
+    "start": 20.208,
+    "end": 20.471
+  },
+  {
+    "word": "fast",
+    "start": 20.471,
+    "end": 20.734
+  },
+  {
+    "word": "enough.",
+    "start": 20.734,
+    "end": 21.155
+  },
+  {
+    "word": "Time",
+    "start": 21.8,
+    "end": 22.049
+  },
+  {
+    "word": "magazine",
+    "start": 22.049,
+    "end": 22.498
+  },
+  {
+    "word": "ran",
+    "start": 22.498,
+    "end": 22.697
+  },
+  {
+    "word": "the",
+    "start": 22.697,
+    "end": 22.897
+  },
+  {
+    "word": "story",
+    "start": 22.897,
+    "end": 23.196
+  },
+  {
+    "word": "anyway",
+    "start": 23.196,
+    "end": 23.545
+  },
+  {
+    "word": "a",
+    "start": 24.15,
+    "end": 24.252
+  },
+  {
+    "word": "month",
+    "start": 24.252,
+    "end": 24.559
+  },
+  {
+    "word": "later",
+    "start": 24.559,
+    "end": 24.865
+  },
+  {
+    "word": "the",
+    "start": 25.37,
+    "end": 25.572
+  },
+  {
+    "word": "river",
+    "start": 25.572,
+    "end": 25.874
+  },
+  {
+    "word": "that",
+    "start": 25.874,
+    "end": 26.126
+  },
+  {
+    "word": "oozes",
+    "start": 26.126,
+    "end": 26.428
+  },
+  {
+    "word": "rather",
+    "start": 26.428,
+    "end": 26.78
+  },
+  {
+    "word": "than",
+    "start": 26.78,
+    "end": 27.032
+  },
+  {
+    "word": "flows.",
+    "start": 27.032,
+    "end": 27.385
+  },
+  {
+    "word": "Luckily",
+    "start": 27.79,
+    "end": 28.305
+  },
+  {
+    "word": "the",
+    "start": 28.62,
+    "end": 28.819
+  },
+  {
+    "word": "fire",
+    "start": 28.819,
+    "end": 29.068
+  },
+  {
+    "word": "was",
+    "start": 29.068,
+    "end": 29.267
+  },
+  {
+    "word": "small.",
+    "start": 29.267,
+    "end": 29.615
+  },
+  {
+    "word": "Unluckily",
+    "start": 30.09,
+    "end": 30.735
+  },
+  {
+    "word": "it",
+    "start": 31.13,
+    "end": 31.252
+  },
+  {
+    "word": "was",
+    "start": 31.252,
+    "end": 31.415
+  },
+  {
+    "word": "the",
+    "start": 31.415,
+    "end": 31.577
+  },
+  {
+    "word": "thirteenth.",
+    "start": 31.577,
+    "end": 32.065
+  },
+  {
+    "word": "Oil",
+    "start": 32.7,
+    "end": 33.451
+  },
+  {
+    "word": "floats",
+    "start": 33.451,
+    "end": 34.765
+  },
+  {
+    "word": "a",
+    "start": 35.2,
+    "end": 35.276
+  },
+  {
+    "word": "spark",
+    "start": 35.276,
+    "end": 35.504
+  },
+  {
+    "word": "does",
+    "start": 35.504,
+    "end": 35.693
+  },
+  {
+    "word": "the",
+    "start": 35.693,
+    "end": 35.845
+  },
+  {
+    "word": "rest",
+    "start": 35.845,
+    "end": 36.035
+  },
+  {
+    "word": "that",
+    "start": 36.7,
+    "end": 37.318
+  },
+  {
+    "word": "is",
+    "start": 37.318,
+    "end": 37.688
+  },
+  {
+    "word": "the",
+    "start": 37.688,
+    "end": 38.182
+  },
+  {
+    "word": "whole",
+    "start": 38.182,
+    "end": 38.924
+  },
+  {
+    "word": "trick",
+    "start": 38.924,
+    "end": 39.665
+  },
+  {
+    "word": "people",
+    "start": 40.0,
+    "end": 40.074
+  },
+  {
+    "word": "had",
+    "start": 40.074,
+    "end": 40.116
+  },
+  {
+    "word": "been",
+    "start": 40.116,
+    "end": 40.169
+  },
+  {
+    "word": "pouring",
+    "start": 40.169,
+    "end": 40.253
+  },
+  {
+    "word": "fuel",
+    "start": 40.253,
+    "end": 40.306
+  },
+  {
+    "word": "into",
+    "start": 40.306,
+    "end": 40.359
+  },
+  {
+    "word": "their",
+    "start": 40.359,
+    "end": 40.422
+  },
+  {
+    "word": "own",
+    "start": 40.422,
+    "end": 40.464
+  },
+  {
+    "word": "water",
+    "start": 40.464,
+    "end": 40.528
+  },
+  {
+    "word": "for",
+    "start": 40.528,
+    "end": 40.57
+  },
+  {
+    "word": "decades.",
+    "start": 40.57,
+    "end": 40.665
+  },
+  {
+    "word": "Within",
+    "start": 41.18,
+    "end": 41.457
+  },
+  {
+    "word": "a",
+    "start": 41.457,
+    "end": 41.537
+  },
+  {
+    "word": "year",
+    "start": 41.537,
+    "end": 41.735
+  },
+  {
+    "word": "Earth",
+    "start": 42.31,
+    "end": 42.697
+  },
+  {
+    "word": "Day",
+    "start": 42.697,
+    "end": 42.955
+  },
+  {
+    "word": "within",
+    "start": 43.55,
+    "end": 44.113
+  },
+  {
+    "word": "two",
+    "start": 44.113,
+    "end": 44.435
+  },
+  {
+    "word": "the",
+    "start": 44.97,
+    "end": 45.097
+  },
+  {
+    "word": "Clean",
+    "start": 45.097,
+    "end": 45.288
+  },
+  {
+    "word": "Water",
+    "start": 45.288,
+    "end": 45.479
+  },
+  {
+    "word": "Act",
+    "start": 45.479,
+    "end": 45.607
+  },
+  {
+    "word": "and",
+    "start": 45.607,
+    "end": 45.734
+  },
+  {
+    "word": "a",
+    "start": 45.734,
+    "end": 45.798
+  },
+  {
+    "word": "brand",
+    "start": 45.798,
+    "end": 45.989
+  },
+  {
+    "word": "new",
+    "start": 45.989,
+    "end": 46.116
+  },
+  {
+    "word": "EPA.",
+    "start": 46.116,
+    "end": 46.275
+  },
+  {
+    "word": "And",
+    "start": 46.7,
+    "end": 46.875
+  },
+  {
+    "word": "the",
+    "start": 46.875,
+    "end": 47.051
+  },
+  {
+    "word": "callback",
+    "start": 47.051,
+    "end": 47.445
+  },
+  {
+    "word": "March",
+    "start": 47.8,
+    "end": 48.725
+  },
+  {
+    "word": "2019",
+    "start": 48.725,
+    "end": 49.495
+  },
+  {
+    "word": "fish",
+    "start": 49.83,
+    "end": 50.081
+  },
+  {
+    "word": "caught",
+    "start": 50.081,
+    "end": 50.433
+  },
+  {
+    "word": "in",
+    "start": 50.433,
+    "end": 50.584
+  },
+  {
+    "word": "that",
+    "start": 50.584,
+    "end": 50.835
+  },
+  {
+    "word": "same",
+    "start": 50.835,
+    "end": 51.086
+  },
+  {
+    "word": "river",
+    "start": 51.086,
+    "end": 51.388
+  },
+  {
+    "word": "were",
+    "start": 51.388,
+    "end": 51.639
+  },
+  {
+    "word": "declared",
+    "start": 51.639,
+    "end": 52.092
+  },
+  {
+    "word": "safe",
+    "start": 52.092,
+    "end": 52.343
+  },
+  {
+    "word": "to",
+    "start": 52.343,
+    "end": 52.494
+  },
+  {
+    "word": "eat.",
+    "start": 52.494,
+    "end": 52.745
+  },
+  {
+    "word": "The",
+    "start": 53.48,
+    "end": 53.691
+  },
+  {
+    "word": "river",
+    "start": 53.691,
+    "end": 54.007
+  },
+  {
+    "word": "that",
+    "start": 54.007,
+    "end": 54.271
+  },
+  {
+    "word": "refused",
+    "start": 54.271,
+    "end": 54.693
+  },
+  {
+    "word": "to",
+    "start": 54.693,
+    "end": 54.851
+  },
+  {
+    "word": "flow",
+    "start": 54.851,
+    "end": 55.115
+  },
+  {
+    "word": "now",
+    "start": 55.35,
+    "end": 55.596
+  },
+  {
+    "word": "feeds",
+    "start": 55.596,
+    "end": 55.964
+  },
+  {
+    "word": "people.",
+    "start": 55.964,
+    "end": 56.455
+  },
+  {
+    "word": "Slow",
+    "start": 56.9,
+    "end": 57.21
+  },
+  {
+    "word": "redemption.",
+    "start": 57.21,
+    "end": 57.955
+  }
+]
