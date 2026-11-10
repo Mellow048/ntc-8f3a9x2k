@@ -3,7 +3,7 @@ export type V=[number,number,number];
 export type Kind='hall'|'dome'|'guide'|'history'|'cutaway'|'bearing'|'layers'|'jelly'|'moat'|'office'|'archive'|'lab'|'workshop';
 export const TOTAL=1865;
 export const SHOTS:{start:number;kind:Kind;cam:V;target:V;fov:number}[]=[
- {start:0,kind:'office',cam:[5,3.5,8.2],target:[0,1.6,0],fov:43},
+ {start:0,kind:'lab',cam:[6.5,5,9.5],target:[0,1.65,0],fov:43},
  {start:58,kind:'lab',cam:[6.5,5,9.5],target:[0,1.65,0],fov:43},
  {start:126,kind:'lab',cam:[4.8,3.1,7.4],target:[1.8,1.6,0],fov:42},
  {start:180,kind:'office',cam:[3.1,2.7,5.9],target:[.5,1.4,.5],fov:41},

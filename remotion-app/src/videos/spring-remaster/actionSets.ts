@@ -16,10 +16,10 @@ export function office(g:THREE.Group,archive=false){
  const mug=grp(desk,.95,1.2,.32);cylinder(mug,.13,.25,'#e0c487',0,.15,0);cylinder(mug,.11,.012,'#695447',0,.279,0);const handle=ring(mug,.105,.027,'#d8bc7c',.17,.15,0);handle.rotation.x=0;handle.rotation.y=Math.PI/2;
  const paper=box(desk,.58,.009,.43,'#eae3ce',-.1,1.2,.35);paper.rotation.y=.2;
  box(room,.85,.12,.8,'#6b8580',.4,.63,-.85);box(room,.85,.9,.12,'#6b8580',.4,1.13,-1.2);for(const x of [.05,.75])box(room,.055,.58,.055,'#727d77',x,.3,-.85);
- box(room,1.1,1.5,.12,'#9d9278',0,2.8,-2.28);box(room,.9,1.3,.13,'#b4c0a9',0,2.8,-2.2);
- cylinder(room,.27,.45,'#b69f7a',-3,.24,-1.3);for(let i=0;i<7;i++){const a=i*2.4;rod(room,[-3,.4,-1.3],[-3+.4*Math.cos(a),1.2+(i%2)*.2,-1.3+.3*Math.sin(a)],.035,'#77906d');}
+ box(room,1.1,1.5,.12,'#9d9278',0,2.8,-2.28);box(room,.9,1.3,.13,'#b4c0a9',0,2.8,-2.2);for(let k=0;k<5;k++)box(room,.11,.3+(k%3)*.17,.02,'#8da49b',-.29+k*.15,2.65,-2.12);
+ cylinder(room,.27,.45,'#b69f7a',-3,.24,-1.3);for(let i=0;i<7;i++){const a=i*2.4;const ex=-3+.4*Math.cos(a),ey=1.2+(i%2)*.2,ez=-1.3+.3*Math.sin(a);rod(room,[-3,.4,-1.3],[ex,ey,ez],.035,'#77906d');const leaf=ball(room,.15,'#7e986f',ex,ey,ez);leaf.scale.set(1.5,.5,.65);}
  const pendant=grp(room,1.5,3.85,-.9);rod(pendant,[0,0,0],[0,-.8,0],.018,'#6c7975');const shade=ball(pendant,.3,'#d9c9a1',0,-.9,0);shade.scale.set(1,.5,1);
- const hero=actor(room,2.2,0,.7,'hero',1.05,archive?'shock':'nervous');
+ const hero=actor(room,0,0,1.7,'hero',.82,archive?'shock':'nervous');
  const cracks=grp(room);rod(cracks,[-.75,3.7,-2.37],[-.5,3.05,-2.37],.02,'#72675c');rod(cracks,[-.5,3.05,-2.37],[-.75,2.7,-2.37],.02,'#72675c');
  return (f:number)=>{const m=seismicMotion(f);floor.position.x=m.ground;room.position.x=archive?m.ground:m.building;hero.animate(f);
   const response=archive?m.ground:m.building;pendant.rotation.z=response*.5;mug.position.x=.95+response*.7;paper.position.x=-.1+response*.35;
