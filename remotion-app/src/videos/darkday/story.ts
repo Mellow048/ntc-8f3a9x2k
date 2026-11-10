@@ -55,7 +55,7 @@ export const SHOTS: ShotDef[] = [
   // 7. Red sun: "For days before, the sun had already hung red as blood [f1298]..." (f1152-1399)
   { id: 7, a: 1152, b: 1400, light: "blood", place: "street", sunAz: 55, sunEl: 9 },
   // 8. Evidence: "In 2007 [f1410], scientists [f1440] counted [f1456]... fire scars [f1474]" (f1400-1564)
-  { id: 8, a: 1400, b: 1565, light: "dark", place: "tree", sunAz: 62, sunEl: 30 },
+  { id: 8, a: 1400, b: 1565, light: "dark", place: "tree", sunAz: 172, sunEl: 36 },  // evidence room: FRONT light on the scar-ring cap (az 62 left it in shadow)
   // 9. Night: "The darkness finally lifted late that night [f1574/1618]." (f1565-end)
   { id: 9, a: 1565, b: TOTAL, light: "night", place: "street", sunAz: 38, sunEl: 55 },
 ];
