@@ -48,7 +48,16 @@ Make entertaining, approximately one-minute engineering/science shorts in the ap
 
 ## 3. Current work — NEXT AGENT READ THIS BEFORE RENDERING
 
-**“The Building on Giant Springs” / San Francisco City Hall is now finished, reviewed and ready for user feedback.** It has not yet been user-approved. Do not silently move on to the airport or label City Hall accepted before the user responds.
+**City Hall needs an entertainment-first revision.** The user said the picture was good but the video felt like a lecture: most of it was the same building from start to end, with no genuinely new scenes. The hook was too explanatory. They suggested something dramatic like **“anti-earthquake building!”** More camera angles alone do not solve this feedback.
+
+### Latest explicit creative direction
+
+- Lead with a dramatic, visually demonstrated surprise, not “this is a building / here is how it works.” A possible truthful hook: “An anti-earthquake building? Watch the ground—not the roof.” Do not claim literal earthquake immunity.
+- Build a sequence of **distinct scenes**, not a landmark tour: an interior quake reaction, an earthquake/shake-table test, a kitchen/tray gag, a basement bearing reveal, and a clearance demonstration. Give the viewer new action, setting, scale or stakes as the story progresses.
+- Use tension → surprise → visual payoff → short explanation → callback. Entertain first; facts support the action rather than becoming a lecture.
+- Do not make all the fresh scenes merely inserts of the dome/facade. Keep the recognizable City Hall architecture as brief context and payoff, not the majority of screen time.
+- Preserve correct physics, approved visual quality, 720p, short synchronized captions and clear narration. A new hook/script may require new Arena narration and realignment; do not silently mismatch old words and new visuals.
+- The last export below is **delivered but revision requested**, NOT user-approved. No entertainment-first replacement MP4 exists yet at this checkpoint.
 
 ### Latest delivered checkpoint
 
@@ -72,7 +81,7 @@ Initial diagnostic run `42786877450` rendered all 16 stills but failed to push i
 
 ### Next action
 
-Wait for feedback on the new City Hall video; revise only what the user requests. If approved and asked to continue, the next planned topic is **The Airport Built on the Ocean** (Kansai). Keep the bridge unchanged. If revising City Hall, regenerate its QA metadata and targeted mix as appropriate, inspect stills, render only at 720p, and update this checkpoint after delivery.
+Implement the entertainment-first City Hall revision above. Do not move to another topic yet. After City Hall is approved and the user asks to continue, the next planned topic is **The Airport Built on the Ocean** (Kansai). Keep the bridge unchanged. If revising City Hall, regenerate its QA metadata and targeted mix as appropriate, inspect stills, render only at 720p, and update this checkpoint after delivery.
 
 ## 4. Motion/storytelling lessons from the accepted bridge
 
@@ -144,6 +153,15 @@ These are practical lessons, not permission to ignore later user requests.
 - Rebuild the relevant mix after changing timing. Do not accidentally run all-series audio generation for a one-film revision.
 
 ## 6. Repository map and reliable commands
+
+### Lightweight `main` / branch-deletion note
+
+The user requested that these handoff Markdown files be kept on `main` **without merging the large video/audio assets**. This documentation-only merge deliberately does not make all referenced production paths exist on `main`.
+
+Last complete production snapshot before the entertainment-first revision: **`1d36f6d95233394f91df6de7577f2dfefe729f0d`**. Existing video/source links tied to a deleted branch may stop resolving; prefer this immutable commit as the recovery reference. The documentation PR's source history also records the production work. Download any finished videos you want to retain before deleting branches; documentation is not a media backup.
+
+A new agent should inspect the current checkout and remote before claiming production files are present. If needed, fetch the production snapshot and selectively restore only the source/assets needed for the requested short **onto the platform-assigned working branch**, not by switching to a historical branch or importing all old renders into `main`. Do not assume the user wants large binaries added back to `main`.
+
 
 | Location | Purpose |
 | --- | --- |

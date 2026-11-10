@@ -13,3 +13,5 @@ Critical user overrides to the older skill/template defaults:
 - Deliver the finished MP4 on the assigned working branch, not just as an Actions artifact.
 
 Read the handoff's **Current work** section before treating any existing export as the latest version. Update that section after significant progress, failures, delivery, or user feedback. Later explicit user instructions take precedence over historical notes. Follow the current session's platform branch instructions; a branch name recorded in the handoff is historical context, not permission to change branches.
+
+Latest City Hall feedback: good picture, but too lecture-like and too much of the same building. Rebuild around a dramatic truthful hook and genuinely different action scenes, not more facade angles. `main` intentionally holds lightweight documentation; see the handoff for production snapshot recovery before assuming referenced video files exist.
