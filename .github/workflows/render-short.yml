@@ -3,10 +3,6 @@ name: Render short
 on:
   workflow_dispatch:
     inputs:
-      deliver_run:
-        description: "Temporary bridge delivery run id"
-        required: false
-        default: ""
       composition:
         description: "Remotion composition id"
         required: false
@@ -36,14 +32,8 @@ on:
         required: false
         default: ""
 
-permissions:
-  contents: write
-  actions: read
-  checks: read
-
 jobs:
   render:
-    if: inputs.deliver_run == ''
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
@@ -88,29 +78,9 @@ jobs:
         working-directory: remotion-app
         run: |
           mkdir -p out/diagnostics
-          for frame in 10 30 60 110 1135 1170 1250 1280; do
+          for frame in 100 400 900 1500; do
             npx remotion still src/index.ts "${{ inputs.composition }}" "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
           done
-      - name: Save bridge motion review sheets
-        if: inputs.diagnostics == 'true'
-        run: |
-          python3 -m pip install --user pillow
-          mkdir -p shoots/breathing-bridge/review
-          python3 - <<'PY'
-          from PIL import Image, ImageDraw
-          frames=[10,30,60,110,1135,1170,1250,1280]
-          for n in range(2):
-              sheet=Image.new('RGB',(320*2,590*2),'white')
-              for i,f in enumerate(frames[n*4:n*4+4]):
-                  tile=Image.open(f'remotion-app/out/diagnostics/{f}.png').convert('RGB').resize((320,569))
-                  x,y=(i%2)*320,(i//2)*590;sheet.paste(tile,(x,y));ImageDraw.Draw(sheet).text((x+5,y+572),str(f),fill='black')
-              sheet.save(f'shoots/breathing-bridge/review/motion-{n}.jpg',quality=88)
-          PY
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add shoots/breathing-bridge/review/motion-*.jpg
-          git commit -m 'Add bridge movement review sheets'
-          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
       - name: Upload diagnostic stills
         if: inputs.diagnostics == 'true' && always()
         uses: actions/upload-artifact@v4
@@ -209,39 +179,3 @@ jobs:
             remotion-app/out/qa/report.md
           if-no-files-found: error
           retention-days: 14
-
-  deliver-bridge:
-    if: inputs.deliver_run != ''
-    runs-on: ubuntu-latest
-    timeout-minutes: 170
-    steps:
-      - uses: actions/checkout@v4
-      - name: Wait for verified render
-        env:
-          GH_TOKEN: ${{ github.token }}
-          RUN_ID: ${{ inputs.deliver_run }}
-        run: gh run watch "$RUN_ID" --interval 30 --exit-status
-      - uses: actions/download-artifact@v4
-        with:
-          name: cartoon-3d-short
-          path: bridge-delivery
-          github-token: ${{ github.token }}
-          run-id: ${{ inputs.deliver_run }}
-      - name: Verify and publish on active branch
-        run: |
-          find bridge-delivery -type f
-          python3 - <<'PYQA'
-          from pathlib import Path
-          p=next(Path('bridge-delivery').rglob('report.md'))
-          report=p.read_text()
-          print(report)
-          for expected in ['720x1280 30/1 fps, 1852 frames', 'black []', 'unplanned white []', 'frozen spans >=12f []', 'POPS (unplanned frame-diff spikes > 3x local median): []']:
-              assert expected in report, f'Missing QA check: {expected}'
-          PYQA
-          cp "$(find bridge-delivery -name final.mp4 | head -1)" shoots/breathing-bridge/final-720p.mp4
-          cp "$(find bridge-delivery -name report.md | head -1)" shoots/breathing-bridge/qa-report.md
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -f shoots/breathing-bridge/final-720p.mp4 shoots/breathing-bridge/qa-report.md
-          git commit -m 'Deliver narration-timed bridge retention revision at 720p'
-          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
