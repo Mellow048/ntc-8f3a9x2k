@@ -14,4 +14,4 @@ Music 5–6 LU below narration after ducking, with a resolved final cadence. Mus
 
 Premix shared headroom gain: -0.67 dB. Original Arena voice retained; 0.5-second pause inserted after the mine.
 Full music integrated: -21.2 LUFS; full voice: -16.0 LUFS.
-CI final master: -15 LUFS, -1.5 dBTP, 48kHz stereo.
+CI final master target: -14 LUFS, -2 dBTP before AAC, 48kHz stereo.

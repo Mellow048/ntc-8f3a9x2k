@@ -15,15 +15,15 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'deliveries/lake-polished/lake-polished-
     compatible_brands: isomiso2avc1mp41
     encoder         : Lavf62.3.100
     comment         : Made with Remotion 4.0.542
-  Duration: 00:00:38.40, start: 0.000000, bitrate: 8687 kb/s
-  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt470bg/unknown/unknown, progressive), 720x1280 [SAR 1:1 DAR 9:16], 8416 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+  Duration: 00:00:38.40, start: 0.000000, bitrate: 8692 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuvj420p(pc, bt470bg/unknown/unknown, progressive), 720x1280 [SAR 1:1 DAR 9:16], 8421 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
     Metadata:
       handler_name    : VideoHandler
       vendor_id       : [0][0][0][0]
       encoder         : Lavc62.11.100 libx264
     Side data:
       ICC Profile
-  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 262 kb/s (default)
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 261 kb/s (default)
     Metadata:
       handler_name    : SoundHandler
       vendor_id       : [0][0][0][0]
@@ -50,12 +50,12 @@ Output #0, null, to 'pipe:':
       encoder         : Lavc62.11.100 pcm_s16le
       handler_name    : SoundHandler
       vendor_id       : [0][0][0][0]
-frame=  161 fps=0.0 q=-0.0 size=N/A time=00:00:02.80 bitrate=N/A speed=5.58x elapsed=0:00:00.50    frame=  337 fps=336 q=-0.0 size=N/A time=00:00:08.60 bitrate=N/A speed=8.59x elapsed=0:00:01.00    frame=  567 fps=378 q=-0.0 size=N/A time=00:00:16.30 bitrate=N/A speed=10.9x elapsed=0:00:01.50    frame=  748 fps=374 q=-0.0 size=N/A time=00:00:22.40 bitrate=N/A speed=11.2x elapsed=0:00:02.00    frame=  933 fps=373 q=-0.0 size=N/A time=00:00:28.50 bitrate=N/A speed=11.4x elapsed=0:00:02.50    [Parsed_loudnorm_0 @ 0x7c6a34002140] 
+frame=  177 fps=0.0 q=-0.0 size=N/A time=00:00:03.30 bitrate=N/A speed= 6.6x elapsed=0:00:00.50    frame=  372 fps=372 q=-0.0 size=N/A time=00:00:09.80 bitrate=N/A speed= 9.8x elapsed=0:00:01.00    frame=  597 fps=398 q=-0.0 size=N/A time=00:00:17.40 bitrate=N/A speed=11.6x elapsed=0:00:01.50    frame=  794 fps=397 q=-0.0 size=N/A time=00:00:23.90 bitrate=N/A speed=11.9x elapsed=0:00:02.00    frame=  999 fps=399 q=-0.0 size=N/A time=00:00:30.80 bitrate=N/A speed=12.3x elapsed=0:00:02.50    [Parsed_loudnorm_0 @ 0x765e78002140] 
 {
-	"input_i" : "-14.46",
-	"input_tp" : "-1.16",
-	"input_lra" : "3.00",
-	"input_thresh" : "-24.46",
+	"input_i" : "-14.51",
+	"input_tp" : "-1.86",
+	"input_lra" : "2.80",
+	"input_thresh" : "-24.51",
 	"output_i" : "-14.14",
 	"output_tp" : "-1.50",
 	"output_lra" : "1.80",
@@ -63,5 +63,5 @@ frame=  161 fps=0.0 q=-0.0 size=N/A time=00:00:02.80 bitrate=N/A speed=5.58x ela
 	"normalization_type" : "dynamic",
 	"target_offset" : "0.14"
 }
-[out#0/null @ 0x5c93dc5ec440] video:468KiB audio:28800KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
-frame= 1152 fps=389 q=-0.0 Lsize=N/A time=00:00:38.40 bitrate=N/A speed=  13x elapsed=0:00:02.96    
+[out#0/null @ 0x5d3e997f0440] video:468KiB audio:28800KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame= 1152 fps=409 q=-0.0 Lsize=N/A time=00:00:38.40 bitrate=N/A speed=13.6x elapsed=0:00:02.81    
