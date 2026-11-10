@@ -7,6 +7,7 @@ import {cloudHD,rep,stoneHD} from '../beer-remaster/style/paint';
 import {NOINK} from '../beer-remaster/style/ink';
 import {Shot,Place,CAMS,KICKS,smooth,clamp} from './story';
 import {town,room,train} from './sets';
+import {Porter} from '../beer-remaster/water';
 export class World {
  root=new T.Group();actors:Character[]=[];sun:T.DirectionalLight;hemi:T.HemisphereLight;sky:T.Mesh;skyM:T.ShaderMaterial;
  animations:Array<(s:Shot,f:number,u:number)=>void>=[];clouds:T.Mesh[]=[];fog=new T.Fog('#b8d0ec',35,180);
@@ -43,7 +44,8 @@ export class World {
    town(p,false);hero.root.position.set(0,0,0);
    if(place==='people'){for(let i=0;i<6;i++){const a=person((i%3-1)*2.1,-2-Math.floor(i/3)*2.4,{...suit,jacket:['#6a7774','#7e7064','#595e75'][i%3]});a.root.userData.bandage=i<2;}}
    if(place==='peace'){hero.outfit.hair='#b4b4ac';hero.outfit.jacket='#6d7476';box(p,0,.9,.9,1.5,.16,.7,wood());for(const x of [-.55,.55])box(p,x,.4,.9,.12,.8,.12,timber());const mic=cyl(p,.45,1.4,.8,.045,.65,iron());sphere(p,.45,1.75,.8,.09,iron());}
-   if(place==='lanterns'){const water=box(p,0,-.08,-8,10,.12,45,material('river','#627d8c',rep(stoneHD(),4,10)));for(let i=0;i<12;i++){const l=lamp(p,Math.sin(i*3.2)*3,.55,-i*2.4,true);l.userData.dynamic=true;this.animations.push((s,f,u)=>{l.position.z=-i*2.4+u*2;l.position.y=.5+Math.sin(f*.04+i)*.035;});}hero.root.position.set(2,0,1);}
+   if(place==='lanterns'){const water=new Porter(p,4.6,45);water.mesh.position.set(-3.2,0,-8);const wm=water.mesh.material as T.ShaderMaterial;wm.fragmentShader=wm.fragmentShader.replace('vec3(.115,.048,.025)','vec3(.025,.07,.10)').replace('vec3(.36,.18,.075)','vec3(.10,.23,.30)').replace('vec3(.77,.59,.33)','vec3(.45,.58,.60)');
+   box(p,-.8,.055,-8,.18,.2,45,stone());this.animations.push((s,f)=>water.update(f/30,100,.09,.14));for(let i=0;i<12;i++){const l=lamp(p,-3.2+Math.sin(i*3.2)*1.3,.45,-i*2.4,true);l.userData.dynamic=true;this.animations.push((s,f,u)=>{l.position.z=-i*2.4+u*2;l.position.y=.45+Math.sin(f*.04+i)*.025;});}hero.root.position.set(2,0,1);}
    this.animations.push((s,f,u)=>{hero.expr=place==='peace'?'stern':'neutral';hero.wave=place==='peace'?.2+Math.sin(f*.12)*.2:undefined;hero.lean=Math.sin(f*.065)*2;this.actors.slice(1).forEach((a,i)=>{a.walk=place==='people';a.lean=Math.sin(f*.09+i)*2;});});
   }
   batchStatic(this.root);
