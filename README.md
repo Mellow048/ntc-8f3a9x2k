@@ -1,5 +1,7 @@
 # Cartoon 3D Shorts
 
+> **New session / agent: read [VIDEO_HANDOFF.md](VIDEO_HANDOFF.md) first.** It records the user's approved video style, corrections, production lessons, and current work. See also [AGENTS.md](AGENTS.md). **Current user overrides: 720×1280 output and synchronized 1–2-word subtitles**, superseding the older 2K/no-caption defaults below.
+
 **2D characters in a colourful 3D world** — flat bean-head cartoon cards with
 ink outlines in a painted 3D town, over a voice narration with synthesized
 SFX + march music. This repo vendors the free **`cartoon-3d-short`** Claude
