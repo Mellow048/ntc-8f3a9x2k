@@ -40,6 +40,17 @@ jobs:
           CHROME="$(find ~/.cache/ms-playwright -type f -name chrome | head -1)"
           test -n "$CHROME"
           echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+      - name: Preflight audio tools and normalize mix before rendering
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version
+          ffprobe -version
+          ffmpeg -hide_banner -filters 2>&1 | grep ebur128
+          python -m pip install numpy pillow
+          FOLDER=shoots/curiosity-${{ matrix.slug }}
+          ffmpeg -y -i "$FOLDER/audio/premix.wav" -af loudnorm=I=-15:TP=-1.5:LRA=5 -ar 48000 "$FOLDER/audio/mix.wav"
+          ffmpeg -hide_banner -i "$FOLDER/audio/mix.wav" -af ebur128=peak=true -f null -
       - name: Typecheck
         working-directory: remotion-app
         run: npx tsc --noEmit --resolveJsonModule
@@ -65,10 +76,16 @@ jobs:
         working-directory: remotion-app
         run: |
           npx remotion render src/curiosity/index.tsx Curiosity-${{ matrix.slug }} out/curiosity-${{ matrix.slug }}/silent.mp4 --width=720 --height=1280 --codec=h264 --crf=18 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000 --log=info
+      - name: Save video checkpoint before muxing
+        env:
+          SLUG: ${{ matrix.slug }}
+        run: |
+          mkdir -p deliveries/curiosity-$SLUG
+          cp remotion-app/out/curiosity-$SLUG/silent.mp4 deliveries/curiosity-$SLUG/silent-checkpoint.mp4
+          bash scripts/curiosity/publish.sh "Checkpoint curiosity-$SLUG rendered picture" "deliveries/curiosity-$SLUG/silent-checkpoint.mp4"
       - name: Mix and mux exact length
         run: |
           FOLDER=shoots/curiosity-${{ matrix.slug }}
-          ffmpeg -y -i "$FOLDER/audio/premix.wav" -af loudnorm=I=-15:TP=-1.5:LRA=5 -ar 48000 "$FOLDER/audio/mix.wav"
           ffmpeg -y -i remotion-app/out/curiosity-${{ matrix.slug }}/silent.mp4 -i "$FOLDER/audio/mix.wav" -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest remotion-app/out/curiosity-${{ matrix.slug }}/curiosity-${{ matrix.slug }}.mp4
       - name: QA every frame
         run: |
