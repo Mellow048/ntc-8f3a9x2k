@@ -23,6 +23,14 @@ on:
         description: "Frame number for the still preview"
         required: false
         default: "100"
+      diagnostics:
+        description: "Render only keyframe diagnostics (true/false)"
+        required: false
+        default: "false"
+      qa:
+        description: "Optional JSON shot metadata for final quality checks"
+        required: false
+        default: ""
 
 jobs:
   render:
@@ -65,32 +73,109 @@ jobs:
         working-directory: remotion-app
         run: npx tsc --noEmit
 
+      - name: Keyframe diagnostics
+        if: inputs.diagnostics == 'true'
+        working-directory: remotion-app
+        run: |
+          mkdir -p out/diagnostics
+          for frame in 100 400 900 1500; do
+            npx remotion still src/index.ts "${{ inputs.composition }}" "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
+          done
+      - name: Upload diagnostic stills
+        if: inputs.diagnostics == 'true' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: keyframes-720p
+          path: remotion-app/out/diagnostics/
+          retention-days: 7
+
       - name: Still preview
+        if: inputs.diagnostics != 'true'
         working-directory: remotion-app
         run: |
           npx remotion browser ensure
           npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
-            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
+            out/still.png --frame="${{ github.event.inputs.still_frame }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
 
       - name: Render video
+        if: inputs.diagnostics != 'true'
         working-directory: remotion-app
         run: |
+          set -o pipefail
+          set +e
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
-            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH"
+            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH" 2>&1 | tee out/render.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            # Surface the actual failure in the check annotation, even if job logs are unavailable.
+            message=$(tail -c 12000 out/render.log | tr '\r' '\n' | tail -n 30)
+            message=${message//'%'/'%25'}
+            message=${message//$'\n'/'%0A'}
+            echo "::error::Render failed (exit $status): $message"
+          fi
+          exit "$status"
 
       - name: Mux voice mix
-        if: inputs.mix != ''
+        if: inputs.diagnostics != 'true' && inputs.mix != ''
         run: |
           ffmpeg -y -i remotion-app/out/final.mp4 -i "${{ github.event.inputs.mix }}" \
             -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -shortest remotion-app/out/final-muxed.mp4
           mv remotion-app/out/final-muxed.mp4 remotion-app/out/final.mp4
 
+      - name: Quality check (Pendulum)
+        if: inputs.diagnostics != 'true' && inputs.composition == 'PendulumShort' && inputs.mix != ''
+        run: |
+          python3 -m venv "$RUNNER_TEMP/short-qa-venv"
+          "$RUNNER_TEMP/short-qa-venv/bin/pip" install numpy pillow
+          "$RUNNER_TEMP/short-qa-venv/bin/python" templates/scripts/short_qa.py remotion-app/out/final.mp4 remotion-app/out/qa shoots/pendulum/qa-shots.json
+          "$RUNNER_TEMP/short-qa-venv/bin/python" - <<'PYQA'
+          from pathlib import Path
+          import re
+          report = Path('remotion-app/out/qa/report.md').read_text()
+          print('::notice::' + report.replace('%', '%25').replace('\n', '%0A'))
+          ok = ('720x1280 30/1 fps, 1965 frames, 65.500 s' in report
+                and 'black []' in report and 'unplanned white []' in report
+                and 'frozen spans >=12f []' in report)
+          loud = re.search(r'I:\s*(-?\d+(?:\.\d+)?) LUFS', report)
+          peak = re.search(r'Peak:\s*(-?\d+(?:\.\d+)?) dBFS', report)
+          ok = ok and loud is not None and -17 <= float(loud.group(1)) <= -13
+          ok = ok and peak is not None and float(peak.group(1)) <= -1.0
+          if not ok:
+              raise SystemExit('QA failed: review report.md in the artifact')
+          PYQA
+
+      - name: Quality check (engineering series)
+        if: inputs.diagnostics != 'true' && inputs.qa != '' && inputs.mix != ''
+        env:
+          QA_META: ${{ inputs.qa }}
+        run: |
+          python3 -m venv "$RUNNER_TEMP/short-qa-venv"
+          "$RUNNER_TEMP/short-qa-venv/bin/pip" install numpy pillow
+          "$RUNNER_TEMP/short-qa-venv/bin/python" templates/scripts/short_qa.py remotion-app/out/final.mp4 remotion-app/out/qa "$QA_META"
+          "$RUNNER_TEMP/short-qa-venv/bin/python" - <<'PYQA'
+          from pathlib import Path
+          import json, os, re
+          report = Path('remotion-app/out/qa/report.md').read_text()
+          frames = json.loads(Path(os.environ['QA_META']).read_text())['frames']
+          print('::notice::' + report.replace('%', '%25').replace('\n', '%0A'))
+          ok = (f'720x1280 30/1 fps, {frames} frames' in report and 'black []' in report
+                and 'unplanned white []' in report and 'frozen spans >=12f []' in report)
+          loud = re.search(r'I:\s*(-?\d+(?:\.\d+)?) LUFS', report)
+          peak = re.search(r'Peak:\s*(-?\d+(?:\.\d+)?) dBFS', report)
+          ok = ok and loud is not None and -17 <= float(loud.group(1)) <= -13
+          ok = ok and peak is not None and float(peak.group(1)) <= -1.0
+          if not ok:
+              raise SystemExit('QA failed: review report.md in the artifact')
+          PYQA
+
       - name: Upload MP4
+        if: inputs.diagnostics != 'true' && always()
         uses: actions/upload-artifact@v4
         with:
           name: cartoon-3d-short
           path: |
             remotion-app/out/final.mp4
             remotion-app/out/still.png
+            remotion-app/out/qa/report.md
           if-no-files-found: error
           retention-days: 14

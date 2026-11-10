@@ -1,0 +1,55 @@
+"""Mark intentional visual cuts and subtitle entrance/exit animation for QA.
+
+Caption text changes (and its three-frame pop-in animation) are intentional
+frame-difference spikes, not editing mistakes. Keep this grouping in sync with
+captionGroups in engineering-series/Series.tsx.
+"""
+import json
+import re
+from pathlib import Path
+
+root = Path(__file__).resolve().parent
+stories = json.loads((root.parent/'remotion-app/src/videos/engineering-series/data.json').read_text())
+for slug, story in stories.items():
+    beats = story['beats']
+    if slug == 'breathing-bridge':
+        # The remaster has its own shot list, independent of the old series beats.
+        source=(root.parent/'remotion-app/src/videos/bridge-remaster/BridgeWorld.ts').read_text()
+        starts=[int(n) for n in re.findall(r'\{start:(\d+),kind:', source)]
+        if not starts or starts[0] != 0 or starts != sorted(set(starts)):
+            raise ValueError('Invalid bridge remaster shot starts')
+        beats=[{'frame':n} for n in starts]
+    if slug == 'spring-building':
+        source=(root.parent/'remotion-app/src/videos/spring-remaster/story.ts').read_text()
+        starts=[int(n) for n in re.findall(r'\{start:(\d+),kind:', source)]
+        if not starts or starts[0] != 0 or starts != sorted(set(starts)):
+            raise ValueError('Invalid spring remaster shot starts')
+        beats=[{'frame':n} for n in starts]
+    shots = [{'id': i+1, 'a': b['frame'], 'b': beats[i+1]['frame'] if i+1<len(beats) else story['frames']}
+             for i,b in enumerate(beats)]
+    words=story['words']
+    planned=[]
+    i=0
+    while i<len(words):
+        a=words[i]
+        b=words[i+1] if i+1<len(words) else None
+        pair=bool(b and b['start']-a['end']<.16 and len(a['word'])+len(b['word'])<=20)
+        last=b if pair else a
+        next_i=i+(2 if pair else 1)
+        following=words[next_i] if next_i<len(words) else None
+        end=following['start'] if following and following['start']-last['end']<.24 else last['end']+.12
+        # Round to a whole frame; a 3-frame pop-in follows the start.
+        for time in (max(0, a['start']-.025),end):
+            f=round(time*30)
+            planned.append([max(0,f-2), min(story['frames'],f+4)])
+        i=next_i
+    if slug == 'breathing-bridge':
+        # The directional arrows fade in/out only on these narrated movement windows.
+        motion=(root.parent/'remotion-app/src/videos/bridge-remaster/motion.ts').read_text()
+        match=re.search(r'MOTION_WINDOWS\s*=\s*\[(.*?)\]\s*as const',motion)
+        if not match:
+            raise ValueError('Bridge motion windows not found')
+        for a,b in re.findall(r'\[(\d+),(\d+)\]',match.group(1)):
+            for f in (int(a),int(b)):
+                planned.append([max(0,f-2),min(story['frames'],f+4)])
+    (root/slug/'qa-shots.json').write_text(json.dumps({'frames':story['frames'],'shots':shots,'planned':planned},indent=2)+'\n')

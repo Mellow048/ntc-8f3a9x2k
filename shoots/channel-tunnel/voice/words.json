@@ -1,0 +1,947 @@
+[
+  {
+    "word": "you",
+    "start": 0.12,
+    "end": 0.28
+  },
+  {
+    "word": "can",
+    "start": 0.28,
+    "end": 0.41
+  },
+  {
+    "word": "take",
+    "start": 0.41,
+    "end": 0.63
+  },
+  {
+    "word": "a",
+    "start": 0.63,
+    "end": 0.67
+  },
+  {
+    "word": "train",
+    "start": 0.67,
+    "end": 1.01
+  },
+  {
+    "word": "from",
+    "start": 1.01,
+    "end": 1.17
+  },
+  {
+    "word": "england",
+    "start": 1.17,
+    "end": 1.54
+  },
+  {
+    "word": "to",
+    "start": 1.54,
+    "end": 1.62
+  },
+  {
+    "word": "france",
+    "start": 1.62,
+    "end": 2.08
+  },
+  {
+    "word": "under",
+    "start": 2.08,
+    "end": 2.32
+  },
+  {
+    "word": "the",
+    "start": 2.32,
+    "end": 2.41
+  },
+  {
+    "word": "sea",
+    "start": 2.41,
+    "end": 2.76
+  },
+  {
+    "word": "but",
+    "start": 3.15,
+    "end": 3.4
+  },
+  {
+    "word": "you're",
+    "start": 3.4,
+    "end": 3.51
+  },
+  {
+    "word": "not",
+    "start": 3.51,
+    "end": 3.7
+  },
+  {
+    "word": "riding",
+    "start": 3.7,
+    "end": 4.11
+  },
+  {
+    "word": "through",
+    "start": 4.11,
+    "end": 4.34
+  },
+  {
+    "word": "a",
+    "start": 4.34,
+    "end": 4.39
+  },
+  {
+    "word": "glass",
+    "start": 4.39,
+    "end": 4.76
+  },
+  {
+    "word": "tube",
+    "start": 4.76,
+    "end": 5.09
+  },
+  {
+    "word": "with",
+    "start": 5.09,
+    "end": 5.21
+  },
+  {
+    "word": "fish",
+    "start": 5.21,
+    "end": 5.56
+  },
+  {
+    "word": "swimming",
+    "start": 5.56,
+    "end": 5.95
+  },
+  {
+    "word": "above",
+    "start": 5.95,
+    "end": 6.19
+  },
+  {
+    "word": "your",
+    "start": 6.19,
+    "end": 6.37
+  },
+  {
+    "word": "head",
+    "start": 6.37,
+    "end": 6.67
+  },
+  {
+    "word": "you're",
+    "start": 7.21,
+    "end": 7.34
+  },
+  {
+    "word": "deep",
+    "start": 7.34,
+    "end": 7.73
+  },
+  {
+    "word": "underneath",
+    "start": 8.09,
+    "end": 8.5
+  },
+  {
+    "word": "the",
+    "start": 8.5,
+    "end": 8.56
+  },
+  {
+    "word": "seabed",
+    "start": 8.56,
+    "end": 9.06
+  },
+  {
+    "word": "the",
+    "start": 9.29,
+    "end": 9.47
+  },
+  {
+    "word": "channel",
+    "start": 9.47,
+    "end": 9.79
+  },
+  {
+    "word": "tunnel",
+    "start": 9.79,
+    "end": 10.22
+  },
+  {
+    "word": "stretches",
+    "start": 10.34,
+    "end": 10.77
+  },
+  {
+    "word": "about",
+    "start": 10.77,
+    "end": 10.98
+  },
+  {
+    "word": "fifty",
+    "start": 10.98,
+    "end": 11.33
+  },
+  {
+    "word": "kilometers",
+    "start": 11.33,
+    "end": 11.91
+  },
+  {
+    "word": "between",
+    "start": 11.91,
+    "end": 12.25
+  },
+  {
+    "word": "britain",
+    "start": 12.25,
+    "end": 12.57
+  },
+  {
+    "word": "and",
+    "start": 12.57,
+    "end": 12.67
+  },
+  {
+    "word": "france",
+    "start": 12.67,
+    "end": 13.2
+  },
+  {
+    "word": "with",
+    "start": 13.55,
+    "end": 13.69
+  },
+  {
+    "word": "roughly",
+    "start": 13.69,
+    "end": 14.0
+  },
+  {
+    "word": "thirty",
+    "start": 14.0,
+    "end": 14.44
+  },
+  {
+    "word": "eight",
+    "start": 14.44,
+    "end": 14.59
+  },
+  {
+    "word": "kilometers",
+    "start": 14.59,
+    "end": 15.11
+  },
+  {
+    "word": "beneath",
+    "start": 15.11,
+    "end": 15.43
+  },
+  {
+    "word": "the",
+    "start": 15.43,
+    "end": 15.52
+  },
+  {
+    "word": "english",
+    "start": 15.52,
+    "end": 15.81
+  },
+  {
+    "word": "channel",
+    "start": 15.81,
+    "end": 16.16
+  },
+  {
+    "word": "it",
+    "start": 17.05,
+    "end": 17.18
+  },
+  {
+    "word": "opened",
+    "start": 17.18,
+    "end": 17.64
+  },
+  {
+    "word": "in",
+    "start": 17.84,
+    "end": 17.94
+  },
+  {
+    "word": "nineteen",
+    "start": 17.94,
+    "end": 18.45
+  },
+  {
+    "word": "ninety",
+    "start": 18.45,
+    "end": 18.77
+  },
+  {
+    "word": "four",
+    "start": 18.77,
+    "end": 19.09
+  },
+  {
+    "word": "to",
+    "start": 19.45,
+    "end": 19.54
+  },
+  {
+    "word": "build",
+    "start": 19.54,
+    "end": 19.82
+  },
+  {
+    "word": "it",
+    "start": 19.82,
+    "end": 20.23
+  },
+  {
+    "word": "huge",
+    "start": 20.23,
+    "end": 20.72
+  },
+  {
+    "word": "tunnel",
+    "start": 20.72,
+    "end": 21.02
+  },
+  {
+    "word": "boring",
+    "start": 21.02,
+    "end": 21.33
+  },
+  {
+    "word": "machines",
+    "start": 21.33,
+    "end": 21.84
+  },
+  {
+    "word": "chewed",
+    "start": 21.84,
+    "end": 22.22
+  },
+  {
+    "word": "through",
+    "start": 22.22,
+    "end": 22.38
+  },
+  {
+    "word": "a",
+    "start": 22.38,
+    "end": 22.44
+  },
+  {
+    "word": "layer",
+    "start": 22.44,
+    "end": 22.73
+  },
+  {
+    "word": "of",
+    "start": 22.73,
+    "end": 22.82
+  },
+  {
+    "word": "chalk",
+    "start": 22.82,
+    "end": 23.16
+  },
+  {
+    "word": "beneath",
+    "start": 23.16,
+    "end": 23.44
+  },
+  {
+    "word": "the",
+    "start": 23.44,
+    "end": 23.51
+  },
+  {
+    "word": "water",
+    "start": 23.51,
+    "end": 23.88
+  },
+  {
+    "word": "teams",
+    "start": 24.66,
+    "end": 25.01
+  },
+  {
+    "word": "dug",
+    "start": 25.01,
+    "end": 25.23
+  },
+  {
+    "word": "from",
+    "start": 25.23,
+    "end": 25.39
+  },
+  {
+    "word": "both",
+    "start": 25.39,
+    "end": 25.63
+  },
+  {
+    "word": "sides",
+    "start": 25.63,
+    "end": 26.1
+  },
+  {
+    "word": "aiming",
+    "start": 26.29,
+    "end": 26.57
+  },
+  {
+    "word": "toward",
+    "start": 26.57,
+    "end": 26.92
+  },
+  {
+    "word": "each",
+    "start": 26.92,
+    "end": 27.11
+  },
+  {
+    "word": "other",
+    "start": 27.11,
+    "end": 27.32
+  },
+  {
+    "word": "underground",
+    "start": 27.32,
+    "end": 27.9
+  },
+  {
+    "word": "and",
+    "start": 28.25,
+    "end": 28.38
+  },
+  {
+    "word": "here's",
+    "start": 28.38,
+    "end": 28.59
+  },
+  {
+    "word": "the",
+    "start": 28.59,
+    "end": 28.66
+  },
+  {
+    "word": "part",
+    "start": 28.66,
+    "end": 28.92
+  },
+  {
+    "word": "most",
+    "start": 28.92,
+    "end": 29.11
+  },
+  {
+    "word": "people",
+    "start": 29.11,
+    "end": 29.39
+  },
+  {
+    "word": "don't",
+    "start": 29.39,
+    "end": 29.61
+  },
+  {
+    "word": "realize",
+    "start": 29.61,
+    "end": 30.13
+  },
+  {
+    "word": "there",
+    "start": 30.5,
+    "end": 30.65
+  },
+  {
+    "word": "isn't",
+    "start": 30.65,
+    "end": 30.84
+  },
+  {
+    "word": "just",
+    "start": 30.84,
+    "end": 31.02
+  },
+  {
+    "word": "one",
+    "start": 31.02,
+    "end": 31.28
+  },
+  {
+    "word": "tunnel",
+    "start": 31.28,
+    "end": 31.58
+  },
+  {
+    "word": "there",
+    "start": 31.951,
+    "end": 32.211
+  },
+  {
+    "word": "are",
+    "start": 32.211,
+    "end": 32.261
+  },
+  {
+    "word": "three",
+    "start": 32.261,
+    "end": 32.641
+  },
+  {
+    "word": "two",
+    "start": 33.361,
+    "end": 33.641
+  },
+  {
+    "word": "large",
+    "start": 33.641,
+    "end": 33.981
+  },
+  {
+    "word": "tunnels",
+    "start": 33.981,
+    "end": 34.401
+  },
+  {
+    "word": "carry",
+    "start": 34.401,
+    "end": 34.631
+  },
+  {
+    "word": "trains",
+    "start": 34.631,
+    "end": 35.041
+  },
+  {
+    "word": "in",
+    "start": 35.041,
+    "end": 35.111
+  },
+  {
+    "word": "opposite",
+    "start": 35.111,
+    "end": 35.441
+  },
+  {
+    "word": "directions",
+    "start": 35.441,
+    "end": 36.121
+  },
+  {
+    "word": "while",
+    "start": 36.331,
+    "end": 36.541
+  },
+  {
+    "word": "a",
+    "start": 36.541,
+    "end": 36.581
+  },
+  {
+    "word": "smaller",
+    "start": 36.581,
+    "end": 36.961
+  },
+  {
+    "word": "service",
+    "start": 36.961,
+    "end": 37.421
+  },
+  {
+    "word": "tunnel",
+    "start": 37.421,
+    "end": 37.751
+  },
+  {
+    "word": "runs",
+    "start": 37.751,
+    "end": 38.001
+  },
+  {
+    "word": "between",
+    "start": 38.001,
+    "end": 38.371
+  },
+  {
+    "word": "them",
+    "start": 38.371,
+    "end": 38.521
+  },
+  {
+    "word": "that",
+    "start": 38.521,
+    "end": 38.991
+  },
+  {
+    "word": "middle",
+    "start": 38.991,
+    "end": 39.211
+  },
+  {
+    "word": "tunnel",
+    "start": 39.211,
+    "end": 39.541
+  },
+  {
+    "word": "provides",
+    "start": 39.541,
+    "end": 39.901
+  },
+  {
+    "word": "access",
+    "start": 39.901,
+    "end": 40.261
+  },
+  {
+    "word": "for",
+    "start": 40.261,
+    "end": 40.351
+  },
+  {
+    "word": "maintenance",
+    "start": 40.351,
+    "end": 40.981
+  },
+  {
+    "word": "fresh",
+    "start": 41.201,
+    "end": 41.521
+  },
+  {
+    "word": "air",
+    "start": 41.521,
+    "end": 41.691
+  },
+  {
+    "word": "and",
+    "start": 41.691,
+    "end": 42.131
+  },
+  {
+    "word": "an",
+    "start": 42.131,
+    "end": 42.201
+  },
+  {
+    "word": "emergency",
+    "start": 42.201,
+    "end": 42.771
+  },
+  {
+    "word": "route",
+    "start": 42.771,
+    "end": 43.031
+  },
+  {
+    "word": "if",
+    "start": 43.031,
+    "end": 43.121
+  },
+  {
+    "word": "something",
+    "start": 43.121,
+    "end": 43.501
+  },
+  {
+    "word": "goes",
+    "start": 43.501,
+    "end": 43.731
+  },
+  {
+    "word": "wrong",
+    "start": 43.731,
+    "end": 43.991
+  },
+  {
+    "word": "cross",
+    "start": 44.251,
+    "end": 44.561
+  },
+  {
+    "word": "passages",
+    "start": 44.561,
+    "end": 45.121
+  },
+  {
+    "word": "connect",
+    "start": 45.121,
+    "end": 45.481
+  },
+  {
+    "word": "it",
+    "start": 45.481,
+    "end": 45.571
+  },
+  {
+    "word": "to",
+    "start": 45.571,
+    "end": 45.681
+  },
+  {
+    "word": "the",
+    "start": 45.681,
+    "end": 45.771
+  },
+  {
+    "word": "train",
+    "start": 45.771,
+    "end": 46.101
+  },
+  {
+    "word": "tunnels",
+    "start": 46.101,
+    "end": 46.601
+  },
+  {
+    "word": "and",
+    "start": 47.351,
+    "end": 47.441
+  },
+  {
+    "word": "if",
+    "start": 47.441,
+    "end": 47.511
+  },
+  {
+    "word": "you",
+    "start": 47.511,
+    "end": 47.631
+  },
+  {
+    "word": "bring",
+    "start": 47.631,
+    "end": 47.861
+  },
+  {
+    "word": "your",
+    "start": 47.861,
+    "end": 48.021
+  },
+  {
+    "word": "car",
+    "start": 48.021,
+    "end": 48.431
+  },
+  {
+    "word": "you",
+    "start": 48.711,
+    "end": 48.781
+  },
+  {
+    "word": "don't",
+    "start": 48.781,
+    "end": 48.961
+  },
+  {
+    "word": "drive",
+    "start": 48.961,
+    "end": 49.231
+  },
+  {
+    "word": "it",
+    "start": 49.231,
+    "end": 49.311
+  },
+  {
+    "word": "all",
+    "start": 49.311,
+    "end": 49.431
+  },
+  {
+    "word": "the",
+    "start": 49.431,
+    "end": 49.491
+  },
+  {
+    "word": "way",
+    "start": 49.491,
+    "end": 49.621
+  },
+  {
+    "word": "across",
+    "start": 49.621,
+    "end": 49.891
+  },
+  {
+    "word": "yourself",
+    "start": 49.891,
+    "end": 50.431
+  },
+  {
+    "word": "you",
+    "start": 50.831,
+    "end": 50.901
+  },
+  {
+    "word": "drive",
+    "start": 50.901,
+    "end": 51.221
+  },
+  {
+    "word": "onto",
+    "start": 51.221,
+    "end": 51.451
+  },
+  {
+    "word": "a",
+    "start": 51.451,
+    "end": 51.481
+  },
+  {
+    "word": "special",
+    "start": 51.481,
+    "end": 51.931
+  },
+  {
+    "word": "shuttle",
+    "start": 51.931,
+    "end": 52.331
+  },
+  {
+    "word": "train",
+    "start": 52.331,
+    "end": 52.731
+  },
+  {
+    "word": "and",
+    "start": 52.981,
+    "end": 53.091
+  },
+  {
+    "word": "the",
+    "start": 53.091,
+    "end": 53.151
+  },
+  {
+    "word": "train",
+    "start": 53.151,
+    "end": 53.521
+  },
+  {
+    "word": "carries",
+    "start": 53.521,
+    "end": 53.851
+  },
+  {
+    "word": "your",
+    "start": 53.851,
+    "end": 53.951
+  },
+  {
+    "word": "car",
+    "start": 53.951,
+    "end": 54.201
+  },
+  {
+    "word": "through",
+    "start": 54.201,
+    "end": 54.561
+  },
+  {
+    "word": "so",
+    "start": 54.851,
+    "end": 55.071
+  },
+  {
+    "word": "while",
+    "start": 55.071,
+    "end": 55.331
+  },
+  {
+    "word": "ships",
+    "start": 55.331,
+    "end": 55.631
+  },
+  {
+    "word": "sail",
+    "start": 55.631,
+    "end": 55.911
+  },
+  {
+    "word": "across",
+    "start": 55.911,
+    "end": 56.201
+  },
+  {
+    "word": "the",
+    "start": 56.201,
+    "end": 56.261
+  },
+  {
+    "word": "water",
+    "start": 56.261,
+    "end": 56.591
+  },
+  {
+    "word": "above",
+    "start": 56.591,
+    "end": 56.941
+  },
+  {
+    "word": "passengers",
+    "start": 57.441,
+    "end": 58.031
+  },
+  {
+    "word": "and",
+    "start": 58.031,
+    "end": 58.151
+  },
+  {
+    "word": "cars",
+    "start": 58.151,
+    "end": 58.531
+  },
+  {
+    "word": "can",
+    "start": 58.531,
+    "end": 58.671
+  },
+  {
+    "word": "travel",
+    "start": 58.671,
+    "end": 59.021
+  },
+  {
+    "word": "through",
+    "start": 59.021,
+    "end": 59.231
+  },
+  {
+    "word": "solid",
+    "start": 59.231,
+    "end": 59.581
+  },
+  {
+    "word": "ground",
+    "start": 59.581,
+    "end": 59.971
+  },
+  {
+    "word": "far",
+    "start": 60.221,
+    "end": 60.481
+  },
+  {
+    "word": "below",
+    "start": 60.481,
+    "end": 60.741
+  },
+  {
+    "word": "the",
+    "start": 60.741,
+    "end": 60.821
+  },
+  {
+    "word": "waves",
+    "start": 60.821,
+    "end": 61.261
+  }
+]
