@@ -9,6 +9,7 @@ import {BlendFunction,BloomEffect,ToneMappingEffect,ToneMappingMode} from 'postp
 import {InkPass,noInkFallback} from '../pendulum/ink';
 import {GradeEffect,GRADES,GRADE_STRENGTH} from '../pendulum/grade';
 import {World,Beat} from './World';
+import {BridgeWorld} from '../bridge-remaster/BridgeWorld';
 import data from './data.json';
 
 type Word={word:string;start:number;end:number};
@@ -18,7 +19,7 @@ export const stories=data as Record<Slug,Story>;
 
 const Scene:React.FC<{slug:Slug}> = ({slug})=>{
  const frame=useCurrentFrame(); const {camera,scene}=useThree();
- const world=useMemo(()=>new World(slug,stories[slug].beats),[slug]);
+ const world=useMemo(()=>slug==='breathing-bridge' ? new BridgeWorld() : new World(slug,stories[slug].beats),[slug]);
  const fx=useMemo(()=>({
   ink:new InkPass(scene,camera as THREE.PerspectiveCamera),
   bloom:new BloomEffect({blendFunction:BlendFunction.ADD,intensity:.35,luminanceThreshold:1,luminanceSmoothing:.2,mipmapBlur:true,levels:5,radius:.55}),

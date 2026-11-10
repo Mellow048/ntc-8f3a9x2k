@@ -78,9 +78,29 @@ jobs:
         working-directory: remotion-app
         run: |
           mkdir -p out/diagnostics
-          for frame in 100 400 900 1500; do
+          for frame in 40 125 230 310 420 520 650 780 900 1000 1130 1240 1350 1435 1500 1600 1690 1780; do
             npx remotion still src/index.ts "${{ inputs.composition }}" "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
           done
+      - name: Publish diagnostic contact sheets for review
+        if: inputs.diagnostics == 'true'
+        run: |
+          python3 -m venv "$RUNNER_TEMP/preview"
+          "$RUNNER_TEMP/preview/bin/pip" install pillow
+          "$RUNNER_TEMP/preview/bin/python" - <<'PY'
+          from PIL import Image, ImageDraw
+          from pathlib import Path
+          import base64
+          frames = [40,125,230,310,420,520,650,780,900,1000,1130,1240,1350,1435,1500,1600,1690,1780]
+          for sheet in range(3):
+              image=Image.new('RGB',(180*3,340*2),'white')
+              for i,f in enumerate(frames[sheet*6:sheet*6+6]):
+                  tile=Image.open(f'remotion-app/out/diagnostics/{f}.png').convert('RGB').resize((180,320))
+                  x,y=(i%3)*180,(i//3)*340
+                  image.paste(tile,(x,y));ImageDraw.Draw(image).text((x+5,y+322),str(f),fill='black')
+              dest=Path(f'/tmp/bridge-sheet-{sheet}.jpg');image.save(dest,quality=32,optimize=True)
+              b=base64.b64encode(dest.read_bytes()).decode()
+              for i in range(0,len(b),3500): print(f'::notice::BRIDGE_SHEET_{sheet}_PART_{i//3500:02d} '+b[i:i+3500])
+          PY
       - name: Upload diagnostic stills
         if: inputs.diagnostics == 'true' && always()
         uses: actions/upload-artifact@v4
