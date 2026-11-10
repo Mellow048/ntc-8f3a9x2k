@@ -43,3 +43,26 @@ v1 in deliveries/curiosity-survivor/ with this remaster.
 
 Workflow: .github/workflows/survivor-remaster.yml. Preview-only on source push;
 full 720p render requires stage=final. All frame rendering happens on GitHub.
+
+## Completed delivery
+
+Full render 42776524823 succeeded in 43m57s. An actual-video review caught
+coplanar river/street surfaces flickering during the final two remembrance
+shots. Corrected the water with a blue animated surface above the ground,
+separate dry bank and lanterns confined to the river; the figure stays on dry
+land. Targeted repair 42782166129 succeeded (7m18s execution, plus queue).
+Replaced only frames 1055–1126 and 1169–1260 and retained the completed AAC
+soundtrack. Inspected consecutive final frames in both repaired regions.
+
+Final MP4: deliveries/survivor-remastered/survivor-remastered-720p.mp4,
+27,659,989 bytes; 1,261 frames, 42.033s, 720×1280/30fps, stereo AAC48kHz.
+QA: −15.0 LUFS, peak −1.5 dBFS; no silence, black/white frames, frozen spans
+or unplanned image-difference pops. Reviewed a contact sheet extracted from
+the actual full MP4, all 24 setup stills and consecutive frames at the former
+flicker sites. Aesthetic acceptance remains the user's decision, not a QA score.
+
+Original source voice and subtitles are unchanged. Final render/mux/repairs
+were performed on GitHub. Picture-only checkpoint is retained locally but
+untracked. Reviewed preview PNGs archived as JPEG plus a shot sheet to keep
+the repository/snapshot lean. Beer Flood's accepted source and delivery and
+Lake Peigneur were not changed (verified against commit 3b6d10f).

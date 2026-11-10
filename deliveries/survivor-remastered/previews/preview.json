@@ -27,5 +27,7 @@
     1220
   ],
   "width": 720,
-  "height": 1280
+  "height": 1280,
+  "imageFormat": "jpg",
+  "note": "Reviewed GitHub-rendered previews, archived as JPEG to avoid redundant large PNGs."
 }

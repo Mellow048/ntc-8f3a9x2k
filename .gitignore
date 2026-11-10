@@ -25,3 +25,6 @@ Thumbs.db
 /deliveries/beer-flood-remastered/picture-checkpoint.mp4
 
 /scripts/beer-remaster/sound/__pycache__/
+
+# Transient survivor picture-only render checkpoint
+/deliveries/survivor-remastered/picture-checkpoint.mp4
