@@ -1,0 +1,977 @@
+[
+  {
+    "word": "japan",
+    "start": 0.12,
+    "end": 0.52
+  },
+  {
+    "word": "needed",
+    "start": 0.52,
+    "end": 0.84
+  },
+  {
+    "word": "an",
+    "start": 0.84,
+    "end": 0.95
+  },
+  {
+    "word": "airport",
+    "start": 0.95,
+    "end": 1.35
+  },
+  {
+    "word": "so",
+    "start": 1.73,
+    "end": 2.04
+  },
+  {
+    "word": "engineers",
+    "start": 2.04,
+    "end": 2.53
+  },
+  {
+    "word": "built",
+    "start": 2.53,
+    "end": 2.74
+  },
+  {
+    "word": "an",
+    "start": 2.74,
+    "end": 2.83
+  },
+  {
+    "word": "island",
+    "start": 2.83,
+    "end": 3.2
+  },
+  {
+    "word": "in",
+    "start": 3.2,
+    "end": 3.28
+  },
+  {
+    "word": "the",
+    "start": 3.28,
+    "end": 3.34
+  },
+  {
+    "word": "middle",
+    "start": 3.34,
+    "end": 3.53
+  },
+  {
+    "word": "of",
+    "start": 3.53,
+    "end": 3.6
+  },
+  {
+    "word": "the",
+    "start": 3.6,
+    "end": 3.73
+  },
+  {
+    "word": "ocean",
+    "start": 3.73,
+    "end": 4.07
+  },
+  {
+    "word": "then",
+    "start": 4.59,
+    "end": 4.87
+  },
+  {
+    "word": "the",
+    "start": 4.87,
+    "end": 4.99
+  },
+  {
+    "word": "island",
+    "start": 4.99,
+    "end": 5.28
+  },
+  {
+    "word": "started",
+    "start": 5.28,
+    "end": 5.69
+  },
+  {
+    "word": "sinking",
+    "start": 5.69,
+    "end": 6.17
+  },
+  {
+    "word": "this",
+    "start": 6.79,
+    "end": 7.15
+  },
+  {
+    "word": "is",
+    "start": 7.15,
+    "end": 7.26
+  },
+  {
+    "word": "kansai",
+    "start": 7.26,
+    "end": 7.76
+  },
+  {
+    "word": "international",
+    "start": 7.76,
+    "end": 8.36
+  },
+  {
+    "word": "airport",
+    "start": 8.36,
+    "end": 8.75
+  },
+  {
+    "word": "built",
+    "start": 8.92,
+    "end": 9.2
+  },
+  {
+    "word": "in",
+    "start": 9.2,
+    "end": 9.29
+  },
+  {
+    "word": "osaka",
+    "start": 9.29,
+    "end": 9.68
+  },
+  {
+    "word": "bay",
+    "start": 9.68,
+    "end": 9.97
+  },
+  {
+    "word": "and",
+    "start": 10.24,
+    "end": 10.34
+  },
+  {
+    "word": "opened",
+    "start": 10.34,
+    "end": 10.65
+  },
+  {
+    "word": "in",
+    "start": 10.65,
+    "end": 10.74
+  },
+  {
+    "word": "nineteen",
+    "start": 10.74,
+    "end": 11.15
+  },
+  {
+    "word": "ninety",
+    "start": 11.15,
+    "end": 11.46
+  },
+  {
+    "word": "four",
+    "start": 11.46,
+    "end": 11.75
+  },
+  {
+    "word": "there",
+    "start": 12.07,
+    "end": 12.16
+  },
+  {
+    "word": "wasn't",
+    "start": 12.16,
+    "end": 12.47
+  },
+  {
+    "word": "enough",
+    "start": 12.47,
+    "end": 12.71
+  },
+  {
+    "word": "suitable",
+    "start": 12.71,
+    "end": 13.12
+  },
+  {
+    "word": "space",
+    "start": 13.12,
+    "end": 13.52
+  },
+  {
+    "word": "for",
+    "start": 13.52,
+    "end": 13.62
+  },
+  {
+    "word": "a",
+    "start": 13.62,
+    "end": 13.67
+  },
+  {
+    "word": "big",
+    "start": 13.67,
+    "end": 13.91
+  },
+  {
+    "word": "airport",
+    "start": 13.91,
+    "end": 14.31
+  },
+  {
+    "word": "near",
+    "start": 14.31,
+    "end": 14.44
+  },
+  {
+    "word": "the",
+    "start": 14.44,
+    "end": 14.52
+  },
+  {
+    "word": "city",
+    "start": 14.52,
+    "end": 14.93
+  },
+  {
+    "word": "so",
+    "start": 15.29,
+    "end": 15.43
+  },
+  {
+    "word": "planners",
+    "start": 15.43,
+    "end": 15.82
+  },
+  {
+    "word": "looked",
+    "start": 15.82,
+    "end": 16.07
+  },
+  {
+    "word": "out",
+    "start": 16.07,
+    "end": 16.27
+  },
+  {
+    "word": "over",
+    "start": 16.27,
+    "end": 16.48
+  },
+  {
+    "word": "the",
+    "start": 16.48,
+    "end": 16.56
+  },
+  {
+    "word": "water",
+    "start": 16.56,
+    "end": 16.98
+  },
+  {
+    "word": "ships",
+    "start": 17.31,
+    "end": 17.67
+  },
+  {
+    "word": "brought",
+    "start": 17.67,
+    "end": 17.91
+  },
+  {
+    "word": "enormous",
+    "start": 17.91,
+    "end": 18.45
+  },
+  {
+    "word": "amounts",
+    "start": 18.45,
+    "end": 18.78
+  },
+  {
+    "word": "of",
+    "start": 18.78,
+    "end": 18.91
+  },
+  {
+    "word": "rock",
+    "start": 18.91,
+    "end": 19.19
+  },
+  {
+    "word": "and",
+    "start": 19.19,
+    "end": 19.3
+  },
+  {
+    "word": "soil",
+    "start": 19.3,
+    "end": 19.73
+  },
+  {
+    "word": "to",
+    "start": 19.9,
+    "end": 20.02
+  },
+  {
+    "word": "create",
+    "start": 20.02,
+    "end": 20.39
+  },
+  {
+    "word": "an",
+    "start": 20.39,
+    "end": 20.48
+  },
+  {
+    "word": "artificial",
+    "start": 20.48,
+    "end": 21.07
+  },
+  {
+    "word": "island",
+    "start": 21.07,
+    "end": 21.52
+  },
+  {
+    "word": "and",
+    "start": 21.91,
+    "end": 22.0
+  },
+  {
+    "word": "a",
+    "start": 22.0,
+    "end": 22.05
+  },
+  {
+    "word": "long",
+    "start": 22.05,
+    "end": 22.4
+  },
+  {
+    "word": "bridge",
+    "start": 22.4,
+    "end": 22.73
+  },
+  {
+    "word": "connected",
+    "start": 22.73,
+    "end": 23.16
+  },
+  {
+    "word": "it",
+    "start": 23.16,
+    "end": 23.27
+  },
+  {
+    "word": "to",
+    "start": 23.27,
+    "end": 23.38
+  },
+  {
+    "word": "the",
+    "start": 23.38,
+    "end": 23.45
+  },
+  {
+    "word": "mainland",
+    "start": 23.45,
+    "end": 24.0
+  },
+  {
+    "word": "but",
+    "start": 24.17,
+    "end": 24.35
+  },
+  {
+    "word": "underneath",
+    "start": 24.35,
+    "end": 24.8
+  },
+  {
+    "word": "all",
+    "start": 24.8,
+    "end": 24.91
+  },
+  {
+    "word": "that",
+    "start": 24.91,
+    "end": 25.06
+  },
+  {
+    "word": "new",
+    "start": 25.06,
+    "end": 25.26
+  },
+  {
+    "word": "land",
+    "start": 25.26,
+    "end": 25.65
+  },
+  {
+    "word": "was",
+    "start": 25.65,
+    "end": 25.8
+  },
+  {
+    "word": "a",
+    "start": 25.8,
+    "end": 25.84
+  },
+  {
+    "word": "thick",
+    "start": 25.84,
+    "end": 26.18
+  },
+  {
+    "word": "layer",
+    "start": 26.18,
+    "end": 26.47
+  },
+  {
+    "word": "of",
+    "start": 26.47,
+    "end": 26.56
+  },
+  {
+    "word": "soft",
+    "start": 26.56,
+    "end": 26.96
+  },
+  {
+    "word": "clay",
+    "start": 26.96,
+    "end": 27.34
+  },
+  {
+    "word": "and",
+    "start": 27.91,
+    "end": 28.0
+  },
+  {
+    "word": "heavy",
+    "start": 28.0,
+    "end": 28.26
+  },
+  {
+    "word": "things",
+    "start": 28.26,
+    "end": 28.53
+  },
+  {
+    "word": "sitting",
+    "start": 28.53,
+    "end": 28.83
+  },
+  {
+    "word": "on",
+    "start": 28.83,
+    "end": 28.93
+  },
+  {
+    "word": "soft",
+    "start": 28.93,
+    "end": 29.26
+  },
+  {
+    "word": "clay",
+    "start": 29.26,
+    "end": 29.54
+  },
+  {
+    "word": "have",
+    "start": 29.54,
+    "end": 29.72
+  },
+  {
+    "word": "a",
+    "start": 29.72,
+    "end": 29.76
+  },
+  {
+    "word": "problem",
+    "start": 29.76,
+    "end": 30.29
+  },
+  {
+    "word": "the",
+    "start": 30.455,
+    "end": 30.615
+  },
+  {
+    "word": "weight",
+    "start": 30.615,
+    "end": 30.885
+  },
+  {
+    "word": "squeezes",
+    "start": 30.885,
+    "end": 31.445
+  },
+  {
+    "word": "water",
+    "start": 31.445,
+    "end": 31.865
+  },
+  {
+    "word": "out",
+    "start": 31.865,
+    "end": 32.035
+  },
+  {
+    "word": "of",
+    "start": 32.035,
+    "end": 32.115
+  },
+  {
+    "word": "the",
+    "start": 32.115,
+    "end": 32.205
+  },
+  {
+    "word": "clay",
+    "start": 32.205,
+    "end": 32.555
+  },
+  {
+    "word": "and",
+    "start": 32.835,
+    "end": 32.935
+  },
+  {
+    "word": "the",
+    "start": 32.935,
+    "end": 32.995
+  },
+  {
+    "word": "ground",
+    "start": 32.995,
+    "end": 33.385
+  },
+  {
+    "word": "slowly",
+    "start": 33.385,
+    "end": 33.775
+  },
+  {
+    "word": "settles",
+    "start": 33.775,
+    "end": 34.345
+  },
+  {
+    "word": "engineers",
+    "start": 34.785,
+    "end": 35.345
+  },
+  {
+    "word": "expected",
+    "start": 35.345,
+    "end": 35.875
+  },
+  {
+    "word": "some",
+    "start": 35.875,
+    "end": 36.025
+  },
+  {
+    "word": "sinking",
+    "start": 36.025,
+    "end": 36.465
+  },
+  {
+    "word": "but",
+    "start": 36.815,
+    "end": 36.965
+  },
+  {
+    "word": "parts",
+    "start": 36.965,
+    "end": 37.325
+  },
+  {
+    "word": "of",
+    "start": 37.325,
+    "end": 37.395
+  },
+  {
+    "word": "the",
+    "start": 37.395,
+    "end": 37.515
+  },
+  {
+    "word": "island",
+    "start": 37.515,
+    "end": 37.875
+  },
+  {
+    "word": "settled",
+    "start": 37.875,
+    "end": 38.205
+  },
+  {
+    "word": "faster",
+    "start": 38.205,
+    "end": 38.705
+  },
+  {
+    "word": "than",
+    "start": 38.705,
+    "end": 38.855
+  },
+  {
+    "word": "predicted",
+    "start": 38.855,
+    "end": 39.425
+  },
+  {
+    "word": "so",
+    "start": 39.915,
+    "end": 40.065
+  },
+  {
+    "word": "they",
+    "start": 40.065,
+    "end": 40.195
+  },
+  {
+    "word": "planned",
+    "start": 40.195,
+    "end": 40.545
+  },
+  {
+    "word": "ways",
+    "start": 40.545,
+    "end": 40.895
+  },
+  {
+    "word": "to",
+    "start": 40.895,
+    "end": 40.975
+  },
+  {
+    "word": "keep",
+    "start": 40.975,
+    "end": 41.185
+  },
+  {
+    "word": "the",
+    "start": 41.185,
+    "end": 41.265
+  },
+  {
+    "word": "terminal",
+    "start": 41.265,
+    "end": 41.705
+  },
+  {
+    "word": "level",
+    "start": 41.705,
+    "end": 41.995
+  },
+  {
+    "word": "under",
+    "start": 42.305,
+    "end": 42.575
+  },
+  {
+    "word": "its",
+    "start": 42.575,
+    "end": 42.705
+  },
+  {
+    "word": "columns",
+    "start": 42.705,
+    "end": 43.195
+  },
+  {
+    "word": "workers",
+    "start": 43.315,
+    "end": 43.875
+  },
+  {
+    "word": "can",
+    "start": 43.875,
+    "end": 44.025
+  },
+  {
+    "word": "use",
+    "start": 44.025,
+    "end": 44.205
+  },
+  {
+    "word": "hydraulic",
+    "start": 44.205,
+    "end": 44.705
+  },
+  {
+    "word": "jacks",
+    "start": 44.705,
+    "end": 45.325
+  },
+  {
+    "word": "to",
+    "start": 45.325,
+    "end": 45.455
+  },
+  {
+    "word": "lift",
+    "start": 45.455,
+    "end": 45.715
+  },
+  {
+    "word": "sections",
+    "start": 45.715,
+    "end": 46.325
+  },
+  {
+    "word": "and",
+    "start": 46.525,
+    "end": 46.635
+  },
+  {
+    "word": "insert",
+    "start": 46.635,
+    "end": 47.095
+  },
+  {
+    "word": "steel",
+    "start": 47.095,
+    "end": 47.425
+  },
+  {
+    "word": "plates",
+    "start": 47.425,
+    "end": 47.875
+  },
+  {
+    "word": "the",
+    "start": 48.645,
+    "end": 48.715
+  },
+  {
+    "word": "seawalls",
+    "start": 48.715,
+    "end": 49.265
+  },
+  {
+    "word": "have",
+    "start": 49.265,
+    "end": 49.395
+  },
+  {
+    "word": "also",
+    "start": 49.395,
+    "end": 49.785
+  },
+  {
+    "word": "been",
+    "start": 49.785,
+    "end": 49.945
+  },
+  {
+    "word": "strengthened",
+    "start": 49.945,
+    "end": 50.525
+  },
+  {
+    "word": "and",
+    "start": 50.785,
+    "end": 50.915
+  },
+  {
+    "word": "raised",
+    "start": 50.915,
+    "end": 51.545
+  },
+  {
+    "word": "to",
+    "start": 51.545,
+    "end": 51.625
+  },
+  {
+    "word": "help",
+    "start": 51.625,
+    "end": 51.855
+  },
+  {
+    "word": "protect",
+    "start": 51.855,
+    "end": 52.205
+  },
+  {
+    "word": "the",
+    "start": 52.205,
+    "end": 52.325
+  },
+  {
+    "word": "airport",
+    "start": 52.325,
+    "end": 52.715
+  },
+  {
+    "word": "from",
+    "start": 52.715,
+    "end": 52.895
+  },
+  {
+    "word": "the",
+    "start": 52.895,
+    "end": 52.955
+  },
+  {
+    "word": "sea",
+    "start": 52.955,
+    "end": 53.545
+  },
+  {
+    "word": "the",
+    "start": 53.545,
+    "end": 53.735
+  },
+  {
+    "word": "island",
+    "start": 53.735,
+    "end": 54.075
+  },
+  {
+    "word": "is",
+    "start": 54.075,
+    "end": 54.165
+  },
+  {
+    "word": "still",
+    "start": 54.165,
+    "end": 54.485
+  },
+  {
+    "word": "carefully",
+    "start": 54.485,
+    "end": 54.965
+  },
+  {
+    "word": "monitored",
+    "start": 54.965,
+    "end": 55.525
+  },
+  {
+    "word": "and",
+    "start": 56.075,
+    "end": 56.185
+  },
+  {
+    "word": "the",
+    "start": 56.185,
+    "end": 56.275
+  },
+  {
+    "word": "airport",
+    "start": 56.275,
+    "end": 56.675
+  },
+  {
+    "word": "keeps",
+    "start": 56.675,
+    "end": 56.925
+  },
+  {
+    "word": "welcoming",
+    "start": 56.925,
+    "end": 57.445
+  },
+  {
+    "word": "planes",
+    "start": 57.445,
+    "end": 57.915
+  },
+  {
+    "word": "it's",
+    "start": 58.285,
+    "end": 58.425
+  },
+  {
+    "word": "a",
+    "start": 58.425,
+    "end": 58.465
+  },
+  {
+    "word": "whole",
+    "start": 58.465,
+    "end": 58.725
+  },
+  {
+    "word": "airport",
+    "start": 58.725,
+    "end": 59.125
+  },
+  {
+    "word": "built",
+    "start": 59.125,
+    "end": 59.395
+  },
+  {
+    "word": "on",
+    "start": 59.395,
+    "end": 59.495
+  },
+  {
+    "word": "land",
+    "start": 59.495,
+    "end": 59.775
+  },
+  {
+    "word": "humans",
+    "start": 59.775,
+    "end": 60.165
+  },
+  {
+    "word": "made",
+    "start": 60.165,
+    "end": 60.445
+  },
+  {
+    "word": "with",
+    "start": 60.625,
+    "end": 60.795
+  },
+  {
+    "word": "engineers",
+    "start": 60.795,
+    "end": 61.305
+  },
+  {
+    "word": "constantly",
+    "start": 61.305,
+    "end": 61.835
+  },
+  {
+    "word": "watching",
+    "start": 61.835,
+    "end": 62.135
+  },
+  {
+    "word": "the",
+    "start": 62.135,
+    "end": 62.195
+  },
+  {
+    "word": "ground",
+    "start": 62.195,
+    "end": 62.505
+  },
+  {
+    "word": "beneath",
+    "start": 62.505,
+    "end": 62.775
+  },
+  {
+    "word": "its",
+    "start": 62.775,
+    "end": 62.935
+  },
+  {
+    "word": "feet",
+    "start": 62.935,
+    "end": 63.245
+  }
+]

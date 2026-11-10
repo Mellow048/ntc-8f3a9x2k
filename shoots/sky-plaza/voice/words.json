@@ -1,0 +1,957 @@
+[
+  {
+    "word": "this",
+    "start": 0.12,
+    "end": 0.32
+  },
+  {
+    "word": "hong",
+    "start": 0.32,
+    "end": 0.52
+  },
+  {
+    "word": "kong",
+    "start": 0.52,
+    "end": 0.76
+  },
+  {
+    "word": "skyscraper",
+    "start": 0.76,
+    "end": 1.38
+  },
+  {
+    "word": "has",
+    "start": 1.38,
+    "end": 1.53
+  },
+  {
+    "word": "a",
+    "start": 1.53,
+    "end": 1.57
+  },
+  {
+    "word": "giant",
+    "start": 1.57,
+    "end": 1.96
+  },
+  {
+    "word": "open",
+    "start": 1.96,
+    "end": 2.19
+  },
+  {
+    "word": "space",
+    "start": 2.19,
+    "end": 2.57
+  },
+  {
+    "word": "underneath",
+    "start": 2.57,
+    "end": 2.97
+  },
+  {
+    "word": "it",
+    "start": 2.97,
+    "end": 3.15
+  },
+  {
+    "word": "people",
+    "start": 3.64,
+    "end": 3.91
+  },
+  {
+    "word": "can",
+    "start": 3.91,
+    "end": 4.08
+  },
+  {
+    "word": "walk",
+    "start": 4.08,
+    "end": 4.25
+  },
+  {
+    "word": "right",
+    "start": 4.25,
+    "end": 4.58
+  },
+  {
+    "word": "under",
+    "start": 4.58,
+    "end": 4.75
+  },
+  {
+    "word": "the",
+    "start": 4.75,
+    "end": 4.84
+  },
+  {
+    "word": "building",
+    "start": 4.84,
+    "end": 5.29
+  },
+  {
+    "word": "and",
+    "start": 5.56,
+    "end": 5.65
+  },
+  {
+    "word": "the",
+    "start": 5.65,
+    "end": 5.73
+  },
+  {
+    "word": "offices",
+    "start": 5.73,
+    "end": 6.08
+  },
+  {
+    "word": "are",
+    "start": 6.08,
+    "end": 6.11
+  },
+  {
+    "word": "still",
+    "start": 6.11,
+    "end": 6.42
+  },
+  {
+    "word": "hanging",
+    "start": 6.42,
+    "end": 6.72
+  },
+  {
+    "word": "overhead",
+    "start": 6.72,
+    "end": 7.18
+  },
+  {
+    "word": "it's",
+    "start": 7.4,
+    "end": 7.58
+  },
+  {
+    "word": "the",
+    "start": 7.58,
+    "end": 7.7
+  },
+  {
+    "word": "h",
+    "start": 7.7,
+    "end": 8.0
+  },
+  {
+    "word": "s",
+    "start": 8.0,
+    "end": 8.13
+  },
+  {
+    "word": "b",
+    "start": 8.13,
+    "end": 8.3
+  },
+  {
+    "word": "c",
+    "start": 8.3,
+    "end": 8.54
+  },
+  {
+    "word": "headquarters",
+    "start": 8.54,
+    "end": 9.24
+  },
+  {
+    "word": "designed",
+    "start": 9.57,
+    "end": 9.95
+  },
+  {
+    "word": "by",
+    "start": 9.95,
+    "end": 10.13
+  },
+  {
+    "word": "architect",
+    "start": 10.13,
+    "end": 10.64
+  },
+  {
+    "word": "norman",
+    "start": 10.64,
+    "end": 10.95
+  },
+  {
+    "word": "foster",
+    "start": 10.95,
+    "end": 11.37
+  },
+  {
+    "word": "and",
+    "start": 11.37,
+    "end": 11.69
+  },
+  {
+    "word": "his",
+    "start": 11.69,
+    "end": 11.9
+  },
+  {
+    "word": "team",
+    "start": 11.9,
+    "end": 12.21
+  },
+  {
+    "word": "instead",
+    "start": 12.56,
+    "end": 12.89
+  },
+  {
+    "word": "of",
+    "start": 12.89,
+    "end": 12.98
+  },
+  {
+    "word": "filling",
+    "start": 12.98,
+    "end": 13.28
+  },
+  {
+    "word": "the",
+    "start": 13.28,
+    "end": 13.34
+  },
+  {
+    "word": "middle",
+    "start": 13.34,
+    "end": 13.59
+  },
+  {
+    "word": "with",
+    "start": 13.59,
+    "end": 13.72
+  },
+  {
+    "word": "a",
+    "start": 13.72,
+    "end": 13.75
+  },
+  {
+    "word": "forest",
+    "start": 13.75,
+    "end": 14.19
+  },
+  {
+    "word": "of",
+    "start": 14.19,
+    "end": 14.27
+  },
+  {
+    "word": "columns",
+    "start": 14.27,
+    "end": 14.78
+  },
+  {
+    "word": "the",
+    "start": 15.23,
+    "end": 15.35
+  },
+  {
+    "word": "building",
+    "start": 15.35,
+    "end": 15.73
+  },
+  {
+    "word": "uses",
+    "start": 15.73,
+    "end": 16.12
+  },
+  {
+    "word": "a",
+    "start": 16.12,
+    "end": 16.17
+  },
+  {
+    "word": "distinctive",
+    "start": 16.17,
+    "end": 16.8
+  },
+  {
+    "word": "steel",
+    "start": 16.8,
+    "end": 17.14
+  },
+  {
+    "word": "structure",
+    "start": 17.14,
+    "end": 17.63
+  },
+  {
+    "word": "with",
+    "start": 17.84,
+    "end": 17.98
+  },
+  {
+    "word": "massive",
+    "start": 17.98,
+    "end": 18.38
+  },
+  {
+    "word": "supports",
+    "start": 18.38,
+    "end": 18.87
+  },
+  {
+    "word": "and",
+    "start": 18.87,
+    "end": 18.97
+  },
+  {
+    "word": "trusses",
+    "start": 18.97,
+    "end": 19.44
+  },
+  {
+    "word": "floors",
+    "start": 19.72,
+    "end": 20.14
+  },
+  {
+    "word": "are",
+    "start": 20.14,
+    "end": 20.17
+  },
+  {
+    "word": "suspended",
+    "start": 20.17,
+    "end": 20.73
+  },
+  {
+    "word": "from",
+    "start": 20.73,
+    "end": 20.87
+  },
+  {
+    "word": "the",
+    "start": 20.87,
+    "end": 20.93
+  },
+  {
+    "word": "structure",
+    "start": 20.93,
+    "end": 21.35
+  },
+  {
+    "word": "above",
+    "start": 21.35,
+    "end": 21.68
+  },
+  {
+    "word": "leaving",
+    "start": 21.96,
+    "end": 22.21
+  },
+  {
+    "word": "large",
+    "start": 22.21,
+    "end": 22.6
+  },
+  {
+    "word": "flexible",
+    "start": 22.6,
+    "end": 23.04
+  },
+  {
+    "word": "spaces",
+    "start": 23.04,
+    "end": 23.51
+  },
+  {
+    "word": "inside",
+    "start": 23.51,
+    "end": 23.98
+  },
+  {
+    "word": "at",
+    "start": 24.34,
+    "end": 24.48
+  },
+  {
+    "word": "street",
+    "start": 24.48,
+    "end": 24.79
+  },
+  {
+    "word": "level",
+    "start": 24.79,
+    "end": 25.12
+  },
+  {
+    "word": "the",
+    "start": 25.61,
+    "end": 25.71
+  },
+  {
+    "word": "raised",
+    "start": 25.71,
+    "end": 26.05
+  },
+  {
+    "word": "building",
+    "start": 26.05,
+    "end": 26.42
+  },
+  {
+    "word": "makes",
+    "start": 26.42,
+    "end": 26.68
+  },
+  {
+    "word": "room",
+    "start": 26.68,
+    "end": 26.94
+  },
+  {
+    "word": "for",
+    "start": 26.94,
+    "end": 27.1
+  },
+  {
+    "word": "a",
+    "start": 27.1,
+    "end": 27.13
+  },
+  {
+    "word": "sheltered",
+    "start": 27.13,
+    "end": 27.6
+  },
+  {
+    "word": "public",
+    "start": 27.6,
+    "end": 28.01
+  },
+  {
+    "word": "plaza",
+    "start": 28.01,
+    "end": 28.44
+  },
+  {
+    "word": "look",
+    "start": 29.09,
+    "end": 29.26
+  },
+  {
+    "word": "up",
+    "start": 29.26,
+    "end": 29.36
+  },
+  {
+    "word": "from",
+    "start": 29.36,
+    "end": 29.55
+  },
+  {
+    "word": "there",
+    "start": 29.55,
+    "end": 29.65
+  },
+  {
+    "word": "and",
+    "start": 29.65,
+    "end": 29.84
+  },
+  {
+    "word": "the",
+    "start": 30.22,
+    "end": 30.41
+  },
+  {
+    "word": "building",
+    "start": 30.41,
+    "end": 30.79
+  },
+  {
+    "word": "seems",
+    "start": 30.79,
+    "end": 31.09
+  },
+  {
+    "word": "to",
+    "start": 31.09,
+    "end": 31.16
+  },
+  {
+    "word": "hover",
+    "start": 31.16,
+    "end": 31.53
+  },
+  {
+    "word": "over",
+    "start": 31.68,
+    "end": 31.88
+  },
+  {
+    "word": "your",
+    "start": 31.88,
+    "end": 32.03
+  },
+  {
+    "word": "head",
+    "start": 32.03,
+    "end": 32.54
+  },
+  {
+    "word": "escalators",
+    "start": 32.846,
+    "end": 33.466
+  },
+  {
+    "word": "carry",
+    "start": 33.466,
+    "end": 33.766
+  },
+  {
+    "word": "visitors",
+    "start": 33.766,
+    "end": 34.346
+  },
+  {
+    "word": "up",
+    "start": 34.346,
+    "end": 34.576
+  },
+  {
+    "word": "through",
+    "start": 34.576,
+    "end": 34.806
+  },
+  {
+    "word": "the",
+    "start": 34.806,
+    "end": 34.946
+  },
+  {
+    "word": "underside",
+    "start": 34.946,
+    "end": 35.586
+  },
+  {
+    "word": "into",
+    "start": 35.836,
+    "end": 36.046
+  },
+  {
+    "word": "the",
+    "start": 36.046,
+    "end": 36.116
+  },
+  {
+    "word": "banking",
+    "start": 36.116,
+    "end": 36.496
+  },
+  {
+    "word": "hall",
+    "start": 36.496,
+    "end": 36.756
+  },
+  {
+    "word": "above",
+    "start": 37.436,
+    "end": 37.746
+  },
+  {
+    "word": "that",
+    "start": 37.746,
+    "end": 37.976
+  },
+  {
+    "word": "is",
+    "start": 37.976,
+    "end": 38.086
+  },
+  {
+    "word": "a",
+    "start": 38.086,
+    "end": 38.126
+  },
+  {
+    "word": "huge",
+    "start": 38.126,
+    "end": 38.536
+  },
+  {
+    "word": "atrium",
+    "start": 38.536,
+    "end": 39.026
+  },
+  {
+    "word": "and",
+    "start": 39.426,
+    "end": 39.536
+  },
+  {
+    "word": "a",
+    "start": 39.536,
+    "end": 39.566
+  },
+  {
+    "word": "system",
+    "start": 39.566,
+    "end": 39.976
+  },
+  {
+    "word": "of",
+    "start": 39.976,
+    "end": 40.056
+  },
+  {
+    "word": "mirrors",
+    "start": 40.056,
+    "end": 40.566
+  },
+  {
+    "word": "helps",
+    "start": 40.786,
+    "end": 41.076
+  },
+  {
+    "word": "bring",
+    "start": 41.076,
+    "end": 41.336
+  },
+  {
+    "word": "daylight",
+    "start": 41.336,
+    "end": 41.796
+  },
+  {
+    "word": "deep",
+    "start": 41.796,
+    "end": 42.106
+  },
+  {
+    "word": "into",
+    "start": 42.106,
+    "end": 42.316
+  },
+  {
+    "word": "the",
+    "start": 42.316,
+    "end": 42.386
+  },
+  {
+    "word": "building",
+    "start": 42.386,
+    "end": 42.846
+  },
+  {
+    "word": "the",
+    "start": 43.126,
+    "end": 43.216
+  },
+  {
+    "word": "design",
+    "start": 43.216,
+    "end": 43.596
+  },
+  {
+    "word": "also",
+    "start": 43.596,
+    "end": 43.846
+  },
+  {
+    "word": "considered",
+    "start": 43.846,
+    "end": 44.276
+  },
+  {
+    "word": "feng",
+    "start": 44.276,
+    "end": 44.566
+  },
+  {
+    "word": "shui",
+    "start": 44.566,
+    "end": 45.006
+  },
+  {
+    "word": "a",
+    "start": 45.596,
+    "end": 45.636
+  },
+  {
+    "word": "traditional",
+    "start": 45.636,
+    "end": 46.076
+  },
+  {
+    "word": "practice",
+    "start": 46.076,
+    "end": 46.566
+  },
+  {
+    "word": "concerned",
+    "start": 46.566,
+    "end": 47.016
+  },
+  {
+    "word": "with",
+    "start": 47.016,
+    "end": 47.126
+  },
+  {
+    "word": "how",
+    "start": 47.126,
+    "end": 47.296
+  },
+  {
+    "word": "places",
+    "start": 47.296,
+    "end": 47.736
+  },
+  {
+    "word": "relate",
+    "start": 47.736,
+    "end": 48.006
+  },
+  {
+    "word": "to",
+    "start": 48.006,
+    "end": 48.096
+  },
+  {
+    "word": "their",
+    "start": 48.096,
+    "end": 48.226
+  },
+  {
+    "word": "surroundings",
+    "start": 48.226,
+    "end": 48.896
+  },
+  {
+    "word": "the",
+    "start": 49.226,
+    "end": 49.376
+  },
+  {
+    "word": "open",
+    "start": 49.376,
+    "end": 49.636
+  },
+  {
+    "word": "ground",
+    "start": 49.636,
+    "end": 49.916
+  },
+  {
+    "word": "level",
+    "start": 49.916,
+    "end": 50.166
+  },
+  {
+    "word": "became",
+    "start": 50.166,
+    "end": 50.486
+  },
+  {
+    "word": "more",
+    "start": 50.486,
+    "end": 50.756
+  },
+  {
+    "word": "than",
+    "start": 50.756,
+    "end": 50.896
+  },
+  {
+    "word": "an",
+    "start": 50.896,
+    "end": 50.996
+  },
+  {
+    "word": "engineering",
+    "start": 50.996,
+    "end": 51.506
+  },
+  {
+    "word": "trick",
+    "start": 51.506,
+    "end": 51.846
+  },
+  {
+    "word": "it",
+    "start": 52.546,
+    "end": 52.636
+  },
+  {
+    "word": "gave",
+    "start": 52.636,
+    "end": 52.896
+  },
+  {
+    "word": "the",
+    "start": 52.896,
+    "end": 52.976
+  },
+  {
+    "word": "city",
+    "start": 52.976,
+    "end": 53.356
+  },
+  {
+    "word": "a",
+    "start": 53.356,
+    "end": 53.406
+  },
+  {
+    "word": "covered",
+    "start": 53.406,
+    "end": 53.716
+  },
+  {
+    "word": "place",
+    "start": 53.716,
+    "end": 54.016
+  },
+  {
+    "word": "to",
+    "start": 54.016,
+    "end": 54.106
+  },
+  {
+    "word": "meet",
+    "start": 54.106,
+    "end": 54.526
+  },
+  {
+    "word": "rest",
+    "start": 54.806,
+    "end": 55.246
+  },
+  {
+    "word": "and",
+    "start": 55.546,
+    "end": 55.666
+  },
+  {
+    "word": "pass",
+    "start": 55.666,
+    "end": 55.956
+  },
+  {
+    "word": "through",
+    "start": 55.956,
+    "end": 56.226
+  },
+  {
+    "word": "so",
+    "start": 56.516,
+    "end": 56.676
+  },
+  {
+    "word": "the",
+    "start": 56.676,
+    "end": 56.746
+  },
+  {
+    "word": "strange",
+    "start": 56.746,
+    "end": 57.176
+  },
+  {
+    "word": "gap",
+    "start": 57.176,
+    "end": 57.496
+  },
+  {
+    "word": "under",
+    "start": 57.496,
+    "end": 57.646
+  },
+  {
+    "word": "this",
+    "start": 57.646,
+    "end": 57.816
+  },
+  {
+    "word": "skyscraper",
+    "start": 57.816,
+    "end": 58.496
+  },
+  {
+    "word": "isn't",
+    "start": 58.786,
+    "end": 59.026
+  },
+  {
+    "word": "missing",
+    "start": 59.026,
+    "end": 59.336
+  },
+  {
+    "word": "construction",
+    "start": 59.336,
+    "end": 59.986
+  },
+  {
+    "word": "it's",
+    "start": 60.726,
+    "end": 60.856
+  },
+  {
+    "word": "the",
+    "start": 60.856,
+    "end": 60.936
+  },
+  {
+    "word": "part",
+    "start": 60.936,
+    "end": 61.246
+  },
+  {
+    "word": "of",
+    "start": 61.246,
+    "end": 61.306
+  },
+  {
+    "word": "the",
+    "start": 61.306,
+    "end": 61.386
+  },
+  {
+    "word": "building",
+    "start": 61.386,
+    "end": 61.766
+  },
+  {
+    "word": "that",
+    "start": 61.766,
+    "end": 61.856
+  },
+  {
+    "word": "makes",
+    "start": 61.856,
+    "end": 62.096
+  },
+  {
+    "word": "room",
+    "start": 62.096,
+    "end": 62.376
+  },
+  {
+    "word": "for",
+    "start": 62.376,
+    "end": 62.536
+  },
+  {
+    "word": "everyone",
+    "start": 62.536,
+    "end": 62.816
+  },
+  {
+    "word": "else",
+    "start": 62.816,
+    "end": 63.176
+  }
+]

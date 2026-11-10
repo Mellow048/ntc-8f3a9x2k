@@ -24,9 +24,13 @@ on:
         required: false
         default: "100"
       diagnostics:
-        description: "Render only pendulum keyframe diagnostics (true/false)"
+        description: "Render only keyframe diagnostics (true/false)"
         required: false
         default: "false"
+      qa:
+        description: "Optional JSON shot metadata for final quality checks"
+        required: false
+        default: ""
 
 jobs:
   render:
@@ -69,19 +73,37 @@ jobs:
         working-directory: remotion-app
         run: npx tsc --noEmit
 
-      - name: Pendulum keyframe diagnostics
+      - name: Keyframe diagnostics
         if: inputs.diagnostics == 'true'
         working-directory: remotion-app
         run: |
           mkdir -p out/diagnostics
-          for frame in 80 220 340 475 610 805 1025 1200 1370 1460 1515 1625 1725 1875; do
-            npx remotion still src/index.ts PendulumShort "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
+          for frame in 100 400 900 1500; do
+            npx remotion still src/index.ts "${{ inputs.composition }}" "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
+            echo "file '$frame.png'" >> out/diagnostics/list.txt
           done
+          ffmpeg -v error -y -f concat -safe 0 -i out/diagnostics/list.txt -vf 'scale=270:480,tile=4x1' -frames:v 1 -q:v 18 out/diagnostics/sheet.jpg
+          base64 -w0 out/diagnostics/sheet.jpg | split -b 3500 -d -a 3 - out/diagnostics/chunk-
+      - name: Diagnostic image chunks 1
+        if: inputs.diagnostics == 'true'
+        working-directory: remotion-app
+        run: |
+          for n in $(seq 0 9); do i=$(printf '%03d' "$n"); f="out/diagnostics/chunk-$i"; [ ! -f "$f" ] || echo "::notice title=sheet-$i::$(cat "$f")"; done
+      - name: Diagnostic image chunks 2
+        if: inputs.diagnostics == 'true'
+        working-directory: remotion-app
+        run: |
+          for n in $(seq 10 19); do i=$(printf '%03d' "$n"); f="out/diagnostics/chunk-$i"; [ ! -f "$f" ] || echo "::notice title=sheet-$i::$(cat "$f")"; done
+      - name: Diagnostic image chunks 3
+        if: inputs.diagnostics == 'true'
+        working-directory: remotion-app
+        run: |
+          for n in $(seq 20 29); do i=$(printf '%03d' "$n"); f="out/diagnostics/chunk-$i"; [ ! -f "$f" ] || echo "::notice title=sheet-$i::$(cat "$f")"; done
       - name: Upload diagnostic stills
         if: inputs.diagnostics == 'true' && always()
         uses: actions/upload-artifact@v4
         with:
-          name: pendulum-keyframes-720p
+          name: keyframes-720p
           path: remotion-app/out/diagnostics/
           retention-days: 7
 
@@ -132,6 +154,30 @@ jobs:
           ok = ('720x1280 30/1 fps, 1965 frames, 65.500 s' in report
                 and 'black []' in report and 'unplanned white []' in report
                 and 'frozen spans >=12f []' in report)
+          loud = re.search(r'I:\s*(-?\d+(?:\.\d+)?) LUFS', report)
+          peak = re.search(r'Peak:\s*(-?\d+(?:\.\d+)?) dBFS', report)
+          ok = ok and loud is not None and -17 <= float(loud.group(1)) <= -13
+          ok = ok and peak is not None and float(peak.group(1)) <= -1.0
+          if not ok:
+              raise SystemExit('QA failed: review report.md in the artifact')
+          PYQA
+
+      - name: Quality check (engineering series)
+        if: inputs.diagnostics != 'true' && inputs.qa != '' && inputs.mix != ''
+        env:
+          QA_META: ${{ inputs.qa }}
+        run: |
+          python3 -m venv "$RUNNER_TEMP/short-qa-venv"
+          "$RUNNER_TEMP/short-qa-venv/bin/pip" install numpy pillow
+          "$RUNNER_TEMP/short-qa-venv/bin/python" templates/scripts/short_qa.py remotion-app/out/final.mp4 remotion-app/out/qa "$QA_META"
+          "$RUNNER_TEMP/short-qa-venv/bin/python" - <<'PYQA'
+          from pathlib import Path
+          import json, os, re
+          report = Path('remotion-app/out/qa/report.md').read_text()
+          frames = json.loads(Path(os.environ['QA_META']).read_text())['frames']
+          print('::notice::' + report.replace('%', '%25').replace('\n', '%0A'))
+          ok = (f'720x1280 30/1 fps, {frames} frames' in report and 'black []' in report
+                and 'unplanned white []' in report and 'frozen spans >=12f []' in report)
           loud = re.search(r'I:\s*(-?\d+(?:\.\d+)?) LUFS', report)
           peak = re.search(r'Peak:\s*(-?\d+(?:\.\d+)?) dBFS', report)
           ok = ok and loud is not None and -17 <= float(loud.group(1)) <= -13

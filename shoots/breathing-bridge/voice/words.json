@@ -1,0 +1,937 @@
+[
+  {
+    "word": "this",
+    "start": 0.12,
+    "end": 0.37
+  },
+  {
+    "word": "bridge",
+    "start": 0.37,
+    "end": 0.62
+  },
+  {
+    "word": "has",
+    "start": 0.62,
+    "end": 0.76
+  },
+  {
+    "word": "a",
+    "start": 0.76,
+    "end": 0.8
+  },
+  {
+    "word": "gap",
+    "start": 0.8,
+    "end": 1.05
+  },
+  {
+    "word": "in",
+    "start": 1.05,
+    "end": 1.13
+  },
+  {
+    "word": "the",
+    "start": 1.13,
+    "end": 1.2
+  },
+  {
+    "word": "road",
+    "start": 1.2,
+    "end": 1.48
+  },
+  {
+    "word": "on",
+    "start": 1.48,
+    "end": 1.59
+  },
+  {
+    "word": "purpose",
+    "start": 1.59,
+    "end": 2.2
+  },
+  {
+    "word": "and",
+    "start": 2.62,
+    "end": 2.72
+  },
+  {
+    "word": "without",
+    "start": 2.72,
+    "end": 3.11
+  },
+  {
+    "word": "it",
+    "start": 3.11,
+    "end": 3.42
+  },
+  {
+    "word": "a",
+    "start": 3.66,
+    "end": 3.7
+  },
+  {
+    "word": "hot",
+    "start": 3.7,
+    "end": 3.93
+  },
+  {
+    "word": "day",
+    "start": 3.93,
+    "end": 4.17
+  },
+  {
+    "word": "could",
+    "start": 4.17,
+    "end": 4.32
+  },
+  {
+    "word": "make",
+    "start": 4.32,
+    "end": 4.49
+  },
+  {
+    "word": "the",
+    "start": 4.49,
+    "end": 4.55
+  },
+  {
+    "word": "whole",
+    "start": 4.55,
+    "end": 4.8
+  },
+  {
+    "word": "structure",
+    "start": 4.8,
+    "end": 5.24
+  },
+  {
+    "word": "fight",
+    "start": 5.24,
+    "end": 5.57
+  },
+  {
+    "word": "itself",
+    "start": 5.57,
+    "end": 6.08
+  },
+  {
+    "word": "bridges",
+    "start": 6.35,
+    "end": 6.73
+  },
+  {
+    "word": "look",
+    "start": 6.73,
+    "end": 6.88
+  },
+  {
+    "word": "perfectly",
+    "start": 6.88,
+    "end": 7.33
+  },
+  {
+    "word": "still",
+    "start": 7.33,
+    "end": 7.71
+  },
+  {
+    "word": "but",
+    "start": 8.01,
+    "end": 8.13
+  },
+  {
+    "word": "their",
+    "start": 8.13,
+    "end": 8.22
+  },
+  {
+    "word": "steel",
+    "start": 8.22,
+    "end": 8.55
+  },
+  {
+    "word": "and",
+    "start": 8.55,
+    "end": 8.68
+  },
+  {
+    "word": "concrete",
+    "start": 8.68,
+    "end": 9.11
+  },
+  {
+    "word": "get",
+    "start": 9.11,
+    "end": 9.27
+  },
+  {
+    "word": "a",
+    "start": 9.27,
+    "end": 9.32
+  },
+  {
+    "word": "little",
+    "start": 9.32,
+    "end": 9.57
+  },
+  {
+    "word": "longer",
+    "start": 9.57,
+    "end": 9.82
+  },
+  {
+    "word": "when",
+    "start": 9.82,
+    "end": 9.99
+  },
+  {
+    "word": "they",
+    "start": 9.99,
+    "end": 10.08
+  },
+  {
+    "word": "warm",
+    "start": 10.08,
+    "end": 10.36
+  },
+  {
+    "word": "up",
+    "start": 10.36,
+    "end": 10.81
+  },
+  {
+    "word": "and",
+    "start": 10.81,
+    "end": 10.93
+  },
+  {
+    "word": "a",
+    "start": 10.93,
+    "end": 10.97
+  },
+  {
+    "word": "little",
+    "start": 10.97,
+    "end": 11.2
+  },
+  {
+    "word": "shorter",
+    "start": 11.2,
+    "end": 11.61
+  },
+  {
+    "word": "when",
+    "start": 11.61,
+    "end": 11.77
+  },
+  {
+    "word": "they",
+    "start": 11.77,
+    "end": 11.86
+  },
+  {
+    "word": "cool",
+    "start": 11.86,
+    "end": 12.1
+  },
+  {
+    "word": "down",
+    "start": 12.1,
+    "end": 12.42
+  },
+  {
+    "word": "on",
+    "start": 12.67,
+    "end": 12.81
+  },
+  {
+    "word": "a",
+    "start": 12.81,
+    "end": 12.87
+  },
+  {
+    "word": "long",
+    "start": 12.87,
+    "end": 13.13
+  },
+  {
+    "word": "bridge",
+    "start": 13.13,
+    "end": 13.54
+  },
+  {
+    "word": "those",
+    "start": 13.91,
+    "end": 14.14
+  },
+  {
+    "word": "tiny",
+    "start": 14.14,
+    "end": 14.49
+  },
+  {
+    "word": "changes",
+    "start": 14.49,
+    "end": 14.95
+  },
+  {
+    "word": "add",
+    "start": 14.95,
+    "end": 15.09
+  },
+  {
+    "word": "up",
+    "start": 15.09,
+    "end": 15.37
+  },
+  {
+    "word": "imagine",
+    "start": 16.05,
+    "end": 16.39
+  },
+  {
+    "word": "a",
+    "start": 16.39,
+    "end": 16.44
+  },
+  {
+    "word": "metal",
+    "start": 16.44,
+    "end": 16.82
+  },
+  {
+    "word": "ruler",
+    "start": 16.82,
+    "end": 17.11
+  },
+  {
+    "word": "wedged",
+    "start": 17.11,
+    "end": 17.46
+  },
+  {
+    "word": "tightly",
+    "start": 17.46,
+    "end": 17.85
+  },
+  {
+    "word": "between",
+    "start": 17.85,
+    "end": 18.18
+  },
+  {
+    "word": "two",
+    "start": 18.18,
+    "end": 18.41
+  },
+  {
+    "word": "walls",
+    "start": 18.41,
+    "end": 18.88
+  },
+  {
+    "word": "heat",
+    "start": 19.47,
+    "end": 19.71
+  },
+  {
+    "word": "it",
+    "start": 19.71,
+    "end": 19.78
+  },
+  {
+    "word": "up",
+    "start": 19.78,
+    "end": 20.03
+  },
+  {
+    "word": "and",
+    "start": 20.34,
+    "end": 20.48
+  },
+  {
+    "word": "it",
+    "start": 20.48,
+    "end": 20.54
+  },
+  {
+    "word": "has",
+    "start": 20.54,
+    "end": 20.68
+  },
+  {
+    "word": "nowhere",
+    "start": 20.68,
+    "end": 21.01
+  },
+  {
+    "word": "to",
+    "start": 21.01,
+    "end": 21.14
+  },
+  {
+    "word": "grow",
+    "start": 21.14,
+    "end": 21.51
+  },
+  {
+    "word": "the",
+    "start": 22.25,
+    "end": 22.34
+  },
+  {
+    "word": "ruler",
+    "start": 22.34,
+    "end": 22.65
+  },
+  {
+    "word": "pushes",
+    "start": 22.65,
+    "end": 23.01
+  },
+  {
+    "word": "against",
+    "start": 23.01,
+    "end": 23.32
+  },
+  {
+    "word": "the",
+    "start": 23.32,
+    "end": 23.38
+  },
+  {
+    "word": "walls",
+    "start": 23.38,
+    "end": 23.85
+  },
+  {
+    "word": "now",
+    "start": 24.23,
+    "end": 24.41
+  },
+  {
+    "word": "imagine",
+    "start": 24.41,
+    "end": 24.71
+  },
+  {
+    "word": "that",
+    "start": 24.71,
+    "end": 24.89
+  },
+  {
+    "word": "ruler",
+    "start": 24.89,
+    "end": 25.2
+  },
+  {
+    "word": "is",
+    "start": 25.2,
+    "end": 25.29
+  },
+  {
+    "word": "a",
+    "start": 25.29,
+    "end": 25.33
+  },
+  {
+    "word": "bridge",
+    "start": 25.33,
+    "end": 25.79
+  },
+  {
+    "word": "carrying",
+    "start": 26.03,
+    "end": 26.44
+  },
+  {
+    "word": "thousands",
+    "start": 26.44,
+    "end": 27.01
+  },
+  {
+    "word": "of",
+    "start": 27.01,
+    "end": 27.11
+  },
+  {
+    "word": "cars",
+    "start": 27.11,
+    "end": 27.62
+  },
+  {
+    "word": "engineers",
+    "start": 28.119,
+    "end": 28.669
+  },
+  {
+    "word": "give",
+    "start": 28.669,
+    "end": 28.839
+  },
+  {
+    "word": "the",
+    "start": 28.839,
+    "end": 28.919
+  },
+  {
+    "word": "bridge",
+    "start": 28.919,
+    "end": 29.209
+  },
+  {
+    "word": "room",
+    "start": 29.209,
+    "end": 29.509
+  },
+  {
+    "word": "to",
+    "start": 29.509,
+    "end": 29.619
+  },
+  {
+    "word": "move",
+    "start": 29.619,
+    "end": 29.949
+  },
+  {
+    "word": "with",
+    "start": 29.949,
+    "end": 30.059
+  },
+  {
+    "word": "expansion",
+    "start": 30.059,
+    "end": 30.599
+  },
+  {
+    "word": "joints",
+    "start": 30.599,
+    "end": 31.029
+  },
+  {
+    "word": "carefully",
+    "start": 31.689,
+    "end": 32.119
+  },
+  {
+    "word": "designed",
+    "start": 32.119,
+    "end": 32.509
+  },
+  {
+    "word": "gaps",
+    "start": 32.509,
+    "end": 32.949
+  },
+  {
+    "word": "or",
+    "start": 33.199,
+    "end": 33.389
+  },
+  {
+    "word": "flexible",
+    "start": 33.389,
+    "end": 33.869
+  },
+  {
+    "word": "connections",
+    "start": 33.869,
+    "end": 34.419
+  },
+  {
+    "word": "between",
+    "start": 34.419,
+    "end": 34.749
+  },
+  {
+    "word": "sections",
+    "start": 34.749,
+    "end": 35.339
+  },
+  {
+    "word": "on",
+    "start": 36.009,
+    "end": 36.159
+  },
+  {
+    "word": "a",
+    "start": 36.159,
+    "end": 36.209
+  },
+  {
+    "word": "hot",
+    "start": 36.209,
+    "end": 36.489
+  },
+  {
+    "word": "afternoon",
+    "start": 36.489,
+    "end": 37.079
+  },
+  {
+    "word": "the",
+    "start": 37.339,
+    "end": 37.459
+  },
+  {
+    "word": "gap",
+    "start": 37.459,
+    "end": 37.739
+  },
+  {
+    "word": "gets",
+    "start": 37.739,
+    "end": 37.969
+  },
+  {
+    "word": "narrower",
+    "start": 37.969,
+    "end": 38.399
+  },
+  {
+    "word": "as",
+    "start": 38.669,
+    "end": 38.789
+  },
+  {
+    "word": "the",
+    "start": 38.789,
+    "end": 38.859
+  },
+  {
+    "word": "bridge",
+    "start": 38.859,
+    "end": 39.109
+  },
+  {
+    "word": "expands",
+    "start": 39.109,
+    "end": 39.689
+  },
+  {
+    "word": "on",
+    "start": 40.049,
+    "end": 40.199
+  },
+  {
+    "word": "a",
+    "start": 40.199,
+    "end": 40.239
+  },
+  {
+    "word": "cold",
+    "start": 40.239,
+    "end": 40.549
+  },
+  {
+    "word": "night",
+    "start": 40.549,
+    "end": 40.989
+  },
+  {
+    "word": "it",
+    "start": 41.339,
+    "end": 41.469
+  },
+  {
+    "word": "opens",
+    "start": 41.469,
+    "end": 41.819
+  },
+  {
+    "word": "up",
+    "start": 41.819,
+    "end": 41.949
+  },
+  {
+    "word": "again",
+    "start": 41.949,
+    "end": 42.259
+  },
+  {
+    "word": "as",
+    "start": 42.419,
+    "end": 42.579
+  },
+  {
+    "word": "the",
+    "start": 42.579,
+    "end": 42.659
+  },
+  {
+    "word": "bridge",
+    "start": 42.659,
+    "end": 42.929
+  },
+  {
+    "word": "contracts",
+    "start": 42.929,
+    "end": 43.569
+  },
+  {
+    "word": "some",
+    "start": 43.909,
+    "end": 44.199
+  },
+  {
+    "word": "joints",
+    "start": 44.199,
+    "end": 44.559
+  },
+  {
+    "word": "have",
+    "start": 44.559,
+    "end": 44.709
+  },
+  {
+    "word": "interlocking",
+    "start": 44.709,
+    "end": 45.399
+  },
+  {
+    "word": "metal",
+    "start": 45.399,
+    "end": 45.699
+  },
+  {
+    "word": "fingers",
+    "start": 45.699,
+    "end": 46.229
+  },
+  {
+    "word": "others",
+    "start": 46.659,
+    "end": 47.089
+  },
+  {
+    "word": "use",
+    "start": 47.249,
+    "end": 47.499
+  },
+  {
+    "word": "flexible",
+    "start": 47.499,
+    "end": 47.939
+  },
+  {
+    "word": "seals",
+    "start": 47.939,
+    "end": 48.479
+  },
+  {
+    "word": "bearings",
+    "start": 49.069,
+    "end": 49.669
+  },
+  {
+    "word": "underneath",
+    "start": 49.669,
+    "end": 50.349
+  },
+  {
+    "word": "can",
+    "start": 50.349,
+    "end": 50.469
+  },
+  {
+    "word": "let",
+    "start": 50.469,
+    "end": 50.639
+  },
+  {
+    "word": "the",
+    "start": 50.639,
+    "end": 50.719
+  },
+  {
+    "word": "deck",
+    "start": 50.719,
+    "end": 50.979
+  },
+  {
+    "word": "slide",
+    "start": 50.979,
+    "end": 51.309
+  },
+  {
+    "word": "too",
+    "start": 51.309,
+    "end": 51.629
+  },
+  {
+    "word": "cars",
+    "start": 52.229,
+    "end": 52.609
+  },
+  {
+    "word": "roll",
+    "start": 52.609,
+    "end": 52.909
+  },
+  {
+    "word": "across",
+    "start": 52.909,
+    "end": 53.379
+  },
+  {
+    "word": "while",
+    "start": 53.379,
+    "end": 53.579
+  },
+  {
+    "word": "the",
+    "start": 53.579,
+    "end": 53.649
+  },
+  {
+    "word": "bridge",
+    "start": 53.649,
+    "end": 53.939
+  },
+  {
+    "word": "quietly",
+    "start": 53.939,
+    "end": 54.399
+  },
+  {
+    "word": "changes",
+    "start": 54.399,
+    "end": 54.829
+  },
+  {
+    "word": "length",
+    "start": 54.829,
+    "end": 55.239
+  },
+  {
+    "word": "so",
+    "start": 55.509,
+    "end": 55.639
+  },
+  {
+    "word": "that",
+    "start": 55.639,
+    "end": 55.789
+  },
+  {
+    "word": "little",
+    "start": 55.789,
+    "end": 55.999
+  },
+  {
+    "word": "clunk",
+    "start": 55.999,
+    "end": 56.329
+  },
+  {
+    "word": "you",
+    "start": 56.329,
+    "end": 56.419
+  },
+  {
+    "word": "feel",
+    "start": 56.419,
+    "end": 56.629
+  },
+  {
+    "word": "at",
+    "start": 56.629,
+    "end": 56.709
+  },
+  {
+    "word": "the",
+    "start": 56.709,
+    "end": 56.799
+  },
+  {
+    "word": "end",
+    "start": 56.799,
+    "end": 56.909
+  },
+  {
+    "word": "of",
+    "start": 56.909,
+    "end": 56.969
+  },
+  {
+    "word": "a",
+    "start": 56.969,
+    "end": 57.019
+  },
+  {
+    "word": "bridge",
+    "start": 57.019,
+    "end": 57.479
+  },
+  {
+    "word": "it",
+    "start": 57.819,
+    "end": 57.909
+  },
+  {
+    "word": "might",
+    "start": 57.909,
+    "end": 58.129
+  },
+  {
+    "word": "be",
+    "start": 58.129,
+    "end": 58.219
+  },
+  {
+    "word": "the",
+    "start": 58.219,
+    "end": 58.299
+  },
+  {
+    "word": "sound",
+    "start": 58.299,
+    "end": 58.599
+  },
+  {
+    "word": "of",
+    "start": 58.599,
+    "end": 58.669
+  },
+  {
+    "word": "a",
+    "start": 58.669,
+    "end": 58.739
+  },
+  {
+    "word": "very",
+    "start": 58.739,
+    "end": 59.119
+  },
+  {
+    "word": "big",
+    "start": 59.119,
+    "end": 59.309
+  },
+  {
+    "word": "structure",
+    "start": 59.309,
+    "end": 59.839
+  },
+  {
+    "word": "making",
+    "start": 60.049,
+    "end": 60.409
+  },
+  {
+    "word": "room",
+    "start": 60.409,
+    "end": 60.599
+  },
+  {
+    "word": "to",
+    "start": 60.599,
+    "end": 60.719
+  },
+  {
+    "word": "breathe",
+    "start": 60.719,
+    "end": 61.319
+  }
+]
