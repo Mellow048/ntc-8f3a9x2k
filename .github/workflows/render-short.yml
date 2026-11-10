@@ -235,7 +235,7 @@ jobs:
           p=next(Path('bridge-delivery').rglob('report.md'))
           report=p.read_text()
           print(report)
-          for expected in ['720x1280 30/1 fps, 1852 frames', 'black []', 'unplanned white []', 'frozen spans >=12f []', 'unplanned pops []']:
+          for expected in ['720x1280 30/1 fps, 1852 frames', 'black []', 'unplanned white []', 'frozen spans >=12f []', 'POPS (unplanned frame-diff spikes > 3x local median): []']:
               assert expected in report, f'Missing QA check: {expected}'
           PYQA
           cp "$(find bridge-delivery -name final.mp4 | head -1)" shoots/breathing-bridge/final-720p.mp4
