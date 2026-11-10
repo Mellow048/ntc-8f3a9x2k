@@ -32,45 +32,8 @@ on:
         required: false
         default: ""
 
-permissions:
-  contents: write
-  actions: read
-  checks: read
-
 jobs:
-  deliver-bridge:
-    if: inputs.diagnostics == 'deliver'
-    runs-on: ubuntu-latest
-    timeout-minutes: 180
-    steps:
-      - name: Wait for the bridge render and QA
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh run watch 42760733900 --repo "$GITHUB_REPOSITORY" --exit-status --interval 60
-      - uses: actions/checkout@v4
-        with:
-          ref: arena/2524fc8a-ntc-8f3a9x2k
-      - uses: actions/download-artifact@v4
-        with:
-          name: cartoon-3d-short
-          run-id: 42760733900
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path: delivery/bridge
-      - name: Publish the remaster to the branch
-        run: |
-          set -euo pipefail
-          test -s delivery/bridge/final.mp4
-          test -s delivery/bridge/qa/report.md
-          test "$(stat -c %s delivery/bridge/final.mp4)" -lt 100000000
-          cp delivery/bridge/final.mp4 shoots/breathing-bridge/final-720p.mp4
-          cp delivery/bridge/qa/report.md shoots/breathing-bridge/qa-report.md
-          git add -f shoots/breathing-bridge/final-720p.mp4 shoots/breathing-bridge/qa-report.md
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'Publish remastered bridge short'
-          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
   render:
-    if: inputs.diagnostics != 'deliver' 
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
