@@ -116,7 +116,7 @@ function cityhall(g:THREE.Group, mode:string):Tick {
  for(let i=-3;i<=3;i++){
   const b=group(g,i*1.15,.6,0);cyl(b,.43,.18,'#4a5262',0,.02,0);cyl(b,.38,.20,'#9aacc2',0,.2,0);cyl(b,.43,.17,'#4a5262',0,.38,0);
  }
- const hero=person(g,-3.7,.2,2.5,'hero',.75,mode==='quake'?'shock':'smile');
+ const hero=person(g,-2.8,.2,3.5,'hero',1.05,mode==='quake'?'shock':'smile');
  tree(g,-5,-1,.8);tree(g,5,-1,.8);
  if(mode==='moat'){box(g,.14,.18,4,'#2a3342',-4.4,.44,0);box(g,.14,.18,4,'#2a3342',4.4,.44,0);}
  return f=>{const t=f/30;const shake=mode==='quake'?.22*Math.sin(t*15):.04*Math.sin(t*1.7);foundation.position.x=shake;top.position.x=shake*.3;hero.rotation.z=.03*Math.sin(t*2);};
@@ -140,7 +140,7 @@ function airport(g:THREE.Group,mode:string):Tick {
  for(let x=-3.3;x<3.4;x+=.8)box(island,.45,.025,.06,'#faf1ce',x,1.8,.3);
  const terminal=group(island,0,0,-.7);box(terminal,5,.85,.8,'#9cc4cd',0,2.15,0);box(terminal,5.4,.14,1,'#e8eee8',0,2.63,0);
  for(let x=-2.2;x<=2.2;x+=.55)box(terminal,.05,.85,.06,'#6d8997',x,2.16,.43);
- const a=plane(island,-1.8,2,.45,.55);
+ const a=plane(island,-1.8,2.7,.45,.9);
  // bridge to shore on the right, and gentle wave crests
  box(g,3,.2,.8,'#b8b5a5',5,1.75,0);for(let x=3.7;x<6.6;x+=.8)box(g,.13,1.6,.13,'#e0d5b6',x,.8,0);
  for(let x=-5;x<5;x+=1.6){const q=box(g,.7,.035,.06,'#b4e5df',x,.1,3);q.rotation.y=.2;}
@@ -227,13 +227,40 @@ export class World {
  beats:Beat[];
  constructor(slug:string,beats:Beat[]){
   this.beats=beats;
-  this.stages=beats.map(b=>stage(this.root,g=>{
-   if(slug==='breathing-bridge') return b.scene==='ruler'?ruler(g):bridge(g,b.scene);
-   if(slug==='spring-building') return b.scene==='bearing'?bearing(g):b.scene==='jelly'?jelly(g):cityhall(g,b.scene);
-   if(slug==='ocean-airport') return b.scene==='jack'?jack(g):airport(g,b.scene);
-   if(slug==='channel-tunnel') return tunnel(g,b.scene);
-   return b.scene==='atrium'||b.scene==='mirror'?atrium(g,b.scene):tower(g,b.scene);
-  }));
+  this.stages=beats.map((b,i)=>{
+   // Each idea gets its own framing, rather than showing the same distant
+   // diorama for a whole minute. In particular, inserts fill the portrait frame.
+   let cam:[number,number,number]=[9,8,20], look:[number,number,number]=[0,3,0], fov=40;
+   if(slug==='breathing-bridge') {
+    if(b.scene==='joint'||b.scene==='bearing'){cam=[6,6.8,11.5];look=[0,2.5,2.6];fov=43;}
+    else if(b.scene==='ruler'){cam=[5,5.8,12.5];look=[0,2.4,0];fov=43;}
+    else if(i===0){cam=[9,7.8,15.8];look=[0,2.9,0];fov=43;}
+   }
+   if(slug==='spring-building') {
+    if(b.scene==='bearing'||b.scene==='jelly'){cam=[5.5,6,12.5];look=[0,2.2,0];fov=43;}
+    else {cam=[9,7.5,18];look=[0,3.6,0];fov=42;}
+   }
+   if(slug==='ocean-airport') {
+    if(b.scene==='jack'){cam=[6,6.2,12.5];look=[0,2.1,0];fov=43;}
+    else {cam=[9,8.5,15.5];look=[0,2.2,0];fov=43;}
+   }
+   if(slug==='channel-tunnel') {
+    if(b.scene==='three'||b.scene==='service'){cam=[6,7,18];look=[0,3.2,0];fov=42;}
+    else {cam=[5.5,6.5,13.5];look=[0,3.4,0];fov=45;}
+   }
+   if(slug==='sky-plaza') {
+    if(b.scene==='plaza'){cam=[5.2,5,12];look=[0,2.5,0];fov=45;}
+    else if(b.scene==='truss'){cam=[7,8.2,15];look=[0,5.2,0];fov=42;}
+    else if(b.scene==='atrium'||b.scene==='mirror'){cam=[5,7,14];look=[0,3.5,0];fov=43;}
+   }
+   return stage(this.root,g=>{
+    if(slug==='breathing-bridge') return b.scene==='ruler'?ruler(g):bridge(g,b.scene);
+    if(slug==='spring-building') return b.scene==='bearing'?bearing(g):b.scene==='jelly'?jelly(g):cityhall(g,b.scene);
+    if(slug==='ocean-airport') return b.scene==='jack'?jack(g):airport(g,b.scene);
+    if(slug==='channel-tunnel') return tunnel(g,b.scene);
+    return b.scene==='atrium'||b.scene==='mirror'?atrium(g,b.scene):tower(g,b.scene);
+   },cam,look,fov);
+  });
   this.stages.forEach(s=>s.root.visible=false);
   const hemi=new THREE.HemisphereLight('#fff7e7','#8f94a3',2.0);this.root.add(hemi);
   const sunLight=new THREE.DirectionalLight('#fff6dd',2.2);sunLight.position.set(-8,18,12);sunLight.castShadow=true;sunLight.shadow.mapSize.set(1024,1024);sunLight.shadow.camera.left=-14;sunLight.shadow.camera.right=14;sunLight.shadow.camera.top=14;sunLight.shadow.camera.bottom=-14;sunLight.shadow.bias=-.0002;this.root.add(sunLight);
@@ -242,8 +269,8 @@ export class World {
   let index=0;while(index+1<this.beats.length&&frame>=this.beats[index+1].frame)index++;
   this.stages.forEach((s,i)=>{s.root.visible=i===index;});const s=this.stages[index], local=frame-this.beats[index].frame;
   s.tick(frame,local);
-  const t=frame/30;const creep=Math.min(.5,local*.0013);
-  camera.position.set(s.camera[0]+.12*Math.sin(t*.35),s.camera[1]+.05*Math.sin(t*.55),s.camera[2]-creep);
+  const t=frame/30;const creep=Math.min(.8,local*.003);
+  camera.position.set(s.camera[0]+.18*Math.sin(t*.38),s.camera[1]+.08*Math.sin(t*.55),s.camera[2]-creep);
   camera.lookAt(...s.look);camera.fov=s.fov;camera.near=.1;camera.far=300;camera.updateProjectionMatrix();camera.layers.enable(NOINK);
  }
 }
