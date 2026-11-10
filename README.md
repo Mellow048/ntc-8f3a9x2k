@@ -1,48 +1,53 @@
 # Cartoon 3D Shorts
 
-**2D characters in a colourful 3D world** — flat bean-head cartoon cards with
-ink outlines in a painted 3D town, over a voice narration with synthesized
-SFX + march music. This repo vendors the free **`cartoon-3d-short`** Claude
-skill and wraps it in our production process.
+Detailed painted/ink-outlined 3D worlds with expressive flat cartoon characters,
+word-timed physical storytelling, original sound and Arena narration.
 
-Upstream: [mromidev/claude-animated-shorts](https://github.com/mromidev/claude-animated-shorts)
-(MIT), proven on the 67 s short *The Bridge That Fell for a Song*.
+## Start here
 
-## What's in here
+- **[AGENTS.md](AGENTS.md)** — required reading order for every new agent.
+- **[IMPORTANT.md](IMPORTANT.md)** — current release gates. **720×1280/30fps**
+  and synchronized **1–2-word captions** override older 2K/no-caption defaults.
+- **[VIDEO_HANDOFF.md](VIDEO_HANDOFF.md)** — user feedback, approvals, production
+  checkpoints and lessons. Do not repeat rejected shortcuts.
+- **[Approved reference library](references/approved/README.md)** — actual
+  Taipei 101 and accepted Beer Flood MP4s **plus their source**, preserved on
+  `main` so deleting a historical branch does not remove these examples.
 
-| Path | What it is |
-| --- | --- |
-| `SKILL.md` | The skill: full pipeline, rules, fixes, final look values |
-| `templates/bridge/` | Full source of the bridge short (world, characters, ink, lens blur, grade, story/camera) |
-| `templates/audio/` | Synthesized sound: SFX, march music, ducked mix |
-| `templates/scripts/` | Stills, side-by-side sheets, merge, frame QA helpers |
-| `references/` | Style bible, measured reports, 38 reference frames, 20 contact sheets |
-| `IMPORTANT.md` | Our release gates (no captions, 2K export, CI rendering) |
-| `docs/setup.md` | Remotion scaffold + GitHub Actions rendering |
-| `shoots/` | One folder per short (script, voice, audio) |
-| `UPSTREAM-README.md` | Upstream README, kept as-is |
+## Repository map
 
-## The look (from the skill)
+| Path | Purpose |
+|---|---|
+| `references/approved/` | User-approved original films, source snapshots, manifests and reproduction notes |
+| `references/STYLE_BIBLE.md`, `frames/`, `reports/`, `sheets/` | Legacy private style study; not original film deliverables |
+| `templates/bridge/` | Vendored renderer/style implementation; use with current overrides |
+| `templates/audio/` | Audio implementation examples, not a mandatory recurring score |
+| `templates/scripts/` | Frame/spec/loudness QA tools |
+| `SKILL.md` | Upstream skill; current user gates take precedence over conflicting defaults |
+| `VIDEO_HANDOFF.md` | Durable feedback, production recovery and current work |
+| `docs/setup.md` | Remotion and GitHub Actions setup |
+| `shoots/` | Production material present in this checkout; some older projects live only in history |
 
-- 1080×1920 master, final export **1440×2560** @ 30 fps, H.264 CRF 16
-- Bean heads ~3.5 head-heights tall, plum ink, no blush, 14 expressions
-- Painted 3D town (muted brick/cream/ochre), ink outlines, sky gradients,
-  fog = horizon colour, DOF on ~1/3 of screen time (focus on eyes)
-- Gliding cameras, creeping push-ins on every hold, impact kicks
-- Voice over ducked march score (music +3 dB, SFX −6 dB)
+## Workflow
 
-## Use it
+Study approved films and source → fact-checked script and ending → Arena voice
+and word timings → distinct action-led shot plan → detailed sets and motion →
+GitHub diagnostic previews → actual visual review → GitHub final render →
+finished MP4 picture/audio review and technical QA → usable delivery link.
 
-1. Scaffold the Remotion project once — see [docs/setup.md](docs/setup.md).
-2. Follow `SKILL.md`: topic → script → voice (+`words.json`) → shot plan in
-   `story.ts` → stills/side-by-sides → final render.
-3. Render on **GitHub Actions** (never on your laptop):
-   Actions → **Render short** → download the `cartoon-3d-short` artifact.
-4. QA with `templates/scripts/short_qa.py` before delivery.
+Recognizable assets and readable action matter more than polygon counts or
+camera movement. A box labelled “car,” a blue slab labelled “water,” a repeated
+facade tour or inaudible score is not a finished film. See the release gates.
 
-Story, characters and voice are always our own — the `references/` are for
-style study only (see the skill). Code and docs are MIT; see `LICENSE`.
+Approved references preserve what worked; they do not waive new requirements.
+Taipei's historical caption handling, for example, does not override today's
+short synchronized caption requirement. Write new scripts, music and scenes
+for new topics rather than recycling the reference film.
 
-## License
+## License / origin
 
-MIT. See [LICENSE](LICENSE).
+The vendored `cartoon-3d-short` skill comes from
+[mromidev/claude-animated-shorts](https://github.com/mromidev/claude-animated-shorts)
+(MIT). See `LICENSE` and `UPSTREAM-README.md`. Approved original film provenance
+is recorded in `references/approved/*/manifest.json`; legacy third-party study
+images remain distinct from those originals.

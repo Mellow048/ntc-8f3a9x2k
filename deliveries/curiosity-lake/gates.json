@@ -1,8 +1,0 @@
-{
-  "specs": "720x1280 / 30fps / H.264 / AAC 48kHz",
-  "black_white_freeze": "PASS",
-  "loudness": "PASS",
-  "pop_review": "[]",
-  "captions": "1\u20132 words, forced-aligned Arena TTS; burned in",
-  "note": "Automated QA is not a substitute for visual/source review."
-}

@@ -1,60 +1,89 @@
-# IMPORTANT — Cartoon 3D short rules
+# IMPORTANT — release gates for every short
 
-These are release gates for every short in this repo. They sit **on top of**
-the vendored `SKILL.md` (`cartoon-3d-short`) — where the two disagree, the
-skill's proven look values win for style, these rules win for process.
+Read [AGENTS.md](AGENTS.md), then [VIDEO_HANDOFF.md](VIDEO_HANDOFF.md), and
+[the approved reference library](references/approved/README.md) **before building**.
+These are current user requirements. Older conflicting defaults in `SKILL.md`
+or historical source are not permission to ignore them.
 
-## 0. What this repo is
+## 1. Format and scope
 
-A vendored copy of the `cartoon-3d-short` skill (MIT, upstream:
-`mromidev/claude-animated-shorts`) plus our production wrapper: rules, CI,
-GitHub rendering. The skill + `templates/bridge/` is the renderer and the
-look. This file is the process gate.
+- **720×1280 portrait, 30 fps only.** Not 2K.
+- Synchronized changing **1–2-word subtitles**, never full sentences.
+- Use Arena TTS for new narration; preserve saved approved voice when unchanged.
+  Voice IDs are session-local; do not assume an old ID is available.
+- One requested film at a time. Leave unrelated approved films and other agents'
+  projects untouched. Follow the platform-assigned branch; never switch to a
+  branch named in an old handoff.
+- Heavy 3D rendering on GitHub Actions, not locally. Save actual source/voice
+  and deliver the MP4 with a usable GitHub link, not only an Actions artifact.
 
-## 1. Non-negotiables (from the skill)
+## 2. Recognizable objects, not defended placeholders
 
-- **No captions or labels in the video.** The voice carries the story.
-- English only. One steady voice tone.
-- Voice timed to `words.json`; every visual reaction lands 0–3 frames
-  before its word.
-- Shot plan lives in `story.ts` (`SHOTS`, `CAMS`, `KICKS`, `DOF`,
-  `FOREGROUND`) — there is no other shot list.
-- Final export **2K vertical 1440×2560**, H.264 CRF 16, scale 1.3333.
-- Save after every step. "Just do it" once the script is approved.
+- A box primitive may be one construction part; **a box is not a finished car**.
+  Cars need a recognizable body/silhouette, wheels/arches, glazing, lights and
+  road contact. Hero machinery needs functional parts, supports, joints,
+  cables and believable scale. Architecture needs meaningful depth and detail.
+- Never tell the user a crude placeholder is “stylized” or “high quality” to
+  excuse missing work. If it is unfinished, say so and finish it.
+- Water is not a blue cuboid or a flat colour sheet: show appropriate surface
+  motion, highlights/reflection, depth, foam and object interaction. Boats and
+  people must sit in/submerge through the surface, not walk on hard water.
+- Check the actual portrait frame at delivery resolution. Detail hidden,
+  cropped, blurred away or unreadable on screen does not count.
+- Match the care of the approved Taipei and Beer examples. Preserve the
+  painted/ink-outlined 3D world and expressive flat cartoon character look.
+  DOF is selective emphasis, not camouflage for low-detail models. No grain.
 
-## 2. Look gate
+## 3. Storytelling and physical action
 
-- Start every short from `templates/bridge/`; the look is those values
-  (light presets, ink, lens, post order, character proportions).
-- Character proportions: ~3.5 head-heights, stem limbs, no blush, plum ink.
-- Every hold creeps (push-in); no static hold ≥ 4 frames.
-- DOF on ~1/3 of screen time, focus on the eyes; wides stay sharp.
-- No film grain (reference measures none).
-- Verify with side-by-side sheets against `references/frames/` before
-  rendering the final.
+- Recognizable hook immediately; entertaining surprise before lecture.
+- Every beat adds a new action, reveal, mechanism, consequence, setting or
+  scale. **More angles of the same static scene are not new storytelling.**
+- Animate the mechanism on its spoken word, with visible before/during/after
+  states, correct direction, contact, load path and held endpoints.
+- Distinguish supporting people from the protagonist. No confusing duplicate
+  protagonist, cropped heads, unexplained disappearances or animation resets.
+- Camera motion supports the action; arbitrary bobbing/idle loops do not fix
+  a static story. Respect timing, continuity and physical immersion.
+- Write a real ending: setup/payoff or callback, intentional spoken cadence,
+  enough space for the final idea to land, and a short resolved visual/music
+  tail. Do not cut the export off as the final word ends.
 
-## 3. Sound gate
+## 4. Audio must work at normal playback volume
 
-- Synthesized SFX + original march score from `templates/audio/`, ducked
-  under the voice. Standard mix: **music +3 dB, SFX −6 dB, voice unchanged**.
-- `mix.wav` at 48 kHz, exact length. Lock picture timing first — any timing
-  change means re-running the sound.
+- Compose a distinct score for each film. Do not recycle a melody/recording or
+  blindly reuse the same timbre/rhythm. Reusing DSP code is not reusing music.
+- Match mood to the subject: engaging curiosity/tension/relief, not a blanket
+  depressing drone. A musical cue should progress with the story and resolve.
+- Narration remains intelligible, **but music must actually be noticeable at
+  ordinary listening volume**. Do not require 150% volume to hear it.
+- Measure relative music level **after ducking**, then assess the muxed MP4.
+  Lake's accepted polish used music ~5–6 LU below speech; earlier ~9–11 LU
+  below was rejected as inaudible. This is a starting benchmark, not a magic
+  number or a mandate to overpower every narrator.
+- 48 kHz stereo. Aim roughly −14 to −15 LUFS integrated, with codec headroom
+  and finished-file true peak ≤−1 dBTP. Retiming means rebuilding the mix and
+  captions. A loud master alone does not fix a buried music stem.
 
-## 4. CI / rendering gate
+## 5. Mandatory review, honesty and delivery
 
-- All rendering happens on **GitHub Actions** (see
-  `.github/workflows/render-short.yml`). Never render 2K video on a laptop.
-- `short_qa.py` must pass on the final MP4 (no black/white/frozen/pop
-  frames, loudness in range) before delivery.
-- One short per folder in `shoots/<slug>/`; voice files committed per short
-  so CI can reproduce the render.
+1. Study both approved MP4s **and** their story/world/audio source; write a
+   shot plan with genuinely distinct beats before spending a full render.
+2. Typecheck and test deterministic motion; inspect diagnostic frames at
+   opening, faces, mechanism contacts, before/during/after actions and ending.
+3. Compare against approved originals. Fix visible placeholder geometry and
+   physics errors before the full GitHub render.
+4. Run technical QA on the final MP4 (specs, silence, black/white/frozen frames,
+   pops, loudness/peaks), then inspect the **finished** picture and audio.
+5. A passing test is not aesthetic approval. Distinguish planned, implemented,
+   running, technically checked, visually checked, delivered and user-approved.
+   Never claim to have listened or watched if you have not.
+6. Preserve accepted versions until replacements pass review. When only audio
+   or pacing changes, reuse rendered picture where practical instead of
+   charging another hour of 3D rendering. Avoid repeated lossy re-encodes.
+7. Present the MP4, provide a pinned GitHub link, document unresolved issues,
+   and update the handoff. Never promise an unattended job will finish by a
+   deadline you cannot control.
 
-## 5. Release checklist
-
-- [ ] Script approved, facts sourced in `SCRIPT.md`
-- [ ] `voice.wav` + hand-fixed `words.json`
-- [ ] `story.ts` complete, look values copied from the template
-- [ ] Side-by-side look check done (sheets vs `references/frames/`)
-- [ ] Still frame rate check, then `short_qa.py` clean on the final
-- [ ] Muxed with voice at the standard mix, 1440×2560
-- [ ] Delivered MP4 + notes
+No document guarantees a one-shot acceptance. These gates prevent repeating
+known failures; visual/audio judgment and truthful reporting remain required.
