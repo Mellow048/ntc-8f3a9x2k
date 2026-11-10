@@ -42,9 +42,14 @@ on:
         description: "Commit the MP4 and its QA report to this branch at this path ({size} is replaced; empty = artifact only)"
         required: false
         default: "shoots/nvidia-honeypot/final-{size}p.mp4"
+      parts_from:
+        description: "Run id whose rendered parts to reuse instead of rendering (same picture, new sound mix)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: render-${{ github.ref }}-${{ github.event.inputs.composition }}
@@ -98,6 +103,7 @@ jobs:
   render:
     name: Frames ${{ matrix.range }}
     needs: plan
+    if: github.event.inputs.parts_from == ''
     runs-on: ubuntu-latest
     timeout-minutes: 120
     strategy:
@@ -161,8 +167,14 @@ jobs:
   assemble:
     name: Stitch, mix, check, publish
     needs: [plan, render]
+    if: always() && needs.plan.result == 'success' && (needs.render.result == 'success' || needs.render.result == 'skipped')
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      FRAMES: ${{ needs.plan.outputs.frames }}
+      MIX: ${{ github.event.inputs.mix }}
+      SHOTS: ${{ github.event.inputs.shots }}
+      STILL_FRAME: ${{ github.event.inputs.still_frame }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -173,6 +185,8 @@ jobs:
           pattern: part-*
           path: parts
           merge-multiple: true
+          run-id: ${{ github.event.inputs.parts_from || github.run_id }}
+          github-token: ${{ github.token }}
 
       - name: Install ffmpeg and QA tools
         run: |
@@ -182,20 +196,32 @@ jobs:
           fi
           ffmpeg -version | head -1
           python3 -m pip install --quiet --break-system-packages numpy pillow || python3 -m pip install --quiet numpy pillow
+          mkdir -p out
+          # Job logs cannot always be fetched from outside, annotations can: on failure, put the end of the step's
+          # output where the checks API shows it.
+          cat > out/step.sh <<'EOS'
+          name="$1"; shift
+          if bash -eo pipefail "$@" > out/step.log 2>&1; then cat out/step.log; exit 0; fi
+          cat out/step.log
+          echo "::error title=$name::$(tail -c 3200 out/step.log | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')"
+          exit 1
+          EOS
 
       - name: Stitch parts
         run: |
-          mkdir -p out
+          cat > out/stitch.sh <<'EOS'
+          ls -l parts | head -40
           ls parts/part-*.mp4 | sort | sed "s|^|file '$PWD/|; s|$|'|" > out/parts.txt
-          cat out/parts.txt
           ffmpeg -v error -y -f concat -safe 0 -i out/parts.txt -c copy out/video.mp4
-          GOT="$(ffprobe -v error -select_streams v:0 -count_packets -show_entries stream=nb_read_packets -of csv=p=0 out/video.mp4)"
-          echo "frames: $GOT, expected ${{ needs.plan.outputs.frames }}"
-          test "$GOT" = "${{ needs.plan.outputs.frames }}"
+          GOT="$(ffprobe -v error -select_streams v:0 -count_packets -show_entries stream=nb_read_packets -of csv=p=0 out/video.mp4 | tr -dc '0-9')"
+          echo "frames: '$GOT', expected '$FRAMES'"
+          test "$GOT" = "$FRAMES"
+          EOS
+          bash out/step.sh "Stitch parts" out/stitch.sh
 
       - name: Add the sound mix
         run: |
-          MIX="${{ github.event.inputs.mix }}"
+          cat > out/mux.sh <<'EOS'
           if [ -n "$MIX" ]; then
             ffmpeg -v error -y -i out/video.mp4 -i "$MIX" -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/final.mp4
           else
@@ -208,19 +234,24 @@ jobs:
             ffmpeg -v error -y -i out/final.mp4 -c:v libx264 -preset slow -crf 22 -pix_fmt yuv420p -c:a copy -movflags +faststart out/squeezed.mp4
             mv out/squeezed.mp4 out/final.mp4
           fi
-          ls -lh out/final.mp4
+          ls -l out/final.mp4
+          EOS
+          bash out/step.sh "Add the sound mix" out/mux.sh
 
       - name: Check the film
         run: |
-          SHOTS="${{ github.event.inputs.shots }}"
-          python3 templates/scripts/short_qa.py out/final.mp4 out/qa ${SHOTS:+"$SHOTS"} | tee out/qa.txt
-          FRAME="${{ github.event.inputs.still_frame }}"
-          ffmpeg -v error -y -i out/final.mp4 -vf "select=eq(n\,${FRAME:-0})" -frames:v 1 out/still.png || true
-          if [ -n "${{ github.event.inputs.mix }}" ]; then
+          cat > out/check.sh <<'EOS'
+          python3 templates/scripts/short_qa.py out/final.mp4 out/qa ${SHOTS:+"$SHOTS"} > out/qa.txt
+          grep -E '^(SPECS|LOUDNESS|SILENCES|FRAMES|POPS|MOTION)' out/qa.txt
+          ffmpeg -v error -y -i out/final.mp4 -vf "select=eq(n\,${STILL_FRAME:-0})" -frames:v 1 out/still.png || true
+          if [ -n "$MIX" ]; then
             LUFS="$(grep -m1 '^LOUDNESS' out/qa.txt | sed -E 's/.*I: +(-?[0-9.]+) LUFS.*/\1/')"
             echo "integrated loudness: $LUFS LUFS (gate -17 to -13)"
             python3 -c "import sys; v = float('$LUFS'); sys.exit(0 if -17 <= v <= -13 else 1)"
           fi
+          EOS
+          bash out/step.sh "Check the film" out/check.sh
+          echo "::notice title=Film check::$(grep -E '^(SPECS|LOUDNESS|SILENCES|FRAMES|POPS|MOTION)' out/qa.txt | cut -c1-600 | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')"
 
       - name: Upload MP4
         if: always()

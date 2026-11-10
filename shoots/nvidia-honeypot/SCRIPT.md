@@ -1,6 +1,6 @@
 # "Nvidia's CEO and the Suspected Spy" — SCRIPT
 
-**Status (2026-11-10):** script draft 1, awaiting review · voice: three mastered candidates, awaiting a pick · picture: planned, not started.
+**Status (2026-11-10):** script approved (narration v5) · voice chosen by the user and locked · picture, graphics and sound built · rendered on GitHub Actions at 720 × 1280: __RENDER__
 
 ## Researched facts and sources
 
@@ -57,35 +57,57 @@ The plain-text copy used for recording is `narration.txt`.
 
 ## Visual beat map
 
-Word-synced one or two word captions throughout. About 30 shots, cut on the narration.
+Word-synced one or two word captions throughout, centred 76 % down the frame. 39 shots on 18 sets, cut two frames ahead of the word that starts them. The shot list with every camera is `remotion-app/src/videos/nvidia/story.ts`.
 
-| Line | Picture |
-|------|---------|
-| 1 | Keynote stage, Jensen mid-presentation with a chip. Freeze. Smash cut to the mystery woman in a spotlight with a "SPY?" stamp. |
-| 2 | Jensen walks the stage, jacket glinting. A chip wearing a crown above a skyline of server racks. |
-| 3 | The mystery woman in a data-centre corridor. Two name tags, "HUANG" and "HUANG", stamped "NOT RELATED". |
-| 4 | Singapore data centre. Crates of graphics cards on a conveyor toward a map pin, tagged "ALLEGEDLY". |
-| 5 | Surveillance room: agents in headphones, red string on a corkboard. Tag: "Reported by The New York Times". |
-| 6 | A literal honey jar on a spy-movie poster. |
-| 7 | Jensen at an interview mic, casual shrug. Lower third: "COMPLETELY NORMAL". |
-| 8 | Open-plan office: every monitor pings at once, staff freeze. Close-up of the email line. |
-| 9 | Trading floor: a red chart falls off a cliff, counter rolls to −$190,000,000,000. |
-| 10 | Closing bell at 4:00, clock ticks to 4:05, a lawyer sprints up courthouse steps. Cutaway: someone on a couch stuck on a movie menu. |
-| 11 | Three fast cuts: boardroom with a magnifying glass, Capitol with a closed door, agents with flashlights. |
-| 12 | White House podium, quote card: "absolutely no idea". |
-| 13 | Foreign-ministry podium, quote card: "nothing but smears". Mystery woman stamped "NOT CHARGED". |
-| 14 | Boardroom card: "No reason to believe secrets leaked". Jensen at his desk, nameplate "CEO". |
-| 15 | Split screen: spy thriller on the left, a candle-lit dinner receipt for $190,000,000,000 on the right. |
-| 16 | Both characters shrug beside a big comment box: "What are your thoughts?" |
+| Line | Picture | On-screen graphics |
+|------|---------|--------------------|
+| 1 | Keynote stage, Jensen mid-presentation, gasps on "affair". Surveillance room. The mystery woman in a spotlight. | SCANDAL! · CHINESE SPY? |
+| 2 | Jensen close on stage. A closet of identical leather jackets. Jensen on top of a giant chip monument. | name tag: Jensen Huang, CEO of Nvidia |
+| 3 | The mystery woman. The two side by side with a not-equals sign between them. | name tag: Alice Huang, former Megaspeed executive |
+| 4 | Megaspeed data centre. An agent inspects GPU crates. Crates on a conveyor into a container marked for China. | UNDER INVESTIGATION · ALLEGEDLY |
+| 5 | Surveillance room. Corkboard with red string and a "RECRUITED?" card. Jensen through a long lens. | Reported by The New York Times · viewfinder |
+| 6 | A honey jar wearing sunglasses. A cinema marquee. | dictionary card: honeypot |
+| 7 | TV interview: Jensen relaxed, then a big grin. | OCT 29 · Bloomberg interview · "COMPLETELY NORMAL" |
+| 8 | Open-plan office: six laptops ping one after another. Two staffers stare at the screen. | SUNDAY · the email, typed word by word |
+| 9 | Trading floor: the chart turns over, a trader panics, a red arrow dives through the floor. | MONDAY · −$190,000,000,000 of market value |
+| 10 | A lawyer sprints across the courthouse steps under a street clock that runs from 4:00 to 4:05. Someone on a couch still choosing a movie. | CLASS ACTION FILED · streaming menu with a 5:00 timer |
+| 11 | Boardroom with magnifying glasses. The Capitol. White House podium. Agents with flashlights in the data centre. | name tag: President Trump |
+| 12 | The podium, closer. Jensen shrugs; the mystery woman walks through behind him. | quote card (Trump) |
+| 13 | Foreign-ministry podium. The mystery woman. | quote card (Guo Jiakun) · NOT CHARGED |
+| 14 | Boardroom, wall screen "BOARD STATEMENT". Jensen behind a CEO nameplate, screen "STILL CEO". | quote card (Nvidia's board) |
+| 15 | Jensen, worried, among question marks. Candle-lit table, a waiter, a receipt that reaches the floor. | A: TARGETED BY SPIES? · B: EXPENSIVE DATE? |
+| 16 | Both on the keynote stage, shrugging. | WHAT DO YOU THINK? · A / B |
+
+The three quote cards carry the reported wording, not the narrator's paraphrase:
+
+- Trump: "He said he had absolutely no idea that the person in question was a spy."
+- Guo Jiakun, China's Foreign Ministry: "It is nothing but smears against China."
+- Nvidia's board: "No reason to believe that either national security or NVIDIA secrets were compromised."
 
 ## Voice
 
-Arena TTS, re-recorded as uncompressed WAV in two takes per voice, then mastered with `shoots/voice_master.py` (pauses tightened, bass cut, presence lift, tempo lift, −16 LUFS). Raw takes are `voice/*.tmp.wav` (not committed).
+Arena TTS `voice-15` (en-US, masculine, conversational), picked by the user from six full-length reads after two earlier rounds were rejected as sounding artificial. Voice ids are local to the session that made them, so the files are the reference:
 
-| Preview | Voice | Length | Median pitch | Pitch movement | Tempo lift |
-|---------|-------|--------|--------------|----------------|------------|
-| `voice/preview-A-voice05.mp3` | voice-05 | 60.5 s | 170 Hz | 4.6 semitones | 1.29× |
-| `voice/preview-B-voice06.mp3` | voice-06 | 60.5 s | 119 Hz | 3.1 semitones | 1.32× |
-| `voice/preview-C-voice07.mp3` | voice-07 | 62.7 s | 130 Hz | 2.8 semitones | 1.32× |
+- `voice/raw-take.mp3`: the read as it came (87.5 s).
+- `voice/voice.wav`: the locked narration, 66.6 s. Made by `build_voice.py`: 41 pauses tightened, tone almost untouched, pace lifted 1.2×, −16.3 LUFS.
+- `voice/words.json`: one entry per word with start and end. The picture, the captions, the graphics and the sound all read their timing from it (copy at `remotion-app/src/videos/nvidia/words.json`).
 
-The voice ids are local to the session that created them. All three read slowly when raw (2.3 to 2.7 words per second), which is why the tempo lift is large.
+To change the pace, re-run `build_voice.py` with a different `--target-seconds`, then `audio/build_mix.py`; nothing else needs editing.
+
+## Sound
+
+`audio/build_mix.py` writes `audio/mix.wav` (68.03 s, 48 kHz stereo, −15.0 LUFS, true peak −2.0 dBTP) and the cue sheet `audio/cues.md`. Everything but the voice is synthesized in that script with the kit in `templates/audio`; nothing is sampled.
+
+- Music: an original spy groove, 112 bpm in A minor (plucked bass, kick, cross-stick, hats, vibraphone, a twangy guitar). It sits about 10 LU under the voice.
+- It stops twice so a line lands in silence: the email quote, and "I can't even pick a movie that fast".
+- Effects follow the picture: stamp thuds, pops for the cards, mail dings as the six laptops ping, typing under the quote, a market bell, a counter that ticks up to the total, running feet, a desk bell on "Five minutes!", camera shutters in the press rooms, a cash register on "expensive date".
+
+## Render
+
+`.github/workflows/render-short.yml` splits the film into 20 frame ranges, renders them in parallel jobs, stitches them, adds the mix, runs `templates/scripts/short_qa.py` against `qa-shots.json` and commits the MP4 and `qa-report.md` to the branch.
+
+```sh
+gh workflow run render-short.yml --ref <branch> -f composition=NvidiaShort
+```
+
+Result: __RESULT__
