@@ -58,3 +58,21 @@ render after each source edit. Workflow: `.github/workflows/beer-remaster.yml`.
 Transient picture checkpoint is published before audio mux/QA to avoid losing
 rendered work to a packaging failure. Final video/QA are isolated under
 `deliveries/beer-flood-remastered/`.
+
+## Completed delivery
+
+Full GitHub render succeeded in 41m22s:
+https://github.com/Mellow048/ntc-8f3a9x2k/actions/runs/42760424384
+
+Final: `deliveries/beer-flood-remastered/beer-flood-remastered-720p.mp4`
+(28,679,023 bytes). 720×1280, 30 fps, 1,090 frames, 36.333 seconds,
+AAC stereo 48 kHz, −15.1 LUFS, peak −1.5 dBFS.
+
+Reviewed a 72-frame contact sheet extracted from the actual final MP4. QA found
+no black/white frames, frozen spans or silence. Its one difference-spike warning
+at frame 479 was separately inspected across frames 476–481: the animated foam
+crest passes out of the foreground, revealing brown water; no discontinuity or
+render corruption was visible. It remains disclosed in the unedited QA report.
+The redundant picture-only checkpoint is retained locally but untracked now
+that the muxed delivery has been verified. User aesthetic acceptance remains
+separate from these technical checks.

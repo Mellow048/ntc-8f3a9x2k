@@ -20,3 +20,6 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+# Transient Beer remaster picture-only checkpoint
+/deliveries/beer-flood-remastered/picture-checkpoint.mp4
