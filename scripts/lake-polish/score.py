@@ -91,5 +91,5 @@ mix=v+m+fx
 # Single transparent gain reduction if needed. CI masters to -15 LUFS/-1.5 dBTP.
 peak=np.max(np.abs(mix));shared=min(1,.89/max(peak,1e-9));mix*=shared
 write_wav(str(OUT/'music.wav'),m);write_wav(str(OUT/'sfx.wav'),fx);write_wav(str(OUT/'premix.wav'),mix)
-report+=['',f'Premix shared headroom gain: {20*np.log10(shared):.2f} dB. Original Arena voice retained; 0.5-second pause inserted after the mine.',f'Full music integrated: {integrated(m):.1f} LUFS; full voice: {integrated(v):.1f} LUFS.','CI final master: -15 LUFS, -1.5 dBTP, 48kHz stereo.']
+report+=['',f'Premix shared headroom gain: {20*np.log10(shared):.2f} dB. Original Arena voice retained; 0.5-second pause inserted after the mine.',f'Full music integrated: {integrated(m):.1f} LUFS; full voice: {integrated(v):.1f} LUFS.','CI final master target: -14 LUFS, -2 dBTP before AAC, 48kHz stereo.']
 (OUT/'music-report.md').write_text('\n'.join(report)+'\n');print('\n'.join(report))
