@@ -9,8 +9,8 @@ const browserExecutable=process.env.CHROME_PATH;
 const chromiumOptions={gl:'swiftshader'};
 const composition=await selectComposition({serveUrl,id:'SurvivorRemastered',browserExecutable,chromiumOptions,timeoutInMilliseconds:300000});
 const dir=resolve('shoots/curiosity-survivor/out/remaster/stills');await mkdir(dir,{recursive:true});
-for(const frame of [25,75,145,215,270,310,355,400,440,470,500,540,600,640,690,745,790,835,890,950,1010,1080,1150,1220]){
+for(const frame of [25,75,145,215,270,294,310,355,400,440,470,500,540,590,610,640,690,745,790,835,890,950,1010,1080,1150,1220]){
  await renderStill({serveUrl,composition,output:resolve(dir,`frame-${String(frame).padStart(4,'0')}.png`),frame,browserExecutable,chromiumOptions,timeoutInMilliseconds:300000,imageFormat:'png'});
  console.log(`Verified rendered preview frame ${frame}`);
 }
-await writeFile(resolve(dir,'preview.json'),JSON.stringify({composition:'SurvivorRemastered',frames:[25,75,145,215,270,310,355,400,440,470,500,540,600,640,690,745,790,835,890,950,1010,1080,1150,1220],width:720,height:1280},null,2));
+await writeFile(resolve(dir,'preview.json'),JSON.stringify({composition:'SurvivorRemastered',frames:[25,75,145,215,270,294,310,355,400,440,470,500,540,590,610,640,690,745,790,835,890,950,1010,1080,1150,1220],width:720,height:1280},null,2));

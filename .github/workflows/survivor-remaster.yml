@@ -65,7 +65,7 @@ jobs:
         if: inputs.stage == 'final'
         working-directory: remotion-app
         run: |
-          npx remotion render src/survivor-remaster/index.tsx SurvivorRemastered ../shoots/curiosity-survivor/out/remaster/silent.mp4 --width=720 --height=1280 --codec=h264 --crf=18 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000
+          npx remotion render src/survivor-remaster/index.tsx SurvivorRemastered ../shoots/curiosity-survivor/out/remaster/silent.mp4 --width=720 --height=1280 --codec=h264 --crf=17 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000
       - name: Checkpoint rendered picture
         if: inputs.stage == 'final'
         run: |

@@ -1,12 +1,13 @@
 import * as T from 'three';
 import {V,box,cyl,sphere,bar,material,wood,timber,iron,stone,lamp,batchStatic} from '../beer-remaster/build';
-import {Character,CLERK,WORKER,NEIGHBOUR} from '../beer-remaster/cast';
+import {Character,CLERK,WORKER,NEIGHBOUR} from './cast';
 import {LIGHTS,LOOK} from '../beer-remaster/style/lights';
 import {TONE,CHAR,untone} from '../beer-remaster/style/shade';
 import {cloudHD,rep,stoneHD} from '../beer-remaster/style/paint';
 import {NOINK} from '../beer-remaster/style/ink';
 import {Shot,Place,CAMS,KICKS,smooth,clamp} from './story';
 import {town,room,train} from './sets';
+import {bombing,railInterior,suitcase,dateCards,recognition,testimony} from './inserts';
 import {Porter} from '../beer-remaster/water';
 export class World {
  root=new T.Group();actors:Character[]=[];sun:T.DirectionalLight;hemi:T.HemisphereLight;sky:T.Mesh;skyM:T.ShaderMaterial;
@@ -18,10 +19,27 @@ export class World {
   this.sky=new T.Mesh(new T.SphereGeometry(420,32,16),this.skyM);this.sky.layers.set(NOINK);this.sky.renderOrder=-1;this.sky.frustumCulled=false;this.root.add(this.sky);
   for(let i=0;i<5;i++){const m=new T.Mesh(new T.PlaneGeometry(50,25),new T.MeshBasicMaterial({map:cloudHD(i,LOOK.day.cloud),transparent:true,depthWrite:false,fog:false}));m.layers.set(NOINK);m.position.set(Math.sin(i*1.3)*210,48+i*8,-140-Math.cos(i*1.3)*70);this.root.add(m);this.clouds.push(m);}
   const puff=(x:number,y:number,z:number,seed:number,color:string)=>{const d=new T.Mesh(new T.PlaneGeometry(5,3),new T.MeshBasicMaterial({map:cloudHD(seed,{lit:color,mid:color,shade:color}),transparent:true,depthWrite:false,opacity:.4}));d.position.set(x,y,z);d.layers.set(NOINK);d.userData.dynamic=true;p.add(d);this.clouds.push(d);return d;};
-  const p=this.root;const suit={...CLERK,jacket:'#53616d',pants:'#424853',hat:'hair' as const,hair:'#282d31',skin:'#e3c3a1'};
-  const hero=new Character(p,0,0,suit);this.actors.push(hero);
-  const person=(x:number,z:number,outfit=suit)=>{const a=new Character(p,x,z,outfit);this.actors.push(a);return a;};
-  if(place==='street'||place==='ruins'){
+  const p=this.root;const suit={...CLERK,jacket:'#244d72',pants:'#424853',hat:'hair' as const,hair:'#282d31',skin:'#e3c3a1'};
+  const hero=new Character(p,0,0,suit);hero.hero=true;this.actors.push(hero);
+  let castIndex=0;
+  const costumes=[{...suit,jacket:'#947448',hat:'cap',cap:'#73664c',hair:'#574431',build:'stout' as const},
+   {...suit,jacket:'#95667f',dress:'#84516e',hair:'#5b4037'},
+   {...suit,jacket:'#73826b',hat:null,hair:'#a19b89',moustache:'#858071',build:'stout' as const},
+   {...suit,jacket:'#92908a',hair:'#695f50'},
+   {...suit,jacket:'#865849',hat:'cap',cap:'#634b43'},
+   {...suit,jacket:'#636a78',dress:'#636a78',hair:'#9d958b'}];
+  const person=(x:number,z:number,_outfit=suit)=>{const i=castIndex++;const a=new Character(p,x,z,{...costumes[i%costumes.length]});a.seed=17+i*11;a.root.scale.setScalar([.9,.94,1.04,.88,1.08,.91][i%6]);this.actors.push(a);return a;};
+  if(place==='hiroshima-bomb'||place==='nagasaki-bomb'){
+   hero.root.visible=false;const animate=bombing(p,place==='nagasaki-bomb');this.animations.push((s,f,u)=>animate(f,u));
+  }else if(place==='calendar'||place==='certificate'){
+   hero.root.visible=false;const animate=place==='calendar'?dateCards(p):recognition(p);this.animations.push((s,f,u)=>animate(u));
+  }else if(place==='carriage'){
+   const animate=railInterior(p);hero.root.position.set(0,-.4,-1);hero.root.userData.bandage=true;hero.expr='nervous';this.animations.push((s,f,u)=>{animate(f);hero.lean=Math.sin(f*.15)*3;});
+  }else if(place==='packing'){
+   room(p,'home');const animate=suitcase(p);hero.root.position.set(-.8,0,-.3);this.animations.push((s,f,u)=>{animate(u);hero.lean=-6+Math.sin(f*.12)*3;hero.wave=.25;});
+  }else if(place==='testimony'){
+   testimony(p);hero.outfit.hair='#b4b4ac';hero.root.position.set(0,0,-.5);this.animations.push((s,f,u)=>{hero.wave=.25+Math.sin(f*.15)*.2;hero.expr='stern';hero.lean=Math.sin(f*.08)*3;});
+  }else if(place==='street'||place==='ruins'){
    town(p,place==='ruins');hero.root.position.z=-1;
    const extras=[person(-3,-9),person(3,-14),person(-2,-20)];
    // Dust bank rather than flash frames or graphic injury. Nonliteral reconstruction.
@@ -33,7 +51,7 @@ export class World {
    this.animations.push((s,f,u)=>{rig.position.x=-8+(f/30%6)*3;hero.walk=true;hero.expr='nervous';hero.lean=-5;hero.root.position.x=-.6+u*1.3;steam.forEach((d,i)=>{const q=((f+i*8)%70)/70;d.position.set(rig.position.x+6.4-q*3,3.5+q*2.6,0);d.scale.setScalar(.5+q*1.7);});});
   }else if(['shelter','home','office','recognition'].includes(place)){
    room(p,place);hero.root.position.set(0,0,-.5);
-   const companion=person(-2.5,-1.5,{...suit,jacket:'#777361'});
+   const companion=person(-2.5,-1.5,{...suit,jacket:'#777361'});companion.root.visible=place!=='shelter';
    hero.root.userData.bandage=['shelter','home','office'].includes(place);
    const certificate=box(p,.5,1.25,.8,1.1,.04,.8,material('certificate','#e4dbc3'));certificate.userData.dynamic=true;certificate.visible=place==='recognition';
    for(let i=0;i<5;i++)box(p,.5,1.28,.58+i*.1,.75,.008,.016,material('certificate-ink','#5a6068'));
@@ -42,9 +60,9 @@ export class World {
   }else{
    // Public testimony / collective survival, then remembrance, not a victory pose.
    town(p,false);hero.root.position.set(0,0,0);
-   if(place==='people'){for(let i=0;i<6;i++){const a=person((i%3-1)*2.1,-2-Math.floor(i/3)*2.4,{...suit,jacket:['#6a7774','#7e7064','#595e75'][i%3]});a.root.userData.bandage=i<2;}}
-   if(place==='peace'){hero.outfit.hair='#b4b4ac';hero.outfit.jacket='#6d7476';box(p,0,.9,.9,1.5,.16,.7,wood());for(const x of [-.55,.55])box(p,x,.4,.9,.12,.8,.12,timber());const mic=cyl(p,.45,1.4,.8,.045,.65,iron());sphere(p,.45,1.75,.8,.09,iron());}
-   if(place==='lanterns'){const water=new Porter(p,4.6,45);water.mesh.position.set(-3.2,0,-8);const wm=water.mesh.material as T.ShaderMaterial;wm.fragmentShader=wm.fragmentShader.replace('vec3(.115,.048,.025)','vec3(.025,.07,.10)').replace('vec3(.36,.18,.075)','vec3(.10,.23,.30)').replace('vec3(.77,.59,.33)','vec3(.45,.58,.60)');
+   if(place==='people'){for(let i=0;i<6;i++){const a=person((i%3-1)*2.1,-2-Math.floor(i/3)*2.4,{...suit,jacket:['#6a7774','#7e7064','#595e75'][i%3]});a.root.userData.bandage=false;}}
+   if(place==='peace'){hero.outfit.hair='#b4b4ac';hero.outfit.jacket='#244d72';box(p,0,.9,.9,1.5,.16,.7,wood());for(const x of [-.55,.55])box(p,x,.4,.9,.12,.8,.12,timber());const mic=cyl(p,.45,1.4,.8,.045,.65,iron());sphere(p,.45,1.75,.8,.09,iron());}
+   if(place==='lanterns'){hero.outfit.hair='#b4b4ac';const water=new Porter(p,4.6,45);water.mesh.position.set(-3.2,0,-8);const wm=water.mesh.material as T.ShaderMaterial;wm.fragmentShader=wm.fragmentShader.replace('vec3(.115,.048,.025)','vec3(.025,.07,.10)').replace('vec3(.36,.18,.075)','vec3(.10,.23,.30)').replace('vec3(.77,.59,.33)','vec3(.45,.58,.60)');
    box(p,-.8,.055,-8,.18,.2,45,stone());this.animations.push((s,f)=>water.update(f/30,100,.09,.14));for(let i=0;i<12;i++){const l=lamp(p,-3.2+Math.sin(i*3.2)*1.3,.45,-i*2.4,true);l.userData.dynamic=true;this.animations.push((s,f,u)=>{l.position.z=-i*2.4+u*2;l.position.y=.45+Math.sin(f*.04+i)*.025;});}hero.root.position.set(2,0,1);}
    this.animations.push((s,f,u)=>{hero.expr=place==='peace'?'stern':'neutral';hero.wave=place==='peace'?.2+Math.sin(f*.12)*.2:undefined;hero.lean=Math.sin(f*.065)*2;this.actors.slice(1).forEach((a,i)=>{a.walk=place==='people';a.lean=Math.sin(f*.09+i)*2;});});
   }

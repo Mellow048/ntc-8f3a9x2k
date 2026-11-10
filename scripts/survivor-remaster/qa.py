@@ -6,7 +6,7 @@ data=json.loads((root/'remotion-app/src/curiosity/survivor.json').read_text())
 indices=[0,5,11,16,21,25,29,33,37,40,42,45,49,54,56,59,65,68,72,79,84,90,96,101]
 starts=[0]+[math.floor(data['words'][i]['start']*30+.5)-2 for i in indices[1:]]
 shots=[{'id':i+1,'a':a,'b':(starts+[data['frames']])[i+1]} for i,a in enumerate(starts)]
-planned=[[296,307],[618,631]]
+planned=[[296,313],[600,616]]
 i=0;words=data['words']
 while i<len(words):
  a=words[i];b=words[i+1] if i+1<len(words) else None
