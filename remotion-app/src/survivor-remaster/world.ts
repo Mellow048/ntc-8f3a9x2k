@@ -16,6 +16,7 @@ export class World {
   this.skyM=new T.ShaderMaterial({uniforms:{c0:{value:new T.Color()},c1:{value:new T.Color()},c2:{value:new T.Color()},c3:{value:new T.Color()},c4:{value:new T.Color()},e:{value:new T.Vector4()}},vertexShader:'varying vec3 vP;void main(){vP=normalize(position);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'uniform vec3 c0,c1,c2,c3,c4;uniform vec4 e;varying vec3 vP;void main(){float a=asin(clamp(normalize(vP).y,-1.,1.));vec3 c=mix(c0,c1,smoothstep(0.,e.x,a));c=mix(c,c2,smoothstep(e.x,e.y,a));c=mix(c,c3,smoothstep(e.y,e.z,a));c=mix(c,c4,smoothstep(e.z,e.w,a));gl_FragColor=vec4(c,1.);}',side:T.BackSide,depthWrite:false,fog:false});
   this.sky=new T.Mesh(new T.SphereGeometry(420,32,16),this.skyM);this.sky.layers.set(NOINK);this.sky.renderOrder=-1;this.sky.frustumCulled=false;this.root.add(this.sky);
   for(let i=0;i<5;i++){const m=new T.Mesh(new T.PlaneGeometry(50,25),new T.MeshBasicMaterial({map:cloudHD(i,LOOK.day.cloud),transparent:true,depthWrite:false,fog:false}));m.layers.set(NOINK);m.position.set(Math.sin(i*1.3)*210,48+i*8,-140-Math.cos(i*1.3)*70);this.root.add(m);this.clouds.push(m);}
+  const puff=(x:number,y:number,z:number,seed:number,color:string)=>{const d=new T.Mesh(new T.PlaneGeometry(5,3),new T.MeshBasicMaterial({map:cloudHD(seed,color),transparent:true,depthWrite:false,opacity:.4}));d.position.set(x,y,z);d.layers.set(NOINK);d.userData.dynamic=true;p.add(d);this.clouds.push(d);return d;};
   const p=this.root;const suit={...CLERK,jacket:'#53616d',pants:'#424853',hat:'hair' as const,hair:'#282d31',skin:'#e3c3a1'};
   const hero=new Character(p,0,0,suit);this.actors.push(hero);
   const person=(x:number,z:number,outfit=suit)=>{const a=new Character(p,x,z,outfit);this.actors.push(a);return a;};
@@ -23,11 +24,11 @@ export class World {
    town(p,place==='ruins');hero.root.position.z=-1;
    const extras=[person(-3,-9),person(3,-14),person(-2,-20)];
    // Dust bank rather than flash frames or graphic injury. Nonliteral reconstruction.
-   const dust:T.Mesh[]=[];for(let i=0;i<14;i++){const m=sphere(p,Math.sin(i*4)*6,1+i%4,-8-i%5,.65+(i%3)*.25,material('dust','#a89d8d'));m.userData.dynamic=true;dust.push(m);}
+   const dust:T.Mesh[]=[];for(let i=0;i<14;i++){const m=puff(Math.sin(i*4)*6,1+i%4,-8-i%5,i,'#b2a590');m.userData.dynamic=true;dust.push(m);}
    this.animations.push((s,f,u)=>{const shock=s.id===6;const q=smooth((f-296)/24);hero.expr=shock?'shock':place==='ruins'?'nervous':'neutral';hero.walk=!shock;hero.run=shock;hero.lean=shock?-12:-3;hero.wave=shock?.8:undefined;hero.root.position.set(-.6+u*.9,0,-1-u*1.2);hero.root.userData.bandage=place==='ruins';extras.forEach((a,i)=>{a.walk=true;a.run=shock;a.root.position.set((i%2?-1:1)*(2.5+i*.3),0,-8-i*4+u*(shock?3:1));a.expr=shock?'shock':'neutral';});dust.forEach((d,i)=>{d.visible=place==='ruins'||(shock&&q>0);d.position.x=Math.sin(i*4)*6+u*2;d.position.y=1+i%4+Math.sin(f*.03+i)*.15;d.scale.setScalar(place==='ruins'?.7:.3+q*1.3);});});
   }else if(place==='train'){
    const rig=train(p);hero.root.position.set(0,.7,3.8);hero.root.userData.bandage=true;
-   const steam:T.Mesh[]=[];for(let i=0;i<8;i++){const d=sphere(p,0,0,0,.35,material('steam','#c7c8c3'));d.userData.dynamic=true;steam.push(d);}
+   const steam:T.Mesh[]=[];for(let i=0;i<8;i++){const d=puff(0,0,0,i,'#d9d9cf');d.userData.dynamic=true;steam.push(d);}
    this.animations.push((s,f,u)=>{rig.position.x=-8+(f/30%6)*3;hero.walk=true;hero.expr='nervous';hero.lean=-5;hero.root.position.x=-.6+u*1.3;steam.forEach((d,i)=>{const q=((f+i*8)%70)/70;d.position.set(rig.position.x+6.4-q*3,3.5+q*2.6,0);d.scale.setScalar(.5+q*1.7);});});
   }else if(['shelter','home','office','recognition'].includes(place)){
    room(p,place);hero.root.position.set(0,0,-.5);

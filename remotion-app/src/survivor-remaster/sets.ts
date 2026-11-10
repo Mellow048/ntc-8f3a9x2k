@@ -13,7 +13,7 @@ export function house(p:T.Object3D,x:number,z:number,w=4){const g=new T.Group();
  box(g,0,3.9,0,.18,.15,4.8,rm);box(g,0,.05,2.4,w+1,.18,.9,stone());return g;}
 export function town(p:T.Object3D,ruined=false){box(p,0,-.22,-9,70,.4,90,material('jp-road','#aaa394',rep(stoneHD(),14,18)));
  for(let i=0;i<7;i++)for(const side of [-1,1]){if(ruined&&i<3){const g=new T.Group();p.add(g);g.position.set(side*6,0,-i*5.4-3);for(let k=0;k<10;k++){const b=box(g,Math.sin(k*3.7)*2,.25+(k%3)*.2,Math.cos(k*2.1)*1.5,1.5,.15,.4,timber());b.rotation.set(k*.2,k*.7,k*.1);}bar(g,V(-1,0,1),V(-.8,2.3,.8),.16,timber());}else house(p,side*7,-i*5.4-4,4.8);}
- for(let i=0;i<8;i++){const x=Math.sin(i*3.4)*33,z=-45-i*3;const m=mesh(p,new T.ConeGeometry(13+i%3*4,14,7),material('jp-hill','#8c9b98'),V(x,4,z));m.scale.z=.7;}
+ for(let i=0;i<8;i++){const x=Math.sin(i*3.4)*33,z=-45-i*3;const m=mesh(p,new T.SphereGeometry(13+i%3*4,24,12),material('jp-hill','#8c9b98'),V(x,-4,z));m.scale.set(1,.6,.7);}
  for(const x of [-4.7,4.7]){bar(p,V(x,0,-5),V(x,6,-5),.15,timber());bar(p,V(x-.8,5.4,-5),V(x+.8,5.4,-5),.08,timber());}
 }
 export function room(p:T.Object3D,kind:string){box(p,0,-.2,0,12,.3,12,material('jp-floor','#c2a56b',rep(planksHD(),5,5)));box(p,0,2.4,-4,12,5,.3,plaster());
