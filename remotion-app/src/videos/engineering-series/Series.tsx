@@ -1,7 +1,7 @@
 // Five original engineering shorts, with word-synchronised 1–2 word captions.
-import React, {useMemo} from 'react';
+import React, {useEffect,useMemo,useState} from 'react';
 import * as THREE from 'three';
-import {AbsoluteFill,useCurrentFrame,useVideoConfig} from 'remotion';
+import {AbsoluteFill,cancelRender,continueRender,delayRender,useCurrentFrame,useVideoConfig} from 'remotion';
 import {ThreeCanvas} from '@remotion/three';
 import {useThree} from '@react-three/fiber';
 import {EffectComposer} from '@react-three/postprocessing';
@@ -11,6 +11,7 @@ import {GradeEffect,GRADES,GRADE_STRENGTH} from '../pendulum/grade';
 import {LensBlur} from '../pendulum/lensblur';
 import {World,Beat} from './World';
 import {BridgeWorld} from '../bridge-remaster/BridgeWorld';
+import {loadBridgeAssets,type BridgeAssets} from '../bridge-remaster/assets';
 import data from './data.json';
 
 type Word={word:string;start:number;end:number};
@@ -18,9 +19,9 @@ type Story={title:string;frames:number;words:Word[];beats:Beat[]};
 export type Slug='breathing-bridge'|'spring-building'|'ocean-airport'|'channel-tunnel'|'sky-plaza';
 export const stories=data as Record<Slug,Story>;
 
-const Scene:React.FC<{slug:Slug}> = ({slug})=>{
+const Scene:React.FC<{slug:Slug;assets:BridgeAssets|null}> = ({slug,assets})=>{
  const frame=useCurrentFrame(); const {camera,scene}=useThree();
- const world=useMemo(()=>slug==='breathing-bridge' ? new BridgeWorld() : new World(slug,stories[slug].beats),[slug]);
+ const world=useMemo(()=>slug==='breathing-bridge' ? new BridgeWorld(assets!) : new World(slug,stories[slug].beats),[slug,assets]);
  const fx=useMemo(()=>({
   ink:new InkPass(scene,camera as THREE.PerspectiveCamera),
   lens:new LensBlur({maxCoC:24,nearScale:1.2}),
@@ -83,9 +84,16 @@ const TemperatureCue:React.FC=()=>{
 
 export const EngineeringShort:React.FC<{slug:Slug}>=({slug})=>{
  const {width,height}=useVideoConfig();
+ const [assets,setAssets]=useState<BridgeAssets|null>(null);
+ const [handle]=useState(()=>delayRender('Load bridge vehicle models'));
+ useEffect(()=>{
+  if(slug!=='breathing-bridge'){continueRender(handle);return;}
+  loadBridgeAssets().then(a=>{setAssets(a);continueRender(handle);}).catch(e=>cancelRender(e));
+ },[slug,handle]);
+ if(slug==='breathing-bridge'&&!assets)return null;
  return <AbsoluteFill style={{background:'#bce5f2',containerType:'inline-size'}}>
   <ThreeCanvas width={width} height={height} shadows gl={{antialias:false,stencil:false,powerPreference:'high-performance'}} camera={{fov:40,near:.1,far:300}}>
-   <Scene slug={slug}/>
+   <Scene slug={slug} assets={assets}/>
   </ThreeCanvas>
   {slug==='breathing-bridge' && <TemperatureCue/>}
   <Captions words={stories[slug].words}/>
