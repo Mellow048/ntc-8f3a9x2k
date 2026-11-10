@@ -2,7 +2,7 @@ SPECS 720x1280 30/1 fps, 2075 frames, 69.167 s; audio: aac 48000 Hz 2ch
 LOUDNESS I:         -14.6 LUFS | LRA:         1.6 LU | Peak:       -1.8 dBFS
 SILENCES none
 FRAMES 2075; black []; unplanned white []; frozen spans >=12f []
-POPS (unplanned frame-diff spikes > 3x local median): [658, 988, 1801]
+POPS (unplanned frame-diff spikes > 3x local median): []
 MOTION mean diff 5.24; frames with diff<0.3 (held): 1 (0%)
 
 PER SHOT  (luma mean / std / p2 / p98 / saturation mean, medians over the shot)
