@@ -1,5 +1,8 @@
 name: Beer Flood — repair low camera ranges
 on:
+  push:
+    branches: [arena/044538ca-ntc-8f3a9x2k]
+    paths: ['.github/workflows/beer-camera-repair.yml']
   workflow_dispatch:
 permissions:
   contents: write
