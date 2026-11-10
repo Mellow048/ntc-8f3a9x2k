@@ -49,8 +49,12 @@ resurfacing, rig/boat full submersion, cropped worker framing, repeated escape
 positions, canal ripple/foam direction agreement and the tiny return-water
 centre opening. Bathtub water stays visible as the plug lifts.
 
-Full render run 42797244370 launched, in progress when this note was written.
-Workflow: .github/workflows/lake-remaster.yml. Delivery isolated under
-`deliveries/lake-remastered/`. Do not confuse this with the rejected original
-firstcut under deliveries/curiosity-lake/. Final actual-video review and QA
-remain to be completed after the full render finishes.
+Full render run 42797244370 succeeded. Final MP4 published in commit 83ed67d.
+Reviewed a 2 fps contact sheet extracted from the finished MP4, covering the
+breach, full rig submersion, workers escaping and barges resurfacing.
+Automated QA: 720×1280, 30 fps, 1107 frames / 36.900 s, H.264/AAC stereo;
+-15.1 LUFS, -1.5 dBFS peak. No detected silence, black frames, unplanned
+white frames, frozen spans or anomalous frame-difference spikes.
+Final delivered for user review; not yet user-approved. Accepted Beer and
+Yamaguchi files and source remain unchanged. Redundant picture checkpoint
+removed after successful copy-mux; preview PNGs compacted to JPEG only.
