@@ -93,3 +93,21 @@ calendar page, packing prop visibility and microphone crossing the face; added
 a recognizable rising cloud after each brief blast. TypeScript and all-frame
 shot/camera coverage tests passed. Full revision run 42788181999 launched.
 Beer Flood and Lake Peigneur are unchanged against commit 39ac020.
+
+### Clarity revision completed
+
+Run 42788181999 succeeded. Final: 49,952,595 bytes, same 1,261 frames /
+42.033 seconds / 720×1280 / 30fps. Direct CRF17 source encode, audio mux copied
+without re-encoding the picture. Reduced bloom, no DOF blur. Music/narration
+unchanged: −15.0 LUFS, peak −1.5 dBFS. QA has no black/white frames, held/frozen
+spans, silence or unplanned image-difference pops.
+
+Reviewed all refined source stills, a contact sheet extracted from the whole
+final MP4, and chronological samples through both aircraft → falling bomb →
+airburst → cloud sequences. Confirmed the protagonist's navy/rust identity in
+the crowd and elder scenes, new packing/carriage/date/paperwork/testimony
+inserts, corrected date-page orientation, and microphone clear of the face.
+No additional lossy patch encode was used for this delivery. Replaced obsolete
+preview images with the new compact JPEG set and untracked the redundant
+picture-only checkpoint; full-quality final MP4 remains tracked. User aesthetic
+approval is still pending, separate from these checks.

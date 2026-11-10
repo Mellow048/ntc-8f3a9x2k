@@ -29,5 +29,7 @@
     1220
   ],
   "width": 720,
-  "height": 1280
+  "height": 1280,
+  "imageFormat": "jpg",
+  "note": "Reviewed source-render previews; compact JPEG archive. Final MP4 is a single-generation CRF17 source render."
 }
