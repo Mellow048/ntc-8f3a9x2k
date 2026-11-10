@@ -62,8 +62,8 @@ const Inner: React.FC<{ id: number; kit: Kit }> = ({ id, kit }) => {
     grade: new GradeEffect(GRADES.day, GRADE_STRENGTH.day),
     grain: new GrainEffect({ amount: 0.025, cellPx: 1.5 }),
   }), [camera, scene]);
-  useEffect(() => () => fx.ink.dispose(), [fx]);
-
+  // The composer owns pass cleanup; R3F's dispose={null} overrides the pass's
+  // dispose property, so invoking it explicitly on crossfade unmount fails.
   const post = useMemo(() => (
     <EffectComposer multisampling={4}>
       <primitive object={fx.ink} dispose={null} />
