@@ -130,7 +130,7 @@ What was checked on the finished file, and how:
 - Size, frame rate, frame count and length, read from the file.
 - The sound in the file is `audio/mix.wav` and starts on frame 0 (the two line up at an offset of 0 samples).
 - Picture: 139 frames (every 15th) on six contact sheets, plus the two shots that were corrected and the last frame at full size. Every caption on them is on one line and clear of faces, signs and props.
-- The three frame jumps the first report of this render listed (frames 658, 988 and 1801) are caption changes. The list of expected caption frames in `qa-shots.json` was one frame early for captions that follow each other without a gap; it is corrected and the report was written again from the same picture.
+- The three frame jumps the first report of this render listed (frames 658, 988 and 1801) are caption changes. The list of expected caption frames in `qa-shots.json` was one frame early for captions that follow each other without a gap; it is corrected and the report was written again from the same picture (run `42920218027`, commit `669ca01`; the MP4 it produced is byte-for-byte the same file). That report lists no unexpected jump.
 - Not checked: nobody has listened to the film, and nobody has watched it in motion. The sound was judged from measurements, the picture from still frames.
 
 Earlier render, replaced: commit `b00addc`, run `42910502857` (2041 frames, 68.03 s). Its music was 10.5 LU under the voice, one caption wrapped onto two lines over the Congress members, and a nameplate sat under a caption.
