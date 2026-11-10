@@ -26,7 +26,7 @@ export function interior(p:T.Group){
  for(let i=0;i<20;i++){const m=new T.Mesh(new T.IcosahedronGeometry(.2,0),salt);m.position.set(Math.sin(i*3)*.65,1.45+(i%3)*.08,Math.cos(i*4)*.9);cart.add(m);}
  batchStatic(p);
  const bit=new T.Group();bit.userData.dynamic=true;p.add(bit);cyl(bit,0,0,0,.14,4,steel);for(let i=0;i<3;i++){const tooth=cyl(bit,Math.sin(i*2.094)*.18,-2,Math.cos(i*2.094)*.18,.15,.28,rust,.05);tooth.rotation.z=.3;}bit.position.set(0,6,-1);
- const stream=box(p,0,2,-1,.85,4,.85,new T.MeshPhongMaterial({color:'#98c3cc',transparent:true,opacity:.8,shininess:95}));stream.userData.dynamic=true;
+ const stream=cyl(p,0,2,-1,.36,4,new T.MeshPhongMaterial({color:'#98c3cc',transparent:true,opacity:.72,shininess:95}),.13,24);stream.userData.dynamic=true;
  const water=floodSurface(p,8.8,34);const flood=water.mesh;flood.position.set(0,.2,-8);
  const debris=Array.from({length:65},(_,i)=>{const m=new T.Mesh(new T.IcosahedronGeometry(.035+(i%5)*.025,0),i%3?salt:new T.MeshBasicMaterial({color:'#d3e7e9'}));m.userData.dynamic=true;p.add(m);return m;});
  return {bit,stream,flood,debris,water};
