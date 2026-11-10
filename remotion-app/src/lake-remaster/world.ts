@@ -7,7 +7,7 @@ import {TONE,CHAR,untone} from '../beer-remaster/style/shade';
 import {cloudHD,rep,stoneHD} from '../beer-remaster/style/paint';
 import {NOINK} from '../beer-remaster/style/ink';
 import {Shot,Place,CAMS,KICKS,smooth,clamp} from './story';
-import {LakeWater,CanalWater} from './water';
+import {LakeWater,CanalWater,floodSurface} from './water';
 import {shoreline,rig,barge,mine,bathtub,steel} from './sets';
 export class World {
  root=new T.Group();actors:Character[]=[];sun:T.DirectionalLight;hemi:T.HemisphereLight;sky:T.Mesh;skyM:T.ShaderMaterial;
@@ -33,16 +33,16 @@ export class World {
    });
   }else if(place==='tunnel'||place==='impact'){
    const room=interior(p);const people=place==='tunnel'?[worker(1.8,-6,0),worker(-2,-11,1)]:[];
-   this.animations.push((s,f,u)=>{const q=clamp((f-393)/65);const hit=place==='impact';room.bit.position.y=6-clamp((f-377)/35)*2;room.bit.rotation.y=f*.34;room.stream.visible=f>399;room.stream.scale.set(.4+q,1,.4+q);room.flood.visible=f>410;room.flood.position.y=.08+q*.85;
+   this.animations.push((s,f,u)=>{room.water.update(f/30);const q=clamp((f-393)/65);const hit=place==='impact';room.bit.position.y=6-clamp((f-377)/35)*2;room.bit.rotation.y=f*.34;room.stream.visible=f>399;room.stream.scale.set(.4+q,1,.4+q);room.flood.visible=f>410;room.flood.position.y=.08+q*.85;
     room.debris.forEach((d,i)=>{d.visible=f>390;const t=((f-390+i*3)%37)/37;d.position.set(Math.sin(i*2.39)*t*3,4-t*4,-1+Math.cos(i*1.7)*t*3);});
     people.forEach((a,i)=>{a.walk=q>0;a.expr=q>0?'shock':'neutral';a.lean=q>0?-14:0;a.root.position.set(i?-2:1.8,0,-6-i*5+q*9);});
    });
   }else if(['section','breach','lost'].includes(place)){
-   const cut=mine(p);const top=box(p,0,.1,0,24,.12,6,new T.MeshBasicMaterial({color:'#398ca8'}));const small=rig(p);small.root.scale.setScalar(.45);small.root.position.set(0,.1,1);
+   const cut=mine(p);const lakeTop=floodSurface(p,24,6);lakeTop.mesh.position.y=.1;const small=rig(p);small.root.scale.setScalar(.45);small.root.position.set(0,.1,1);
    const stream=cyl(p,0,-3,1,.4,7,material('mine-water','#72b8c8'));stream.userData.dynamic=true;
    const droplets:T.Mesh[]=[];for(let i=0;i<18;i++){const d=sphere(p,0,0,0,.06,material('mine-droplet','#a8d3d9'));d.userData.dynamic=true;droplets.push(d);}
-   const flood=box(p,0,-7.6,1,20,.12,6,new T.MeshBasicMaterial({color:'#347894'}));flood.userData.dynamic=true;
-   this.animations.push((s,f,u)=>{const breached=place==='breach',lost=place==='lost';const q=breached?smooth((f-393)/35):lost?1:0;cut.drill.position.y=1.8-q*2;cut.drill.rotation.y=f*.25;cut.bit.position.y=-2.3-q*2;cut.bit.rotation.y=f*.25;cut.bit.visible=!lost;cut.drill.visible=!lost;small.root.visible=!lost;stream.visible=q>0;stream.scale.set(q,1,q);flood.visible=q>0;flood.position.y=-7.6+q*(lost?4.1:1.8);droplets.forEach((d,i)=>{d.visible=breached&&q>0;const v=((f+i*7)%40)/40;d.position.set(Math.sin(i*2.3)*q*.9,-1-v*6,1+Math.cos(i*2.4)*q*.6);});});
+   const mineWater=floodSurface(p,20,6);const flood=mineWater.mesh;flood.position.set(0,-7.6,1);
+   this.animations.push((s,f,u)=>{lakeTop.update(f/30);mineWater.update(f/30);const breached=place==='breach',lost=place==='lost';const q=breached?smooth((f-393)/35):lost?1:0;cut.drill.position.y=1.8-q*2;cut.drill.rotation.y=f*.25;cut.bit.position.y=-2.3-q*2;cut.bit.rotation.y=f*.25;cut.bit.visible=!lost;cut.drill.visible=!lost;small.root.visible=!lost;stream.visible=q>0;stream.scale.set(q,1,q);flood.visible=q>0;flood.position.y=-7.6+q*(lost?4.1:1.8);droplets.forEach((d,i)=>{d.visible=breached&&q>0;const v=((f+i*7)%40)/40;d.position.set(Math.sin(i*2.3)*q*.9,-1-v*6,1+Math.cos(i*2.4)*q*.6);});});
   }else if(place==='drain'){
    const plug=bathtub(p);const water=new LakeWater(p,1.1);water.mesh.scale.set(1.5,.08,1);water.mesh.position.y=.9;const chain:T.Mesh[]=[];for(let i=0;i<7;i++){const r=new T.Mesh(new T.TorusGeometry(.04,.009,4,12),iron());r.userData.dynamic=true;p.add(r);chain.push(r);}
    this.animations.push((s,f,u)=>{const q=smooth(u);plug.position.set(.7*q,.8+q*1.4,0);plug.rotation.z=q*.4;water.update(f/30,q*.18,1);water.mesh.position.y=.9-q*.16;chain.forEach((r,i)=>r.position.set(.7*q*i/7,.9+q*1.4*i/7,0));});
