@@ -57,10 +57,10 @@ function random(seed:number){let n=seed;return ()=>((n=(n*16807)%2147483647)-1)/
 function asphaltTexture(){return canvasTexture('bridge-asphalt',c=>{const r=random(341);c.fillStyle='#596169';c.fillRect(0,0,512,512);for(let i=0;i<19000;i++){const v=Math.floor(94+r()*60);c.fillStyle=`rgba(${v},${v},${v},${.10+r()*.15})`;c.fillRect(r()*512,r()*512,1+r()*2,1+r()*2);}for(let i=0;i<45;i++){c.strokeStyle='rgba(30,39,44,.12)';c.lineWidth=1+r();c.beginPath();const x=r()*512,y=r()*512;c.moveTo(x,y);c.lineTo(x+10+r()*40,y+(r()-.5)*3);c.stroke();}});}
 function waterTexture(){return canvasTexture('bridge-river',c=>{const r=random(713);c.fillStyle='#668f9b';c.fillRect(0,0,512,512);for(let i=0;i<800;i++){const x=r()*512,y=r()*512,l=8+r()*55;c.strokeStyle=i%3?'rgba(220,237,231,.22)':'rgba(38,92,111,.18)';c.lineWidth=.6+r()*1.6;c.beginPath();c.moveTo(x,y);c.quadraticCurveTo(x+l*.5,y-2-r()*2,x+l,y);c.stroke();}});}
 function faceTexture(id:number){return canvasTexture('modern-facade-'+id,c=>{
- const r=random(893+id*193);c.fillStyle=['#ddd3bb','#b6c2c4','#c9c3b8','#b4bdb5','#c8d0c7'][id%5];c.fillRect(0,0,512,512);
+ const r=random(893+id*193);c.fillStyle=['#d4c2a8','#b6c2c4','#c9c3b8','#adbaad','#ddc7b0'][id%5];c.fillRect(0,0,512,512);
  const rows=8+id%4,cols=5+id%3,dx=512/cols,dy=512/rows;
  for(let y=0;y<rows;y++){c.fillStyle='rgba(72,85,91,.23)';c.fillRect(0,y*dy+dy-3,512,3);
-  for(let x=0;x<cols;x++){const px=x*dx+dx*.13,py=y*dy+dy*.12,w=dx*.74,h=dy*.70;c.fillStyle='#536a78';c.fillRect(px-2,py-2,w+4,h+4);c.fillStyle=r()>.3?'#8baab5':'#afc6c5';c.fillRect(px,py,w,h);c.fillStyle='rgba(232,241,224,.42)';c.fillRect(px+w*.08,py+2,w*.15,h-4);c.fillStyle='rgba(32,57,68,.32)';c.fillRect(px+w*.49,py,2,h);}
+  for(let x=0;x<cols;x++){const px=x*dx+dx*.13,py=y*dy+dy*.12,w=dx*.74,h=dy*.70;c.fillStyle='#536a78';c.fillRect(px-2,py-2,w+4,h+4);c.fillStyle=id%4===0?(r()>.4?'#728e9c':'#a4b5b2'):id%4===2?(r()>.3?'#6e8997':'#abc0bf'):(r()>.3?'#8baab5':'#afc6c5');c.fillRect(px,py,w,h);c.fillStyle='rgba(232,241,224,.42)';c.fillRect(px+w*.08,py+2,w*.15,h-4);c.fillStyle='rgba(32,57,68,.32)';c.fillRect(px+w*.49,py,2,h);}
  }
 });}
 function texturedBox(p:THREE.Object3D,w:number,h:number,d:number,texture:THREE.Texture,x:number,y:number,z:number,repeat:[number,number]=[1,1]){
@@ -72,6 +72,9 @@ function cityBuilding(p:THREE.Object3D,x:number,z:number,w:number,h:number,depth
  // Parapets, floor ledges, setback roofs and rooftop mechanical equipment break up the skyline.
  box(g,w+.12,.13,depth+.12,'#aeb7b4',0,h+.06,0);box(g,w+.06,.16,depth+.08,'#a6ada7',0,.2,0);
  if(id%3===0){box(g,w*.65,.26,depth*.55,'#c3c4b8',0,h+.24,-.04);box(g,w*.16,.18,depth*.14,'#879397',w*.17,h+.44,0);}
+ if(id%5===1){box(g,w*.8,.32,depth*.7,'#9da9a5',0,h+.22,0);rod(g,[0,h+.4,0],[0,h+1.2,0],.025,'#829492');}
+ if(id%5===2){for(const z of [-depth*.35,depth*.35])box(g,w*.9,.12,.12,'#d4d4c7',0,h+.2,z);}
+ if(id%6===0){box(g,w*.22,.3,depth*.26,'#7e9293',-.18,h+.27,0);}
  if(id%4===0)for(let y=1;y<h;y+=1.4)box(g,w+.06,.045,depth+.06,'#d6d7c8',0,y,0);
 }
 function sky(p:THREE.Object3D,night=false){

@@ -83,7 +83,7 @@ jobs:
         working-directory: remotion-app
         run: |
           mkdir -p out/diagnostics
-          for frame in 30 125 230 420 520 900 1130 1500; do
+          for frame in 125 230 420 900; do
             npx remotion still src/index.ts "${{ inputs.composition }}" "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
           done
       - name: Save bridge detail review sheets
@@ -93,8 +93,8 @@ jobs:
           mkdir -p shoots/breathing-bridge/review
           python3 - <<'PY'
           from PIL import Image, ImageDraw
-          frames=[30,125,230,420,520,900,1130,1500]
-          for n in range(2):
+          frames=[125,230,420,900]
+          for n in range(1):
               sheet=Image.new('RGB',(320*2,590*2),'white')
               for i,f in enumerate(frames[n*4:n*4+4]):
                   tile=Image.open(f'remotion-app/out/diagnostics/{f}.png').convert('RGB').resize((320,569))
