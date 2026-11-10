@@ -1,0 +1,87 @@
+name: Yamaguchi remaster — preview gate and 720p
+on:
+  push:
+    branches: [arena/044538ca-ntc-8f3a9x2k]
+    paths:
+      - 'remotion-app/src/survivor-remaster/**'
+      - 'scripts/survivor-remaster/**'
+      - '.github/workflows/survivor-remaster.yml'
+  workflow_dispatch:
+    inputs:
+      stage:
+        description: 'Preview first; final only after inspecting the stills'
+        type: choice
+        options: [preview, final]
+        default: preview
+permissions:
+  contents: write
+concurrency:
+  group: survivor-remaster-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  survivor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: remotion-app/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install and preflight
+        run: |
+          cd remotion-app
+          npm ci --no-audit --no-fund
+          npx tsc --noEmit
+          npx playwright@1.49.1 install --with-deps chromium
+          CHROME="$(find ~/.cache/ms-playwright -type f -name chrome | head -1)"
+          test -n "$CHROME"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+          cd ..
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python -m pip install numpy pillow scipy
+          ffmpeg -version
+          ffprobe -version
+          mkdir -p shoots/curiosity-survivor/out/remaster
+          python scripts/survivor-remaster/score.py
+          ffmpeg -y -i shoots/curiosity-survivor/out/remaster/audio/premix.wav -af loudnorm=I=-15:TP=-1.5:LRA=5 -ar 48000 shoots/curiosity-survivor/out/remaster/mix.wav
+      - name: Render editorial beat previews in one bundle
+        run: node scripts/survivor-remaster/stills.mjs
+      - name: Publish isolated preview gate
+        run: |
+          mkdir -p deliveries/survivor-remastered/previews
+          cp shoots/curiosity-survivor/out/remaster/stills/* deliveries/survivor-remastered/previews/
+          bash scripts/curiosity/publish.sh "Yamaguchi remaster visual preview gate" deliveries/survivor-remastered/previews
+      - uses: actions/upload-artifact@v4
+        with:
+          name: survivor-remaster-previews
+          path: shoots/curiosity-survivor/out/remaster/stills/
+      - name: Full render only after visual gate
+        if: inputs.stage == 'final'
+        working-directory: remotion-app
+        run: |
+          npx remotion render src/survivor-remaster/index.tsx SurvivorRemastered ../shoots/curiosity-survivor/out/remaster/silent.mp4 --width=720 --height=1280 --codec=h264 --crf=18 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000
+      - name: Checkpoint rendered picture
+        if: inputs.stage == 'final'
+        run: |
+          cp shoots/curiosity-survivor/out/remaster/silent.mp4 deliveries/survivor-remastered/picture-checkpoint.mp4
+          bash scripts/curiosity/publish.sh "Checkpoint Yamaguchi remaster picture" deliveries/survivor-remastered/picture-checkpoint.mp4
+      - name: Mux and QA
+        if: inputs.stage == 'final'
+        run: |
+          ffmpeg -y -i shoots/curiosity-survivor/out/remaster/silent.mp4 -i shoots/curiosity-survivor/out/remaster/mix.wav -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest deliveries/survivor-remastered/survivor-remastered-720p.mp4
+          cp shoots/curiosity-survivor/out/remaster/audio/music-report.md deliveries/survivor-remastered/music-report.md
+          python scripts/survivor-remaster/qa.py
+          bash scripts/curiosity/publish.sh "Deliver remastered Yamaguchi 720p" deliveries/survivor-remastered
+      - uses: actions/upload-artifact@v4
+        if: always() && inputs.stage == 'final'
+        with:
+          name: survivor-remastered-720p
+          path: |
+            deliveries/survivor-remastered/survivor-remastered-720p.mp4
+            deliveries/survivor-remastered/qa-report.md
