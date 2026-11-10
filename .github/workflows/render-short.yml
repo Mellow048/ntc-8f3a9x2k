@@ -74,28 +74,9 @@ jobs:
         working-directory: remotion-app
         run: |
           mkdir -p out/diagnostics
-          for frame in 80 610 805 1875; do
-            echo "Rendering frame $frame"
-            npx remotion still src/index.ts PendulumShort "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH" >"out/diagnostics/$frame.log" 2>&1 || { msg=$(tail -n 12 "out/diagnostics/$frame.log" | tr '\n' ' '); echo "::error::Frame $frame failed: $msg"; exit 1; }
-            echo "file '$frame.png'" >> out/diagnostics/list.txt
+          for frame in 80 220 340 475 610 805 1025 1200 1370 1460 1515 1625 1725 1875; do
+            npx remotion still src/index.ts PendulumShort "out/diagnostics/$frame.png" --frame="$frame" --width=720 --height=1280 --gl=swiftshader --timeout=300000 --browser-executable="$CHROME_PATH"
           done
-          ffmpeg -v error -y -f concat -safe 0 -i out/diagnostics/list.txt -vf 'scale=270:480,tile=4x1' -frames:v 1 -q:v 18 out/diagnostics/sheet.jpg
-          base64 -w0 out/diagnostics/sheet.jpg | split -b 3500 -d -a 3 - out/diagnostics/chunk-
-      - name: Diagnostic image chunks 1
-        if: inputs.diagnostics == 'true'
-        working-directory: remotion-app
-        run: |
-          for n in $(seq 0 9); do i=$(printf '%03d' "$n"); f="out/diagnostics/chunk-$i"; [ ! -f "$f" ] || echo "::notice title=sheet-$i::$(cat "$f")"; done
-      - name: Diagnostic image chunks 2
-        if: inputs.diagnostics == 'true'
-        working-directory: remotion-app
-        run: |
-          for i in $(seq -w 10 19); do f="out/diagnostics/chunk-0$i"; [ ! -f "$f" ] || echo "::notice title=sheet-0$i::$(cat "$f")"; done
-      - name: Diagnostic image chunks 3
-        if: inputs.diagnostics == 'true'
-        working-directory: remotion-app
-        run: |
-          for i in $(seq -w 20 29); do f="out/diagnostics/chunk-0$i"; [ ! -f "$f" ] || echo "::notice title=sheet-0$i::$(cat "$f")"; done
       - name: Upload diagnostic stills
         if: inputs.diagnostics == 'true' && always()
         uses: actions/upload-artifact@v4
@@ -137,13 +118,36 @@ jobs:
             -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -shortest remotion-app/out/final-muxed.mp4
           mv remotion-app/out/final-muxed.mp4 remotion-app/out/final.mp4
 
+      - name: Quality check (Pendulum)
+        if: inputs.diagnostics != 'true' && inputs.composition == 'PendulumShort' && inputs.mix != ''
+        run: |
+          python3 -m venv "$RUNNER_TEMP/short-qa-venv"
+          "$RUNNER_TEMP/short-qa-venv/bin/pip" install numpy pillow
+          "$RUNNER_TEMP/short-qa-venv/bin/python" templates/scripts/short_qa.py remotion-app/out/final.mp4 remotion-app/out/qa shoots/pendulum/qa-shots.json
+          "$RUNNER_TEMP/short-qa-venv/bin/python" - <<'PYQA'
+          from pathlib import Path
+          import re
+          report = Path('remotion-app/out/qa/report.md').read_text()
+          print('::notice::' + report.replace('%', '%25').replace('\n', '%0A'))
+          ok = ('720x1280 30/1 fps, 1965 frames, 65.500 s' in report
+                and 'black []' in report and 'unplanned white []' in report
+                and 'frozen spans >=12f []' in report)
+          loud = re.search(r'I:\s*(-?\d+(?:\.\d+)?) LUFS', report)
+          peak = re.search(r'Peak:\s*(-?\d+(?:\.\d+)?) dBFS', report)
+          ok = ok and loud is not None and -17 <= float(loud.group(1)) <= -13
+          ok = ok and peak is not None and float(peak.group(1)) <= -1.0
+          if not ok:
+              raise SystemExit('QA failed: review report.md in the artifact')
+          PYQA
+
       - name: Upload MP4
-        if: inputs.diagnostics != 'true'
+        if: inputs.diagnostics != 'true' && always()
         uses: actions/upload-artifact@v4
         with:
           name: cartoon-3d-short
           path: |
             remotion-app/out/final.mp4
             remotion-app/out/still.png
+            remotion-app/out/qa/report.md
           if-no-files-found: error
           retention-days: 14

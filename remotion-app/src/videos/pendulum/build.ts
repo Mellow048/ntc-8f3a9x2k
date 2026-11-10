@@ -440,7 +440,8 @@ export const buildOffice = (parent: THREE.Object3D, origin: V3): OfficeRig => {
     B.add(boxGeo(V(dx - 0.16, 0.82, -0.66), V(dx + 0.16, 0.84, -0.5), 1), darkMat);
     // Chair seat + backrest behind worker (z = 0.75)
     B.add(boxGeo(V(dx - 0.32, 0.46, 0.42), V(dx + 0.32, 0.54, 0.95), 1), chairMat);
-    B.add(boxGeo(V(dx - 0.3, 0.54, 0.88), V(dx + 0.3, 1.18, 0.96), 1), chairMat);
+    // Keep the chair back behind the seated character from the office camera.
+    B.add(boxGeo(V(dx - 0.3, 0.54, 0.24), V(dx + 0.3, 1.18, 0.32), 1), chairMat);
     B.add(new THREE.CylinderGeometry(0.05, 0.05, 0.46, 8), darkMat, trs(dx, 0.23, 0.68));
   }
 
