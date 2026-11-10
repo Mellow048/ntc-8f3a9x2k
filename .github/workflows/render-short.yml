@@ -27,6 +27,8 @@ on:
 jobs:
   render:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     timeout-minutes: 180
     env:
       REMOTION_TMP: ${{ github.workspace }}/.remotion-tmp
@@ -75,8 +77,22 @@ jobs:
       - name: Render video
         working-directory: remotion-app
         run: |
+          set -o pipefail
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
-            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH"
+            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH" --log=verbose 2>&1 | tee out/render.log
+
+      # Diagnostics on failure: push the tail of render.log to a throwaway diag/<run_id> branch so it can be inspected (artifacts are not reachable from all clients)
+      - name: Capture failure log
+        if: failure()
+        working-directory: remotion-app
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf /tmp/diag && mkdir -p /tmp/diag
+          tail -c 300000 out/render.log > /tmp/diag/render.log 2>/dev/null || true
+          cd /tmp/diag && git init -q . && git config user.email ci-diag@local && git config user.name ci-diag
+          git add -A && git commit -qm "render log run ${{ github.run_id }} (size=${{ github.event.inputs.size }})"
+          git push -q --force "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" HEAD:refs/heads/diag/${{ github.run_id }} || true
 
       - name: Mux voice mix
         if: inputs.mix != ''
