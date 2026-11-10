@@ -23,3 +23,5 @@ Thumbs.db
 
 # Transient Beer remaster picture-only checkpoint
 /deliveries/beer-flood-remastered/picture-checkpoint.mp4
+
+/scripts/beer-remaster/sound/__pycache__/
