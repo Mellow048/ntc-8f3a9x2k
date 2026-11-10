@@ -235,15 +235,23 @@ jobs:
           run-id: 42744041209
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: delivery/sky-plaza
+      - name: Recheck videos with caption-aware metadata
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/delivery-qa"
+          "$RUNNER_TEMP/delivery-qa/bin/pip" install numpy pillow
+          for slug in breathing-bridge spring-building ocean-airport channel-tunnel sky-plaza; do
+            "$RUNNER_TEMP/delivery-qa/bin/python" templates/scripts/short_qa.py "delivery/$slug/final.mp4" "$RUNNER_TEMP/qa-$slug" "shoots/$slug/qa-shots.json"
+            cp "$RUNNER_TEMP/qa-$slug/report.md" "shoots/$slug/qa-report.md"
+          done
       - name: Commit videos and QA reports to the branch
         run: |
           set -euo pipefail
           for slug in breathing-bridge spring-building ocean-airport channel-tunnel sky-plaza; do
             test -s "delivery/$slug/final.mp4"
-            test -s "delivery/$slug/qa/report.md"
+            test -s "shoots/$slug/qa-report.md"
             test "$(stat -c %s "delivery/$slug/final.mp4")" -lt 100000000
             cp "delivery/$slug/final.mp4" "shoots/$slug/final-720p.mp4"
-            cp "delivery/$slug/qa/report.md" "shoots/$slug/qa-report.md"
             git add -f "shoots/$slug/final-720p.mp4" "shoots/$slug/qa-report.md"
           done
           git config user.name 'github-actions[bot]'
