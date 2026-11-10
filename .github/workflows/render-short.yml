@@ -32,8 +32,44 @@ on:
         required: false
         default: ""
 
+permissions:
+  contents: write
+  actions: read
+
 jobs:
+  sheets:
+    if: inputs.diagnostics == 'review'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/2524fc8a-ntc-8f3a9x2k
+      - uses: actions/download-artifact@v4
+        with:
+          name: keyframes-720p
+          run-id: 42758864243
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: /tmp/stills
+      - run: |
+          python3 -m pip install --user pillow
+          mkdir -p shoots/breathing-bridge/review
+          python3 - <<'PY'
+          from PIL import Image, ImageDraw
+          frames=[40,125,230,310,420,520,650,780,900,1000,1130,1240,1350,1435,1500,1600,1690,1780]
+          for n in range(3):
+              sheet=Image.new('RGB',(240*3,446*2),'white')
+              for i,f in enumerate(frames[n*6:n*6+6]):
+                  tile=Image.open(f'/tmp/stills/{f}.png').convert('RGB').resize((240,426))
+                  x,y=(i%3)*240,(i//3)*446;sheet.paste(tile,(x,y));ImageDraw.Draw(sheet).text((x+5,y+428),str(f),fill='black')
+              sheet.save(f'shoots/breathing-bridge/review/sheet-{n}.jpg',quality=84)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add shoots/breathing-bridge/review
+          git commit -m 'Add temporary bridge review sheets'
+          git push origin HEAD:arena/2524fc8a-ntc-8f3a9x2k
   render:
+    if: inputs.diagnostics != 'review' 
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
