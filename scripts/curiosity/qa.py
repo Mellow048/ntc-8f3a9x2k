@@ -7,7 +7,18 @@ indices={'beer':[0,9,24,32,35,42,49,61,63,66,78], 'survivor':[0,5,11,25,29,37,42
 starts=[0]+[max(0,math.floor(data['words'][i]['start']*30+.5)-2) for i in indices[1:]]
 shots=[{'id':i+1,'a':a,'b':(starts+[data['frames']])[i+1]} for i,a in enumerate(starts)]
 out=root/f'remotion-app/out/curiosity-{slug}';out.mkdir(exist_ok=True,parents=True)
-meta=out/'shots.json';meta.write_text(json.dumps({'shots':shots,'planned':([[295,316],[618,639]] if slug=='survivor' else [])}))
+# Subtitle swaps and 4-frame pop-ins are intentional animation, not renderer pops.
+planned=([[295,316],[618,639]] if slug=='survivor' else [])
+words=data['words']; i=0
+while i<len(words):
+    a=words[i];b=words[i+1] if i+1<len(words) else None
+    pair=bool(b and len(a['word'])+len(b['word'])<=13 and b['start']-a['end']<.32)
+    end=b['end'] if pair else a['end']
+    start_frame=math.ceil((a['start']-.035)*30)
+    end_frame=math.ceil((end+.15)*30)
+    planned.extend([[max(0,start_frame-1),start_frame+5],[end_frame-1,end_frame+1]])
+    i+=2 if pair else 1
+meta=out/'shots.json';meta.write_text(json.dumps({'shots':shots,'planned':planned}))
 video=out/f'curiosity-{slug}.mp4'
 subprocess.run([sys.executable,str(root/'templates/scripts/short_qa.py'),str(video),str(out/'qa'),str(meta)],check=True)
 report=(out/'qa/report.md').read_text()
@@ -16,7 +27,7 @@ v=next(s for s in probe['streams'] if s['codec_type']=='video')
 assert (v['width'],v['height'],v['r_frame_rate'])==(720,1280,'30/1'),v
 assert abs(float(probe['format']['duration'])-data['duration'])<.12
 assert 'black []; unplanned white []; frozen spans >=12f []' in report,'Frame QA flags: inspect report'
-match=re.search(r'I: (-?[\d.]+) LUFS',report)
+match=re.search(r'I:\s+(-?[\d.]+) LUFS',report)
 assert match and -18<float(match[1])<-12,'Loudness outside target range'
 # Pops are review flags rather than an automatic pass: inspect them and contact sheets.
 pops=re.search(r'POPS.*?: (.*)',report)
