@@ -1,5 +1,7 @@
 # IMPORTANT — Cartoon 3D short rules
 
+> **Read [VIDEO_HANDOFF.md](VIDEO_HANDOFF.md) first for the user's current requirements and production checkpoint.** The user explicitly overrides two legacy gates below: **720×1280 exports only** (not 2K) and **synchronized changing 1–2-word subtitles** (not no captions). Later explicit user instructions take precedence over historical template defaults.
+
 These are release gates for every short in this repo. They sit **on top of**
 the vendored `SKILL.md` (`cartoon-3d-short`) — where the two disagree, the
 skill's proven look values win for style, these rules win for process.
