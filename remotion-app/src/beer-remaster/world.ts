@@ -1,6 +1,6 @@
 import * as T from 'three';
 import {V,box,cyl,sphere,bar,material,wood,timber,iron,stone,brickM,street,warehouse,barrel,lamp,VatRig,batchStatic} from './build';
-import {Porter} from './water';
+import {Porter,Wake} from './water';
 import {Character,CLERK,NEIGHBOUR,WORKER} from './cast';
 import {LIGHTS,LOOK} from './style/lights';
 import {TONE,CHAR,untone} from './style/shade';
@@ -21,7 +21,7 @@ export class World {
   const actor=(x:number,z:number,o=CLERK)=>{const a=new Character(p,x,z,o);this.actors.push(a);return a;};
   if(place==='street'){
    street(p);this.fluid=new Porter(p,9.1,90);this.fluid.mesh.position.z=-24;
-   const woman=actor(-2.7,-4.2,NEIGHBOUR);const helper=actor(-1.1,-1.8,WORKER);const distant=actor(2.9,-10,CLERK);distant.root.position.y=.5;
+   const woman=actor(-2.7,-4.2,NEIGHBOUR);const helper=actor(-1.1,-1.8,WORKER);const distant=actor(2.9,-10,CLERK);const wakes=[woman,helper,distant].map(()=>new Wake(p));
    const floating:Array<{o:T.Object3D;x:number;z:number}>=[];
    for(let i=0;i<12;i++){const x=Math.sin(i*4.7)*3.6,z=-27+i*3.2;const o=i%4===0?barrel(p,x,z,.35):box(p,x,.4,z,.14,.12,1.1+(i%3)*.4,wood());if(i%4===0)o.rotation.z=Math.PI/2;o.userData.dynamic=true;floating.push({o,x,z});}
    // Broken masonry is scattered at the edges, not in front of faces.
@@ -29,27 +29,38 @@ export class World {
    const lantern=lamp(p,-1.5,1.1,-.8,true);lantern.userData.dynamic=true;
    this.animations.push((s,f,u)=>{
     const t=f/30;const aftermath=s.id>=7;const rescue=s.id===10;
-    woman.root.visible=!rescue;woman.expr=aftermath?'nervous':'shock';woman.root.position.y=aftermath?.3:smooth(u)*.48;woman.lean=aftermath?0:-5*smooth(u);woman.wave=aftermath?0:.5;
-    helper.root.visible=aftermath;helper.expr=rescue?'stern':'nervous';helper.walk=rescue;helper.root.position.set(-1.4+u*.35,.25,-1.5-u*.5);helper.lean=rescue?-5:0;helper.wave=rescue?.7:0;
-    distant.expr=aftermath?'stern':'shock';rubble.visible=aftermath;lantern.visible=rescue;
+    // Feet stay below the surface. Actors fight the current; they NEVER rise
+    // on top of it. The material also clips their camera-facing cards at water.
+    const rush=!aftermath;const bob=Math.sin(f*.34)*.07;
+    woman.root.visible=!rescue;woman.expr=rush?'shock':'nervous';woman.run=rush;woman.walk=aftermath;woman.wave=rush?.8:undefined;
+    woman.root.position.set(-2.7+Math.sin(f*.09)*.1,-.38+bob,-4.2+u*(rush?2.6:.9));woman.lean=rush?-12+Math.sin(f*.2)*4:-4;
+    helper.root.visible=aftermath;helper.expr=rescue?'stern':'nervous';helper.walk=true;helper.run=false;helper.wave=rescue?.6:undefined;
+    helper.root.position.set(-1.1+u*.65,-.36+bob,-1.8-u*(rescue?1.5:.8));helper.lean=-7+Math.sin(f*.15)*3;
+    distant.expr=rush?'shock':'stern';distant.run=rush;distant.walk=aftermath;distant.wave=rush?.9:undefined;distant.lean=rush?10:-3;
+    distant.root.position.set(2.9-u*1.1,-.35-bob,-10+u*3.4);
+    rubble.visible=aftermath;lantern.visible=rescue;
+    lantern.position.x=-1.5+u*.65;lantern.position.z=-.8-u*1.5;
     const front=s.id===1?-16+u*23:s.id===6?-25+u*35:30;
-    this.fluid!.update(t,front+24,aftermath?.12:.25,aftermath?.15:.75);
-    floating.forEach(({o,x,z},i)=>{o.visible=!rescue||i<4;o.position.set(x+Math.sin(t*.8+i)*.12,aftermath?.15:.38+Math.sin(t*2+i)*.08,z+(aftermath?0:u*10));o.rotation.y=i*.8+t*.1;});
+    const level=aftermath?.78:.68,energy=aftermath?.3:.85;
+    this.fluid!.update(t,front+24,level,energy);
+    [woman,helper,distant].forEach((a,i)=>{a.wet(level,t,front,energy);wakes[i].update(f+i*7,a.root.position.x,a.root.position.z,this.fluid!,a.root.visible,rush?1.4:.65);});
+    floating.forEach(({o,x,z},i)=>{o.visible=!rescue||i<4;o.position.set(x+Math.sin(t*.8+i)*.12,this.fluid!.surfaceAt(x,z+(aftermath?0:u*10))+.025,z+(aftermath?0:u*10));o.rotation.y=i*.8+t*.1;});
    });
   }
   if(place==='warehouse'){
-   this.vat=warehouse(p);const worker=actor(3.8,3,WORKER);const v=this.vat;
+   this.vat=warehouse(p);const worker=actor(3.8,3,WORKER);const v=this.vat;const wake=new Wake(p);
    const spilled=new Porter(p,19,22);spilled.mesh.position.z=1;
    const drops:T.Mesh[]=[];for(let i=0;i<40;i++){const o=sphere(p,0,0,0,.035+(i%5)*.012,material('beer-drop','#875022',undefined,true));o.userData.dynamic=true;drops.push(o);}
    this.animations.push((s,f,u)=>{
-    worker.expr=f>=359?'shock':s.id===2?'neutral':'nervous';worker.wave=f>=359?.8:0;worker.lean=f>=396?-8:0;
+    worker.expr=f>=359?'shock':s.id===2?'neutral':'nervous';worker.wave=f>=359?.8:undefined;worker.lean=f>=396?-14:Math.sin(f*.12)*2;worker.run=f>=359;worker.walk=f<359;
+    const escape=clamp((f-359)/64);worker.root.position.set(3.8+escape*1.3,escape>.6?-.2:0,3+escape*2.8);worker.wet(f>=399?.3:-100,f/30,0,0);
     const fail=smooth((f-359)/18);const burst=smooth((f-396)/22);
     v.bands[2].position.y=3.13-fail*1.9;v.bands[2].rotation.z=fail*.19;
     const active=s.id===4;spilled.mesh.visible=active;drops.forEach(o=>o.visible=active&&f>396);
     const q=active?burst:0;
     v.staves.forEach((o,i)=>{const a=i*Math.PI*2/36;const k=Math.max(0,Math.sin(a));o.position.set(Math.sin(a)*q*k*2.7,-q*k*.8,Math.cos(a)*q*k*3);o.rotation.z=-q*Math.sin(a)*.55;o.rotation.x=q*Math.cos(a)*.3;});
     v.bands.forEach((b,i)=>{if(i!==2){b.rotation.z=q*Math.sin(i)*.35;b.position.y=.65+i*1.24-q*i*.1;}});
-    spilled.update(f/30,-7+q*19,.05+q*.35,q*1.7);
+    spilled.update(f/30,-7+q*19,.05+q*.35,q*1.7);wake.update(f,worker.root.position.x,worker.root.position.z,spilled,active&&f>=399,1.4);
     drops.forEach((o,i)=>{const tt=clamp((f-396-i%9)/25),a=i*2.4;o.position.set(Math.sin(a)*tt*6,Math.max(.1,2.4+Math.sin(tt*Math.PI)*3.2-tt*4),1+tt*(3+(i%5)));o.scale.setScalar(1-tt*.8);});
    });
   }
@@ -88,7 +99,7 @@ export class World {
    const coins:T.Mesh[]=[];for(let i=0;i<7;i++)coins.push(cyl(p,.65,1.49+i*.055,.1,.14,.05,material('gold-coin','#b69450',undefined,true)));
    lamp(p,-2,2.4,.5,true);box(p,0,.35,-4,2,.5,.7,wood());
    coins.forEach(c=>c.userData.dynamic=true);
-   this.animations.push((s,f,u)=>coins.forEach((c,i)=>{c.position.y=1.49+i*.055+Math.max(0,1-u*4+i*.08)*.4;}));
+   this.animations.push((s,f,u)=>{a.wave=.45+Math.sin(f*.19)*.35;a.lean=Math.sin(f*.1)*4;b.lean=-5+Math.sin(f*.12)*3;b.wave=u>.5?.3:undefined;b.expr=u>.6?'shock':'neutral';coins.forEach((c,i)=>{const fall=clamp((u-.35-i*.018)*8);c.position.y=1.49+i*.055+(1-fall)*1.2+Math.abs(Math.sin(fall*Math.PI*3))*(1-fall)*.2;});});
   }
   batchStatic(this.root);
  }
@@ -96,7 +107,7 @@ export class World {
   const c=CAMS(s,f);cam.position.set(...c.pos);cam.lookAt(...c.look);cam.fov=c.fov;
   for(const kick of KICKS){const d=f-kick.f;if(d>=0&&d<7)cam.rotation.z+=(d%2?1:-1)*kick.amount*(1-d/7);}
   cam.updateProjectionMatrix();cam.updateMatrixWorld();cam.layers.enable(NOINK);
-  const L=LIGHTS[s.light],K=LOOK[s.light];const focus=V(...s.look);
+  const L=LIGHTS[s.light],K=LOOK[s.light];const focus=V(...c.look);
   this.hemi.color.set(L.sky);this.hemi.groundColor.set(L.ground);this.hemi.intensity=L.hemiI;this.sun.color.set(L.sunCol);this.sun.intensity=L.sunI;
   const heading=Math.atan2(s.pos[0]-s.look[0],s.pos[2]-s.look[2]);const az=heading+Math.PI*.48,el=(s.light==='golden'?22:48)*Math.PI/180;
   const dir=V(Math.sin(az)*Math.cos(el),Math.sin(el),Math.cos(az)*Math.cos(el));

@@ -49,8 +49,13 @@ jobs:
           ffprobe -version
           mkdir -p shoots/curiosity-beer/out/remaster
           ffmpeg -y -i shoots/curiosity-beer/audio/premix.wav -af loudnorm=I=-15:TP=-1.5:LRA=5 -ar 48000 shoots/curiosity-beer/out/remaster/mix.wav
-      - name: Render all eleven shot previews in one bundle
+      - name: Render editorial beat previews in one bundle
         run: node scripts/beer-remaster/stills.mjs
+      - name: Render actual wading motion proof
+        if: inputs.stage != 'final'
+        working-directory: remotion-app
+        run: |
+          npx remotion render src/beer-remaster/index.tsx BeerFloodRemastered ../shoots/curiosity-beer/out/remaster/stills/motion-preview.mp4 --frames=568-677 --width=720 --height=1280 --codec=h264 --crf=20 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000
       - name: Publish isolated preview gate
         run: |
           mkdir -p deliveries/beer-flood-remastered/previews

@@ -6,7 +6,13 @@ data=json.loads((root/'remotion-app/src/curiosity/beer.json').read_text())
 indices=[0,9,24,32,35,42,49,61,63,66,78]
 starts=[0]+[math.floor(data['words'][i]['start']*30+.5)-2 for i in indices[1:]]
 shots=[{'id':i+1,'a':a,'b':(starts+[data['frames']])[i+1]} for i,a in enumerate(starts)]
+# Match the explicitly planned insert edits in story.ts, not false "pop" flags.
+beats={1:[.56],2:[.29,.55,.76],3:[.57],7:[.36,.70],10:[.38,.72],11:[.36,.68]}
 planned=[[395,405],[432,442]]
+for shot in shots:
+ for at in beats.get(shot['id'],[]):
+  cut=shot['a']+math.floor(at*(shot['b']-shot['a'])+.5)
+  planned.append([cut-2,cut+2])
 i=0;words=data['words']
 while i<len(words):
  a=words[i];b=words[i+1] if i+1<len(words) else None
