@@ -7,7 +7,7 @@ indices={'beer':[0,9,24,32,35,42,49,61,63,66,78], 'survivor':[0,5,11,25,29,37,42
 starts=[0]+[max(0,math.floor(data['words'][i]['start']*30+.5)-2) for i in indices[1:]]
 shots=[{'id':i+1,'a':a,'b':(starts+[data['frames']])[i+1]} for i,a in enumerate(starts)]
 out=root/f'remotion-app/out/curiosity-{slug}';out.mkdir(exist_ok=True,parents=True)
-meta=out/'shots.json';meta.write_text(json.dumps({'shots':shots}))
+meta=out/'shots.json';meta.write_text(json.dumps({'shots':shots,'planned':([[295,316],[618,639]] if slug=='survivor' else [])}))
 video=out/f'curiosity-{slug}.mp4'
 subprocess.run([sys.executable,str(root/'templates/scripts/short_qa.py'),str(video),str(out/'qa'),str(meta)],check=True)
 report=(out/'qa/report.md').read_text()

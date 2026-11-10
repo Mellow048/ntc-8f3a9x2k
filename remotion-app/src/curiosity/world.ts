@@ -72,9 +72,9 @@ export class World {
    if(s==='cellar'){
     box(p,0,-1.6,-2,7,4,.4,'#9c8c7a','brick');box(p,-3.5,-1,0,.3,4,5,'#bba68c','brick');box(p,0,-3,0,7,.3,5,'#8d7e70');box(p,0,.5,0,8,.25,6,'#b9a78b','wood');for(let i=0;i<5;i++)box(p,2,0-i*.6,2-i*.5,1.5,.5,.6,'#aa9c8b');const w=box(p,0,-2.9,0,6.5,.3,4.8,'#78583b');this.animate.push((f,t,u)=>{w.position.y=-2.8+u*2;});
    }else{
-    town(p);const w=water(p,.12,'#79583b');w.scale.x=.20;w.scale.z=.8;
+    town(p);const w=water(p,.12,'#79583b');w.scale.x=8.5;w.scale.z=38;this.animate.push((f,t)=>{w.position.y=-.03+Math.sin(t*1.8)*.04;});
     for(let i=0;i<20;i++){const foam=ell(p,(i%4-1.5)*1.7,.4,Math.floor(i/4)*4-9,.65,.08,.25,i%2?'#c9a86e':'#9e774a');this.animate.push((f,t)=>{foam.position.z=((i*3+t*2)%23)-12;foam.position.y=.4+Math.sin(t*3+i)*.06;});}
-    if(s==='flood'){person(-2.4,-1,'shock',{hat:'bonnet',dress:'#a76c6b'});person(2.3,-6,'nervous',{hat:'tophat'});}
+    if(s==='flood'){const surge=ell(p,0,.18,-10,4,.35,1.6,'#987043');this.animate.push((f,t,u)=>{surge.position.z=-11+u*16;surge.scale.y=.3+Math.sin(u*Math.PI)*.28;});person(-2.4,-1,'shock',{hat:'bonnet',dress:'#a76c6b'});person(2.3,-6,'nervous',{hat:'tophat'});}
     else{
      for(let i=0;i<12;i++){const b=box(p,Math.sin(i*9)*3,.4,-6+i*.8,.8,.22,.35,'#89705a','wood');b.rotation.y=i;}
      const a=person(-1,1,'stern',{jacket:'#8c6b53',hat:'tophat'});const b=person(1.3,-.7,'nervous',{jacket:'#687a6a'});if(s==='rescue'){a.walking=true;this.animate.push((f,t,u)=>a.group.position.x=-1+u*.8);lantern(p,1.1,1.1,0);}
@@ -93,7 +93,7 @@ export class World {
   if(['japan','home','blast','survivor'].includes(s)){
    town(p,true);tree(p,-8,-1);const a=hero();if(s==='japan'){a.walking=true;box(p,.85,.9,0,.6,.8,.25,'#66533d','wood');this.animate.push((f,t,u)=>a.group.position.z=1-u*2);}
    if(s==='home'){house(p,0,-5,'#cdbd9c',true);person(1.4,-2,'neutral',{hat:'hair',hair:'#29262b',dress:'#7c748b'});}
-   if(s==='survivor'||s==='blast'){const rubble:T.Mesh[]=[];for(let i=0;i<15;i++){rubble.push(box(p,Math.sin(i*7)*4,.2,-1-Math.abs(Math.cos(i*5))*7,.6,.4,.8,'#8e877b'));}a.expr='dazed';}
+   if(s==='survivor'||s==='blast'){const rubble:T.Mesh[]=[];for(let i=0;i<15;i++){rubble.push(box(p,Math.sin(i*7)*4,.2,-1-Math.abs(Math.cos(i*5))*7,.6,.4,.8,'#8e877b'));}a.expr='dazed';if(s==='blast'){const shock=new T.Mesh(new T.TorusGeometry(1,.12,8,64),mat('#dfc5a0'));shock.rotation.x=Math.PI/2;shock.position.set(0,.2,-8);p.add(shock);this.animate.push((f,t)=>{const q=Math.max(0,t-9.90);shock.visible=q>0;shock.scale.setScalar(1+q*7);a.group.rotation.z=-Math.sin(Math.min(q*7,Math.PI))*.12;});}}
   }else if(s==='shelter'){
    box(p,0,2,-2,8,4,.6,'#9e968a','brick');box(p,-4,2,0,.4,4,5,'#8f8c82','brick');beam(p,V(-3,.2,-1),V(3,3.8,-1),.25,'#756a5b');const a=hero();a.expr='dazed';const wrap=box(p,-.3,1.05,.12,.32,.75,.2,'#e5ded0');this.animate.push((f,t)=>wrap.rotation.z=-.2+Math.sin(t)*.01);lantern(p,2,.65,0);
   }else if(s==='train'){
