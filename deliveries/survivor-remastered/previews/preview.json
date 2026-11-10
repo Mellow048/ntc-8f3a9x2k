@@ -6,6 +6,7 @@
     145,
     215,
     270,
+    294,
     310,
     355,
     400,
@@ -13,7 +14,8 @@
     470,
     500,
     540,
-    600,
+    590,
+    610,
     640,
     690,
     745,
@@ -27,7 +29,5 @@
     1220
   ],
   "width": 720,
-  "height": 1280,
-  "imageFormat": "jpg",
-  "note": "Reviewed GitHub-rendered previews, archived as JPEG to avoid redundant large PNGs."
+  "height": 1280
 }
