@@ -166,13 +166,31 @@ export const GRADE_GOLDEN2: GradeParams = {
   tintS: [0.02, 0.002], tintM: [0, 0], tintH: [-0.012, 0.006],
   vig: [0.2, 0.4],
 };
-export const GRADES: Record<"day" | "golden", GradeParams> = { day: GRADE_DAY2, golden: GRADE_GOLDEN2 };
+export const GRADE_DARK2: GradeParams = {
+  ky: [0, 0.082, 0.235, 0.52, 0.77, 0.9, 1],       // heavier S: the dark day must sit dark, candles punch through
+  sat: [0.85, 0.8, 0.75],
+  tintS: [-0.012, 0.014], tintM: [-0.004, 0.008], tintH: [0.002, -0.006],
+  vig: [0.2, 0.38],
+};
+export const GRADE_BLOOD2: GradeParams = {
+  ky: [0, 0.075, 0.23, 0.5, 0.76, 0.9, 1],
+  sat: [1.12, 1.02, 0.85],                          // ember-red shadows/mids, drained highlights
+  tintS: [0.055, 0.012], tintM: [0.03, 0.002], tintH: [0.008, -0.004],
+  vig: [0.26, 0.36],
+};
+export const GRADE_NIGHT2: GradeParams = {
+  ky: [0, 0.07, 0.22, 0.47, 0.74, 0.89, 1],         // deepest S: night swallows the fringe
+  sat: [0.7, 0.62, 0.6],
+  tintS: [-0.02, 0.02], tintM: [-0.01, 0.016], tintH: [0, -0.008],
+  vig: [0.3, 0.34],
+};
+export const GRADES: Record<"day" | "golden" | "dark" | "blood" | "night", GradeParams> = { day: GRADE_DAY2, golden: GRADE_GOLDEN2, dark: GRADE_DARK2, blood: GRADE_BLOOD2, night: GRADE_NIGHT2 };
 /** One strength (0..1, the effect's `amount`) per preset, set against the NEW world (bridge_world, 2026-10-31): full-strength
  *  presets overshot (day median Y' .59-.67 vs target .571, golden .58 vs .52); day 0.65 / golden 0.45 land at
  *  .54-.62 / ~.52. Re-fit the presets (grade.md 5.C) after the merge and raise these again. */
-export const GRADE_STRENGTH: Record<"day" | "golden", number> = { day: 1, golden: 1 };
+export const GRADE_STRENGTH: Record<"day" | "golden" | "dark" | "blood" | "night", number> = { day: 1, golden: 1, dark: 1, blood: 1, night: 1 };
 /** Apply the preset of a light to the effect (only touches uniforms when the light changes). */
-export function gradeFor(fx: GradeEffect, light: "day" | "golden") {
+export function gradeFor(fx: GradeEffect, light: "day" | "golden" | "dark" | "blood" | "night") {
   const tag = fx as unknown as { _light?: string };
   if (tag._light !== light) { fx.set(GRADES[light]); tag._light = light; }
   fx.amount = GRADE_STRENGTH[light];

@@ -110,7 +110,7 @@ export const DarkDayShort: React.FC = () => {
   if (!kit) return null;
   const flash = f >= FLASH_AT && f < FLASH_AT + 4 ? [1, 0.75, 0.45, 0.2][f - FLASH_AT] : 0;
   return (
-    <AbsoluteFill style={{ background: "#cfe3f2" }}>
+    <AbsoluteFill style={{ background: "#101319" }}>
       {layersAt(f).map((l, i) => <ShotView key={i ? "over" : "base"} id={l.id} kit={kit} alpha={l.alpha} />)}
       {flash > 0 && <AbsoluteFill style={{ background: "#ffffff", opacity: flash }} />}
       <Subtitles />

@@ -907,3 +907,22 @@ export const fxBlob = (p: Pen, col: string) => {
   for (const [r, k] of [[0, 0], [0.5, 0.04], [0.64, 0.18], [0.76, 0.42], [0.87, 0.72], [0.95, 0.92], [1, 1]] as const) gr.addColorStop(r, mix(col, WHITE, k));
   g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
 };
+
+// ---------------- darkday additions (fxWind gloom streaks, fxFlame tongue) ----------------
+/** faint sooty wind streaks (sheet of drifting smoke/ash) drawn u in [0,1) */
+export const fxWind = (p: Pen, u: number) => {
+  const n = 26;
+  for (let i = 0; i < n; i++) {
+    const y = 20 + ((i * 89 + 13) % 220);
+    const len = 60 + ((i * 131) % 130);
+    const x = ((i * 173.3 + u * 640) % 700) - 30;
+    p.stroke([[x, y], [x + len, y + (i % 3 - 1) * 8]], (1 + (i % 3) * 0.7) * 2.2, `rgba(43,43,46,${0.34 + 0.22 * ((i % 5) / 5)})`);
+  }
+};
+/** small warm flame tongue (candles, stall lanterns); u loops 0..1 */
+export const fxFlame = (p: Pen, u: number) => {
+  const w = 10 + Math.sin(u * Math.PI * 2) * 2.2, h = 26 + Math.sin(u * Math.PI * 4 + 1) * 4;
+  p.ell(0, 0, w, h, "#ffd977", 0);
+  p.ell(0, 4, w * 0.55, h * 0.62, "#ffb04a", 0);
+  p.ell(0, 7, w * 0.22, h * 0.3, "#fff6d8", 0);
+};
