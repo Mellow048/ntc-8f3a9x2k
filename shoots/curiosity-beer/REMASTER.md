@@ -76,3 +76,27 @@ render corruption was visible. It remains disclosed in the unedited QA report.
 The redundant picture-only checkpoint is retained locally but untracked now
 that the muxed delivery has been verified. User aesthetic acceptance remains
 separate from these technical checks.
+
+## User-directed motion and music revision
+
+The user identified sluggish pacing, water-walking figures and inaudible music.
+New edit has 22 camera beats with reaction/detail inserts, stronger dollies,
+low water-level views and overhead changes. Wading figures stay below the
+surface; a world-space shader clips cards against the same wave equation as the
+water. Moving contact wakes/splashes anchor them. Retreating/wading poses and
+vat-worker escape replace standing figures. The memorial retains restraint.
+
+Motion proof run 42766826102 succeeded; inspected its 110-frame wading excerpt
+and 22 editorial-beat stills. This showed submerged bodies, changing poses,
+contact ripples and clear angle changes. Moved the rescue lantern farther from
+the face after review, and widened the final reverse angle.
+
+Score now uses the studied Taipei short's DSP/instrument primitives (isolated
+copies) with an original D-minor 132 BPM arrangement: plucked bass, chord
+responses, glock motif, brass/tension, percussion, subdued vibes for the human
+cost, and a returning tax-coda motif. Measured music-to-voice targets AFTER
+smooth ducking are −7.5 to −8.5 LU in the active sections, −12 LU for human cost
+and rescue, −17 LU briefly for memorial. This is not a fixed gain increase on
+the old sine-pluck loop. Added timed metallic failure, timber/masonry, water
+and coin effects. Source Arena voice/timing unchanged. Score/stems regenerate
+from Python in ignored out/remaster/audio; CI masters the new premix.

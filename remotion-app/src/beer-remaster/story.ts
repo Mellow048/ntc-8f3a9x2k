@@ -43,8 +43,8 @@ export const BEATS:Record<number,Beat[]>={
      {at:.38,pos:[-3.1,1.05,2.9],end:[-2.4,1.3,2],look:[-1.2,1.4,-2],fov:48},
      {at:.72,pos:[1.1,2.8,5],end:[.1,2.3,3.7],look:[-1.2,1.6,-2.5],fov:45}],
  11:[{at:0,pos:[4.9,2.8,8],end:[3.6,2.5,6.7],look:[0,1.8,0],fov:48},
-     {at:.36,pos:[2.3,3.5,4.5],end:[1.7,3.1,3.8],look:[.4,1.5,.5],fov:40},
-     {at:.68,pos:[-3.9,2.4,6],end:[-2.9,2.1,5.2],look:[0,1.9,-.5],fov:48}],
+     {at:.36,pos:[1.8,5.8,4.8],end:[1.2,5.2,4.1],look:[.3,1.5,.6],fov:44},
+     {at:.68,pos:[-4.5,2.8,8.2],end:[-3.8,2.5,7.4],look:[0,1.9,-.5],fov:48}],
 };
 export const EDIT_CUTS=SHOTS.flatMap(s=>(BEATS[s.id]??[]).slice(1).map(b=>s.a+Math.round(b.at*(s.b-s.a))));
 export const CAMS=(s:Shot,f:number)=>{

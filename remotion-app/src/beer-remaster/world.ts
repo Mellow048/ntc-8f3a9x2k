@@ -39,7 +39,7 @@ export class World {
     distant.expr=rush?'shock':'stern';distant.run=rush;distant.walk=aftermath;distant.wave=rush?.9:undefined;distant.lean=rush?10:-3;
     distant.root.position.set(2.9-u*1.1,-.35-bob,-10+u*3.4);
     rubble.visible=aftermath;lantern.visible=rescue;
-    lantern.position.x=-1.5+u*.65;lantern.position.z=-.8-u*1.5;
+    lantern.position.x=-2.25+u*.65;lantern.position.z=-.8-u*1.5;
     const front=s.id===1?-16+u*23:s.id===6?-25+u*35:30;
     const level=aftermath?.78:.68,energy=aftermath?.3:.85;
     this.fluid!.update(t,front+24,level,energy);
