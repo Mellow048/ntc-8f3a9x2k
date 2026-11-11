@@ -4,7 +4,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 
 - length 74.433 s (2233 frames at 30 fps), 48 kHz stereo, 16-bit
 - integrated loudness -14.5 LUFS, true peak -2.2 dBTP, limiter at most 2.3 dB
-- stems at mix gain: voice -15.6 LUFS, music -21.0 LUFS, effects -27.3 LUFS
+- stems at mix gain: voice -15.6 LUFS, music -21.0 LUFS, effects -27.2 LUFS
 - music after ducking: 5.5 LU under the voice while someone speaks, 5.4 LU under it over the whole film
 - the same above 300 Hz (what a phone speaker plays): 7.2 LU under the voice; loudest 200 ms under a spoken word 2.9 LU under it
 - voice over the bed while speaking: median 5.4 LU, 10th percentile 2.0 LU
@@ -60,7 +60,6 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  34.70 | 1041 | pop | calendar: Oct 10 |
 |  35.95 | 1078 | rising whistle | up to the 30 million line |
 |  36.67 | 1100 | stamp thud | $30,000,000 stamp |
-|  37.17 | 1115 | pop | market value |
 |  37.80 | 1134 | stamp thud | THE WHOLE GAME stamp |
 |  37.90 | 1137 | alarm beeps | the RELEASE button, armed |
 |  38.50 | 1155 | low hit + cymbal | 'goes public!' |
@@ -109,5 +108,5 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  70.23 | 2107 | cash register | 'eighty dollars' |
 |  72.03 | 2161 | pop | card A |
 |  72.60 | 2178 | pop | card B |
-|  72.97 | 2189 | peek | the leaker looks round the shelf |
-|  73.10 | 2193 | button | two notes, A then D: the tune closes while the leaker peeks out and ducks back |
+|  72.97 | 2189 | peek | the leaker's eyes come up behind the counter |
+|  73.10 | 2193 | button | two notes, A then D: the tune closes while the leaker looks over the counter and ducks back |

@@ -112,7 +112,7 @@ export const lair: Builder = (root) => {
   const cal = ['AUGUST', 'OCTOBER'].map((m) => panel(root, 0.7, 0.83, smat(calTex(m), 0.95), -1.3, 2.3, -2.59));
   const crate = grp(root, -1.4, 0, -0.95); box(crate, 0.8, 0.45, 0.55, tmat(woodTex('crate', '#b08a55', '#6b4a2d')), 0, 0.225, 0);
   for (let i = 0; i < 4; i++) leek3d(crate, -0.27 + i * 0.18, 0.3, (i % 2) * 0.1 - 0.05, 0.5).rotation.z = (i - 1.5) * 0.13;
-  officeChair(root, -0.25, -0.85, '#20242c');
+  const chair = officeChair(root, -0.25, -0.85, '#20242c');
   const lantern = grp(root, -1.05, 0.9, -1.58); ball(lantern, 0.17, '#f08a24', 0, 0.15, 0).scale.set(1.1, 0.9, 1); cyl(lantern, 0.025, 0.08, '#5a7a3a', 0, 0.33, 0);
   soft(panel(lantern, 0.24, 0.2, smat(tex('jack', 96, 80, (g) => {
     g.fillStyle = '#ffe14a'; for (const s of [-1, 1]) { g.beginPath(); g.moveTo(48 + s * 24, 18); g.lineTo(48 + s * 12, 38); g.lineTo(48 + s * 36, 38); g.fill(); }
@@ -120,7 +120,7 @@ export const lair: Builder = (root) => {
   }), 2.2, true), 0, 0.15, 0.18));
   const tiles = [0, 1, 2, 3].map((i) => { const t = panel(root, 0.62, 0.4, smat(tex('tile-' + i, 160, 104, (g, w, h) => { g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); mosaic(g, 5, 5, w - 10, h - 10, 11 + i, 15); }), 1.1), 0, 0, 0); t.visible = false; return t; });
   // the release button under its glass lid
-  const con = grp(root, 0.62, 0, 0.75); con.scale.setScalar(1.25);
+  const con = grp(root, 0.5, 0, 0.75); con.scale.setScalar(1.4);
   box(con, 0.5, 1.0, 0.5, '#2a2f38', 0, 0.5, 0); box(con, 0.54, 0.05, 0.54, '#ffd43b', 0, 1.025, 0);
   panel(con, 0.42, 0.2, smat(signTex('release', 210, 100, '#17171d', '#ffd43b', [['RELEASE', 62]], {border: '#ffd43b'}), 1.1), 0, 0.82, 0.252);
   const btnMat = lamp('#ff3b30', 1.6); cyl(con, 0.13, 0.09, btnMat, 0, 1.095, 0);
@@ -133,9 +133,10 @@ export const lair: Builder = (root) => {
       const v = shot.v, oct = v === 'october' || v === 'button', offAt = W(172);
       const late = oct || v === 'off' || v === 'door' || v === 'peek';
       cal[0].visible = !late; cal[1].visible = late; lantern.visible = oct; suitcase.visible = v === 'door';
+      con.visible = v !== 'post' && v !== 'october'; chair.visible = v !== 'october';                     // at the desk they would stand between the lens and the screens
       scr.forEach((m, i) => {
         let map = T.off;
-        if (v === 'hook') map = i === 1 ? T.build : T.clip; else if (v === 'post') map = i === 1 ? T.clip : T.code; else if (oct) map = i === 1 ? T.offer : T.build;
+        if (v === 'hook') map = i === 1 ? T.build : T.clip; else if (v === 'post') map = i === 1 ? T.clip : T.code; else if (v === 'october') map = i === 1 ? T.offer : i === 0 ? T.build : T.code; else if (v === 'button') map = T.code;   // behind the button only fragments of words would show
         else if (v === 'off') map = f >= offAt + i * 5 ? T.off : i === 1 ? T.offer : T.build;
         m.map = map; m.color.setScalar(map === T.off ? 0.6 : 1.12 + 0.1 * Math.sin(f * 0.7 + i * 2));
       });
@@ -143,13 +144,13 @@ export const lair: Builder = (root) => {
         const at = W(42) + i * 5, k = v === 'post' ? smooth(f, at, at + 9) : 0; tile.visible = k > 0;
         tile.position.set(lerp(-0.2, -1.05 + i * 0.7, k), lerp(1.4, 2.3 + (i % 2) * 0.3, k) + 0.04 * Math.sin(f * 0.2 + i), lerp(-2.0, -1.2 + i * 0.1, k)); tile.scale.setScalar(0.3 + 0.7 * k); tile.rotation.z = (i - 1.5) * 0.08;
       });
-      const open = v === 'hook' ? smooth(f, W(2) - 2, W(2) + 6) : v === 'button' ? 1 : v === 'off' ? 1 - smooth(f, offAt - 2, offAt + 8) : 0;
+      const open = v === 'hook' ? smooth(f, W(2) - 2, W(2) + 6) : v === 'button' ? smooth(t, 1, 9) : v === 'off' ? 1 - smooth(f, offAt - 2, offAt + 8) : 0;
       lid.rotation.x = -1.9 * open; btnMat.color.set('#ff3b30').multiplyScalar(open > 0.5 ? (f % 10 < 5 ? 2.6 : 1.2) : 0.9);
       let pose = 'idle', x = -0.25, z = -0.1, y = 0;
       if (v === 'hook') { pose = f >= W(2) - 2 ? 'point' : 'hips'; x = -0.5; y = hop(f, W(2) - 2, 0.12, 9); }
       else if (v === 'post') { pose = 'type'; y = 0.02 * Math.abs(Math.sin(f * 0.9)); }
-      else if (v === 'october') { pose = f >= W(111) ? 'hips' : 'think'; x = 0.5; z = -0.2; y = hop(f, W(111), 0.14, 9); }
-      else if (v === 'button') { pose = 'point'; x = -0.35; z = 0.1; }
+      else if (v === 'october') { pose = f >= W(111) ? 'hips' : 'think'; x = 0.6; z = -0.6; y = hop(f, W(111), 0.14, 9); }
+      else if (v === 'button') { pose = 'point'; x = -0.2; z = 0.35; y = hop(f, W(121), 0.1, 8); }
       else if (v === 'off') { pose = f >= offAt ? 'shrug' : 'think'; x = -0.5; y = hop(f, offAt, 0.1, 9); }
       else if (v === 'door') { x = 2.5; z = -3.15; pose = f >= W(177) ? 'shrug' : 'idle'; y = hop(f, W(177), 0.08, 8); }
       else if (v === 'peek') { x = lerp(3.9, 3.22, smooth(t, 1, 10)); z = -3.15; }
@@ -197,9 +198,11 @@ export const spot: Builder = (root) => {
   // the build nobody has seen
   const cr = G(0.4, -0.25); box(cr, 1.5, 1.25, 1.1, tmat(tiled(woodTex('crate2', '#b08a55', '#6b4a2d'), 2, 2)), 0, 0.625, 0);
   for (const y of [0.08, 1.17]) box(cr, 1.56, 0.14, 1.16, '#8a6a3c', 0, y, 0); for (const x of [-0.72, 0.72]) box(cr, 0.12, 1.25, 1.16, '#8a6a3c', x, 0.625, 0);
-  panel(cr, 1.05, 0.5, smat(signTex('crate', 420, 200, '#fffdf4', '#17171d', [['THE WHOLE GAME?', 60, 0.36], ['“200 GB” · CLAIMED', 34, 0.76]], {border: '#17171d'}), 1), 0, 0.72, 0.565);
-  box(cr, 0.2, 0.16, 0.06, '#c9a94f', 0, 0.28, 0.6); torus(cr, 0.07, 0.02, '#8f959e', 0, 0.39, 0.6);
-  const reps = [actor(cr, REPORTER(0), {a: {expr: 'stern', pose: 'hold', prop: 'magnifier'}}, 0.62, 0, 0.85, {scale: 1.02}), actor(cr, REPORTER(1), {a: {expr: 'neutral', pose: 'think'}}, -1.5, 0, 0.1, {scale: 1.02})];
+  panel(cr, 0.8, 0.4, smat(signTex('crate', 400, 200, '#fffdf4', '#17171d', [['THE WHOLE GAME?', 58, 0.36], ['“200 GB” · CLAIMED', 33, 0.76]], {border: '#17171d'}), 1), -0.24, 0.9, 0.565);
+  box(cr, 0.3, 0.1, 0.03, '#8f959e', 0.36, 0.99, 0.575); torus(cr, 0.08, 0.022, '#8f959e', 0.36, 0.9, 0.6); box(cr, 0.24, 0.2, 0.07, '#c9a94f', 0.36, 0.78, 0.6);   // hasp and padlock
+  cyl(cr, 0.026, 0.02, '#17171d', 0.36, 0.77, 0.64).rotation.x = Math.PI / 2;
+  const reps = [actor(cr, REPORTER(0), {a: {expr: 'stern', pose: 'hold', prop: 'magnifier'}}, 0.9, 0, 0.95, {scale: 1.02}), actor(cr, REPORTER(1), {a: {expr: 'neutral', pose: 'think'}}, -1.12, 0, 0.95, {scale: 1.02})];
+  reps[0].mesh.scale.x = -1;                                                                          // mirrored: the magnifier is held toward the crate
   const leek = actor(root, LEEK, {idle: {}, point: {pose: 'point'}, sign: {pose: 'hold', prop: 'sign'}, jar: {pose: 'both', prop: 'jar'}, cross: {pose: 'cross'}, shrug: {pose: 'shrug'}, cup: {pose: 'phone', prop: 'cup'}, hips: {pose: 'hips'}},
     0, 0.1, 0, {scale: 1.12, res: 1.3});
   return {
@@ -210,7 +213,10 @@ export const spot: Builder = (root) => {
       if (v === 'earth') { globe.rotation.y = f * 0.035; waiting.forEach((a, i) => { a.node.position.y = 0.1 * Math.abs(Math.sin(f * 0.42 + i * 1.3)); a.tick(f, cam); }); }
       mags.forEach((m, i) => { const s = i ? 1 : -1; m.visible = v === 'unmask'; m.position.set(s * (0.8 - 0.2 * smooth(t, 0, 14)), 1.95 + 0.07 * Math.sin(f * 0.18 + i * 2), 0.55); m.rotation.z = s * 0.25 + 0.08 * Math.sin(f * 0.13 + i); });
       qs.forEach((q, i) => { q.visible = v === 'unmask'; q.position.set([-0.78, 0.8, 0.9][i], [2.5, 2.46, 1.3][i] + 0.06 * Math.sin(f * 0.16 + i * 2), -0.3); q.scale.setScalar(pop(f, shot.at + 2 + i * 3, 8)); });
-      coins.forEach((c, i) => { const u = ((f + i * 9) % 30) / 30; c.visible = v === 'jar' && t > 3; c.position.set(0.02 + 0.1 * Math.sin(i * 2.3), 3.3 - u * 1.9, 0.28); c.rotation.z = f * 0.3 + i; });
+      coins.forEach((c, i) => {                                                                       // donations arrive from both sides, under the quote card
+        const u = ((f + i * 5) % 30) / 30, s = i % 2 ? 1 : -1; c.visible = v === 'jar' && t > 3 && u < 0.94;
+        c.position.set(s * 1.35 * (1 - u), lerp(1.9, 1.45, u) + 1.5 * u * (1 - u), 0.28); c.rotation.z = f * 0.3 + i;
+      });
       let pose = 'idle', x = 0, z = 0, y = 0.1;
       if (v === 'name') { pose = 'hips'; y += hop(f, W(38), 0.14, 9); }
       else if (v === 'veg') { pose = 'point'; x = -0.52; bigLeek.rotation.z = shake(f, W(41), 0.12, 14); y += hop(f, W(41), 0.1, 8); }
@@ -222,7 +228,7 @@ export const spot: Builder = (root) => {
         dDisc.rotation.y = 0.25 + 0.5 * Math.sin(f * 0.1); dDisc.position.y = 1.16 + hop(f, W(129), 0.12, 10); sorry.position.y = 1.08 + hop(f, W(133), 0.14, 10);
       }
       else if (v === 'tea') { pose = 'cup'; z = -0.3; y += 0.02 * Math.sin(f * 0.25); }
-      else if (v === 'crate') { pose = 'cross'; x = -0.5; z = 0.6; reps.forEach((r, i) => { r.node.position.y = hop(f, W(144) + i * 4, 0.1, 9); r.tick(f, cam); }); }
+      else if (v === 'crate') { pose = 'cross'; x = 0.45; z = -1.05; y = 0.45; reps.forEach((r, i) => { r.node.position.y = hop(f, W(144) + i * 4, 0.1, 9); r.tick(f, cam); }); }
       leek.show(pose); leek.node.position.set(x, y, z); leek.tick(f, cam);
     },
   };
@@ -243,8 +249,8 @@ export const store: Builder = (root) => {
   box(root, 6, 0.08, 0.08, lit('#ff7ac8', 1.8), 0, 3.72, -2.36);
   box(root, 0.55, 3.3, 0.8, '#4a5288', 1.32, 1.65, -1.35);
   box(root, 1.9, 0.9, 0.62, '#3a4170', 0, 0.45, 0.45); box(root, 2.0, 0.06, 0.7, '#5a63a8', 0, 0.93, 0.45);
-  const price = grp(root, -0.42, 0.96, 0.64); box(price, 0.04, 0.2, 0.04, '#17171d', 0, 0.1, 0);
-  panel(price, 0.56, 0.3, smat(signTex('price', 280, 150, '#ffe14a', '#17171d', [['$79.99', 96, 0.44], ['STANDARD EDITION', 26, 0.84]], {border: '#17171d'}), 1.1), 0, 0.33, 0.03);
+  const price = grp(root, -0.38, 0.96, 0.64); box(price, 0.04, 0.12, 0.04, '#17171d', 0, 0.06, 0);
+  panel(price, 0.56, 0.3, smat(signTex('price', 280, 150, '#ffe14a', '#17171d', [['$79.99', 96, 0.44], ['STANDARD EDITION', 26, 0.84]], {border: '#17171d'}), 1.1), 0, 0.24, 0.03);
   const slipTex = tex('slip', 260, 150, (g, w, h) => { g.fillStyle = '#fffdf4'; g.fillRect(0, 0, w, h); g.strokeStyle = '#17171d'; g.lineWidth = 8; g.strokeRect(4, 4, w - 8, h - 8); text(g, 'DOWNLOAD CODE', w / 2, 48, 38, '#17171d', {maxWidth: w - 30}); text(g, 'XXXX-XXXX-XXXX', w / 2, 104, 26, '#8a8698', {font: 'Montserrat', maxWidth: w - 36}); });
   // the case: shut, or open like a book with an empty tray
   const cs = grp(root, 0.36, 0.96, 0.5); cs.rotation.x = -0.12;
@@ -258,19 +264,20 @@ export const store: Builder = (root) => {
   const slip = panel(cs, 0.42, 0.24, smat(slipTex, 1.08), -0.27, 0.36, 0.1);
   const buyer = actor(root, FAN(3), {look: {expr: 'neutral'}, shock: {expr: 'shock', pose: 'panic'}, think: {expr: 'nervous', pose: 'think'}, shrug: {expr: 'dazed', pose: 'shrug'}}, -0.5, 0, -0.1, {scale: 1.1, res: 1.2});
   const fDisc = disc3d(root, 0.28, -0.48, 1.92, 0.45), fSlip = panel(root, 0.52, 0.3, smat(slipTex, 1.1), 0.48, 1.92, 0.45);
-  const leek = actor(root, LEEK, {idle: {}}, 2.2, 0, -1.7, {scale: 1.05});
+  const dim = soft(panel(root, 9, 5, new THREE.MeshBasicMaterial({color: '#05060f', transparent: true, opacity: 0.6, depthWrite: false}), 0, 2.5, -2.1));   // house lights down for the question
+  const leek = actor(root, LEEK, {idle: {}}, 0.78, -1.4, -0.2, {scale: 1.05, shadow: 0});
   return {
     light: () => ({...LIGHT.room, sky: '#eef0ff', amb: 1.45}),
     tick: ({f, cam, shot}) => {
       const v = shot.v, choice = v === 'choice', a = v === 'open' ? smooth(f, W(53), W(53) + 8) : v === 'code' || choice ? 1 : 0;
       closed.visible = a < 0.05; leaves.forEach((h, i) => { h.visible = a >= 0.05; h.rotation.y = -(i ? 1 : -1) * lerp(1.35, 0.3, a); });
-      cs.position.set(choice ? 0 : 0.36, 0.96 + hop(f, W(53), 0.1, 8), 0.5);
+      cs.position.set(choice ? 0 : 0.33, 0.96 + hop(f, W(53), 0.1, 8), 0.5); dim.visible = choice;
       const out = v === 'code' ? pop(f, W(57), 9) : 0; slip.visible = v === 'code'; slip.position.set(-0.27 + 0.1 * out, 0.36 + 0.44 * out, 0.12); slip.rotation.z = 0.12 * out;
       price.visible = v === 'final' || v === 'price';
       buyer.node.visible = !choice; buyer.show(v === 'open' ? (f >= W(55) ? 'shock' : 'look') : v === 'code' ? 'shrug' : 'think'); buyer.node.position.y = hop(f, W(55), 0.16, 9); buyer.tick(f, cam);
       fDisc.visible = fSlip.visible = choice; fDisc.position.y = 1.92 + 0.06 * Math.sin(f * 0.15); fDisc.rotation.y = 0.5 * Math.sin(f * 0.08); fSlip.position.y = 1.92 + 0.06 * Math.sin(f * 0.15 + 2); fSlip.rotation.z = 0.08 * Math.sin(f * 0.1);
       const k = smooth(f, TOTAL - 44, TOTAL - 34) * (1 - smooth(f, TOTAL - 12, TOTAL - 5));               // the tail: somebody is still watching
-      leek.node.visible = choice; leek.node.position.x = lerp(1.75, 0.98, k); leek.tick(f, cam); leek.mesh.rotation.z = 0.2 * k;
+      leek.node.visible = choice && k > 0; leek.node.position.y = lerp(-1.4, -0.42, k); leek.tick(f, cam);                       // up from behind the counter, eyes just over the edge
     },
   };
 };
@@ -281,15 +288,17 @@ export const mountain: Builder = (root) => {
   floor(root, 80, 60, '#7fb86a');
   const cov = [tmat(coverTex('v1', '#3f9b6a', '#0f3a26', 'V')), tmat(coverTex('v2', '#2b2f3a', '#0c0d12', 'V')), tmat(coverTex('v3', '#d08a2f', '#6e3d0a', 'V'))];
   const r = rng(4), cases: THREE.Mesh[] = [];
-  for (let k = 0; k < 7; k++) for (let i = 0; i < 7 - k; i++) { const m = box(root, 0.62, 0.84, 0.16, cov[Math.floor(r() * 3)], (i - (6 - k) / 2) * 0.66, 0.42 + k * 0.86, -k * 0.04); m.userData = {k, i, y: 0.42 + k * 0.86}; cases.push(m); }
+  // a stepped mountain, 7-5-3-1 across (wide enough to fill a vertical frame between the counter and the captions),
+  // standing behind a grass hill that keeps the caption band plain
+  for (let k = 0; k < 4; k++) for (let i = 0; i < 7 - 2 * k; i++) { const y = 2.27 + k * 0.86, m = box(root, 0.62, 0.84, 0.16, cov[Math.floor(r() * 3)], (i - (6 - 2 * k) / 2) * 0.66, y, -k * 0.04); m.userData = {k, i, y}; cases.push(m); }
+  mesh(root, new THREE.SphereGeometry(6, 72, 36), '#7fb86a', 0.2, -4.2, 2.0);
   for (const [x, y, z, s] of [[-5, 6.5, -12, 1.6], [4.5, 5.2, -10, 1.2], [1, 8.5, -14, 1.8], [-3.4, 3.2, -9, 1]] as const) for (let i = 0; i < 4; i++) soft(ball(root, 0.8 * s, lit('#ffffff', 1), x + (i - 1.5) * 0.9 * s, y + (i % 2) * 0.3 * s, z)).scale.y = 0.6;
-  for (const x of [-1.4, 1.35]) box(root, 0.8, 0.5, 0.7, tmat(woodTex('crate', '#b08a55', '#6b4a2d')), x, 0.25, 2.8);
-  const fans = [actor(root, FAN(0), {a: {expr: 'shock', pose: 'panic'}}, -1.4, 0.5, 2.8, {scale: 1.0}), actor(root, FAN(1), {a: {expr: 'grin', pose: 'point'}}, 1.35, 0.5, 2.8, {scale: 1.0})];
+  const fans = [actor(root, FAN(0), {a: {expr: 'shock', pose: 'panic'}}, 1.35, 1.63, 2.8, {scale: 1.0}), actor(root, FAN(1), {a: {expr: 'grin', pose: 'point'}}, -0.95, 1.63, 2.8, {scale: 1.0})];
   return {
     light: () => LIGHT.day,
     tick: ({f, cam, shot}) => {
       cases.forEach((m) => { const at = shot.at + m.userData.k * 4 + m.userData.i, k = smooth(f, at, at + 7); m.visible = f >= at; m.position.y = m.userData.y + 3.2 * (1 - k) + (k >= 1 ? 0 : 0); });
-      fans.forEach((a, i) => { a.node.position.y = 0.5 + 0.05 * Math.abs(Math.sin(f * 0.3 + i * 1.4)); a.tick(f, cam); });
+      fans.forEach((a, i) => { a.node.position.y = 1.63 + 0.05 * Math.abs(Math.sin(f * 0.3 + i * 1.4)); a.tick(f, cam); });
     },
   };
 };

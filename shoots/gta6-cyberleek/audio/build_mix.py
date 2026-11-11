@@ -293,7 +293,7 @@ def build_music():
     put("bass", sbass(26, 0.9), e + BF, 1.0)
     put("lead", lead(62, 0.6, False), e + BF, 0.5)
     put("drums", kick(1.0), e + BF)
-    EVENTS.append((e, "button", "two notes, A then D: the tune closes while the leaker peeks out and ducks back"))
+    EVENTS.append((e, "button", "two notes, A then D: the tune closes while the leaker looks over the counter and ducks back"))
 
     dry = 1.5 * BUS["drums"] + BASS_MIX * BUS["bass"] + 0.9 * BUS["comp"] + 1.0 * BUS["lead"] + 0.5 * BUS["hits"]
     send = 0.1 * BUS["drums"] + 0.8 * BUS["comp"] + 0.7 * BUS["lead"] + 0.28 * BUS["hits"]
@@ -435,7 +435,7 @@ def build_sfx(voice_lufs):
         fx(t, thud(), -8.5, 0, "stamp thud", why + " stamp")
     pops = [(Wt(13), "the studio: Rockstar Games"), (Wt(17), "name tag: Grand Theft Auto VI"), (Wt(22), "calendar: Nov 19"), (Wt(32) + 6 / FPS, "only Minecraft has sold more"), (Wt(34), "dateline: August 18"),
             (Wt(38), "name tag: Cyberleek"), (Wt(47), "the leaker's stated reason"), (Wt(58), "confirmed by Rockstar"), (Wt(63), "coin holders voted on leaks"), (Wt(84), "quote card: Cyberleek"),
-            (Wt(89), "name tag: Rockstar Games"), (Wt(94), "quote card: Rockstar"), (Wt(100), "name tag: Take-Two"), (Wt(105), "subpoenas"), (Wt(110), "calendar: Oct 10"), (Wt(119), "market value"),
+            (Wt(89), "name tag: Rockstar Games"), (Wt(94), "quote card: Rockstar"), (Wt(100), "name tag: Take-Two"), (Wt(105), "subpoenas"), (Wt(110), "calendar: Oct 10"),
             (Wt(126), "posted on the leaker's website"), (Wt(129), "quote card: the offer"), (Wt(136), "yes, the real quote"), (Wt(157), "peak, Oct 11"), (Wt(168), "Oct 13"), (Wt(176), "quote card: the leeks stop here"),
             (Wt(191), "earnings call, Nov 9"), (Wt(200), "name tag: Strauss Zelnick"), (Wt(202), "quote card: Zelnick"), (Wt(211), "a code, not a disc"), (Wt(215), "WHAT DO YOU THINK?"),
             (Wt(231), "card A"), (Wt(234) + 4 / FPS, "card B")]
@@ -525,7 +525,7 @@ def build_sfx(voice_lufs):
     # 14-15: the question
     fx(Wt(210) + 0.05, applause(1.1, R, people=16), -16, 0, "players cheer", "discs in the air")
     fx(Wt(222), kaching(), -10, 0.2, "cash register", "'eighty dollars'")
-    fx((TOTAL - 44) / FPS, pop(700, 1500, 0.07), -15, 0.5, "peek", "the leaker looks round the shelf")
+    fx((TOTAL - 44) / FPS, pop(700, 1500, 0.07), -15, 0.5, "peek", "the leaker's eyes come up behind the counter")
     return buf[:, :N]
 
 

@@ -34,9 +34,10 @@ export class LeekWorld {
     this.key.color.set(L.key); this.key.intensity = L.keyI; this.key.position.set(...L.from);
     const sc = this.key.shadow.camera;
     if (sc.right !== L.span) { sc.left = -L.span; sc.right = L.span; sc.top = L.span; sc.bottom = -L.span; sc.near = 0.5; sc.far = 60; sc.updateProjectionMatrix(); }
-    this.focus.set(...shot.target); this.close = !!shot.close;
+    this.close = !!shot.close;
     // fast off the cut, settling toward the end: every shot arrives with a little punch
     const t = clamp01((f - shot.at) / (end - shot.at)), u = 1 - (1 - t) ** 2.2, p = new THREE.Vector3(...shot.cam);
+    this.focus.set(...shot.target); if (shot.targetTo) this.focus.lerp(new THREE.Vector3(...shot.targetTo), u);
     if (shot.to) p.lerp(new THREE.Vector3(...shot.to), u); else p.lerp(this.focus, u * (shot.push ?? 0.1));
     camera.position.copy(p); camera.lookAt(this.focus); camera.fov = shot.fov; camera.near = 0.1; camera.far = 320;
     camera.updateProjectionMatrix(); camera.updateMatrixWorld();

@@ -24,11 +24,11 @@ type Tone = 'red' | 'yellow' | 'white' | 'green';
 const TONES: Record<Tone, [string, string]> = {red: [RED, '#ffffff'], yellow: [YELLOW, INK], white: [PAPER, INK], green: ['#2fbf71', '#ffffff']};
 
 /** rubber stamp: slams in on its word and stays to the end of the shot */
-const Stamp: React.FC<{f: number; at: number; text: string; tone?: Tone; top?: string; size?: number; rot?: number}> = ({f, at, text, tone = 'red', top = '10%', size = 10.5, rot = -4}) => {
+const Stamp: React.FC<{f: number; at: number; text: string; tone?: Tone; top?: string; size?: number; rot?: number; dx?: number}> = ({f, at, text, tone = 'red', top = '10%', size = 10.5, rot = -4, dx = 0}) => {
   const [bg, fg] = TONES[tone], age = f - at, wobble = age < 9 ? Math.sin(age * 2.2) * (1 - age / 9) * 2.5 : 0;
   return (
     <div style={row(top)}>
-      <div style={{...anton, ...sticker(bg, fg), fontSize: `${size}cqw`, padding: '0.02em 0.3em 0', transform: `rotate(${rot + wobble}deg) scale(${slam(f, at)})`, opacity: c01((age + 1) / 2)}}>{text}</div>
+      <div style={{...anton, ...sticker(bg, fg), fontSize: `${size}cqw`, padding: '0.02em 0.3em 0', transform: `translateX(${dx}cqw) rotate(${rot + wobble}deg) scale(${slam(f, at)})`, opacity: c01((age + 1) / 2)}}>{text}</div>
     </div>
   );
 };
@@ -61,11 +61,11 @@ const Quote: React.FC<{f: number; at: number; text: React.ReactNode; by: string;
 const Hot: React.FC<{children: React.ReactNode}> = ({children}) => <span style={{background: YELLOW, padding: '0 0.14em', borderRadius: '0.12em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone'}}>{children}</span>;
 
 /** small source or dateline pill */
-const Pill: React.FC<{f: number; at: number; text: string; top?: string; tone?: Tone}> = ({f, at, text, top = '10%', tone = 'white'}) => {
+const Pill: React.FC<{f: number; at: number; text: string; top?: string; tone?: Tone; dx?: number}> = ({f, at, text, top = '10%', tone = 'white', dx = 0}) => {
   const [bg, fg] = TONES[tone];
   return (
     <div style={row(top)}>
-      <div style={{...mont(900), ...sticker(bg, fg), fontSize: '3.7cqw', padding: '0.5em 0.9em', letterSpacing: '0.05em', whiteSpace: 'nowrap', transform: `scale(${pop(f, at, 7)}) rotate(-1.5deg)`}}>{text}</div>
+      <div style={{...mont(900), ...sticker(bg, fg), fontSize: '3.7cqw', padding: '0.5em 0.9em', letterSpacing: '0.05em', whiteSpace: 'nowrap', transform: `translateX(${dx}cqw) scale(${pop(f, at, 7)}) rotate(-1.5deg)`}}>{text}</div>
     </div>
   );
 };
@@ -120,7 +120,7 @@ export const Overlays: React.FC = () => {
       {during(3, W(17)) ? <NameTag f={f} at={W(17)} name="GRAND THEFT AUTO VI" role="OPEN-WORLD CRIME GAME · PS5 AND XBOX" size={8.2} /> : null}
       {during(4, W(22)) ? <Day f={f} at={W(22)} day="NOV"><Big>19</Big></Day> : null}
       {during(5, W(27) - 2) ? <Count f={f} from={W(27) - 2} to={W(31) + 8} total={230000000} suffix="+" label="COPIES OF GTA V SOLD" /> : null}
-      {during(5, W(32) + 6) ? <Pill f={f} at={W(32) + 6} text="ONLY MINECRAFT HAS SOLD MORE" top="23.5%" /> : null}
+      {during(5, W(32) + 6) ? <Pill f={f} at={W(32) + 6} text="ONLY MINECRAFT HAS SOLD MORE" top="23%" /> : null}
       {during(6, W(34)) ? <Pill f={f} at={W(34)} text="AUGUST 18, 2026" /> : null}
       {during(7, W(38)) ? <NameTag f={f} at={W(38)} name="CYBERLEEK" role="ANONYMOUS ACCOUNT · IDENTITY UNKNOWN" /> : null}
       {during(9, W(44)) ? <Stamp f={f} at={W(44)} text="LEAKED" top="9.5%" size={13} /> : null}
@@ -142,11 +142,11 @@ export const Overlays: React.FC = () => {
       {during(26, W(129)) ? <Quote f={f} at={W(129)} text={<>Take-Two gets one way out: <Hot>physical disks and a public apology.</Hot></>} by="CYBERLEEK'S WEBSITE, OCT 10" size={5} /> : null}
       {during(27, W(136)) ? <Pill f={f} at={W(136)} text="YES, THAT IS THE REAL QUOTE" /> : null}
       {during(28, W(144)) || during(29) ? <Stamp f={f} at={W(144)} text="UNVERIFIED" tone="yellow" top="9.5%" size={13} /> : null}
-      {during(30, W(155)) ? <Stamp f={f} at={W(155)} text="$7.8 MILLION" tone="green" top="9.5%" size={12} /> : null}
+      {during(30, W(155)) ? <Stamp f={f} at={W(155)} text="$7.8 MILLION" tone="green" top="9.5%" size={10.5} dx={-8} /> : null}
       {during(30, W(157)) ? <Pill f={f} at={W(157)} text="PEAK, OCT 11 · SOURCE: IGN" top="20%" /> : null}
-      {during(32, S(32)[0] + 5) ? <Stamp f={f} at={S(32)[0] + 5} text="DOWN 78%" top="9.5%" size={13} /> : null}
-      {during(33, W(167)) ? <Stamp f={f} at={W(167)} text="$1.7 MILLION" top="9.5%" size={12} /> : null}
-      {during(33, W(168)) ? <Pill f={f} at={W(168)} text="OCT 13 · SOURCE: IGN" top="20%" /> : null}
+      {during(32, S(32)[0] + 5) ? <Stamp f={f} at={S(32)[0] + 5} text="DOWN 78%" top="9.5%" size={12} dx={-9} /> : null}
+      {during(33, W(167)) ? <Stamp f={f} at={W(167)} text="$1.7 MILLION" top="9.5%" size={12} dx={4} /> : null}
+      {during(33, W(168)) ? <Pill f={f} at={W(168)} text="OCT 13 · SOURCE: IGN" top="20%" dx={14} /> : null}
       {during(34, W(172)) ? <Stamp f={f} at={W(172)} text="CALLED OFF" tone="white" top="9.5%" size={12.5} /> : null}
       {during(35, W(176)) || during(36) ? <Quote f={f} at={W(176)} text={<>The Edict stands. <Hot>The leeks stop here. For now.</Hot></>} by="CYBERLEEK, OCT 14" size={5.6} /> : null}
       {during(37, W(187)) ? <Stamp f={f} at={W(187)} text="NOT IDENTIFIED" tone="yellow" top="9.5%" size={10.5} /> : null}

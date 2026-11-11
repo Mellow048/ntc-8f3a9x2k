@@ -37,21 +37,21 @@ export const office: Builder = (root) => {
   panel(root, 9, 4.4, smat(skylineTex('day', '#6ab0f0', '#d8ecff', '#8a9ac0', '#e8f2ff', 14), 1.05), 0, 2.9, -3.3);
   for (const x of [-4, -2, 0, 2, 4]) box(root, 0.1, 4.6, 0.12, '#2a3048', x, 2.9, -3.2); for (const y of [0.7, 5.1]) box(root, 9.2, 0.14, 0.14, '#2a3048', 0, y, -3.2); box(root, 9.2, 0.7, 0.2, '#2a3048', 0, 0.35, -3.2);
   box(root, 2.6, 0.08, 1.0, '#6b4a2d', 0, 0.9, -0.95); box(root, 2.4, 0.86, 0.9, '#4a3320', 0, 0.45, -0.95);
-  panel(root, 1.4, 0.22, smat(signTex('t2', 640, 100, '#17171d', '#ffffff', [['TAKE-TWO INTERACTIVE', 62]]), 1.1), 0, 0.72, -0.49);
+  const sign = panel(root, 0.66, 0.2, smat(signTex('t2', 330, 100, '#17171d', '#ffffff', [['TAKE-TWO', 70]]), 1.1), -0.03, 0.72, -0.49);   // narrow enough to read between two people
   plant(root, -2.2, -2.4, 1.2); plant(root, 2.3, -2.5, 1.0);
   // the offer arrives: a letter, and a leek as the calling card
   const note = grp(root, 0, 0.94, -0.8); box(note, 0.5, 0.012, 0.36, '#fffdf4', -0.25, 0.006, 0).rotation.y = 0.2; leek3d(note, 0.55, 0.07, 0.05, 0.42).rotation.z = Math.PI / 2 - 0.08;
-  const execs = [actor(root, EXEC(0), {a: {expr: 'nervous', pose: 'think'}, b: {expr: 'dazed', pose: 'shrug'}}, -0.78, 0, -0.1, {scale: 1.1}), actor(root, EXEC(1), {a: {expr: 'stern', pose: 'hold', prop: 'paper'}, b: {expr: 'shock', pose: 'hold', prop: 'paper'}}, 0.75, 0, -0.2, {scale: 1.1})];
+  const execs = [actor(root, LAWYER(0), {a: {expr: 'nervous', pose: 'think'}, b: {expr: 'dazed', pose: 'shrug'}}, -0.78, 0, -0.1, {scale: 1.1}), actor(root, EXEC(1), {a: {expr: 'stern', pose: 'hold', prop: 'paper'}, b: {expr: 'shock', pose: 'hold', prop: 'paper'}}, 0.75, 0, -0.2, {scale: 1.1})];
   // the boss, and a disc as a museum piece
   const boss = grp(root), glass = new THREE.MeshBasicMaterial({color: '#bfe8ff', transparent: true, opacity: 0.25, depthWrite: false});
   const z = actor(boss, ZELNICK, {a: {expr: 'neutral', pose: 'point'}, b: {expr: 'smile', pose: 'shrug'}}, -0.35, 0, 0.1, {scale: 1.15, res: 1.3});
   const dc = grp(boss, 0.74, 0, 0.35); box(dc, 0.5, 0.95, 0.5, '#e9e4d6', 0, 0.475, 0); box(dc, 0.56, 0.05, 0.56, '#c9a94f', 0, 0.975, 0); soft(box(dc, 0.46, 0.62, 0.46, glass, 0, 1.31, 0));
   const disc = disc3d(dc, 0.18, 0, 1.27, 0); cyl(dc, 0.015, 0.1, '#c9a94f', 0, 1.05, 0);
-  panel(dc, 0.38, 0.13, smat(signTex('museum', 228, 78, '#c9a94f', '#17171d', [['GAME DISC', 36, 0.36], ['physical media', 20, 0.78]], {font: 'Montserrat'}), 1), 0, 0.6, 0.255);
+  panel(dc, 0.38, 0.13, smat(signTex('museum', 228, 78, '#c9a94f', '#17171d', [['GAME DISC', 36, 0.36], ['physical media', 20, 0.78]], {font: 'Montserrat'}), 1), 0, 0.85, 0.255);
   return {
     light: () => ({...LIGHT.room, sky: '#eaf4ff', amb: 1.5}),
     tick: ({f, t, cam, shot}) => {
-      const n = shot.v === 'note'; note.visible = n; boss.visible = !n;
+      const n = shot.v === 'note'; note.visible = sign.visible = n; boss.visible = !n;
       execs.forEach((e, i) => { e.node.visible = n; e.show(t > 12 ? 'b' : 'a'); e.node.position.y = hop(t, 12 + i * 2, 0.14, 9); if (n) e.tick(f, cam); });
       if (!n) { z.show(Math.floor(f / 9) % 2 ? 'a' : 'b'); z.node.position.y = hop(f, W(203), 0.1, 8); z.tick(f, cam); disc.rotation.y = f * 0.05; }
     },
@@ -90,12 +90,12 @@ export const lineup: Builder = (root) => {
     g.fillStyle = '#e9e4d6'; g.fillRect(0, 0, w, h);
     for (let i = 0; i < 10; i++) { const y = h - 40 - i * 46; g.fillStyle = i % 2 ? '#a8a4b0' : '#17171d'; g.fillRect(0, y, w, i % 2 ? 3 : 6); if (i % 2 === 0) for (const x of [44, w - 44]) text(g, `${3 + i / 2}'0"`, x, y - 17, 22, '#17171d', {font: 'Montserrat'}); }
   }), 1), 0, 2.5, -0.9);
-  for (const x of [-1.6, 0.4, 2.4]) { box(root, 0.5, 0.12, 0.3, '#2b2f38', x, 4.2, -0.5); soft(box(root, 0.4, 0.04, 0.22, lit('#fff6e0', 2.4), x, 4.13, -0.5)); }
-  const row = [-0.62, -0.1, 0.42, 0.94, 1.46].map((x, i) => {
+  for (const x of [-1.6, 0.4, 2.4]) { box(root, 0.5, 0.12, 0.3, '#2b2f38', x, 4.8, -0.5); soft(box(root, 0.4, 0.04, 0.22, lit('#fff6e0', 2.4), x, 4.73, -0.5)); }
+  const row = [0, 0.5, 1.0, 1.5].map((x, i) => {                                                       // four of them and the detective fill the frame edge to edge
     panel(root, 0.3, 0.22, smat(signTex('num' + i, 136, 100, '#fffdf4', '#17171d', [[String(i + 1), 80]], {border: '#17171d'}), 1.05), x, 0.98, -0.02);
     return actor(root, LEEK, {a: {pose: 'both'}}, x, 0, -0.3, {scale: 0.86, phase: i * 1.9});
   });
-  const det = actor(root, DETECTIVE, {a: {expr: 'dazed', pose: 'think'}, b: {expr: 'nervous', pose: 'shrug'}}, -0.72, 0, 1.0, {scale: 0.95});
+  const det = actor(root, DETECTIVE, {a: {expr: 'dazed', pose: 'think'}, b: {expr: 'nervous', pose: 'shrug'}}, -0.6, 0, -0.1, {scale: 0.95});
   return {
     light: () => ({...LIGHT.cold, amb: 1.4}),
     tick: ({f, cam}) => {

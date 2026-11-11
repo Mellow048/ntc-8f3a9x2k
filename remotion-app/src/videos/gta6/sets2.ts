@@ -30,9 +30,10 @@ export const vice: Builder = (root) => {
     for (let x = 0; x < w; x += 24 + r() * 16) { const bw = 18 + r() * 20, bh = 26 + r() * 96; g.fillStyle = '#2a1f4a'; g.fillRect(x, h - bh, bw, bh); g.fillStyle = '#ffd98a'; for (let yy = h - bh + 6; yy < h - 6; yy += 9) for (let xx = x + 3; xx < x + bw - 4; xx += 6) if (r() < 0.4) g.fillRect(xx, yy, 2.5, 4); }
   }), 1.05), 0, 7.2, -22);
   floor(root, 70, 44, tmat(tiled(grainTex('asphalt', '#3a3550', 0.12), 12, 8)));
-  for (let x = -12; x <= 12; x += 2.4) box(root, 1.2, 0.012, 0.14, '#ffe9a0', x, 0.008, 1.0);
+  for (let x = -12; x <= 22; x += 2.4) box(root, 1.2, 0.012, 0.14, '#ffe9a0', x, 0.008, 1.0);
   box(root, 44, 0.16, 2.6, '#d9b8b0', 0, 0.08, -2.3);
-  for (const [x, z, s, l] of [[-2.55, -1.5, 1, 0.1], [2.6, -1.6, 1.05, -0.08], [-5.6, -4.6, 1.2, -0.06], [5.8, -4.8, 1.15, 0.08]] as const) palm(root, x, z, s, l);
+  for (const [x, z, s, l] of [[-2.55, -1.5, 1, 0.1], [2.6, -1.6, 1.05, -0.08], [-5.6, -4.6, 1.2, -0.06], [5.8, -4.8, 1.15, 0.08],
+    [7.4, -1.7, 1, 0.07], [10.2, -1.5, 1.1, -0.06], [12.8, -1.8, 1, 0.08], [8.8, -4.7, 1.2, -0.05], [11.6, -4.5, 1.1, 0.06], [14.2, -4.8, 1.15, -0.07]] as const) palm(root, x, z, s, l);   // the second row lines the boulevard the car cruises down
   // the shop
   box(root, 5.4, 3.1, 1.2, '#f08ab0', 0, 1.71, -3.6); box(root, 5.7, 0.2, 1.36, '#fff3e8', 0, 3.36, -3.6);
   panel(root, 1.0, 2.05, lit('#2a1f4a', 1), 0, 1.19, -2.99); panel(root, 0.86, 1.9, lit('#ffd98a', 1.1), 0, 1.19, -2.985);
@@ -74,7 +75,8 @@ export const vice: Builder = (root) => {
     tick: ({f, t, cam, shot}) => {
       const v = shot.v, q = v === 'queue' || v === 'meter';
       bill.visible = !q; gauge.visible = q;
-      car.visible = v === 'cruise' || v === 'title'; car.position.x = v === 'cruise' ? lerp(-3.6, 2.2, t / 62) : lerp(-1.7, 0.2, t / 150); car.position.y = 0.012 * Math.sin(f * 1.1);
+      // the cruise is a tracking shot down the boulevard, past the shop: the car rides with the lens
+      car.visible = v === 'cruise'; car.position.set(cam.position.x - 0.9, 0.012 * Math.sin(f * 1.1), 1.6);
       line.forEach((a, i) => { a.node.visible = q; a.node.position.y = (i < 3 ? 0.16 : 0) + 0.07 * Math.abs(Math.sin(f * 0.34 + i * 0.9)); if (q) a.tick(f, cam); });
       const k = smooth(f, W(193) - 4, W(195) + 8); needle.rotation.z = lerp(1.0, -1.12, k) + (k >= 1 ? 0.06 * Math.sin(f * 0.9) : 0);
     },
@@ -179,34 +181,50 @@ export const chart: Builder = (root) => {
   box(root, 7, 7, 0.3, '#0e1220', 0, 3.5, -3.2);
   /** market value in millions of dollars -> height on the wall. The scale is linear and starts at zero. */
   const Y = (m: number) => 1.9 + (m / 30) * 3.0, ty = (y: number) => (5.8 - y) * 160, tx = (x: number) => (x + 2.3) * 160;
+  /** October day -> place along the wall: one unit a day, so the time axis is linear too */
+  const DAY = (d: number) => d - 11.5;
   panel(root, 4.6, 5.0, smat(tex('chart-bg', 736, 800, (g, w, h) => {
     g.fillStyle = '#070b14'; g.fillRect(0, 0, w, h); g.strokeStyle = '#18233c'; g.lineWidth = 2;
-    for (let x = 16; x < w; x += 64) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, ty(Y(0))); g.stroke(); }
-    for (const m of [10, 20]) { g.strokeStyle = '#2a3a5c'; g.beginPath(); g.moveTo(0, ty(Y(m))); g.lineTo(w, ty(Y(m))); g.stroke(); text(g, `$${m}M`, 48, ty(Y(m)) - 16, 24, '#6f82a8', {font: 'Montserrat'}); }
+    for (let x = 48; x < w; x += 80) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, ty(Y(0))); g.stroke(); }
+    for (const m of [10, 20]) { g.strokeStyle = '#2a3a5c'; g.beginPath(); g.moveTo(0, ty(Y(m))); g.lineTo(w, ty(Y(m))); g.stroke(); text(g, `$${m}M`, tx(-1.3), ty(Y(m)) - 16, 24, '#6f82a8', {font: 'Montserrat'}); }
     g.strokeStyle = '#ffd43b'; g.lineWidth = 6; g.setLineDash([22, 14]); g.beginPath(); g.moveTo(0, ty(Y(30))); g.lineTo(w, ty(Y(30))); g.stroke(); g.setLineDash([]);
-    text(g, 'TARGET: $30 MILLION', w / 2, ty(Y(30)) - 34, 44, '#ffd43b', {spacing: 2});
     g.strokeStyle = '#6f82a8'; g.lineWidth = 4; g.beginPath(); g.moveTo(0, ty(Y(0))); g.lineTo(w, ty(Y(0))); g.stroke();
-    for (const [x, s] of [[-1.8, 'OCT 10'], [0, 'OCT 11'], [1.7, 'OCT 13']] as const) text(g, s, tx(x), ty(Y(0)) + 30, 24, '#9fb0c8', {font: 'Montserrat'});
-    text(g, 'PEAK AND LOW AS REPORTED BY IGN · THE CURVE BETWEEN THEM IS A SKETCH', w / 2, ty(Y(0)) + 62, 15, '#56658a', {font: 'Montserrat', maxWidth: w - 30});
+    for (const d of [10, 11, 12, 13]) { g.fillStyle = '#6f82a8'; g.fillRect(tx(DAY(d)) - 2, ty(Y(0)), 4, 10); text(g, d === 10 ? 'OCT 10' : String(d), tx(DAY(d)), ty(Y(0)) + 30, 24, '#9fb0c8', {font: 'Montserrat'}); }
   }), 1.1), 0, 3.3, -3.03);
-  const P: [number, number][] = [[-1.8, 4.0], [-1.3, 4.6], [-0.8, 5.6], [-0.4, 6.9], [0, 7.8], [0.3, 6.2], [0.6, 3.9], [0.95, 2.6], [1.35, 1.9], [1.7, 1.7]];
+  // lettering on the wall is separate from the grid so each shot shows only what does not sit under its stamp
+  const label = (key: string, w: number, h: number, wide: number, draw: (g: CanvasRenderingContext2D, w: number, h: number) => void, x: number, y: number) =>
+    soft(panel(root, wide, wide * h / w, smat(tex('chart-' + key, w, h, draw), 1.1, true), x, y, -3.0));
+  const bigTarget = label('target', 520, 64, 2.6, (g, w) => text(g, 'TARGET: $30 MILLION', w / 2, 34, 46, '#ffd43b', {spacing: 2}), 0, Y(30) - 0.24);
+  const smallTarget = label('target-s', 300, 50, 1.2, (g, w) => text(g, 'TARGET $30M', w / 2, 27, 34, '#ffd43b', {spacing: 1}), 1.45, Y(30) + 0.15);
+  const note = label('note', 500, 84, 2.3, (g, w) => {
+    text(g, 'PEAK AND LOW AS REPORTED BY IGN', w / 2, 24, 24, '#8494b8', {font: 'Montserrat'}); text(g, 'THE LINE BETWEEN THEM IS A SKETCH', w / 2, 61, 24, '#8494b8', {font: 'Montserrat'});
+  }, -0.6, 1.44);
+  // Two values are reported: the peak on October 11 and the low on October 13. Everything between is drawn by hand.
+  const P: [number, number][] = [[DAY(10), 4.0], [-1.25, 4.5], [-1.0, 5.4], [-0.75, 6.8], [DAY(11), 7.8], [-0.2, 6.3], [0.15, 4.2], [0.55, 2.8], [1.0, 2.0], [DAY(13), 1.7]];
   const at = (i: number): V => [P[i][0], Y(P[i][1]), -2.96];
   const segs = P.slice(1).map((_, i) => rod(root, at(i), at(i + 1), 0.04, lit(i < 4 ? '#3fe07a' : '#ff3b47', 1.5)));
   const marker = coin3d(root, 0.2), fallen = coin3d(root, 0.5);
   const cracks = grp(root, 0.72, 0.012, -0.9); for (let i = 0; i < 9; i++) { const a = i * 0.7 + 0.2, len = 0.4 + (i % 3) * 0.25, c = box(cracks, len, 0.01, 0.05, '#05070c', Math.cos(a) * len / 2, 0, Math.sin(a) * len / 2); c.rotation.y = -a; }
-  const leek = actor(root, LEEK, {point: {pose: 'point'}, up: {pose: 'panic'}, hold: {pose: 'hold'}, shrug: {pose: 'shrug'}}, -1.0, 0, -1.2, {scale: 1.1, res: 1.1});
+  const soapbox = box(root, 0.9, 0.3, 0.6, tmat(woodTex('soapbox', '#b08a55', '#6b4a2d')), 0.8, 0.15, 3.0);
+  const leek = actor(root, LEEK, {reach: {pose: 'hold'}, up: {pose: 'panic'}, shrug: {pose: 'shrug'}}, -1.0, 0, -1.2, {scale: 1.1, res: 1.2});
   return {
     light: (v) => v === 'fall' || v === 'bottom' ? {...LIGHT.dark, amb: 1.0, sky: '#ffc0c0', ground: '#4a3050'} : {...LIGHT.dark, amb: 1.0, sky: '#c0ffd8', ground: '#2a4a40'},
     tick: ({f, t, cam, shot}) => {
       const v = shot.v, p = v === 'target' ? 0 : v === 'peak' ? 4 * smooth(f, shot.at + 3, W(155) + 5) : v === 'fall' ? 4 + 5 * smooth(t, 1, 27) : 9;
+      bigTarget.visible = v === 'target'; smallTarget.visible = note.visible = v === 'peak' || v === 'fall'; note.position.x = v === 'fall' ? 0.75 : -0.6;   // on the side the leaker is not
       segs.forEach((s, i) => { s.visible = p >= i + 1; });
       const i = Math.min(8, Math.floor(p)), u = p - i, a = at(i), b = at(Math.min(9, i + 1));
-      marker.visible = v !== 'bottom'; marker.position.set(lerp(a[0], b[0], u), lerp(a[1], b[1], u) + (v === 'target' ? 0.05 * Math.sin(f * 0.3) : 0), -2.8); marker.rotation.y = f * 0.2;
+      marker.visible = v !== 'bottom'; marker.position.set(lerp(a[0], b[0], u), lerp(a[1], b[1], u) + (v === 'target' ? 0.05 * Math.sin(f * 0.3) : 0), -2.8); marker.rotation.y = v === 'target' ? 0.5 * Math.sin(f * 0.15) : f * 0.2; marker.scale.setScalar(v === 'target' ? 1.5 : 1);
       const land = shot.at + 6, k = v === 'bottom' ? smooth(f, shot.at - 1, land) : 0;
       fallen.visible = v === 'bottom'; cracks.visible = v === 'bottom' && f >= land; fallen.position.set(0.72, lerp(3.6, 0.4, k), -0.9); fallen.rotation.set(0, 0.5, 0.45 + (k >= 1 ? 0.12 * Math.sin((f - land) * 0.9) * Math.max(0, 1 - (f - land) / 16) : 0));
-      let pose = 'point', x = -1.0, z = -1.2, y = 0;
-      if (v === 'peak') { pose = 'up'; y = 0.1 * Math.abs(Math.sin(f * 0.45)); } else if (v === 'fall') { pose = 'hold'; x = 0.2 + 0.9 * smooth(t, 1, 27); y = hop(t, 2, 0.1, 8); } else if (v === 'bottom') { pose = 'shrug'; x = -0.45; z = -1.0; }
-      leek.show(pose); leek.node.position.set(x, y, z); leek.tick(f, cam);
+      // The leaker never stands in front of the part of the line a shot is about: up front on a soapbox for the target
+      // (mirrored, so the raised arm points at it), right of the climb, left of the fall, beside the wreck.
+      let pose = 'reach', x = 0.8, z = 3.0, y = 0.3 + hop(f, W(117), 0.1, 8), flip = -1;
+      if (v === 'peak') { pose = 'up'; x = 0.95; z = -1.2; y = 0.1 * Math.abs(Math.sin(f * 0.45)); flip = 1; }
+      else if (v === 'fall') { x = -0.93 + 0.03 * Math.sin(f * 1.5); z = -1.2; y = 0; flip = 1; }
+      else if (v === 'bottom') { pose = 'shrug'; x = -1.0; z = -1.0; y = 0; flip = 1; }
+      soapbox.visible = v === 'target';
+      leek.show(pose); leek.node.position.set(x, y, z); leek.tick(f, cam); leek.mesh.scale.x = flip;
     },
   };
 };
