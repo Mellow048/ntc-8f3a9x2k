@@ -20,7 +20,7 @@ rows=[
 (61,'fakeid','','day',[0,1.5,-.9],4.6,2,30,38,'Overhead: three fake IDs laid out beside model towers'),
 (67,'smuggle','Freight elevator','day',[0,1.45,.2],10.0,6,-2,46,'Cable coil, pole and bow loaded beside two friends in the freight car'),
 (76,'load','','day',[0,1.55,.4],8.8,5,6,46,'The pole goes up on shoulders, the bow on top'),
-(83,'elevator','','day',[0,1.55,-.62],8.4,20,4,46,'Doors close on the loaded car, 104 lit above'),
+(83,'elevator','','day',[0,1.55,-.62],9.4,12,4,46,'Doors close on the loaded car, 104 lit above'),
 (87,'security','World Trade Center','day',[.9,1.7,-1.1],9.4,8,4,46,'Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET'),
 (100,'bow','Rooftop · night','night',[-4.5,39.6,-5.6],13,-62,2,54,'A friend draws the bow; fishing line flies across the gap'),
 (111,'pull','','night',[-3.5,39.8,-5.8],14,-68,3,54,'Two friends haul the heavy cable hand over hand'),

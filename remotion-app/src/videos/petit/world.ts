@@ -168,7 +168,7 @@ export class World{
   const ind=dyn(lettering(p,'104',0,3.76,-.18,1.0,.3,'#1c2026','#ffd27a'));
   const doorL=dyn(box(p,-1.06,1.34,-.21,.72,2.56,.07,material('elevdoor3','#a8b8c0')));
   const doorR=dyn(box(p,1.06,1.34,-.21,.72,2.56,.07,material('elevdoor3','#a8b8c0')));
-  const v=A(-1.85,1.15,PETIT,5),f1=A(1.95,1.05,FRIEND,6);
+  const v=A(-1.45,1.15,PETIT,5),f1=A(1.5,1.05,FRIEND,6);
   v.expr='nervous';f1.expr='neutral';
   this.motions.push((f,u)=>{const q=action(f,84,26);doorL.position.x=-1.06+q*.70;doorR.position.x=1.06-q*.70;
    const floor=4+Math.floor(Math.min(21,u*22));ind.position.y=3.74+Math.sin(f*.5)*.01;
