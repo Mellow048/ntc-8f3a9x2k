@@ -1,0 +1,737 @@
+{
+  "frames": [
+    50,
+    106,
+    150,
+    233,
+    322,
+    397,
+    477,
+    521,
+    548,
+    593,
+    661,
+    716,
+    752,
+    841,
+    937,
+    1005,
+    1110,
+    1205,
+    1247,
+    1274,
+    1296,
+    1337,
+    1377,
+    1419,
+    1479,
+    1535,
+    1609,
+    1689,
+    1766,
+    1847,
+    1935,
+    2031,
+    2133,
+    5,
+    100,
+    2130
+  ],
+  "shots": [
+    {
+      "id": 1,
+      "a": 0,
+      "place": "hook",
+      "label": "New York · 1974",
+      "light": "day",
+      "pos": [
+        0,
+        48.134,
+        18.727
+      ],
+      "look": [
+        0,
+        40.1,
+        -6
+      ],
+      "fov": 55,
+      "action": "Both towers, the walk wire between them, the man tiny on it, police and cars below",
+      "word": 0,
+      "b": 77
+    },
+    {
+      "id": 2,
+      "a": 77,
+      "place": "height",
+      "label": "",
+      "light": "day",
+      "pos": [
+        11.144,
+        14.545,
+        9.28
+      ],
+      "look": [
+        0,
+        1,
+        -4
+      ],
+      "fov": 52,
+      "action": "Straight down the tower face: street, cars and people 1,350 feet below",
+      "word": 9,
+      "b": 121
+    },
+    {
+      "id": 3,
+      "a": 121,
+      "place": "policewait",
+      "label": "",
+      "light": "day",
+      "pos": [
+        -0.686,
+        1.116,
+        9.553
+      ],
+      "look": [
+        1.6,
+        1.5,
+        -1.2
+      ],
+      "fov": 52,
+      "action": "Street: police car and two officers craning up at the wire",
+      "word": 15,
+      "b": 166
+    },
+    {
+      "id": 4,
+      "a": 166,
+      "place": "performer",
+      "label": "Paris",
+      "light": "day",
+      "pos": [
+        0.794,
+        1.865,
+        7.954
+      ],
+      "look": [
+        0,
+        1.6,
+        0.4
+      ],
+      "fov": 44,
+      "action": "Paris square: Petit performs on a low wire, hat of coins, small crowd",
+      "word": 21,
+      "b": 269
+    },
+    {
+      "id": 5,
+      "a": 269,
+      "place": "magazine",
+      "label": "",
+      "light": "day",
+      "pos": [
+        0.305,
+        3.021,
+        3.464
+      ],
+      "look": [
+        0,
+        1.6,
+        -0.9
+      ],
+      "fov": 40,
+      "action": "Overhead: magazine open on the table, the towers page",
+      "word": 29,
+      "b": 350
+    },
+    {
+      "id": 6,
+      "a": 350,
+      "place": "decision",
+      "label": "",
+      "light": "day",
+      "pos": [
+        0.72,
+        2.444,
+        4.621
+      ],
+      "look": [
+        0,
+        1.9,
+        -0.5
+      ],
+      "fov": 42,
+      "action": "He points at the page and grins — the decision",
+      "word": 40,
+      "b": 422
+    },
+    {
+      "id": 7,
+      "a": 422,
+      "place": "study",
+      "label": "New York",
+      "light": "day",
+      "pos": [
+        4.177,
+        1.51,
+        6.5
+      ],
+      "look": [
+        1.3,
+        2.2,
+        0.6
+      ],
+      "fov": 46,
+      "action": "Tower base: Petit with press camera and notebook, craning up",
+      "word": 49,
+      "b": 507
+    },
+    {
+      "id": 8,
+      "a": 507,
+      "place": "reporter",
+      "label": "",
+      "light": "day",
+      "pos": [
+        0.501,
+        2.135,
+        4.262
+      ],
+      "look": [
+        0,
+        1.8,
+        -0.5
+      ],
+      "fov": 40,
+      "action": "Reporter disguise: press card up, guard beside him",
+      "word": 58,
+      "b": 528
+    },
+    {
+      "id": 9,
+      "a": 528,
+      "place": "worker",
+      "label": "",
+      "light": "day",
+      "pos": [
+        2.231,
+        1.7,
+        7.26
+      ],
+      "look": [
+        0.9,
+        1.7,
+        1
+      ],
+      "fov": 44,
+      "action": "Hard hat and toolbox at the site gate, clipboard checked",
+      "word": 59,
+      "b": 559
+    },
+    {
+      "id": 10,
+      "a": 559,
+      "place": "fakeid",
+      "label": "",
+      "light": "day",
+      "pos": [
+        0.139,
+        3.8,
+        3.081
+      ],
+      "look": [
+        0,
+        1.5,
+        -0.9
+      ],
+      "fov": 38,
+      "action": "Overhead: three fake IDs laid out beside model towers",
+      "word": 61,
+      "b": 612
+    },
+    {
+      "id": 11,
+      "a": 612,
+      "place": "smuggle",
+      "label": "Freight elevator",
+      "light": "day",
+      "pos": [
+        1.036,
+        2.227,
+        5.276
+      ],
+      "look": [
+        0,
+        1.6,
+        -0.6
+      ],
+      "fov": 44,
+      "action": "Cable coil, pole and bow loaded beside two friends in the freight car",
+      "word": 67,
+      "b": 687
+    },
+    {
+      "id": 12,
+      "a": 687,
+      "place": "load",
+      "label": "",
+      "light": "day",
+      "pos": [
+        0.335,
+        1.868,
+        3.885
+      ],
+      "look": [
+        0,
+        1.7,
+        -0.9
+      ],
+      "fov": 46,
+      "action": "The pole goes up on shoulders, the bow on top",
+      "word": 76,
+      "b": 731
+    },
+    {
+      "id": 13,
+      "a": 731,
+      "place": "elevator",
+      "label": "",
+      "light": "day",
+      "pos": [
+        0,
+        1.9,
+        3.6
+      ],
+      "look": [
+        0,
+        1.9,
+        -1.4
+      ],
+      "fov": 45,
+      "action": "Doors close on the loaded car, 104 lit above",
+      "word": 83,
+      "b": 763
+    },
+    {
+      "id": 14,
+      "a": 763,
+      "place": "security",
+      "label": "World Trade Center",
+      "light": "day",
+      "pos": [
+        1.159,
+        2.25,
+        9.184
+      ],
+      "look": [
+        -0.3,
+        1.7,
+        -1.2
+      ],
+      "fov": 46,
+      "action": "Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET",
+      "word": 87,
+      "b": 883
+    },
+    {
+      "id": 15,
+      "a": 883,
+      "place": "bow",
+      "label": "Rooftop · night",
+      "light": "night",
+      "pos": [
+        -1.926,
+        40.151,
+        0.669
+      ],
+      "look": [
+        -7.4,
+        39.6,
+        -5
+      ],
+      "fov": 46,
+      "action": "A friend draws the bow; fishing line flies across the gap",
+      "word": 100,
+      "b": 966
+    },
+    {
+      "id": 16,
+      "a": 966,
+      "place": "pull",
+      "label": "",
+      "light": "night",
+      "pos": [
+        1.682,
+        42.183,
+        14.601
+      ],
+      "look": [
+        -7,
+        39.4,
+        -3.2
+      ],
+      "fov": 48,
+      "action": "Two friends haul the heavy cable hand over hand",
+      "word": 111,
+      "b": 1026
+    },
+    {
+      "id": 17,
+      "a": 1026,
+      "place": "sunrise",
+      "label": "Rooftop · dawn",
+      "light": "golden",
+      "pos": [
+        3.484,
+        41.044,
+        -1.74
+      ],
+      "look": [
+        -2.6,
+        40,
+        -6
+      ],
+      "fov": 44,
+      "action": "Petit steps onto the wire at dawn: empty hands, no harness, no net",
+      "word": 119,
+      "b": 1155
+    },
+    {
+      "id": 18,
+      "a": 1155,
+      "place": "cross",
+      "label": "The wire",
+      "light": "day",
+      "pos": [
+        25.184,
+        43.619,
+        -0.647
+      ],
+      "look": [
+        0,
+        40,
+        -6
+      ],
+      "fov": 48,
+      "action": "Wide from the far roof: he is halfway across, towers behind",
+      "word": 130,
+      "b": 1232
+    },
+    {
+      "id": 19,
+      "a": 1232,
+      "place": "kneel",
+      "label": "",
+      "light": "day",
+      "pos": [
+        4.58,
+        40.391,
+        -3.907
+      ],
+      "look": [
+        -0.6,
+        40,
+        -6
+      ],
+      "fov": 38,
+      "action": "Medium: he kneels down on the wire",
+      "word": 137,
+      "b": 1255
+    },
+    {
+      "id": 20,
+      "a": 1255,
+      "place": "lie",
+      "label": "",
+      "light": "day",
+      "pos": [
+        5.636,
+        41.331,
+        -5.454
+      ],
+      "look": [
+        -0.6,
+        40,
+        -6
+      ],
+      "fov": 36,
+      "action": "He lies flat on the cable, arms wide",
+      "word": 139,
+      "b": 1284
+    },
+    {
+      "id": 21,
+      "a": 1284,
+      "place": "salute",
+      "label": "",
+      "light": "day",
+      "pos": [
+        3.475,
+        38.586,
+        -0.905
+      ],
+      "look": [
+        -0.8,
+        40,
+        -6
+      ],
+      "fov": 42,
+      "action": "Low angle from under the wire: he stands and salutes",
+      "word": 142,
+      "b": 1303
+    },
+    {
+      "id": 22,
+      "a": 1303,
+      "place": "street",
+      "label": "Street below",
+      "light": "day",
+      "pos": [
+        6.706,
+        2.319,
+        9.342
+      ],
+      "look": [
+        0,
+        1.9,
+        -0.6
+      ],
+      "fov": 50,
+      "action": "Cars stopped, drivers out, everyone looking up",
+      "word": 144,
+      "b": 1356
+    },
+    {
+      "id": 23,
+      "a": 1356,
+      "place": "crowd",
+      "label": "",
+      "light": "day",
+      "pos": [
+        0.618,
+        4.563,
+        5.842
+      ],
+      "look": [
+        0,
+        3,
+        -3
+      ],
+      "fov": 56,
+      "action": "Inside the crowd: faces tilted up, mouths open",
+      "word": 147,
+      "b": 1388
+    },
+    {
+      "id": 24,
+      "a": 1388,
+      "place": "police",
+      "label": "",
+      "light": "day",
+      "pos": [
+        5.447,
+        1.997,
+        6.357
+      ],
+      "look": [
+        1.2,
+        1.7,
+        -1
+      ],
+      "fov": 46,
+      "action": "Cruiser slews in, officers run, one shouting into a radio",
+      "word": 150,
+      "b": 1436
+    },
+    {
+      "id": 25,
+      "a": 1436,
+      "place": "reach",
+      "label": "",
+      "light": "day",
+      "pos": [
+        6.445,
+        41.47,
+        4.852
+      ],
+      "look": [
+        -0.2,
+        39.8,
+        -5
+      ],
+      "fov": 48,
+      "action": "Two cops on the roof, empty hands, staring out along the wire",
+      "word": 155,
+      "b": 1502
+    },
+    {
+      "id": 26,
+      "a": 1502,
+      "place": "wait",
+      "label": "",
+      "light": "day",
+      "pos": [
+        5.517,
+        40.511,
+        0.284
+      ],
+      "look": [
+        1.3,
+        39.4,
+        -4.4
+      ],
+      "fov": 42,
+      "action": "The same two sit down to wait, coffees, folded arms",
+      "word": 162,
+      "b": 1553
+    },
+    {
+      "id": 27,
+      "a": 1553,
+      "place": "arrest",
+      "label": "",
+      "light": "day",
+      "pos": [
+        5.301,
+        40.319,
+        -0.26
+      ],
+      "look": [
+        0.6,
+        39.4,
+        -4.8
+      ],
+      "fov": 44,
+      "action": "He steps off the wire into their arms on the roof",
+      "word": 166,
+      "b": 1639
+    },
+    {
+      "id": 28,
+      "a": 1639,
+      "place": "dropped",
+      "label": "City Hall",
+      "light": "day",
+      "pos": [
+        0.613,
+        3.429,
+        2.933
+      ],
+      "look": [
+        0.2,
+        1.5,
+        -1
+      ],
+      "fov": 38,
+      "action": "Overhead: gavel down, DROPPED stamp on the charge sheet",
+      "word": 177,
+      "b": 1716
+    },
+    {
+      "id": 29,
+      "a": 1716,
+      "place": "park",
+      "label": "Central Park",
+      "light": "day",
+      "pos": [
+        2.213,
+        3.298,
+        9.879
+      ],
+      "look": [
+        -0.2,
+        2.6,
+        0.2
+      ],
+      "fov": 44,
+      "action": "Free show: he walks a low wire above a clapping crowd",
+      "word": 187,
+      "b": 1793
+    },
+    {
+      "id": 30,
+      "a": 1793,
+      "place": "pass",
+      "label": "Observation deck",
+      "light": "day",
+      "pos": [
+        0.96,
+        2.496,
+        3.976
+      ],
+      "look": [
+        0.1,
+        1.8,
+        -0.9
+      ],
+      "fov": 40,
+      "action": "The clerk slides the lifetime pass across the counter",
+      "word": 194,
+      "b": 1876
+    },
+    {
+      "id": 31,
+      "a": 1876,
+      "place": "today",
+      "label": "New York · today",
+      "light": "day",
+      "pos": [
+        3.111,
+        3.346,
+        12.236
+      ],
+      "look": [
+        0,
+        2.3,
+        -2.4
+      ],
+      "fov": 48,
+      "action": "Two empty tower footprints with hoarding; he crosses a low wire",
+      "word": 206,
+      "b": 1967
+    },
+    {
+      "id": 32,
+      "a": 1967,
+      "place": "quote",
+      "label": "",
+      "light": "day",
+      "pos": [
+        -2.906,
+        2.819,
+        11.528
+      ],
+      "look": [
+        0.4,
+        2.4,
+        0
+      ],
+      "fov": 46,
+      "action": "Side view: he stops mid-wire, points at two towers on the skyline",
+      "word": 216,
+      "b": 2065
+    },
+    {
+      "id": 33,
+      "a": 2065,
+      "place": "walk",
+      "label": "",
+      "light": "day",
+      "pos": [
+        2.516,
+        2.816,
+        5.569
+      ],
+      "look": [
+        -0.2,
+        2.6,
+        0
+      ],
+      "fov": 42,
+      "action": "Close: the pass in his hand; he walks on out of frame",
+      "word": 227,
+      "b": 2169
+    }
+  ],
+  "width": 720,
+  "height": 1280
+}
