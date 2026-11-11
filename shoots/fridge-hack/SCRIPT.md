@@ -1,6 +1,6 @@
 # "The Hack That Melted 700 Supermarkets" — SCRIPT
 
-**Status: in production.** News short about the cyberattack that heated supermarket freezers across France in October 2026, and France's accusation, on 9 November, that a hacking unit of Iran's Revolutionary Guard did it. Made in the order written in `references/news/README.md`, after the two films in `references/news/`.
+**Status: delivered on 2026-11-11. The user has not seen it yet, and it is not approved.** News short about the cyberattack that heated supermarket freezers across France in October 2026, and France's accusation, on 9 November, that a hacking unit of Iran's Revolutionary Guard did it. Made in the order written in `references/news/README.md`, after the two films in `references/news/`.
 
 ## Researched facts and sources
 
@@ -25,7 +25,7 @@ Checked against news reports and two primary documents on 2026-11-11 (two days a
 | 15 | Barrot said France had established "with certainty" that the Revolutionary Guard was behind it, "but said he would not disclose how that determination was made". Reuters "could not establish exactly how the French made their determination". | [CNN](https://www.cnn.com/2026/11/09/europe/france-accuses-iran-of-fridge-cyberattack-intl), [Reuters via CBC](https://www.cbc.ca/news/world/france-iran-cyberattack-accusation-9.7415031) |
 | 16 | French Foreign Ministry, statement in English, 10 November: the hack was "unprecedented in its scale and level of aggressiveness and has been the first offensive cyber campaign carried out purely for the purposes of sabotage on French soil." | [CBS News](https://www.cbsnews.com/news/france-iran-behind-refrigerator-freezer-hack-cyberattack/) |
 | 17 | Iran denies it. Foreign Ministry statement, 10 November: it "categorically rejects the French government's baseless and one-sided accusations", and: "A government that cannot even manage the temperature of its own refrigerators now seeks to shift the blame onto foreign actors through these preposterous accusations." | [DW](https://www.dw.com/en/iran-denies-french-fridge-cyberattack-hacking/a-79910206), [Politico](https://www.politico.eu/article/iran-denies-role-in-cyberattacks-on-supermarket-refrigerators/), [Al Jazeera](https://www.aljazeera.com/news/2026/11/10/what-is-shahid-kaveh-%E2%81%A0the-iran-cyber-unit-tied-to-frances-fridge-hacking) |
-| 18 | France summoned Iran's ambassador on 10 November and said it would seek sanctions "at the European level". The EU's foreign policy chief, Kaja Kallas, said foreign ministers would discuss it at their next council and that, if the attribution is confirmed, the response "should be strong"; an EU spokesman promised a "swift and united response". Nothing has been decided. | [DW](https://www.dw.com/en/iran-denies-french-fridge-cyberattack-hacking/a-79910206), [Reuters via CBC](https://www.cbc.ca/news/world/france-iran-cyberattack-accusation-9.7415031), [Politico](https://www.politico.eu/article/iran-denies-role-in-cyberattacks-on-supermarket-refrigerators/) |
+| 18 | France summoned Iran's ambassador on 10 November and said it would seek sanctions "at the European level". The EU's foreign policy chief, Kaja Kallas, said foreign ministers would discuss it at their next council and that, if the attribution is confirmed, the response "should be strong"; an EU spokesman promised a "swift and united response". Barrot said on 10 November that France "rules nothing out" (CBS News). Nothing has been decided. | [DW](https://www.dw.com/en/iran-denies-french-fridge-cyberattack-hacking/a-79910206), [Reuters via CBC](https://www.cbc.ca/news/world/france-iran-cyberattack-accusation-9.7415031), [Politico](https://www.politico.eu/article/iran-denies-role-in-cyberattacks-on-supermarket-refrigerators/), [CBS News](https://www.cbsnews.com/news/france-iran-behind-refrigerator-freezer-hack-cyberattack/) |
 | 19 | Official advice. France's CERT-FR: exposing a management interface to the internet "is contrary to good practice"; remove the internet exposure, then restore access "only through a secure VPN or a protected network". The FBI's cyber branch: take such controllers "off the public internet". | [CERT-FR alert CERTFR-2026-ALE-012](https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-012/) (French, our translation), [CBS News](https://www.cbsnews.com/news/france-iran-behind-refrigerator-freezer-hack-cyberattack/) |
 | 20 | Context: the attack came during "the Iran war that began in February" 2026, between the United States, Israel and Iran. Analysts told AFP it extends that conflict onto European soil. France calls it sabotage and has not given a motive. | [Reuters via NBC](https://www.nbcnews.com/world/france/france-supermarket-cyberattacks-iran-revolutionary-guard-corps-accused-rcna608354), [AFP via EuropeSays](https://www.europesays.com/3367218/) |
 
@@ -158,3 +158,42 @@ A first draft of 244 words ran 78 s and was cut to 235 before the kept take was 
 The sound was set with meters only. The agent that made it did not listen to it.
 
 One trap, fixed here and worth knowing: JavaScript's `Math.round` sends a half up and Python's `round()` sends it to the even number. Two words of this read start on exactly half a frame, and one of them starts a shot, so the shot list handed to the check was one frame off and the first render reported a jump that was only the cut. `build_mix.py` now rounds the way the picture does.
+
+## Render
+
+Rendered on GitHub Actions by `.github/workflows/render-short.yml`: twenty parts in parallel, joined, the sound laid under, the finished file checked with `templates/scripts/short_qa.py`, and the file and the report committed to the branch by the run itself. Three full runs of about ten minutes each:
+
+| Run | Commit | Why it was made |
+|-----|--------|-----------------|
+| `42969978839` | `a464bfb` | The first full render. The check reported one frame jump, at 1221. It was the cut itself, listed one frame early (the rounding trap under Sound). |
+| `42976665346` | `80d0eca` | Found on stills of the first: the fire had no flames and the hose no jet of water, a shop worker and a shopper stood half outside the frame when their shots began, and the Tehran quote card touched the speaker. Also in this run: the score a tone higher, and the rounding. |
+| `42982240824` | `54598e7` | Found on the frames either side of the cuts of the second: the hops described under "Cuts". The sound is the same file as in the second run, byte for byte. |
+
+```
+gh workflow run render-short.yml --ref <branch> -f composition=FridgeHackShort \
+  -f mix=shoots/fridge-hack/audio/mix.wav -f shots=shoots/fridge-hack/qa-shots.json \
+  -f publish='shoots/fridge-hack/final-{size}p.mp4' -f size=720 -f chunks=20
+```
+
+Stills for review are made locally, a frame at a time: `remotion-app/scripts/pick.sh <dir> <frame,frame,…>`. `remotion-app/scripts/frame.mjs <shot> "x,y,z"` says where a point of the set lands in the frame at both ends of a shot, and follows a take that runs over several shots.
+
+## Result
+
+- **File:** [`shoots/fridge-hack/final-720p.mp4` at commit `54598e7`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/54598e7763ee31ece65eba75285e58e3c4b3e86a/shoots/fridge-hack/final-720p.mp4). 720×1280, 30 fps, 2226 frames, 74.200 s, 44,682,883 bytes, H.264 with 48 kHz stereo AAC. SHA-256 `f3ed32f18edb0711cd3ddecf484075844c89529b70bbeac97692f2759ee4de6d`.
+- **Finished-file check** (`qa-report.md`, written by the run): −14.6 LUFS integrated, loudness range 2.0 LU, peak −2.1 dBFS; no silence; no black, unplanned white or frozen frames; no unplanned frame jumps.
+- **Compared frame by frame with the render before it:** the picture differs in frames 473–562, 856–974, 1663–1829 and 1948–1995, the four places that were changed, and nowhere else (outside them, the largest difference in any block of the frame is encoder noise). The second render differed from the first in 302–369, 1081–1110 and 1762–1829 only.
+- **The joins, measured in the finished file.** The measure is the mean change between one frame and the next; the 38 ordinary cuts measure 32 or more, 79 at the median. Into frame 500: 3.4. Into 530: 2.9. Into 1762: 1.4. Each is what the frames around it measure, so nothing jumps there. The match cut into 923 measures 10.9: the panel changes and the rest of the picture does not.
+- **Looked at, all of it on still frames:**
+  - about 345 stills rendered locally over the rounds of fixes;
+  - of the first render, one frame in every eight up to frame 1912, and 24 more;
+  - of the second render, one frame of every shot, the frames either side of the 13 changes of shot between two shots on the same set, and 39 more where it had changed;
+  - of the final render, 111 frames: the four places that changed, with the frames either side of every join and cut in them, and one frame in every eight from 1900 to the end, with the last frame.
+  - Every shot of the final film has been seen on a still from a render in which that shot is the same picture.
+- **Not done:** the agent that made the film did not listen to it (the sound was set from meters) and did not watch it in motion. That the takes run smoothly is a reading of the numbers above and of stills. The user has not seen the film.
+- **Known small things, left as they are:**
+  - Once the lectern has frozen, icicles cover the top edge of the TEHRAN plaque, and the caption sits right under the plaque.
+  - In the first frames of the trolley shot, the worker's shoulder touches the left edge of the frame.
+  - In the close shot of the sanctions folder, the wall clock is cut by the left edge of the frame.
+  - After two cuts to the evidence desk (shots 30 and 39), the desk is bare for four frames before the first card stands up on its word.
+  - Inside the control-panel take, the readout's status line goes from ALARM: MUTED back to COOLING for twelve frames before it says DEFROST.
+- **The story on the day of delivery** (rows 12, 13, 17 and 18 above): Iran denies it; France has summoned Iran's ambassador and says it rules nothing out; the EU's foreign ministers are due to discuss it next week and have decided nothing; nobody has been charged or tried; no official has said that the attacks of November were the work of the same people. If any of that changes, lines 9, 10, 12 and 13 of the narration are the ones to check.
