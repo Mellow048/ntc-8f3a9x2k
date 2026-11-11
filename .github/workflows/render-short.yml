@@ -115,6 +115,7 @@ jobs:
         run: |
           npm ci --prefix remotion-app
           npm run typecheck --prefix remotion-app
+          node scripts/koepenick/test.mjs
           cd remotion-app
           npx playwright@1.49.1 install --with-deps chromium
           CHROME="$(find ~/.cache/ms-playwright -type f -name chrome | head -1)"
@@ -126,7 +127,7 @@ jobs:
           pip install numpy scipy pillow
       - name: Diagnostic portrait frames
         if: inputs.still_frame != '-1'
-        run: node scripts/koepenick/stills.mjs
+        run: REVIEW_FRAMES="${{ inputs.still_frame }}" node scripts/koepenick/stills.mjs
       - name: Publish preview gate
         if: inputs.still_frame != '-1'
         run: |

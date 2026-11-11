@@ -13,7 +13,7 @@ export class World{
  constructor(public place:string){const p=this.root;
  const skyMat=new T.ShaderMaterial({side:T.BackSide,depthWrite:false,uniforms:{top:{value:new T.Color('#4c8ed1')},bottom:{value:new T.Color('#c9dfeb')}},vertexShader:'varying vec3 v; void main(){v=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:'varying vec3 v;uniform vec3 top,bottom;void main(){gl_FragColor=vec4(mix(bottom,top,smoothstep(0.,.7,normalize(v).y)),1.);}'});
  this.sky=new T.Mesh(new T.SphereGeometry(500,24,12),skyMat);this.sky.layers.set(NOINK);p.add(this.sky,this.hemi,this.sun,this.sun.target);this.sun.castShadow=true;this.sun.shadow.mapSize.set(1024,1024);this.sun.shadow.bias=-.0003;this.sun.shadow.normalBias=.02;
- const actor=(x:number,z:number,o=CAPTAIN,seed=5)=>{const a=new Actor(p,x,z,o,seed);this.actors.push(a);return a;};
+ const actor=(x:number,z:number,o=CAPTAIN,seed=5)=>{const a=new Actor(p,x,z,o,seed);this.actors.push(a);if(o===CLERK)a.root.scale.setScalar(1.2);return a;};
  const dyn=(o:T.Object3D)=>{o.userData.dynamic=true;return o;};
  const squad=(xs:number[],zs:number[])=>{const out:Actor[]=[];for(const z of zs)for(const x of xs)out.push(actor(x,z,SOLDIER(out.length),out.length+2));return out;};
  const cupAt=(a:Actor)=>{const o=mug(a.root,.48,1.13,.25);o.userData.dynamic=true;return o;};
@@ -77,7 +77,7 @@ export class World{
   const cops=[actor(-1.25,1.9,POLICE,2),actor(1.25,1.9,POLICE,4)];cops.forEach(a=>{a.expr='stern';a.wave=.7;});for(let i=0;i<9;i++){const a=actor(-3+(i%5)*1.4,-.5-Math.floor(i/5)*1.6,townsfolk(i),i+10);a.expr='shock';a.root.scale.setScalar(.9);this.motions.push((f)=>{a.root.position.z=-.5-Math.floor(i/5)*1.6-action(f,108,15)*.45;});}
  }
  if(place==='bath'){
-  const v=actor(-1.25,.2);v.expr='neutral';const cop=actor(.7,0,POLICE,8);cop.expr='smile';
+  const v=actor(-.65,.2);v.expr='neutral';const cop=actor(.7,0,POLICE,8);cop.expr='smile';
   const towel=dyn(box(cop.root,.49,1.1,.25,.4,.7,.08,material('towel','#eee6cf')));for(let i=0;i<3;i++)box(towel,0,-.15+i*.08,.05,.4,.015,.03,material('stripe','#758c9b'));
   const tub=cyl(p,2.1,.55,-2,1.2,.8,material('porcelain','#eee8d8'),1.4,32);tub.scale.z=.6;cyl(p,2.1,.93,-2,1.2,.03,material('bathwater','#92b8ba')).scale.z=.6;
   this.motions.push((f)=>{const q=action(f,125,12);v.wave=q*.65;cop.wave=f<word(125)?.7:undefined;cop.mode=q>.5?'stroll':'stand';cop.root.position.x=.7+q*1.3;cop.root.position.z=-q*1.6;});
@@ -88,7 +88,7 @@ export class World{
   lettering(p,'MAYOR',0,4.7,-4.05,2,.5);
  }
  if(['cash','receipt'].includes(place)){
-  desk(p,0,0,4.5);const v=actor(1.7,-1.4);const c=actor(-1.45,-1.5,CLERK,10);c.expr='nervous';v.expr='grin';
+  desk(p,0,0,4.5);const v=actor(1.15,-1.4);const c=actor(-1.45,-1.5,CLERK,10);c.expr='nervous';v.expr='grin';
   const sack=dyn(bag(p,.7,1.24,.2));
   box(p,-.8,1.42,-.2,1.25,.4,.7,iron());const lid=dyn(box(p,-.8,1.65,-.54,1.3,.1,.75,iron()));
   const coins:T.Mesh[]=[];for(let i=0;i<18;i++){const o=cyl(p,0,0,0,.095,.035,material('coins','#d8b754',undefined,true),.095,12);dyn(o);coins.push(o);}

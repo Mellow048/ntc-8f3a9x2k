@@ -533,8 +533,9 @@ export const bodyFront = (p: Pen, o: Outfit, opts: FrontOpts) => {
       const G = lerp2(R0, R1, 0.1);
       arms.push({ pts: [sh(1), [tcx + 1.12 * T.a + 5 * u, sh(1)[1] + 0.45 * HH], G], front: false });
     } else if (wave !== undefined) {
-      const S = sh(1);
-      arms.push({ pts: [S, [tcx + 1.1 * T.a + 10 * u + 3 * u * wave, S[1] - 0.22 * HH], [tcx + 1.18 * T.a + 16 * u + 12 * u * wave, S[1] - 0.6 * HH]], front: false });
+      const S = sh(1), q = clamp(wave,0,1), down = hang(1,0);
+      const elbow:P2=[tcx+1.1*T.a+10*u,S[1]-.22*HH], hand:P2=[tcx+1.18*T.a+28*u,S[1]-.6*HH];
+      arms.push({pts:[S,lerp2(down[1],elbow,q),lerp2(down[2],hand,q)],front:false});
     } else if (prop === "icecream") {
       const S = sh(1);
       arms.push({ pts: [S, [tcx + 1.05 * T.a + 4 * u, S[1] + 0.45 * HH], [tcx + 0.5 * T.a, S[1] + 0.4 * HH]], front: true });
