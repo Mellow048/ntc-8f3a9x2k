@@ -173,9 +173,11 @@ export function parkSet(p:T.Object3D){
 }
 export function bowProp(p:T.Object3D,x:number,y:number,z:number){
  const g=new T.Group();g.position.set(x,y,z);p.add(g);g.userData.dynamic=true;
- const curve=new T.CatmullRomCurve3([V(0,-.7,0),V(.25,0,0),V(0,.7,0)]);
- g.add(new T.Mesh(new T.TubeGeometry(curve,12,.03,6),timber()));
- bar(g,V(0,-.7,0),V(0,.7,0),.02,material('string','#e8e0c8'));
+ const curve=new T.CatmullRomCurve3([V(0,-1.0,0),V(.34,0,0),V(0,1.0,0)]);
+ g.add(new T.Mesh(new T.TubeGeometry(curve,16,.05,7),timber()));
+ bar(g,V(0,-1.0,0),V(0,1.0,0),.025,material('string','#e8e0c8'));
+ const arrow=cyl(g,0,0,.1,.03,1.5,material('shaft','#d8c9a0'));arrow.rotation.x=Math.PI/2;
+ const head=mesh(g,new T.ConeGeometry(.07,.22,6),material('arrowtip','#cfd3d8'),V(0,0,.9));head.rotation.x=Math.PI/2;
  return g;
 }
 export function poleProp(p:T.Object3D,x:number,y:number,z:number){
@@ -254,14 +256,12 @@ export function magazineProp(p:T.Object3D,x:number,y:number,z:number,w=1.5,h=1.9
  return o;
 }
 export function footprint(p:T.Object3D,x:number,z:number,s=7){
- box(p,x,-.06,z,s,.06,s,material('towerfoot','#6c777f',rep(stoneHD(),4,4)));
- box(p,x,.12,z,s+.5,.3,.3,material('footedge','#b8bcc0'));
- box(p,x,.12,z-s/2,s+.5,.3,.3,material('footedge','#b8bcc0'));
- box(p,x,-.06,z+s/2,.3,.06,s,material('footedge','#b8bcc0'));
+ box(p,x,-.06,z,s,.06,s,material('towerfoot','#5a6660',rep(stoneHD(),4,4)));
+ box(p,x,.1,z,s+.4,.2,.24,material('footedge','#9aa1a3'));
  // plywood hoarding around the empty lot
  const hw=s+1.8;
  for(let i=0;i<7;i++){const t=i/6-.5;box(p,x+t*hw,1.15,z-s/2-.9,.16,2.3,.16,timber());}
- box(p,x,1.25,z-s/2-.9,hw,1.9,.08,material('hoarding','#5e7f9a'));
+ box(p,x,1.25,z-s/2-.9,hw,1.9,.08,material('hoarding','#6d7a5f'));
  for(const dy of [-.6,.6])box(p,x,1.25+dy,z-s/2-.84,hw,.07,.03,material('hoardline','#cdd6dd'));
  box(p,x,2.3,z-s/2-.9,hw+.1,.12,.16,timber());
 }

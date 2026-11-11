@@ -72,9 +72,9 @@ export class World{
   const balls=[0,1,2].map(i=>{const b=dyn(sphere(p,-1+i*1.0,2.4,0,.14,material('club','#d8b45a',undefined,true)));return b;});
   this.motions.push((f)=>{balls.forEach((b,i)=>{const t=f*.16+i*2.1;b.position.x=Math.sin(t)*1.05;b.position.y=2.5+Math.abs(Math.cos(t))*.5;b.position.z=Math.cos(t)*.3;});});
   streetHat(p,1.5,.85);box(p,1.5,.03,.85,.95,.06,.95,material('hathold','#5c626c'));
-  A(-1.7,2.1,person(1),11).expr='smile';A(1.8,2.2,person(2),12).expr='laugh';
-  A(2.9,.9,person(3),13).expr='smile';A(-2.9,1.0,person(5),14).expr='smile';
-  A(0,3.2,person(6),15).expr='smile';
+  A(-2.1,-1.7,person(1),11).expr='smile';A(2.2,-1.8,person(2),12).expr='laugh';
+  A(3.1,-3.4,person(3),13).expr='smile';A(-3.2,-3.6,person(5),14).expr='smile';
+  A(.2,-4.4,person(6),15).expr='smile';
  }
  // ---- 5 magazine: the photo of the towers ----
  if(place==='magazine'){roomSet();desk(p,0,-1.0);
@@ -141,20 +141,22 @@ export class World{
  }
  // ---- 14 security: brand-new lobby, no guard yet ----
  if(place==='security'){lobby(p);
-  barrierTape(p,1.4,.8,2.0);signBoard(p,'NO GUARD YET',1.4,2.5,.82,1.8,.5);
-  const v=A(-1.9,.2,PETIT,5),f1=A(-.6,.0,FRIEND,6);
+  barrierTape(p,1.9,.8,1.8);signBoard(p,'NO GUARD YET',1.9,2.5,.82,1.8,.5);
+  box(p,-1.4,.55,-.75,.66,.85,.6,material('chair','#5a5f6a'));
+  box(p,-1.4,1.02,-1.02,.66,.85,.12,material('chair','#5a5f6a'));
+  const v=A(.5,.2,PETIT,5),f1=A(1.7,.0,FRIEND,6);
   v.expr='nervous';f1.expr='neutral';
-  this.motions.push((f,u)=>{v.root.position.x=-1.9-u*.7;f1.root.position.x=-.6-u*.6;v.look=.4;});
+  this.motions.push((f,u)=>{v.root.position.x=.5+u*.5;f1.root.position.x=1.7+u*.4;v.look=-.4;});
  }
  // ---- 15 bow: night, line shot across the gap ----
  if(place==='bow'){deck();wire();
   const f1=A(-7.6,-4.6,FRIEND,6,DECK);f1.expr='neutral';f1.side=true;
-  const bow=dyn(bowProp(p,-7.3,DECK+1.4,-4.6));
-  const line=dyn(bar(p,V(-7.2,WIRE+.4,WZ),V(7.2,WIRE+.4,WZ),.05,material('line','#f6efd8')));
+  const bow=dyn(bowProp(p,-6.9,DECK+1.5,-4.6));bow.rotation.y=.5;
+  const line=dyn(bar(p,V(-6.6,DECK+1.5,-4.2),V(7.2,WIRE,WZ),.045,material('line','#f6efd8')));
   line.scale.x=.02;
-  const v=A(-5.6,-5.0,PETIT,5,DECK);v.expr='neutral';
+  const v=A(-4.9,-5.4,PETIT,5,DECK);v.expr='neutral';
   lamp(p,-9.6,DECK+1.4,-4.4,true);lamp(p,9.4,DECK+1.4,-4.4,true);
-  this.motions.push((f)=>{const q=action(f,100,18);line.scale.x=.02+.98*q;line.position.x=-7.2+14.4*q/2;f1.wave=.5*action(f,100,6);});
+  this.motions.push((f)=>{const q=action(f,100,18);line.scale.x=.02+.98*q;line.position.x=-6.6+13.8*q/2;line.position.z=-4.2+(WZ+4.2)*q/2;f1.wave=.5*action(f,100,6);});
  }
  // ---- 16 pull: hauling the cable by hand ----
  if(place==='pull'){deck();wire();

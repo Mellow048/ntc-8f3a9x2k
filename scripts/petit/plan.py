@@ -8,7 +8,7 @@ w=json.loads((ROOT/'shoots/petit/voice/words.json').read_text())['words']
 # The camera sits `distance` metres from the subject, swung `yaw` degrees round it from +Z and lifted
 # `pitch` degrees above the subject's eye line. Framing is derived, so every shot is composed on purpose.
 rows=[
-(0,'hook','New York · 1974','day',[0,40.1,-6],34,0,10,55,'Both towers, the walk wire between them, the man tiny on it, police and cars below'),
+(0,'hook','New York · 1974','day',[0,40.1,-6],30,0,6,55,'Both towers, the walk wire between them, the man tiny on it, police and cars below'),
 (9,'height','','day',[0,1.0,-4],22,40,38,52,'Straight down the tower face: street, cars and people 1,350 feet below'),
 (15,'policewait','','day',[1.6,1.5,-1.2],11,-12,-2,52,'Street: police car and two officers craning up at the wire'),
 (21,'performer','Paris','day',[0,1.7,.2],8.4,5,2,44,'Paris square: Petit performs on a low wire, hat of coins, small crowd'),
@@ -21,7 +21,7 @@ rows=[
 (67,'smuggle','Freight elevator','day',[0,1.6,-.6],6.0,10,6,44,'Cable coil, pole and bow loaded beside two friends in the freight car'),
 (76,'load','','day',[0,1.7,-.9],4.8,4,2,46,'The pole goes up on shoulders, the bow on top'),
 (83,'elevator','','day',[0,1.9,-1.4],5.0,0,0,45,'Doors close on the loaded car, 104 lit above'),
-(87,'security','World Trade Center','day',[-.3,1.7,-1.2],10.5,8,3,46,'Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET'),
+(87,'security','World Trade Center','day',[0,1.7,-1.1],9.6,10,4,46,'Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET'),
 (100,'bow','Rooftop · night','night',[-7.4,39.6,-5.0],7.9,44,4,46,'A friend draws the bow; fishing line flies across the gap'),
 (111,'pull','','night',[-7,39.4,-3.2],20,26,8,48,'Two friends haul the heavy cable hand over hand'),
 (119,'sunrise','Rooftop · dawn','golden',[-2.6,40.0,-6],7.5,55,8,44,'Petit steps onto the wire at dawn: empty hands, no harness, no net'),

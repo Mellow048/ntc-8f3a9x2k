@@ -10,8 +10,8 @@
    "light": "day",
    "pos": [
     0.0,
-    46.004,
-    27.483
+    43.236,
+    23.836
    ],
    "look": [
     0,
@@ -282,14 +282,14 @@
    "label": "World Trade Center",
    "light": "day",
    "pos": [
-    1.159,
-    2.25,
-    9.184
+    1.663,
+    2.37,
+    8.331
    ],
    "look": [
-    -0.3,
+    0,
     1.7,
-    -1.2
+    -1.1
    ],
    "fov": 46,
    "action": "Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET",
