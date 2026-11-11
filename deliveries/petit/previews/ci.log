@@ -1,21 +1,18 @@
-run 42999612803 / 5bb15c5e5eb1fb1b8d6dcaeef27a585488d10222
+run 43000373372 / 4901688e4ee6bed9948cfe96f0c0858081092a0a
 --- git status ---
  M deliveries/petit/previews/ci.log
- M deliveries/petit/previews/frame-0005.jpg
- M deliveries/petit/previews/frame-0050.jpg
- M deliveries/petit/previews/frame-0752.jpg
  M deliveries/petit/previews/frame-0937.jpg
  M deliveries/petit/previews/frame-1005.jpg
  M deliveries/petit/previews/manifest.json
 --- previews on disk ---
--rw-r--r-- 1 runner runner  72K Nov 11 10:02 frame-1766.jpg
--rw-r--r-- 1 runner runner 104K Nov 11 10:02 frame-1847.jpg
--rw-r--r-- 1 runner runner  62K Nov 11 10:02 frame-1935.jpg
--rw-r--r-- 1 runner runner  67K Nov 11 10:02 frame-2031.jpg
--rw-r--r-- 1 runner runner  37K Nov 11 10:02 frame-2130.jpg
--rw-r--r-- 1 runner runner  37K Nov 11 10:02 frame-2133.jpg
--rw-r--r-- 1 runner runner  13K Nov 11 10:02 manifest.json
--rw-r--r-- 1 runner runner  94K Nov 11 10:02 stills.log
+-rw-r--r-- 1 runner runner  72K Nov 11 10:06 frame-1766.jpg
+-rw-r--r-- 1 runner runner 104K Nov 11 10:07 frame-1847.jpg
+-rw-r--r-- 1 runner runner  62K Nov 11 10:07 frame-1935.jpg
+-rw-r--r-- 1 runner runner  67K Nov 11 10:07 frame-2031.jpg
+-rw-r--r-- 1 runner runner  37K Nov 11 10:07 frame-2130.jpg
+-rw-r--r-- 1 runner runner  37K Nov 11 10:07 frame-2133.jpg
+-rw-r--r-- 1 runner runner  13K Nov 11 10:07 manifest.json
+-rw-r--r-- 1 runner runner  94K Nov 11 10:07 stills.log
 --- last preview log ---
 [40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
 [40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
