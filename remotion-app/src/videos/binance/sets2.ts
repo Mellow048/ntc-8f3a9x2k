@@ -186,7 +186,7 @@ export const home: Builder = (root) => {
   const done = soft(panel(root, 0.2, 0.2, smat(tex('done', 128, 128, (g) => {
     g.fillStyle = '#2fbf71'; g.strokeStyle = INK; g.lineWidth = 9; g.beginPath(); g.arc(64, 64, 54, 0, 7); g.fill(); g.stroke();
     g.strokeStyle = '#ffffff'; g.lineWidth = 15; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(38, 66); g.lineTo(57, 85); g.lineTo(91, 45); g.stroke();
-  }), 1.1, true), 0.02, 1.14, 0.62));                                                                  // in front of the lid, which leans towards the camera
+  }), 1.1, true), -0.05, 1.215, 0.6));                                                                  // in front of the lid, which leans towards the camera
   const red = pool(root, 1.3, '#ff3b2a', 0, -0.28, 0.6, 0.78);
   return {
     light: (v) => v === 'malware' ? {...LIGHT.warm, sky: '#ff9a8a', ground: '#5a2a2a', key: '#ffb49a', amb: 1.1} : {...LIGHT.warm, amb: 1.35, keyI: 1.05},
