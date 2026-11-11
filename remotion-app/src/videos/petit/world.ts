@@ -153,7 +153,7 @@ export class World{
   const f1=A(-7.6,-4.6,FRIEND,6,DECK);f1.expr='neutral';f1.side=true;
   const bow=dyn(bowProp(p,-6.9,DECK+1.5,-4.6));bow.rotation.y=.5;
   const LA=V(-6.6,DECK+1.5,-4.2),LB=V(7.2,WIRE,WZ);
-  const line=dyn(bar(p,LA,LB,.045,material('line','#f6efd8')));
+  const line=dyn(bar(p,LA,LB,.06,material('line','#fff6df')));
   line.scale.y=.02;
   const v=A(-4.9,-5.4,PETIT,5,DECK);v.expr='neutral';
   lamp(p,-9.6,DECK+1.4,-4.4,true);lamp(p,9.4,DECK+1.4,-4.4,true);

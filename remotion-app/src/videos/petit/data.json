@@ -303,16 +303,16 @@
    "label": "Rooftop · night",
    "light": "night",
    "pos": [
-    -1.926,
-    40.151,
-    0.669
+    0.842,
+    41.033,
+    5.836
    ],
    "look": [
-    -7.4,
-    39.6,
-    -5.0
+    -6.4,
+    39.9,
+    -4.9
    ],
-   "fov": 46,
+   "fov": 48,
    "action": "A friend draws the bow; fishing line flies across the gap",
    "word": 100,
    "b": 966

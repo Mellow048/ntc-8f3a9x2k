@@ -22,7 +22,7 @@ rows=[
 (76,'load','','day',[0,1.7,-.9],4.8,4,2,46,'The pole goes up on shoulders, the bow on top'),
 (83,'elevator','','day',[0,1.9,-1.4],5.0,0,0,45,'Doors close on the loaded car, 104 lit above'),
 (87,'security','World Trade Center','day',[0,1.7,-1.1],9.6,10,4,46,'Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET'),
-(100,'bow','Rooftop · night','night',[-7.4,39.6,-5.0],7.9,44,4,46,'A friend draws the bow; fishing line flies across the gap'),
+(100,'bow','Rooftop · night','night',[-6.4,39.9,-4.9],13,34,5,48,'A friend draws the bow; fishing line flies across the gap'),
 (111,'pull','','night',[-7,39.4,-3.2],20,26,8,48,'Two friends haul the heavy cable hand over hand'),
 (119,'sunrise','Rooftop · dawn','golden',[-2.6,40.0,-6],7.5,55,8,44,'Petit steps onto the wire at dawn: empty hands, no harness, no net'),
 (130,'cross','The wire','day',[0,40.0,-6],26,78,8,48,'Wide from the far roof: he is halfway across, towers behind'),
