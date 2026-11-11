@@ -30,8 +30,10 @@ export class World{
  const A=(x:number,z:number,o=PETIT,seed=5,y=0)=>{const a=new Actor(p,x,z,o,seed);a.root.position.y=y;this.actors.push(a);return a;};
  const dyn=(o:T.Object3D)=>{o.userData.dynamic=true;return o;};
  // ---- set builders ----
- const deck=()=>{ground(p);twinTowers(p,{gap:14,height:38,roofY:DECK,wire:false});box(p,0,DECK,-6,22,.4,8,material('roof','#8a9aa2'));
-  for(const x of [-11,11])for(const z of [-9.6,-2.4])cyl(p,x,DECK+1.1,z,.07,2.2,iron());};
+ const deck=()=>{ground(p);twinTowers(p,{gap:14,height:38,roofY:DECK,wire:false});
+  const slab=material('roof','#8a9aa2');
+  for(const sd of [-1,1]){box(p,sd*10.2,DECK,-6,7.2,.4,8,slab);box(p,sd*13.9,DECK+.9,-6,.4,1.8,8,material('parapet','#a4b0b6'));}
+  for(const sd of [-1,1])for(const z of [-9.4,-2.6])cyl(p,sd*6.8,DECK+1.1,z,.07,2.2,iron());};
  const wire=()=>wireLine(p,V(-SPAN,WIRE,WZ),V(SPAN,WIRE,WZ),.25);
  const plaza=()=>{streetNY(p);twinTowers(p,{gap:14,height:38,roofY:DECK});};
  const roomSet=()=>room(p,'office');
@@ -43,32 +45,32 @@ export class World{
   const v=A(-2.6,WZ,PETIT,5,WIRE);v.mode='march';v.side=true;v.expr='neutral';
   const pole=dyn(poleProp(p,-2.6,WIRE+1.3,WZ));pole.rotation.z=Math.PI/2;
   A(1.5,-1.3,POLICE,9);A(3.7,-.9,POLICE,10);
-  policeCar(p,2.5,-3.6,.1);
+  policeCar(p,2.4,-2.2,.1);
   const c1=A(-1.9,-2.4,person(1),11),c2=A(-3.6,-1.6,person(2),12),c3=A(5.4,-2.8,person(3),13);
   for(const a of [c1,c2,c3])a.look=-1;
   this.motions.push((f,u)=>{v.root.position.x=-2.6+u*5.2;pole.position.x=v.root.position.x;});
  }
  // ---- 2 height: straight down the tower face ----
  if(place==='height'){plaza();wire();
-  policeCar(p,-2.4,-3.2,-.1);policeCar(p,2.6,-9.5,Math.PI);carNY(p,-2.6,-13,'#6a3a3a');carNY(p,2.2,-2.0,'#3a5a8a',Math.PI);
+  policeCar(p,-2.3,-2.2,.1);policeCar(p,2.4,-4.6,Math.PI-.08);carNY(p,-2.5,-4.9,'#6a3a3a');
  }
  // ---- 3 policewait: street, officers craning up ----
  if(place==='policewait'){plaza();wire();
   A(0,WZ,PETIT,5,WIRE).mode='march';
   const c1=A(1.2,-1.6,POLICE,9),c2=A(3.3,-1.1,POLICE,10);c1.look=-.9;c2.look=-.9;
-  policeCar(p,2.4,-3.6,.1);
+  policeCar(p,2.4,-2.2,.1);
   const t1=A(-2.2,-2.4,person(2),11),t2=A(-3.8,-1.9,person(3),12);t1.look=-1;t2.look=-1;
  }
  // ---- 4 performer: Paris square, juggling on a low wire ----
  if(place==='performer'){ground(p);
-  tree(p,-6.4,-1,3.4);tree(p,6.6,-2.2,3.8);tree(p,-7.6,-5,3.1);tree(p,7.4,-5.4,3);
+  tree(p,-4.6,-2.4,3.2);tree(p,4.8,-3.0,3.5);tree(p,-6.0,-6,3.1);tree(p,6.2,-6.4,3);
   lamp(p,-4.6,2.6,-3.2);lamp(p,5.2,2.6,-4.6);
-  for(const x of [-2.6,2.6])cyl(p,x,1.1,0,.09,2.2,timber());
-  bar(p,V(-2.6,2.2,0),V(2.6,2.2,0),.035,iron());
-  const v=A(0,0,PETIT,5,2.2);v.expr='grin';v.wave=.9;
-  streetHat(p,.9,1.5);
-  A(-1.5,2.2,person(1),11).expr='smile';A(1.9,2.4,person(2),12).expr='laugh';A(2.6,.9,person(3),13).expr='smile';
-  A(-2.6,.8,person(5),14).expr='smile';A(.6,2.9,person(6),15).expr='smile';
+  for(const x of [-2.6,2.6])cyl(p,x,1.3,0,.09,2.6,timber());
+  bar(p,V(-2.6,2.6,0),V(2.6,2.6,0),.04,iron());
+  const v=A(0,0,PETIT,5,2.6);v.expr='grin';v.wave=.9;
+  streetHat(p,1.4,.75);
+  A(-2.9,2.4,person(1),11).expr='smile';A(2.8,2.6,person(2),12).expr='laugh';A(3.4,1.0,person(3),13).expr='smile';
+  A(-3.6,.9,person(5),14).expr='smile';A(-1.4,3.2,person(6),15).expr='smile';
  }
  // ---- 5 magazine: the photo of the towers ----
  if(place==='magazine'){roomSet();desk(p,0,-1.0);
@@ -135,16 +137,16 @@ export class World{
  }
  // ---- 14 security: brand-new lobby, no guard yet ----
  if(place==='security'){lobby(p);
-  barrierTape(p,2.6,.9,2.4);signBoard(p,'NO GUARD YET',2.6,2.5,.92,1.9,.55);
-  const v=A(.9,.9,PETIT,5),f1=A(-.3,.6,FRIEND,6);
+  barrierTape(p,1.5,.9,2.2);signBoard(p,'NO GUARD YET',1.5,2.6,.9,1.9,.55);
+  const v=A(-.1,-.2,PETIT,5),f1=A(-1.7,-.5,FRIEND,6);
   v.expr='nervous';f1.expr='neutral';
-  this.motions.push((f,u)=>{v.root.position.x=.9-u*.5;f1.root.position.x=-.3-u*.4;v.look=.4;});
+  this.motions.push((f,u)=>{v.root.position.x=-.1-u*.6;f1.root.position.x=-1.7-u*.5;v.look=.4;});
  }
  // ---- 15 bow: night, line shot across the gap ----
  if(place==='bow'){deck();wire();
   const f1=A(-7.6,-4.6,FRIEND,6,DECK);f1.expr='neutral';f1.side=true;
   const bow=dyn(bowProp(p,-7.3,DECK+1.4,-4.6));
-  const line=dyn(bar(p,V(-7.2,WIRE+.4,WZ),V(7.2,WIRE+.4,WZ),.022,material('line','#efe6cf')));
+  const line=dyn(bar(p,V(-7.2,WIRE+.4,WZ),V(7.2,WIRE+.4,WZ),.05,material('line','#f6efd8')));
   line.scale.x=.02;
   const v=A(-5.6,-5.0,PETIT,5,DECK);v.expr='neutral';
   lamp(p,-9.6,DECK+1.4,-4.4,true);lamp(p,9.4,DECK+1.4,-4.4,true);
@@ -242,7 +244,7 @@ export class World{
  }
  // ---- 31 today: the towers are gone ----
  if(place==='today'){ground(p);streetNY(p);
-  footprint(p,-5.6,-6,6);footprint(p,5.6,-6,6);
+  footprint(p,-4.6,-8.5,6);footprint(p,6.4,-10,5);
   for(const x of [-2.9,2.9])cyl(p,x,1.1,0,.08,2.2,timber());
   bar(p,V(-2.9,2.2,0),V(2.9,2.2,0),.035,iron());
   const v=A(-2.0,0,PETIT,5,2.2);v.mode='march';v.side=true;v.expr='neutral';

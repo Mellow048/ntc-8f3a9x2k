@@ -72,16 +72,16 @@
    "label": "Paris",
    "light": "day",
    "pos": [
-    0.993,
-    2.6,
-    9.448
+    1.218,
+    1.98,
+    8.667
    ],
    "look": [
     0,
-    2.6,
+    2.9,
     0
    ],
-   "fov": 44,
+   "fov": 46,
    "action": "Paris square: Petit performs on a low wire, hat of coins, small crowd",
    "word": 21,
    "b": 269
@@ -282,16 +282,16 @@
    "label": "World Trade Center",
    "light": "day",
    "pos": [
-    1.482,
-    2.216,
-    7.47
+    0.577,
+    2.242,
+    9.488
    ],
    "look": [
-    0.2,
-    1.7,
-    0.2
+    -0.7,
+    1.6,
+    0.4
    ],
-   "fov": 44,
+   "fov": 46,
    "action": "Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET",
    "word": 87,
    "b": 883
@@ -303,16 +303,16 @@
    "label": "Rooftop · night",
    "light": "night",
    "pos": [
-    22.213,
-    17.397,
-    9.904
+    -11.313,
+    14.599,
+    2.002
    ],
    "look": [
-    -0.5,
-    13.5,
-    -6
+    -7.0,
+    13.6,
+    -4.9
    ],
-   "fov": 50,
+   "fov": 46,
    "action": "A friend draws the bow; fishing line flies across the gap",
    "word": 100,
    "b": 966
@@ -639,16 +639,16 @@
    "label": "New York · today",
    "light": "day",
    "pos": [
-    6.088,
-    6.654,
-    29.996
+    4.119,
+    3.707,
+    12.364
    ],
    "look": [
-    -0.5,
-    2.2,
-    -1.0
+    0,
+    2.4,
+    -2.0
    ],
-   "fov": 50,
+   "fov": 48,
    "action": "Two empty tower footprints with hoarding; he crosses a low wire",
    "word": 206,
    "b": 1967
@@ -2426,28 +2426,13 @@
   },
   {
    "start": 48.73,
-   "end": 49.03,
-   "text": "CAN'T"
-  },
-  {
-   "start": 49.03,
-   "end": 49.28,
-   "text": "REACH"
-  },
-  {
-   "start": 49.28,
    "end": 49.37,
-   "text": "HIM"
+   "text": "CAN'T REACH"
   },
   {
    "start": 49.37,
-   "end": 49.52,
-   "text": "UP"
-  },
-  {
-   "start": 49.52,
    "end": 49.87,
-   "text": "THERE"
+   "text": "UP THERE"
   },
   {
    "start": 50.09,

@@ -11,7 +11,7 @@ rows=[
 (0,'hook','New York · 1974','day',[0,13.4,-6],46,0,1.5,55,'Both towers, the walk wire between them, the man tiny on it, police and cars below'),
 (9,'height','','day',[0,1.0,-4],22,40,38,52,'Straight down the tower face: street, cars and people 1,350 feet below'),
 (15,'policewait','','day',[1.6,1.5,-1.2],11,-12,-2,52,'Street: police car and two officers craning up at the wire'),
-(21,'performer','Paris','day',[0,2.6,0],9.5,6,0,44,'Paris square: Petit performs on a low wire, hat of coins, small crowd'),
+(21,'performer','Paris','day',[0,2.9,0],8.8,8,-6,46,'Paris square: Petit performs on a low wire, hat of coins, small crowd'),
 (29,'magazine','','day',[0,1.6,-.9],4.6,4,18,40,'Overhead: magazine open on the table, the towers page'),
 (40,'decision','','day',[0,1.9,-.5],5.2,8,6,42,'He points at the page and grins — the decision'),
 (49,'study','New York','day',[1.3,2.2,.6],6.6,26,-6,46,'Tower base: Petit with press camera and notebook, craning up'),
@@ -21,8 +21,8 @@ rows=[
 (67,'smuggle','Freight elevator','day',[0,1.6,-.6],6.0,10,6,44,'Cable coil, pole and bow loaded beside two friends in the freight car'),
 (76,'load','','day',[0,1.7,-.9],4.8,4,2,46,'The pole goes up on shoulders, the bow on top'),
 (83,'elevator','','day',[0,1.9,-1.4],5.0,0,0,45,'Doors close on the loaded car, 104 lit above'),
-(87,'security','World Trade Center','day',[.2,1.7,.2],7.4,10,4,44,'Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET'),
-(100,'bow','Rooftop · night','night',[-.5,13.5,-6],28,55,8,50,'A friend draws the bow; fishing line flies across the gap'),
+(87,'security','World Trade Center','day',[-.7,1.6,.4],9.2,8,4,46,'Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET'),
+(100,'bow','Rooftop · night','night',[-7.0,13.6,-4.9],8.2,-32,7,46,'A friend draws the bow; fishing line flies across the gap'),
 (111,'pull','','night',[-7,13.2,-3.2],24,48,4,50,'Two friends haul the heavy cable hand over hand'),
 (119,'sunrise','Rooftop · dawn','golden',[-2.6,14.2,-6],7.5,55,12,44,'Petit steps onto the wire at dawn: empty hands, no harness, no net'),
 (130,'cross','The wire','day',[-.5,14.0,-6],26,78,3,48,'Wide from the far roof: he is halfway across, towers behind'),
@@ -38,7 +38,7 @@ rows=[
 (177,'dropped','City Hall','day',[.2,1.5,-1.0],4.4,6,26,38,'Overhead: gavel down, DROPPED stamp on the charge sheet'),
 (187,'park','Central Park','day',[-.2,2.6,.2],10,14,4,44,'Free show: he walks a low wire above a clapping crowd'),
 (194,'pass','Observation deck','day',[.1,1.8,-.9],5.0,10,8,40,'The clerk slides the lifetime pass across the counter'),
-(206,'today','New York · today','day',[-.5,2.2,-1.0],32,12,8,50,'Two empty tower footprints with hoarding; he crosses a low wire'),
+(206,'today','New York · today','day',[0,2.4,-2.0],15,16,5,48,'Two empty tower footprints with hoarding; he crosses a low wire'),
 (216,'quote','','day',[.4,2.4,0],11,-18,2,46,'Side view: he stops mid-wire, points at two towers on the skyline'),
 (227,'walk','','day',[-.2,2.6,0],6.2,26,2,42,'Close: the pass in his hand; he walks on out of frame'),
 ]
@@ -70,7 +70,8 @@ LEAD={'a','an','the'}
 OVERRIDE={(9,14):'1,350 FEET',(17,18):'POLICE',(19,20):'WAITING BELOW',(23,24):'TWENTY-FOUR',
  (131,132):'45 MINUTES',(135,136):'EIGHT TIMES',(201,202):'LIFETIME PASS',(196,197):'PORT AUTHORITY',
  (64,65):'FAKE ID',(92,93):'ONLY JUST',(118,118):'BY HAND',(208,210):'GONE NOW',
- (84,86):'FREIGHT ELEVATOR',(198,199):'GIVES HIM',(213,215):'STILL WALKING',(144,144):'BELOW'}
+ (84,86):'FREIGHT ELEVATOR',(198,199):'GIVES HIM',(213,215):'STILL WALKING',(144,144):'BELOW',
+ (157,159):"CAN'T REACH",(160,161):'UP THERE'}
 def clean(t):return t.strip('.,!?;:').upper()
 groups=[]
 for a0,b0 in _span:
