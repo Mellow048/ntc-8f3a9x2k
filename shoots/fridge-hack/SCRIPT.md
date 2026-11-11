@@ -1,6 +1,6 @@
 # "The Hack That Melted 700 Supermarkets" — SCRIPT
 
-**Status: delivered on 2026-11-11. The user has not seen it yet, and it is not approved.** News short about the cyberattack that heated supermarket freezers across France in October 2026, and France's accusation, on 9 November, that a hacking unit of Iran's Revolutionary Guard did it. Made in the order written in `references/news/README.md`, after the two films in `references/news/`.
+**Status: delivered on 2026-11-11 and approved by the user the same day, after watching it: "awesome sauce, same banger".** It is on its branch only; the user has not asked for it to be added to the news references on `main`. News short about the cyberattack that heated supermarket freezers across France in October 2026, and France's accusation, on 9 November, that a hacking unit of Iran's Revolutionary Guard did it. Made in the order written in `references/news/README.md`, after the two films in `references/news/`.
 
 ## Researched facts and sources
 
@@ -189,7 +189,7 @@ Stills for review are made locally, a frame at a time: `remotion-app/scripts/pic
   - of the second render, one frame of every shot, the frames either side of the 13 changes of shot between two shots on the same set, and 39 more where it had changed;
   - of the final render, 111 frames: the four places that changed, with the frames either side of every join and cut in them, and one frame in every eight from 1900 to the end, with the last frame.
   - Every shot of the final film has been seen on a still from a render in which that shot is the same picture.
-- **Not done:** the agent that made the film did not listen to it (the sound was set from meters) and did not watch it in motion. That the takes run smoothly is a reading of the numbers above and of stills. The user has not seen the film.
+- **Not done:** the agent that made the film did not listen to it (the sound was set from meters) and did not watch it in motion. That the takes run smoothly was a reading of the numbers above and of stills. The approval is the user's, after watching the film.
 - **Known small things, left as they are:**
   - Once the lectern has frozen, icicles cover the top edge of the TEHRAN plaque, and the caption sits right under the plaque.
   - In the first frames of the trolley shot, the worker's shoulder touches the left edge of the frame.
