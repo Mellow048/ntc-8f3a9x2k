@@ -87,16 +87,16 @@
       "label": "",
       "light": "day",
       "pos": [
-        -0.686,
-        1.116,
-        9.553
+        0.729,
+        1.279,
+        7.443
       ],
       "look": [
-        1.6,
-        1.5,
-        -1.2
+        2,
+        2.4,
+        -1.6
       ],
-      "fov": 52,
+      "fov": 54,
       "action": "Street: police car and two officers craning up at the wire",
       "word": 15,
       "b": 166
@@ -255,14 +255,14 @@
       "label": "Freight elevator",
       "light": "day",
       "pos": [
-        1.135,
-        2.357,
-        7.376
+        0.923,
+        2.212,
+        7.115
       ],
       "look": [
         0,
-        1.5,
-        -0.7
+        1.55,
+        -0.4
       ],
       "fov": 44,
       "action": "Cable coil, pole and bow loaded beside two friends in the freight car",
@@ -276,14 +276,14 @@
       "label": "",
       "light": "day",
       "pos": [
-        0.446,
-        1.935,
-        5.676
+        0.609,
+        2.288,
+        6.656
       ],
       "look": [
         0,
-        1.6,
-        -0.7
+        1.8,
+        -0.3
       ],
       "fov": 46,
       "action": "The pole goes up on shoulders, the bow on top",
@@ -298,13 +298,13 @@
       "light": "day",
       "pos": [
         0,
-        1.9,
-        4.8
+        2.123,
+        5.196
       ],
       "look": [
         0,
         1.9,
-        -1.4
+        -1.2
       ],
       "fov": 45,
       "action": "Doors close on the loaded car, 104 lit above",
@@ -318,12 +318,12 @@
       "label": "World Trade Center",
       "light": "day",
       "pos": [
-        1.663,
-        2.37,
-        8.331
+        2.205,
+        2.356,
+        8.186
       ],
       "look": [
-        0,
+        0.9,
         1.7,
         -1.1
       ],
@@ -507,16 +507,16 @@
       "label": "",
       "light": "day",
       "pos": [
-        0.811,
-        5.335,
-        3.72
+        0.593,
+        4.145,
+        6.073
       ],
       "look": [
         0,
-        3.4,
-        -4
+        2.8,
+        -2.4
       ],
-      "fov": 56,
+      "fov": 58,
       "action": "Inside the crowd: faces tilted up, mouths open",
       "word": 147,
       "b": 1388

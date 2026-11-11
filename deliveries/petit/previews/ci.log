@@ -1,0 +1,76 @@
+run 42995328237 / b350d6371f9788c6adfa56e7d312c156167f1384
+--- git status ---
+ M deliveries/petit/previews/frame-0005.jpg
+ M deliveries/petit/previews/frame-0050.jpg
+ M deliveries/petit/previews/frame-0100.jpg
+ M deliveries/petit/previews/frame-0106.jpg
+ M deliveries/petit/previews/frame-0150.jpg
+ M deliveries/petit/previews/frame-0233.jpg
+ M deliveries/petit/previews/frame-0322.jpg
+ M deliveries/petit/previews/frame-0397.jpg
+ M deliveries/petit/previews/frame-0477.jpg
+ M deliveries/petit/previews/frame-0521.jpg
+ M deliveries/petit/previews/frame-0548.jpg
+ M deliveries/petit/previews/frame-0593.jpg
+ M deliveries/petit/previews/frame-0661.jpg
+ M deliveries/petit/previews/frame-0716.jpg
+ M deliveries/petit/previews/frame-0752.jpg
+ M deliveries/petit/previews/frame-0841.jpg
+ M deliveries/petit/previews/frame-0937.jpg
+ M deliveries/petit/previews/frame-1005.jpg
+ M deliveries/petit/previews/frame-1110.jpg
+ M deliveries/petit/previews/frame-1205.jpg
+ M deliveries/petit/previews/frame-1247.jpg
+ M deliveries/petit/previews/frame-1274.jpg
+ M deliveries/petit/previews/frame-1296.jpg
+ M deliveries/petit/previews/frame-1337.jpg
+ M deliveries/petit/previews/frame-1377.jpg
+ M deliveries/petit/previews/frame-1419.jpg
+ M deliveries/petit/previews/frame-1479.jpg
+ M deliveries/petit/previews/frame-1535.jpg
+ M deliveries/petit/previews/frame-1609.jpg
+ M deliveries/petit/previews/frame-1689.jpg
+ M deliveries/petit/previews/frame-1766.jpg
+ M deliveries/petit/previews/frame-1847.jpg
+ M deliveries/petit/previews/frame-1935.jpg
+ M deliveries/petit/previews/frame-2031.jpg
+ M deliveries/petit/previews/frame-2130.jpg
+ M deliveries/petit/previews/frame-2133.jpg
+ M deliveries/petit/previews/manifest.json
+ M deliveries/petit/previews/stills.log
+?? deliveries/petit/previews/ci.log
+--- previews on disk ---
+-rw-r--r-- 1 runner runner  72K Nov 11 09:31 frame-1766.jpg
+-rw-r--r-- 1 runner runner 104K Nov 11 09:31 frame-1847.jpg
+-rw-r--r-- 1 runner runner  62K Nov 11 09:31 frame-1935.jpg
+-rw-r--r-- 1 runner runner  67K Nov 11 09:31 frame-2031.jpg
+-rw-r--r-- 1 runner runner  37K Nov 11 09:31 frame-2130.jpg
+-rw-r--r-- 1 runner runner  37K Nov 11 09:31 frame-2133.jpg
+-rw-r--r-- 1 runner runner  13K Nov 11 09:31 manifest.json
+-rw-r--r-- 1 runner runner  84K Nov 11 09:31 stills.log
+--- last preview log ---
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+Preview frame 100
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+[40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
+Preview frame 2130
