@@ -32,7 +32,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  11.60 |  348 | pop | name tag: Cyberleek |
 |  11.65 |  350 | two sly notes | the leaker's motif, on 'Cyberleek' |
 |  12.60 |  378 | boing | the museum leek wobbles on 'vegetable' |
-|  13.53 |  406 | three pops | clips land in the feed |
+|  13.23 |  397 | three pops | clips land in the feed as the shot opens |
 |  14.00 |  420 | stamp thud | LEAKED stamp |
 |  15.00 |  450 | pop | the leaker's stated reason |
 |  16.40 |  492 | click | the case opens |

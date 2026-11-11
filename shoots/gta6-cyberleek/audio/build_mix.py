@@ -468,8 +468,8 @@ def build_sfx(voice_lufs):
     EVENTS.append((Wt(33), "typing", "the leaker at the keyboard"))
     fx(Wt(41), boing(), -12, 0.2, "boing", "the museum leek wobbles on 'vegetable'")
     for i in range(3):
-        fx((Wf(43) + i * 4 - 2) / FPS, pop(520 + 90 * i, 1200 + 150 * i, 0.06), -14, -0.2 + 0.2 * i)
-    EVENTS.append(((Wf(43) - 2) / FPS, "three pops", "clips land in the feed"))
+        fx(cut_t(9) + (2 + i * 4) / FPS, pop(520 + 90 * i, 1200 + 150 * i, 0.06), -14, -0.2 + 0.2 * i)
+    EVENTS.append((cut_t(9) + 2 / FPS, "three pops", "clips land in the feed as the shot opens"))
     # 4: the box
     fx(Wt(53), knock(), -12, 0.1, "click", "the case opens")
     fx(Wt(57), slide(500, 1400, 0.16), -13, 0.1, "slip", "the code slides out of the case")

@@ -141,7 +141,7 @@ export const feed: Builder = (root) => {
     light: () => LIGHT.show,
     tick: ({f, shot}) => {
       const ads = shot.v === 'ads';
-      tiles.forEach((t, i) => { const at = W(43) + i * 4 - 2; t.scale.setScalar(ads ? 1 : Math.max(0.001, pop(f, at, 8))); t.visible = ads || f >= at; });
+      tiles.forEach((t, i) => { const at = shot.at + 2 + i * 4; t.scale.setScalar(ads ? 1 : Math.max(0.001, pop(f, at, 8))); t.visible = ads || f >= at; });
       badges.forEach((b, i) => { const at = shot.at + 2 + i * 4; b.visible = ads && f >= at; b.scale.setScalar(Math.max(0.001, pop(f, at, 8))); b.rotation.y = f * 0.22 + i; b.position.y = -0.24 + hop(f, W(68) + i * 2, 0.12, 9); });
     },
   };
