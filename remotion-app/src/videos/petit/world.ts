@@ -2,7 +2,7 @@ import * as T from 'three';
 import {V,box,cyl,sphere,bar,material,timber,iron,stone,wood,mesh,lamp,batchStatic} from './build';
 import {ground,room,desk,lettering,paper,twinTowers,wireLine,elevatorCar,streetNY,parkSet,bowProp,poleProp,mug,
  cableCoil,pressCamera,toolbox,policeCar,barrierTape,signBoard,magazineProp,footprint,smallTowers,tree,parkBench,
- lobby,streetHat,carNY} from './sets';
+ lobby,streetHat,carNY,skyline} from './sets';
 import {Actor,PETIT,FRIEND,POLICE,WORKER,REPORTER,CLERK,person} from './cast';
 import {Shot,clamp,ease,action,word} from './story';
 import {NOINK} from './style/ink';
@@ -35,7 +35,7 @@ export class World{
   for(const sd of [-1,1]){box(p,sd*10.2,DECK,-6,7.2,.4,8,slab);box(p,sd*13.9,DECK+.9,-6,.4,1.8,8,material('parapet','#a4b0b6'));}
   for(const sd of [-1,1])for(const z of [-9.4,-2.6])cyl(p,sd*6.8,DECK+1.1,z,.07,2.2,iron());};
  const wire=()=>wireLine(p,V(-SPAN,WIRE,WZ),V(SPAN,WIRE,WZ),.25);
- const plaza=()=>{streetNY(p);twinTowers(p,{gap:14,height:38,roofY:DECK});};
+ const plaza=()=>{streetNY(p);skyline(p,-70);twinTowers(p,{gap:14,height:38,roofY:DECK,wire:false});};
  const roomSet=()=>room(p,'office');
  const lowWire=(x:number,z:number,half=3)=>{for(const s of [-half,half])cyl(p,x+s,half?2.2/2:1,z,.08,2.2,timber());bar(p,V(x-half,2.2,z),V(x+half,2.2,z),.035,iron());};
  const upCrowd=(n:number,x0:number,z0:number,dx:number)=>{for(let i=0;i<n;i++){const a=A(x0+(i%3)*dx,z0-Math.floor(i/3)*1.5,person(i+2),i+11);a.look=-.9;a.expr='shock';}};
@@ -68,7 +68,7 @@ export class World{
   for(const x of [-2.6,2.6])cyl(p,x,1.3,0,.09,2.6,timber());
   bar(p,V(-2.6,2.6,0),V(2.6,2.6,0),.04,iron());
   const v=A(0,0,PETIT,5,2.6);v.expr='grin';v.wave=.9;
-  streetHat(p,1.4,.75);
+  streetHat(p,1.6,.9);box(p,1.6,.02,.9,.9,.06,.9,material('hathold','#6a6f78'));
   A(-2.9,2.4,person(1),11).expr='smile';A(2.8,2.6,person(2),12).expr='laugh';A(3.4,1.0,person(3),13).expr='smile';
   A(-3.6,.9,person(5),14).expr='smile';A(-1.4,3.2,person(6),15).expr='smile';
  }
@@ -137,10 +137,10 @@ export class World{
  }
  // ---- 14 security: brand-new lobby, no guard yet ----
  if(place==='security'){lobby(p);
-  barrierTape(p,1.5,.9,2.2);signBoard(p,'NO GUARD YET',1.5,2.6,.9,1.9,.55);
-  const v=A(-.1,-.2,PETIT,5),f1=A(-1.7,-.5,FRIEND,6);
+  barrierTape(p,1.4,.8,2.0);signBoard(p,'NO GUARD YET',1.4,2.5,.82,1.8,.5);
+  const v=A(-1.9,.2,PETIT,5),f1=A(-.6,.0,FRIEND,6);
   v.expr='nervous';f1.expr='neutral';
-  this.motions.push((f,u)=>{v.root.position.x=-.1-u*.6;f1.root.position.x=-1.7-u*.5;v.look=.4;});
+  this.motions.push((f,u)=>{v.root.position.x=-1.9-u*.7;f1.root.position.x=-.6-u*.6;v.look=.4;});
  }
  // ---- 15 bow: night, line shot across the gap ----
  if(place==='bow'){deck();wire();
@@ -243,8 +243,10 @@ export class World{
   this.motions.push((f)=>{const q=action(f,194,14);pass.position.x=.5-q*.75;pass.position.y=1.28+q*.06;clerk.wave=q*.5;v.wave=q*.6;});
  }
  // ---- 31 today: the towers are gone ----
- if(place==='today'){ground(p);streetNY(p);
-  footprint(p,-4.6,-8.5,6);footprint(p,6.4,-10,5);
+ if(place==='today'){ground(p);skyline(p,-70);
+  footprint(p,-4.6,-9,6);footprint(p,6.4,-11,5);
+  parkBench(p,-6.6,1.6);parkBench(p,6.2,2.2);
+  for(let i=0;i<4;i++)tree(p,-9+i*6,-2.6,3.0+i*.2);
   for(const x of [-2.9,2.9])cyl(p,x,1.1,0,.08,2.2,timber());
   bar(p,V(-2.9,2.2,0),V(2.9,2.2,0),.035,iron());
   const v=A(-2.0,0,PETIT,5,2.2);v.mode='march';v.side=true;v.expr='neutral';
@@ -252,7 +254,7 @@ export class World{
   this.motions.push((f,u)=>{v.root.position.x=-2.0+u*3.4;});
  }
  // ---- 32 quote: if he sees two towers ----
- if(place==='quote'){ground(p);tree(p,-5.6,-2.4,3.2);tree(p,5.8,-3.0,3.4);
+ if(place==='quote'){ground(p);skyline(p,-60);tree(p,-5.6,-2.4,3.2);tree(p,5.8,-3.0,3.4);
   for(const x of [-3.0,3.0])cyl(p,x,1.1,0,.08,2.2,timber());
   bar(p,V(-3.0,2.2,0),V(3.0,2.2,0),.035,iron());
   smallTowers(p,0,0,-15,.9);

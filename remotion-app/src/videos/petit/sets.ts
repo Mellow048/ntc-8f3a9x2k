@@ -248,10 +248,24 @@ export function footprint(p:T.Object3D,x:number,z:number,s=7){
  box(p,x,.12,z,s+.5,.3,.3,material('footedge','#b8bcc0'));
  box(p,x,.12,z-s/2,s+.5,.3,.3,material('footedge','#b8bcc0'));
  box(p,x,-.06,z+s/2,.3,.06,s,material('footedge','#b8bcc0'));
- // hoarding fence around the empty lot
- for(let i=0;i<7;i++){const t=i/6-.5;box(p,x+t*(s+1.6),1.0,z-s/2-.9,.16,2,.16,timber());}
- box(p,x,1.6,z-s/2-.9,s+1.8,.9,.08,material('hoarding','#5e7f9a'));
- for(const dy of [-.35,.35])box(p,x,1.6+dy,z-s/2-.86,s+1.8,.05,.03,material('hoardline','#cdd6dd'));
+ // plywood hoarding around the empty lot
+ const hw=s+1.8;
+ for(let i=0;i<7;i++){const t=i/6-.5;box(p,x+t*hw,1.15,z-s/2-.9,.16,2.3,.16,timber());}
+ box(p,x,1.25,z-s/2-.9,hw,1.9,.08,material('hoarding','#5e7f9a'));
+ for(const dy of [-.6,.6])box(p,x,1.25+dy,z-s/2-.84,hw,.07,.03,material('hoardline','#cdd6dd'));
+ box(p,x,2.3,z-s/2-.9,hw+.1,.12,.16,timber());
+}
+export function skyline(p:T.Object3D,z=-58){
+ const glass=material('skyGlass','#7fa8bd',rep(towerGlass(),2,4));
+ const far=material('skyGlass2','#9ab6c6',rep(towerGlass(),2,3));
+ const roofM=material('skyRoof','#6b7880');
+ const hs=[26,34,20,42,29,37,23,31,45,25,33,19];
+ for(let i=0;i<hs.length;i++){
+  const x=-66+i*12, h=hs[i], w=7+(i%3)*1.4, d=6+(i%2)*2;
+  box(p,x,h/2,z-(i%2)*8,w,h,d,i%2?glass:far);
+  box(p,x,h+.3,z-(i%2)*8,w+.6,.6,d+.6,roofM);
+  if(i%4===0){box(p,x-1,h+.9,z-(i%2)*8,2.4,1.2,2.4,roofM);cyl(p,x+2,h+2,z-(i%2)*8,.08,3,iron());}
+ }
 }
 export function smallTowers(p:T.Object3D,x:number,y:number,z:number,s=1){
  const g=new T.Group();g.position.set(x,y,z);g.scale.setScalar(s);p.add(g);

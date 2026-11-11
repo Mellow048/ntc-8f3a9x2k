@@ -72,13 +72,13 @@
    "label": "Paris",
    "light": "day",
    "pos": [
-    1.218,
-    1.98,
-    8.667
+    1.15,
+    2.2,
+    10.94
    ],
    "look": [
     0,
-    2.9,
+    2.2,
     0
    ],
    "fov": 46,
@@ -282,14 +282,14 @@
    "label": "World Trade Center",
    "light": "day",
    "pos": [
-    0.577,
-    2.242,
-    9.488
+    1.159,
+    2.25,
+    9.184
    ],
    "look": [
-    -0.7,
-    1.6,
-    0.4
+    -0.3,
+    1.7,
+    -1.2
    ],
    "fov": 46,
    "action": "Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET",
@@ -303,14 +303,14 @@
    "label": "Rooftop · night",
    "light": "night",
    "pos": [
-    -11.313,
-    14.599,
-    2.002
+    -1.926,
+    14.151,
+    0.669
    ],
    "look": [
-    -7.0,
+    -7.4,
     13.6,
-    -4.9
+    -5.0
    ],
    "fov": 46,
    "action": "A friend draws the bow; fishing line flies across the gap",
@@ -324,16 +324,16 @@
    "label": "",
    "light": "night",
    "pos": [
-    10.792,
-    14.874,
-    12.82
+    1.734,
+    14.943,
+    14.707
    ],
    "look": [
     -7,
     13.2,
     -3.2
    ],
-   "fov": 50,
+   "fov": 48,
    "action": "Two friends haul the heavy cable hand over hand",
    "word": 111,
    "b": 1026
@@ -639,14 +639,14 @@
    "label": "New York · today",
    "light": "day",
    "pos": [
-    4.119,
-    3.707,
-    12.364
+    3.111,
+    3.346,
+    12.236
    ],
    "look": [
     0,
-    2.4,
-    -2.0
+    2.3,
+    -2.4
    ],
    "fov": 48,
    "action": "Two empty tower footprints with hoarding; he crosses a low wire",
@@ -660,9 +660,9 @@
    "label": "",
    "light": "day",
    "pos": [
-    -2.997,
-    2.784,
-    10.455
+    -2.906,
+    2.819,
+    11.528
    ],
    "look": [
     0.4,
