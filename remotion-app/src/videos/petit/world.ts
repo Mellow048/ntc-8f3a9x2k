@@ -189,9 +189,9 @@ export class World{
   const f1=A(-7.0,-4.2,FRIEND,6,DECK);f1.expr='neutral';f1.side=true;
   const bow=dyn(bowProp(p,-6.35,DECK+1.55,-4.0));bow.rotation.set(0,-.35,.25);
   const LA=V(-6.0,DECK+1.55,-3.9),LB=V(7.2,WIRE,WZ);
-  const line=dyn(bar(p,LA,LB,.075,material('line','#fff6df')));
+  const line=dyn(bar(p,LA,LB,.2,material('line','#fff6df')));
   line.scale.y=.02;
-  const arrow=dyn(cyl(p,0,0,0,.035,1.1,material('shaft','#f0dfae')));
+  const arrow=dyn(cyl(p,0,0,0,.07,1.4,material('shaft','#f0dfae')));
   arrow.rotation.x=Math.PI/2;
   lamp(p,-9.6,DECK+1.4,-4.4,true);lamp(p,9.4,DECK+1.4,-4.4,true);
   this.motions.push((f)=>{const q=.02+.98*action(f,100,20);
@@ -204,7 +204,7 @@ export class World{
  if(place==='pull'){deck();wire();
   const f1=A(-7.3,-3.1,FRIEND,6,DECK),f2=A(-7.3,-4.9,FRIEND,7,DECK);
   const CA=V(-7.1,DECK+1.35,-4.0),CB=V(7.2,WIRE,WZ);
-  const cable=dyn(bar(p,CA,CB,.1,material('cable-haul','#dfe6f0')));
+  const cable=dyn(bar(p,CA,CB,.3,material('cable-haul','#e8eef8')));
   cable.scale.y=.3;
   const v=A(1.6,WZ,PETIT,5,WIRE);v.expr='nervous';
   this.motions.push((f)=>{const q=.3+.7*action(f,111,26);cable.scale.y=q;cable.position.copy(CA).addScaledVector(CB.clone().sub(CA),q/2);
