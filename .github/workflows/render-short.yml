@@ -75,11 +75,13 @@ jobs:
           npx remotion browser ensure
           echo "CHROME_PATH=$CHROME_PATH"
           ls -lh "$CHROME_PATH" || true
-          node scripts/petit/stills.mjs 2>&1 | tee /tmp/stills.log
+          node scripts/petit/stills.mjs 2>&1 | tee /tmp/stills.log; echo "exit:$?"
           cat /tmp/stills.log
+          mkdir -p shoots/petit/out/previews
+          cp /tmp/stills.log shoots/petit/out/previews/stills.log || true
 
       - name: Commit Petit previews
-        if: inputs.composition == 'Petit' && inputs.still_frame == 'all'
+        if: always() && inputs.composition == 'Petit' && inputs.still_frame == 'all'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
