@@ -1,4 +1,4 @@
-# News reference — the user's approved news short
+# News reference — the user's approved news shorts
 
 This is a **separate category** from the regular shorts in
 [`../approved/`](../approved/README.md). A news short tells a real-life story
@@ -6,7 +6,7 @@ that is in the news. It uses the same look and passes the same release gates,
 but it is paced and built differently and has extra accuracy rules, so it has
 its own reference.
 
-Like `../approved/`, this is **the user's own approved original**, not the
+Like `../approved/`, these are **the user's own approved originals**, not the
 third-party style-study images elsewhere in `references/`.
 
 ## First decide: study this folder, or ignore it
@@ -16,14 +16,88 @@ third-party style-study images elsewhere in `references/`.
 | A short about **real-life news**: real people, companies or events that are in the news, something that just happened or is still unfolding | **Study this folder before planning.** It is the standard a news short has to match. |
 | A regular short that explains or tells something entertaining: engineering, science, history, curiosities. **This is the default** whenever no news story is named. | **Ignore this folder.** Study `references/approved/` instead. Do not borrow the news structure, graphics, tone or music. |
 
+## The films
+
 | Film | Video | Source / guide | Role |
 |---|---|---|---|
 | Nvidia's CEO and the Suspected Spy (69 s) | [final-720p.mp4](nvidia-spy/final-720p.mp4) | [Study and reproduce](nvidia-spy/README.md) | The benchmark for news shorts. The user: "so well done and not lazy", "maybe the best one". |
+| The GTA 6 Leaker Who Wanted a Disc (74 s) | [final-720p.mp4](gta6-leaker/final-720p.mp4) | [Study and reproduce](gta6-leaker/README.md) | Made by following the first film. Approved at the first delivery, with no questions to the user. The user: "another banger". |
+
+The user asked for the second film to be kept here "so that other agents
+follow your footsteps without me arguing again". The next section is those
+footsteps.
+
+## How to make a news short: the order both films followed
+
+**Before you start: do not ask the user what is already decided.** Format
+(720×1280, 30 fps, one or two caption words at a time), Arena narration in the
+voice the user chose, original music that can be heard, rendering on GitHub
+Actions and delivery as an MP4 on your branch are standing decisions, written
+in [IMPORTANT.md](../../IMPORTANT.md) and
+[VIDEO_HANDOFF.md](../../VIDEO_HANDOFF.md). Ask only what neither the
+repository nor the news can answer. Do not stop to have the script, the voice
+or the plan approved unless the user asks to see them first: finish the film
+and show the script with it.
+
+1. **Research first.** Search the story in several outlets before writing a
+   word. Fill a table in `shoots/<slug>/SCRIPT.md`: fact, source link, date
+   checked. Check the details in the request itself the same way. List what
+   you could not confirm and decide for each item whether the film words it
+   carefully or leaves it out.
+2. **Write this film's rules, then the narration.** Who is a named caricature
+   and who is anonymous, what stays attributed, what will not be shown. Then
+   200 to 240 words for 60 to 75 seconds. The first line is the whole story.
+   If the user asked a question, one line answers it plainly. The other side
+   gets its own lines. The last line is a question with two real sides. Map
+   every line to rows of the facts table.
+3. **Voice: one take.** Use the voice the user chose; both films use it, and
+   `voice/voice.wav` in either snapshot is the record of how it sounds. Voice
+   ids do not carry over to a new session. If yours has none, make one
+   `add_voice` call (en-US, masculine, conversational) with the film's opening
+   lines as the audition text and go on with the voice the user picks. Do not
+   run a series of auditions and never hand over several full reads to choose
+   from. Keep the raw take, then run a copy of `build_voice.py` to get
+   `voice.wav` and `words.json`.
+4. **Copy the machinery, write the film new.** Take the machinery from
+   [`gta6-leaker/source/`](gta6-leaker/README.md#make-a-new-news-short-the-same-way)
+   (the same as in the Nvidia snapshot, with one fix). Write `story.ts` first:
+   one staged picture for each phrase, every cut on a spoken word, a new
+   picture every 1.5 to 2 seconds. Then the sets and costumes, then the
+   graphic cues, then the score and effects. Nothing of another film's story,
+   sets or music goes into yours.
+5. **Look at stills before you pay for a render.** The cast sheet first. Then
+   every shot, in the middle and in its first frames after the cut. Fix what
+   you see and look again. The second film took five rounds.
+6. **Render on GitHub Actions** with the parallel workflow, and read the check
+   report it writes. Whatever it flags gets fixed and rendered again, not
+   explained away.
+7. **Check the finished file**: size and frame count, loudness and true peak,
+   the music's level against the voice, and frames of the final file wherever
+   it differs from what you already looked at.
+8. **Search the news again on the day you deliver.** If the story moved, the
+   film moves with it.
+9. **Deliver with a plain account**: the answer to the user's question first,
+   then the link to the file pinned to its commit, the narration, what you
+   could not confirm, what you checked and what you did not. If you measured
+   the sound and looked at stills, say that. Never say you listened or watched.
+10. **Record it** in the film's `SCRIPT.md` and in a short section of
+    `VIDEO_HANDOFF.md` on your branch. A film is added to this folder only
+    after the user has approved it and asked for it to be kept.
+
+What the two films share, and what they do not:
+
+| The same in both | New in each |
+|---|---|
+| The order of work above | The story, its facts and its rules |
+| The look: painted 3D sets, flat cartoon people, ink outlines, word-timed captions | Every set and every costume |
+| The machinery: building kit, caption and card components, post passes, mixing chain, render workflow | The shot list and the graphic cues |
+| The voice and the release gates | The score, the effects and the closing gag |
 
 ## What a news short needs on top of the usual gates
 
-Every gate in [IMPORTANT.md](../../IMPORTANT.md) still applies. The approved
-film also does all of the following, and a new news short must too:
+Every gate in [IMPORTANT.md](../../IMPORTANT.md) still applies. Rules 1–9 come
+from the first film and 10–13 from the second. A new news short follows all of
+them:
 
 1. **Facts first, with sources.** Search the news before writing. Keep a table
    of fact, source link and the date you checked; every line of narration maps
@@ -38,7 +112,7 @@ film also does all of the following, and a new news short must too:
 5. **Draw real people with care.** A public figure is a simple caricature made
    of well-known public features (hair, glasses, jacket) plus a name tag. A
    private person, or someone accused and not charged, is an anonymous figure,
-   never a likeness.
+   never a likeness. Someone nobody has identified gets no face at all.
 6. **Jokes aim at the situation** (the timing, the price), never at a spouse,
    children or a victim. Nothing sexual.
 7. **Pace and graphics.** About a minute unless the user says otherwise. A
@@ -49,31 +123,48 @@ film also does all of the following, and a new news short must too:
    support.
 9. **When you show the user the script, say what you could not confirm** and
    what you worded carefully for accuracy.
+10. **Answer what the user asked.** When the request is a question ("what
+    happened to…?"), the film says the answer in plain words, and so does
+    your reply.
+11. **Do not help the wrongdoing along.** Show nothing from leaked or stolen
+    material. Give no name, address or link that leads to it, or to something
+    the subject of the story is selling.
+12. **A number on screen is a reported number.** Put its source beside it.
+    Draw a chart to scale from zero and say which points are reported. Note
+    arithmetic of your own as such in the facts table.
+13. **Search again before you deliver.** The film has to be right on the day
+    the user gets it.
 
 ## What agents must study
 
-1. Watch the film through, then again cut by cut. If you cannot play video,
-   go through the two shot sheets in the film's folder. Note what is new in
-   every shot: 39 shots in 69 seconds, each staged for its own line.
-2. Read `SCRIPT.md` (facts table, rules, beat map), then `story.ts`.
+1. Watch both films through, then again cut by cut. If you cannot play video,
+   go through the two shot sheets in each film's folder. Note what is new in
+   every shot: 39 shots in 69 seconds, 46 shots in 74 seconds, each staged for
+   its own line.
+2. Read each `SCRIPT.md` (facts table, what could not be confirmed, rules,
+   beat map), then `story.ts`.
 3. Read `Overlays.tsx` and `Captions.tsx`: the on-screen graphics carry the
    sources, names, dates and exact quotes.
 4. Read the sets and the cast to see how places and people become recognizable
    from shape, detail and staging, not from labels on boxes.
-5. Read `build_mix.py`. Reuse the techniques, **not the music**: every film
-   needs its own score.
+5. Read `build_mix.py` in both. Reuse the techniques, **not the music**: the
+   two scores have nothing in common, and every film needs its own.
 6. Read the render workflow and the review scripts.
+7. Compare the two films. What they share is what to reuse. Everything else
+   was written for one story and stays with it.
 
-The film is a snapshot of a developing story as reported on 2026-11-10. Do not
-reuse its facts, script, sets or score for another story. Reuse how it was made.
+Each film is a snapshot of a developing story on the date given in its guide.
+Do not reuse its facts, script, sets or score for another story. Reuse how it
+was made.
 
 ## Preservation
 
-The folder holds the approved MP4 unchanged, `source/` with the original
-repository-relative paths, and a SHA-256 manifest with the source commit. Run
-`python references/news/verify.py` to check every file. `audio/mix.wav` is not
-stored; `build_mix.py` regenerates it from the included voice. The workflow
-under `source/.github/` is an inert copy: nothing runs from here.
+Each film's folder holds the approved MP4 unchanged, `source/` with the
+original repository-relative paths, and a SHA-256 manifest with the source
+commit. Run `python references/news/verify.py` to check every file.
+`audio/mix.wav` is not stored; `build_mix.py` regenerates it from the included
+voice. The workflow under `source/.github/` is an inert copy: nothing runs from
+here.
 
-Do not edit this folder or build inside it. Copy what you need to your own
-branch. It stays on `main`, so deleting a branch does not remove it.
+Do not edit these folders or build inside them. Copy what you need to your own
+branch. They stay on `main`, so deleting a branch does not remove them.

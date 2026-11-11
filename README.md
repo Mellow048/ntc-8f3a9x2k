@@ -13,8 +13,9 @@ word-timed physical storytelling, original sound and Arena narration.
 - **[Approved reference library](references/approved/README.md)** — actual
   Taipei 101, Beer Flood and Köpenick MP4s **plus their source**, preserved on
   `main` so deleting a historical branch does not remove these examples.
-- **[News reference](references/news/README.md)** — the approved Nvidia news
-  short, MP4 **plus source**, in its own folder because it is a different
+- **[News reference](references/news/README.md)** — the two approved news
+  shorts (Nvidia, the GTA 6 leaker), MP4s **plus source**, and the order of
+  work both followed, in a folder of its own because news is a different
   category. **Only for requests about real-life news**; see below.
 
 ## Two kinds of short
@@ -26,10 +27,13 @@ word-timed physical storytelling, original sound and Arena narration.
 | Rules | [IMPORTANT.md](IMPORTANT.md) §1–5 | §1–5 plus the news gates in §6 |
 | The other reference | Ignore `references/news/` | — |
 
-The news film is on a different level and in a different category: the user
-called it "so well done and not lazy" and "maybe the best one". Agents making
-a news short must study it. Agents making a regular short must leave it alone
-and not borrow its structure, graphics, tone or music.
+News films are on a different level and in a different category. The user
+called the Nvidia film "so well done and not lazy" and "maybe the best one".
+The GTA 6 leaker film was made by following it and was approved at the first
+delivery: "another banger". Agents making a news short must study both and
+work in [the order they were made in](references/news/README.md#how-to-make-a-news-short-the-order-both-films-followed).
+Agents making a regular short must leave them alone and not borrow their
+structure, graphics, tone or music.
 
 **New regular-story reference:** [The Shoemaker Who Borrowed an Army](references/approved/koepenick/README.md).
 The user approved the complete music-v2 film—visuals, narration, pacing and
@@ -43,7 +47,7 @@ with placeholder props.
 | Path | Purpose |
 |---|---|
 | `references/approved/` | User-approved original films, source snapshots, manifests and reproduction notes |
-| `references/news/` | User-approved **news** short (Nvidia), source snapshot, manifest, news rules. Separate category: only for real-life news requests |
+| `references/news/` | User-approved **news** shorts (Nvidia, the GTA 6 leaker), source snapshots, manifests, news rules and the order of work. Separate category: only for real-life news requests |
 | `references/STYLE_BIBLE.md`, `frames/`, `reports/`, `sheets/` | Legacy private style study; not original film deliverables |
 | `templates/bridge/` | Vendored renderer/style implementation; use with current overrides |
 | `templates/audio/` | Audio implementation examples, not a mandatory recurring score |

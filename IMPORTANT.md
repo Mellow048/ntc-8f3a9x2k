@@ -111,15 +111,26 @@ news**: real people, companies or events that are in the news, something that
 just happened or is still unfolding. If the user wants a regular explaining or
 entertaining short, **skip this section and ignore `references/news/`**.
 
-For a news short, study
-[`references/news/nvidia-spy/`](references/news/nvidia-spy/README.md) before
-planning: the MP4, the script with its sources, and the film, sound and render
-source. The user called it "so well done and not lazy" and "maybe the best
-one", and asked for it to be kept apart from the other references because it is
-a different category. Match its care; do not copy its story, sets or score.
+For a news short, study both approved films before planning: the MP4, the
+script with its sources, and the film, sound and render source.
 
-Sections 1–5 apply in full. The approved news film was also made under these
-rules, and a new one must be too:
+- [`references/news/nvidia-spy/`](references/news/nvidia-spy/README.md): the
+  user called it "so well done and not lazy" and "maybe the best one", and
+  asked for it to be kept apart from the other references because it is a
+  different category.
+- [`references/news/gta6-leaker/`](references/news/gta6-leaker/README.md):
+  made by following the first one and approved at the first delivery
+  ("another banger"). The user asked for it to be kept "so that other agents
+  follow your footsteps without me arguing again".
+
+Match their care; do not copy their stories, sets or scores. **Work in the
+order written in
+[`references/news/README.md`](references/news/README.md#how-to-make-a-news-short-the-order-both-films-followed)**,
+and do not ask the user to restate or approve what is already decided there
+and in sections 1–5: start, finish the film, and show the script with it.
+
+Sections 1–5 apply in full. Rules 1–9 come from the first approved news film
+and 10–13 from the second; a new one must follow all of them:
 
 1. **Facts first, with sources.** Search the news before writing. Keep a table
    of fact, source link and date checked in the film's `SCRIPT.md`; every
@@ -133,7 +144,8 @@ rules, and a new one must be too:
    quote you cannot source.
 5. **Real people with care.** A public figure is a simple caricature made of
    well-known public features, with a name tag. A private person, or anyone
-   accused and not charged, is an anonymous figure, never a likeness.
+   accused and not charged, is an anonymous figure, never a likeness. Someone
+   nobody has identified gets no face at all.
 6. **Jokes aim at the situation**, never at a spouse, children or a victim.
    Nothing sexual.
 7. **Pace and graphics.** About a minute unless the user says otherwise; a
@@ -143,6 +155,14 @@ rules, and a new one must be too:
 8. **End on a question that has real sides**, not on a verdict the facts do not
    support.
 9. **Tell the user what you could not confirm** when you show the script.
+10. **Answer what the user asked.** When the request is a question, the film
+    and your reply both say the answer in plain words.
+11. **Do not help the wrongdoing along.** Show nothing from leaked or stolen
+    material, and give no name, address or link that leads to it or to
+    something the subject of the story is selling.
+12. **A number on screen is a reported number**, with its source beside it. A
+    chart is drawn to scale from zero and says which points are reported.
+13. **Search the news again on the day you deliver.**
 
 No document guarantees a one-shot acceptance. These gates prevent repeating
 known failures; visual/audio judgment and truthful reporting remain required.

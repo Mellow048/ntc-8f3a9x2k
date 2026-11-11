@@ -34,6 +34,18 @@ jobs:
           node scripts/koepenick/test.mjs
           python3 -m py_compile shoots/koepenick/audio/*.py shoots/koepenick/voice/prepare.py scripts/koepenick/*.py
 
+      - name: Check standalone approved news sources
+        run: |
+          for film in nvidia-spy gta6-leaker; do
+            npm ci --no-audit --no-fund --prefix "references/news/$film/source/remotion-app"
+            npm run typecheck --prefix "references/news/$film/source/remotion-app"
+            node --check "references/news/$film/source/remotion-app/scripts/plan.mjs"
+            node --check "references/news/$film/source/remotion-app/scripts/stills.mjs"
+            node --check "references/news/$film/source/remotion-app/scripts/frame.mjs"
+          done
+          python3 -m py_compile references/news/*/source/shoots/*/audio/build_mix.py \
+            references/news/*/source/shoots/*/build_voice.py references/news/*/source/shoots/voice_master.py
+
       - name: Check audio/QA Python scripts compile
         run: |
           python3 -m py_compile templates/audio/*.py templates/scripts/*.py
