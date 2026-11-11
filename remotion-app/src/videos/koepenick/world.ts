@@ -34,7 +34,7 @@ export class World{
   lettering(p,'POLICE REGISTRY',0,4.7,-4.05,3.6,.6);
  }
  if(['shop','uniform','mirror'].includes(place)){
-  desk(p,0,0,4.8);lettering(p,'SECOND-HAND UNIFORMS',0,4.8,-4.03,5.4,.6);
+  desk(p,0,place==='mirror'?-2.3:0,4.8);lettering(p,'SECOND-HAND UNIFORMS',0,4.8,-4.03,5.4,.6);
   // Hanging tunics are individual shoulders, sleeves, collars, belts and buttons.
   for(let i=0;i<6;i++){const x=-4.6+i*1.8;bar(p,V(x,3.6,-3.5),V(x-.4,3.3,-3.5),.045,iron());bar(p,V(x,3.6,-3.5),V(x+.4,3.3,-3.5),.045,iron());const col=material('coat'+i,['#49614f','#4e5b70','#89755a'][i%3]);box(p,x,2.6,-3.45,.72,1.5,.17,col);for(const s of [-1,1]){const arm=box(p,x+s*.49,2.7,-3.45,.23,1.2,.18,col);arm.rotation.z=s*.13;}for(let k=0;k<5;k++)sphere(p,x+.13,3.1-k*.22,-3.31,.025,material('brass','#ceb777'));}
   if(place==='shop'){const v=actor(.6,1.7,CIVIL);v.mode='stroll';const merchant=actor(-1,-1.4,CLERK,20);merchant.expr='smile';this.motions.push((f,u)=>{v.root.position.x=2-u*1.5;merchant.wave=ease(u)*.6;});}
@@ -52,7 +52,7 @@ export class World{
   }
  }
  if(['halt','follow'].includes(place)){
-  const v=actor(-2.1,1.5);v.expr='stern';const men=squad([-.6,1.05],[-1,-2.6,-4.2,-5.8,-7.4]);
+  const v=actor(-1.6,1.5);v.expr='stern';const men=squad([-.6,1.05],[-1,-2.6,-4.2,-5.8,-7.4]);
   men.forEach((a,i)=>this.motions.push((f,u)=>{const q=action(f,57,8),follow=action(f,68,30);a.mode=place==='halt'?(q<1?'march':'stand'):'march';a.root.position.z=(-1-Math.floor(i/2)*1.6)+(place==='halt'?Math.min(.7,u*2):follow*3.2);a.root.position.x=(i%2?1.05:-.6)-(place==='follow'?follow*1.6:0);a.wave=place==='halt'?undefined:undefined;}));
   this.motions.push((f)=>{v.wave=place==='halt'?action(f,57,7)*.95:.65;v.mode=place==='follow'?'march':'stand';v.root.position.z=1.5+(place==='follow'?action(f,68,30)*2:0);});
  }
@@ -66,7 +66,7 @@ export class World{
   for(const x of [-3,-1,1,3]){box(p,x,2.8,-3.7,1.5,2.1,.08,material('trainview','#95b9c5'));for(const dx of [-.8,.8])box(p,x+dx,2.8,-3.6,.09,2.3,.18,timber());box(p,x,1.65,-3.55,1.75,.12,.24,timber());}
   for(const z of [-2.5,-.2]){box(p,0,.65,z,7,.25,.9,material('seat','#587364'));box(p,0,1.15,z-.35,7,1,.15,material('seat','#587364'));}
   for(const y of [3.8,4.1])bar(p,V(-4,y,-3.1),V(4,y,-3.1),.045,material('rack','#c5ad70'));for(let x=-4;x<=4;x+=.5)bar(p,V(x,3.8,-3.4),V(x,3.8,-2.8),.03,iron());
-  for(let i=0;i<10;i++){const a=actor(-2.8+(i%5)*1.4,-2.3+Math.floor(i/5)*2.2,SOLDIER(i),i+1);a.mode='sit';a.root.scale.setScalar(.85);a.expr='smile';const mug=cupAt(a);this.motions.push(f=>{const q=action(f,94,10);mug.position.y=.1+q*.5;a.wave=q*.35;});}
+  for(let i=0;i<10;i++){const a=actor(-2.8+(i%5)*1.4,-2.3+Math.floor(i/5)*2.2,SOLDIER(i),i+1);a.mode='sit';a.root.scale.setScalar(.85);a.root.position.y=.65;a.expr='smile';const mug=cupAt(a);this.motions.push(f=>{const q=action(f,94,10);mug.position.y=1.05+q*.4;a.wave=q*.35;});}
   const v=actor(-3.5,1.6);v.expr='grin';
  }
  if(place==='hall'){
@@ -77,13 +77,13 @@ export class World{
   const cops=[actor(-1.25,1.9,POLICE,2),actor(1.25,1.9,POLICE,4)];cops.forEach(a=>{a.expr='stern';a.wave=.7;});for(let i=0;i<9;i++){const a=actor(-3+(i%5)*1.4,-.5-Math.floor(i/5)*1.6,townsfolk(i),i+10);a.expr='shock';a.root.scale.setScalar(.9);this.motions.push((f)=>{a.root.position.z=-.5-Math.floor(i/5)*1.6-action(f,108,15)*.45;});}
  }
  if(place==='bath'){
-  const v=actor(-1.25,.2);v.expr='neutral';const cop=actor(1.1,0,POLICE,8);cop.expr='smile';
+  const v=actor(-1.25,.2);v.expr='neutral';const cop=actor(.7,0,POLICE,8);cop.expr='smile';
   const towel=dyn(box(cop.root,.49,1.1,.25,.4,.7,.08,material('towel','#eee6cf')));for(let i=0;i<3;i++)box(towel,0,-.15+i*.08,.05,.4,.015,.03,material('stripe','#758c9b'));
-  const tub=cyl(p,3.7,.55,-2,1.2,.8,material('porcelain','#eee8d8'),1.4,32);tub.scale.z=.6;cyl(p,3.7,.93,-2,1.2,.03,material('bathwater','#92b8ba')).scale.z=.6;
-  this.motions.push((f)=>{const q=action(f,125,12);v.wave=q*.65;cop.wave=f<word(125)?.7:undefined;cop.mode=q>.5?'stroll':'stand';cop.root.position.x=1.1+q*1.7;cop.root.position.z=-q*1.2;});
+  const tub=cyl(p,2.1,.55,-2,1.2,.8,material('porcelain','#eee8d8'),1.4,32);tub.scale.z=.6;cyl(p,2.1,.93,-2,1.2,.03,material('bathwater','#92b8ba')).scale.z=.6;
+  this.motions.push((f)=>{const q=action(f,125,12);v.wave=q*.65;cop.wave=f<word(125)?.7:undefined;cop.mode=q>.5?'stroll':'stand';cop.root.position.x=.7+q*1.3;cop.root.position.z=-q*1.6;});
  }
  if(['mayor','warrant'].includes(place)){
-  desk(p,0,-.3,4.2);const v=actor(1.5,1.1);v.expr='stern';const m=actor(-1,-1.5,MAYOR,17);m.expr='shock';const men=[actor(-2.4,-2.7,SOLDIER(2),2),actor(1.4,-2.7,SOLDIER(0),3)];
+  desk(p,0,-.3,4.2);const v=actor(1.1,.6);v.expr='stern';const m=actor(-1,-1.5,MAYOR,17);m.expr='shock';const men=[actor(-2.4,-2.7,SOLDIER(2),2),actor(1.4,-2.7,SOLDIER(0),3)];
   this.motions.push((f)=>{if(place==='mayor'){m.wave=action(f,128,10)*.7;v.look=-.6;}else{v.wave=action(f,135,10)*.8;m.wave=undefined;m.lean=-action(f,138,14)*8;men.forEach(a=>a.expr='stern');}});
   lettering(p,'MAYOR',0,4.7,-4.05,2,.5);
  }
@@ -106,7 +106,7 @@ export class World{
   this.motions.push((f,u)=>{v.root.position.x=-1+u*7;v.root.position.z=2+u;v.wave=f<word(162)?.5:undefined;});
  }
  if(place==='escape'){
-  ground(p);for(const x of [-6,6]){box(p,x,2.8,-1,.2,5.6,.2,timber());bar(p,V(x,5.5,-1),V(x>0?4:-4,4.4,-1),.14,timber());}
+  ground(p);house(p,0,-13,14,7,3);for(const x of [-6,6]){box(p,x,2.8,-1,.2,5.6,.2,timber());bar(p,V(x,5.5,-1),V(x>0?4:-4,4.4,-1),.14,timber());}
   box(p,0,5.5,-1,16,.25,5,material('stationroof','#4a5866'));lettering(p,'KÖPENICK',0,4,-1.7,4.5,.7);
   box(p,0,.25,-4,30,.5,3,stone());for(const z of [-6,-7.2])bar(p,V(-30,.05,z),V(30,.05,z),.09,iron());
   const v=actor(-2,0);v.side=true;v.mode='march';
@@ -121,7 +121,7 @@ export class World{
   if(place==='tip'){const tip=actor(1.7,.7,{...CIVIL,moustache:'#574135',hat:'hair',hair:'#573d30',jacket:'#67544b',build:'adult'},14);tip.expr='grin';this.motions.push((f)=>{tip.wave=action(f,182,12)*.75;cop.expr=f>word(183)?'shock':'neutral';});}
  }
  if(place==='breakfast'){
-  desk(p,0,0,2.7);const v=actor(-.5,-1.2,CIVIL);v.mode='sit';v.expr='neutral';const cup=dyn(mug(p,.45,1.24,.1));
+  desk(p,0,0,2.7);const v=actor(-.5,-1.2,CIVIL);v.mode='sit';v.root.position.y=.7;v.expr='neutral';const cup=dyn(mug(p,.45,1.24,.1));
   const plate=cyl(p,-.45,1.27,.2,.37,.035,material('plate','#ece2c6'),.37,24);box(p,-.45,1.33,.2,.4,.12,.25,material('bread','#b57c42'));
   const a=actor(2.8,1.2,POLICE,6),b=actor(3.7,-.3,POLICE,7);
   this.motions.push(f=>{const q=action(f,188,10);v.expr=q>.2?'shock':'neutral';cup.position.y=1.24+.35*(1-q);a.root.position.x=2.8-q*1.5;b.root.position.x=3.7-q;});
@@ -145,13 +145,13 @@ export class World{
   box(p,0,-.1,0,16,.3,15,wood());box(p,0,3.8,-3.3,13,7.6,.1,material('backdrop','#bda27b'));
   // Clearly painted scenery rather than recycling the actual town hall geometry.
   lettering(p,'THE CAPTAIN OF KÖPENICK',0,5.5,-3,9,.85);for(const x of [-4,-2,0,2,4]){box(p,x,2.4,-3,1.3,2.7,.1,material('paintedwindow','#687780'));box(p,x,3.8,-2.9,1.5,.15,.1,stone());}
-  const curtain=material('velvet','#963b4f');for(const x of [-6,6])for(let i=0;i<7;i++){const o=cyl(p,x+(i-3)*.16,3.5,-.8,.25,7,curtain);o.scale.z=.6;}
+  const curtain=material('velvet','#963b4f');for(const x of [-3.7,3.7])for(let i=0;i<7;i++){const o=cyl(p,x+(i-3)*.16,3.5,-.8,.25,7,curtain);o.scale.z=.6;}
   box(p,0,6.7,-.8,13,.7,.4,curtain);for(let x=-5;x<=5;x+=1)cyl(p,x,.15,2.4,.16,.14,material('footlight','#ffe4a1'));
   const v=actor(0,0);v.expr='grin';this.motions.push((f,u)=>{v.wave=f<word(210)?.9:undefined;v.lean=f>word(210)?Math.sin(clamp((f-word(210))/35)*Math.PI)*18:0;});
-  for(let i=0;i<7;i++){const a=actor(-4.5+i*1.5,5,townsfolk(i),i+2);a.root.rotation.y=Math.PI;a.root.scale.setScalar(.8);a.expr='laugh';a.wave=.45;}
+  for(let i=0;i<7;i++){const x=-4.5+i*1.5;const back=material('audience-back','#333240');sphere(p,x,.65,4.5,.35,back);const torso=sphere(p,x,.12,4.5,.45,back);torso.scale.y=1.4;}
  }
  if(place==='statue'){
-  cyl(p,0,.25,1,1.3,.5,stone(),1.3,24);box(p,0,.65,1,1.5,.5,1.3,material('pedestal','#8a8e82'));const v=actor(0,1,BRONZE);v.root.position.y=.9;v.expr='neutral';v.wave=.38;
+  cyl(p,0,.25,1,1.3,.5,stone(),1.3,24);box(p,0,.65,1,1.5,.5,1.3,material('pedestal','#8a8e82'));const v=actor(0,1,BRONZE);v.root.position.y=.9;v.expr='neutral';v.wave=.38;v.frozen=true;
   lettering(p,'WILHELM VOIGT',0,.7,1.67,1.35,.25,'#8a8e82','#d4d1b1');
   const tourist=actor(2.6,2.5,{jacket:'#cb6f47',pants:'#455b6e',boots:'#ded9cb',hat:'hair',hair:'#5d4636',skin:'#f0cfb0'},34);tourist.expr='grin';tourist.wave=.35;
   this.motions.push((f)=>{tourist.look=-.5;v.look=0;});

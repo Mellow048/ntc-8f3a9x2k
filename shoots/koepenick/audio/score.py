@@ -12,6 +12,9 @@ data=json.loads((ROOT/'remotion-app/src/videos/koepenick/data.json').read_text()
 v,sr=read_wav(str(ROOT/'shoots/koepenick/voice/voice.wav'));assert sr==SR
 v=np.repeat(v,2,axis=0) if v.shape[0]==1 else v
 v=np.pad(v,((0,0),(0,max(0,N-v.shape[-1]))))[:,:N]
+# Compress isolated voice peaks before common mastering, preserving dynamics elsewhere.
+# A soft knee only above -13 dBFS so voice average can reach the target without hard limiting.
+absenv=ndimage.maximum_filter1d(np.abs(v).max(0),481);thr=dbg(-13);gain=np.minimum(1,(thr/np.maximum(absenv,1e-9))**.5);gain=ndimage.uniform_filter1d(gain,241);v*=gain
 m=np.zeros((2,N));fx=np.zeros_like(m)
 def add(buf,x,t,g=1,p=0):place(buf,pan(x,p) if x.ndim==1 else x,t,g)
 def note(inst,n,t,d=.2,g=.3,p=0):
@@ -86,9 +89,6 @@ for name,a,b,rel in secs:
  ia,ib=ns(a),min(N,ns(b));vl=integrated(v[:,ia:ib]);ml=integrated(m[:,ia:ib]);gains[ia:ib]=dbg(vl+rel-ml);report.append(f'| {name} | {vl:.1f} | {rel:.1f} |')
 m*=ndimage.uniform_filter1d(gains,ns(.04));m=fades(m,.025,.20)
 fx*=dbg(integrated(v)-12-integrated(fx))
-# Compress isolated voice peaks before common mastering, preserving dynamics elsewhere.
-# A soft knee only above -13 dBFS so voice average can reach the target without hard limiting.
-absenv=ndimage.maximum_filter1d(np.abs(v).max(0),481);thr=dbg(-13);gain=np.minimum(1,(thr/np.maximum(absenv,1e-9))**.5);gain=ndimage.uniform_filter1d(gain,241);v*=gain
 mix=v+m+fx;head=min(1,.86/np.abs(mix).max());mix*=head
 write_wav(str(OUT/'premix.wav'),mix);write_wav(str(OUT/'music.wav'),m);write_wav(str(OUT/'sfx.wav'),fx)
 report+=['',f'Voice {integrated(v):.1f} LUFS; music {integrated(m):.1f} LUFS; effects {integrated(fx):.1f} LUFS.','', '## Frame-locked cues']+[f'- {t:.3f}s (f{round(t*30)}): {name}' for name,t in cues]

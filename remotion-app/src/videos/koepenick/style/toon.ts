@@ -17,7 +17,7 @@ export type Build = "adult" | "stout" | "kid";
 export type Outfit = {
   jacket: string; pants: string; boots: string; hat?: string | null; belt?: string | null; buttons?: string; rifle?: boolean;
   sash?: string; sword?: boolean; moustache?: string; skin?: string; head?: number; cap?: string; hair?: string; dress?: string;
-  build?: Build;
+  build?: Build; greatcoat?: boolean; gloves?: string;
 };
 type P2 = [number, number];
 
@@ -545,7 +545,7 @@ export const bodyFront = (p: Pen, o: Outfit, opts: FrontOpts) => {
       arms.push({ pts: [S, E, Hd], front: true });
     } else arms.push({ pts: hang(1, sw), front: false });
   }
-  const drawArm = (a: Arm) => { p.stroke(curve(a.pts[0], a.pts[1], a.pts[2]), 5.2 * u, armCol); p.dot(a.pts[2][0], a.pts[2][1], 5.5 * u); };
+  const drawArm = (a: Arm) => { p.stroke(curve(a.pts[0], a.pts[1], a.pts[2]), 5.2 * u, armCol); p.dot(a.pts[2][0], a.pts[2][1], 5.5 * u, o.gloves ?? INK); };
   // behind the body: rifle, sword, arms
   if (rifle) {
     p.band([R0, R1], "#7a4b2a", 5 * u, 1.5 * u, "round");
@@ -556,6 +556,11 @@ export const bodyFront = (p: Pen, o: Outfit, opts: FrontOpts) => {
     p.band([s0, [s0[0] - Math.sin(rad(25)) * 0.8 * HH, s0[1] + Math.cos(rad(25)) * 0.8 * HH]], "#c9ccd2", 3 * u, 1.2 * u, "round");
   }
   for (const a of arms) if (!a.front) drawArm(a);
+  if(o.greatcoat && mode!=="sit") {
+    const skirt:P2[]=[[tcx-T.a*.8,torsoBot-.2*HH],[tcx+T.a*.8,torsoBot-.2*HH],[tcx+T.a*1.08,torsoBot+.6*HH],[tcx-T.a*1.08,torsoBot+.6*HH]];
+    p.gradFill(skirt,o.jacket,mul(o.jacket,SH_CLOTH),light);p.poly(skirt,null,ow*.8);
+    p.stroke([[tcx,torsoBot],[tcx,torsoBot+.55*HH]],1.5*u,shade(o.jacket,.65));
+  }
   // torso / dress: shaded fill -> clothing clipped to it -> thick-thin ink ring
   if (dress) {
     const D: Blob = { a: 0.5 * W * 0.98, b: 0.5 * ((sole - 0.35 * HH) - (chin - 0.2 * HH)), nTop: 2.0, nBot: 3.0, egg: 0.35, asym: 0.03 * facing, rot: 0, noise: 0.006, seed: seed + 9 };
