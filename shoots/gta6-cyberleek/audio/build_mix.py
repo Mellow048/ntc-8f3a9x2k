@@ -437,7 +437,7 @@ def build_sfx(voice_lufs):
             (Wt(38), "name tag: Cyberleek"), (Wt(47), "the leaker's stated reason"), (Wt(58), "confirmed by Rockstar"), (Wt(63), "coin holders voted on leaks"), (Wt(84), "quote card: Cyberleek"),
             (Wt(89), "name tag: Rockstar Games"), (Wt(94), "quote card: Rockstar"), (Wt(100), "name tag: Take-Two"), (Wt(105), "subpoenas"), (Wt(110), "calendar: Oct 10"),
             (Wt(126), "posted on the leaker's website"), (Wt(129), "quote card: the offer"), (Wt(136), "yes, the real quote"), (Wt(157), "peak, Oct 11"), (Wt(168), "Oct 13"), (Wt(176), "quote card: the leeks stop here"),
-            (Wt(191), "earnings call, Nov 9"), (Wt(200), "name tag: Strauss Zelnick"), (Wt(202), "quote card: Zelnick"), (Wt(211), "a code, not a disc"), (Wt(215), "WHAT DO YOU THINK?"),
+            (Wt(191), "earnings call, Nov 9"), (Wt(199), "name tag: Strauss Zelnick"), (Wt(202), "quote card: Zelnick"), (Wt(211), "a code, not a disc"), (Wt(215), "WHAT DO YOU THINK?"),
             (Wt(231), "card A"), (Wt(234) + 4 / FPS, "card B")]
     for n, (t, why) in enumerate(pops):
         fx(t, pop(380 + 60 * (n % 3), 900 + 110 * (n % 3)), -13, 0.15 if n % 2 else -0.15, "pop", why)
@@ -514,7 +514,7 @@ def build_sfx(voice_lufs):
     fx(cut_t(33) + 6 / FPS + 0.12, clink(R), -14, 0.2)
     # 12: called off
     fx(Wt(172), slide(700, 90, 0.5), -11, 0, "power down", "the screens go dark")
-    fx(cut_t(35) + 0.12, knock(), -14, 0.4, "door", "the door opens")
+    fx(cut_t(35) + 0.03, knock(), -14, 0.4, "door", "the door swings open")
     # 13: where it stands
     for k, i in enumerate((184, 186)):
         fx(Wt(i), shutter(), -13, -0.3 + 0.6 * k, "camera shutter", "line-up photographs")
@@ -565,12 +565,13 @@ def limiter(x, ceil_db, look=0.003, rel=0.08):
     return x * out[None, :], out
 
 
-GRAPHIC_SOUNDS = {"stamp thud", "pop", "boing", "buzzer", "ding", "counter lands", "crash", "cash register", "click", "power down"}
+GRAPHIC_SOUNDS = {"stamp thud", "pop", "boing", "buzzer", "ding", "counter lands", "crash", "cash register", "click", "power down", "door", "two sly notes"}
 
 
 def planned_changes():
     """Frame ranges where the picture is meant to jump, for the render check: the frame a caption changes on, and the
-    ten frames in which a graphic that has a sound arrives (a stamp lands, a card pops, somebody hops). Hard cuts are
+    ten frames in which something that has a sound arrives (a stamp lands, a card pops, somebody hops, a door swings
+    open, the leaker leans into the doorway on their two notes). Hard cuts are
     in the shot list. Everything else that jumps is a defect and gets reported."""
     out, caps = [], []
     i = 0

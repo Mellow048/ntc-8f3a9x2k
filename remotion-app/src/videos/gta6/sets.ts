@@ -155,7 +155,7 @@ export const lair: Builder = (root) => {
       else if (v === 'door') { x = 2.5; z = -3.15; pose = f >= W(177) ? 'shrug' : 'idle'; y = hop(f, W(177), 0.08, 8); }
       else if (v === 'peek') { x = lerp(3.9, 3.22, smooth(t, 1, 10)); z = -3.15; }
       leek.show(pose); leek.node.position.set(x, y, z); leek.tick(f, cam); if (v === 'peek') leek.mesh.rotation.z = 0.22;
-      door.rotation.y = v === 'door' ? 1.5 * smooth(t, 0, 7) : v === 'peek' ? 1.5 : 0;
+      door.rotation.y = v === 'door' ? 1.5 * smooth(t, -4, 6) : v === 'peek' ? 1.5 : 0;                   // already ajar on the cut: the shot never opens on a black frame
     },
   };
 };

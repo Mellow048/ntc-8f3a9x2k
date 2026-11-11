@@ -1,17 +1,18 @@
-"""Lock the narration for the Nvidia short and derive word timings from it.
+"""Lock the narration for the GTA 6 leaker short and derive word timings from it.
 
-    python shoots/nvidia-honeypot/build_voice.py [--target-seconds 66] [--max-tempo 1.2]
-    python shoots/nvidia-honeypot/build_voice.py --beats-only     # only add the BEATS to an existing voice.wav
+    python shoots/gta6-cyberleek/build_voice.py [--target-seconds 66] [--max-tempo 1.2]
+    python shoots/gta6-cyberleek/build_voice.py --beats-only     # only add the BEATS to an existing voice.wav
 
 Input   voice/raw-take.mp3  the approved Arena TTS read (voice-15) as it came, kept so the pace can be changed later
                             (voice/v15.tmp.wav, the uncompressed and uncommitted original, is used instead if present)
 Output  voice/voice.wav     mastered narration, 48 kHz mono (pauses tightened, tone nearly untouched, tempo lift)
         voice/words.json    one entry per spoken word: display text, start and end in seconds
         voice/timing.json   how the track was made (tempo, cuts, duration, loudness)
-        remotion-app/src/videos/nvidia/words.json   the same words, read by the picture
+        remotion-app/src/videos/gta6/words.json     the same words, read by the picture
 
-The read is brisk, so three deliberate beats (BEATS below) are added at the end: silence after "Quote:", after the
-email quote, and before the closing question. The picture, captions and sound follow words.json, so they move with it.
+The read is brisk, so five deliberate beats (BEATS below) are added at the end: silence after both "Quote:", after
+"a public apology.", after "Two days later?" and before the closing question. The picture, captions and sound
+follow words.json, so they move with it.
 
 Word times come from PocketSphinx forced alignment of the *raw* take (natural pace
 aligns best) and are then carried through the pause edits and the tempo change, so

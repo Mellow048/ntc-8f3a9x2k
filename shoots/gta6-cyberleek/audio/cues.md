@@ -88,7 +88,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  53.40 | 1602 | crash | the coin hits the floor, six frames after the cut |
 |  54.87 | 1646 | power down | the screens go dark |
 |  54.87 | 1646 | stamp thud | CALLED OFF stamp |
-|  55.69 | 1671 | door | the door opens |
+|  55.60 | 1668 | door | the door swings open |
 |  56.37 | 1691 | pop | quote card: the leeks stop here |
 |  57.92 | 1738 | two sly notes | 'For now.' |
 |  58.57 | 1757 | music back | full groove, 99 bpm so that four bars end in the pause before the question |
@@ -99,7 +99,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  61.25 | 1838 | queue cheer | the queue outside the shop |
 |  61.37 | 1841 | pop | earnings call, Nov 9 |
 |  62.83 | 1885 | ding | the needle passes EXPECTED |
-|  64.40 | 1932 | pop | name tag: Strauss Zelnick |
+|  64.00 | 1920 | pop | name tag: Strauss Zelnick |
 |  64.93 | 1948 | pop | quote card: Zelnick |
 |  66.98 | 2010 | players cheer | discs in the air |
 |  67.20 | 2016 | pop | a code, not a disc |

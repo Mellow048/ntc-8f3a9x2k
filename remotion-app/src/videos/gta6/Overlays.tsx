@@ -152,7 +152,7 @@ export const Overlays: React.FC = () => {
       {during(37, W(187)) ? <Stamp f={f} at={W(187)} text="NOT IDENTIFIED" tone="yellow" top="9.5%" size={10.5} /> : null}
       {during(37, W(189)) ? <Stamp f={f} at={W(189)} text="NOT CHARGED" tone="green" top="18.5%" size={10.5} rot={3} /> : null}
       {during(38, W(191)) || during(39) ? <Pill f={f} at={W(191)} text="TAKE-TWO EARNINGS CALL, NOV 9" /> : null}
-      {during(40, W(200)) ? <NameTag f={f} at={W(200)} name="STRAUSS ZELNICK" role="CEO OF TAKE-TWO" /> : null}
+      {during(40, W(199)) ? <NameTag f={f} at={W(199)} name="STRAUSS ZELNICK" role="CEO OF TAKE-TWO" /> : null}
       {during(41, W(202)) ? <Quote f={f} at={W(202)} text={<>…discs just — and note I said discs — <Hot>don't really make sense for the consumer.</Hot></>} by="STRAUSS ZELNICK, AUGUST 2026" size={4.8} /> : null}
       {during(42, W(211)) ? <Pill f={f} at={W(211)} text="THE BOX HOLDS A CODE, NOT A DISC" /> : null}
       {f >= closing ? (
