@@ -73,9 +73,10 @@ jobs:
         if: inputs.composition == 'Petit' && inputs.still_frame == 'all'
         run: |
           npx remotion browser ensure
-          CHROME_PATH="$CHROME_PATH" node scripts/petit/stills.mjs
-        env:
-          CHROME_PATH: ${{ env.CHROME_PATH }}
+          echo "CHROME_PATH=$CHROME_PATH"
+          ls -lh "$CHROME_PATH" || true
+          node scripts/petit/stills.mjs 2>&1 | tee /tmp/stills.log
+          cat /tmp/stills.log
 
       - name: Commit Petit previews
         if: inputs.composition == 'Petit' && inputs.still_frame == 'all'
