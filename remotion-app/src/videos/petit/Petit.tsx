@@ -9,12 +9,13 @@ import {World} from './world';
 import {WORDS,shotAt,clamp} from './story';
 import {InkPass,noInkFallback} from './style/ink';
 import {LensBlur} from './style/lensblur';
-import {GradeEffect,GRADES} from './style/grade';
+import {GradeEffect,GRADES,gradeFor} from './style/grade';
 const Scene:React.FC=()=>{
  const f=useCurrentFrame(),s=shotAt(f);const {camera,scene}=useThree();
  const world=useMemo(()=>new World(s.place),[s.place]);
  const fx=useMemo(()=>({ink:new InkPass(scene,camera as T.PerspectiveCamera),lens:new LensBlur({maxCoC:16,nearScale:1.1}),bloom:new BloomEffect({blendFunction:BlendFunction.ADD,intensity:.4,luminanceThreshold:1,mipmapBlur:true,levels:4,radius:.6}),tone:new ToneMappingEffect({mode:ToneMappingMode.NEUTRAL}),grade:new GradeEffect(GRADES.day,.85)}),[camera,scene]);
  const target=world.update(s,f,camera as T.PerspectiveCamera,scene);noInkFallback(world.root);
+ gradeFor(fx.grade,(s.light??'day') as 'day');
  const forward=new T.Vector3();camera.getWorldDirection(forward);fx.lens.focus=Math.max(.3,target.clone().sub(camera.position).dot(forward));fx.lens.cInf=['fakeid','pass'].includes(s.place)?3:0;
  const post=useMemo(()=><EffectComposer multisampling={4}><primitive object={fx.ink} dispose={null}/><primitive object={fx.lens.pre} dispose={null}/><primitive object={fx.lens.main} dispose={null}/><primitive object={fx.bloom} dispose={null}/><primitive object={fx.tone} dispose={null}/><primitive object={fx.grade} dispose={null}/></EffectComposer>,[fx]);
  return <><primitive object={world.root} dispose={null}/>{post}</>;

@@ -9,6 +9,16 @@ export const POLICE:Outfit={jacket:'#2e4a8a',pants:'#2a3a5e',boots:'#1c1a20',hat
 export const WORKER:Outfit={jacket:'#c47a2e',pants:'#4a4a52',boots:'#2a2118',hat:'cap',cap:'#e8c45a',skin:'#efc9a1'};
 export const REPORTER:Outfit={jacket:'#4a5a6a',pants:'#3a3f48',boots:'#2a2118',hat:'hair',hair:'#3a2a1a',skin:'#ffe2c2'};
 export const CLERK:Outfit={jacket:'#61706d',pants:'#454955',boots:'#302632',hat:'hair',hair:'#826c56',skin:'#efd3b8'};
+// 1974 New York crowd: plain coats, no period hats, muted colours.
+export const person=(v=0):Outfit=>{
+ const coats=['#5a6b8a','#8a5a4a','#4a6a5a','#7a6a4a','#6a5a7a','#465a6a','#8a6a5a','#3f5a72'];
+ const pants=['#3a3f48','#4a3f36','#33394a','#2f3a44'];
+ const skins=['#f3d5b3','#e6c29a','#cf9f74','#9a6a46'];
+ const hairs=['#2a2118','#4a3524','#6a5030','#1c1a20','#8a7050'];
+ const caps=['#3a4452','#6a3a32','#2f4a3a'];
+ const hat=v%3===0?{hat:'cap',cap:caps[v%3]}:{hat:'hair',hair:hairs[v%5]};
+ return {jacket:coats[v%8],pants:pants[v%4],boots:'#241d1a',skin:skins[v%4],...hat} as Outfit;
+};
 export {townsfolk};
 export class Actor {
  root=new T.Group();card:T.Mesh;cv=document.createElement('canvas');g:CanvasRenderingContext2D;tex:T.CanvasTexture;

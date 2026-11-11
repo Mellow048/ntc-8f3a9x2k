@@ -139,3 +139,82 @@ export function poleProp(p:T.Object3D,x:number,y:number,z:number){
  const g=new T.Group();g.position.set(x,y,z);p.add(g);g.userData.dynamic=true;
  cyl(g,0,0,0,.045,4.2,timber());return g;
 }
+// ---- Petit: props for the 1974 story beats ----
+export function tree(p:T.Object3D,x:number,z:number,h=3,s=1){
+ cyl(p,x,h*.4,z,.16*s,h*.8,timber());
+ const c=sphere(p,x,h*.95,z,1.1*s,material('tree','#4a7a3a'));c.scale.set(1,1.35,1);
+ const c2=sphere(p,x+.6*s,h*.8,z+.3*s,.7*s,material('tree2','#3f6c32'));c2.scale.set(1,1.2,1);
+}
+export function parkBench(p:T.Object3D,x:number,z:number){
+ box(p,x,.5,z,1.9,.12,.6,wood());for(const dx of [-.75,.75])box(p,x+dx,.25,z,.12,.5,.55,timber());
+ box(p,x,.85,z-.28,1.9,.5,.1,timber());
+}
+export function cableCoil(p:T.Object3D,x:number,y:number,z:number,r=.55){
+ const g=new T.Group();g.position.set(x,y,z);p.add(g);g.userData.dynamic=true;
+ for(let i=0;i<4;i++){const t=mesh(g,new T.TorusGeometry(r-i*.045,.055,7,28),material('cable','#5b5f6e',undefined,true),V(0,i*.09,0));t.rotation.x=Math.PI/2;}
+ return g;
+}
+export function pressCamera(p:T.Object3D,x:number,y:number,z:number){
+ const g=new T.Group();g.position.set(x,y,z);p.add(g);g.userData.dynamic=true;
+ box(g,0,0,0,.4,.26,.24,material('presscam','#33343c',undefined,true));
+ const lens=cyl(g,0,.02,.16,.085,.14,material('lens','#1a1d24',undefined,true));lens.rotation.x=Math.PI/2;
+ box(g,0,.17,.02,.16,.08,.1,material('flash','#d8d2bd'));
+ bar(g,V(-.1,.02,-.16),V(-.1,.02,-.5),.03,iron());
+ return g;
+}
+export function toolbox(p:T.Object3D,x:number,y:number,z:number){
+ const g=new T.Group();g.position.set(x,y,z);p.add(g);g.userData.dynamic=true;
+ box(g,0,.16,0,.62,.32,.3,material('toolbox','#b8452f',undefined,true));
+ box(g,0,.36,0,.7,.06,.36,iron());
+ const h=mesh(g,new T.TorusGeometry(.13,.022,5,14),iron(),V(0,.45,0));h.rotation.x=Math.PI/2;
+ bar(g,V(.16,.3,0),V(.16,.62,0),.02,iron());bar(g,V(-.16,.3,0),V(-.16,.62,0),.02,iron());
+ return g;
+}
+export function policeCar(p:T.Object3D,x:number,z:number,rot=0){
+ const g=new T.Group();g.position.set(x,0,z);g.rotation.y=rot;p.add(g);
+ box(g,0,.55,0,1.9,.6,4.1,material('cruiser','#eef1f4'));
+ box(g,0,1.1,-.25,1.7,.55,2,material('cruiserGlass','#3f5367',undefined,true));
+ box(g,0,.62,1.3,.3,.18,1.4,material('cruiserDoor','#2e4a8a'));
+ for(const dx of [-.86,.86])for(const dz of [-1.35,1.35]){const w=cyl(g,dx,.34,dz,.34,.19,iron());w.rotation.z=Math.PI/2;}
+ box(g,0,1.5,-.4,.6,.16,.5,material('lightbar','#c0392b'));
+ cyl(g,0,1.66,-.4,.1,.16,material('lightblue','#2d6fd0'));
+ box(g,-.62,.58,2.06,.3,.17,.07,material('headlight','#ffe9a8'));box(g,.62,.58,2.06,.3,.17,.07,material('headlight','#ffe9a8'));
+ return g;
+}
+export function barrierTape(p:T.Object3D,x:number,z:number,w=3){
+ const g=new T.Group();g.position.set(x,0,z);p.add(g);
+ for(const dx of [-w/2,w/2]){cyl(g,dx,1.05,0,.06,2.1,iron());box(g,dx,.05,0,.4,.1,.4,material('barrierfoot','#3a3f48'));}
+ for(const y of [.85,1.5]){const t=box(g,0,y,0,w,.14,.03,material('tape','#e0c04a'));t.castShadow=false;}
+ return g;
+}
+export function signBoard(p:T.Object3D,text:string,x:number,y:number,z:number,w=1.6,h=.55){
+ const g=new T.Group();g.position.set(x,0,z);p.add(g);
+ cyl(g,-w/2,y/2,0,.05,y,timber());cyl(g,w/2,y/2,0,.05,y,timber());
+ const s=lettering(g,text,0,y,0,w,h,'#e8dcc0','#3a2f2f');return s;
+}
+export function magazineProp(p:T.Object3D,x:number,y:number,z:number,w=1.5,h=1.9){
+ const tex=ctex('mag-twin',768,1024,g=>{
+  g.fillStyle='#efe3c6';g.fillRect(0,0,768,1024);
+  g.fillStyle='#8a2f2a';g.fillRect(0,0,768,86);
+  g.fillStyle='#f3e8cd';g.font='bold 54px Georgia';g.textAlign='center';g.fillText('THE NEW YORKER',384,60);
+  g.fillStyle='#2f4a52';g.fillRect(96,200,180,520);g.fillStyle='#8fb8c8';for(let i=0;i<18;i++){g.fillRect(112,220+i*27,148,12);}
+  g.fillStyle='#2f4a52';g.fillRect(492,200,180,520);g.fillStyle='#8fb8c8';for(let i=0;i<18;i++){g.fillRect(508,220+i*27,148,12);}
+  g.strokeStyle='#45333b';g.lineWidth=6;g.strokeRect(20,20,728,984);
+  g.fillStyle='#2b2b33';g.textAlign='left';g.font='bold 62px Georgia';g.fillText('THE TOWERS',96,820);
+  g.fillText('ARE COMING',96,890);
+  g.fillStyle='#7a6a55';for(let i=0;i<3;i++)g.fillRect(96,930+i*22,560-(i%2)*90,7);
+ });
+ const o=mesh(p,new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({map:tex}),V(x,y,z));o.layers.set(NOINK);o.rotation.x=-Math.PI/2;
+ return o;
+}
+export function footprint(p:T.Object3D,x:number,z:number,s=7){
+ box(p,x,.02,z,s,.05,s,material('towerfoot','#5f6a72',rep(stoneHD(),3,3)));
+ for(const dx of [-s/2,s/2])box(p,x+dx,.2,z,.4,.4,s,material('footedge','#8a8f94'));
+ for(const dz of [-s/2,s/2])box(p,x,.2,z+dz,s,.4,.4,material('footedge','#8a8f94'));
+}
+export function smallTowers(p:T.Object3D,x:number,y:number,z:number,s=1){
+ const g=new T.Group();g.position.set(x,y,z);g.scale.setScalar(s);p.add(g);
+ const glass=material('miniGlass','#8fb8c8');const frame=material('miniFrame','#2f4a52');
+ for(const dx of [-1.1,1.1]){box(g,dx,3,0,1.1,6,1.1,glass);for(let i=0;i<5;i++)box(g,dx-1.1+i*.44,3,.56,.06,6,.06,frame);box(g,dx,6.1,0,1.3,.2,1.3,frame);cyl(g,dx,6.9,0,.05,1.4,iron());}
+ return g;
+}
