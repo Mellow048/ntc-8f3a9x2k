@@ -1,0 +1,75 @@
+# "The Hack That Melted 700 Supermarkets" — SCRIPT
+
+**Status: in production.** News short about the cyberattack that heated supermarket freezers across France in October 2026, and France's accusation, on 9 November, that a hacking unit of Iran's Revolutionary Guard did it. Made in the order written in `references/news/README.md`, after the two films in `references/news/`.
+
+## Researched facts and sources
+
+Checked against news reports and two primary documents on 2026-11-11 (two days after France's accusation, one day after Iran's denial). Every line of narration maps to a row.
+
+| # | Fact | Source |
+|---|------|--------|
+| 1 | Overnight from Sunday 11 to Monday 12 October 2026, attackers took remote control of refrigeration systems at shops across France. Paris prosecutor: "700 retail locations". France's finance minister: about 700 of the country's 10,000 supermarkets. The official report: most were supermarkets, with some butcher's shops, a slaughterhouse and food factories. Chains hit: Intermarché and Netto, Coopérative U, Carrefour (80 stores), Monoprix (5 % of about 490), E.Leclerc. | [CBS News](https://www.cbsnews.com/news/france-iran-behind-refrigerator-freezer-hack-cyberattack/), [CBC](https://www.cbc.ca/news/business/france-fridge-hack-smart-devices-food-system-9.7379613), [Reuters via CBC](https://www.cbc.ca/news/world/france-iran-cyberattack-accusation-9.7415031) |
+| 2 | Fridges and freezers were heated "to as high as 50 degrees Celsius (122 degrees Fahrenheit)". Intermarché's owner: about 150 of its stores at 50 °C for six hours. | [Reuters via Yahoo](https://www.yahoo.com/news/world/articles/french-supermarkets-hit-fires-food-135801100.html), [AP via Manila Times](https://www.manilatimes.net/2026/11/11/world/americas-emea/france-blames-iran-for-cyberattack-on-supermarkets/2466792) |
+| 3 | Stores threw away their fresh and frozen food. A witness saw staff tip cartloads into a container, "with molten ice cream sloshing out of broken tubs on the street"; employees "carted boxes full of perished meat and melted ice cream into giant trash containers". | [Reuters via Yahoo](https://www.yahoo.com/news/world/articles/french-supermarkets-hit-fires-food-135801100.html), [Reuters via CBC](https://www.cbc.ca/news/world/france-iran-cyberattack-accusation-9.7415031) |
+| 4 | Fires broke out. French agencies' report: "at least 15". Paris prosecutor: "roughly twenty". | [Reuters via CBC](https://www.cbc.ca/news/world/france-iran-cyberattack-accusation-9.7415031), [CBS News](https://www.cbsnews.com/news/france-iran-behind-refrigerator-freezer-hack-cyberattack/), [Politico](https://www.politico.eu/article/iran-denies-role-in-cyberattacks-on-supermarket-refrigerators/) |
+| 5 | How, according to the Paris prosecutor: "The attackers gained remote control of the equipment via web interfaces, initiating indefinite, abnormal defrost cycles while simultaneously disabling safety alerts". Nobody entered a store. | [CBS News](https://www.cbsnews.com/news/france-iran-behind-refrigerator-freezer-hack-cyberattack/), [Politico](https://www.politico.eu/article/iran-denies-role-in-cyberattacks-on-supermarket-refrigerators/) |
+| 6 | Why the freezers are online: store control panels "can be accessed over the internet, which lets maintenance companies adjust them from anywhere". Coopérative U's chief executive said they are connected to monitor temperatures around the clock "in the event of an anomaly". | [Reuters via Yahoo](https://www.yahoo.com/news/world/articles/french-supermarkets-hit-fires-food-135801100.html), [CBC](https://www.cbc.ca/news/business/france-fridge-hack-smart-devices-food-system-9.7379613) |
+| 7 | Katerina Mitrokotsa, cybersecurity professor at the University of St. Gallen: "A fridge doesn't look like a security risk, and that's exactly why attackers like it." | [Newsweek](https://www.newsweek.com/cyberattacks-target-french-blood-banks-refrigeration-supermarkets-12661343) |
+| 8 | Danfoss, a Danish company, is "the firm behind many of the stricken units". It said the affected units "were running outdated firmware" or had "reached end of life and no longer receive software or security updates", and that it had "long advised customers" to update. France's cyber agency also lists controllers by Copeland and Dixell. | [Reuters via CBC](https://www.cbc.ca/lite/story/9.7378180), [CBC](https://www.cbc.ca/news/business/france-fridge-hack-smart-devices-food-system-9.7379613), [CERT-FR](https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-012/) |
+| 9 | Cost: retailers say millions of euros of food were spoiled. The chief executive of Intermarché's owner expected "tens of millions of euros" across France. There is no official total. | [Reuters via CBC](https://www.cbc.ca/news/world/france-iran-cyberattack-accusation-9.7415031), [SOCRadar, citing BFMTV](https://socradar.io/blog/french-supermarket-cyberattack-ot/) |
+| 10 | On 2 November 2026 fridges and freezers were tampered with at stores "from Sweden to Belgium": Delhaize and Colruyt (Belgium, Luxembourg), ICA and Coop (Sweden), SuperValu (Ireland), Selver (Estonia). AFP counted more than 100 stores. "IKEA said one store in Belgium had been impacted." | [Reuters via CNBC](https://www.cnbc.com/2026/11/02/cyberattack-on-fridges-hits-supermarkets-across-europe.html), [The Guardian](https://www.theguardian.com/world/live/2026/nov/02/ukraine-russia-emergency-warning-systems-hack-zelenskyy-streeting-eu-latest-news-updates) |
+| 11 | The same night, cold storage used by France's blood service (EFS) was tampered with through a contractor. A technician noticed the temperatures rising; staff moved some of the blood to other units; "the products and samples were not damaged". | [Newsweek](https://www.newsweek.com/cyberattacks-target-french-blood-banks-refrigeration-supermarkets-12661343), [Reuters via CBC](https://www.cbc.ca/news/world/france-iran-cyberattack-accusation-9.7415031), [CBS News](https://www.cbsnews.com/news/france-iran-behind-refrigerator-freezer-hack-cyberattack/) |
+| 12 | Nobody has tied the November incidents to the October attack. Reuters "could not establish who was behind Monday's attacks or whether they were linked to the incidents in France". France's accusation covers the October attack. Sweden's civil defence minister said the sabotage would have "been easy to copy". | [Reuters via CNBC](https://www.cnbc.com/2026/11/02/cyberattack-on-fridges-hits-supermarkets-across-europe.html), [DW](https://www.dw.com/en/iran-denies-french-fridge-cyberattack-hacking/a-79910206), [CNN](https://www.cnn.com/2026/11/09/europe/france-accuses-iran-of-fridge-cyberattack-intl) |
+| 13 | 9 November 2026: France's foreign minister, Jean-Noël Barrot, said the attack "was carried out by the Islamic Revolutionary Guard Corps of the Islamic Republic of Iran". The Paris prosecutor named Shahid Kaveh, "a cyber-offensive unit affiliated with the Electronic and Cyber Center of the Islamic Revolutionary Guard Corps", opened a judicial investigation and asked for international arrest warrants for its leaders. | [Al Jazeera](https://www.aljazeera.com/news/2026/11/9/france-accuses-iran-of-cyberattack-on-european-fridges), [CBS News](https://www.cbsnews.com/news/france-iran-behind-refrigerator-freezer-hack-cyberattack/), [Le Monde with AFP](https://www.lemonde.fr/en/france/article/2026/11/10/france-vows-tough-response-to-freezer-cyberattack-blamed-on-iran_6776728_7.html) |
+| 14 | The evidence as the prosecutor describes it: "an attack methodology characteristic of this unit, including the use of the Persian (Farsi) language and IP addresses that trace back to devices located in Iran". | [CBS News](https://www.cbsnews.com/news/france-iran-behind-refrigerator-freezer-hack-cyberattack/) |
+| 15 | Barrot said France had established "with certainty" that the Revolutionary Guard was behind it, "but said he would not disclose how that determination was made". Reuters "could not establish exactly how the French made their determination". | [CNN](https://www.cnn.com/2026/11/09/europe/france-accuses-iran-of-fridge-cyberattack-intl), [Reuters via CBC](https://www.cbc.ca/news/world/france-iran-cyberattack-accusation-9.7415031) |
+| 16 | French Foreign Ministry, statement in English, 10 November: the hack was "unprecedented in its scale and level of aggressiveness and has been the first offensive cyber campaign carried out purely for the purposes of sabotage on French soil." | [CBS News](https://www.cbsnews.com/news/france-iran-behind-refrigerator-freezer-hack-cyberattack/) |
+| 17 | Iran denies it. Foreign Ministry statement, 10 November: it "categorically rejects the French government's baseless and one-sided accusations", and: "A government that cannot even manage the temperature of its own refrigerators now seeks to shift the blame onto foreign actors through these preposterous accusations." | [DW](https://www.dw.com/en/iran-denies-french-fridge-cyberattack-hacking/a-79910206), [Politico](https://www.politico.eu/article/iran-denies-role-in-cyberattacks-on-supermarket-refrigerators/), [Al Jazeera](https://www.aljazeera.com/news/2026/11/10/what-is-shahid-kaveh-%E2%81%A0the-iran-cyber-unit-tied-to-frances-fridge-hacking) |
+| 18 | France summoned Iran's ambassador on 10 November and said it would seek sanctions "at the European level". | [DW](https://www.dw.com/en/iran-denies-french-fridge-cyberattack-hacking/a-79910206), [Reuters via CBC](https://www.cbc.ca/news/world/france-iran-cyberattack-accusation-9.7415031) |
+| 19 | Official advice. France's CERT-FR: exposing a management interface to the internet "is contrary to good practice"; remove the internet exposure, then restore access "only through a secure VPN or a protected network". The FBI's cyber branch: take such controllers "off the public internet". | [CERT-FR alert CERTFR-2026-ALE-012](https://www.cert.ssi.gouv.fr/alerte/CERTFR-2026-ALE-012/) (French, our translation), [CBS News](https://www.cbsnews.com/news/france-iran-behind-refrigerator-freezer-hack-cyberattack/) |
+| 20 | Context: the attack came during "the Iran war that began in February" 2026, between the United States, Israel and Iran. Analysts told AFP it extends that conflict onto European soil. France calls it sabotage and has not given a motive. | [Reuters via NBC](https://www.nbcnews.com/world/france/france-supermarket-cyberattacks-iran-revolutionary-guard-corps-accused-rcna608354), [AFP via EuropeSays](https://www.europesays.com/3367218/) |
+
+### Could not be confirmed, and how the film handles it
+
+- **Who did it.** France says it is certain. Iran denies it. Reuters could not establish how France reached its conclusion, and the minister would not say. The film never states it as a fact: "France says", "prosecutors cite", "Iran denies", each side in its own shot with its ministry's own English wording.
+- **How the attackers got in.** Not published. In August researchers had shown a login bypass in one Danfoss controller model, since fixed, and counted thousands of controllers reachable from the internet; nobody has confirmed that this flaw was used. A claim that the login was "admin" and the date appears only on Wikipedia. Both left out. The film says what the prosecutor says: remote control through web interfaces.
+- **How many sites and how many fires.** "About 700" from the prosecutor and the finance minister; early counts by the chains differ, and one headline says more than 1,000. Fires: "at least 15" in one official document, "roughly twenty" in another. The narration says "about seven hundred" and "more than a dozen".
+- **The cost.** One retailer's estimate, "tens of millions of euros". On screen as an estimate; not in the narration.
+- **Whether the November attacks and the blood service incident are the same attackers.** Not established. The film says so in its own line.
+- **The motive.** France calls it sabotage and gives no motive; analysts link it to the war. The narration gives no motive; one line of context on screen.
+- **Freezers that failed on U.S. military bases in August.** Under investigation, no link established. Left out.
+- **Single-source figures**: 80 °C in a store in Normandy, a setting of 110 °C at the blood service, "150 degrees" at a butcher's in Athens. Left out.
+- **The three men named in the French report.** Accused, not tried. Not named and not drawn.
+- **What IKEA lost.** IKEA said one store in Belgium was affected, nothing more. The joke says exactly that: no word on the meatballs.
+
+### Rules for this film
+
+- Who did it is always somebody's statement: "France says", "prosecutors cite". The denial gets its own shot and Iran's exact words.
+- The two governments are treated alike: an anonymous spokesperson at a lectern in front of a landmark, beside the ministry's own English text. No caricature of either minister.
+- Nobody accused is named or drawn. The hackers are hoods with no faces, the same in every shot, whoever they are.
+- The November attacks are never blamed on anyone.
+- Jokes are about freezers, defrosting, ice cream and meatballs. None about the war, about either country or its people, or about the blood service.
+- Nothing that helps anyone repeat it: no model numbers, no login details, no steps. The control panel on screen is made up.
+- Written for a viewer who has never heard of the story.
+
+## Narration (235 words, 72.8 s as read)
+
+1. Hackers turned up the heat in the freezers of about seven hundred French supermarkets. And France says Iran did it!
+2. Overnight in October, some freezers hit fifty degrees Celsius. By morning: melted ice cream, spoiled meat, and more than a dozen fires.
+3. Nobody set foot in a store. Someone got into the control panels online, muted the alarms, started a defrost, and never let it stop.
+4. Why are freezers online? So technicians can watch them day and night.
+5. One professor's verdict. Quote: a fridge doesn't look like a security risk, and that's exactly why attackers like it.
+6. Danfoss, which makes many of those panels, points to outdated software.
+7. Three weeks later, the same trick hit stores from Sweden to Belgium. Even an IKEA. No word on the meatballs.
+8. Someone even went for freezers at France's blood service. Staff caught it in time.
+9. Neither has been tied to the first attack.
+10. For the first, France now names a culprit: a hacking unit of Iran's Revolutionary Guard.
+11. Prosecutors cite its methods, traces of Farsi, and Iranian IP addresses. France says it's certain. How exactly? It won't say.
+12. Iran denies it. And its reply is ice cold. Quote: a government that cannot even manage the temperature of its own refrigerators.
+13. France wants arrest warrants and European sanctions.
+14. The official advice? Take the freezers off the internet.
+15. So what do you think: should a freezer be online at all?
+
+Line to fact: 1 → 1, 13 · 2 → 2, 3, 4 · 3 → 5 · 4 → 6 · 5 → 7 · 6 → 8 · 7 → 10 · 8 → 11 · 9 → 12 · 10 → 13 · 11 → 14, 15 · 12 → 17 · 13 → 13, 18 · 14 → 19 · 15 → 19.
+
+The plain-text copy used for recording is `narration.txt`.

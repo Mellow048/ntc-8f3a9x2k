@@ -1,0 +1,15 @@
+Hackers turned up the heat in the freezers of about seven hundred French supermarkets. And France says Iran did it!
+Overnight in October, some freezers hit fifty degrees Celsius. By morning: melted ice cream, spoiled meat, and more than a dozen fires.
+Nobody set foot in a store. Someone got into the control panels online, muted the alarms, started a defrost, and never let it stop.
+Why are freezers online? So technicians can watch them day and night.
+One professor's verdict. Quote: a fridge doesn't look like a security risk, and that's exactly why attackers like it.
+Danfoss, which makes many of those panels, points to outdated software.
+Three weeks later, the same trick hit stores from Sweden to Belgium. Even an IKEA. No word on the meatballs.
+Someone even went for freezers at France's blood service. Staff caught it in time.
+Neither has been tied to the first attack.
+For the first, France now names a culprit: a hacking unit of Iran's Revolutionary Guard.
+Prosecutors cite its methods, traces of Farsi, and Iranian IP addresses. France says it's certain. How exactly? It won't say.
+Iran denies it. And its reply is ice cold. Quote: a government that cannot even manage the temperature of its own refrigerators.
+France wants arrest warrants and European sanctions.
+The official advice? Take the freezers off the internet.
+So what do you think: should a freezer be online at all?
