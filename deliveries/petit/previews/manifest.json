@@ -66,16 +66,16 @@
       "label": "",
       "light": "day",
       "pos": [
-        11.144,
-        14.545,
-        9.28
+        9.739,
+        13.113,
+        7.216
       ],
       "look": [
         0,
-        1,
-        -4
+        0.9,
+        -3.6
       ],
-      "fov": 52,
+      "fov": 54,
       "action": "Straight down the tower face: street, cars and people 1,350 feet below",
       "word": 9,
       "b": 121
@@ -87,16 +87,16 @@
       "label": "",
       "light": "day",
       "pos": [
-        0.729,
-        1.279,
-        7.443
+        -0.051,
+        0.761,
+        5.323
       ],
       "look": [
-        2,
-        2.4,
-        -1.6
+        1.7,
+        2.3,
+        -1.7
       ],
-      "fov": 54,
+      "fov": 56,
       "action": "Street: police car and two officers craning up at the wire",
       "word": 15,
       "b": 166
@@ -255,16 +255,16 @@
       "label": "Freight elevator",
       "light": "day",
       "pos": [
-        0.923,
-        2.212,
-        7.115
+        1.001,
+        2.17,
+        9.724
       ],
       "look": [
         0,
-        1.55,
-        -0.4
+        1.5,
+        0.2
       ],
-      "fov": 44,
+      "fov": 46,
       "action": "Cable coil, pole and bow loaded beside two friends in the freight car",
       "word": 67,
       "b": 687
@@ -276,14 +276,14 @@
       "label": "",
       "light": "day",
       "pos": [
-        0.609,
-        2.288,
-        6.656
+        0.763,
+        2.47,
+        9.118
       ],
       "look": [
         0,
-        1.8,
-        -0.3
+        1.55,
+        0.4
       ],
       "fov": 46,
       "action": "The pole goes up on shoulders, the bow on top",
@@ -297,16 +297,16 @@
       "label": "",
       "light": "day",
       "pos": [
-        0,
-        2.123,
-        5.196
+        4.338,
+        2.565,
+        5.731
       ],
       "look": [
         0,
-        1.9,
-        -1.2
+        1.75,
+        -0.7
       ],
-      "fov": 45,
+      "fov": 46,
       "action": "Doors close on the loaded car, 104 lit above",
       "word": 83,
       "b": 763
@@ -486,16 +486,16 @@
       "label": "Street below",
       "light": "day",
       "pos": [
-        3.225,
-        1.042,
-        5.461
+        3.924,
+        1.268,
+        6.512
       ],
       "look": [
         0,
-        2.2,
-        -3.4
+        2,
+        -3.2
       ],
-      "fov": 52,
+      "fov": 54,
       "action": "Cars stopped, drivers out, everyone looking up",
       "word": 144,
       "b": 1356
@@ -507,16 +507,16 @@
       "label": "",
       "light": "day",
       "pos": [
-        0.593,
-        4.145,
-        6.073
+        0.6,
+        5.03,
+        5.987
       ],
       "look": [
         0,
-        2.8,
-        -2.4
+        3.2,
+        -2.6
       ],
-      "fov": 58,
+      "fov": 56,
       "action": "Inside the crowd: faces tilted up, mouths open",
       "word": 147,
       "b": 1388
