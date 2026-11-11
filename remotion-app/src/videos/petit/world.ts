@@ -152,20 +152,22 @@ export class World{
  if(place==='bow'){deck();wire();
   const f1=A(-7.6,-4.6,FRIEND,6,DECK);f1.expr='neutral';f1.side=true;
   const bow=dyn(bowProp(p,-6.9,DECK+1.5,-4.6));bow.rotation.y=.5;
-  const line=dyn(bar(p,V(-6.6,DECK+1.5,-4.2),V(7.2,WIRE,WZ),.045,material('line','#f6efd8')));
-  line.scale.x=.02;
+  const LA=V(-6.6,DECK+1.5,-4.2),LB=V(7.2,WIRE,WZ);
+  const line=dyn(bar(p,LA,LB,.045,material('line','#f6efd8')));
+  line.scale.y=.02;
   const v=A(-4.9,-5.4,PETIT,5,DECK);v.expr='neutral';
   lamp(p,-9.6,DECK+1.4,-4.4,true);lamp(p,9.4,DECK+1.4,-4.4,true);
-  this.motions.push((f)=>{const q=action(f,100,18);line.scale.x=.02+.98*q;line.position.x=-6.6+13.8*q/2;line.position.z=-4.2+(WZ+4.2)*q/2;f1.wave=.5*action(f,100,6);});
+  this.motions.push((f)=>{const q=.02+.98*action(f,100,18);line.scale.y=q;line.position.copy(LA).addScaledVector(LB.clone().sub(LA),q/2);f1.wave=.5*action(f,100,6);});
  }
  // ---- 16 pull: hauling the cable by hand ----
  if(place==='pull'){deck();wire();
   const f1=A(-7.6,-4.4,FRIEND,6,DECK),f2=A(-6.2,-3.4,FRIEND,7,DECK);
-  const cable=dyn(bar(p,V(-7.2,DECK+.4,-4.2),V(7.2,WIRE,WZ),.05,iron()));
-  cable.scale.x=.3;
+  const CA=V(-7.2,DECK+.4,-4.2),CB=V(7.2,WIRE,WZ);
+  const cable=dyn(bar(p,CA,CB,.05,iron()));
+  cable.scale.y=.3;
   const v=A(-4.4,-4.8,PETIT,5,DECK);v.expr='nervous';
   lamp(p,-9.6,DECK+1.2,-4.2,true);
-  this.motions.push((f)=>{const q=action(f,111,20);cable.scale.x=.3+.7*q;cable.position.x=-7.4+14.6*q/2;f1.wave=.55*q;f2.wave=.45*q;v.wave=.3*q;});
+  this.motions.push((f)=>{const q=.3+.7*action(f,111,20);cable.scale.y=q;cable.position.copy(CA).addScaledVector(CB.clone().sub(CA),q/2);f1.wave=.55*q;f2.wave=.45*q;v.wave=.3*q;});
  }
  // ---- 17 sunrise: steps out, nothing ----
  if(place==='sunrise'){deck();wire();
