@@ -1,0 +1,1683 @@
+{
+ "fps": 30,
+ "total": 2090,
+ "shots": [
+  {
+   "id": 1,
+   "a": 0,
+   "place": "hook",
+   "label": "Town hall · 1906",
+   "pos": [
+    5,
+    4.2,
+    11
+   ],
+   "look": [
+    0,
+    2.1,
+    0
+   ],
+   "fov": 43,
+   "action": "Soldiers carry bags and salute the fake captain",
+   "word": 0,
+   "b": 152
+  },
+  {
+   "id": 2,
+   "a": 152,
+   "place": "ban",
+   "label": "Berlin · 1906",
+   "pos": [
+    1.2,
+    3.1,
+    8.5
+   ],
+   "look": [
+    0.3,
+    1.8,
+    0
+   ],
+   "fov": 43,
+   "action": "Civilian Voigt at police desk; papers stamped and pushed away",
+   "word": 18,
+   "b": 304
+  },
+  {
+   "id": 3,
+   "a": 304,
+   "place": "shop",
+   "label": "Second-hand dealer",
+   "pos": [
+    0.9,
+    3.1,
+    8.5
+   ],
+   "look": [
+    0,
+    1.8,
+    0
+   ],
+   "fov": 44,
+   "action": "Voigt enters a shop packed with coats and military cast-offs",
+   "word": 33,
+   "b": 348
+  },
+  {
+   "id": 4,
+   "a": 348,
+   "place": "uniform",
+   "label": "",
+   "pos": [
+    1,
+    4.6,
+    4.4
+   ],
+   "look": [
+    0,
+    1.15,
+    0
+   ],
+   "fov": 41,
+   "action": "Coat, sash, sabre and cap arrive on counter in sequence",
+   "word": 37,
+   "b": 448
+  },
+  {
+   "id": 5,
+   "a": 448,
+   "place": "mirror",
+   "label": "",
+   "pos": [
+    0.3,
+    2.9,
+    6.5
+   ],
+   "look": [
+    0.3,
+    1.9,
+    0
+   ],
+   "fov": 42,
+   "action": "Uniformed captain; cap versus spiked helmet visible beside him",
+   "word": 46,
+   "b": 524
+  },
+  {
+   "id": 6,
+   "a": 524,
+   "place": "halt",
+   "label": "Plötzensee",
+   "pos": [
+    1,
+    3.6,
+    13
+   ],
+   "look": [
+    -0.6,
+    1.7,
+    -1
+   ],
+   "fov": 44,
+   "action": "White glove rises and ten soldiers halt in two ranks",
+   "word": 55,
+   "b": 599
+  },
+  {
+   "id": 7,
+   "a": 599,
+   "place": "follow",
+   "label": "",
+   "pos": [
+    1,
+    3.6,
+    13
+   ],
+   "look": [
+    -0.7,
+    1.7,
+    0
+   ],
+   "fov": 44,
+   "action": "Captain points; troops wheel and march behind him",
+   "word": 65,
+   "b": 667
+  },
+  {
+   "id": 8,
+   "a": 667,
+   "place": "obey",
+   "label": "",
+   "pos": [
+    0.5,
+    3,
+    7.2
+   ],
+   "look": [
+    -0.15,
+    1.8,
+    0
+   ],
+   "fov": 43,
+   "action": "Soldier glances at cap then snaps to attention",
+   "word": 72,
+   "b": 766
+  },
+  {
+   "id": 9,
+   "a": 766,
+   "place": "train",
+   "label": "To Köpenick",
+   "pos": [
+    0.9,
+    3.1,
+    8.5
+   ],
+   "look": [
+    0,
+    1.8,
+    0
+   ],
+   "fov": 45,
+   "action": "Carriage interior with ten seated troops; mugs lifted on beer",
+   "word": 82,
+   "b": 850
+  },
+  {
+   "id": 10,
+   "a": 850,
+   "place": "hall",
+   "label": "Köpenick",
+   "pos": [
+    7,
+    7.1,
+    18
+   ],
+   "look": [
+    0,
+    3,
+    0
+   ],
+   "fov": 43,
+   "action": "Squad advances up town hall stairs; guards close the entrance",
+   "word": 95,
+   "b": 928
+  },
+  {
+   "id": 11,
+   "a": 928,
+   "place": "crowd",
+   "label": "",
+   "pos": [
+    6,
+    3.8,
+    10
+   ],
+   "look": [
+    0,
+    1.8,
+    1
+   ],
+   "fov": 45,
+   "action": "Police hold a crowd behind their arms",
+   "word": 104,
+   "b": 981
+  },
+  {
+   "id": 12,
+   "a": 981,
+   "place": "bath",
+   "label": "Inside the town hall",
+   "pos": [
+    0.8,
+    3.3,
+    8.5
+   ],
+   "look": [
+    0.5,
+    1.7,
+    -0.5
+   ],
+   "fov": 44,
+   "action": "Inspector with a towel asks; captain waves him towards a bath",
+   "word": 111,
+   "b": 1120
+  },
+  {
+   "id": 13,
+   "a": 1120,
+   "place": "mayor",
+   "label": "Mayor’s office",
+   "pos": [
+    0.6,
+    3.4,
+    9.3
+   ],
+   "look": [
+    0,
+    1.85,
+    0
+   ],
+   "fov": 44,
+   "action": "Mayor demands paperwork; hands empty; captain faces him",
+   "word": 126,
+   "b": 1163
+  },
+  {
+   "id": 14,
+   "a": 1163,
+   "place": "warrant",
+   "label": "",
+   "pos": [
+    0.6,
+    3.4,
+    9.3
+   ],
+   "look": [
+    0,
+    1.85,
+    0
+   ],
+   "fov": 43,
+   "action": "Captain gestures at two armed guards; mayor shrinks back",
+   "word": 131,
+   "b": 1244
+  },
+  {
+   "id": 15,
+   "a": 1244,
+   "place": "cash",
+   "label": "Town treasury",
+   "pos": [
+    1,
+    3.5,
+    8.5
+   ],
+   "look": [
+    0,
+    1.7,
+    0
+   ],
+   "fov": 44,
+   "action": "Cash box opens; coins drop into bag held by treasurer",
+   "word": 139,
+   "b": 1295
+  },
+  {
+   "id": 16,
+   "a": 1295,
+   "place": "receipt",
+   "label": "",
+   "pos": [
+    0.1,
+    4.5,
+    3.5
+   ],
+   "look": [
+    0,
+    1.3,
+    0
+   ],
+   "fov": 38,
+   "action": "Quill writes von Malzahn on a receipt beside cash bag",
+   "word": 145,
+   "b": 1383
+  },
+  {
+   "id": 17,
+   "a": 1383,
+   "place": "guard",
+   "label": "Town hall",
+   "pos": [
+    5.5,
+    4.2,
+    10
+   ],
+   "look": [
+    0,
+    2,
+    0
+   ],
+   "fov": 44,
+   "action": "Two sentries at portal; captain walks off while clock moves",
+   "word": 157,
+   "b": 1462
+  },
+  {
+   "id": 18,
+   "a": 1462,
+   "place": "escape",
+   "label": "Köpenick station",
+   "pos": [
+    5,
+    3.2,
+    10
+   ],
+   "look": [
+    0,
+    1.7,
+    0
+   ],
+   "fov": 44,
+   "action": "Captain crosses platform behind a steam cloud and disappears",
+   "word": 168,
+   "b": 1489
+  },
+  {
+   "id": 19,
+   "a": 1489,
+   "place": "wanted",
+   "label": "Berlin police",
+   "pos": [
+    1.5,
+    3,
+    6
+   ],
+   "look": [
+    0,
+    1.9,
+    0
+   ],
+   "fov": 43,
+   "action": "Police examine wanted poster with unknown face",
+   "word": 170,
+   "b": 1571
+  },
+  {
+   "id": 20,
+   "a": 1571,
+   "place": "tip",
+   "label": "",
+   "pos": [
+    3.8,
+    3,
+    7
+   ],
+   "look": [
+    0,
+    1.8,
+    0
+   ],
+   "fov": 43,
+   "action": "Former cellmate recognises the cap and points to his name",
+   "word": 179,
+   "b": 1629
+  },
+  {
+   "id": 21,
+   "a": 1629,
+   "place": "breakfast",
+   "label": "Ten days later",
+   "pos": [
+    0.7,
+    3.3,
+    8
+   ],
+   "look": [
+    0.1,
+    1.7,
+    0
+   ],
+   "fov": 44,
+   "action": "Voigt in civilian clothes stops mid-breakfast; police arrive",
+   "word": 184,
+   "b": 1696
+  },
+  {
+   "id": 22,
+   "a": 1696,
+   "place": "prison",
+   "label": "Four years",
+   "pos": [
+    2.2,
+    3,
+    7
+   ],
+   "look": [
+    0,
+    1.8,
+    0
+   ],
+   "fov": 42,
+   "action": "Iron-barred cell closes in front of him",
+   "word": 191,
+   "b": 1740
+  },
+  {
+   "id": 23,
+   "a": 1740,
+   "place": "laugh",
+   "label": "Germany",
+   "pos": [
+    4.7,
+    3.7,
+    9
+   ],
+   "look": [
+    0,
+    1.8,
+    0
+   ],
+   "fov": 44,
+   "action": "Newsstand; public laughs at the illustrated newspaper",
+   "word": 195,
+   "b": 1782
+  },
+  {
+   "id": 24,
+   "a": 1782,
+   "place": "pardon",
+   "label": "Imperial pardon",
+   "pos": [
+    3.5,
+    3.5,
+    7
+   ],
+   "look": [
+    0,
+    1.7,
+    0
+   ],
+   "fov": 42,
+   "action": "Kaiser signs pardon; seal stamps on word pardons",
+   "word": 201,
+   "b": 1822
+  },
+  {
+   "id": 25,
+   "a": 1822,
+   "place": "stage",
+   "label": "After his release",
+   "pos": [
+    0.2,
+    3,
+    8
+   ],
+   "look": [
+    0,
+    2,
+    0
+   ],
+   "fov": 42,
+   "action": "Music-hall stage; captain bows, audience claps",
+   "word": 206,
+   "b": 1907
+  },
+  {
+   "id": 26,
+   "a": 1907,
+   "place": "statue",
+   "label": "Köpenick · today",
+   "pos": [
+    6,
+    4.5,
+    11
+   ],
+   "look": [
+    0,
+    2.1,
+    0
+   ],
+   "fov": 43,
+   "action": "Reveal bronze captain on pedestal in front of the same town hall",
+   "word": 214,
+   "b": 2090
+  }
+ ],
+ "words": [
+  {
+   "word": "In",
+   "start": 0.06,
+   "end": 0.17
+  },
+  {
+   "word": "nineteen",
+   "start": 0.17,
+   "end": 0.6
+  },
+  {
+   "word": "oh",
+   "start": 0.6,
+   "end": 0.67
+  },
+  {
+   "word": "six,",
+   "start": 0.67,
+   "end": 1.11
+  },
+  {
+   "word": "the",
+   "start": 1.11,
+   "end": 1.35
+  },
+  {
+   "word": "German",
+   "start": 1.35,
+   "end": 1.7
+  },
+  {
+   "word": "army",
+   "start": 1.7,
+   "end": 1.97
+  },
+  {
+   "word": "helped",
+   "start": 1.97,
+   "end": 2.24
+  },
+  {
+   "word": "a",
+   "start": 2.24,
+   "end": 2.27
+  },
+  {
+   "word": "shoemaker",
+   "start": 2.27,
+   "end": 2.83
+  },
+  {
+   "word": "rob",
+   "start": 2.83,
+   "end": 3.02
+  },
+  {
+   "word": "a",
+   "start": 3.02,
+   "end": 3.07
+  },
+  {
+   "word": "town",
+   "start": 3.07,
+   "end": 3.34
+  },
+  {
+   "word": "hall.",
+   "start": 3.34,
+   "end": 3.67
+  },
+  {
+   "word": "They",
+   "start": 3.94,
+   "end": 4.04
+  },
+  {
+   "word": "had",
+   "start": 4.04,
+   "end": 4.19
+  },
+  {
+   "word": "no",
+   "start": 4.19,
+   "end": 4.46
+  },
+  {
+   "word": "idea.",
+   "start": 4.46,
+   "end": 4.87
+  },
+  {
+   "word": "Wilhelm",
+   "start": 5.12,
+   "end": 5.62
+  },
+  {
+   "word": "Voigt",
+   "start": 5.62,
+   "end": 6.16
+  },
+  {
+   "word": "is",
+   "start": 6.16,
+   "end": 6.32
+  },
+  {
+   "word": "fifty-seven,",
+   "start": 6.32,
+   "end": 6.97
+  },
+  {
+   "word": "an",
+   "start": 6.97,
+   "end": 7.27
+  },
+  {
+   "word": "ex-convict,",
+   "start": 7.27,
+   "end": 8.18
+  },
+  {
+   "word": "and",
+   "start": 8.18,
+   "end": 8.27
+  },
+  {
+   "word": "the",
+   "start": 8.27,
+   "end": 8.33
+  },
+  {
+   "word": "police",
+   "start": 8.33,
+   "end": 8.68
+  },
+  {
+   "word": "have",
+   "start": 8.68,
+   "end": 8.77
+  },
+  {
+   "word": "just",
+   "start": 8.77,
+   "end": 8.97
+  },
+  {
+   "word": "banned",
+   "start": 8.97,
+   "end": 9.25
+  },
+  {
+   "word": "him",
+   "start": 9.25,
+   "end": 9.37
+  },
+  {
+   "word": "from",
+   "start": 9.37,
+   "end": 9.52
+  },
+  {
+   "word": "Berlin.",
+   "start": 9.52,
+   "end": 9.96
+  },
+  {
+   "word": "So",
+   "start": 10.19,
+   "end": 10.55
+  },
+  {
+   "word": "he",
+   "start": 10.55,
+   "end": 10.68
+  },
+  {
+   "word": "goes",
+   "start": 10.68,
+   "end": 10.88
+  },
+  {
+   "word": "shopping.",
+   "start": 10.88,
+   "end": 11.35
+  },
+  {
+   "word": "Piece",
+   "start": 11.66,
+   "end": 11.9
+  },
+  {
+   "word": "by",
+   "start": 11.9,
+   "end": 12.07
+  },
+  {
+   "word": "piece,",
+   "start": 12.07,
+   "end": 12.68
+  },
+  {
+   "word": "he",
+   "start": 12.68,
+   "end": 12.77
+  },
+  {
+   "word": "buys",
+   "start": 12.77,
+   "end": 13.02
+  },
+  {
+   "word": "a",
+   "start": 13.02,
+   "end": 13.05
+  },
+  {
+   "word": "second-hand",
+   "start": 13.05,
+   "end": 13.72
+  },
+  {
+   "word": "captain's",
+   "start": 13.72,
+   "end": 14.21
+  },
+  {
+   "word": "uniform.",
+   "start": 14.21,
+   "end": 14.71
+  },
+  {
+   "word": "It's",
+   "start": 15.01,
+   "end": 15.15
+  },
+  {
+   "word": "not",
+   "start": 15.15,
+   "end": 15.3
+  },
+  {
+   "word": "even",
+   "start": 15.3,
+   "end": 15.48
+  },
+  {
+   "word": "correct.",
+   "start": 15.48,
+   "end": 16.01
+  },
+  {
+   "word": "He's",
+   "start": 16.22,
+   "end": 16.37
+  },
+  {
+   "word": "wearing",
+   "start": 16.37,
+   "end": 16.65
+  },
+  {
+   "word": "the",
+   "start": 16.65,
+   "end": 16.73
+  },
+  {
+   "word": "wrong",
+   "start": 16.73,
+   "end": 16.94
+  },
+  {
+   "word": "hat.",
+   "start": 16.94,
+   "end": 17.32
+  },
+  {
+   "word": "Then",
+   "start": 17.55,
+   "end": 17.68
+  },
+  {
+   "word": "he",
+   "start": 17.68,
+   "end": 17.77
+  },
+  {
+   "word": "stops",
+   "start": 17.77,
+   "end": 18.14
+  },
+  {
+   "word": "ten",
+   "start": 18.14,
+   "end": 18.41
+  },
+  {
+   "word": "armed",
+   "start": 18.41,
+   "end": 18.69
+  },
+  {
+   "word": "soldiers",
+   "start": 18.69,
+   "end": 19.1
+  },
+  {
+   "word": "in",
+   "start": 19.1,
+   "end": 19.19
+  },
+  {
+   "word": "the",
+   "start": 19.19,
+   "end": 19.25
+  },
+  {
+   "word": "street,",
+   "start": 19.25,
+   "end": 19.89
+  },
+  {
+   "word": "and",
+   "start": 19.89,
+   "end": 20.03
+  },
+  {
+   "word": "orders",
+   "start": 20.03,
+   "end": 20.36
+  },
+  {
+   "word": "them",
+   "start": 20.36,
+   "end": 20.5
+  },
+  {
+   "word": "to",
+   "start": 20.5,
+   "end": 20.59
+  },
+  {
+   "word": "follow",
+   "start": 20.59,
+   "end": 20.88
+  },
+  {
+   "word": "him.",
+   "start": 20.88,
+   "end": 21.13
+  },
+  {
+   "word": "They",
+   "start": 21.46,
+   "end": 21.61
+  },
+  {
+   "word": "do.",
+   "start": 21.61,
+   "end": 21.95
+  },
+  {
+   "word": "You",
+   "start": 22.31,
+   "end": 22.39
+  },
+  {
+   "word": "see,",
+   "start": 22.39,
+   "end": 22.66
+  },
+  {
+   "word": "in",
+   "start": 22.87,
+   "end": 22.97
+  },
+  {
+   "word": "the",
+   "start": 22.97,
+   "end": 23.03
+  },
+  {
+   "word": "Kaiser's",
+   "start": 23.03,
+   "end": 23.49
+  },
+  {
+   "word": "Germany,",
+   "start": 23.49,
+   "end": 23.99
+  },
+  {
+   "word": "nobody",
+   "start": 24.15,
+   "end": 24.53
+  },
+  {
+   "word": "questions",
+   "start": 24.53,
+   "end": 24.97
+  },
+  {
+   "word": "an",
+   "start": 24.97,
+   "end": 25.05
+  },
+  {
+   "word": "officer.",
+   "start": 25.05,
+   "end": 25.41
+  },
+  {
+   "word": "He",
+   "start": 25.6,
+   "end": 25.68
+  },
+  {
+   "word": "takes",
+   "start": 25.68,
+   "end": 25.94
+  },
+  {
+   "word": "his",
+   "start": 25.94,
+   "end": 26.06
+  },
+  {
+   "word": "new",
+   "start": 26.06,
+   "end": 26.24
+  },
+  {
+   "word": "army",
+   "start": 26.24,
+   "end": 26.46
+  },
+  {
+   "word": "by",
+   "start": 26.46,
+   "end": 26.63
+  },
+  {
+   "word": "train,",
+   "start": 26.63,
+   "end": 27.01
+  },
+  {
+   "word": "and",
+   "start": 27.01,
+   "end": 27.35
+  },
+  {
+   "word": "buys",
+   "start": 27.35,
+   "end": 27.62
+  },
+  {
+   "word": "them",
+   "start": 27.62,
+   "end": 27.74
+  },
+  {
+   "word": "all",
+   "start": 27.74,
+   "end": 27.88
+  },
+  {
+   "word": "a",
+   "start": 27.88,
+   "end": 27.92
+  },
+  {
+   "word": "beer.",
+   "start": 27.92,
+   "end": 28.17
+  },
+  {
+   "word": "In",
+   "start": 28.4,
+   "end": 28.5
+  },
+  {
+   "word": "nearby",
+   "start": 28.5,
+   "end": 28.85
+  },
+  {
+   "word": "Köpenick,",
+   "start": 28.85,
+   "end": 29.56
+  },
+  {
+   "word": "they",
+   "start": 29.56,
+   "end": 29.66
+  },
+  {
+   "word": "seal",
+   "start": 29.66,
+   "end": 30.02
+  },
+  {
+   "word": "off",
+   "start": 30.02,
+   "end": 30.16
+  },
+  {
+   "word": "the",
+   "start": 30.16,
+   "end": 30.24
+  },
+  {
+   "word": "town",
+   "start": 30.24,
+   "end": 30.5
+  },
+  {
+   "word": "hall.",
+   "start": 30.5,
+   "end": 30.79
+  },
+  {
+   "word": "The",
+   "start": 31.01,
+   "end": 31.08
+  },
+  {
+   "word": "police",
+   "start": 31.08,
+   "end": 31.42
+  },
+  {
+   "word": "even",
+   "start": 31.42,
+   "end": 31.67
+  },
+  {
+   "word": "hold",
+   "start": 31.67,
+   "end": 31.91
+  },
+  {
+   "word": "back",
+   "start": 31.91,
+   "end": 32.1
+  },
+  {
+   "word": "the",
+   "start": 32.1,
+   "end": 32.16
+  },
+  {
+   "word": "crowd.",
+   "start": 32.16,
+   "end": 32.56
+  },
+  {
+   "word": "A",
+   "start": 32.76,
+   "end": 32.82
+  },
+  {
+   "word": "police",
+   "start": 32.82,
+   "end": 33.15
+  },
+  {
+   "word": "inspector",
+   "start": 33.15,
+   "end": 33.59
+  },
+  {
+   "word": "asks",
+   "start": 33.59,
+   "end": 33.97
+  },
+  {
+   "word": "the",
+   "start": 33.97,
+   "end": 34.06
+  },
+  {
+   "word": "fake",
+   "start": 34.06,
+   "end": 34.3
+  },
+  {
+   "word": "captain",
+   "start": 34.3,
+   "end": 34.66
+  },
+  {
+   "word": "for",
+   "start": 34.66,
+   "end": 34.75
+  },
+  {
+   "word": "time",
+   "start": 34.75,
+   "end": 35.04
+  },
+  {
+   "word": "off,",
+   "start": 35.04,
+   "end": 35.27
+  },
+  {
+   "word": "to",
+   "start": 35.5,
+   "end": 35.6
+  },
+  {
+   "word": "take",
+   "start": 35.6,
+   "end": 35.83
+  },
+  {
+   "word": "a",
+   "start": 35.83,
+   "end": 35.87
+  },
+  {
+   "word": "bath.",
+   "start": 35.87,
+   "end": 36.4
+  },
+  {
+   "word": "Granted.",
+   "start": 36.64,
+   "end": 37.17
+  },
+  {
+   "word": "The",
+   "start": 37.39,
+   "end": 37.48
+  },
+  {
+   "word": "mayor",
+   "start": 37.48,
+   "end": 37.71
+  },
+  {
+   "word": "demands",
+   "start": 37.71,
+   "end": 38.04
+  },
+  {
+   "word": "a",
+   "start": 38.04,
+   "end": 38.12
+  },
+  {
+   "word": "warrant.",
+   "start": 38.12,
+   "end": 38.51
+  },
+  {
+   "word": "The",
+   "start": 38.82,
+   "end": 38.91
+  },
+  {
+   "word": "shoemaker",
+   "start": 38.91,
+   "end": 39.39
+  },
+  {
+   "word": "says",
+   "start": 39.39,
+   "end": 39.65
+  },
+  {
+   "word": "his",
+   "start": 39.65,
+   "end": 39.76
+  },
+  {
+   "word": "soldiers",
+   "start": 39.76,
+   "end": 40.31
+  },
+  {
+   "word": "are",
+   "start": 40.54,
+   "end": 40.74
+  },
+  {
+   "word": "his",
+   "start": 40.74,
+   "end": 40.94
+  },
+  {
+   "word": "warrant.",
+   "start": 40.94,
+   "end": 41.31
+  },
+  {
+   "word": "Then",
+   "start": 41.52,
+   "end": 41.78
+  },
+  {
+   "word": "he",
+   "start": 41.78,
+   "end": 41.92
+  },
+  {
+   "word": "takes",
+   "start": 41.92,
+   "end": 42.21
+  },
+  {
+   "word": "the",
+   "start": 42.21,
+   "end": 42.29
+  },
+  {
+   "word": "town's",
+   "start": 42.29,
+   "end": 42.61
+  },
+  {
+   "word": "cash,",
+   "start": 42.61,
+   "end": 43.02
+  },
+  {
+   "word": "and",
+   "start": 43.24,
+   "end": 43.35
+  },
+  {
+   "word": "signs",
+   "start": 43.35,
+   "end": 43.74
+  },
+  {
+   "word": "the",
+   "start": 43.74,
+   "end": 43.81
+  },
+  {
+   "word": "receipt",
+   "start": 43.81,
+   "end": 44.24
+  },
+  {
+   "word": "with",
+   "start": 44.24,
+   "end": 44.33
+  },
+  {
+   "word": "the",
+   "start": 44.33,
+   "end": 44.39
+  },
+  {
+   "word": "name",
+   "start": 44.39,
+   "end": 44.67
+  },
+  {
+   "word": "of",
+   "start": 44.67,
+   "end": 44.76
+  },
+  {
+   "word": "his",
+   "start": 44.76,
+   "end": 44.93
+  },
+  {
+   "word": "old",
+   "start": 44.93,
+   "end": 45.14
+  },
+  {
+   "word": "prison",
+   "start": 45.14,
+   "end": 45.46
+  },
+  {
+   "word": "warden.",
+   "start": 45.46,
+   "end": 45.86
+  },
+  {
+   "word": "He",
+   "start": 46.18,
+   "end": 46.26
+  },
+  {
+   "word": "tells",
+   "start": 46.26,
+   "end": 46.53
+  },
+  {
+   "word": "the",
+   "start": 46.53,
+   "end": 46.61
+  },
+  {
+   "word": "soldiers",
+   "start": 46.61,
+   "end": 47.07
+  },
+  {
+   "word": "to",
+   "start": 47.07,
+   "end": 47.17
+  },
+  {
+   "word": "stand",
+   "start": 47.17,
+   "end": 47.5
+  },
+  {
+   "word": "guard",
+   "start": 47.5,
+   "end": 47.83
+  },
+  {
+   "word": "for",
+   "start": 47.83,
+   "end": 47.98
+  },
+  {
+   "word": "half",
+   "start": 47.98,
+   "end": 48.23
+  },
+  {
+   "word": "an",
+   "start": 48.23,
+   "end": 48.32
+  },
+  {
+   "word": "hour,",
+   "start": 48.32,
+   "end": 48.57
+  },
+  {
+   "word": "and",
+   "start": 48.81,
+   "end": 48.93
+  },
+  {
+   "word": "vanishes.",
+   "start": 48.93,
+   "end": 49.5
+  },
+  {
+   "word": "Luckily,",
+   "start": 49.71,
+   "end": 50.22
+  },
+  {
+   "word": "the",
+   "start": 50.4,
+   "end": 50.5
+  },
+  {
+   "word": "police",
+   "start": 50.5,
+   "end": 50.81
+  },
+  {
+   "word": "have",
+   "start": 50.81,
+   "end": 50.96
+  },
+  {
+   "word": "no",
+   "start": 50.96,
+   "end": 51.25
+  },
+  {
+   "word": "idea",
+   "start": 51.25,
+   "end": 51.57
+  },
+  {
+   "word": "who",
+   "start": 51.57,
+   "end": 51.73
+  },
+  {
+   "word": "he",
+   "start": 51.73,
+   "end": 51.96
+  },
+  {
+   "word": "is.",
+   "start": 51.96,
+   "end": 52.24
+  },
+  {
+   "word": "Unluckily,",
+   "start": 52.43,
+   "end": 52.97
+  },
+  {
+   "word": "his",
+   "start": 53.14,
+   "end": 53.29
+  },
+  {
+   "word": "old",
+   "start": 53.29,
+   "end": 53.43
+  },
+  {
+   "word": "cellmate",
+   "start": 53.43,
+   "end": 53.8
+  },
+  {
+   "word": "does.",
+   "start": 53.8,
+   "end": 54.16
+  },
+  {
+   "word": "Ten",
+   "start": 54.38,
+   "end": 54.6
+  },
+  {
+   "word": "days",
+   "start": 54.6,
+   "end": 54.8
+  },
+  {
+   "word": "later,",
+   "start": 54.8,
+   "end": 55.33
+  },
+  {
+   "word": "he's",
+   "start": 55.33,
+   "end": 55.48
+  },
+  {
+   "word": "arrested",
+   "start": 55.48,
+   "end": 55.81
+  },
+  {
+   "word": "at",
+   "start": 55.81,
+   "end": 55.88
+  },
+  {
+   "word": "breakfast.",
+   "start": 55.88,
+   "end": 56.61
+  },
+  {
+   "word": "Four",
+   "start": 56.61,
+   "end": 57.01
+  },
+  {
+   "word": "years",
+   "start": 57.01,
+   "end": 57.38
+  },
+  {
+   "word": "in",
+   "start": 57.38,
+   "end": 57.47
+  },
+  {
+   "word": "prison.",
+   "start": 57.47,
+   "end": 57.83
+  },
+  {
+   "word": "But",
+   "start": 58.06,
+   "end": 58.21
+  },
+  {
+   "word": "all",
+   "start": 58.21,
+   "end": 58.33
+  },
+  {
+   "word": "of",
+   "start": 58.33,
+   "end": 58.42
+  },
+  {
+   "word": "Germany",
+   "start": 58.42,
+   "end": 58.76
+  },
+  {
+   "word": "is",
+   "start": 58.76,
+   "end": 58.85
+  },
+  {
+   "word": "laughing,",
+   "start": 58.85,
+   "end": 59.29
+  },
+  {
+   "word": "so",
+   "start": 59.46,
+   "end": 59.58
+  },
+  {
+   "word": "the",
+   "start": 59.58,
+   "end": 59.64
+  },
+  {
+   "word": "Kaiser",
+   "start": 59.64,
+   "end": 59.98
+  },
+  {
+   "word": "pardons",
+   "start": 59.98,
+   "end": 60.43
+  },
+  {
+   "word": "him.",
+   "start": 60.43,
+   "end": 60.59
+  },
+  {
+   "word": "Soon",
+   "start": 60.8,
+   "end": 61.07
+  },
+  {
+   "word": "he's",
+   "start": 61.07,
+   "end": 61.25
+  },
+  {
+   "word": "on",
+   "start": 61.25,
+   "end": 61.37
+  },
+  {
+   "word": "stage,",
+   "start": 61.37,
+   "end": 61.83
+  },
+  {
+   "word": "re-enacting",
+   "start": 62.07,
+   "end": 62.61
+  },
+  {
+   "word": "his",
+   "start": 62.61,
+   "end": 62.78
+  },
+  {
+   "word": "own",
+   "start": 62.78,
+   "end": 62.97
+  },
+  {
+   "word": "robbery.",
+   "start": 62.97,
+   "end": 63.39
+  },
+  {
+   "word": "And",
+   "start": 63.64,
+   "end": 63.74
+  },
+  {
+   "word": "outside",
+   "start": 63.74,
+   "end": 64.08
+  },
+  {
+   "word": "that",
+   "start": 64.08,
+   "end": 64.22
+  },
+  {
+   "word": "town",
+   "start": 64.22,
+   "end": 64.43
+  },
+  {
+   "word": "hall",
+   "start": 64.43,
+   "end": 64.6
+  },
+  {
+   "word": "today?",
+   "start": 64.6,
+   "end": 64.96
+  },
+  {
+   "word": "A",
+   "start": 65.31,
+   "end": 65.39
+  },
+  {
+   "word": "bronze",
+   "start": 65.39,
+   "end": 65.74
+  },
+  {
+   "word": "statue",
+   "start": 65.74,
+   "end": 66.13
+  },
+  {
+   "word": "of",
+   "start": 66.13,
+   "end": 66.19
+  },
+  {
+   "word": "the",
+   "start": 66.19,
+   "end": 66.26
+  },
+  {
+   "word": "shoemaker.",
+   "start": 66.26,
+   "end": 66.89
+  },
+  {
+   "word": "Still",
+   "start": 67.27,
+   "end": 67.54
+  },
+  {
+   "word": "wearing",
+   "start": 67.54,
+   "end": 67.8
+  },
+  {
+   "word": "the",
+   "start": 67.8,
+   "end": 67.88
+  },
+  {
+   "word": "wrong",
+   "start": 67.88,
+   "end": 68.07
+  },
+  {
+   "word": "hat.",
+   "start": 68.07,
+   "end": 68.44
+  }
+ ]
+}

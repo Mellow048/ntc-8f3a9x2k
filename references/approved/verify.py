@@ -2,9 +2,10 @@
 from pathlib import Path
 import hashlib,json
 root=Path(__file__).resolve().parent
-for name in ['taipei-101','beer-flood']:
- folder=root/name
- manifest=json.loads((folder/'manifest.json').read_text())
+for manifest_path in sorted(root.glob('*/manifest.json')):
+ folder=manifest_path.parent
+ name=folder.name
+ manifest=json.loads(manifest_path.read_text())
  for entry in manifest['files']:
   p=folder/entry['path']
   assert p.is_file(),f'Missing: {p}'

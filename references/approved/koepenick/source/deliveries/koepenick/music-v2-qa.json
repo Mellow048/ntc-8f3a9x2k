@@ -1,0 +1,33 @@
+{
+  "version": "music-v2",
+  "stems_lufs": {
+    "voice-processed": -18.900307857399117,
+    "music": -24.52810076166498,
+    "sfx": -30.900308009975067
+  },
+  "music_relative_lu": -5.627792904265863,
+  "minimum_drum_attack_contrast_db": 175.73755547641565,
+  "kick_count": 64,
+  "backbeat_count": 64,
+  "bpm": 112,
+  "meter": "4/4, continuous from zero; no restart at cuts",
+  "cadence_seconds": 68.57142857142857,
+  "video_packet_hash": "SHA256=dea554da10021a06012947ed7859081ac6cf583873e80b88ee68555918c0305e",
+  "video_packets_unchanged": true,
+  "decoded_frames": 2090,
+  "silence_detected": false,
+  "aac_loudness": {
+    "input_i": "-14.54",
+    "input_tp": "-1.41",
+    "input_lra": "2.10",
+    "input_thresh": "-24.62",
+    "output_i": "-14.50",
+    "output_tp": "-1.50",
+    "output_lra": "1.90",
+    "output_thresh": "-24.54",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.00"
+  },
+  "mp4_sha256": "4167efa884652be33fd8f92181d53d60c83ecfa1a23fe29664193476741334a6",
+  "listened_by_agent": false
+}

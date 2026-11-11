@@ -1,0 +1,175 @@
+name: Render short
+
+on:
+  workflow_dispatch:
+    inputs:
+      composition:
+        description: "Remotion composition id"
+        required: false
+        default: "SupermarketShort"
+      mix:
+        description: "Voice/mix WAV path in repo"
+        required: false
+        default: "shoots/supermarket/audio/mix.wav"
+      crf:
+        description: "x264 CRF (lower is better)"
+        required: false
+        default: "16"
+      size:
+        description: "Final size: 720 (720x1280, fastest) or 1080 or 2K (slow on CI CPU)"
+        required: false
+        default: "720"
+      still_frame:
+        description: "Frame number for the still preview"
+        required: false
+        default: "100"
+
+jobs:
+  render:
+    if: inputs.composition != 'Koepenick'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      REMOTION_TMP: ${{ github.workspace }}/.remotion-tmp
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: remotion-app/package-lock.json
+
+      - name: Install Playwright Chromium (SwiftShader WebGL)
+        run: npx playwright@1.49.1 install --with-deps chromium
+        working-directory: remotion-app
+
+      - name: Resolve Playwright Chromium path
+        run: |
+          CHROME="$(find ~/.cache/ms-playwright -maxdepth 4 -type f -name chrome -o -name headless_shell | head -1)"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+          ls -lh "$CHROME" || true
+
+      - name: Install ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -y
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -1
+
+      - name: Install (Remotion scaffold)
+        working-directory: remotion-app
+        run: npm ci
+
+      - name: Typecheck
+        working-directory: remotion-app
+        run: npx tsc --noEmit
+
+      - name: Still preview
+        working-directory: remotion-app
+        run: |
+          npx remotion browser ensure
+          npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
+            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
+
+      - name: Render video
+        working-directory: remotion-app
+        run: |
+          npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
+            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH"
+
+      - name: Mux voice mix
+        if: inputs.mix != ''
+        run: |
+          ffmpeg -y -i remotion-app/out/final.mp4 -i "${{ github.event.inputs.mix }}" \
+            -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -shortest remotion-app/out/final-muxed.mp4
+          mv remotion-app/out/final-muxed.mp4 remotion-app/out/final.mp4
+
+      - name: Upload MP4
+        uses: actions/upload-artifact@v4
+        with:
+          name: cartoon-3d-short
+          path: |
+            remotion-app/out/final.mp4
+            remotion-app/out/still.png
+          if-no-files-found: error
+          retention-days: 14
+
+  koepenick:
+    if: inputs.composition == 'Koepenick'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/f220dac6-ntc-8f3a9x2k
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: remotion-app/package-lock.json
+      - name: Install and typecheck
+        run: |
+          npm ci --prefix remotion-app
+          npm run typecheck --prefix remotion-app
+          node scripts/koepenick/test.mjs
+          cd remotion-app
+          npx playwright@1.49.1 install --with-deps chromium
+          CHROME="$(find ~/.cache/ms-playwright -type f -name chrome | head -1)"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+          test -x "$CHROME"
+          cd ..
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          pip install numpy scipy pillow
+      - name: Diagnostic portrait frames
+        if: inputs.still_frame != '-1'
+        run: REVIEW_FRAMES="${{ inputs.still_frame }}" node scripts/koepenick/stills.mjs
+      - name: Publish preview gate
+        if: inputs.still_frame != '-1'
+        run: |
+          git config user.name "Arena video build"
+          git config user.email "video-build@users.noreply.github.com"
+          git add deliveries/koepenick/previews
+          git commit -m "Köpenick diagnostic frames for visual review" || true
+          git push origin HEAD:arena/f220dac6-ntc-8f3a9x2k
+      - name: Compose original soundtrack
+        if: inputs.still_frame == '-1'
+        run: |
+          python shoots/koepenick/audio/score.py
+          ffmpeg -y -i shoots/koepenick/out/audio/premix.wav -af loudnorm=I=-14.5:TP=-1.5:LRA=5 -ar 48000 -ac 2 shoots/koepenick/out/audio/mix.wav
+      - name: Render reviewed picture
+        if: inputs.still_frame == '-1'
+        working-directory: remotion-app
+        run: |
+          npx remotion render src/index.ts Koepenick ../shoots/koepenick/out/silent.mp4 --width=720 --height=1280 --codec=h264 --crf=17 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000
+      - name: Mux and technical QA
+        if: inputs.still_frame == '-1'
+        run: |
+          mkdir -p deliveries/koepenick
+          ffmpeg -y -i shoots/koepenick/out/silent.mp4 -i shoots/koepenick/out/audio/mix.wav -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -ar 48000 -ac 2 -t 69.666667 -movflags +faststart deliveries/koepenick/koepenick-720p.mp4
+          python templates/scripts/short_qa.py deliveries/koepenick/koepenick-720p.mp4 shoots/koepenick/out/qa shoots/koepenick/qa-shots.json
+          cp shoots/koepenick/out/qa/report.md deliveries/koepenick/qa-report.md
+          python scripts/koepenick/check.py
+      - name: Publish rendered video and report
+        if: always() && inputs.still_frame == '-1'
+        run: |
+          git config user.name "Arena video build"
+          git config user.email "video-build@users.noreply.github.com"
+          if test -f deliveries/koepenick/koepenick-720p.mp4; then
+            git add -f deliveries/koepenick/koepenick-720p.mp4
+            git add deliveries/koepenick/qa-report.md shoots/koepenick/audio/cues.md
+            git commit -m "Deliver Köpenick 720p film with technical QA"
+            git push origin HEAD:arena/f220dac6-ntc-8f3a9x2k
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: koepenick-build
+          path: |
+            deliveries/koepenick/
+            shoots/koepenick/out/qa/report.md
+          retention-days: 14

@@ -278,6 +278,47 @@ The session that created this guide uses `arena/2524fc8a-ntc-8f3a9x2k`. Follow t
 
 After each delivery or user correction, update the approval history and current checkpoint. Distinguish **planned**, **implemented**, **rendering**, **reviewed**, **delivered**, and **user-approved**. Record unresolved problems honestly. Do not make the next agent infer status from the presence of an old `final-720p.mp4`.
 
+
+## Separate Köpenick production — delivered on its own session branch
+
+This does not replace the City Hall checkpoint above. On branch
+`arena/f220dac6-ntc-8f3a9x2k`, the user approved the people-driven Köpenick
+idea, selected the Arena narrator, then said “then go make the mp4”.
+
+- Film: **The Shoemaker Who Borrowed an Army**, 26 action beats.
+- MP4: `deliveries/koepenick/koepenick-720p.mp4`, delivery commit `6b096c8`.
+- Sources: `remotion-app/src/videos/koepenick/`; voice, sources, plan, original
+  score and honest production log: `shoots/koepenick/`.
+- Successful render: Actions run `42939517026`; 69.667 s, 720×1280/30fps,
+  AAC stereo 48kHz, -14.6 LUFS, -1.5 dBTP. No silence, black/white or frozen
+  spans detected. Three pop flags at 356–358 were visually checked against
+  adjacent decoded frames: the intentional coat drop, not unexplained flashes.
+- Actual final-picture review: 28 decoded shot samples plus 139 samples at
+  2fps. Audio was measured, not listened to. User approval is pending.
+- Existing `render-short.yml` has an isolated `Koepenick` job: normal
+  `still_frame` makes diagnostic stills; `-1` is the explicit full-render gate
+  after the agent reviews diagnostics. Other compositions retain their old job.
+
+
+### Köpenick user feedback and music-only v2
+
+User liked the film/story/comedy and did not know this event happened. Only
+requested improvement: Python background music; v1 beat was hard to catch and
+distracted from watching. Explicit correction: **do not lower the music**;
+change the beat and make it engaging, since music bridges retention. Do not
+solve busy composition by burying the score. Preserve the picture they liked.
+
+Delivered replacement at the same Köpenick MP4 path: new 112 BPM continuous
+4/4 groove, kick/backbeat, light eighths, pizzicato bass/chords and sparse mallet
+hook. Removed fife, offbeat march-snare layer, echo and per-story-beat meter
+resets. Same music/voice targets and measured stem level (-24.5 LUFS rounded
+in both versions); final AAC -14.54 LUFS, -1.41 dBTP. Compressed H.264 packet
+hash unchanged; no 3D render/re-encode. Full 2090-frame decode and new audio
+checks pass. Sources and reproducible remux command are in the production log.
+Original v1 remains pinned at `6b096c8`. Agent did not listen; v2 music approval
+is pending, distinct from user's positive feedback on v1 story/picture.
+
+
 ## 9. Separate category: news shorts (approved reference on `main`)
 
 A news short covers real-life news: real people, companies or events that are in the news. It is a different category from the films in sections 1–8, and it does not replace or change the City Hall checkpoint in section 3.
@@ -295,3 +336,37 @@ A news short covers real-life news: real people, companies or events that are in
 - **Render workflow:** the film's workflow is in the snapshot at `references/news/nvidia-spy/source/.github/workflows/render-short.yml`. It splits a composition into 20 frame ranges on parallel runners: 8 to 11 minutes for this film instead of more than an hour in one job. `-f parts_from=<run id>` reuses the rendered picture of an earlier run when only the sound changed (about 2 minutes; parts are kept 3 days). The live `.github/workflows/render-short.yml` on `main` is still the older single-job workflow; copy the snapshot's file over it on your working branch to use the parallel one. Failing steps and the check summary are written to the run's annotations, because job logs could not be downloaded from the sandbox.
 - **Lessons from this film:** keep the caption band (70–82 % of the height) free of signs, props and heads; size captions to fit one line; white props need an unlit material or they grey out; lens blur only on close shots (it was more than half the render cost).
 - **Known small things, left as they are:** the "ON AIR" sign is partly behind a graphic in the interview shot; two board members are cut by the frame edge in the board-statement shot.
+
+
+## Köpenick — complete music-v2 explicitly approved; preserved as a reference
+
+After playing the revised MP4, the user said: “im loving this, visuals,
+narration, pacing, backround music etc. all perfect.” They explicitly requested
+the exact MP4 and source in the reference folder on `main` so other agents
+can learn the level of effort and stop defending primitive placeholder props.
+This supersedes earlier Köpenick notes saying v2 approval was pending.
+
+Canonical reference: `references/approved/koepenick/` — exact accepted MP4,
+source snapshot from `5cae0e6b752fc56434d806740a59d23c94f44c7a`, two decoded
+shot sheets, approval record, manifest, source study/reproduction guide.
+Regular/history category beside Taipei and Beer; news reference unchanged.
+
+The MP4 was moved, not re-encoded or duplicated. Historical delivery paths in
+older logs resolve through their pinned commits; see the reference for today's
+canonical copy. Source includes the accepted 112 BPM groove, not just the old
+score. Historical “pending” source logs remain frozen and are superseded by
+the reference approval record. Agent did not listen; approval is the user's.
+
+Standalone locked install/typecheck/timing tests and local import closure pass.
+Python score + audio-only remux were regenerated from the snapshot and matched
+the accepted MP4 hash using its preserved picture. No new full 3D render was
+performed for archiving. All 45 origin files compare byte-for-byte; only two
+standalone registration adapters are new. `references/approved/verify.py`
+includes the new manifest. The session-only branch-pushing render job was
+removed from the active workflow; its inert source snapshot preserves the
+production recipe. Never edit approved snapshots as new-film scratch space.
+
+Live production code, voice copies and diagnostic JPGs were consolidated into
+the frozen source snapshot rather than left as a second active Koepenick app.
+The main app registration/config and generic render workflow are unchanged
+from current main. Delivery README points to the canonical reference MP4.

@@ -12,6 +12,13 @@ entertaining story; it is the default, and sections 1–5 are written for it. A
 [section 6](#6-news-shorts-a-separate-category-with-extra-gates). For a regular
 short, ignore both.
 
+**Approved regular-story benchmark:** [Köpenick, music-v2](references/approved/koepenick/README.md).
+The user explicitly approved visuals, narration, pacing and music, and asked
+for the film plus source as a teaching reference on `main`. Study its actual
+set/cast/action/caption/audio implementation alongside Taipei and Beer. Labels
+cannot substitute for recognizable, detailed geometry. Approval of this film
+is not a waiver of review or permission to recycle its story or score.
+
 ## 1. Format and scope
 
 - **720×1280 portrait, 30 fps only.** Not 2K.
@@ -64,6 +71,10 @@ short, ignore both.
   depressing drone. A musical cue should progress with the story and resolve.
 - Narration remains intelligible, **but music must actually be noticeable at
   ordinary listening volume**. Do not require 150% volume to hear it.
+- Köpenick feedback: if the beat is distracting or hard to follow, improve
+  the groove/arrangement, **do not simply lower the music**. The user explicitly
+  values music as a bridge to retention. Keep a readable pulse and musical
+  identity without competing layers or unintended meter resets at story cuts.
 - Measure relative music level **after ducking**, then assess the muxed MP4.
   Lake's accepted polish used music ~5–6 LU below speech; earlier ~9–11 LU
   below was rejected as inaudible. This is a starting benchmark, not a magic

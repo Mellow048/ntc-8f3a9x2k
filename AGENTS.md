@@ -6,7 +6,7 @@
    current platform-assigned branch, never an old branch in these documents.
 3. Decide which kind of short the user asked for (next section), then watch
    and study the reference for that kind:
-   - Regular short: **[the approved Taipei 101 and Beer Flood references](references/approved/README.md)**.
+   - Regular short: **[the approved Taipei 101, Beer Flood and Köpenick references](references/approved/README.md)**.
    - News short: **[the approved news reference](references/news/README.md)**.
 
    They contain real MP4s, original renderer/audio source, saved narration,
@@ -30,6 +30,11 @@
   explainer into a news piece, and do not skip the news reference when the
   request is about the news.
 
+For regular shorts, study [Köpenick's source/shot/audio guide](references/approved/koepenick/README.md)
+as well as Taipei and Beer. The user explicitly approved its visuals, narration,
+pacing and revised music. Learn the detailed construction, action timing and
+clear audible groove; do not excuse an unfinished cube as a recognizable prop.
+
 ## Stop repeating the user's corrections
 
 - 720×1280/30fps; changing 1–2-word captions; Arena narration.
@@ -45,7 +50,7 @@
 - Do not defend placeholders as finished work, exaggerate quality or claim
   user approval. Do not force the user to repeat these requirements.
 
-Taipei, Beer and the Nvidia news film are study examples, **not templates for
+Taipei, Beer, Köpenick and the Nvidia news film are study examples, **not templates for
 recycling scripts, melodies or sets in unrelated stories**. No “one-shot
 perfect” guarantee exists.
 If the result visibly misses the benchmark, improve it before claiming success.

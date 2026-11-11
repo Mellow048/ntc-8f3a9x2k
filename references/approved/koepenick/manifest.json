@@ -1,0 +1,322 @@
+{
+  "title": "The Shoemaker Who Borrowed an Army",
+  "category": "regular/history/story",
+  "approval_status": "explicitly user-approved complete music-v2 film",
+  "approval_record": "APPROVAL.md",
+  "origin_commit": "5cae0e6b752fc56434d806740a59d23c94f44c7a",
+  "origin_video": "deliveries/koepenick/koepenick-720p.mp4",
+  "video_variant": "music-v2, 112 BPM continuous 4/4 groove",
+  "video_preservation": "byte-for-byte relocation, no re-encode",
+  "origin_source_file_count": 45,
+  "new_registration_adapters": [
+    "source/remotion-app/src/index.ts",
+    "source/remotion-app/src/reference-entry.tsx"
+  ],
+  "files": [
+    {
+      "path": "APPROVAL.md",
+      "sha256": "7020b33ff5d3df0c245b3946c7cc71ebe9cb2744a083823be12ab763d3faacfc",
+      "bytes": 2775
+    },
+    {
+      "path": "README.md",
+      "sha256": "bb93607f45bf21c9d31d2d4c9560e4b006f764b15f97706dd752b3a136b3b0dd",
+      "bytes": 10595
+    },
+    {
+      "path": "final-720p.mp4",
+      "sha256": "4167efa884652be33fd8f92181d53d60c83ecfa1a23fe29664193476741334a6",
+      "bytes": 81965458
+    },
+    {
+      "path": "shots-01-16.jpg",
+      "sha256": "d669f82e6815fbcfe23e4c4d23c4d463dfdc94c569eb4a150977b8f2bbb806d7",
+      "bytes": 329371
+    },
+    {
+      "path": "shots-17-26.jpg",
+      "sha256": "9b4ff779d69fc2c105b1540ddf7d3f2c0b8709cd8b9bbf3f0f23a2603aef975b",
+      "bytes": 203908
+    },
+    {
+      "path": "source/.github/workflows/render-short.yml",
+      "sha256": "68bca8f3626b3d1fc85630f56f960fb886ae41e2f1c889eb5f42b70fa8c3f70c",
+      "bytes": 7084,
+      "origin_path": ".github/workflows/render-short.yml"
+    },
+    {
+      "path": "source/deliveries/koepenick/music-v2-qa.json",
+      "sha256": "9729d7e2f401df029cbafad2cef184fed855c972af64eea14962f2193e0cb69e",
+      "bytes": 1024,
+      "origin_path": "deliveries/koepenick/music-v2-qa.json"
+    },
+    {
+      "path": "source/deliveries/koepenick/qa-report.md",
+      "sha256": "8ec77d1e69a0e4971a3b9d4b73a7b299c2bb8fb4f671990e64ca735ed6b47224",
+      "bytes": 5206,
+      "origin_path": "deliveries/koepenick/qa-report.md"
+    },
+    {
+      "path": "source/remotion-app/package-lock.json",
+      "sha256": "9f9fb75fcdfbe2264552bb81d2798d9e2796aa9ca90f322044903c8236431766",
+      "bytes": 161227,
+      "origin_path": "remotion-app/package-lock.json"
+    },
+    {
+      "path": "source/remotion-app/package.json",
+      "sha256": "cb1d27d1eedfccdccc33cb5f890393de7cd592c6b8a4b65aa56cf2a2b2046c4b",
+      "bytes": 813,
+      "origin_path": "remotion-app/package.json"
+    },
+    {
+      "path": "source/remotion-app/remotion.config.ts",
+      "sha256": "f2f70c8410b5bf76fecac310cee020a9ad9902031b8ffedd74a88b0877e3f6c1",
+      "bytes": 443,
+      "origin_path": "remotion-app/remotion.config.ts"
+    },
+    {
+      "path": "source/remotion-app/src/index.ts",
+      "sha256": "9f6580e08415a8d5cd10fb3b35a5831bee6e8e2aaab7eb137ceddc88980de326",
+      "bytes": 88
+    },
+    {
+      "path": "source/remotion-app/src/reference-entry.tsx",
+      "sha256": "22114aba220e8e904372080cf12bac83f6db0266e950c2fa0aa8de7b0b4cb92a",
+      "bytes": 434
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/Koepenick.tsx",
+      "sha256": "9eadcb6599495b141792bffb7e5efe0ce61028ee43d4f95d80656d4c3fd28d44",
+      "bytes": 3398,
+      "origin_path": "remotion-app/src/videos/koepenick/Koepenick.tsx"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/build.ts",
+      "sha256": "e305fb727a04fb2d1c4d60f39014b566694755122bf1ce006828c16ea0b77620",
+      "bytes": 9617,
+      "origin_path": "remotion-app/src/videos/koepenick/build.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/cast.ts",
+      "sha256": "bcbfb18dddafaf7344c60efd988430571a49ab5f84da346cf7318832c2f2baf1",
+      "bytes": 3731,
+      "origin_path": "remotion-app/src/videos/koepenick/cast.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/data.json",
+      "sha256": "2651b4473ae93510264b950faa0e49e533bc20dba27577bdea4b1d93c2df2912",
+      "bytes": 21877,
+      "origin_path": "remotion-app/src/videos/koepenick/data.json"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/sets.ts",
+      "sha256": "2eadebe011109fab7e5c10593690181a6120490d51824dd2bf1f76a392ebe8af",
+      "bytes": 7258,
+      "origin_path": "remotion-app/src/videos/koepenick/sets.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/story.ts",
+      "sha256": "07d91a0866b7ac02a7e8f1a25dfa667c63ace381beb803818f354012d27ccd5b",
+      "bytes": 469,
+      "origin_path": "remotion-app/src/videos/koepenick/story.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/style/cardshade.ts",
+      "sha256": "b9dd6fbe552ebe93ea51f578460bed08b8b1582c1721c0a160e53aa0afaab4da",
+      "bytes": 6380,
+      "origin_path": "remotion-app/src/videos/koepenick/style/cardshade.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/style/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019,
+      "origin_path": "remotion-app/src/videos/koepenick/style/grade.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/style/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875,
+      "origin_path": "remotion-app/src/videos/koepenick/style/ink.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/style/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962,
+      "origin_path": "remotion-app/src/videos/koepenick/style/lensblur.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/style/lights.ts",
+      "sha256": "2d5fb50df74902b59fbe8121514afab13174b19100c902ce5621732c04bbd1bd",
+      "bytes": 4247,
+      "origin_path": "remotion-app/src/videos/koepenick/style/lights.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/style/paint.ts",
+      "sha256": "0dec7bfb2509494ecea181b17a9bad7990e0ca865529a0601bb1003611ef6881",
+      "bytes": 45684,
+      "origin_path": "remotion-app/src/videos/koepenick/style/paint.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/style/shade.ts",
+      "sha256": "7ba7d865a5acc4fb41ab61ba09340f340248616c3f73680abf40b9ff5f1b3d3d",
+      "bytes": 5385,
+      "origin_path": "remotion-app/src/videos/koepenick/style/shade.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/style/toon.ts",
+      "sha256": "bbaf39a462d0b856a47c735d4b87c38564d0313899fff2be336301805716b86b",
+      "bytes": 59712,
+      "origin_path": "remotion-app/src/videos/koepenick/style/toon.ts"
+    },
+    {
+      "path": "source/remotion-app/src/videos/koepenick/world.ts",
+      "sha256": "c72de7efe99bf1638cb816763597f881eb0fcc57f602b5efaa4b177f102a23f0",
+      "bytes": 16705,
+      "origin_path": "remotion-app/src/videos/koepenick/world.ts"
+    },
+    {
+      "path": "source/remotion-app/tsconfig.json",
+      "sha256": "31df086867a44c4799ca4b7550ca88412e6b2c7e48de6d581cfc6485af24d0e5",
+      "bytes": 376,
+      "origin_path": "remotion-app/tsconfig.json"
+    },
+    {
+      "path": "source/scripts/koepenick/check.py",
+      "sha256": "f3f5e53cef9ad07c147813bd7d443a54238d19ebb0498b57bbfc12dde4a4eea4",
+      "bytes": 885,
+      "origin_path": "scripts/koepenick/check.py"
+    },
+    {
+      "path": "source/scripts/koepenick/plan.py",
+      "sha256": "8496c62b8e016e5f2e0b57c5025ad7ef0bcfb8bdbbf7b2bbc2c69ad7a8d2adb0",
+      "bytes": 5718,
+      "origin_path": "scripts/koepenick/plan.py"
+    },
+    {
+      "path": "source/scripts/koepenick/remix.py",
+      "sha256": "b6cb3aca600642f77742c2fc033a6380d425929f504261fb5af6e17a0839205a",
+      "bytes": 5855,
+      "origin_path": "scripts/koepenick/remix.py"
+    },
+    {
+      "path": "source/scripts/koepenick/review.py",
+      "sha256": "05d34003525d139304e99b8f464fd2385ba92be2969c2d0eee39c132cd049618",
+      "bytes": 1997,
+      "origin_path": "scripts/koepenick/review.py"
+    },
+    {
+      "path": "source/scripts/koepenick/stills.mjs",
+      "sha256": "58de14afbeb13702099e6942b3294c5b57fa41f6227c3cc8ff88bae4d6144eb4",
+      "bytes": 1279,
+      "origin_path": "scripts/koepenick/stills.mjs"
+    },
+    {
+      "path": "source/scripts/koepenick/test.mjs",
+      "sha256": "89e275e91be1ea500fc1dcf840fdd7489f61dcc7515f5b43d6edba2da8e8983a",
+      "bytes": 1471,
+      "origin_path": "scripts/koepenick/test.mjs"
+    },
+    {
+      "path": "source/shoots/koepenick/PRODUCTION.md",
+      "sha256": "d87814393fff5fbfde53641fb6bd54410c2aa5a59f0893d946cadd7c9506a2b2",
+      "bytes": 5501,
+      "origin_path": "shoots/koepenick/PRODUCTION.md"
+    },
+    {
+      "path": "source/shoots/koepenick/REFERENCE_NOTES.md",
+      "sha256": "4925a6d158fb826b9d7a27760d027dfab0696fc7ed7c4191199ab4de0d1e39f2",
+      "bytes": 11684,
+      "origin_path": "shoots/koepenick/REFERENCE_NOTES.md"
+    },
+    {
+      "path": "source/shoots/koepenick/SCRIPT.md",
+      "sha256": "b2d382b0952e808429bd2a9b2b81ed25d19175d38cb7c91428b04600c0ac44e8",
+      "bytes": 13259,
+      "origin_path": "shoots/koepenick/SCRIPT.md"
+    },
+    {
+      "path": "source/shoots/koepenick/SHOT_PLAN.md",
+      "sha256": "786fc4aa6f5d4c8fed199d224040b599f5c667124d17e99dfb9541d564afdd31",
+      "bytes": 3272,
+      "origin_path": "shoots/koepenick/SHOT_PLAN.md"
+    },
+    {
+      "path": "source/shoots/koepenick/audio/cues.md",
+      "sha256": "ad0e8c11bfdf09b3f7c7cdcc307e19830eb5810b529c1377932f3c590df319b4",
+      "bytes": 1144,
+      "origin_path": "shoots/koepenick/audio/cues.md"
+    },
+    {
+      "path": "source/shoots/koepenick/audio/dsp.py",
+      "sha256": "3b456f4653fde5f30b8a22aa53903e5d4b2b3ca508908978f210fb6934214355",
+      "bytes": 11468,
+      "origin_path": "shoots/koepenick/audio/dsp.py"
+    },
+    {
+      "path": "source/shoots/koepenick/audio/groove.py",
+      "sha256": "77b77db9f403ef41ceadd2dccdc979138110968fa385307ca60343406850ccf9",
+      "bytes": 4086,
+      "origin_path": "shoots/koepenick/audio/groove.py"
+    },
+    {
+      "path": "source/shoots/koepenick/audio/instruments.py",
+      "sha256": "8f66ee6134daefc85021aadab1138a3ce480029c91fc4428d04cba6fd5737fee",
+      "bytes": 13122,
+      "origin_path": "shoots/koepenick/audio/instruments.py"
+    },
+    {
+      "path": "source/shoots/koepenick/audio/score.py",
+      "sha256": "4255a4f72d246ec0b3d3d45528370e229857b4227047f1085d6f555f16573a3f",
+      "bytes": 4624,
+      "origin_path": "shoots/koepenick/audio/score.py"
+    },
+    {
+      "path": "source/shoots/koepenick/qa-shots.json",
+      "sha256": "b0231424c77671bb9574d9b52f78b9862e39f0d2cfa466cddca3a5b713742cbe",
+      "bytes": 13441,
+      "origin_path": "shoots/koepenick/qa-shots.json"
+    },
+    {
+      "path": "source/shoots/koepenick/voice/narration.txt",
+      "sha256": "db202f4c79706cba52e69114d8d8b1c818456d290b340c651fe63bcf43b5ce18",
+      "bytes": 1294,
+      "origin_path": "shoots/koepenick/voice/narration.txt"
+    },
+    {
+      "path": "source/shoots/koepenick/voice/prepare.py",
+      "sha256": "642b76e03d1cb774fd8d369c64e2323ca6b6f358558ce7525defee178701a7bb",
+      "bytes": 12377,
+      "origin_path": "shoots/koepenick/voice/prepare.py"
+    },
+    {
+      "path": "source/shoots/koepenick/voice/raw-take.mp3",
+      "sha256": "a1e96d5a5ae85e058bd1931165fef734bda3864a223babb3602237774921de75",
+      "bytes": 665618,
+      "origin_path": "shoots/koepenick/voice/raw-take.mp3"
+    },
+    {
+      "path": "source/shoots/koepenick/voice/voice.mp3",
+      "sha256": "2f4676586234411d5b3bcd05c477147640494eb542d8599e42131594c793149c",
+      "bytes": 1099052,
+      "origin_path": "shoots/koepenick/voice/voice.mp3"
+    },
+    {
+      "path": "source/shoots/koepenick/voice/voice.wav",
+      "sha256": "3c5dd732bc697e892dfa62c0d347b76a0ffa23d97cd4ad48b88020cb0ca65abe",
+      "bytes": 6588484,
+      "origin_path": "shoots/koepenick/voice/voice.wav"
+    },
+    {
+      "path": "source/shoots/koepenick/voice/words.json",
+      "sha256": "77419a700214bcdbda5cfc1e557ceeb9d6848a9b5e44fbba89de11287a0386c6",
+      "bytes": 14774,
+      "origin_path": "shoots/koepenick/voice/words.json"
+    },
+    {
+      "path": "source/templates/scripts/short_qa.py",
+      "sha256": "9a71fa351b2db50bac669eebdd37c9d9f00ccd2b8b710ab472871e0ce4160550",
+      "bytes": 4727,
+      "origin_path": "templates/scripts/short_qa.py"
+    }
+  ]
+}
