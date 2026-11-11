@@ -5,6 +5,13 @@ Read [AGENTS.md](AGENTS.md), then [VIDEO_HANDOFF.md](VIDEO_HANDOFF.md), and
 These are current user requirements. Older conflicting defaults in `SKILL.md`
 or historical source are not permission to ignore them.
 
+**Two kinds of short.** A *regular short* explains something or tells an
+entertaining story; it is the default, and sections 1–5 are written for it. A
+*news short* covers real-life news. It has its own reference,
+[`references/news/`](references/news/README.md), and extra gates in
+[section 6](#6-news-shorts-a-separate-category-with-extra-gates). For a regular
+short, ignore both.
+
 ## 1. Format and scope
 
 - **720×1280 portrait, 30 fps only.** Not 2K.
@@ -69,6 +76,7 @@ or historical source are not permission to ignore them.
 
 1. Study both approved MP4s **and** their story/world/audio source; write a
    shot plan with genuinely distinct beats before spending a full render.
+   (News short: study the news reference instead, see section 6.)
 2. Typecheck and test deterministic motion; inspect diagnostic frames at
    opening, faces, mechanism contacts, before/during/after actions and ending.
 3. Compare against approved originals. Fix visible placeholder geometry and
@@ -84,6 +92,46 @@ or historical source are not permission to ignore them.
 7. Present the MP4, provide a pinned GitHub link, document unresolved issues,
    and update the handoff. Never promise an unattended job will finish by a
    deadline you cannot control.
+
+## 6. News shorts: a separate category with extra gates
+
+**This section applies only when the user asks for a short about real-life
+news**: real people, companies or events that are in the news, something that
+just happened or is still unfolding. If the user wants a regular explaining or
+entertaining short, **skip this section and ignore `references/news/`**.
+
+For a news short, study
+[`references/news/nvidia-spy/`](references/news/nvidia-spy/README.md) before
+planning: the MP4, the script with its sources, and the film, sound and render
+source. The user called it "so well done and not lazy" and "maybe the best
+one", and asked for it to be kept apart from the other references because it is
+a different category. Match its care; do not copy its story, sets or score.
+
+Sections 1–5 apply in full. The approved news film was also made under these
+rules, and a new one must be too:
+
+1. **Facts first, with sources.** Search the news before writing. Keep a table
+   of fact, source link and date checked in the film's `SCRIPT.md`; every
+   narration line maps to a row. Where outlets disagree, use only what they
+   agree on.
+2. **Attribute every unproven claim, every time**: who says it, "reportedly",
+   "allegedly", "if true". Never narrate an allegation as a fact.
+3. **Keep the other side in the film**: a denial, "has not been charged", the
+   company's statement. Each gets its own shot.
+4. **Quotes exactly as reported**, on a card with the speaker's name. Never a
+   quote you cannot source.
+5. **Real people with care.** A public figure is a simple caricature made of
+   well-known public features, with a name tag. A private person, or anyone
+   accused and not charged, is an anonymous figure, never a likeness.
+6. **Jokes aim at the situation**, never at a spouse, children or a victim.
+   Nothing sexual.
+7. **Pace and graphics.** About a minute unless the user says otherwise; a
+   new, purposely staged picture every couple of seconds; on-screen graphics
+   carry the sources, names, dates, numbers and exact quotes, clear of the
+   caption band.
+8. **End on a question that has real sides**, not on a verdict the facts do not
+   support.
+9. **Tell the user what you could not confirm** when you show the script.
 
 No document guarantees a one-shot acceptance. These gates prevent repeating
 known failures; visual/audio judgment and truthful reporting remain required.
