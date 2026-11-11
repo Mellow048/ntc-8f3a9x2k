@@ -1,15 +1,17 @@
-run 43020848892 / a3a69ad27fe0e5930f16b2836332a9f7ff09c93a
+run 43021699612 / c8269e9aa26e8e96b7b480ddf90715a2be4ebfc1
 --- git status ---
  M deliveries/petit/previews/ci.log
+ M deliveries/petit/previews/frame-0937.jpg
+ M deliveries/petit/previews/frame-1005.jpg
 --- previews on disk ---
--rw-r--r-- 1 runner runner  72K Nov 11 12:33 frame-1766.jpg
--rw-r--r-- 1 runner runner 104K Nov 11 12:33 frame-1847.jpg
--rw-r--r-- 1 runner runner  62K Nov 11 12:33 frame-1935.jpg
--rw-r--r-- 1 runner runner  67K Nov 11 12:33 frame-2031.jpg
--rw-r--r-- 1 runner runner  37K Nov 11 12:34 frame-2130.jpg
--rw-r--r-- 1 runner runner  37K Nov 11 12:33 frame-2133.jpg
--rw-r--r-- 1 runner runner  13K Nov 11 12:34 manifest.json
--rw-r--r-- 1 runner runner  94K Nov 11 12:34 stills.log
+-rw-r--r-- 1 runner runner  72K Nov 11 12:40 frame-1766.jpg
+-rw-r--r-- 1 runner runner 104K Nov 11 12:40 frame-1847.jpg
+-rw-r--r-- 1 runner runner  62K Nov 11 12:40 frame-1935.jpg
+-rw-r--r-- 1 runner runner  67K Nov 11 12:40 frame-2031.jpg
+-rw-r--r-- 1 runner runner  37K Nov 11 12:40 frame-2130.jpg
+-rw-r--r-- 1 runner runner  37K Nov 11 12:40 frame-2133.jpg
+-rw-r--r-- 1 runner runner  13K Nov 11 12:40 manifest.json
+-rw-r--r-- 1 runner runner  94K Nov 11 12:40 stills.log
 --- last preview log ---
 [40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
 [40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
