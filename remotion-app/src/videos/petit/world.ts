@@ -189,13 +189,14 @@ export class World{
   const f1=A(-7.0,-4.2,FRIEND,6,DECK);f1.expr='neutral';f1.side=true;
   const bow=dyn(bowProp(p,-6.35,DECK+1.55,-4.0));bow.rotation.set(0,-.35,.25);
   const LA=V(-6.0,DECK+1.55,-3.9),LB=V(7.2,WIRE,WZ);
-  const line=dyn(bar(p,LA,LB,.2,material('line','#fff6df')));
-  line.scale.y=.02;
+  const lineLen=LA.distanceTo(LB),lineDir=LB.clone().sub(LA).normalize();
+  const line=dyn(bar(p,LA,LB,.12,material('line','#fff6df')));
+  line.scale.y=lineLen*.02;line.position.copy(LA).addScaledVector(lineDir,lineLen*.01);
   const arrow=dyn(cyl(p,0,0,0,.07,1.4,material('shaft','#f0dfae')));
   arrow.rotation.x=Math.PI/2;
   lamp(p,-9.6,DECK+1.4,-4.4,true);lamp(p,9.4,DECK+1.4,-4.4,true);
   this.motions.push((f)=>{const q=.02+.98*action(f,100,20);
-   line.scale.y=q;line.position.copy(LA).addScaledVector(LB.clone().sub(LA),q/2);
+   const len=lineLen*q;line.scale.y=len;line.position.copy(LA).addScaledVector(lineDir,len/2);
    const a=clamp(action(f,100,9)*1.15);arrow.visible=a<.99;
    arrow.position.copy(LA).lerp(LB,a*a);
    f1.wave=.6*action(f,100,6)+.1*Math.sin(f*.2);f1.look=-.4;});
@@ -204,10 +205,12 @@ export class World{
  if(place==='pull'){deck();wire();
   const f1=A(-7.3,-3.1,FRIEND,6,DECK),f2=A(-7.3,-4.9,FRIEND,7,DECK);
   const CA=V(-7.1,DECK+1.35,-4.0),CB=V(7.2,WIRE,WZ);
-  const cable=dyn(bar(p,CA,CB,.3,material('cable-haul','#e8eef8')));
-  cable.scale.y=.3;
+  const cableLen=CA.distanceTo(CB),cableDir=CB.clone().sub(CA).normalize();
+  const cable=dyn(bar(p,CA,CB,.14,material('cable-haul','#e8eef8')));
+  cable.scale.y=cableLen*.3;cable.position.copy(CA).addScaledVector(cableDir,cableLen*.15);
   const v=A(1.6,WZ,PETIT,5,WIRE);v.expr='nervous';
-  this.motions.push((f)=>{const q=.3+.7*action(f,111,26);cable.scale.y=q;cable.position.copy(CA).addScaledVector(CB.clone().sub(CA),q/2);
+  this.motions.push((f)=>{const q=.3+.7*action(f,111,26);const len=cableLen*q;
+   cable.scale.y=len;cable.position.copy(CA).addScaledVector(cableDir,len/2);
    // alternating hand-over-hand hauling
    const beat=Math.sin(f*.42);f1.wave=.5+.45*beat;f2.wave=.5-.45*beat;v.wave=.25*q;
    f1.look=.35;f2.look=.3;v.gaze=.35;});
