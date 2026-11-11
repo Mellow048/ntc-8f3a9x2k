@@ -2,11 +2,11 @@
 
 Slug `koepenick`. The Captain of Köpenick, Berlin, 16 October 1906.
 
-**Status (2026-11-10):** story approved by the user · narration written and
-fact-checked (below) · Arena voice chosen by the user, take recorded and
-conformed to film pace, every word timed (see "Voice") · **the take has not
-been heard or approved by the user yet** · shot plan, picture and sound not
-started.
+**Status:** story approved; user instructed MP4 production to proceed.
+Narration, word alignment, 26-shot plan, animation, captions, original score,
+and three rounds of diagnostic portrait frames are built. Full render is the
+next gate; see `PRODUCTION.md` for the honest review log. No separate claim
+of user approval of the take or final picture.
 
 Story type the user asked for: a surprising story with people, stakes,
 escalating trouble and a payoff. The viewer's question is "how did he convince
