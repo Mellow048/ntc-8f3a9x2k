@@ -176,8 +176,8 @@ export const final: Builder = (root) => {
   const LX = -0.64, RX = 0.66;
   const eng = actor(root, ENGINEER(1), {a: {expr: 'neutral'}}, LX, 0, 0.2, {scale: 1.0, res: 1.0});                       // nobody here is made to squirm: the light asks the question
   const win = tex('final-facade', 256, 512, (g, w, h) => { g.fillStyle = '#1a2038'; g.fillRect(0, 0, w, h); const q = rng(5); for (let y = 0; y < 12; y++) for (let x = 0; x < 4; x++) { g.fillStyle = q() < 0.55 ? '#ffd98a' : '#2f3b66'; g.fillRect(x * 64 + 11, y * 42.6 + 9, 42, 26); } });
-  box(root, 0.92, 2.24, 0.7, tmat(win), RX, 1.12, -0.75);
-  box(root, 0.98, 0.26, 0.08, '#11141d', RX, 1.85, -0.38); panel(root, 0.9, 0.2, smat(signTex('binance-small', 450, 100, '#11141d', GOLD, [['BINANCE', 90, 0.56]]), 1.2), RX, 1.85, -0.335);
+  box(root, 0.92, 2.0, 0.7, tmat(win), RX, 1.0, -0.75);                                                 // no taller than its sign: the answers hang above it
+  box(root, 0.98, 0.26, 0.08, '#11141d', RX, 1.82, -0.38); panel(root, 0.9, 0.2, smat(signTex('binance-small', 450, 100, '#11141d', GOLD, [['BINANCE', 90, 0.56]]), 1.2), RX, 1.82, -0.335);
   const co = actor(root, SPOKES, {a: {expr: 'neutral'}}, RX, 0, 0.25, {scale: 0.98, res: 1.0});
   const spots = [LX, RX].map((x) => ({cone: beam(root, 0.14, 0.6, 5.2, '#fff0c8', 0, x, 5.2, 0.2), floor: pool(root, 0.9, '#fff0c8', 0, x, 0.2)}));   // the two cones never overlap
   const q = soft(panel(root, 0.6, 0.86, smat(tex('qmark', 256, 368, (g) => text(g, '?', 128, 196, 330, '#ffe14a', {stroke: INK, sw: 44})), 1.2, true), 0.01, 1.3, -0.2));

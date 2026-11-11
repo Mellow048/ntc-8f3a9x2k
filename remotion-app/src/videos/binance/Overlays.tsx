@@ -215,8 +215,8 @@ export const Overlays: React.FC = () => {
       {f >= closing ? (
         <>
           <div style={row('8%')}><div style={{...anton, fontSize: '10cqw', color: '#fff', WebkitTextStroke: `1.5cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, transform: `scale(${pop(f, W(223), 8)})`}}>WHOSE JOB WAS IT?</div></div>
-          {f >= W(231) ? <Choice f={f} at={W(231)} letter="A" text="THE ENGINEER'S" top="21%" tone="red" size={7.2} /> : null}
-          {f >= W(234) ? <Choice f={f} at={W(234)} letter="B" text="THE COMPANY'S" top="26.4%" tone="yellow" size={7.2} /> : null}
+          {f >= W(231) ? <Choice f={f} at={W(231)} letter="A" text="THE ENGINEER'S" top="20.8%" tone="red" size={7} /> : null}
+          {f >= W(234) ? <Choice f={f} at={W(234)} letter="B" text="THE COMPANY'S" top="25.8%" tone="yellow" size={7} /> : null}
           {f >= W(226) ? <Pill f={f} at={W(226)} text="BINANCE, OCT 30: NO INDIVIDUAL BLAMED" top="16.2%" size={3.5} /> : null}
         </>
       ) : null}
