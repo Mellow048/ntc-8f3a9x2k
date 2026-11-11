@@ -324,14 +324,14 @@
    "label": "",
    "light": "night",
    "pos": [
-    -11.689,
-    40.632,
-    1.304
+    -12.214,
+    40.784,
+    3.433
    ],
    "look": [
-    -8.0,
-    39.9,
-    -4.6
+    -7.2,
+    40.0,
+    -4.0
    ],
    "fov": 50,
    "action": "Two friends haul the heavy cable hand over hand",

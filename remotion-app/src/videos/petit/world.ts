@@ -202,11 +202,11 @@ export class World{
  }
  // ---- 16 pull: hauling the cable by hand ----
  if(place==='pull'){deck();wire();
-  const f1=A(-8.7,-5.2,FRIEND,6,DECK),f2=A(-7.6,-4.2,FRIEND,7,DECK);
-  const CA=V(-6.9,DECK+1.15,-4.5),CB=V(7.2,WIRE,WZ);
+  const f1=A(-7.3,-3.1,FRIEND,6,DECK),f2=A(-7.3,-4.9,FRIEND,7,DECK);
+  const CA=V(-7.1,DECK+1.35,-4.0),CB=V(7.2,WIRE,WZ);
   const cable=dyn(bar(p,CA,CB,.1,material('cable-haul','#dfe6f0')));
   cable.scale.y=.3;
-  const v=A(-2.0,WZ,PETIT,5,WIRE);v.expr='nervous';
+  const v=A(1.6,WZ,PETIT,5,WIRE);v.expr='nervous';
   this.motions.push((f)=>{const q=.3+.7*action(f,111,26);cable.scale.y=q;cable.position.copy(CA).addScaledVector(CB.clone().sub(CA),q/2);
    // alternating hand-over-hand hauling
    const beat=Math.sin(f*.42);f1.wave=.5+.45*beat;f2.wave=.5-.45*beat;v.wave=.25*q;
