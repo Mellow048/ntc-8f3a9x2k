@@ -1,6 +1,6 @@
 # Köpenick — original soundtrack
 
-116 BPM, D major/B minor; new syncopated motif; reused synthesis primitives only.
+V2: 112 BPM, continuous 4/4 caper groove. Kick 1/3, backbeat 2/4, light eighths; sparse damped-mallet hook. No section clock resets or rhythmic echoes. Music loudness targets UNCHANGED from v1.
 
 | Section | Voice LUFS | Target music LU below voice (after duck) |
 |---|---|---|

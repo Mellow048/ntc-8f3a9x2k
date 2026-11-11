@@ -296,3 +296,22 @@ idea, selected the Arena narrator, then said “then go make the mp4”.
 - Existing `render-short.yml` has an isolated `Koepenick` job: normal
   `still_frame` makes diagnostic stills; `-1` is the explicit full-render gate
   after the agent reviews diagnostics. Other compositions retain their old job.
+
+
+### Köpenick user feedback and music-only v2
+
+User liked the film/story/comedy and did not know this event happened. Only
+requested improvement: Python background music; v1 beat was hard to catch and
+distracted from watching. Explicit correction: **do not lower the music**;
+change the beat and make it engaging, since music bridges retention. Do not
+solve busy composition by burying the score. Preserve the picture they liked.
+
+Delivered replacement at the same Köpenick MP4 path: new 112 BPM continuous
+4/4 groove, kick/backbeat, light eighths, pizzicato bass/chords and sparse mallet
+hook. Removed fife, offbeat march-snare layer, echo and per-story-beat meter
+resets. Same music/voice targets and measured stem level (-24.5 LUFS rounded
+in both versions); final AAC -14.54 LUFS, -1.41 dBTP. Compressed H.264 packet
+hash unchanged; no 3D render/re-encode. Full 2090-frame decode and new audio
+checks pass. Sources and reproducible remux command are in the production log.
+Original v1 remains pinned at `6b096c8`. Agent did not listen; v2 music approval
+is pending, distinct from user's positive feedback on v1 story/picture.

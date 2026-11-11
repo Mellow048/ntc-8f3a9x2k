@@ -4,8 +4,10 @@ Slug `koepenick`. The Captain of Köpenick, Berlin, 16 October 1906.
 
 **Status:** MP4 rendered, technically checked and reviewed through decoded
 picture samples; delivered at `deliveries/koepenick/koepenick-720p.mp4`.
-69.667 s, 720×1280/30fps, -14.6 LUFS, -1.5 dBTP. See `PRODUCTION.md` and
-the delivery QA report. Audio listening and user approval are pending.
+69.667 s, 720×1280/30fps. Current delivery has the music-only v2 revision:
+-14.54 LUFS, -1.41 dBTP, identical reviewed picture. User liked the original
+story/picture/comedy; revised music awaits playback. See `PRODUCTION.md` and
+the delivery QA report; agent did not listen.
 
 Story type the user asked for: a surprising story with people, stakes,
 escalating trouble and a payoff. The viewer's question is "how did he convince

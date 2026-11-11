@@ -1,3 +1,40 @@
+# Köpenick — music revision v2
+
+SPECS 720x1280 30/1 fps, 2090 frames, 69.667 s; audio: aac 48000 Hz 2ch
+LOUDNESS I:         -14.54 LUFS | LRA:         2.10 LU | Peak:       -1.41 dBFS
+SILENCES none (new candidate decoded; threshold -45 dB, minimum 0.35 s)
+FRAMES 2090; black []; unplanned white []; frozen spans >=12f []
+
+## Audio-only change and checks
+
+- User liked the story/picture/comedy; found the v1 rhythm distracting and hard
+  to follow. Explicit correction: **do not make the music quieter**; improve
+  the beat because music supports retention. V2 has not been user-approved.
+- New Python composition: 112 BPM, continuous 4/4; kick 1/3, backbeat 2/4,
+  quiet eighth subdivisions within the drum arrangement, pizzicato bass/chords
+  and a sparse damped-mallet hook. No fife, offbeat march snare, rhythmic echoes
+  or section-based clock resets. The music stem itself is not turned down.
+- Same per-section music/voice targets after ducking as v1. Measured v1 music
+  -24.491 LUFS vs v2 -24.528 LUFS (0.037 LU difference); voice -18.900 LUFS.
+  V2 music/voice difference -5.628 LU. Same master target, -14.5 LUFS.
+- 64 kicks and 64 backbeats checked on the uninterrupted 112 BPM grid;
+  actual synthesized drum transients also checked against preceding troughs.
+  These tests establish timing, not whether a listener finds it enjoyable.
+- Resolved tonic at 68.571 s, after final word at 68.44 s, before the existing
+  69.667 s ending. No visual retiming or caption changes.
+- Two-pass mastering, then AAC 192k encoding; measured the actual muxed AAC.
+- Full candidate decoded with ffmpeg `-xerror`: no decode errors, 2090 frames,
+  stereo 48kHz. Video packets SHA-256 match the preceding delivery exactly:
+  `dea554da10021a06012947ed7859081ac6cf583873e80b88ee68555918c0305e`.
+  Prior black/white/freeze and visual reviews below therefore still apply to
+  identical picture. No second 3D render or lossy picture encode was performed.
+- MP4 SHA-256:
+  `4167efa884652be33fd8f92181d53d60c83ecfa1a23fe29664193476741334a6`.
+- Machine-readable new results: `music-v2-qa.json`.
+- **Agent did not listen.** User playback is needed to judge the revised groove.
+
+## Historical v1 QA — preserved, not new v2 audio measurements
+
 SPECS 720x1280 30/1 fps, 2090 frames, 69.667 s; audio: aac 48000 Hz 2ch
 LOUDNESS I:         -14.6 LUFS | LRA:         2.0 LU | Peak:       -1.5 dBFS
 SILENCES none

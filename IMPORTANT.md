@@ -57,6 +57,10 @@ or historical source are not permission to ignore them.
   depressing drone. A musical cue should progress with the story and resolve.
 - Narration remains intelligible, **but music must actually be noticeable at
   ordinary listening volume**. Do not require 150% volume to hear it.
+- Köpenick feedback: if the beat is distracting or hard to follow, improve
+  the groove/arrangement, **do not simply lower the music**. The user explicitly
+  values music as a bridge to retention. Keep a readable pulse and musical
+  identity without competing layers or unintended meter resets at story cuts.
 - Measure relative music level **after ducking**, then assess the muxed MP4.
   Lake's accepted polish used music ~5–6 LU below speech; earlier ~9–11 LU
   below was rejected as inaudible. This is a starting benchmark, not a magic

@@ -32,7 +32,7 @@ caption grouping, deterministic action endpoints, 1.227 s after the last word.
 Local audio-only measurement, including a test AAC encode: -14.6 LUFS,
 -1.5 dBTP, LRA 2.0 LU. The agent cannot listen; these are measurements only.
 
-## Delivered
+## Original delivery (v1)
 
 - Full render run **42939517026** succeeded in 56m31s.
 - Delivery commit **6b096c8**, file
@@ -60,3 +60,40 @@ The delivered MP4 was not re-encoded or changed by this storage cleanup.
 - Full render: same dispatch, `still_frame=-1` (explicit reviewed-preview gate).
 - Workflow produces and commits `deliveries/koepenick/koepenick-720p.mp4` and QA
   report on this branch; the other compositions keep their existing workflow.
+
+
+## Current delivery — music v2, audio-only revision
+
+User feedback: liked the film, found it funny and the story surprising; found
+the background beat hard to follow and distracting. Their explicit follow-up
+was **not quieter**: change the beat; music is a bridge to retention. Story and
+picture are liked; this does not imply v2 music approval.
+
+Replaced the 116 BPM section-reset syncopated fife/march arrangement with an
+original 112 BPM continuous 4/4 groove in `audio/groove.py`: kick 1/3, backbeat
+2/4, light eighths, pizzicato bass/chords, sparse repeating damped-mallet hook.
+Meter never restarts at a spoken beat. No rhythmic echoes or fife. Harmony and
+instrument density change at bar boundaries, with a final tonic after the
+last word. Narration source, captions, action timing and picture unchanged.
+Foley synthesis/cue timings retained, with its RNG now independent of score.
+
+**Not a volume workaround:** same section loudness targets. Original music
+-24.491 LUFS; v2 -24.528 LUFS (difference 0.037 LU). Voice -18.900 LUFS.
+Finished AAC -14.54 LUFS / -1.41 dBTP / LRA 2.10 LU. Checked all drum events
+on the global grid and the rendered drum attacks. Full decode passes, no
+>=0.35-second silence at -45 dB. All 2090 compressed picture packets hash
+identically to v1: inherited picture review remains valid.
+
+Current file is `deliveries/koepenick/koepenick-720p.mp4`. Previous version
+remains available at commit `6b096c8`, not duplicated as another 79 MB file.
+New measurements: delivery `music-v2-qa.json` and `qa-report.md`.
+**Agent cannot listen; new music awaits user playback/approval.**
+
+Rebuild music/remux without rendering picture again:
+```
+python shoots/koepenick/audio/score.py
+python scripts/koepenick/remix.py --publish
+```
+Requires numpy/scipy and ffmpeg (`FFMPEG`, PATH, or imageio-ffmpeg). The remux
+checks before replacing the delivery. Ignored candidates/stems live under
+`shoots/koepenick/out/audio/`; do not commit them or rerender the accepted film.
