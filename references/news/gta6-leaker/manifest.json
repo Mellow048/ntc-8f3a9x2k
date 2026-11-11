@@ -1,0 +1,269 @@
+{
+  "origin_commit": "2fc0022dd72e26177c4bc40d0c1429ba2739c7c2",
+  "origin_video": "shoots/gta6-cyberleek/final-720p.mp4",
+  "origin_branch": "arena/3f667ce0-ntc-8f3a9x2k",
+  "render_commit": "1e74ff354a00a6f225b6778757dc0e9c6d23e1f4",
+  "render_source_commit": "c963c741001b507964c16b6e389a79597e5765e6",
+  "render_run": 42952057784,
+  "category": "news",
+  "approval": "User, 2026-11-11, after watching the delivered MP4: \"another banger\".",
+  "adaptation": "Standalone registration adapter added (source/remotion-app/src/reference-entry.tsx); the live Root.tsx/index.ts, which also register an unrelated film, are omitted. Every other file under source/ is copied without edits from origin_commit. Between render_source_commit (the tree the MP4 was rendered from) and origin_commit only these source files changed: remotion-app/scripts/frame.mjs and a comment in remotion-app/scripts/stills.mjs (review helpers, not used by the render), shoots/gta6-cyberleek/SCRIPT.md (result and approval) and qa-report.md (written by the render run). audio/mix.wav is not stored: build_mix.py regenerates it from the included voice (sha256 below is the file that went into the MP4). The two shot sheets were cut from final-720p.mp4. The render workflow is included as an inert recipe.",
+  "mix_wav_sha256": "157fa824517e8f915630324a2e9e8e5fa8663904534834a0b481927883c51257",
+  "files": [
+    {
+      "path": "final-720p.mp4",
+      "sha256": "e591bd761718c1d6a76231e70f421f2e7b6cfb887701ef408d40e85eb1a63fb4",
+      "bytes": 48721649
+    },
+    {
+      "path": "shots-01-23.jpg",
+      "sha256": "b70c18b1be5ceddf256d15c8438f62c583327449d704ffb2686365b1db8eaa97",
+      "bytes": 843907
+    },
+    {
+      "path": "shots-24-46.jpg",
+      "sha256": "a92da435bd32119de27aad039351f80fa8894843e24c9b5f032a31f876a2e2fb",
+      "bytes": 827406
+    },
+    {
+      "path": "source/.github/workflows/render-short.yml",
+      "sha256": "ff88f3506f4966ef8789a31a8a086e674ceae97ad9a63d479202fcc850880a3d",
+      "bytes": 11647
+    },
+    {
+      "path": "source/remotion-app/package-lock.json",
+      "sha256": "9f9fb75fcdfbe2264552bb81d2798d9e2796aa9ca90f322044903c8236431766",
+      "bytes": 161227
+    },
+    {
+      "path": "source/remotion-app/package.json",
+      "sha256": "cb1d27d1eedfccdccc33cb5f890393de7cd592c6b8a4b65aa56cf2a2b2046c4b",
+      "bytes": 813
+    },
+    {
+      "path": "source/remotion-app/public/fonts/README.md",
+      "sha256": "dff0c0df99ef2ba29692af8a5d4c923107867331e7546bda91ee33115cda9689",
+      "bytes": 511
+    },
+    {
+      "path": "source/remotion-app/public/fonts/anton-latin-400-normal.woff2",
+      "sha256": "d0fa07ff63dd60cbc0e2f58e29c802dca2a5ae0276c999f59c6111ab7bbaec3b",
+      "bytes": 18612
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-700-normal.woff2",
+      "sha256": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+      "bytes": 18824
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-900-normal.woff2",
+      "sha256": "5b6958520638bb8609f9eacb17c4d189563efeae96d5da49f7c2043988697205",
+      "bytes": 18020
+    },
+    {
+      "path": "source/remotion-app/remotion.config.ts",
+      "sha256": "f2f70c8410b5bf76fecac310cee020a9ad9902031b8ffedd74a88b0877e3f6c1",
+      "bytes": 443
+    },
+    {
+      "path": "source/remotion-app/scripts/frame.mjs",
+      "sha256": "7b3582534de6c36c2cc4d3ab4fe1817146607f3e73d66d7e26bb93299eaa84e6",
+      "bytes": 2323
+    },
+    {
+      "path": "source/remotion-app/scripts/plan.mjs",
+      "sha256": "785953e29eb2f4c486f3bbfc191fce6168f7c3b25ec0b0bc62fa7471a88ebcba",
+      "bytes": 1776
+    },
+    {
+      "path": "source/remotion-app/scripts/sheet.py",
+      "sha256": "44fa80748c25174c6f1ee30530b12fc05f18a501d802deb578bfa929adc42c81",
+      "bytes": 1420
+    },
+    {
+      "path": "source/remotion-app/scripts/stills.mjs",
+      "sha256": "35c4b7ea7190c6a3e1333c889d46ddfaee411dfc14d29998f24bd5b1f468a154",
+      "bytes": 3301
+    },
+    {
+      "path": "source/remotion-app/src/reference-entry.tsx",
+      "sha256": "166d9ba364792b8c7a0d3530eb2ccbebacae96fe65ff9bc6be27c9955536c299",
+      "bytes": 732
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/Captions.tsx",
+      "sha256": "114e58bf4ab979d1d714f0dc6ff081f66d65e7c064dbf217c92dc61667903591",
+      "bytes": 3259
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/CastSheet.tsx",
+      "sha256": "d18206a0a744b23cd23a77b304b3cbb541c7c3316986148de4a617b1a1b1a7aa",
+      "bytes": 2225
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/Gta6.tsx",
+      "sha256": "d04b068cb808ca3a1018a9dfc12570362dc5c38f2bae9468270fbac51bed3b60",
+      "bytes": 4019
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/Overlays.tsx",
+      "sha256": "1e907b5e5d1da6cb16fcd8ae20e42a15fb6bd32516adb5322c773aa4c79d137c",
+      "bytes": 14442
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/World.ts",
+      "sha256": "332b7eccbf6a460ba07dde41cd551be1325ef05615f1b0a28faff152fd072b49",
+      "bytes": 2806
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/cast.ts",
+      "sha256": "debbdeb41bfeac5fcd76daa6da0e79d85037a437cfdb55a8b1ae0766bd8407a6",
+      "bytes": 37203
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/fonts.ts",
+      "sha256": "2397bb4a15ec5a3f3c099bd958e620596051f2a039bf844b02cf172b5a2204d7",
+      "bytes": 1203
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/kit.ts",
+      "sha256": "fbfc87aa24afac9eadba5b75eaeeec281c05a93991c8982689366c1a8199c60c",
+      "bytes": 12508
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/props.ts",
+      "sha256": "2d267a87fde2f279b26c0444160c7f9c0187fde354b6ec2f46609a620d2d47db",
+      "bytes": 7984
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/sets.ts",
+      "sha256": "a319f1d730126aa6d70a775560e8d0a32e96d08719e9ad0da02f392d4f101916",
+      "bytes": 31295
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/sets2.ts",
+      "sha256": "47f15c0f822350fed59e84d9a29632c6d57a557ad0ef82eb810360f3ad4ae07f",
+      "bytes": 22536
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/sets3.ts",
+      "sha256": "f12b3e3d23fd2e9c8d8dd304d328f704539816b595b8b0dc267654d8310fdd39",
+      "bytes": 9060
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/story.ts",
+      "sha256": "f870ceea439667d440410b43d52c6a9ce5ef3d98831496b903a4aacea025c65f",
+      "bytes": 8426
+    },
+    {
+      "path": "source/remotion-app/src/videos/gta6/words.json",
+      "sha256": "18d1392735246079efd7e92e31dc13ba472ad94d8d67a40c297bf65e6c1ea927",
+      "bytes": 20092
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/toon.ts",
+      "sha256": "e3e5b3f636d04549369d1c842a13e708fa35d32d89176184ad027360a6eee7f4",
+      "bytes": 59851
+    },
+    {
+      "path": "source/remotion-app/tsconfig.json",
+      "sha256": "036ea329ec75a4f26a744b78f41d2dc9353f15f965b6a7f98397a32652ee0073",
+      "bytes": 352
+    },
+    {
+      "path": "source/shoots/gta6-cyberleek/SCRIPT.md",
+      "sha256": "4f4cdfb0e7b1496e847e90978271e40f4c8a81df005a70a153f100300ca20bfb",
+      "bytes": 24783
+    },
+    {
+      "path": "source/shoots/gta6-cyberleek/audio/build_mix.py",
+      "sha256": "c902ab901f13cfa87fc5fc3c52faa5cd0fff440b15390c40338aade3a2a0bd64",
+      "bytes": 35280
+    },
+    {
+      "path": "source/shoots/gta6-cyberleek/audio/cues.md",
+      "sha256": "707d569ae2b7a36f3d6ee8a089daaad6044831f15a43d89b0e91dbce93dbd93b",
+      "bytes": 6482
+    },
+    {
+      "path": "source/shoots/gta6-cyberleek/build_voice.py",
+      "sha256": "0b6e70706ade92f36da68738973d14852c012111112d5c84ff100e7c4752d041",
+      "bytes": 12322
+    },
+    {
+      "path": "source/shoots/gta6-cyberleek/narration.txt",
+      "sha256": "fe25f3f783d85262e12c9e8eb86e0dc43d80f861d93d87b149f52edb5aa295ab",
+      "bytes": 1400
+    },
+    {
+      "path": "source/shoots/gta6-cyberleek/qa-report.md",
+      "sha256": "f3ec337638cb26bdac7031334d22969855b6937233bb6289ffc8d18568689b0f",
+      "bytes": 3210
+    },
+    {
+      "path": "source/shoots/gta6-cyberleek/qa-shots.json",
+      "sha256": "36d03cfa5158c40d45dad5a016b927aaa0fea30eb1e167f59bab92b34d86f141",
+      "bytes": 4082
+    },
+    {
+      "path": "source/shoots/gta6-cyberleek/voice/raw-take.mp3",
+      "sha256": "b286d053f67cf3eef4de5f1ae469478162507b3268bf6a74f70fe1a2921dcd0a",
+      "bytes": 761748
+    },
+    {
+      "path": "source/shoots/gta6-cyberleek/voice/timing.json",
+      "sha256": "127be9c4da8fea4198d519ad6228d27b2781a1810c6cf9eb8e9b39608558a9f8",
+      "bytes": 763
+    },
+    {
+      "path": "source/shoots/gta6-cyberleek/voice/voice.wav",
+      "sha256": "6fdc286155030fb5458fda954ccf1403dd9ee141f1b9363249a49df7fd4e3d5e",
+      "bytes": 7013638
+    },
+    {
+      "path": "source/shoots/gta6-cyberleek/voice/words.json",
+      "sha256": "01a9a22d290a9308caf7c7c66665d4fa34a84e5cdefc7df5943cd54161ad5039",
+      "bytes": 23384
+    },
+    {
+      "path": "source/shoots/voice_master.py",
+      "sha256": "eb1c1804cef6658cc49b2fdd98b0bc0948ac0f24398ddde83ad7268c488f2b5e",
+      "bytes": 12949
+    },
+    {
+      "path": "source/templates/audio/dsp.py",
+      "sha256": "3b456f4653fde5f30b8a22aa53903e5d4b2b3ca508908978f210fb6934214355",
+      "bytes": 11468
+    },
+    {
+      "path": "source/templates/audio/instruments.py",
+      "sha256": "8f66ee6134daefc85021aadab1138a3ce480029c91fc4428d04cba6fd5737fee",
+      "bytes": 13122
+    },
+    {
+      "path": "source/templates/audio/sfx_gen.py",
+      "sha256": "656e0d04a8fbd05e1b8c9a8a96e201c6033783cb6961eba788544f05f294a651",
+      "bytes": 25699
+    },
+    {
+      "path": "source/templates/scripts/short_qa.py",
+      "sha256": "9a71fa351b2db50bac669eebdd37c9d9f00ccd2b8b710ab472871e0ce4160550",
+      "bytes": 4727
+    }
+  ]
+}
