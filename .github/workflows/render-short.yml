@@ -74,13 +74,16 @@ jobs:
       - name: Petit 26-shot preview stills
         if: inputs.composition == 'Petit' && inputs.still_frame == 'all'
         run: |
+          set +e
           npx remotion browser ensure
           echo "CHROME_PATH=$CHROME_PATH"
           ls -lh "$CHROME_PATH" || true
-          node scripts/petit/stills.mjs 2>&1 | tee /tmp/stills.log; echo "exit:$?"
+          node scripts/petit/stills.mjs 2>&1 | tee /tmp/stills.log
+          echo "stills exit:$?"
           cat /tmp/stills.log
           mkdir -p shoots/petit/out/previews
           cp /tmp/stills.log shoots/petit/out/previews/stills.log || true
+          ls -lh shoots/petit/out/previews/ || true
 
       - name: Commit Petit previews
         if: always() && inputs.composition == 'Petit' && inputs.still_frame == 'all'
