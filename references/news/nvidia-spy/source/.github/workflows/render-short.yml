@@ -1,0 +1,291 @@
+name: Render short
+
+# Renders a Remotion short on GitHub's runners and commits the MP4 to the branch it was started from.
+#
+# Software WebGL is slow (seconds per frame), so the film is split into frame ranges that render in parallel jobs.
+# A last job stitches the parts, adds the sound mix, checks the result and publishes it.
+#
+#   gh workflow run render-short.yml --ref <branch> -f composition=NvidiaShort
+
+on:
+  workflow_dispatch:
+    inputs:
+      composition:
+        description: "Remotion composition id"
+        required: false
+        default: "NvidiaShort"
+      mix:
+        description: "Final sound mix, WAV path in the repo (empty = silent video)"
+        required: false
+        default: "shoots/nvidia-honeypot/audio/mix.wav"
+      crf:
+        description: "x264 CRF (lower is better)"
+        required: false
+        default: "16"
+      size:
+        description: "Final size: 720 (720x1280, the standing choice), 1080 (1080x1920) or 2K (1440x2560, slow)"
+        required: false
+        default: "720"
+      still_frame:
+        description: "Frame number for the still preview"
+        required: false
+        default: "150"
+      chunks:
+        description: "Parallel render jobs to split the film into"
+        required: false
+        default: "20"
+      shots:
+        description: "Shot list for the check (JSON read by templates/scripts/short_qa.py; empty = none)"
+        required: false
+        default: "shoots/nvidia-honeypot/qa-shots.json"
+      publish:
+        description: "Commit the MP4 and its QA report to this branch at this path ({size} is replaced; empty = artifact only)"
+        required: false
+        default: "shoots/nvidia-honeypot/final-{size}p.mp4"
+      parts_from:
+        description: "Run id whose rendered parts to reuse instead of rendering (same picture, new sound mix)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: render-${{ github.ref }}-${{ github.event.inputs.composition }}
+  cancel-in-progress: true
+
+env:
+  COMPOSITION: ${{ github.event.inputs.composition }}
+  SIZE: ${{ github.event.inputs.size }}
+  CRF: ${{ github.event.inputs.crf }}
+
+jobs:
+  # ---------------------------------------------------------------------------------------------------------------
+  plan:
+    name: Plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      matrix: ${{ steps.split.outputs.matrix }}
+      frames: ${{ steps.split.outputs.frames }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: remotion-app/package-lock.json
+
+      - name: Install Playwright Chromium (SwiftShader WebGL)
+        working-directory: remotion-app
+        run: |
+          npx playwright@1.49.1 install --with-deps chromium
+          CHROME="$(find ~/.cache/ms-playwright -maxdepth 4 -type f \( -name chrome -o -name headless_shell \) | head -1)"
+          echo "REMOTION_BROWSER=$CHROME" >> "$GITHUB_ENV"
+          ls -lh "$CHROME"
+
+      - name: Install
+        working-directory: remotion-app
+        run: npm ci --no-audit --no-fund
+
+      - name: Typecheck
+        working-directory: remotion-app
+        run: npx tsc --noEmit
+
+      - name: Count frames and split
+        id: split
+        working-directory: remotion-app
+        run: node scripts/plan.mjs "$COMPOSITION" "${{ github.event.inputs.chunks }}" | tee -a "$GITHUB_OUTPUT"
+
+  # ---------------------------------------------------------------------------------------------------------------
+  render:
+    name: Frames ${{ matrix.range }}
+    needs: plan
+    if: github.event.inputs.parts_from == ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.plan.outputs.matrix) }}
+    env:
+      REMOTION_TMP: ${{ github.workspace }}/.remotion-tmp
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: remotion-app/package-lock.json
+
+      - name: Install Playwright Chromium (SwiftShader WebGL)
+        working-directory: remotion-app
+        run: |
+          npx playwright@1.49.1 install --with-deps chromium
+          CHROME="$(find ~/.cache/ms-playwright -maxdepth 4 -type f \( -name chrome -o -name headless_shell \) | head -1)"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+          ls -lh "$CHROME"
+
+      - name: Install
+        working-directory: remotion-app
+        run: npm ci --no-audit --no-fund
+
+      - name: Render frames ${{ matrix.range }}
+        working-directory: remotion-app
+        run: |
+          case "$SIZE" in
+            2K|2k) DIMS="--width=1440 --height=2560" ;;
+            1080) DIMS="--scale=1" ;;
+            *) DIMS="--width=720 --height=1280" ;;
+          esac
+          # A software-GL tab can die mid-render; a part is small enough to simply try again.
+          for attempt in 1 2 3; do
+            echo "::group::attempt $attempt"
+            if npx remotion render src/index.ts "$COMPOSITION" "out/part-${{ matrix.part }}.mp4" \
+                --codec h264 --crf "$CRF" $DIMS --frames="${{ matrix.range }}" --muted \
+                --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH"; then
+              echo "::endgroup::"
+              ls -lh out/
+              exit 0
+            fi
+            echo "::endgroup::"
+            echo "::warning::frames ${{ matrix.range }}: attempt $attempt failed"
+          done
+          exit 1
+
+      - name: Upload part
+        uses: actions/upload-artifact@v4
+        with:
+          name: part-${{ matrix.part }}
+          path: remotion-app/out/part-${{ matrix.part }}.mp4
+          if-no-files-found: error
+          retention-days: 3
+
+  # ---------------------------------------------------------------------------------------------------------------
+  assemble:
+    name: Stitch, mix, check, publish
+    needs: [plan, render]
+    if: always() && needs.plan.result == 'success' && (needs.render.result == 'success' || needs.render.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      FRAMES: ${{ needs.plan.outputs.frames }}
+      MIX: ${{ github.event.inputs.mix }}
+      SHOTS: ${{ github.event.inputs.shots }}
+      STILL_FRAME: ${{ github.event.inputs.still_frame }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: part-*
+          path: parts
+          merge-multiple: true
+          run-id: ${{ github.event.inputs.parts_from || github.run_id }}
+          github-token: ${{ github.token }}
+
+      - name: Install ffmpeg and QA tools
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -y
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -1
+          python3 -m pip install --quiet --break-system-packages numpy pillow || python3 -m pip install --quiet numpy pillow
+          mkdir -p out
+          # Job logs cannot always be fetched from outside, annotations can: on failure, put the end of the step's
+          # output where the checks API shows it.
+          cat > out/step.sh <<'EOS'
+          name="$1"; shift
+          if bash -eo pipefail "$@" > out/step.log 2>&1; then cat out/step.log; exit 0; fi
+          cat out/step.log
+          echo "::error title=$name::$(tail -c 3200 out/step.log | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')"
+          exit 1
+          EOS
+
+      - name: Stitch parts
+        run: |
+          cat > out/stitch.sh <<'EOS'
+          ls -l parts | head -40
+          ls parts/part-*.mp4 | sort | sed "s|^|file '$PWD/|; s|$|'|" > out/parts.txt
+          ffmpeg -v error -y -f concat -safe 0 -i out/parts.txt -c copy out/video.mp4
+          GOT="$(ffprobe -v error -select_streams v:0 -count_packets -show_entries stream=nb_read_packets -of csv=p=0 out/video.mp4 | tr -dc '0-9')"
+          echo "frames: '$GOT', expected '$FRAMES'"
+          test "$GOT" = "$FRAMES"
+          EOS
+          bash out/step.sh "Stitch parts" out/stitch.sh
+
+      - name: Add the sound mix
+        run: |
+          cat > out/mux.sh <<'EOS'
+          if [ -n "$MIX" ]; then
+            ffmpeg -v error -y -i out/video.mp4 -i "$MIX" -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/final.mp4
+          else
+            ffmpeg -v error -y -i out/video.mp4 -c copy -movflags +faststart out/final.mp4
+          fi
+          # GitHub refuses files over 100 MB; squeeze only if the film would not fit.
+          BYTES="$(stat -c %s out/final.mp4)"
+          if [ "$BYTES" -gt 95000000 ]; then
+            echo "::warning::$BYTES bytes is too big for the repo, re-encoding at CRF 22"
+            ffmpeg -v error -y -i out/final.mp4 -c:v libx264 -preset slow -crf 22 -pix_fmt yuv420p -c:a copy -movflags +faststart out/squeezed.mp4
+            mv out/squeezed.mp4 out/final.mp4
+          fi
+          ls -l out/final.mp4
+          EOS
+          bash out/step.sh "Add the sound mix" out/mux.sh
+
+      - name: Check the film
+        run: |
+          cat > out/check.sh <<'EOS'
+          python3 templates/scripts/short_qa.py out/final.mp4 out/qa ${SHOTS:+"$SHOTS"} > out/qa.txt
+          grep -E '^(SPECS|LOUDNESS|SILENCES|FRAMES|POPS|MOTION)' out/qa.txt
+          ffmpeg -v error -y -i out/final.mp4 -vf "select=eq(n\,${STILL_FRAME:-0})" -frames:v 1 out/still.png || true
+          if [ -n "$MIX" ]; then
+            LUFS="$(grep -m1 '^LOUDNESS' out/qa.txt | sed -E 's/.*I: +(-?[0-9.]+) LUFS.*/\1/')"
+            echo "integrated loudness: $LUFS LUFS (gate -17 to -13)"
+            python3 -c "import sys; v = float('$LUFS'); sys.exit(0 if -17 <= v <= -13 else 1)"
+          fi
+          EOS
+          bash out/step.sh "Check the film" out/check.sh
+          echo "::notice title=Film check::$(grep -E '^(SPECS|LOUDNESS|SILENCES|FRAMES|POPS|MOTION)' out/qa.txt | cut -c1-600 | sed 's/%/%25/g' | awk '{printf "%s%%0A", $0}')"
+
+      - name: Upload MP4
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cartoon-3d-short
+          path: |
+            out/final.mp4
+            out/still.png
+            out/qa/report.md
+            out/qa/*.jpg
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Publish to the branch
+        if: github.event.inputs.publish != ''
+        run: |
+          DEST="$(echo "${{ github.event.inputs.publish }}" | sed "s/{size}/$SIZE/")"
+          BRANCH="${{ github.ref_name }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4; do
+            git fetch --quiet origin "$BRANCH"
+            git checkout --quiet -B "$BRANCH" "origin/$BRANCH"
+            mkdir -p "$(dirname "$DEST")"
+            cp out/final.mp4 "$DEST"
+            cp out/qa/report.md "$(dirname "$DEST")/qa-report.md"
+            git add -f "$DEST" "$(dirname "$DEST")/qa-report.md"
+            if git diff --cached --quiet; then echo "already published"; exit 0; fi
+            git commit --quiet -m "Render $COMPOSITION at ${SIZE}p (run ${{ github.run_number }})"
+            if git push --quiet origin "HEAD:$BRANCH"; then
+              echo "published $DEST at $(git rev-parse --short HEAD)" | tee -a "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep $((attempt * 5))
+          done
+          exit 1

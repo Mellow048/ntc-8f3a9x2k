@@ -1,0 +1,267 @@
+{
+  "origin_commit": "a7fb17aad420b0e3f18047580acf849ac9ba3468",
+  "origin_video": "shoots/nvidia-honeypot/final-720p.mp4",
+  "origin_branch": "arena/44d045b4-ntc-8f3a9x2k",
+  "render_commit": "56cbf5b2b4399c53cfb0a4aef7c2161429ee1e3d",
+  "render_run": 42918009608,
+  "category": "news",
+  "adaptation": "Standalone registration adapter added (source/remotion-app/src/reference-entry.tsx); the live Root.tsx/index.ts, which also register an unrelated film, are omitted. Film, script, voice and audio source are copied without edits. audio/mix.wav is not stored: build_mix.py regenerates it from the included voice (sha256 below is the file that went into the MP4). The render workflow is included as an inert recipe.",
+  "mix_wav_sha256": "cd0f32b0f97835398f359807e565e1315b062728a613803e21a09e0bf71bac74",
+  "files": [
+    {
+      "path": "final-720p.mp4",
+      "sha256": "a1bc00bb9d055b009e099fd724ffef6a8bd86f00c0c1136b5253a48c26237b23",
+      "bytes": 51611759
+    },
+    {
+      "path": "shots-01-20.jpg",
+      "sha256": "f10071dcc52175ad19c333395220ec80adb91fc3b23941e89526e3b0780527e2",
+      "bytes": 647644
+    },
+    {
+      "path": "shots-21-39.jpg",
+      "sha256": "4558c4b9dd95a8e0cc8363e400a6e2c6d9fe5dad4aeb78fa3d2db3974846218f",
+      "bytes": 589088
+    },
+    {
+      "path": "source/.github/workflows/render-short.yml",
+      "sha256": "450e88e7d95a3ce9a1cb4022aae7b94c5fec602749b6c67371bcd73b99d5aa9d",
+      "bytes": 11644
+    },
+    {
+      "path": "source/remotion-app/package-lock.json",
+      "sha256": "9f9fb75fcdfbe2264552bb81d2798d9e2796aa9ca90f322044903c8236431766",
+      "bytes": 161227
+    },
+    {
+      "path": "source/remotion-app/package.json",
+      "sha256": "cb1d27d1eedfccdccc33cb5f890393de7cd592c6b8a4b65aa56cf2a2b2046c4b",
+      "bytes": 813
+    },
+    {
+      "path": "source/remotion-app/public/fonts/README.md",
+      "sha256": "dff0c0df99ef2ba29692af8a5d4c923107867331e7546bda91ee33115cda9689",
+      "bytes": 511
+    },
+    {
+      "path": "source/remotion-app/public/fonts/anton-latin-400-normal.woff2",
+      "sha256": "d0fa07ff63dd60cbc0e2f58e29c802dca2a5ae0276c999f59c6111ab7bbaec3b",
+      "bytes": 18612
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-700-normal.woff2",
+      "sha256": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+      "bytes": 18824
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-900-normal.woff2",
+      "sha256": "5b6958520638bb8609f9eacb17c4d189563efeae96d5da49f7c2043988697205",
+      "bytes": 18020
+    },
+    {
+      "path": "source/remotion-app/remotion.config.ts",
+      "sha256": "f2f70c8410b5bf76fecac310cee020a9ad9902031b8ffedd74a88b0877e3f6c1",
+      "bytes": 443
+    },
+    {
+      "path": "source/remotion-app/scripts/frame.mjs",
+      "sha256": "89c642c0f4a30ba57816b7386c0e2ce598639f6d21dc8bf70bae2f6b5cd4efe5",
+      "bytes": 1870
+    },
+    {
+      "path": "source/remotion-app/scripts/plan.mjs",
+      "sha256": "785953e29eb2f4c486f3bbfc191fce6168f7c3b25ec0b0bc62fa7471a88ebcba",
+      "bytes": 1776
+    },
+    {
+      "path": "source/remotion-app/scripts/sheet.py",
+      "sha256": "44fa80748c25174c6f1ee30530b12fc05f18a501d802deb578bfa929adc42c81",
+      "bytes": 1420
+    },
+    {
+      "path": "source/remotion-app/scripts/stills.mjs",
+      "sha256": "3b645ed47d09dd5f9941c347eded7e82132c0695ab9e462e322c6354b0261867",
+      "bytes": 3309
+    },
+    {
+      "path": "source/remotion-app/src/reference-entry.tsx",
+      "sha256": "af91f17e030f71853984c90102cf55d3579e381204b913383463fe8590fa0a94",
+      "bytes": 728
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/Captions.tsx",
+      "sha256": "a66ec2906798fc6b672d2419efa5be29246c629f7e9a2825452310fe1ba7171e",
+      "bytes": 3158
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/CastSheet.tsx",
+      "sha256": "c6a818e236b179b14ddf81c3910f92c24f7617a0f39b969f6f674d4089e5f6ae",
+      "bytes": 2385
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/Nvidia.tsx",
+      "sha256": "b57d86e444f389ac448c9410859483b4147e8c252d628589235012648ebc76e2",
+      "bytes": 4023
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/Overlays.tsx",
+      "sha256": "53eef65bd51a47d4e935fb4ce3c80bf4428557666a21e639e5152a6f11a93069",
+      "bytes": 20776
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/World.ts",
+      "sha256": "90f6ab39c0e7efb422a85aa5217e951d7695ac945f862a5335adb5f996bc12d9",
+      "bytes": 2909
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/cast.ts",
+      "sha256": "f6d554ad86e9d606c734629eb7938368ab1cb3c9ac6253dbf41444fce1a32336",
+      "bytes": 31511
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/fonts.ts",
+      "sha256": "2397bb4a15ec5a3f3c099bd958e620596051f2a039bf844b02cf172b5a2204d7",
+      "bytes": 1203
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/kit.ts",
+      "sha256": "15384cd439161c14a56ce6cf267bee941c978d547a4ae31041f87594ac9529e9",
+      "bytes": 12496
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/props.ts",
+      "sha256": "4edb1ef1415dc5c460598919a55cc916e0a75b0690cc391b810ab31787f19327",
+      "bytes": 8004
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/sets.ts",
+      "sha256": "09d31af76e03cf8dc429a9b7221b3b4050d1093bb7306af3cb46776799039a3f",
+      "bytes": 33019
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/sets2.ts",
+      "sha256": "bdac28912709d1b6bbcde3aa390795a2fbebc38eeafa9570c84da54edfa0c3e7",
+      "bytes": 29244
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/sets3.ts",
+      "sha256": "4997f929bc2fdd830ddb9016c073eb573c0efa610ec51e40aafdd52656108e70",
+      "bytes": 30896
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/story.ts",
+      "sha256": "60495343dd84d65de7ac9147097de2ce5e0bfb27ec7fbe1e717870f64bdfa05d",
+      "bytes": 6588
+    },
+    {
+      "path": "source/remotion-app/src/videos/nvidia/words.json",
+      "sha256": "d993f148c7a19c790e1d7161c1fed3fb5bd3610b93a1eff306094356b64d917d",
+      "bytes": 17974
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/toon.ts",
+      "sha256": "e3e5b3f636d04549369d1c842a13e708fa35d32d89176184ad027360a6eee7f4",
+      "bytes": 59851
+    },
+    {
+      "path": "source/remotion-app/tsconfig.json",
+      "sha256": "036ea329ec75a4f26a744b78f41d2dc9353f15f965b6a7f98397a32652ee0073",
+      "bytes": 352
+    },
+    {
+      "path": "source/shoots/nvidia-honeypot/SCRIPT.md",
+      "sha256": "f62c7e7673d2904de79be879ddc24a246aabc704d0c6a855f8149958c1a4d77e",
+      "bytes": 16069
+    },
+    {
+      "path": "source/shoots/nvidia-honeypot/audio/build_mix.py",
+      "sha256": "bcaf2c5a057cf1ca9a39de5acfa4cea9d2d52d886ca818f61eb838a0c73eaf80",
+      "bytes": 31865
+    },
+    {
+      "path": "source/shoots/nvidia-honeypot/audio/cues.md",
+      "sha256": "bbab7ab918ace7dcca204f99cd2311a86d68430cefa70c4d86a3c64c2f7f50a0",
+      "bytes": 4524
+    },
+    {
+      "path": "source/shoots/nvidia-honeypot/build_voice.py",
+      "sha256": "b499146634f3145f3e695afa7bde9caf440ee55eaa1c6097aa9f1220292ef2ec",
+      "bytes": 12265
+    },
+    {
+      "path": "source/shoots/nvidia-honeypot/narration.txt",
+      "sha256": "6dd2c23e90a9f51af0abf06235afa6d8625f6fbbe375161507be39a150f7f579",
+      "bytes": 1249
+    },
+    {
+      "path": "source/shoots/nvidia-honeypot/qa-report.md",
+      "sha256": "ad606e7d276e52288338b8f2592b3bc85c58e34a57b0c8ae5d27c6db86355d27",
+      "bytes": 2722
+    },
+    {
+      "path": "source/shoots/nvidia-honeypot/qa-shots.json",
+      "sha256": "7408e9d5a8ef3002cd6b6ce6b97369e621ff7bb2e33b4a07d34c801f8d6c2c9d",
+      "bytes": 3391
+    },
+    {
+      "path": "source/shoots/nvidia-honeypot/voice/raw-take.mp3",
+      "sha256": "949d95df068853a5c3fb2f2058b600ad201cafa7c849f9b4f0c4c4b321bd7d00",
+      "bytes": 2102444
+    },
+    {
+      "path": "source/shoots/nvidia-honeypot/voice/timing.json",
+      "sha256": "144ff88e752b6fea9049f3487c18649da6d23c24d0dde79ab7fba09387c99233",
+      "bytes": 599
+    },
+    {
+      "path": "source/shoots/nvidia-honeypot/voice/voice.wav",
+      "sha256": "2e53e73515fd9c485b22b208830d797e6a85c339f66092330f90726f4003e524",
+      "bytes": 6506348
+    },
+    {
+      "path": "source/shoots/nvidia-honeypot/voice/words.json",
+      "sha256": "f903bb3ee4a30834e06f0f78dd6fde0ac1f3876de10a0381d05382124b6a95a9",
+      "bytes": 20916
+    },
+    {
+      "path": "source/shoots/voice_master.py",
+      "sha256": "eb1c1804cef6658cc49b2fdd98b0bc0948ac0f24398ddde83ad7268c488f2b5e",
+      "bytes": 12949
+    },
+    {
+      "path": "source/templates/audio/dsp.py",
+      "sha256": "3b456f4653fde5f30b8a22aa53903e5d4b2b3ca508908978f210fb6934214355",
+      "bytes": 11468
+    },
+    {
+      "path": "source/templates/audio/instruments.py",
+      "sha256": "8f66ee6134daefc85021aadab1138a3ce480029c91fc4428d04cba6fd5737fee",
+      "bytes": 13122
+    },
+    {
+      "path": "source/templates/audio/sfx_gen.py",
+      "sha256": "656e0d04a8fbd05e1b8c9a8a96e201c6033783cb6961eba788544f05f294a651",
+      "bytes": 25699
+    },
+    {
+      "path": "source/templates/scripts/short_qa.py",
+      "sha256": "9a71fa351b2db50bac669eebdd37c9d9f00ccd2b8b710ab472871e0ce4160550",
+      "bytes": 4727
+    }
+  ]
+}
