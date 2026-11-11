@@ -3,7 +3,7 @@
 //   node scripts/stills.mjs <CompositionId> <outDir> --frames=0,75,118        specific frames
 //   node scripts/stills.mjs <CompositionId> <outDir> --every=30 [--range=0-600]  a regular sample
 //   options: --width=720 (output width; height follows the composition), --concurrency=1, --log=5 (progress every N frames),
-//            --props='{"fx":"nolens"}' (input props; the Nvidia short reads `fx` to switch post passes off for profiling)
+//            --props='{"fx":"nolens"}' (input props; the film reads `fx` to switch post passes off for profiling)
 //
 // Uses software WebGL (SwiftShader). Set REMOTION_BROWSER to a Chrome/Chromium binary if Remotion's own
 // download is not usable on the machine. The compositions come from src/index.ts; set REMOTION_ENTRY to bundle
