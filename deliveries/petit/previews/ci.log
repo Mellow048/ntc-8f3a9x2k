@@ -1,4 +1,4 @@
-run 42996246142 / f0f5dd283c79804f92cb84bed31c3fdcb809b477
+run 42996942349 / 81041096203c1c2488151026369246aaa919900b
 --- git status ---
  M deliveries/petit/previews/ci.log
  M deliveries/petit/previews/frame-0005.jpg
@@ -9,7 +9,6 @@ run 42996246142 / f0f5dd283c79804f92cb84bed31c3fdcb809b477
  M deliveries/petit/previews/frame-0477.jpg
  M deliveries/petit/previews/frame-0548.jpg
  M deliveries/petit/previews/frame-0661.jpg
- M deliveries/petit/previews/frame-0716.jpg
  M deliveries/petit/previews/frame-0752.jpg
  M deliveries/petit/previews/frame-1337.jpg
  M deliveries/petit/previews/frame-1377.jpg
@@ -17,14 +16,14 @@ run 42996246142 / f0f5dd283c79804f92cb84bed31c3fdcb809b477
  M deliveries/petit/previews/manifest.json
  M deliveries/petit/previews/stills.log
 --- previews on disk ---
--rw-r--r-- 1 runner runner  72K Nov 11 09:37 frame-1766.jpg
--rw-r--r-- 1 runner runner 104K Nov 11 09:37 frame-1847.jpg
--rw-r--r-- 1 runner runner  62K Nov 11 09:37 frame-1935.jpg
--rw-r--r-- 1 runner runner  67K Nov 11 09:37 frame-2031.jpg
--rw-r--r-- 1 runner runner  37K Nov 11 09:37 frame-2130.jpg
--rw-r--r-- 1 runner runner  37K Nov 11 09:37 frame-2133.jpg
--rw-r--r-- 1 runner runner  13K Nov 11 09:37 manifest.json
--rw-r--r-- 1 runner runner  91K Nov 11 09:37 stills.log
+-rw-r--r-- 1 runner runner  72K Nov 11 09:42 frame-1766.jpg
+-rw-r--r-- 1 runner runner 104K Nov 11 09:43 frame-1847.jpg
+-rw-r--r-- 1 runner runner  62K Nov 11 09:43 frame-1935.jpg
+-rw-r--r-- 1 runner runner  67K Nov 11 09:43 frame-2031.jpg
+-rw-r--r-- 1 runner runner  37K Nov 11 09:43 frame-2130.jpg
+-rw-r--r-- 1 runner runner  37K Nov 11 09:43 frame-2133.jpg
+-rw-r--r-- 1 runner runner  13K Nov 11 09:43 manifest.json
+-rw-r--r-- 1 runner runner  92K Nov 11 09:43 stills.log
 --- last preview log ---
 [40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
 [40m Tab 0, node_modules/three/build/three.module.js:9329 [49m [33mTHREE.Material: parameter 'map' has value of undefined.[39m
