@@ -1,6 +1,6 @@
 # "The GTA 6 Leaker Who Wanted a Disc" — SCRIPT
 
-**Status: delivered on 2026-11-11, not yet approved by the user.** The file, what was checked and what was not are under [Result](#result). News short about Cyberleek, the anonymous account that leaked Grand Theft Auto VI footage ahead of the game's release on 19 November 2026. Made the same way as the news reference `references/news/nvidia-spy/`.
+**Status: approved by the user on 2026-11-11** ("another banger"), who asked for the film and its source to be kept on `main` as a news reference: `references/news/gta6-leaker/`. The file, what the agent checked and what it did not are under [Result](#result). News short about Cyberleek, the anonymous account that leaked Grand Theft Auto VI footage ahead of the game's release on 19 November 2026. Made the same way as the news reference `references/news/nvidia-spy/`.
 
 ## Researched facts and sources
 
@@ -125,7 +125,7 @@ Voice ids are local to the session that made them, so the files are the referenc
 - Ending: the groove comes back at 99 bpm so that four bars end exactly in the pause before the question. A D minor 9 chord lands in that pause and rings under the question, and two notes (A, then D) close the tune while the leaker looks over the counter. The picture holds 1.55 s after the last word.
 - Effects follow the picture: stamp thuds, pops for the cards, alarm beeps when the lid opens, a crowd, a car pass, counter ticks, typing, a boing for the museum leek, coin dings, a cash register, footsteps and a gavel at the courthouse, search pings, a knock on the crate, rising ticks and a falling whistle on the chart, a crash when the coin hits the floor, a power-down, a door, camera shutters at the line-up, two cheers. Each is set relative to the voice (`fx(..., lu)` in the script).
 
-The sound was set with meters only (loudness, true peak, level of the music against the voice per moment). The agent that made it did not listen to it.
+The sound was set with meters only (loudness, true peak, level of the music against the voice per moment). The agent that made it did not listen to it. The user approved the finished film as it is.
 
 ## Render
 
@@ -147,6 +147,6 @@ A full run takes 8 to 11 minutes. When only the sound changed, add `-f parts_fro
 - 720 × 1280, 30 fps, 2233 frames, 74.43 s, H.264 about 5.0 Mb/s with AAC 48 kHz stereo, 48,721,649 bytes.
 - Finished-file check (`qa-report.md`, written by the render run): −14.6 LUFS, true peak −1.8 dBFS; no black, unplanned white or frozen frames; every frame jump is a cut, a caption change or something arriving with its sound. One silence of 0.31 s at 56.1 s: the beat after "Quote:", before "the leeks stop here", where the music is out on purpose.
 - Picture reviewed on still frames, not in motion. From the first full render (run `42950112371`): one frame of each of the 46 shots and one frame in every eight (279 frames). The final render changed two things, both then viewed in the final file: the door is already ajar when its shot begins (55.6 s; the first render opened on two almost black frames), and Zelnick's name tag arrives two frames after he does (64.0 s; it used to take half a second). A frame-by-frame comparison of the two files finds a difference only there (frames 1667–1672 and 1921–1938).
-- Not done: nobody has listened to the sound, which was set from meters, and nobody has watched the film in motion.
+- Not done by the agent: it did not listen to the sound, which was set from meters, and did not watch the film in motion. The approval is the user's, after watching it.
 
 Known small things, left as they are: the leek crate in the first shot is cut by the left frame edge; in the "called it off" shot a fragment of the offer screen shows between the leaker and the button until the screens go dark.
