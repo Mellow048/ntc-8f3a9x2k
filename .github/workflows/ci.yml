@@ -21,6 +21,19 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Verify preserved reference checksums
+        run: |
+          python3 references/approved/verify.py
+          python3 references/news/verify.py
+
+      - name: Check standalone approved Köpenick source
+        run: |
+          npm ci --prefix references/approved/koepenick/source/remotion-app
+          npm run typecheck --prefix references/approved/koepenick/source/remotion-app
+          cd references/approved/koepenick/source
+          node scripts/koepenick/test.mjs
+          python3 -m py_compile shoots/koepenick/audio/*.py shoots/koepenick/voice/prepare.py scripts/koepenick/*.py
+
       - name: Check audio/QA Python scripts compile
         run: |
           python3 -m py_compile templates/audio/*.py templates/scripts/*.py

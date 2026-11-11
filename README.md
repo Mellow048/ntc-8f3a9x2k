@@ -11,7 +11,7 @@ word-timed physical storytelling, original sound and Arena narration.
 - **[VIDEO_HANDOFF.md](VIDEO_HANDOFF.md)** — user feedback, approvals, production
   checkpoints and lessons. Do not repeat rejected shortcuts.
 - **[Approved reference library](references/approved/README.md)** — actual
-  Taipei 101 and accepted Beer Flood MP4s **plus their source**, preserved on
+  Taipei 101, Beer Flood and Köpenick MP4s **plus their source**, preserved on
   `main` so deleting a historical branch does not remove these examples.
 - **[News reference](references/news/README.md)** — the approved Nvidia news
   short, MP4 **plus source**, in its own folder because it is a different
@@ -30,6 +30,13 @@ The news film is on a different level and in a different category: the user
 called it "so well done and not lazy" and "maybe the best one". Agents making
 a news short must study it. Agents making a regular short must leave it alone
 and not borrow its structure, graphics, tone or music.
+
+**New regular-story reference:** [The Shoemaker Who Borrowed an Army](references/approved/koepenick/README.md).
+The user approved the complete music-v2 film—visuals, narration, pacing and
+background music—and requested its exact MP4 and source on `main`. The guide
+maps action beats to code and documents why a clearer groove, not lower music
+volume, fixed the first soundtrack. Read the source; do not imitate screenshots
+with placeholder props.
 
 ## Repository map
 
