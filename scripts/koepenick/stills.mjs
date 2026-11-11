@@ -9,5 +9,5 @@ const opts={serveUrl,id:'Koepenick',browserExecutable:process.env.CHROME_PATH,ch
 const composition=await selectComposition(opts);const dir=resolve('deliveries/koepenick/previews');await mkdir(dir,{recursive:true});
 const requested=process.env.REVIEW_FRAMES??'';
 const frames=requested.includes(',')?requested.split(',').map(Number):[...data.shots.map(s=>Math.round(s.a+(s.b-s.a)*.65)),5,100,Math.round(68.3*30)];
-for(const frame of frames){await renderStill({...opts,composition,output:resolve(dir,`frame-${String(frame).padStart(4,'0')}.png`),frame,imageFormat:'png'});console.log('Preview frame',frame);}
+for(const frame of frames){await renderStill({...opts,composition,output:resolve(dir,`frame-${String(frame).padStart(4,'0')}.jpg`),frame,imageFormat:'jpeg'});console.log('Preview frame',frame);}
 await writeFile(resolve(dir,'manifest.json'),JSON.stringify({frames,shots:data.shots,width:720,height:1280},null,2));

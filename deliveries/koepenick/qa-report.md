@@ -32,3 +32,21 @@ PER SHOT  (luma mean / std / p2 / p98 / saturation mean, medians over the shot)
   shot 24 f1782-1821: 0.524 / 0.188 / 0.127 / 0.898 / 0.554
   shot 25 f1822-1906: 0.489 / 0.193 / 0.066 / 0.846 / 0.502
   shot 26 f1907-2089: 0.427 / 0.256 / 0.079 / 0.866 / 0.522
+
+## Visual review of the finished export
+
+Decoded and inspected 28 shot/start/end samples and 139 samples at 2 fps
+from this actual MP4, not only the source preview frames. Inspected frames
+352–360 individually after the automatic detector flagged 356–358. They show
+the intentionally falling coat entering the counter shot and smoothly landing;
+not a dropped frame, unexplained cut or rendering flash. Original flags above
+are preserved rather than suppressed after the fact.
+
+Picture sampling covered troop halt/follow, face clearance in the train,
+bath permission, warrant gesture, cash/receipt, escape, breakfast arrest, cell
+bars, stage bow and the stationary bronze callback. The 1.227-second resolved
+ending remains after the final word; the last sampled frame is intact.
+
+Audio was measured, not listened to by the agent. Human playback review and
+user approval are still pending. This is a technical pass and a frame-sampling
+review, not a claim that every frame was watched in real time.

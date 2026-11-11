@@ -32,11 +32,25 @@ caption grouping, deterministic action endpoints, 1.227 s after the last word.
 Local audio-only measurement, including a test AAC encode: -14.6 LUFS,
 -1.5 dBTP, LRA 2.0 LU. The agent cannot listen; these are measurements only.
 
-## Current stage
-Full GitHub Actions render is requested after the diagnostic gate. The MP4
-does not exist yet. After it completes: fetch the branch, run/read technical
-QA, inspect samples of the *finished* MP4, present the file, and record the
-actual delivery commit and anything still unresolved.
+## Delivered
+
+- Full render run **42939517026** succeeded in 56m31s.
+- Delivery commit **6b096c8**, file
+  `deliveries/koepenick/koepenick-720p.mp4` (81,973,701 bytes).
+- SHA-256: `35d7856d322332be7e6741a9a4500a1a6ce04a4f97a7c525df4264a245536aad`.
+- Finished MP4: 720×1280, 30 fps, 2,090 frames, 69.667 s, AAC stereo 48 kHz.
+- Finished loudness: **-14.6 LUFS**, **-1.5 dBTP**, LRA 2.0 LU.
+- No detected silences, black, white or >=12-frame frozen spans.
+- Three motion-spike flags (356–358) individually checked in the decoded MP4:
+  they are the intentionally falling coat, with continuous motion. The
+  original detector report and review addendum are saved beside the MP4.
+- Visually inspected 28 decoded final-picture samples and 139 samples at
+  2 fps spanning the film. Source stills alone were not used for final review.
+- **Audio not listened to by the agent; user playback/approval pending.**
+
+Diagnostics were converted from PNG to compact JPEG after the review to
+avoid retaining about 40 MB of intermediate lossless stills in the patch.
+The delivered MP4 was not re-encoded or changed by this storage cleanup.
 
 ## Reproduce
 - `python scripts/koepenick/plan.py` regenerates timing, shot plan and QA edits.

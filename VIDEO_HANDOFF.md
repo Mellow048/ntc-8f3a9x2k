@@ -275,3 +275,24 @@ The session that created this guide uses `arena/2524fc8a-ntc-8f3a9x2k`. Follow t
 ## 8. Keep this guide useful
 
 After each delivery or user correction, update the approval history and current checkpoint. Distinguish **planned**, **implemented**, **rendering**, **reviewed**, **delivered**, and **user-approved**. Record unresolved problems honestly. Do not make the next agent infer status from the presence of an old `final-720p.mp4`.
+
+
+## Separate Köpenick production — delivered on its own session branch
+
+This does not replace the City Hall checkpoint above. On branch
+`arena/f220dac6-ntc-8f3a9x2k`, the user approved the people-driven Köpenick
+idea, selected the Arena narrator, then said “then go make the mp4”.
+
+- Film: **The Shoemaker Who Borrowed an Army**, 26 action beats.
+- MP4: `deliveries/koepenick/koepenick-720p.mp4`, delivery commit `6b096c8`.
+- Sources: `remotion-app/src/videos/koepenick/`; voice, sources, plan, original
+  score and honest production log: `shoots/koepenick/`.
+- Successful render: Actions run `42939517026`; 69.667 s, 720×1280/30fps,
+  AAC stereo 48kHz, -14.6 LUFS, -1.5 dBTP. No silence, black/white or frozen
+  spans detected. Three pop flags at 356–358 were visually checked against
+  adjacent decoded frames: the intentional coat drop, not unexplained flashes.
+- Actual final-picture review: 28 decoded shot samples plus 139 samples at
+  2fps. Audio was measured, not listened to. User approval is pending.
+- Existing `render-short.yml` has an isolated `Koepenick` job: normal
+  `still_frame` makes diagnostic stills; `-1` is the explicit full-render gate
+  after the agent reviews diagnostics. Other compositions retain their old job.
