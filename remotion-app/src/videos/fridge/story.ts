@@ -39,7 +39,7 @@ export const SHOTS: Shot[] = [
   s(20, 'front', 'night', [1.2, 1.3, 9.6], [0, 1.5, -2], 40, {push: 0.08}),                           // 3
   s(23, 'aisle', 'hot', [1.5, 1.5, 5.3], [0, 1.4, -0.4], 42, {to: [0.9, 1.5, 4.9]}),                  // 4
   s(29, 'aisle', 'morning', [-0.5, 1.45, 5.7], [0, 1.4, -0.3], 42, {push: 0.1}),                      // 5
-  s(34, 'front', 'dump', [0.9, 1.5, 6.3], [0.45, 1.25, 0.2], 42, {push: 0.08}),                        // 6
+  s(34, 'front', 'dump', [0.75, 1.5, 6.3], [0.3, 1.25, 0.2], 42, {push: 0.08}),                        // 6
   s(36, 'front', 'fire', [-1.4, 1.4, 6.6], [0, 1.4, -1.2], 42, {push: 0.1}),                          // 7
   // 3  "Nobody set foot in a store. Someone got into the control panels online, muted the alarms, started a defrost, and never let it stop."
   s(42, 'front', 'locked', [-0.5, 1.25, 4.4], [0, 1.1, -1.9], 42, {push: 0.1}),                        // 8
@@ -78,7 +78,7 @@ export const SHOTS: Shot[] = [
   // 12 "Iran denies it. And its reply is ice cold. Quote: a government that cannot even manage the temperature of its own refrigerators."
   s(185, 'podium', 'deny', [-0.4, 1.45, 5.9], [0, 1.45, -0.5], 42, {push: 0.1}),                      // 33
   s(188, 'podium', 'ice', [0.5, 1.45, 5.7], [0, 1.45, -0.5], 42, {push: 0.12}),                       // 34
-  s(194, 'podium', 'read', [0.2, 1.66, 5.3], [0, 1.66, -0.5], 42, {push: 0.05, close: true}),            // 35
+  s(194, 'podium', 'read', [0.2, 1.73, 5.3], [0, 1.73, -0.5], 42, {push: 0.05, close: true}),            // 35
   s(201, 'showroom', 'fridge', [0.4, 1.6, 5.6], [0, 1.6, 0], 42, {push: 0.12}),                        // 36
   // 13 "France wants arrest warrants and European sanctions."
   s(207, 'desk', 'warrant', [0.3, 1.55, 5.5], [0, 1.4, -0.3], 42, {push: 0.1}),                       // 37

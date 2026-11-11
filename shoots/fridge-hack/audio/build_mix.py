@@ -9,8 +9,8 @@ Everything but the voice is synthesized here with the kit in templates/audio; no
 (ducking, the 1.2-5 kHz pocket, the ceiling that keeps accents off the words, the limiter) is the one the news
 reference uses; the tune, its instruments and every effect cue are this film's own.
 
-The score: shop music in F major (vibraphone, plucked bass, brushes) that melts like a tape slowing down when the
-heat goes up, then a tiptoeing pizzicato groove in D minor, 118 bpm, with a glockenspiel for the cold. It stops for
+The score: shop music in G major (vibraphone, plucked bass, brushes) that melts like a tape slowing down when the
+heat goes up, then a tiptoeing pizzicato groove in E minor, 118 bpm, with a glockenspiel for the cold. It stops for
 the two quotes, is unplugged on "off the internet", and comes back as the shop music for the question.
 """
 from __future__ import annotations
@@ -48,9 +48,13 @@ DUCK_DB = -4.0                 # how far the music dips under speech (it comes u
 
 WORDS = json.load(open(os.path.join(SHOOT, "voice", "words.json")))
 STORY = open(os.path.join(REPO, "remotion-app", "src", "videos", "fridge", "story.ts")).read()
-Wf = lambda i: int(round(WORDS[i]["start"] * FPS))            # frame a word starts on (same rounding as the picture)
+# JavaScript's Math.round sends a half up; Python's round() sends it to the even number. Two words of this read start on
+# exactly half a frame (19.15 s and 40.75 s), and the second one starts a shot: with round() the shot list handed to
+# the check said frame 1220 while the picture cut on 1221, and the check reported an unplanned jump.
+jsround = lambda x: int(np.floor(x + 0.5))
+Wf = lambda i: jsround(WORDS[i]["start"] * FPS)                # frame a word starts on (same rounding as the picture)
 Wt = lambda i: Wf(i) / FPS
-TOTAL = int(round((WORDS[-1]["end"] + 1.55) * FPS))
+TOTAL = jsround((WORDS[-1]["end"] + 1.55) * FPS)
 DUR = TOTAL / FPS
 N = ns(DUR)
 CUTS = [max(0, Wf(int(m)) - 2) for m in re.findall(r"^\s*s\((\d+), '", STORY, re.M)]   # first frame of every shot
@@ -81,6 +85,8 @@ def shaker(vel=1.0):
 
 
 _notes: dict = {}
+TR = 2                                                         # the score is written in D minor and F major and sounds a tone higher: E minor and G major
+m2f = lambda m: I.m2f(m + TR)                                  # every pitched note of the score goes through here
 
 
 def cached(key, fn):
@@ -89,9 +95,9 @@ def cached(key, fn):
     return _notes[key]
 
 
-pizz = lambda m, d=0.5, b=0.45: cached(("pizz", m, d, b), lambda: I.pluck(I.m2f(m), 0.8, R, d, b))
-glock = lambda m, d=1.0: cached(("glock", m, d), lambda: I.glock(I.m2f(m), 0.7, R, d))
-vib = lambda m, d=1.2: cached(("vib", m, d), lambda: I.vibes(I.m2f(m), 0.6, R, d))
+pizz = lambda m, d=0.5, b=0.45: cached(("pizz", m, d, b), lambda: I.pluck(m2f(m), 0.8, R, d, b))
+glock = lambda m, d=1.0: cached(("glock", m, d), lambda: I.glock(m2f(m), 0.7, R, d))
+vib = lambda m, d=1.2: cached(("vib", m, d), lambda: I.vibes(m2f(m), 0.6, R, d))
 brush = lambda v=0.6, swish=False: I.brush(v, R, 0.3 if swish else 0.2, swish)
 
 
@@ -117,8 +123,10 @@ def tape(x, t0, d, to=0.3, cut=True):
 
 
 # ------------------------------------------------------------------------------------------------ music
-# Two tunes. The shop's own music: F major, vibraphone chords, a plucked bass, brushes, a glockenspiel lick. And the
-# break-in: D minor, plucked bass in eighths, off-beat plucked chords, kick and brushes, a glockenspiel hook for the cold.
+# Two tunes. The shop's own music: G major, vibraphone chords, a plucked bass, brushes, a glockenspiel lick. And the
+# break-in: E minor, plucked bass in eighths, off-beat plucked chords, kick and brushes, a glockenspiel hook for the cold.
+# The chord names and MIDI numbers below are WRITTEN a tone lower (D minor, F major) and `m2f` moves every note up by TR:
+# the other two news films are in A minor (112 bpm) and D minor (104 bpm), and this one shares neither key nor tempo.
 # Kick and bass fundamentals count towards the measured loudness but a phone speaker plays almost nothing under 300 Hz,
 # so they are kept modest and the level is carried by what a phone does play (plucks, glockenspiel, brushes).
 BPM = 118.0
@@ -145,7 +153,7 @@ def play_bar(t0, chord, level, beat=B, until=None, hook=False, mute=None):
     drums = lambda t: mute is None or not (mute[0] <= t < mute[1])
     notes, root = CH[chord], ROOT[chord]
     if live(t0):
-        put("comp", cached(("pad", chord, round(beat, 4), level == 0), lambda: I.pad([I.m2f(m + 12) for m in notes], 4 * beat * 0.97, 0.5, R, att=0.3 if level == 0 else 0.05, rel=0.2, warm=1300.0)), t0, 0.7 if level == 0 else 0.34)
+        put("comp", cached(("pad", chord, round(beat, 4), level == 0), lambda: I.pad([m2f(m + 12) for m in notes], 4 * beat * 0.97, 0.5, R, att=0.3 if level == 0 else 0.05, rel=0.2, warm=1300.0)), t0, 0.7 if level == 0 else 0.34)
     for i in range(8):
         t = t0 + i * beat / 2
         if not live(t):
@@ -207,7 +215,7 @@ def build_music():
     melt = Wt(4) - 0.02
     shop_bar(0.0, "Fmaj7", lick=(84, 0, 81, 0, 77, 81, 0, 0), gain=1.15)
     shop_bar(BAR, "Dm7", gain=1.0)
-    EVENTS.append((0.0, "music in", "the shop's own music: F major, vibraphone, plucked bass, brushes, a glockenspiel lick"))
+    EVENTS.append((0.0, "music in", "the shop's own music: G major, vibraphone, plucked bass, brushes, a glockenspiel lick"))
     EVENTS.append((melt, "the music melts", "'heat': the shop music slows like a tape and sinks, as the readout climbs"))
     shop = {k: v.copy() for k, v in BUS.items()}
     for k in BUS:
@@ -221,16 +229,16 @@ def build_music():
     mute = ((Wf(57) - 1) / FPS, Wt(60))                             # the alarm is muted: the drums go with it, until the defrost starts
     n_a = groove(ta, stop_a, lv, hooks=(1, 3, 5, 9, 11), mute=mute)
     put("hits", I.cymbal(0.5, R, 1.6), ta, 0.4)
-    EVENTS.append((ta, "break-in tune", f"{BPM:.0f} bpm, D minor: plucked bass in eighths, off-beat plucked chords, kick and brushes, glockenspiel"))
-    put("hits", I.timpani(I.m2f(38), 0.9, R, 1.6), Wt(17), 0.9)
-    put("hits", I.brass(I.m2f(50), 0.5, 0.8, R, "stab"), Wt(17), 0.5)
+    EVENTS.append((ta, "break-in tune", f"{BPM:.0f} bpm, E minor: plucked bass in eighths, off-beat plucked chords, kick and brushes, glockenspiel"))
+    put("hits", I.timpani(m2f(38), 0.9, R, 1.6), Wt(17), 0.9)
+    put("hits", I.brass(m2f(50), 0.5, 0.8, R, "stab"), Wt(17), 0.5)
     EVENTS.append((Wt(17), "hit", "timpani and a brass stab on 'Iran': the spokesperson points"))
     EVENTS.append((mute[0], "drums out", "the alarm key is pressed: kick, brushes and hats drop out until the defrost starts"))
     for j, m in enumerate((62, 64, 65, 67, 69, 70, 72, 74)):          # "and never let it stop": a scale that keeps climbing
         put("lead", glock(m + 12, 0.4), Wt(61) + j * B / 2, 0.5, -0.3 + 0.08 * j)
     EVENTS.append((Wt(61), "climbing scale", "eight glockenspiel notes up under 'and never let it stop'"))
     # the professor's line is read over a single chord and two bass notes a bar
-    put("comp", I.pad([I.m2f(m) for m in (50, 57, 62, 65)], Wt(97) - stop_a - 0.6, 0.5, R, att=0.05, rel=0.5, warm=1200.0), stop_a, 0.5)
+    put("comp", I.pad([m2f(m) for m in (50, 57, 62, 65)], Wt(97) - stop_a - 0.6, 0.5, R, att=0.05, rel=0.5, warm=1200.0), stop_a, 0.5)
     for k in range(int((cut_t(18) - stop_a) / (2 * B))):
         put("bass", pizz(38 if k % 2 == 0 else 45, 0.7, 0.3), stop_a + 0.3 + k * 2 * B, 0.8)
     EVENTS.append((stop_a, "music thins", "one held chord and a slow plucked bass under the professor's line"))
@@ -242,28 +250,28 @@ def build_music():
     EVENTS.append((tb, "break-in tune back", "under Danfoss; full again for 'the same trick'"))
     t = Wt(106)                                                      # "outdated": a music box that has seen better days
     for j, m in enumerate((74, 77, 81, 77, 72)):
-        put("lead", tape(st(I.musicbox(I.m2f(m), 0.6, R, 0.9)), 0.12, 0.7, 0.86, cut=False), t + j * 0.17, 0.5, 0.2)
+        put("lead", tape(st(I.musicbox(m2f(m), 0.6, R, 0.9)), 0.12, 0.7, 0.86, cut=False), t + j * 0.17, 0.5, 0.2)
     EVENTS.append((t, "tired music box", "five notes that sag in pitch on 'outdated software'"))
     # "Even an IKEA. No word on the meatballs.": the shop music again, two bars, bright
     ti = Wt(120) - 0.02
     shop_bar(ti, "Fmaj7", lick=(0, 0, 84, 86, 88, 0, 84, 0))
     shop_bar(ti + BAR, "C9", until=cut_t(24), lick=(86, 84, 81, 0))
-    EVENTS.append((ti, "shop music", "two bars of the F major tune for the furniture store and its meatballs"))
+    EVENTS.append((ti, "shop music", "two bars of the G major tune for the furniture store and its meatballs"))
 
     # ---- C: the blood service. No tune: a low chord and a pulse like a heartbeat, then relief.
     tc = cut_t(24)
-    put("comp", I.pad([I.m2f(m) for m in (38, 45, 50, 53)], Wt(137) - tc - 0.1, 0.5, R, att=0.2, rel=0.3, warm=900.0), tc, 0.8)
+    put("comp", I.pad([m2f(m) for m in (38, 45, 50, 53)], Wt(137) - tc - 0.1, 0.5, R, att=0.2, rel=0.3, warm=900.0), tc, 0.8)
     k = 0
     while tc + 0.15 + k * 0.62 < Wt(137) - 0.2:
         for d, g in ((0.0, 1.0), (0.17, 0.7)):
             put("drums", kick(0.9 * g), tc + 0.15 + k * 0.62 + d)
         k += 1
-    EVENTS.append((tc, "low chord, heartbeat", "the tune stops for the blood service: a held D minor and a double pulse"))
+    EVENTS.append((tc, "low chord, heartbeat", "the tune stops for the blood service: a held E minor and a double pulse"))
     tr = Wt(137)
     for k2, m in enumerate((53, 57, 60, 65)):
         put("comp", vib(m + 12, 1.6), tr + 0.03 * k2, 0.5, -0.3 + 0.2 * k2)
     put("bass", pizz(41, 0.9, 0.3), tr, 0.9)
-    EVENTS.append((tr, "F major chord", "'Staff caught it in time': the vibraphone resolves"))
+    EVENTS.append((tr, "G major chord", "'Staff caught it in time': the vibraphone resolves"))
     # "Neither has been tied to the first attack": two plucked notes that ask a question
     put("bass", pizz(38, 0.6), Wt(142), 0.8); put("lead", pizz(62, 0.5, 0.6), Wt(145), 0.6); put("lead", pizz(68, 0.7, 0.6), Wt(148), 0.6)
     EVENTS.append((Wt(145), "two plucked notes", "a rising question under 'tied to the first attack'"))
@@ -271,29 +279,29 @@ def build_music():
     # ---- D: France names a culprit. Timpani, then the tune, steady, for the evidence. It stops on "How exactly?"
     td, stop_d, tg_roll = cut_t(27), Wt(180) - 0.04, cut_t(28)
     for ts, v in I.snare_roll(td + 0.1, tg_roll - 0.03, 0.1, 0.5, R, rate=26):
-        put("drums", I.timpani(I.m2f(38), v * 0.5, R, 0.5), ts, 0.34)
+        put("drums", I.timpani(m2f(38), v * 0.5, R, 0.5), ts, 0.34)
     tg = cut_t(28)
-    put("hits", I.timpani(I.m2f(38), 1.0, R, 2.0), tg, 1.0)
-    put("hits", I.brass(I.m2f(38), 0.9, 0.85, R, "tuba"), tg, 0.5); put("hits", I.brass(I.m2f(50), 0.9, 0.8, R, "horn"), tg, 0.4)
+    put("hits", I.timpani(m2f(38), 1.0, R, 2.0), tg, 1.0)
+    put("hits", I.brass(m2f(38), 0.9, 0.85, R, "tuba"), tg, 0.5); put("hits", I.brass(m2f(50), 0.9, 0.8, R, "horn"), tg, 0.4)
     EVENTS.append((td + 0.1, "timpani roll", "building through 'names a culprit'"))
     EVENTS.append((tg, "timpani and brass", "after 'culprit', on the cut to the unit France accuses"))
     lvd = lambda t: 1 if t < cut_t(29) - 0.4 else 2
     groove(tg, stop_d, lvd, hooks=(3, 5))
     EVENTS.append((tg, "break-in tune back", "sparse under the accusation, steady under the evidence"))
     sure = WORDS[179]["end"] - 0.02
-    put("hits", I.brass(I.m2f(50), 0.3, 0.85, R, "stab"), sure, 0.5); put("hits", I.brass(I.m2f(57), 0.3, 0.8, R, "stab"), sure, 0.4)
+    put("hits", I.brass(m2f(50), 0.3, 0.85, R, "stab"), sure, 0.5); put("hits", I.brass(m2f(57), 0.3, 0.8, R, "stab"), sure, 0.4)
     EVENTS.append((sure, "brass stab", "as 'certain' ends; then the music stops for 'How exactly?'"))
     EVENTS.append((stop_d, "music stops", "'How exactly?'"))
     put("lead", pizz(69, 0.5, 0.6), Wt(183), 0.6); put("lead", pizz(62, 0.8, 0.6), Wt(184), 0.6)
     EVENTS.append((Wt(183), "two plucked notes", "falling, under 'It won't say'"))
 
     # ---- E: Iran's answer. One hit, then the cold: a glockenspiel line coming down, and nothing under the quote.
-    put("hits", I.timpani(I.m2f(33), 0.9, R, 1.8), Wt(186), 0.9)
+    put("hits", I.timpani(m2f(33), 0.9, R, 1.8), Wt(186), 0.9)
     EVENTS.append((Wt(186), "timpani", "on 'denies'"))
     for j, m in enumerate((93, 89, 86, 81, 77, 74, 69)):
         put("lead", glock(m, 1.4), Wt(191) + 0.05 + j * 0.095, 0.5, -0.4 + 0.13 * j)
     EVENTS.append((Wt(191) + 0.05, "icy run", "seven glockenspiel notes down as the frost spreads, before 'ice cold'"))
-    put("comp", I.pad([I.m2f(m) for m in (74, 81, 86)], Wt(206) + 0.4 - Wt(194), 0.5, R, att=0.4, rel=0.6, warm=3000.0), Wt(194), 0.14)
+    put("comp", I.pad([m2f(m) for m in (74, 81, 86)], Wt(206) + 0.4 - Wt(194), 0.5, R, att=0.4, rel=0.6, warm=3000.0), Wt(194), 0.14)
     EVENTS.append((Wt(194), "music out", "the reply is read over a thin, cold, high chord and nothing else"))
 
     # ---- F: what France wants, and the advice. The tune is unplugged on "off".
@@ -310,15 +318,15 @@ def build_music():
     z = WORDS[222]["end"] + 0.12
     for k2, m in enumerate((53, 57, 60, 64, 67)):
         put("comp", vib(m + 12, 3.6), z + 0.02 * k2, 0.62, -0.4 + 0.2 * k2)
-    put("comp", I.pad([I.m2f(m) for m in (53, 57, 60, 64, 67)], 3.6, 0.5, R, att=0.03, rel=1.0, warm=1500.0), z, 0.5)
+    put("comp", I.pad([m2f(m) for m in (53, 57, 60, 64, 67)], 3.6, 0.5, R, att=0.03, rel=1.0, warm=1500.0), z, 0.5)
     put("bass", pizz(29, 1.2, 0.3), z, 1.0); put("bass", pizz(41, 1.2, 0.3), z, 0.6)
     put("lead", glock(84, 1.6), z, 0.5, 0.2); put("lead", glock(89, 1.6), z + B / 2, 0.45, -0.2)
     put("drums", brush(0.6, swish=True), z, 0.8)
-    EVENTS.append((z, "final chord", "F major 9 on the vibraphone lands in the pause and rings under the question: the shop's music is back"))
-    e = WORDS[-1]["end"] + 0.22                                    # button: C then F
+    EVENTS.append((z, "final chord", "G major 9 on the vibraphone lands in the pause and rings under the question: the shop's music is back"))
+    e = WORDS[-1]["end"] + 0.22                                    # button: D then G (written C, F)
     put("bass", pizz(36, 0.4, 0.4), e, 0.9); put("lead", glock(84, 0.4), e, 0.5); put("drums", brush(0.7), e, 0.8)
     put("bass", pizz(29, 1.0, 0.4), e + B, 1.0); put("lead", glock(89, 1.4), e + B, 0.55); put("lead", glock(81, 1.4), e + B, 0.4, -0.3); put("drums", kick(0.9), e + B)
-    EVENTS.append((e, "button", "two notes, C then F: the tune closes while the pointer comes down the line"))
+    EVENTS.append((e, "button", "two notes, D then G: the tune closes while the pointer comes down the line"))
 
     for k in BUS:
         BUS[k][:, : shop[k].shape[1]] += shop[k]
@@ -537,7 +545,7 @@ def build_sfx(voice_lufs):
     t0, w = I.whistle([(Wt(84) + 0.1, 0.22, 79, 0.6), (Wt(84) + 0.36, 0.2, 76, 0.6), (Wt(84) + 0.6, 0.22, 79, 0.6), (Wt(84) + 0.86, 0.5, 84, 0.6)], R)
     fx(t0, w, -15, 0.4, "whistling", "the fridge, looking innocent, in the line-up")
     for j, m in enumerate((72, 76, 79, 84, 88, 91)):
-        fx(cut_t(17) + 0.12 + j * 0.07, I.glock(I.m2f(m), 0.6, R, 0.8), -15, -0.3 + 0.12 * j)
+        fx(cut_t(17) + 0.12 + j * 0.07, I.glock(m2f(m), 0.6, R, 0.8), -15, -0.3 + 0.12 * j)
     EVENTS.append((cut_t(17) + 0.12, "rising glissando", "hearts for the fridge"))
     # 6: Danfoss
     fx(Wt(97), ding(2093, 0.9), -12, 0.2, "ding", "the panel, brand new, on its stand")
@@ -648,7 +656,7 @@ def planned_changes():
             out.append([first(end), first(end)])
     for t, name, _ in EVENTS:
         if name in GRAPHIC_SOUNDS:
-            f = int(round(t * FPS))
+            f = jsround(t * FPS)
             out.append([f, f + 9])
     return sorted(out)
 
@@ -728,7 +736,7 @@ def main():
     with open(os.path.join(SHOOT, "qa-shots.json"), "w") as f:
         json.dump({"shots": [{"id": i + 1, "a": CUTS[i], "b": CUTS[i + 1] if i + 1 < len(CUTS) else TOTAL} for i in range(len(CUTS))], "planned": planned_changes()}, f)
         f.write("\n")
-    rows = "\n".join(f"| {t:6.2f} | {int(round(t * FPS)):4d} | {name} | {why} |" for t, name, why in sorted(EVENTS))
+    rows = "\n".join(f"| {t:6.2f} | {jsround(t * FPS):4d} | {name} | {why} |" for t, name, why in sorted(EVENTS))
     with open(os.path.join(HERE, "cues.md"), "w") as f:
         f.write("# Fridge hack short: soundtrack cue sheet\n\nWritten by `build_mix.py`. All music and effects are synthesized in that script; nothing is sampled.\n\n"
                 + "\n".join(report) + "\n\n| time s | frame | sound | why |\n|---|---|---|---|\n" + rows + "\n")

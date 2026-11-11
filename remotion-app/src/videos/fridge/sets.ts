@@ -300,13 +300,35 @@ export const front: Builder = (root) => {
   const cart = trolley(root, 0, 0); const goo = [spill(root, '#ffc4dc', 4), spill(root, '#fff3d6', 9)];
   const pusher = actor(root, WORKER(2), {a: {expr: 'pained', pose: 'both'}}, 0, 0, 0, {scale: 1.0}), carrier = actor(root, WORKER(1), {a: {expr: 'nervous', pose: 'both', prop: 'box'}}, -1.4, 0, -0.2, {scale: 0.98});
   // fire: smoke out of the doors, an engine's lights, somebody with a hose
-  const smoke = puffs(root, 14, '#3a3d46', 0.85), flame = soft(panel(root, 1.86, 1.0, lamp('#ff7a2a', 2), 0, 0.55, -2.08));
+  const smoke = puffs(root, 14, '#3a3d46', 0.85);
+  // flames in the doorway: two sheets of tongues that sway out of step (drawn with their own ink line, so they stay off the ink pass)
+  const flameTex = (seed: number) => tex('flames-' + seed, 512, 448, (g, w, h) => {
+    g.clearRect(0, 0, w, h); const r = rng(seed);
+    const tongue = (cx: number, wd: number, ht: number, lean: number, fill: string, ink: number) => {
+      g.beginPath(); g.moveTo(cx - wd / 2, h + 12);
+      g.bezierCurveTo(cx - wd * 0.66, h - ht * 0.42, cx - wd * 0.1 + lean * 0.4, h - ht * 0.64, cx + lean, h - ht);
+      g.bezierCurveTo(cx + wd * 0.22 + lean * 0.3, h - ht * 0.6, cx + wd * 0.7, h - ht * 0.4, cx + wd / 2, h + 12);
+      g.closePath(); g.fillStyle = fill; g.fill();
+      if (ink) { g.lineWidth = ink; g.strokeStyle = '#15121c'; g.lineJoin = 'round'; g.stroke(); }
+    };
+    const ts = [0.13, 0.32, 0.5, 0.69, 0.87].map((x) => ({x: x * w + (r() - 0.5) * 24, wd: w * (0.24 + 0.08 * r()), ht: h * (0.56 + 0.36 * r()), lean: (r() - 0.5) * w * 0.14}));
+    for (const t of ts) tongue(t.x, t.wd, t.ht, t.lean, '#ff5a1f', 10);
+    for (const t of ts) tongue(t.x, t.wd * 0.64, t.ht * 0.7, t.lean * 0.7, '#ff9a2a', 0);
+    for (const t of ts) tongue(t.x, t.wd * 0.34, t.ht * 0.42, t.lean * 0.4, '#ffe066', 0);
+  });
+  const flames = [5, 11].map((seed, i) => soft(panel(root, 1.9, 1.6, smat(flameTex(seed), 1.35, true), 0, 0.92, -1.99 + 0.012 * i)));
   const truck = grp(root, -3.3, 0, 0.6); box(truck, 2.2, 1.3, 1.3, '#d8322c', 0, 0.95, 0); box(truck, 0.9, 0.9, 1.26, '#d8322c', 1.3, 0.75, 0); box(truck, 0.7, 0.4, 1.28, '#bfe6ff', 1.34, 0.98, 0); box(truck, 2.2, 0.12, 1.32, '#f4f6f8', 0, 0.7, 0);
   for (const x of [-0.7, 1.3]) for (const z of [-0.62, 0.62]) cyl(truck, 0.26, 0.16, '#15121c', x, 0.26, z).rotation.x = Math.PI / 2;
   const beacons = [0.2, 0.9].map((x) => soft(box(truck, 0.2, 0.12, 0.2, lamp('#3aa0ff', 2), x, 1.68, 0)));
   const fire = actor(root, FIREFIGHTER, {a: {expr: 'stern', pose: 'both', prop: 'hose'}}, -0.95, 0, -0.2, {scale: 1.04});
   const blink = pool(root, 3.2, '#3aa0ff', 0, -1.2, 0.4);
-  const jet = Array.from({length: 10}, () => soft(ball(root, 0.05, lit('#cfeeff', 1.25))));
+  // the hose jet: one tapered tube along the water's arc, with bulges that run down it; spray and steam where it lands
+  const JN = 18, JR = 8, jetGeo = new THREE.BufferGeometry(), jetPos = new Float32Array((JN + 1) * JR * 3), jetIdx: number[] = [];
+  for (let i = 0; i < JN; i++) for (let k = 0; k < JR; k++) { const a = i * JR + k, b = i * JR + (k + 1) % JR; jetIdx.push(a, b, a + JR, b, b + JR, a + JR); }
+  jetGeo.setAttribute('position', new THREE.BufferAttribute(jetPos, 3)); jetGeo.setIndex(jetIdx);
+  const jet = mesh(root, jetGeo, new THREE.MeshBasicMaterial({color: new THREE.Color('#bfe9ff').multiplyScalar(1.12), side: THREE.DoubleSide})); jet.castShadow = false; jet.frustumCulled = false;
+  const jetAt = (u: number) => new THREE.Vector3(lerp(-0.42, 0.62, u), 1.12 + 1.5 * u - 1.72 * u * u, lerp(-0.1, -1.9, u));
+  const spray = Array.from({length: 7}, () => soft(ball(root, 0.035, lit('#ffffff', 1.2)))), hissing = puffs(root, 6, '#ffffff', 0.6);
   return {
     light: (v) => v === 'dump' ? {...LIGHT.day, amb: 1.6} : v === 'fire' ? {...LIGHT.dusk, sky: '#ffb080', amb: 1.1, key: '#ffb070', keyI: 1.1} : {...LIGHT.dark, sky: '#9fb0ff', amb: 0.85, keyI: 0.7},
     tick: ({f, t, cam, shot}) => {
@@ -319,17 +341,29 @@ export const front: Builder = (root) => {
       paws.forEach((p, i) => { p.position.z = 0.03 * Math.sin(f * 0.6 + i * 1.6); p.rotation.x = 0.4 * Math.sin(f * 0.6 + i * 1.6); });
       dump.visible = cart.visible = pusher.node.visible = carrier.node.visible = isDump; goo.forEach((g2) => { g2.visible = isDump; });
       if (isDump) {
-        const x = lerp(-0.9, 0.35, smooth(t, 0, 30)); cart.position.set(x + 0.2, 0, 0.55); pusher.node.position.set(x - 0.72, 0.03 * Math.abs(Math.sin(f * 0.5)), 0.55);
+        const x = lerp(-0.1, 0.37, smooth(t, 0, 20)); cart.position.set(x + 0.2, 0, 0.55); pusher.node.position.set(x - 0.62, 0.03 * Math.abs(Math.sin(f * 0.5)), 0.55);   // the worker is in the frame from the first frame
         goo[0].position.set(x - 0.2, 0.011, 0.95); goo[0].scale.setScalar(0.55); goo[1].position.set(-1.2, 0.012, 0.6); goo[1].scale.setScalar(0.38);
         carrier.node.position.set(-1.55, 0.03 * Math.abs(Math.sin(f * 0.5 + 1)), -0.3);
       }
-      truck.visible = fire.node.visible = flame.visible = isFire;
+      truck.visible = fire.node.visible = jet.visible = isFire;
       smoke.set(f, isFire ? 1 : 0, 0, 1.3, -1.75, {spread: 0.8, rise: 2.4, r0: 0.25, r1: 0.85, drift: 0.7, speed: 0.014});
-      (flame.material as THREE.MeshBasicMaterial).color.set('#ff7a2a').multiplyScalar(1.6 + 0.5 * Math.sin(f * 0.9));
+      flames.forEach((m, i) => { const sy = 1 + 0.1 * Math.sin(f * 0.62 + i * 2.1) + 0.04 * Math.sin(f * 1.1 + i); m.visible = isFire; m.scale.set(1 + 0.04 * Math.sin(f * 0.5 + i * 2), sy, 1); m.position.set(0.04 * Math.sin(f * 0.4 + i * 1.7) * (i ? -1 : 1), 0.12 + 0.8 * sy, -1.99 + 0.012 * i); });
       beacons.forEach((b, i) => (b.material as THREE.MeshBasicMaterial).color.set('#3aa0ff').multiplyScalar(1.65 + 1.35 * Math.sin(f * 0.55 + i * Math.PI)));
       (blink.material as THREE.MeshBasicMaterial).opacity = isFire ? 0.11 * (1 + Math.sin(f * 0.55)) : 0;
       fire.node.position.y = hop(f, shot.at + 3, 0.08, 8);
-      jet.forEach((m, i) => { const u = (f * 0.045 + i / 10) % 1; m.visible = isFire; m.position.set(lerp(-0.42, 0.3, u), 1.12 + 1.5 * u - 1.75 * u * u, lerp(-0.1, -1.95, u)); m.scale.setScalar(0.7 + 1.6 * u); });
+      spray.forEach((m) => { m.visible = isFire; });
+      if (isFire) {
+        const up = new THREE.Vector3(0, 1, 0);
+        for (let i = 0; i <= JN; i++) {
+          const u = i / JN, c = jetAt(u), tan = jetAt(u + 0.01).sub(jetAt(u - 0.01)).normalize(), n = new THREE.Vector3().crossVectors(up, tan).normalize(), b = new THREE.Vector3().crossVectors(tan, n);
+          const r = (0.03 + 0.065 * u) * (1 + 0.2 * Math.sin(u * 15 - f * 0.9));
+          for (let k = 0; k < JR; k++) { const a = k / JR * Math.PI * 2, o = (i * JR + k) * 3, ca = Math.cos(a) * r, sa = Math.sin(a) * r; jetPos[o] = c.x + n.x * ca + b.x * sa; jetPos[o + 1] = c.y + n.y * ca + b.y * sa; jetPos[o + 2] = c.z + n.z * ca + b.z * sa; }
+        }
+        jetGeo.attributes.position.needsUpdate = true; jetGeo.computeVertexNormals();
+        const end = jetAt(1);
+        spray.forEach((m, i) => { const u = (f / 12 + i / 7) % 1, a = i * 2.4; m.position.set(end.x + 0.34 * u * Math.cos(a), end.y + 0.1 + 0.5 * u - 0.9 * u * u, end.z + 0.12 + 0.2 * u * Math.sin(a)); m.scale.setScalar(1.3 - 0.9 * u); });
+      }
+      hissing.set(f, isFire ? 1 : 0, 0.62, 0.95, -1.8, {spread: 0.16, rise: 0.9, r0: 0.1, r1: 0.36, drift: 0.2, speed: 0.03});
       pusher.tick(f, cam); carrier.tick(f, cam); fire.tick(f, cam);
     },
   };

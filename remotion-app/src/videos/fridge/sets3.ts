@@ -100,7 +100,7 @@ export const ikea: Builder = (root) => {
     tick: ({f, t, cam, shot}) => {
       const m = shot.v === 'meatballs'; out.visible = !m; inn.visible = m;
       flags.forEach((fl, i) => { fl.rotation.y = 0.25 * Math.sin(f * 0.2 + i); });
-      const x = lerp(-1.7, -0.7, clamp01(t / 34)); cart.position.set(x + 0.9, 0, 0.6); shopper.node.position.set(x, 0.03 * Math.abs(Math.sin(f * 0.5)), 0.6); shopper.tick(f, cam);
+      const x = lerp(-1.12, -0.5, clamp01(t / 30)); cart.position.set(x + 0.9, 0, 0.6); shopper.node.position.set(x, 0.03 * Math.abs(Math.sin(f * 0.5)), 0.6); shopper.tick(f, cam);
       const k = smooth(t, 0, 12); cur.position.set(lerp(2.6, 0.9, k), lerp(4.2, 2.5, k) - hop(f, W(122), 0.2, 8), -2.0); cur.rotation.z = 0.2;
       qs.forEach((q, i) => { q.scale.setScalar(pop(f, W(123) + i * 4, 8) || 0.001); q.position.y = [1.55, 1.72, 1.9][i] + 0.04 * Math.sin(f * 0.16 + i * 2); q.rotation.z = (i - 1) * 0.18; });
       balls.forEach((b, i) => { b.position.y = 1.02 + (i > 4 ? 0.1 : 0) + (i === 6 ? hop(f, W(127), 0.06, 8) : 0); });

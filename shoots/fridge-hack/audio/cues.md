@@ -3,20 +3,20 @@
 Written by `build_mix.py`. All music and effects are synthesized in that script; nothing is sampled.
 
 - length 74.200 s (2226 frames at 30 fps), 48 kHz stereo, 16-bit
-- integrated loudness -14.5 LUFS, true peak -2.2 dBTP, limiter at most 2.9 dB
+- integrated loudness -14.5 LUFS, true peak -2.3 dBTP, limiter at most 3.1 dB
 - stems at mix gain: voice -15.6 LUFS, music -21.1 LUFS, effects -26.9 LUFS
 - music after ducking: 5.6 LU under the voice while someone speaks, 5.5 LU under it over the whole film
-- the same above 300 Hz (what a phone speaker plays): 6.6 LU under the voice; loudest 200 ms under a spoken word 3.6 LU under it
+- the same above 300 Hz (what a phone speaker plays): 6.6 LU under the voice; loudest 200 ms under a spoken word 3.7 LU under it
 - voice over the bed while speaking: median 5.3 LU, 10th percentile 1.8 LU
 
 | time s | frame | sound | why |
 |---|---|---|---|
-|   0.00 |    0 | music in | the shop's own music: F major, vibraphone, plucked bass, brushes, a glockenspiel lick |
+|   0.00 |    0 | music in | the shop's own music: G major, vibraphone, plucked bass, brushes, a glockenspiel lick |
 |   0.40 |   12 | stamp thud | THE FREEZER HACK stamp |
 |   0.47 |   14 | click | the pointer taps the freezer's readout |
 |   0.81 |   24 | the music melts | 'heat': the shop music slows like a tape and sinks, as the readout climbs |
 |   0.83 |   25 | hiss | the cabinets warm up |
-|   1.73 |   52 | break-in tune | 118 bpm, D minor: plucked bass in eighths, off-beat plucked chords, kick and brushes, glockenspiel |
+|   1.73 |   52 | break-in tune | 118 bpm, E minor: plucked bass in eighths, off-beat plucked chords, kick and brushes, glockenspiel |
 |   1.73 |   52 | swish | on 36 cuts, alternating left and right |
 |   1.83 |   55 | counter ticks | the number rolls to 700 while dots light up across France |
 |   1.83 |   55 | pop | the counter appears |
@@ -37,7 +37,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  10.93 |  328 | siren | the fire engine |
 |  11.00 |  330 | fire crackle | smoke out of the doors |
 |  11.10 |  333 | stamp thud | 15+ FIRES stamp |
-|  11.15 |  334 | hose | water on the fire |
+|  11.15 |  335 | hose | water on the fire |
 |  11.43 |  343 | pop | official report: at least 15 |
 |  12.67 |  380 | stamp thud | NO BREAK-IN stamp |
 |  13.03 |  391 | meow | the only one in the car park |
@@ -61,7 +61,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  22.13 |  664 | pop | night falls in the technician's window; he gets his phone out |
 |  23.13 |  694 | pop | a cybersecurity professor |
 |  23.60 |  708 | click | the pointer on the blackboard |
-|  24.02 |  720 | music thins | one held chord and a slow plucked bass under the professor's line |
+|  24.02 |  721 | music thins | one held chord and a slow plucked bass under the professor's line |
 |  24.07 |  722 | click | the pointer on the blackboard |
 |  24.73 |  742 | pop | quote card: the professor |
 |  24.87 |  746 | ding | a halo lands over the fridge |
@@ -83,7 +83,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  34.97 | 1049 | pop | at least five countries, AFP |
 |  35.23 | 1057 | ping | a country lights up on the board |
 |  35.50 | 1065 | ping | a country lights up on the board |
-|  36.08 | 1082 | shop music | two bars of the F major tune for the furniture store and its meatballs |
+|  36.08 | 1082 | shop music | two bars of the G major tune for the furniture store and its meatballs |
 |  36.33 | 1090 | pop | one store in Belgium |
 |  36.43 | 1093 | click | the pointer taps the furniture store |
 |  37.10 | 1113 | pop | question mark |
@@ -91,11 +91,11 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  37.27 | 1118 | stamp thud | STATUS: UNKNOWN stamp |
 |  37.37 | 1121 | pop | question mark |
 |  37.70 | 1131 | boing | one meatball hops |
-|  38.33 | 1150 | low chord, heartbeat | the tune stops for the blood service: a held D minor and a double pulse |
+|  38.33 | 1150 | low chord, heartbeat | the tune stops for the blood service: a held E minor and a double pulse |
 |  38.45 | 1154 | alarm, two tones | the blood service's own alarm goes off |
 |  39.10 | 1173 | pop | name tag: France's blood service |
 |  39.10 | 1173 | running steps | a technician comes running |
-|  40.73 | 1222 | F major chord | 'Staff caught it in time': the vibraphone resolves |
+|  40.77 | 1223 | G major chord | 'Staff caught it in time': the vibraphone resolves |
 |  41.00 | 1230 | stamp thud | NOTHING LOST stamp |
 |  41.30 | 1239 | pop | products not damaged |
 |  41.40 | 1242 | ding | a green tick: the blood is in another freezer |
@@ -147,14 +147,14 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  68.30 | 2049 | power down | 'off': the plug comes out and the tune winds down like a tape |
 |  68.33 | 2050 | zap | a spark at the socket |
 |  68.47 | 2054 | pop | FBI Cyber, via CBS News |
-|  69.10 | 2073 | final chord | F major 9 on the vibraphone lands in the pause and rings under the question: the shop's music is back |
+|  69.10 | 2073 | final chord | G major 9 on the vibraphone lands in the pause and rings under the question: the shop's music is back |
 |  69.60 | 2088 | pop | WHAT DO YOU THINK? |
 |  69.78 | 2094 | checkout beep | the shop is open again |
 |  71.13 | 2134 | pop | card A |
 |  71.77 | 2153 | pop | card B |
 |  71.83 | 2155 | click | a padlock closes on B's cable |
 |  72.73 | 2182 | pop | the pointer is back: in from the top right, straight for B's cable |
-|  72.87 | 2186 | button | two notes, C then F: the tune closes while the pointer comes down the line |
+|  72.87 | 2186 | button | two notes, D then G: the tune closes while the pointer comes down the line |
 |  73.00 | 2190 | boing | it bounces off the padlock |
 |  73.33 | 2200 | click | it tries A's plug, which hangs loose and only swings |
 |  73.57 | 2207 | falling whistle | and drops out of the picture |
