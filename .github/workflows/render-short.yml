@@ -88,11 +88,19 @@ jobs:
       - name: Commit Petit previews
         if: always() && inputs.composition == 'Petit' && inputs.still_frame == 'all'
         run: |
+          mkdir -p deliveries/petit/previews
+          {
+            echo "run ${{ github.run_id }} / ${GITHUB_SHA}"
+            echo "--- git status ---"; git status --short | head -60
+            echo "--- previews on disk ---"; ls -lh deliveries/petit/previews | tail -8
+            echo "--- last preview log ---"; tail -25 deliveries/petit/previews/stills.log 2>/dev/null || echo "(no stills.log)"
+          } > deliveries/petit/previews/ci.log
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add deliveries/petit/previews/ || true
-          git commit -m "Petit: 26-shot preview stills" || echo "no previews to commit"
-          git push origin HEAD:${{ github.ref_name }} || echo "push failed (check branch)"
+          git add -A deliveries/petit/previews/ || true
+          git commit -m "Petit: preview stills + CI diagnostics (run ${{ github.run_id }})" || echo "no previews to commit"
+          git pull --rebase --autostash origin "${{ github.ref_name }}" || true
+          git push origin HEAD:${{ github.ref_name }} 2>&1 | tee -a deliveries/petit/previews/ci.log || echo "push failed (check branch)"
 
       - name: Still preview
         if: inputs.composition != 'Petit' || (inputs.still_frame != 'all' && inputs.still_frame != '-1')
