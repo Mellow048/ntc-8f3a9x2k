@@ -219,14 +219,14 @@
    "label": "Freight elevator",
    "light": "day",
    "pos": [
-    1.036,
-    2.227,
-    5.276
+    1.135,
+    2.357,
+    7.376
    ],
    "look": [
     0,
-    1.6,
-    -0.6
+    1.5,
+    -0.7
    ],
    "fov": 44,
    "action": "Cable coil, pole and bow loaded beside two friends in the freight car",
@@ -240,14 +240,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.335,
-    1.868,
-    3.885
+    0.446,
+    1.935,
+    5.676
    ],
    "look": [
     0,
-    1.7,
-    -0.9
+    1.6,
+    -0.7
    ],
    "fov": 46,
    "action": "The pole goes up on shoulders, the bow on top",
@@ -263,7 +263,7 @@
    "pos": [
     0.0,
     1.9,
-    3.6
+    4.8
    ],
    "look": [
     0,
@@ -450,16 +450,16 @@
    "label": "Street below",
    "light": "day",
    "pos": [
-    6.706,
-    2.319,
-    9.342
+    3.225,
+    1.042,
+    5.461
    ],
    "look": [
     0,
-    1.9,
-    -0.6
+    2.2,
+    -3.4
    ],
-   "fov": 50,
+   "fov": 52,
    "action": "Cars stopped, drivers out, everyone looking up",
    "word": 144,
    "b": 1356
@@ -471,14 +471,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.618,
-    4.563,
-    5.842
+    0.811,
+    5.335,
+    3.72
    ],
    "look": [
     0,
-    3.0,
-    -3.0
+    3.4,
+    -4.0
    ],
    "fov": 56,
    "action": "Inside the crowd: faces tilted up, mouths open",
@@ -492,16 +492,16 @@
    "label": "",
    "light": "day",
    "pos": [
-    5.447,
-    1.997,
-    6.357
+    5.145,
+    1.7,
+    6.089
    ],
    "look": [
     1.2,
     1.7,
-    -1.0
+    -2.0
    ],
-   "fov": 46,
+   "fov": 48,
    "action": "Cruiser slews in, officers run, one shouting into a radio",
    "word": 150,
    "b": 1436
@@ -681,12 +681,12 @@
    "label": "",
    "light": "day",
    "pos": [
-    2.516,
-    2.816,
-    5.569
+    2.081,
+    3.123,
+    5.46
    ],
    "look": [
-    -0.2,
+    -0.35,
     2.6,
     0
    ],
