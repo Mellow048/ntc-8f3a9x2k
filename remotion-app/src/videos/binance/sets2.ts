@@ -78,7 +78,7 @@ export const den: Builder = (root) => {
   const studio = grp(root);
   floor(studio, 3.4, 3.4, tmat(tiled(grainTex('carpet', '#aeb4c2', 0.08), 2, 2)), 0.012, 0, 0.7);
   const flat = cardboardFlat(studio, 2.9, 3.7, officeFlat()); flat.position.set(1.45, 0, -0.85);
-  ringLight(studio, 1.22, 1.25, 1.42, -0.55);
+  ringLight(studio, 1.52, 1.25, 1.42, -0.55);                                                         // just outside the picture of every call
   const desk = grp(studio, 0, 0, 0.32);
   box(desk, 1.56, 0.74, 0.56, tmat(tiled(woodTex('ceo', '#8a5a36', '#5a381e'), 1, 1)), 0, 0.37, 0); box(desk, 1.66, 0.05, 0.66, '#6b4326', 0, 0.765, 0);
   const plate = grp(desk, 0, 0.79, 0.22); box(plate, 0.5, 0.15, 0.04, '#b8963e', 0, 0.075, 0); panel(plate, 0.46, 0.115, smat(signTex('ceo-plate', 300, 76, '#12161f', '#f3d37a', [['CEO', 64, 0.56]]), 1.05), 0, 0.075, 0.021);
@@ -183,6 +183,10 @@ export const home: Builder = (root) => {
   };
   const scr = new THREE.MeshBasicMaterial({map: T.msg}), bub = bubble(root, 0.44, 1.52, 0.2, 0.86, 0.62, scr, [-0.5, -0.3]);
   const bar = soft(panel(bub.g, 0.62, 0.05, lit('#2fbf71', 1.1), 0, -0.219, 0.004));
+  const done = soft(panel(root, 0.2, 0.2, smat(tex('done', 128, 128, (g) => {
+    g.fillStyle = '#2fbf71'; g.strokeStyle = INK; g.lineWidth = 9; g.beginPath(); g.arc(64, 64, 54, 0, 7); g.fill(); g.stroke();
+    g.strokeStyle = '#ffffff'; g.lineWidth = 15; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(38, 66); g.lineTo(57, 85); g.lineTo(91, 45); g.stroke();
+  }), 1.1, true), 0.02, 1.14, 0.62));                                                                  // in front of the lid, which leans towards the camera
   const red = pool(root, 1.3, '#ff3b2a', 0, -0.28, 0.6, 0.78);
   return {
     light: (v) => v === 'malware' ? {...LIGHT.warm, sky: '#ff9a8a', ground: '#5a2a2a', key: '#ffb49a', amb: 1.1} : {...LIGHT.warm, amb: 1.35, keyI: 1.05},
@@ -192,17 +196,19 @@ export const home: Builder = (root) => {
       if (v === 'ping') { at = W(77) - 1; on = f >= at ? 'msg' : null; st = f >= W(78) ? 'look' : 'type'; }
       else if (v === 'call1') { on = 'hr'; st = 'wave'; }
       else if (v === 'call2') { on = 'ceo'; st = 'cv'; }
-      else if (v === 'assign' || v === 'work') { on = 'file'; st = 'glad'; fill = v === 'work' ? 1 : smooth(f, W(117), W(119) + 12); }
+      else if (v === 'assign') { on = 'file'; st = 'glad'; fill = smooth(f, W(117), W(119) + 8); }
+      else if (v === 'work') st = 'glad';
       else if (v === 'malware') { on = 'bug'; st = 'glad'; }
       bub.g.visible = !!on; if (on) scr.map = T[on];
-      const dive = v === 'work' ? smooth(f, shot.at + 2, shot.at + 12) : 0;                              // the file goes into the work computer
-      bub.g.scale.setScalar(0.93 * (v === 'work' ? Math.max(0.001, 1 - dive) : pop(f, at, 7))); bub.g.visible = !!on && dive < 0.99;
+      const dive = v === 'assign' ? smooth(f, W(120) - 12, W(120) - 3) : 0;                              // the file goes into the computer as the shot ends
+      bub.g.scale.setScalar(0.93 * pop(f, at, 7) * Math.max(0.001, 1 - dive)); bub.g.visible = !!on && dive < 0.99;
       bub.g.position.set(lerp(0.44, -0.28, dive), lerp(1.52, 0.95, dive * dive) + 0.012 * Math.sin(f * 0.08), lerp(0.2, 0.42, dive)); bub.g.rotation.z = v === 'malware' ? shake(f, shot.at, 0.06, 12) : 0;
       bar.visible = fill >= 0; bar.scale.x = Math.max(0.001, fill); bar.position.x = -0.31 * (1 - fill);
       tagM.color.set(v === 'malware' ? '#ff8a7a' : '#ffffff');
       (red.material as THREE.MeshBasicMaterial).opacity = v === 'malware' ? 0.42 * smooth(f, shot.at, shot.at + 10) * (0.8 + 0.2 * Math.sin(f * 0.18)) : 0;
       eng.show(st); eng.node.position.y = 0.44 + (v === 'ping' ? hop(f, W(78), 0.06, 8) : 0); eng.tick(f, cam);
-      lap.g.position.y = 0.74 + (v === 'work' ? hop(f, shot.at + 11, 0.05, 7) : 0);
+      lap.g.position.y = 0.74 + (v === 'work' ? hop(f, shot.at + 1, 0.05, 7) : 0);
+      done.visible = v === 'work' && f >= shot.at + 5; done.scale.setScalar(pop(f, shot.at + 5, 7));
     },
   };
 };

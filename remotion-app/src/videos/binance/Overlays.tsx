@@ -60,12 +60,12 @@ const Quote: React.FC<{f: number; at: number; text: React.ReactNode; by: string;
 );
 const Hot: React.FC<{children: React.ReactNode}> = ({children}) => <span style={{background: YELLOW, padding: '0 0.14em', borderRadius: '0.12em', boxDecorationBreak: 'clone', WebkitBoxDecorationBreak: 'clone'}}>{children}</span>;
 
-/** small source or dateline pill */
+/** small source or dateline pill; a long line is set smaller so that it never reaches the edges of the frame */
 const Pill: React.FC<{f: number; at: number; text: string; top?: string; tone?: Tone; dx?: number; size?: number}> = ({f, at, text, top = '10%', tone = 'white', dx = 0, size = 3.7}) => {
-  const [bg, fg] = TONES[tone];
+  const [bg, fg] = TONES[tone], fit = Math.min(size, 84 / (0.76 * text.length + 1.8));
   return (
     <div style={row(top)}>
-      <div style={{...mont(900), ...sticker(bg, fg), fontSize: `${size}cqw`, padding: '0.5em 0.9em', letterSpacing: '0.05em', whiteSpace: 'nowrap', transform: `translateX(${dx}cqw) scale(${pop(f, at, 7)}) rotate(-1.5deg)`}}>{text}</div>
+      <div style={{...mont(900), ...sticker(bg, fg), fontSize: `${fit}cqw`, padding: '0.5em 0.9em', letterSpacing: '0.05em', whiteSpace: 'nowrap', transform: `translateX(${dx}cqw) scale(${pop(f, at, 7)}) rotate(-1.5deg)`}}>{text}</div>
     </div>
   );
 };
@@ -181,7 +181,7 @@ export const Overlays: React.FC = () => {
       {during(18, W(103)) ? <Stamp f={f} at={W(103)} text="INTERVIEW 2" tone="yellow" top="9.5%" size={13} /> : null}
       {during(19, W(106)) || (during(20) && f < W(109)) ? <NameTag f={f} at={W(106)} name="“THE CEO”" role="ON A CHAT APP, BINANCE SAYS" /> : null}{/* 19-20 are one take */}
       {during(20, W(109)) ? <Pill f={f} at={W(109)} text="“A FICTITIOUS COMPANY” · BINANCE" top="20%" /> : null}
-      {during(20, W(111)) ? <Stamp f={f} at={W(111)} text="COMPANY: NOT FOUND" top="9.5%" size={10} /> : null}
+      {during(20, W(112)) ? <Stamp f={f} at={W(112)} text="COMPANY: NOT FOUND" top="9.5%" size={10} /> : null}{/* lands with the painted office: W(110) + 13 is the same frame */}
       {during(21, W(117)) ? <Pill f={f} at={W(117)} text="“INSTRUCTED TO DOWNLOAD” · BINANCE" size={3.5} /> : null}
       {during(22, W(123)) ? <Pill f={f} at={W(123)} text="“ONTO HIS WORK COMPUTER” · BINANCE" size={3.5} /> : null}
       {during(23, W(128)) ? <Stamp f={f} at={W(128)} text="MALWARE" top="9.5%" size={14} /> : null}
@@ -202,21 +202,22 @@ export const Overlays: React.FC = () => {
       {during(34, W(175) + 2) && f < W(179) ? <NameTag f={f} at={W(175) + 2} name="KCNA" role="NORTH KOREA'S STATE NEWS AGENCY" size={12} /> : null}
       {during(34, W(179)) || during(35) ? <Quote f={f} at={W(179)} text={<>But the US assertion is <Hot>an absurd rhetoric</Hot> and nothing new.</>} by="KIM YO JONG'S STATEMENT · KCNA, NOV 3" size={5} /> : null}
       {during(36, W(184)) ? <NameTag f={f} at={W(184)} name="PRESIDENT TRUMP" role="MAR-A-LAGO · OCT 31" /> : null}
-      {during(37) ? <NameTag f={f} at={S(37)[0]} name="PRESIDENT TRUMP" role="TO REPORTERS · OCT 31" top="60.5%" size={8} /> : null}
-      {during(37, W(186)) ? <Quote f={f} at={W(186)} text={<>We're learning about it. <Hot>We don't know if it's North Korea</Hot> — but if it is, we'll talk to North Korea about it.</>} by="PRESIDENT TRUMP, OCT 31 · VIA BBC" size={4.6} /> : null}
+      {during(37) ? <NameTag f={f} at={S(37)[0]} name="PRESIDENT TRUMP" role="AT MAR-A-LAGO" top="60.5%" size={8} /> : null}
+      {during(37, W(186)) ? <Quote f={f} at={W(186)} text={<>We're learning about it. <Hot>We don't know if it's North Korea</Hot> — but if it is, we'll talk to North Korea about it.</>} by="TO REPORTERS, OCT 31 · VIA BBC" size={4.6} /> : null}
       {during(38, W(196)) ? <Stamp f={f} at={W(196)} text="CHARGED: NOBODY" tone="white" top="9.5%" size={11.5} /> : null}
       {during(38, W(197)) ? <Pill f={f} at={W(197)} text="NO ARRESTS EITHER · AS OF NOV 11" top="19.5%" /> : null}
       {during(39, W(201)) ? <Stamp f={f} at={W(201)} text="$2.85 BN OF $6.34 BN" tone="yellow" top="9.5%" size={9.4} /> : null}
-      {during(39, W(203)) ? <Pill f={f} at={W(203)} text="FROZEN OR INTERCEPTED · BINANCE, NOV 3" top="19%" size={3.4} /> : null}
+      {during(39, W(203)) ? <Pill f={f} at={W(203)} text="“FROZEN OR INTERCEPTED”" top="18.6%" /> : null}
+      {during(39, W(204)) ? <Pill f={f} at={W(204)} text="BINANCE'S REPORT, NOV 3" top="23.6%" tone="yellow" size={3.2} /> : null}
       {during(40, W(209)) ? <Stamp f={f} at={W(209)} text="“COVERING EVERY LOSS”" tone="green" top="9.5%" size={8.4} rot={-2} /> : null}
       {during(40, W(210) + 3) ? <Pill f={f} at={W(210) + 3} text="RICHARD TENG, BINANCE CO-CEO" top="17.6%" /> : null}
       {during(41, W(213)) || during(42) ? <Quote f={f} at={W(213)} text={<>This wasn't one mistake or one breach - <Hot>it was a months-long campaign.</Hot></>} by="RICHARD TENG, BINANCE CO-CEO · NOV 3" size={5} /> : null}
       {f >= closing ? (
         <>
           <div style={row('8%')}><div style={{...anton, fontSize: '10cqw', color: '#fff', WebkitTextStroke: `1.5cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, transform: `scale(${pop(f, W(223), 8)})`}}>WHOSE JOB WAS IT?</div></div>
-          {f >= W(231) ? <Choice f={f} at={W(231)} letter="A" text="THE ENGINEER'S" top="15.2%" tone="red" size={7.6} /> : null}
-          {f >= W(234) ? <Choice f={f} at={W(234)} letter="B" text="THE COMPANY'S" top="20.9%" tone="yellow" size={7.6} /> : null}
-          {f >= W(226) ? <Pill f={f} at={W(226)} text="BINANCE, OCT 30: NO INDIVIDUAL BLAMED" top="26.8%" size={3.5} /> : null}
+          {f >= W(231) ? <Choice f={f} at={W(231)} letter="A" text="THE ENGINEER'S" top="21%" tone="red" size={7.2} /> : null}
+          {f >= W(234) ? <Choice f={f} at={W(234)} letter="B" text="THE COMPANY'S" top="26.4%" tone="yellow" size={7.2} /> : null}
+          {f >= W(226) ? <Pill f={f} at={W(226)} text="BINANCE, OCT 30: NO INDIVIDUAL BLAMED" top="16.2%" size={3.5} /> : null}
         </>
       ) : null}
     </AbsoluteFill>

@@ -100,7 +100,7 @@ export const party: Builder = (root) => {
   bulbs.forEach((b) => { b.castShadow = false; });
   for (let i = 0; i < 14; i++) { const u0 = i / 14, u1 = (i + 1) / 14, y = (u: number) => 3.46 - 0.62 * 4 * u * (1 - u); rod(root, [lerp(-2.2, 2.2, u0), y(u0), -0.9], [lerp(-2.2, 2.2, u1), y(u1), -0.9], 0.008, '#15161b'); }
   soft(mesh(root, new THREE.CircleGeometry(0.5, 32), lit('#fff3c4', 1.25), 1.5, 5.2, -9));
-  boom(root, [-1.6, 0.45, 1.7], [-0.52, 1.26, 0.5]); boom(root, [1.6, 0.4, 1.7], [0.55, 1.2, 0.5], '#b3211d'); boom(root, [-0.95, 0.0, 2.3], [-0.14, 1.0, 0.62], '#2f6fd0');
+  boom(root, [-1.6, 0.45, 1.7], [-0.52, 1.26, 0.5]); boom(root, [1.6, 0.4, 1.7], [0.55, 1.2, 0.5], '#b3211d'); boom(root, [-1.3, 0.15, 1.55], [-0.14, 1.0, 0.62], '#2f6fd0');
   const pres = actor(root, PRESIDENT, {idle: {expr: 'neutral'}, shrug: {expr: 'neutral', pose: 'shrug'}}, 0, 0, 0, {scale: 1.12, res: 1.2});
   return {
     light: () => ({...LIGHT.dusk, sky: '#c9b0ff', ground: '#4a3a5a', amb: 1.25, key: '#ffd0a0', keyI: 1.2}),

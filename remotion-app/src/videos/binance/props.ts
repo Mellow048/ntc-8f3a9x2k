@@ -326,7 +326,7 @@ export function wallClock(p: Node, x: number, y: number, z: number, r: number) {
 /** a block of ice dropped over something */
 export function iceBlock(p: Node, w: number, h: number, d: number) {
   const g = grp(p);
-  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshBasicMaterial({color: '#c4ecff', transparent: true, opacity: 0.56})); m.position.y = h / 2; g.add(m);
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), new THREE.MeshBasicMaterial({color: '#c4ecff', transparent: true, opacity: 0.4})); m.position.y = h / 2; g.add(m);          // clear enough to see what is held inside
   const hi = soft(panel(g, w * 0.16, h * 0.62, new THREE.MeshBasicMaterial({color: '#ffffff', transparent: true, opacity: 0.6, depthWrite: false}), -w * 0.26, h * 0.56, d / 2 + 0.004)); hi.rotation.z = 0.12;
   return g;
 }

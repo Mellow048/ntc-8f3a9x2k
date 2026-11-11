@@ -114,7 +114,7 @@ export const tower: Builder = (root) => {
       dusk.visible = !late; day.visible = late;
       out.set(f, late ? 0 : 1);
       if (late) stream.hide(); else stream.set(f, shot.at - 40, 1e9, () => [0.62, 3.25, -2.2], [1.5, 4.6, -1.2], (i) => [3.2 + (i % 3) * 0.3, 6.4, 0.5], 0.03);
-      if (late) pay.set(f, W(208), 1e9, () => [0, 2.1, -2.0], [0, 3.1, -0.9], (i) => [[-0.78, 0, 0.78][i % 3] + 0.2, 1.32, 0.4], 0.04); else pay.hide();
+      if (late) pay.set(f, W(208), 1e9, () => [0, 1.72, -2.2], [0, 2.3, -1.0], (i) => [[-0.78, 0, 0.78][i % 3] + 0.2, 1.32, 0.4], 0.04); else pay.hide();
       us.forEach((a, i) => { a.node.visible = late; a.show(f >= W(209) + i * 3 ? 'glad' : 'worry'); a.node.position.y = hop(f, W(209) + i * 3, 0.12, 9); a.tick(f, cam); });
     },
   };
@@ -148,7 +148,7 @@ export const chart: Builder = (root) => {
       const times = shot.v === 'times', rise = times ? 1 : smooth(f, shot.at + 3, W(24) + 2);
       now.position.y = BASE - (1 - rise) * (H2 + 0.02);
       nowValue.visible = times || f >= W(25) - 2; nowValue.scale.setScalar(times ? 1 : pop(f, W(25) - 2, 8));
-      oldName.visible = !times; oldValue.position.y = BASE + H1 * 0.5 + hop(f, W(32), 0.05, 8);
+      oldName.visible = f < W(28) + 2;                                                                  // until the first ghost pile stands where it hangs oldValue.position.y = BASE + H1 * 0.5 + hop(f, W(32), 0.05, 8);
       ghosts.forEach((g, i) => { const at = W(28) + 2 + i * 6; g.visible = times && f >= at; g.scale.set(1, clamp01(pop(f, at, 7)), 1); });
       dashes.forEach((m, i) => { m.visible = times && f >= W(28) + 26 + i * 2; });
     },

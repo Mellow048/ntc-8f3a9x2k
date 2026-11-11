@@ -73,7 +73,7 @@ export const SHOTS: Shot[] = [
   s(103, 'home', 'call2', [-0.18, 1.25, 4.2], [0.17, 1.15, 0], 42, {push: 0.07}),                      // 18
   // 19 comes to rest on the chief executive; 20 starts from exactly there and backs out of the call, far enough to see what the office is made of
   s(105, 'den', 'ceo', [0.3, 1.45, 5.5], [0, 1.35, -0.3], 42, {to: [0.2, 1.45, 5.15]}),                // 19
-  s(107, 'den', 'nocompany', [0.2, 1.45, 5.15], [0, 1.35, -0.3], 42, {to: [1.5, 2.0, 7.4], targetTo: [0.1, 1.5, -0.6], soft: true}),   // 20
+  s(107, 'den', 'nocompany', [0.2, 1.45, 5.15], [0, 1.35, -0.3], 42, {to: [1.5, 2.0, 7.4], targetTo: [0.35, 1.5, -0.6], soft: true}),  // 20
   // 8  "It ended with an assignment to download. It went onto a work computer. It was malware. Spoiler: there was no job."
   s(113, 'home', 'assign', [0.37, 1.25, 4.2], [0.17, 1.15, 0], 42, {push: 0.07}),                      // 21
   s(120, 'home', 'work', [-0.6, 1.2, 2.9], [-0.28, 1.17, 0.3], 42, {push: 0.08, close: true}),          // 22
@@ -92,7 +92,7 @@ export const SHOTS: Shot[] = [
   s(168, 'fbi', 'says', [0.3, 1.5, 5.9], [0.05, 1.5, -0.4], 42, {push: 0.1}),                          // 32
   s(171, 'fbi', 'nk', [0.75, 1.62, 3.8], [0.62, 1.61, -0.5], 42, {push: 0.06}),                        // 33
   s(175, 'pyong', 'deny', [0.4, 1.5, 5.9], [0, 1.5, -0.4], 42, {push: 0.1}),                           // 34
-  s(180, 'pyong', 'quote', [-0.3, 1.7, 3.6], [0, 1.62, 0.3], 42, {push: 0.06}),                        // 35
+  s(180, 'pyong', 'quote', [-0.3, 1.85, 3.6], [0, 1.78, 0.3], 42, {push: 0.06}),                       // 35
   // 12 "And President Trump? Quote: we don't know if it's North Korea."
   s(183, 'party', 'trump', [1.0, 1.5, 6.4], [0, 1.1, -0.2], 40, {push: 0.08}),                          // 36
   s(186, 'party', 'quote', [0.3, 1.36, 3.7], [0, 1.25, 0], 42, {push: 0.06, close: true}),              // 37
