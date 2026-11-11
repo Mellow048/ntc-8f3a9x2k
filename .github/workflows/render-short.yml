@@ -26,6 +26,7 @@ on:
 
 jobs:
   render:
+    if: inputs.composition != 'Koepenick'
     runs-on: ubuntu-latest
     timeout-minutes: 180
     env:
@@ -93,4 +94,81 @@ jobs:
             remotion-app/out/final.mp4
             remotion-app/out/still.png
           if-no-files-found: error
+          retention-days: 14
+
+  koepenick:
+    if: inputs.composition == 'Koepenick'
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/f220dac6-ntc-8f3a9x2k
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: remotion-app/package-lock.json
+      - name: Install and typecheck
+        run: |
+          npm ci --prefix remotion-app
+          npm run typecheck --prefix remotion-app
+          cd remotion-app
+          npx playwright@1.49.1 install --with-deps chromium
+          CHROME="$(find ~/.cache/ms-playwright -type f -name chrome | head -1)"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+          test -x "$CHROME"
+          cd ..
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          pip install numpy scipy pillow
+      - name: Diagnostic portrait frames
+        if: inputs.still_frame != '-1'
+        run: node scripts/koepenick/stills.mjs
+      - name: Publish preview gate
+        if: inputs.still_frame != '-1'
+        run: |
+          git config user.name "Arena video build"
+          git config user.email "video-build@users.noreply.github.com"
+          git add deliveries/koepenick/previews
+          git commit -m "Köpenick diagnostic frames for visual review" || true
+          git push origin HEAD:arena/f220dac6-ntc-8f3a9x2k
+      - name: Compose original soundtrack
+        if: inputs.still_frame == '-1'
+        run: |
+          python shoots/koepenick/audio/score.py
+          ffmpeg -y -i shoots/koepenick/out/audio/premix.wav -af loudnorm=I=-14.5:TP=-1.5:LRA=5 -ar 48000 -ac 2 shoots/koepenick/out/audio/mix.wav
+      - name: Render reviewed picture
+        if: inputs.still_frame == '-1'
+        working-directory: remotion-app
+        run: |
+          npx remotion render src/index.ts Koepenick ../shoots/koepenick/out/silent.mp4 --width=720 --height=1280 --codec=h264 --crf=17 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --timeout=300000
+      - name: Mux and technical QA
+        if: inputs.still_frame == '-1'
+        run: |
+          mkdir -p deliveries/koepenick
+          ffmpeg -y -i shoots/koepenick/out/silent.mp4 -i shoots/koepenick/out/audio/mix.wav -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -ar 48000 -ac 2 -t 69.666667 -movflags +faststart deliveries/koepenick/koepenick-720p.mp4
+          python templates/scripts/short_qa.py deliveries/koepenick/koepenick-720p.mp4 shoots/koepenick/out/qa shoots/koepenick/qa-shots.json
+          cp shoots/koepenick/out/qa/report.md deliveries/koepenick/qa-report.md
+          python scripts/koepenick/check.py
+      - name: Publish rendered video and report
+        if: always() && inputs.still_frame == '-1'
+        run: |
+          git config user.name "Arena video build"
+          git config user.email "video-build@users.noreply.github.com"
+          if test -f deliveries/koepenick/koepenick-720p.mp4; then
+            git add -f deliveries/koepenick/koepenick-720p.mp4
+            git add deliveries/koepenick/qa-report.md shoots/koepenick/audio/cues.md
+            git commit -m "Deliver Köpenick 720p film with technical QA"
+            git push origin HEAD:arena/f220dac6-ntc-8f3a9x2k
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: koepenick-build
+          path: |
+            deliveries/koepenick/
+            shoots/koepenick/out/qa/report.md
           retention-days: 14
