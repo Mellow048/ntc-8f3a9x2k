@@ -11,7 +11,15 @@ export function paper(p:T.Object3D,text:string,x:number,y:number,z:number,w=1.5,
  const tex=ctex('paper-'+text,768,1024,g=>{g.fillStyle='#e9dcc0';g.fillRect(0,0,768,1024);g.strokeStyle='#947f64';g.lineWidth=5;g.strokeRect(24,24,720,976);g.fillStyle='#45333b';g.textAlign='center';g.font='bold 64px Georgia';g.fillText(text,384,150,690);for(let i=0;i<8;i++){g.fillStyle='#ab9980';g.fillRect(90,240+i*65,560-(i%3)*60,5);}});
  const o=mesh(p,new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({map:tex}),V(x,y,z));o.layers.set(NOINK);return o;
 }
-export function ground(p:T.Object3D){box(p,0,-.14,0,90,.25,100,material('ground','#fff',rep(cobbleHD(),18,20)));}
+export function ground(p:T.Object3D){
+ box(p,0,-.14,0,90,.25,100,material('ground','#fff',rep(cobbleHD(),18,20)));
+ farGround(p);
+}
+/** A large, fog-matched base plane under every outdoor set: nothing can float over the horizon. */
+export function farGround(p:T.Object3D){
+ box(p,0,-.55,-60,520,.5,520,material('far-ground','#b9c3bd'));
+ box(p,0,.02,-74,420,.12,300,material('far-city','#9aa6a6'));
+}
 export function house(p:T.Object3D,x:number,z:number,w=7,h=10,seed=0){
  const g=new T.Group();g.position.set(x,0,z);p.add(g);const col=['#d5bd96','#b98771','#d9cab0','#b69f86'][seed%4];
  box(g,0,h/2,-2.5,w,h,5,material('houseWall'+seed,col,rep(brick(),2,3)));
@@ -111,10 +119,16 @@ export function wireLine(p:T.Object3D,a:T.Vector3,b:T.Vector3,sag=0){
 }
 export function elevatorCar(p:T.Object3D,x=0,z=0){
  box(p,x,1.6,z,3.2,3.2,2.6,material('elevator','#7a8a94'));
- box(p,x,1.6,z+1.31,1.4,2.6,.06,material('elevdoor','#a8b8c0'));
- box(p,x,3.35,z,3.4,.2,2.8,iron());
+ // recessed doorway: frame ring, dark interior, sill
+ box(p,x,1.34,z+1.29,1.78,2.78,.14,material('elevframe','#55636b'));
+ box(p,x,1.34,z+1.24,1.42,2.56,.08,material('elevinner','#2b3238'));
+ box(p,x,.03,z+1.27,1.92,.07,.72,material('elevsill','#6a757c'));
+ box(p,x,3.35,z,3.4,.22,2.8,iron());
  for(const dx of [-1.4,1.4])box(p,x+dx,.15,z, .18,.3,2.6,timber());
- lettering(p,'FREIGHT',x,2.6,z+1.36,1.6,.35);
+ // header sign bolted flat to the fascia above the doors
+ box(p,x,3.74,z+1.24,1.92,.42,.12,material('elevsign','#e8e4d6'));
+ lettering(p,'FREIGHT',x,3.74,z+1.31,1.66,.32,'#2f4a52','#e8ecef');
+ return {front:z+1.29};
 }
 export function lobby(p:T.Object3D){
  box(p,0,-.1,0,16,.2,14,material('marble','#e6e2d8',rep(stoneHD(),5,5)));
@@ -158,6 +172,7 @@ export function carNY(p:T.Object3D,x:number,z:number,col:string,rot=0){
  return g;
 }
 export function streetNY(p:T.Object3D){
+ farGround(p);
  box(p,0,-.28,-6,60,.45,80,material('street-cobble','#ffffff',rep(cobbleHD(),12,16)));
  for(const side of [-1,1]){box(p,side*5.9,.08,-6,2.4,.25,60,material('pavement','#c2b6a1',rep(stoneHD(),2,14)));box(p,side*4.66,.12,-6,.22,.3,60,stone());}
  // 1970s cars with real body, cabin, wheels, bumpers and lights
@@ -267,6 +282,8 @@ export function footprint(p:T.Object3D,x:number,z:number,s=7){
 }
 export function skyline(p:T.Object3D,z=-82){
  const glass=material('skyGlass','#6f93a6',rep(towerGlass(),2,4));
+ // a continuous low block wall under the far skyline: no gaps, no floating towers
+ box(p,0,2.4,z-6,190,4.8,30,material('skyBase','#8d9a9e'));
  const far=material('skyGlass2','#86a3b4',rep(towerGlass(),2,3));
  const roofM=material('skyRoof','#5d6a72');
  const hs=[18,24,14,28,20,26,16,22,30,17,23,13];
