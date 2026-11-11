@@ -81,16 +81,16 @@ jobs:
           node scripts/petit/stills.mjs 2>&1 | tee /tmp/stills.log
           echo "stills exit:$?"
           cat /tmp/stills.log
-          mkdir -p shoots/petit/out/previews
-          cp /tmp/stills.log shoots/petit/out/previews/stills.log || true
-          ls -lh shoots/petit/out/previews/ || true
+          mkdir -p deliveries/petit/previews
+          cp /tmp/stills.log deliveries/petit/previews/stills.log || true
+          ls -lh deliveries/petit/previews/ || true
 
       - name: Commit Petit previews
         if: always() && inputs.composition == 'Petit' && inputs.still_frame == 'all'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add shoots/petit/out/previews/ || true
+          git add deliveries/petit/previews/ || true
           git commit -m "Petit: 26-shot preview stills" || echo "no previews to commit"
           git push origin HEAD:${{ github.ref_name }} || echo "push failed (check branch)"
 

@@ -6,7 +6,7 @@ const {bundle}=require('@remotion/bundler');const {selectComposition,renderStill
 const data=JSON.parse(await readFile('remotion-app/src/videos/petit/data.json','utf8'));
 const serveUrl=await bundle({entryPoint:resolve('remotion-app/src/index.ts')});
 const opts={serveUrl,id:'Petit',browserExecutable:process.env.CHROME_PATH,chromiumOptions:{gl:'swiftshader'},timeoutInMilliseconds:300000};
-const composition=await selectComposition(opts);const dir=resolve('shoots/petit/out/previews');await mkdir(dir,{recursive:true});
+const composition=await selectComposition(opts);const dir=resolve('deliveries/petit/previews');await mkdir(dir,{recursive:true});
 const requested=process.env.REVIEW_FRAMES??'';
 const frames=requested.includes(',')?requested.split(',').map(Number):[...data.shots.map(s=>Math.round(s.a+(s.b-s.a)*.65)),5,100,Math.round(71*30)];
 for(const frame of frames){await renderStill({...opts,composition,output:resolve(dir,`frame-${String(frame).padStart(4,'0')}.jpg`),frame,imageFormat:'jpeg'});console.log('Preview frame',frame);}
