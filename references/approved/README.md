@@ -1,7 +1,7 @@
 # Approved original-film references — watch, then read the implementation
 
 These are **the user's own approved originals**, not the unrelated third-party
-style-study images elsewhere in `references/`. Both MP4s and source snapshots
+style-study images elsewhere in `references/`. All MP4s and source snapshots
 are stored here on `main`; they do not depend on a surviving branch link.
 
 News shorts are a separate category with their own reference:
@@ -11,7 +11,14 @@ news; for the regular shorts this library is for, ignore it.
 | Film | Video | Source / guide | Role |
 |---|---|---|---|
 | Taipei 101 — The Giant Golden Ball Inside Skyscrapers | [final-720p.mp4](taipei-101/final-720p.mp4) | [Study and reproduce](taipei-101/README.md) | Primary approved care/look/storytelling benchmark |
+| Köpenick — The Shoemaker Who Borrowed an Army | [final-720p.mp4](koepenick/final-720p.mp4) | [Study and reproduce](koepenick/README.md) | Fully approved story/visuals/narration/pacing/music-v2; people-driven history and clear audible groove |
 | London Beer Flood | [final-720p.mp4](beer-flood/final-720p.mp4) | [Study and reproduce](beer-flood/README.md) | Accepted motion/detail revision; closest example from the curiosity batch |
+
+Köpenick's approval covers the **music-v2** export, not the initial busy score.
+Read its [approval record](koepenick/APPROVAL.md). Its guide connects specific
+shots to source and explains the music revision: a clearer beat at unchanged
+music level, not a quiet-music workaround. All three regular references must
+be studied as films **and source**, not treated as a menu of ready-made assets.
 
 ## What agents must study
 
@@ -32,7 +39,8 @@ news; for the regular shorts this library is for, ignore it.
 Each folder has the original MP4, `source/` preserving original repository
 relative paths, and a SHA-256 manifest with the source commit and origin video
 path. A standalone registration adapter removes unrelated-film dependencies
-from Taipei's old multi-film root. Renderer/animation source is unmodified.
+from Taipei's old multi-film root. Köpenick also has standalone registration
+scaffolding with no unrelated-film imports. Renderer/animation source is unmodified.
 Beer includes the legacy subtitle module's complete local dependency closure;
 that code is a dependency, **not an endorsement of the rejected first cuts**.
 

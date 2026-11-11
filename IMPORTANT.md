@@ -12,6 +12,13 @@ entertaining story; it is the default, and sections 1–5 are written for it. A
 [section 6](#6-news-shorts-a-separate-category-with-extra-gates). For a regular
 short, ignore both.
 
+**Approved regular-story benchmark:** [Köpenick, music-v2](references/approved/koepenick/README.md).
+The user explicitly approved visuals, narration, pacing and music, and asked
+for the film plus source as a teaching reference on `main`. Study its actual
+set/cast/action/caption/audio implementation alongside Taipei and Beer. Labels
+cannot substitute for recognizable, detailed geometry. Approval of this film
+is not a waiver of review or permission to recycle its story or score.
+
 ## 1. Format and scope
 
 - **720×1280 portrait, 30 fps only.** Not 2K.
