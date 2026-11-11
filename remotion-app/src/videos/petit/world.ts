@@ -207,7 +207,7 @@ export class World{
   const CA=V(-6.9,DECK+.95,-4.4),CB=V(7.2,WIRE,WZ);
   const cable=dyn(bar(p,CA,CB,.075,material('cable-haul','#cfd6e2')));
   cable.scale.y=.3;
-  const v=A(-3.2,WZ,PETIT,5,WIRE);v.expr='nervous';
+  const v=A(-2.0,WZ,PETIT,5,WIRE);v.expr='nervous';
   lamp(p,-9.6,DECK+1.2,-4.2,true);
   this.motions.push((f)=>{const q=.3+.7*action(f,111,26);cable.scale.y=q;cable.position.copy(CA).addScaledVector(CB.clone().sub(CA),q/2);
    // alternating hand-over-hand hauling
