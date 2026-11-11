@@ -66,6 +66,7 @@ export function room(p:T.Object3D,kind='office'){
  box(p,0,3.2,-4.3,15,6.4,.3,material('plaster-'+kind,kind==='prison'?'#8c9296':'#c9b69a',rep(stoneHD(),4,2)));
  box(p,-7.4,3,0,.3,6,9,material('plaster-side','#c4b099'));
  for(const y of [.2,1.25,5.8])box(p,0,y,-4.05,15,.13,.22,timber());
+ if(kind==='service')return;
  for(const x of [-4,4]){box(p,x,3.4,-4.04,2.3,2.7,.06,material('skyglass','#a9c6d7'));for(const dx of [-1.25,0,1.25])box(p,x+dx,3.4,-3.95,.09,2.9,.15,timber());box(p,x,3.4,-3.91,2.5,.1,.16,timber());box(p,x,1.9,-3.8,2.8,.18,.5,stone());}
  for(const x of [-6,6]){lamp(p,x,3.6,-3.5,true);box(p,x,.75,-3.5,1.5,1.5,.6,wood());}
 }

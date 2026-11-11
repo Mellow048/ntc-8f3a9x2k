@@ -38,7 +38,7 @@ export class World{
   for(const sd of [-1,1])cyl(p,sd*6.9,DECK+.4,-6,.09,.9,iron());   // wire anchor posts at the gap edge
   };
  const wire=()=>wireLine(p,V(-SPAN,WIRE,WZ),V(SPAN,WIRE,WZ),.25);
- const plaza=()=>{streetNY(p);twinTowers(p,{gap:14,height:TOWER,roofY:TOWER,wire:false});};
+ const plaza=()=>{streetNY(p);skyline(p,-86);twinTowers(p,{gap:14,height:TOWER,roofY:TOWER,wire:false});};
  const roomSet=()=>room(p,'office');
  const lowWire=(x:number,z:number,half=3)=>{for(const s of [-half,half])cyl(p,x+s,half?2.2/2:1,z,.08,2.2,timber());bar(p,V(x-half,2.2,z),V(x+half,2.2,z),.035,iron());};
  const upCrowd=(n:number,x0:number,z0:number,dx:number)=>{for(let i=0;i<n;i++){const a=A(x0+(i%3)*dx,z0-Math.floor(i/3)*1.5,person(i+2),i+11);a.look=-.9;a.expr='shock';}};
@@ -132,7 +132,7 @@ export class World{
   this.motions.push((f)=>{v.look=.35*(1-action(f,61,12));});
  }
  // ---- 11 smuggle: gear in the freight car ----
- if(place==='smuggle'){roomSet();elevatorCar(p,0,-1.5);
+ if(place==='smuggle'){room(p,'service');elevatorCar(p,0,-1.5);
   // the cable itself, carried between the two of them, the pole at chest height, the bow slung
   const coil=dyn(cableCoil(p,-.55,.78,1.1,.42));
   const pole=dyn(poleProp(p,0,1.06,1.15));pole.rotation.z=Math.PI/2;
@@ -148,7 +148,7 @@ export class World{
    v.wave=.2;f1.wave=.18;v.expr='nervous';f1.expr='nervous';});
  }
  // ---- 12 load: pole and bow go in ----
- if(place==='load'){roomSet();elevatorCar(p,0,-1.5);
+ if(place==='load'){room(p,'service');elevatorCar(p,0,-1.5);
   const coil=dyn(cableCoil(p,-.45,.42,.75,.42));
   const pole=dyn(poleProp(p,-.15,1.15,.55));pole.rotation.z=Math.PI/2;
   const bow=dyn(bowProp(p,1.35,.95,.35));bow.rotation.set(0,.35,.1);
@@ -161,16 +161,16 @@ export class World{
    v.wave=.3+.5*q;f1.wave=.25+.55*q;v.look=.2;f1.look=-.15;});
  }
  // ---- 13 elevator: doors close, up to 104 ----
- if(place==='elevator'){roomSet();elevatorCar(p,0,-1.5);
+ if(place==='elevator'){room(p,'service');elevatorCar(p,0,-1.5);
   // the gear is already inside the car; the leaves close on it and the floor number climbs
-  const coil=dyn(cableCoil(p,-.3,.42,-.55,.42));
-  const pole=dyn(poleProp(p,.22,1.05,-.6));pole.rotation.z=Math.PI/2;
+  const coil=dyn(cableCoil(p,-.55,.42,-.75,.42));
+  const pole=dyn(poleProp(p,.35,1.6,-.8));pole.rotation.z=Math.PI/2+.1;
   const ind=dyn(lettering(p,'104',0,3.74,-.18,.85,.26,'#1c2026','#ffd27a'));
   const doorL=dyn(box(p,-.72,1.34,-.21,.72,2.56,.07,material('elevdoor3','#a8b8c0')));
   const doorR=dyn(box(p,.72,1.34,-.21,.72,2.56,.07,material('elevdoor3','#a8b8c0')));
   const v=A(-2.15,1.3,PETIT,5),f1=A(2.25,1.15,FRIEND,6);
   v.expr='nervous';f1.expr='neutral';
-  this.motions.push((f,u)=>{const q=action(f,83,26);doorL.position.x=-.72-q*.5;doorR.position.x=.72+q*.5;
+  this.motions.push((f,u)=>{const q=action(f,84,16);doorL.position.x=-.72-q*.5;doorR.position.x=.72+q*.5;
    const floor=4+Math.floor(Math.min(21,u*22));ind.position.y=3.74+Math.sin(f*.5)*.01;
    v.wave=.3*(1-q);f1.wave=.25*(1-q);v.gaze=.55*(1-q);f1.gaze=.45*(1-q);v.look=.2;f1.look=-.2;
    void floor;});
@@ -186,14 +186,14 @@ export class World{
  }
  // ---- 15 bow: night, line shot across the gap ----
  if(place==='bow'){deck();wire();
-  const f1=A(-7.6,-4.6,FRIEND,6,DECK);f1.expr='neutral';f1.side=true;
-  const bow=dyn(bowProp(p,-6.9,DECK+1.5,-4.6));bow.rotation.y=.5;
-  const LA=V(-6.6,DECK+1.5,-4.2),LB=V(7.2,WIRE,WZ);
+  const f1=A(-7.0,-4.2,FRIEND,6,DECK);f1.expr='neutral';f1.side=true;
+  const bow=dyn(bowProp(p,-6.35,DECK+1.55,-4.0));bow.rotation.set(0,-.35,.25);
+  const LA=V(-6.0,DECK+1.55,-3.9),LB=V(7.2,WIRE,WZ);
   const line=dyn(bar(p,LA,LB,.075,material('line','#fff6df')));
   line.scale.y=.02;
   const arrow=dyn(cyl(p,0,0,0,.035,1.1,material('shaft','#f0dfae')));
   arrow.rotation.x=Math.PI/2;
-  const v=A(-4.9,-5.4,PETIT,5,DECK);v.expr='nervous';v.gaze=.5;
+  const v=A(-3.6,-4.9,PETIT,5,DECK);v.expr='nervous';v.gaze=.5;
   lamp(p,-9.6,DECK+1.4,-4.4,true);lamp(p,9.4,DECK+1.4,-4.4,true);
   this.motions.push((f)=>{const q=.02+.98*action(f,100,20);
    line.scale.y=q;line.position.copy(LA).addScaledVector(LB.clone().sub(LA),q/2);
