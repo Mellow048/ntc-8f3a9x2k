@@ -11,7 +11,7 @@ import {TONE,CHAR,untone} from './style/shade';
 
 type LightKey='day'|'golden'|'night';
 // Twin Towers geometry (metres). The deck is the roof slab; the wire runs 1.2 m above it.
-const DECK=12, WIRE=13.2, WZ=-6, SPAN=10.2;
+const TOWER=38, DECK=38.6, WIRE=39.4, WZ=-6, SPAN=10.2;
 const SKY:Record<LightKey,{top:string;bottom:string;fog:string;near:number;far:number;sun:T.Vector3}>={
  day:{top:'#4c8ed1',bottom:'#c9dfeb',fog:'#b8d0d9',near:35,far:150,sun:V(-.5,.85,.65)},
  golden:{top:'#6a4f8c',bottom:'#ffd08a',fog:'#efb489',near:45,far:190,sun:V(.25,.2,-.95)},
@@ -30,12 +30,14 @@ export class World{
  const A=(x:number,z:number,o=PETIT,seed=5,y=0)=>{const a=new Actor(p,x,z,o,seed);a.root.position.y=y;this.actors.push(a);return a;};
  const dyn=(o:T.Object3D)=>{o.userData.dynamic=true;return o;};
  // ---- set builders ----
- const deck=()=>{ground(p);twinTowers(p,{gap:14,height:38,roofY:DECK,wire:false});
+ const deck=()=>{ground(p);twinTowers(p,{gap:14,height:TOWER,roofY:TOWER,wire:false});
   const slab=material('roof','#8a9aa2');
-  for(const sd of [-1,1]){box(p,sd*10.2,DECK,-6,7.2,.4,8,slab);box(p,sd*13.9,DECK+.9,-6,.4,1.8,8,material('parapet','#a4b0b6'));}
-  for(const sd of [-1,1])for(const z of [-9.4,-2.6])cyl(p,sd*6.8,DECK+1.1,z,.07,2.2,iron());};
+  for(const sd of [-1,1]){box(p,sd*10.2,DECK,-6,7.0,.3,7.0,slab);
+   box(p,sd*10.2,DECK+.55,-6,7.2,.5,7.2,material('parapet','#a4b0b6'));}
+  for(const sd of [-1,1])cyl(p,sd*6.9,DECK+.4,-6,.09,.9,iron());   // wire anchor posts at the gap edge
+  };
  const wire=()=>wireLine(p,V(-SPAN,WIRE,WZ),V(SPAN,WIRE,WZ),.25);
- const plaza=()=>{streetNY(p);skyline(p,-70);twinTowers(p,{gap:14,height:38,roofY:DECK,wire:false});};
+ const plaza=()=>{streetNY(p);skyline(p,-70);twinTowers(p,{gap:14,height:TOWER,roofY:TOWER,wire:false});};
  const roomSet=()=>room(p,'office');
  const lowWire=(x:number,z:number,half=3)=>{for(const s of [-half,half])cyl(p,x+s,half?2.2/2:1,z,.08,2.2,timber());bar(p,V(x-half,2.2,z),V(x+half,2.2,z),.035,iron());};
  const upCrowd=(n:number,x0:number,z0:number,dx:number)=>{for(let i=0;i<n;i++){const a=A(x0+(i%3)*dx,z0-Math.floor(i/3)*1.5,person(i+2),i+11);a.look=-.9;a.expr='shock';}};
