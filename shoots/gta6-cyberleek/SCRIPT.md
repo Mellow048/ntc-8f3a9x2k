@@ -1,6 +1,6 @@
 # "The GTA 6 Leaker Who Wanted a Disc" — SCRIPT
 
-**Status: in production.** News short about Cyberleek, the anonymous account that leaked Grand Theft Auto VI footage ahead of the game's release on 19 November 2026. Made the same way as the news reference `references/news/nvidia-spy/`.
+**Status: delivered on 2026-11-11, not yet approved by the user.** The file, what was checked and what was not are under [Result](#result). News short about Cyberleek, the anonymous account that leaked Grand Theft Auto VI footage ahead of the game's release on 19 November 2026. Made the same way as the news reference `references/news/nvidia-spy/`.
 
 ## Researched facts and sources
 
@@ -139,3 +139,14 @@ gh workflow run render-short.yml --ref <branch> -f composition=CyberleekShort \
 
 A full run takes 8 to 11 minutes. When only the sound changed, add `-f parts_from=<run id>`: the picture of that run is reused and the run takes about 2 minutes. Parts are kept for 3 days.
 
+### Result
+
+**`final-720p.mp4`, commit `1e74ff354a00a6f225b6778757dc0e9c6d23e1f4`, run `42952057784`.**
+[Open it on GitHub](https://github.com/Mellow048/ntc-8f3a9x2k/blob/1e74ff354a00a6f225b6778757dc0e9c6d23e1f4/shoots/gta6-cyberleek/final-720p.mp4)
+
+- 720 × 1280, 30 fps, 2233 frames, 74.43 s, H.264 about 5.0 Mb/s with AAC 48 kHz stereo, 48,721,649 bytes.
+- Finished-file check (`qa-report.md`, written by the render run): −14.6 LUFS, true peak −1.8 dBFS; no black, unplanned white or frozen frames; every frame jump is a cut, a caption change or something arriving with its sound. One silence of 0.31 s at 56.1 s: the beat after "Quote:", before "the leeks stop here", where the music is out on purpose.
+- Picture reviewed on still frames, not in motion. From the first full render (run `42950112371`): one frame of each of the 46 shots and one frame in every eight (279 frames). The final render changed two things, both then viewed in the final file: the door is already ajar when its shot begins (55.6 s; the first render opened on two almost black frames), and Zelnick's name tag arrives two frames after he does (64.0 s; it used to take half a second). A frame-by-frame comparison of the two files finds a difference only there (frames 1667–1672 and 1921–1938).
+- Not done: nobody has listened to the sound, which was set from meters, and nobody has watched the film in motion.
+
+Known small things, left as they are: the leek crate in the first shot is cut by the left frame edge; in the "called it off" shot a fragment of the offer screen shows between the leaker and the button until the screens go dark.
