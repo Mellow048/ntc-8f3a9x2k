@@ -134,16 +134,16 @@ export class World{
  // ---- 11 smuggle: gear in the freight car ----
  if(place==='smuggle'){roomSet();elevatorCar(p,0,-1.5);
   // the cable itself, carried between the two of them, the pole at chest height, the bow slung
-  const coil=dyn(cableCoil(p,-.55,.82,1.1,.42));
-  const pole=dyn(poleProp(p,0,1.28,1.15));pole.rotation.z=Math.PI/2;
+  const coil=dyn(cableCoil(p,-.55,.78,1.1,.42));
+  const pole=dyn(poleProp(p,0,1.06,1.15));pole.rotation.z=Math.PI/2;
   const bow=dyn(bowProp(p,0,0,0));bow.rotation.set(0,.3,.15);
-  const v=A(-1.5,1.45,PETIT,5),f1=A(1.05,1.45,FRIEND,6);
+  const v=A(-1.35,1.45,PETIT,5),f1=A(.95,1.45,FRIEND,6);
   v.mode='march';f1.mode='march';f1.mirror=true;
   this.motions.push((f,u)=>{const q=action(f,67,26),step=Math.sin(f*.3)*.03,walk=Math.sin(f*.3);
    v.root.position.z=1.45-q*1.15;f1.root.position.z=1.45-q*1.15;
    const mx=(v.root.position.x+f1.root.position.x)/2,mz=1.45-q*1.15;
    coil.position.set(mx,.8+step,mz-.15);coil.rotation.y=f*.03;
-   pole.position.set(mx,1.26+step,mz+.05);pole.rotation.z=Math.PI/2+walk*.03;
+   pole.position.set(mx,1.04+step,mz+.05);pole.rotation.z=Math.PI/2+walk*.03;
    bow.position.set(f1.root.position.x-.62,1.05+step*.5,mz-.1);bow.rotation.set(0,.2,.12);
    v.wave=.2;f1.wave=.18;v.expr='nervous';f1.expr='nervous';});
  }
@@ -168,7 +168,7 @@ export class World{
   const ind=dyn(lettering(p,'104',0,3.74,-.18,.85,.26,'#1c2026','#ffd27a'));
   const doorL=dyn(box(p,-.72,1.34,-.21,.72,2.56,.07,material('elevdoor3','#a8b8c0')));
   const doorR=dyn(box(p,.72,1.34,-.21,.72,2.56,.07,material('elevdoor3','#a8b8c0')));
-  const v=A(-1.75,1.15,PETIT,5),f1=A(1.6,1.1,FRIEND,6);
+  const v=A(-2.15,1.3,PETIT,5),f1=A(2.25,1.15,FRIEND,6);
   v.expr='nervous';f1.expr='neutral';
   this.motions.push((f,u)=>{const q=action(f,83,26);doorL.position.x=-.72-q*.5;doorR.position.x=.72+q*.5;
    const floor=4+Math.floor(Math.min(21,u*22));ind.position.y=3.74+Math.sin(f*.5)*.01;
@@ -238,7 +238,7 @@ export class World{
   const v=A(-.8,WZ,PETIT,5,WIRE);v.expr='grin';v.wave=1;v.look=.1;
  }
  // ---- 22 street: traffic stops ----
- if(place==='street'){streetNY(p);twinTowers(p,{gap:14,height:TOWER+6,roofY:TOWER+6,wire:false,z:-26});
+ if(place==='street'){streetNY(p);twinTowers(p,{gap:12,height:TOWER+10,roofY:TOWER+10,wire:false,z:-30});
   carNY(p,-1.5,-4.6,'#8a3a3a',.24);carNY(p,1.9,-6.2,'#3a5a8a',Math.PI-.18);
   policeCar(p,-3.4,-8.0,Math.PI);
   const t1=A(-2.4,-3.4,person(1),11),t2=A(-3.4,-2.4,person(2),12),t3=A(.4,-3.0,person(3),13),t4=A(2.2,-2.6,person(5),14),t5=A(3.2,-4.4,person(6),15);
@@ -247,7 +247,7 @@ export class World{
    t1.gaze=.9+.1*Math.sin(f*.1);t5.gaze=.85+.15*Math.sin(f*.07+2);});
  }
  // ---- 23 crowd: faces craned up ----
- if(place==='crowd'){streetNY(p);twinTowers(p,{gap:14,height:TOWER+6,roofY:TOWER+6,wire:false,z:-26});
+ if(place==='crowd'){streetNY(p);twinTowers(p,{gap:12,height:TOWER+10,roofY:TOWER+10,wire:false,z:-30});
   const crew:Actor[]=[];
   for(let i=0;i<12;i++){const a=A(-3.0+(i%4)*1.55,-1.0-Math.floor(i/4)*1.4,person(i+1),i+11);a.gaze=1;a.look=-.3;a.expr=i%2?'shock':'shock';crew.push(a);}
   for(const a of crew.slice(0,4)){a.point=.6;}
@@ -257,7 +257,7 @@ export class World{
    crew[5].root.position.z=-2.4+Math.sin(f*.05)*.1;});
  }
  // ---- 24 police: rushing in ----
- if(place==='police'){streetNY(p);twinTowers(p,{gap:14,height:TOWER+6,roofY:TOWER+6,wire:false,z:-26});
+ if(place==='police'){streetNY(p);twinTowers(p,{gap:12,height:TOWER+10,roofY:TOWER+10,wire:false,z:-30});
   policeCar(p,2.0,-4.2,.12);
   const c1=A(.3,1.9,POLICE,9),c2=A(2.9,2.1,POLICE,10);c1.expr='stern';c2.expr='stern';
   c1.mode='march';c2.mode='march';

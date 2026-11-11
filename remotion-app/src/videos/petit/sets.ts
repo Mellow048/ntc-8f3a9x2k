@@ -188,12 +188,16 @@ export function streetNY(p:T.Object3D){
   box(p,x,h/2+.2,z,w,h,d,i%2?brickM:lime);
   box(p,x,h+.55,z,w+.7,.9,d+.7,cornice);
   const face=x>0?x-w/2-.08:x+w/2+.08;
-  for(let yy=2.4;yy<h-1.2;yy+=3.1)for(let zz=-d*.32;zz<=d*.32;zz+=3.0)box(p,face,yy,z+zz,.12,1.5,1.1,winM);
-  for(let yy=2.0;yy<h-3;yy+=4.4)box(p,x>0?x-w/2-.55:x+w/2+.55,yy,z,.95,.14,d*.82,iron());
+  for(let yy=2.4;yy<h-1.2;yy+=3.1)for(let zz=-d*.32;zz<=d*.32;zz+=3.0){
+   box(p,face,yy,z+zz,.12,1.5,1.1,winM);
+   box(p,face+(x>0?-.05:.05),yy-1.0,z+zz,.26,.16,1.4,cornice);}
  }
- box(p,0,9,-54,76,18,14,material('nyEnd','#9d9484',rep(brick(),6,2)));
- box(p,0,18.55,-54,76.6,.9,14.6,cornice);
+ box(p,0,7,-108,150,14,20,material('nyEnd','#9d9484',rep(brick(),10,2)));
+ box(p,0,14.4,-108,150.6,.9,20.6,cornice);
  for(let i=0;i<8;i++)for(const side of [-1,1]){const z=4-i*6;cyl(p,side*4.8,.55,z,.09,1.1,iron());sphere(p,side*4.8,1.1,z,.12,iron());}
+ const paint=material('roadpaint','#e6e2d0');
+ for(let i=0;i<14;i++)box(p,0,-.04,14-i*3.2,.22,.02,1.6,paint);
+ for(let i=0;i<7;i++)box(p,-2.6+i*.87,-.04,-4.2,.5,.02,1.9,paint);
 }
 export function parkSet(p:T.Object3D){
  box(p,0,-.15,0,30,.3,30,material('grass','#ffffff',rep(ctex('grassHD2',512,512,(g,r)=>{g.fillStyle='#7aa05a';g.fillRect(0,0,512,512);for(let i=0;i<900;i++){g.fillStyle=r()<.5?'#6a9048':'#8ab06a';g.fillRect(r()*512,r()*512,3,8);}}),6,6)));

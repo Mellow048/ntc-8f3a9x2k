@@ -219,9 +219,9 @@
    "label": "Freight elevator",
    "light": "day",
    "pos": [
-    1.001,
-    2.17,
-    9.724
+    1.104,
+    2.424,
+    10.702
    ],
    "look": [
     0,
@@ -261,14 +261,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    4.338,
-    2.565,
-    5.731
+    4.839,
+    2.871,
+    7.144
    ],
    "look": [
     0,
     1.75,
-    -0.7
+    -0.6
    ],
    "fov": 46,
    "action": "Doors close on the loaded car, 104 lit above",
@@ -471,16 +471,16 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.6,
-    5.03,
-    5.987
+    0.65,
+    6.522,
+    6.092
    ],
    "look": [
     0,
-    3.2,
-    -2.6
+    4.2,
+    -3.2
    ],
-   "fov": 56,
+   "fov": 58,
    "action": "Inside the crowd: faces tilted up, mouths open",
    "word": 147,
    "b": 1388
