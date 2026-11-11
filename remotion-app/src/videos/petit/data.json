@@ -1,0 +1,1703 @@
+{
+ "fps": 30,
+ "total": 2169,
+ "shots": [
+  {
+   "id": 1,
+   "a": 0,
+   "place": "hook",
+   "label": "New York · 1974",
+   "pos": [
+    5,
+    4.2,
+    11
+   ],
+   "look": [
+    0,
+    2.1,
+    0
+   ],
+   "fov": 43,
+   "action": "Wire between Twin Towers; Petit steps out, police wait on roof",
+   "word": 0,
+   "b": 166
+  },
+  {
+   "id": 2,
+   "a": 166,
+   "place": "magazine",
+   "label": "Paris",
+   "pos": [
+    0.9,
+    3.1,
+    8.5
+   ],
+   "look": [
+    0,
+    1.8,
+    0
+   ],
+   "fov": 44,
+   "action": "Petit flips magazine, sees towers under construction",
+   "word": 21,
+   "b": 350
+  },
+  {
+   "id": 3,
+   "a": 350,
+   "place": "decision",
+   "label": "",
+   "pos": [
+    0.6,
+    3.4,
+    9.3
+   ],
+   "look": [
+    0,
+    1.85,
+    0
+   ],
+   "fov": 44,
+   "action": "Petit points at towers, nods — decision made",
+   "word": 40,
+   "b": 422
+  },
+  {
+   "id": 4,
+   "a": 422,
+   "place": "disguise",
+   "label": "New York",
+   "pos": [
+    1.2,
+    3.1,
+    8.5
+   ],
+   "look": [
+    0.3,
+    1.8,
+    0
+   ],
+   "fov": 43,
+   "action": "Petit studies buildings in disguise, notebook and camera",
+   "word": 49,
+   "b": 507
+  },
+  {
+   "id": 5,
+   "a": 507,
+   "place": "reporter",
+   "label": "",
+   "pos": [
+    0.9,
+    3.1,
+    8.5
+   ],
+   "look": [
+    0,
+    1.8,
+    0
+   ],
+   "fov": 44,
+   "action": "Reporter disguise: notebook up, questions guard",
+   "word": 58,
+   "b": 528
+  },
+  {
+   "id": 6,
+   "a": 528,
+   "place": "worker",
+   "label": "",
+   "pos": [
+    0.9,
+    3.1,
+    8.5
+   ],
+   "look": [
+    0,
+    1.8,
+    0
+   ],
+   "fov": 44,
+   "action": "Construction worker disguise: hard hat, tools, roof access",
+   "word": 59,
+   "b": 559
+  },
+  {
+   "id": 7,
+   "a": 559,
+   "place": "fakeid",
+   "label": "",
+   "pos": [
+    0.1,
+    4.5,
+    3.5
+   ],
+   "look": [
+    0,
+    1.3,
+    0
+   ],
+   "fov": 38,
+   "action": "Fake ID cards laid out on desk beside model towers",
+   "word": 61,
+   "b": 612
+  },
+  {
+   "id": 8,
+   "a": 612,
+   "place": "smuggle",
+   "label": "Freight elevator",
+   "pos": [
+    1,
+    3.5,
+    8.5
+   ],
+   "look": [
+    0,
+    1.7,
+    0
+   ],
+   "fov": 44,
+   "action": "Cable, pole, bow and arrows loaded onto freight elevator",
+   "word": 67,
+   "b": 731
+  },
+  {
+   "id": 9,
+   "a": 731,
+   "place": "elevator",
+   "label": "",
+   "pos": [
+    1,
+    4.6,
+    4.4
+   ],
+   "look": [
+    0,
+    1.15,
+    0
+   ],
+   "fov": 41,
+   "action": "Elevator doors close; equipment rides to 104th floor",
+   "word": 83,
+   "b": 763
+  },
+  {
+   "id": 10,
+   "a": 763,
+   "place": "towers",
+   "label": "World Trade Center",
+   "pos": [
+    7,
+    7.1,
+    18
+   ],
+   "look": [
+    0,
+    3,
+    0
+   ],
+   "fov": 43,
+   "action": "New towers, empty security desk, open roof door",
+   "word": 87,
+   "b": 883
+  },
+  {
+   "id": 11,
+   "a": 883,
+   "place": "bow",
+   "label": "Rooftop · night",
+   "pos": [
+    5,
+    3.2,
+    10
+   ],
+   "look": [
+    0,
+    1.7,
+    0
+   ],
+   "fov": 44,
+   "action": "Bow shoots fishing line across the gap",
+   "word": 100,
+   "b": 966
+  },
+  {
+   "id": 12,
+   "a": 966,
+   "place": "pull",
+   "label": "",
+   "pos": [
+    5.5,
+    4.2,
+    10
+   ],
+   "look": [
+    0,
+    2,
+    0
+   ],
+   "fov": 44,
+   "action": "Friends pull heavy cable hand over hand",
+   "word": 111,
+   "b": 1026
+  },
+  {
+   "id": 13,
+   "a": 1026,
+   "place": "sunrise",
+   "label": "Rooftop · dawn",
+   "pos": [
+    1,
+    3.6,
+    13
+   ],
+   "look": [
+    -0.6,
+    1.7,
+    -1
+   ],
+   "fov": 44,
+   "action": "Petit steps out at sunrise, empty hands, no harness",
+   "word": 119,
+   "b": 1155
+  },
+  {
+   "id": 14,
+   "a": 1155,
+   "place": "cross",
+   "label": "The wire",
+   "pos": [
+    1,
+    3.6,
+    13
+   ],
+   "look": [
+    -0.7,
+    1.7,
+    0
+   ],
+   "fov": 44,
+   "action": "Petit crosses eight times, walking the wire",
+   "word": 130,
+   "b": 1232
+  },
+  {
+   "id": 15,
+   "a": 1232,
+   "place": "kneel",
+   "label": "",
+   "pos": [
+    0.5,
+    3,
+    7.2
+   ],
+   "look": [
+    -0.15,
+    1.8,
+    0
+   ],
+   "fov": 43,
+   "action": "Petit kneels on the wire, salutes the sky",
+   "word": 137,
+   "b": 1255
+  },
+  {
+   "id": 16,
+   "a": 1255,
+   "place": "lie",
+   "label": "",
+   "pos": [
+    0.5,
+    3,
+    7.2
+   ],
+   "look": [
+    -0.15,
+    1.8,
+    0
+   ],
+   "fov": 43,
+   "action": "Petit lies flat on his back, arms out",
+   "word": 139,
+   "b": 1284
+  },
+  {
+   "id": 17,
+   "a": 1284,
+   "place": "salute",
+   "label": "",
+   "pos": [
+    0.5,
+    3,
+    7.2
+   ],
+   "look": [
+    -0.15,
+    1.8,
+    0
+   ],
+   "fov": 43,
+   "action": "Petit stands, salutes the crowd below",
+   "word": 142,
+   "b": 1303
+  },
+  {
+   "id": 18,
+   "a": 1303,
+   "place": "street",
+   "label": "Street below",
+   "pos": [
+    6,
+    3.8,
+    10
+   ],
+   "look": [
+    0,
+    1.8,
+    1
+   ],
+   "fov": 45,
+   "action": "Traffic stops; crowd looks up",
+   "word": 144,
+   "b": 1356
+  },
+  {
+   "id": 19,
+   "a": 1356,
+   "place": "crowd",
+   "label": "",
+   "pos": [
+    4.7,
+    3.7,
+    9
+   ],
+   "look": [
+    0,
+    1.8,
+    0
+   ],
+   "fov": 44,
+   "action": "Thousands stare up, necks craned",
+   "word": 147,
+   "b": 1388
+  },
+  {
+   "id": 20,
+   "a": 1388,
+   "place": "police",
+   "label": "",
+   "pos": [
+    3.5,
+    3.5,
+    7
+   ],
+   "look": [
+    0,
+    1.7,
+    0
+   ],
+   "fov": 42,
+   "action": "Police cars arrive, officers rush to scene",
+   "word": 150,
+   "b": 1436
+  },
+  {
+   "id": 21,
+   "a": 1436,
+   "place": "wait",
+   "label": "Rooftop",
+   "pos": [
+    2.2,
+    3,
+    7
+   ],
+   "look": [
+    0,
+    1.8,
+    0
+   ],
+   "fov": 42,
+   "action": "Police wait at anchor point, hands empty",
+   "word": 155,
+   "b": 1553
+  },
+  {
+   "id": 22,
+   "a": 1553,
+   "place": "arrest",
+   "label": "",
+   "pos": [
+    1.5,
+    3,
+    6
+   ],
+   "look": [
+    0,
+    1.9,
+    0
+   ],
+   "fov": 43,
+   "action": "Petit steps off; police take his arms on roof",
+   "word": 166,
+   "b": 1639
+  },
+  {
+   "id": 23,
+   "a": 1639,
+   "place": "dropped",
+   "label": "City Hall",
+   "pos": [
+    3.5,
+    3.5,
+    7
+   ],
+   "look": [
+    0,
+    1.7,
+    0
+   ],
+   "fov": 42,
+   "action": "Gavel drops charges; city loves it",
+   "word": 177,
+   "b": 1716
+  },
+  {
+   "id": 24,
+   "a": 1716,
+   "place": "park",
+   "label": "Central Park",
+   "pos": [
+    0.2,
+    3,
+    8
+   ],
+   "look": [
+    0,
+    2,
+    0
+   ],
+   "fov": 42,
+   "action": "Free performance in park; crowd claps",
+   "word": 187,
+   "b": 1793
+  },
+  {
+   "id": 25,
+   "a": 1793,
+   "place": "pass",
+   "label": "Observation deck",
+   "pos": [
+    0.7,
+    3.3,
+    8
+   ],
+   "look": [
+    0.1,
+    1.7,
+    0
+   ],
+   "fov": 44,
+   "action": "Lifetime pass stamped and handed to Petit",
+   "word": 194,
+   "b": 1876
+  },
+  {
+   "id": 26,
+   "a": 1876,
+   "place": "today",
+   "label": "New York · today",
+   "pos": [
+    6,
+    4.5,
+    11
+   ],
+   "look": [
+    0,
+    2.1,
+    0
+   ],
+   "fov": 43,
+   "action": "Empty sky where towers were; Petit walks low wire in park",
+   "word": 206,
+   "b": 2169
+  }
+ ],
+ "words": [
+  {
+   "word": "A",
+   "start": 0.0,
+   "end": 0.13
+  },
+  {
+   "word": "man",
+   "start": 0.13,
+   "end": 0.41
+  },
+  {
+   "word": "walked",
+   "start": 0.41,
+   "end": 0.68
+  },
+  {
+   "word": "on",
+   "start": 0.68,
+   "end": 0.77
+  },
+  {
+   "word": "a",
+   "start": 0.77,
+   "end": 0.8
+  },
+  {
+   "word": "wire",
+   "start": 0.8,
+   "end": 1.15
+  },
+  {
+   "word": "between",
+   "start": 1.15,
+   "end": 1.48
+  },
+  {
+   "word": "two",
+   "start": 1.48,
+   "end": 1.67
+  },
+  {
+   "word": "skyscrapers,",
+   "start": 1.67,
+   "end": 2.48
+  },
+  {
+   "word": "thirteen",
+   "start": 2.62,
+   "end": 3.03
+  },
+  {
+   "word": "hundred",
+   "start": 3.03,
+   "end": 3.31
+  },
+  {
+   "word": "and",
+   "start": 3.31,
+   "end": 3.4
+  },
+  {
+   "word": "fifty",
+   "start": 3.4,
+   "end": 3.65
+  },
+  {
+   "word": "feet",
+   "start": 3.65,
+   "end": 3.88
+  },
+  {
+   "word": "up",
+   "start": 3.88,
+   "end": 4.09
+  },
+  {
+   "word": "and",
+   "start": 4.09,
+   "end": 4.19
+  },
+  {
+   "word": "the",
+   "start": 4.19,
+   "end": 4.25
+  },
+  {
+   "word": "police",
+   "start": 4.25,
+   "end": 4.58
+  },
+  {
+   "word": "were",
+   "start": 4.58,
+   "end": 4.66
+  },
+  {
+   "word": "waiting",
+   "start": 4.66,
+   "end": 4.96
+  },
+  {
+   "word": "below.",
+   "start": 4.96,
+   "end": 5.36
+  },
+  {
+   "word": "Philippe",
+   "start": 5.6,
+   "end": 5.98
+  },
+  {
+   "word": "Petit",
+   "start": 5.98,
+   "end": 6.62
+  },
+  {
+   "word": "is",
+   "start": 6.62,
+   "end": 6.77
+  },
+  {
+   "word": "twenty-four,",
+   "start": 6.77,
+   "end": 7.51
+  },
+  {
+   "word": "a",
+   "start": 7.66,
+   "end": 7.73
+  },
+  {
+   "word": "French",
+   "start": 7.73,
+   "end": 8.12
+  },
+  {
+   "word": "street",
+   "start": 8.12,
+   "end": 8.35
+  },
+  {
+   "word": "performer,",
+   "start": 8.35,
+   "end": 8.88
+  },
+  {
+   "word": "and",
+   "start": 9.02,
+   "end": 9.15
+  },
+  {
+   "word": "he",
+   "start": 9.15,
+   "end": 9.28
+  },
+  {
+   "word": "has",
+   "start": 9.28,
+   "end": 9.44
+  },
+  {
+   "word": "just",
+   "start": 9.44,
+   "end": 9.74
+  },
+  {
+   "word": "seen",
+   "start": 9.74,
+   "end": 9.96
+  },
+  {
+   "word": "a",
+   "start": 9.96,
+   "end": 9.99
+  },
+  {
+   "word": "magazine",
+   "start": 9.99,
+   "end": 10.44
+  },
+  {
+   "word": "photo",
+   "start": 10.44,
+   "end": 10.83
+  },
+  {
+   "word": "of",
+   "start": 10.83,
+   "end": 10.9
+  },
+  {
+   "word": "the",
+   "start": 10.9,
+   "end": 10.97
+  },
+  {
+   "word": "towers.",
+   "start": 10.97,
+   "end": 11.57
+  },
+  {
+   "word": "So",
+   "start": 11.73,
+   "end": 12.0
+  },
+  {
+   "word": "he",
+   "start": 12.0,
+   "end": 12.14
+  },
+  {
+   "word": "decides",
+   "start": 12.14,
+   "end": 12.59
+  },
+  {
+   "word": "he",
+   "start": 12.59,
+   "end": 12.66
+  },
+  {
+   "word": "has",
+   "start": 12.66,
+   "end": 12.87
+  },
+  {
+   "word": "to",
+   "start": 12.87,
+   "end": 12.98
+  },
+  {
+   "word": "walk",
+   "start": 12.98,
+   "end": 13.33
+  },
+  {
+   "word": "between",
+   "start": 13.33,
+   "end": 13.7
+  },
+  {
+   "word": "them.",
+   "start": 13.7,
+   "end": 13.94
+  },
+  {
+   "word": "For",
+   "start": 14.12,
+   "end": 14.22
+  },
+  {
+   "word": "six",
+   "start": 14.22,
+   "end": 14.52
+  },
+  {
+   "word": "years,",
+   "start": 14.52,
+   "end": 14.93
+  },
+  {
+   "word": "he",
+   "start": 15.06,
+   "end": 15.18
+  },
+  {
+   "word": "studies",
+   "start": 15.18,
+   "end": 15.66
+  },
+  {
+   "word": "the",
+   "start": 15.66,
+   "end": 15.74
+  },
+  {
+   "word": "buildings",
+   "start": 15.74,
+   "end": 16.16
+  },
+  {
+   "word": "in",
+   "start": 16.16,
+   "end": 16.23
+  },
+  {
+   "word": "disguise.",
+   "start": 16.23,
+   "end": 16.82
+  },
+  {
+   "word": "Reporter.",
+   "start": 16.97,
+   "end": 17.46
+  },
+  {
+   "word": "Construction",
+   "start": 17.66,
+   "end": 18.16
+  },
+  {
+   "word": "worker.",
+   "start": 18.16,
+   "end": 18.56
+  },
+  {
+   "word": "He",
+   "start": 18.7,
+   "end": 18.84
+  },
+  {
+   "word": "even",
+   "start": 18.84,
+   "end": 19.09
+  },
+  {
+   "word": "makes",
+   "start": 19.09,
+   "end": 19.39
+  },
+  {
+   "word": "fake",
+   "start": 19.39,
+   "end": 19.73
+  },
+  {
+   "word": "ID",
+   "start": 19.73,
+   "end": 20.02
+  },
+  {
+   "word": "cards.",
+   "start": 20.02,
+   "end": 20.48
+  },
+  {
+   "word": "Then",
+   "start": 20.48,
+   "end": 20.95
+  },
+  {
+   "word": "he",
+   "start": 20.95,
+   "end": 21.12
+  },
+  {
+   "word": "and",
+   "start": 21.12,
+   "end": 21.21
+  },
+  {
+   "word": "his",
+   "start": 21.21,
+   "end": 21.37
+  },
+  {
+   "word": "friends",
+   "start": 21.37,
+   "end": 21.68
+  },
+  {
+   "word": "smuggle",
+   "start": 21.68,
+   "end": 22.01
+  },
+  {
+   "word": "a",
+   "start": 22.01,
+   "end": 22.06
+  },
+  {
+   "word": "steel",
+   "start": 22.06,
+   "end": 22.37
+  },
+  {
+   "word": "cable,",
+   "start": 22.37,
+   "end": 22.83
+  },
+  {
+   "word": "a",
+   "start": 22.98,
+   "end": 23.04
+  },
+  {
+   "word": "pole,",
+   "start": 23.04,
+   "end": 23.51
+  },
+  {
+   "word": "and",
+   "start": 23.65,
+   "end": 23.78
+  },
+  {
+   "word": "a",
+   "start": 23.78,
+   "end": 23.82
+  },
+  {
+   "word": "bow",
+   "start": 23.82,
+   "end": 24.0
+  },
+  {
+   "word": "and",
+   "start": 24.0,
+   "end": 24.09
+  },
+  {
+   "word": "arrow",
+   "start": 24.09,
+   "end": 24.43
+  },
+  {
+   "word": "up",
+   "start": 24.43,
+   "end": 24.54
+  },
+  {
+   "word": "the",
+   "start": 24.54,
+   "end": 24.62
+  },
+  {
+   "word": "freight",
+   "start": 24.62,
+   "end": 24.85
+  },
+  {
+   "word": "elevator.",
+   "start": 24.85,
+   "end": 25.29
+  },
+  {
+   "word": "You",
+   "start": 25.51,
+   "end": 25.61
+  },
+  {
+   "word": "see,",
+   "start": 25.61,
+   "end": 26.17
+  },
+  {
+   "word": "the",
+   "start": 26.17,
+   "end": 26.28
+  },
+  {
+   "word": "towers",
+   "start": 26.28,
+   "end": 26.74
+  },
+  {
+   "word": "had",
+   "start": 26.74,
+   "end": 26.87
+  },
+  {
+   "word": "only",
+   "start": 26.87,
+   "end": 27.16
+  },
+  {
+   "word": "just",
+   "start": 27.16,
+   "end": 27.38
+  },
+  {
+   "word": "opened,",
+   "start": 27.38,
+   "end": 27.89
+  },
+  {
+   "word": "and",
+   "start": 27.89,
+   "end": 28.0
+  },
+  {
+   "word": "security",
+   "start": 28.0,
+   "end": 28.49
+  },
+  {
+   "word": "wasn't",
+   "start": 28.49,
+   "end": 28.76
+  },
+  {
+   "word": "finished",
+   "start": 28.76,
+   "end": 29.07
+  },
+  {
+   "word": "yet.",
+   "start": 29.07,
+   "end": 29.51
+  },
+  {
+   "word": "That",
+   "start": 29.51,
+   "end": 29.74
+  },
+  {
+   "word": "night,",
+   "start": 29.74,
+   "end": 30.16
+  },
+  {
+   "word": "they",
+   "start": 30.29,
+   "end": 30.42
+  },
+  {
+   "word": "shoot",
+   "start": 30.42,
+   "end": 30.66
+  },
+  {
+   "word": "a",
+   "start": 30.66,
+   "end": 30.7
+  },
+  {
+   "word": "fishing",
+   "start": 30.7,
+   "end": 31.05
+  },
+  {
+   "word": "line",
+   "start": 31.05,
+   "end": 31.24
+  },
+  {
+   "word": "across",
+   "start": 31.24,
+   "end": 31.58
+  },
+  {
+   "word": "with",
+   "start": 31.58,
+   "end": 31.69
+  },
+  {
+   "word": "the",
+   "start": 31.69,
+   "end": 31.75
+  },
+  {
+   "word": "bow,",
+   "start": 31.75,
+   "end": 32.08
+  },
+  {
+   "word": "then",
+   "start": 32.27,
+   "end": 32.47
+  },
+  {
+   "word": "pull",
+   "start": 32.47,
+   "end": 32.7
+  },
+  {
+   "word": "the",
+   "start": 32.7,
+   "end": 32.78
+  },
+  {
+   "word": "heavy",
+   "start": 32.78,
+   "end": 33.01
+  },
+  {
+   "word": "cable",
+   "start": 33.01,
+   "end": 33.34
+  },
+  {
+   "word": "over",
+   "start": 33.34,
+   "end": 33.55
+  },
+  {
+   "word": "by",
+   "start": 33.55,
+   "end": 33.69
+  },
+  {
+   "word": "hand.",
+   "start": 33.69,
+   "end": 34.08
+  },
+  {
+   "word": "At",
+   "start": 34.26,
+   "end": 34.42
+  },
+  {
+   "word": "sunrise,",
+   "start": 34.42,
+   "end": 35.09
+  },
+  {
+   "word": "Petit",
+   "start": 35.21,
+   "end": 35.54
+  },
+  {
+   "word": "steps",
+   "start": 35.54,
+   "end": 35.92
+  },
+  {
+   "word": "out",
+   "start": 35.92,
+   "end": 36.22
+  },
+  {
+   "word": "with",
+   "start": 36.22,
+   "end": 36.39
+  },
+  {
+   "word": "no",
+   "start": 36.39,
+   "end": 36.56
+  },
+  {
+   "word": "harness,",
+   "start": 36.56,
+   "end": 37.07
+  },
+  {
+   "word": "no",
+   "start": 37.22,
+   "end": 37.36
+  },
+  {
+   "word": "net,",
+   "start": 37.36,
+   "end": 37.93
+  },
+  {
+   "word": "nothing.",
+   "start": 37.93,
+   "end": 38.38
+  },
+  {
+   "word": "For",
+   "start": 38.56,
+   "end": 38.66
+  },
+  {
+   "word": "forty-five",
+   "start": 38.66,
+   "end": 39.16
+  },
+  {
+   "word": "minutes,",
+   "start": 39.16,
+   "end": 39.61
+  },
+  {
+   "word": "he",
+   "start": 39.75,
+   "end": 39.84
+  },
+  {
+   "word": "crosses",
+   "start": 39.84,
+   "end": 40.29
+  },
+  {
+   "word": "eight",
+   "start": 40.29,
+   "end": 40.46
+  },
+  {
+   "word": "times.",
+   "start": 40.46,
+   "end": 41.0
+  },
+  {
+   "word": "He",
+   "start": 41.14,
+   "end": 41.25
+  },
+  {
+   "word": "kneels.",
+   "start": 41.25,
+   "end": 41.74
+  },
+  {
+   "word": "He",
+   "start": 41.91,
+   "end": 42.03
+  },
+  {
+   "word": "lies",
+   "start": 42.03,
+   "end": 42.31
+  },
+  {
+   "word": "down.",
+   "start": 42.31,
+   "end": 42.71
+  },
+  {
+   "word": "He",
+   "start": 42.87,
+   "end": 42.96
+  },
+  {
+   "word": "salutes.",
+   "start": 42.96,
+   "end": 43.51
+  },
+  {
+   "word": "Below,",
+   "start": 43.51,
+   "end": 44.11
+  },
+  {
+   "word": "traffic",
+   "start": 44.11,
+   "end": 44.64
+  },
+  {
+   "word": "stops.",
+   "start": 44.64,
+   "end": 45.09
+  },
+  {
+   "word": "Thousands",
+   "start": 45.25,
+   "end": 45.76
+  },
+  {
+   "word": "stare",
+   "start": 45.76,
+   "end": 46.09
+  },
+  {
+   "word": "up.",
+   "start": 46.09,
+   "end": 46.33
+  },
+  {
+   "word": "Police",
+   "start": 46.33,
+   "end": 46.83
+  },
+  {
+   "word": "rush",
+   "start": 46.83,
+   "end": 47.07
+  },
+  {
+   "word": "to",
+   "start": 47.07,
+   "end": 47.16
+  },
+  {
+   "word": "the",
+   "start": 47.16,
+   "end": 47.23
+  },
+  {
+   "word": "scene.",
+   "start": 47.23,
+   "end": 47.66
+  },
+  {
+   "word": "Luckily,",
+   "start": 47.95,
+   "end": 48.51
+  },
+  {
+   "word": "they",
+   "start": 48.51,
+   "end": 48.76
+  },
+  {
+   "word": "can't",
+   "start": 48.76,
+   "end": 49.06
+  },
+  {
+   "word": "reach",
+   "start": 49.06,
+   "end": 49.31
+  },
+  {
+   "word": "him",
+   "start": 49.31,
+   "end": 49.4
+  },
+  {
+   "word": "up",
+   "start": 49.4,
+   "end": 49.55
+  },
+  {
+   "word": "there.",
+   "start": 49.55,
+   "end": 49.71
+  },
+  {
+   "word": "Unluckily,",
+   "start": 50.12,
+   "end": 50.78
+  },
+  {
+   "word": "they",
+   "start": 50.78,
+   "end": 51.08
+  },
+  {
+   "word": "can",
+   "start": 51.08,
+   "end": 51.22
+  },
+  {
+   "word": "wait.",
+   "start": 51.22,
+   "end": 51.64
+  },
+  {
+   "word": "When",
+   "start": 51.82,
+   "end": 51.98
+  },
+  {
+   "word": "he",
+   "start": 51.98,
+   "end": 52.09
+  },
+  {
+   "word": "finally",
+   "start": 52.09,
+   "end": 52.48
+  },
+  {
+   "word": "steps",
+   "start": 52.48,
+   "end": 52.8
+  },
+  {
+   "word": "off,",
+   "start": 52.8,
+   "end": 53.14
+  },
+  {
+   "word": "they",
+   "start": 53.14,
+   "end": 53.4
+  },
+  {
+   "word": "arrest",
+   "start": 53.4,
+   "end": 53.75
+  },
+  {
+   "word": "him",
+   "start": 53.75,
+   "end": 53.87
+  },
+  {
+   "word": "on",
+   "start": 53.87,
+   "end": 53.95
+  },
+  {
+   "word": "the",
+   "start": 53.95,
+   "end": 54.03
+  },
+  {
+   "word": "roof.",
+   "start": 54.03,
+   "end": 54.41
+  },
+  {
+   "word": "But",
+   "start": 54.71,
+   "end": 54.93
+  },
+  {
+   "word": "the",
+   "start": 54.93,
+   "end": 55.0
+  },
+  {
+   "word": "city",
+   "start": 55.0,
+   "end": 55.27
+  },
+  {
+   "word": "loved",
+   "start": 55.27,
+   "end": 55.48
+  },
+  {
+   "word": "it,",
+   "start": 55.48,
+   "end": 55.73
+  },
+  {
+   "word": "so",
+   "start": 55.92,
+   "end": 56.08
+  },
+  {
+   "word": "the",
+   "start": 56.08,
+   "end": 56.17
+  },
+  {
+   "word": "charges",
+   "start": 56.17,
+   "end": 56.6
+  },
+  {
+   "word": "are",
+   "start": 56.6,
+   "end": 56.63
+  },
+  {
+   "word": "dropped.",
+   "start": 56.63,
+   "end": 57.08
+  },
+  {
+   "word": "Instead,",
+   "start": 57.27,
+   "end": 57.87
+  },
+  {
+   "word": "he",
+   "start": 58.03,
+   "end": 58.14
+  },
+  {
+   "word": "performs",
+   "start": 58.14,
+   "end": 58.58
+  },
+  {
+   "word": "free",
+   "start": 58.58,
+   "end": 58.81
+  },
+  {
+   "word": "in",
+   "start": 58.81,
+   "end": 58.93
+  },
+  {
+   "word": "Central",
+   "start": 58.93,
+   "end": 59.27
+  },
+  {
+   "word": "Park.",
+   "start": 59.27,
+   "end": 59.65
+  },
+  {
+   "word": "And",
+   "start": 59.83,
+   "end": 60.03
+  },
+  {
+   "word": "the",
+   "start": 60.03,
+   "end": 60.09
+  },
+  {
+   "word": "Port",
+   "start": 60.09,
+   "end": 60.36
+  },
+  {
+   "word": "Authority",
+   "start": 60.36,
+   "end": 60.83
+  },
+  {
+   "word": "gives",
+   "start": 60.83,
+   "end": 61.07
+  },
+  {
+   "word": "him",
+   "start": 61.07,
+   "end": 61.17
+  },
+  {
+   "word": "a",
+   "start": 61.17,
+   "end": 61.2
+  },
+  {
+   "word": "lifetime",
+   "start": 61.2,
+   "end": 61.73
+  },
+  {
+   "word": "pass",
+   "start": 61.73,
+   "end": 62.07
+  },
+  {
+   "word": "to",
+   "start": 62.07,
+   "end": 62.17
+  },
+  {
+   "word": "the",
+   "start": 62.17,
+   "end": 62.25
+  },
+  {
+   "word": "deck.",
+   "start": 62.25,
+   "end": 62.61
+  },
+  {
+   "word": "The",
+   "start": 62.61,
+   "end": 62.87
+  },
+  {
+   "word": "towers",
+   "start": 62.87,
+   "end": 63.35
+  },
+  {
+   "word": "are",
+   "start": 63.35,
+   "end": 63.41
+  },
+  {
+   "word": "gone",
+   "start": 63.41,
+   "end": 63.62
+  },
+  {
+   "word": "now.",
+   "start": 63.62,
+   "end": 63.93
+  },
+  {
+   "word": "But",
+   "start": 63.93,
+   "end": 64.26
+  },
+  {
+   "word": "Petit",
+   "start": 64.26,
+   "end": 64.58
+  },
+  {
+   "word": "is",
+   "start": 64.58,
+   "end": 64.73
+  },
+  {
+   "word": "still",
+   "start": 64.73,
+   "end": 64.93
+  },
+  {
+   "word": "walking.",
+   "start": 64.93,
+   "end": 65.44
+  },
+  {
+   "word": "He",
+   "start": 65.63,
+   "end": 65.73
+  },
+  {
+   "word": "said,",
+   "start": 65.73,
+   "end": 66.24
+  },
+  {
+   "word": "if",
+   "start": 66.24,
+   "end": 66.37
+  },
+  {
+   "word": "he",
+   "start": 66.37,
+   "end": 66.51
+  },
+  {
+   "word": "sees",
+   "start": 66.51,
+   "end": 66.79
+  },
+  {
+   "word": "two",
+   "start": 66.79,
+   "end": 67.03
+  },
+  {
+   "word": "towers,",
+   "start": 67.03,
+   "end": 67.67
+  },
+  {
+   "word": "he",
+   "start": 67.79,
+   "end": 67.88
+  },
+  {
+   "word": "has",
+   "start": 67.88,
+   "end": 68.11
+  },
+  {
+   "word": "to",
+   "start": 68.11,
+   "end": 68.2
+  },
+  {
+   "word": "walk.",
+   "start": 68.2,
+   "end": 68.62
+  },
+  {
+   "word": "He",
+   "start": 68.91,
+   "end": 69.02
+  },
+  {
+   "word": "still",
+   "start": 69.02,
+   "end": 69.33
+  },
+  {
+   "word": "has",
+   "start": 69.33,
+   "end": 69.52
+  },
+  {
+   "word": "his",
+   "start": 69.52,
+   "end": 69.64
+  },
+  {
+   "word": "pass.",
+   "start": 69.64,
+   "end": 70.16
+  },
+  {
+   "word": "He",
+   "start": 70.27,
+   "end": 70.36
+  },
+  {
+   "word": "still",
+   "start": 70.36,
+   "end": 70.59
+  },
+  {
+   "word": "walks.",
+   "start": 70.59,
+   "end": 71.08
+  }
+ ]
+}

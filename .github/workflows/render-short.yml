@@ -20,7 +20,7 @@ on:
         required: false
         default: "720"
       still_frame:
-        description: "Frame number for the still preview"
+        description: "Frame number for the still preview (Petit: 'all' for 26-shot preview, '-1' for full render)"
         required: false
         default: "100"
 
@@ -65,7 +65,29 @@ jobs:
         working-directory: remotion-app
         run: npx tsc --noEmit
 
+      - name: Petit timing tests
+        if: inputs.composition == 'Petit'
+        run: node scripts/petit/test.mjs
+
+      - name: Petit 26-shot preview stills
+        if: inputs.composition == 'Petit' && inputs.still_frame == 'all'
+        run: |
+          npx remotion browser ensure
+          CHROME_PATH="$CHROME_PATH" node scripts/petit/stills.mjs
+        env:
+          CHROME_PATH: ${{ env.CHROME_PATH }}
+
+      - name: Commit Petit previews
+        if: inputs.composition == 'Petit' && inputs.still_frame == 'all'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add shoots/petit/out/previews/
+          git commit -m "Petit: 26-shot preview stills" || echo "no previews to commit"
+          git push || echo "push failed (check branch)"
+
       - name: Still preview
+        if: inputs.composition != 'Petit' || (inputs.still_frame != 'all' && inputs.still_frame != '-1')
         working-directory: remotion-app
         run: |
           npx remotion browser ensure
@@ -73,19 +95,21 @@ jobs:
             out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
 
       - name: Render video
+        if: inputs.composition != 'Petit' || inputs.still_frame == '-1'
         working-directory: remotion-app
         run: |
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
             out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH"
 
       - name: Mux voice mix
-        if: inputs.mix != ''
+        if: (inputs.composition != 'Petit' || inputs.still_frame == '-1') && inputs.mix != ''
         run: |
           ffmpeg -y -i remotion-app/out/final.mp4 -i "${{ github.event.inputs.mix }}" \
             -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -shortest remotion-app/out/final-muxed.mp4
           mv remotion-app/out/final-muxed.mp4 remotion-app/out/final.mp4
 
       - name: Upload MP4
+        if: inputs.composition != 'Petit' || inputs.still_frame == '-1'
         uses: actions/upload-artifact@v4
         with:
           name: cartoon-3d-short
