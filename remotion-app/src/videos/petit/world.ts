@@ -163,14 +163,14 @@ export class World{
  // ---- 13 elevator: doors close, up to 104 ----
  if(place==='elevator'){room(p,'service');elevatorCar(p,0,-1.5);
   // the gear is already inside the car; the leaves close on it and the floor number climbs
-  const coil=dyn(cableCoil(p,-.05,.4,-.1,.46));
-  const pole=dyn(poleProp(p,.45,1.5,.02));pole.rotation.z=.55;
+  const coil=dyn(cableCoil(p,-.35,.42,-.12,.4));
+  const pole=dyn(poleProp(p,.52,1.35,-.18));pole.rotation.z=1.32;
   const ind=dyn(lettering(p,'104',0,3.76,-.18,1.0,.3,'#1c2026','#ffd27a'));
   const doorL=dyn(box(p,-.72,1.34,-.21,.72,2.56,.07,material('elevdoor3','#a8b8c0')));
   const doorR=dyn(box(p,.72,1.34,-.21,.72,2.56,.07,material('elevdoor3','#a8b8c0')));
-  const v=A(-2.15,1.3,PETIT,5),f1=A(2.25,1.15,FRIEND,6);
+  const v=A(-1.85,1.15,PETIT,5),f1=A(1.95,1.05,FRIEND,6);
   v.expr='nervous';f1.expr='neutral';
-  this.motions.push((f,u)=>{const q=action(f,85,10);doorL.position.x=-.72-q*.4;doorR.position.x=.72+q*.4;
+  this.motions.push((f,u)=>{const q=action(f,84,24);doorL.position.x=-.72-q*.46;doorR.position.x=.72+q*.46;
    const floor=4+Math.floor(Math.min(21,u*22));ind.position.y=3.74+Math.sin(f*.5)*.01;
    v.wave=.3*(1-q);f1.wave=.25*(1-q);v.gaze=.55*(1-q);f1.gaze=.45*(1-q);v.look=.2;f1.look=-.2;
    void floor;});
@@ -203,8 +203,8 @@ export class World{
  }
  // ---- 16 pull: hauling the cable by hand ----
  if(place==='pull'){deck();wire();
-  const f1=A(-9.4,-4.3,FRIEND,6,DECK),f2=A(-7.7,-3.9,FRIEND,7,DECK);
-  const CA=V(-7.0,DECK+.55,-4.1),CB=V(7.2,WIRE,WZ);
+  const f1=A(-8.9,-4.4,FRIEND,6,DECK),f2=A(-7.5,-4.9,FRIEND,7,DECK);
+  const CA=V(-6.9,DECK+.95,-4.4),CB=V(7.2,WIRE,WZ);
   const cable=dyn(bar(p,CA,CB,.075,material('cable-haul','#cfd6e2')));
   cable.scale.y=.3;
   const v=A(-3.2,WZ,PETIT,5,WIRE);v.expr='nervous';

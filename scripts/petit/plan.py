@@ -8,7 +8,7 @@ w=json.loads((ROOT/'shoots/petit/voice/words.json').read_text())['words']
 # The camera sits `distance` metres from the subject, swung `yaw` degrees round it from +Z and lifted
 # `pitch` degrees above the subject's eye line. Framing is derived, so every shot is composed on purpose.
 rows=[
-(0,'hook','New York · 1974','day',[0,40.1,-6],27,0,6,55,'Both towers, the walk wire between them, the man tiny on it, police and cars below'),
+(0,'hook','New York · 1974','day',[0,39.8,-6],26,0,5,55,'Both towers, the walk wire between them, the man tiny on it, police and cars below'),
 (9,'height','','day',[0,.9,-3.6],19,42,40,54,'Straight down the tower face: street, cars and people 1,350 feet below'),
 (15,'policewait','','day',[1.7,2.3,-1.7],7.4,-14,-12,56,'Street: police car and two officers craning up at the wire'),
 (21,'performer','Paris','day',[0,1.7,.2],8.4,5,2,44,'Paris square: Petit performs on a low wire, hat of coins, small crowd'),
@@ -20,10 +20,10 @@ rows=[
 (61,'fakeid','','day',[0,1.5,-.9],4.6,2,30,38,'Overhead: three fake IDs laid out beside model towers'),
 (67,'smuggle','Freight elevator','day',[0,1.5,.2],10.6,6,5,46,'Cable coil, pole and bow loaded beside two friends in the freight car'),
 (76,'load','','day',[0,1.55,.4],8.8,5,6,46,'The pole goes up on shoulders, the bow on top'),
-(83,'elevator','','day',[0,1.7,-.7],9.0,30,7,46,'Doors close on the loaded car, 104 lit above'),
+(83,'elevator','','day',[0,1.6,-.6],9.8,26,6,46,'Doors close on the loaded car, 104 lit above'),
 (87,'security','World Trade Center','day',[.9,1.7,-1.1],9.4,8,4,46,'Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET'),
-(100,'bow','Rooftop · night','night',[-1,40.0,-6],16,-52,4,52,'A friend draws the bow; fishing line flies across the gap'),
-(111,'pull','','night',[-5.5,39.9,-4.6],9.5,-30,5,50,'Two friends haul the heavy cable hand over hand'),
+(100,'bow','Rooftop · night','night',[-1,39.4,-6],13.5,-52,2,52,'A friend draws the bow; fishing line flies across the gap'),
+(111,'pull','','night',[-6.9,39.9,-4.5],5.4,-18,3,50,'Two friends haul the heavy cable hand over hand'),
 (119,'sunrise','Rooftop · dawn','golden',[-2.6,40.0,-6],7.5,55,8,44,'Petit steps onto the wire at dawn: empty hands, no harness, no net'),
 (130,'cross','The wire','day',[0,40.0,-6],26,78,8,48,'Wide from the far roof: he is halfway across, towers behind'),
 (137,'kneel','','day',[-.6,40.0,-6],5.6,68,4,38,'Medium: he kneels down on the wire'),
