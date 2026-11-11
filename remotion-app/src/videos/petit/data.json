@@ -9,17 +9,17 @@
    "label": "New York · 1974",
    "light": "day",
    "pos": [
-    0,
-    15,
-    40
+    0.0,
+    14.604,
+    39.984
    ],
    "look": [
     0,
-    15.5,
+    13.4,
     -6
    ],
    "fov": 55,
-   "action": "Both towers, the wire between them, the man tiny on it, street far below",
+   "action": "Both towers, the walk wire between them, the man tiny on it, police and cars below",
    "word": 0,
    "b": 77
   },
@@ -30,17 +30,17 @@
    "label": "",
    "light": "day",
    "pos": [
-    2.2,
-    16.5,
-    3.5
+    11.144,
+    14.545,
+    9.28
    ],
    "look": [
-    0.4,
     0,
-    -7.5
+    1.0,
+    -4
    ],
-   "fov": 56,
-   "action": "Straight down the tower face: street, cars, people 1,350 feet below",
+   "fov": 52,
+   "action": "Straight down the tower face: street, cars and people 1,350 feet below",
    "word": 9,
    "b": 121
   },
@@ -51,17 +51,17 @@
    "label": "",
    "light": "day",
    "pos": [
-    3.4,
-    1.5,
-    9
+    -0.686,
+    1.116,
+    9.553
    ],
    "look": [
-    0,
-    9,
-    -6
+    1.6,
+    1.5,
+    -1.2
    ],
-   "fov": 53,
-   "action": "Street: police car, two officers craning up at the wire",
+   "fov": 52,
+   "action": "Street: police car and two officers craning up at the wire",
    "word": 15,
    "b": 166
   },
@@ -72,16 +72,16 @@
    "label": "Paris",
    "light": "day",
    "pos": [
-    1.0,
-    2.0,
-    6.2
+    0.993,
+    2.6,
+    9.448
    ],
    "look": [
     0,
-    1.5,
+    2.6,
     0
    ],
-   "fov": 42,
+   "fov": 44,
    "action": "Paris square: Petit performs on a low wire, hat of coins, small crowd",
    "word": 21,
    "b": 269
@@ -93,14 +93,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.35,
-    4.0,
-    3.3
+    0.305,
+    3.021,
+    3.464
    ],
    "look": [
-    0.05,
-    1.35,
-    -1.0
+    0,
+    1.6,
+    -0.9
    ],
    "fov": 40,
    "action": "Overhead: magazine open on the table, the towers page",
@@ -114,14 +114,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.6,
-    2.4,
-    4.9
+    0.72,
+    2.444,
+    4.621
    ],
    "look": [
     0,
     1.9,
-    -0.6
+    -0.5
    ],
    "fov": 42,
    "action": "He points at the page and grins — the decision",
@@ -135,16 +135,16 @@
    "label": "New York",
    "light": "day",
    "pos": [
-    3.6,
-    1.5,
-    7.2
+    4.177,
+    1.51,
+    6.5
    ],
    "look": [
-    0.8,
-    3.2,
-    -3.2
+    1.3,
+    2.2,
+    0.6
    ],
-   "fov": 48,
+   "fov": 46,
    "action": "Tower base: Petit with press camera and notebook, craning up",
    "word": 49,
    "b": 507
@@ -156,14 +156,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.9,
-    2.2,
-    4.4
+    0.501,
+    2.135,
+    4.262
    ],
    "look": [
     0,
-    1.85,
-    -0.4
+    1.8,
+    -0.5
    ],
    "fov": 40,
    "action": "Reporter disguise: press card up, guard beside him",
@@ -177,14 +177,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    1.2,
-    1.9,
-    5.4
+    2.231,
+    1.7,
+    7.26
    ],
    "look": [
-    0,
+    0.9,
     1.7,
-    0
+    1.0
    ],
    "fov": 44,
    "action": "Hard hat and toolbox at the site gate, clipboard checked",
@@ -198,14 +198,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.15,
-    4.4,
-    3.4
+    0.139,
+    3.8,
+    3.081
    ],
    "look": [
     0,
-    1.3,
-    -0.6
+    1.5,
+    -0.9
    ],
    "fov": 38,
    "action": "Overhead: three fake IDs laid out beside model towers",
@@ -219,14 +219,14 @@
    "label": "Freight elevator",
    "light": "day",
    "pos": [
-    1.3,
-    2.6,
-    5.6
+    1.036,
+    2.227,
+    5.276
    ],
    "look": [
     0,
-    1.5,
-    -1
+    1.6,
+    -0.6
    ],
    "fov": 44,
    "action": "Cable coil, pole and bow loaded beside two friends in the freight car",
@@ -240,14 +240,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.2,
-    1.95,
-    3.0
+    0.335,
+    1.868,
+    3.885
    ],
    "look": [
     0,
-    1.6,
-    -1.6
+    1.7,
+    -0.9
    ],
    "fov": 46,
    "action": "The pole goes up on shoulders, the bow on top",
@@ -261,8 +261,8 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.1,
-    2.0,
+    0.0,
+    1.9,
     3.6
    ],
    "look": [
@@ -282,14 +282,14 @@
    "label": "World Trade Center",
    "light": "day",
    "pos": [
-    1.3,
-    2.5,
-    5.4
+    1.482,
+    2.216,
+    7.47
    ],
    "look": [
-    0,
-    1.75,
-    -0.6
+    0.2,
+    1.7,
+    0.2
    ],
    "fov": 44,
    "action": "Brand-new lobby: empty guard chair, barrier tape, NO GUARD YET",
@@ -303,16 +303,16 @@
    "label": "Rooftop · night",
    "light": "night",
    "pos": [
-    4.2,
-    14.2,
-    3.0
+    22.213,
+    17.397,
+    9.904
    ],
    "look": [
-    -2.5,
-    13.6,
+    -0.5,
+    13.5,
     -6
    ],
-   "fov": 46,
+   "fov": 50,
    "action": "A friend draws the bow; fishing line flies across the gap",
    "word": 100,
    "b": 966
@@ -324,16 +324,16 @@
    "label": "",
    "light": "night",
    "pos": [
-    2.6,
-    14.4,
-    2.6
+    10.792,
+    14.874,
+    12.82
    ],
    "look": [
-    -3,
+    -7,
     13.2,
-    -6
+    -3.2
    ],
-   "fov": 46,
+   "fov": 50,
    "action": "Two friends haul the heavy cable hand over hand",
    "word": 111,
    "b": 1026
@@ -345,13 +345,13 @@
    "label": "Rooftop · dawn",
    "light": "golden",
    "pos": [
-    1.6,
-    14.0,
-    2.4
+    3.409,
+    15.759,
+    -1.792
    ],
    "look": [
-    -3.4,
-    13.4,
+    -2.6,
+    14.2,
     -6
    ],
    "fov": 44,
@@ -366,16 +366,16 @@
    "label": "The wire",
    "light": "day",
    "pos": [
-    -7.4,
-    15.0,
-    7.6
+    24.897,
+    15.361,
+    -0.602
    ],
    "look": [
-    1.5,
-    13.4,
+    -0.5,
+    14.0,
     -6
    ],
-   "fov": 46,
+   "fov": 48,
    "action": "Wide from the far roof: he is halfway across, towers behind",
    "word": 130,
    "b": 1232
@@ -387,13 +387,13 @@
    "label": "",
    "light": "day",
    "pos": [
-    1.5,
-    13.6,
-    1.2
+    4.58,
+    14.291,
+    -3.907
    ],
    "look": [
-    -1.6,
-    13.2,
+    -0.6,
+    13.9,
     -6
    ],
    "fov": 38,
@@ -408,13 +408,13 @@
    "label": "",
    "light": "day",
    "pos": [
-    2.6,
-    13.5,
-    1.6
+    5.679,
+    14.811,
+    -5.451
    ],
    "look": [
-    -1.6,
-    13.3,
+    -0.6,
+    13.7,
     -6
    ],
    "fov": 36,
@@ -429,12 +429,12 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.6,
-    11.8,
-    2.2
+    3.441,
+    12.255,
+    -0.946
    ],
    "look": [
-    -2.2,
+    -0.8,
     13.9,
     -6
    ],
@@ -450,14 +450,14 @@
    "label": "Street below",
    "light": "day",
    "pos": [
-    5.0,
-    1.6,
-    7.5
+    6.706,
+    2.319,
+    9.342
    ],
    "look": [
-    -0.5,
-    2.4,
-    -6
+    0,
+    1.9,
+    -0.6
    ],
    "fov": 50,
    "action": "Cars stopped, drivers out, everyone looking up",
@@ -471,14 +471,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.4,
-    1.7,
-    3.6
+    0.618,
+    4.563,
+    5.842
    ],
    "look": [
-    -1.2,
-    8.5,
-    -6
+    0,
+    3.0,
+    -3.0
    ],
    "fov": 56,
    "action": "Inside the crowd: faces tilted up, mouths open",
@@ -492,14 +492,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    3.2,
-    2.0,
-    6.4
+    5.447,
+    1.997,
+    6.357
    ],
    "look": [
-    0,
-    1.6,
-    -1.5
+    1.2,
+    1.7,
+    -1.0
    ],
    "fov": 46,
    "action": "Cruiser slews in, officers run, one shouting into a radio",
@@ -513,16 +513,16 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.6,
-    14.2,
-    2.2
+    6.474,
+    14.854,
+    4.894
    ],
    "look": [
-    -2.6,
-    13.5,
-    -6
+    -0.2,
+    13.6,
+    -5.0
    ],
-   "fov": 46,
+   "fov": 48,
    "action": "Two cops on the roof, empty hands, staring out along the wire",
    "word": 155,
    "b": 1502
@@ -534,14 +534,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    2.6,
-    13.2,
-    1.8
+    5.541,
+    13.791,
+    0.31
    ],
    "look": [
-    -2.4,
+    1.3,
     12.9,
-    -6
+    -4.4
    ],
    "fov": 42,
    "action": "The same two sit down to wait, coffees, folded arms",
@@ -555,14 +555,14 @@
    "label": "",
    "light": "day",
    "pos": [
-    2.0,
-    13.6,
-    2.4
+    5.322,
+    13.59,
+    -0.24
    ],
    "look": [
-    -0.6,
-    13.0,
-    -6
+    0.6,
+    12.9,
+    -4.8
    ],
    "fov": 44,
    "action": "He steps off the wire into their arms on the roof",
@@ -576,14 +576,14 @@
    "label": "City Hall",
    "light": "day",
    "pos": [
-    0.2,
-    4.2,
-    3.4
+    0.613,
+    3.429,
+    2.933
    ],
    "look": [
-    0,
-    1.3,
-    -0.6
+    0.2,
+    1.5,
+    -1.0
    ],
    "fov": 38,
    "action": "Overhead: gavel down, DROPPED stamp on the charge sheet",
@@ -597,14 +597,14 @@
    "label": "Central Park",
    "light": "day",
    "pos": [
-    1.8,
-    2.4,
-    7.4
+    2.213,
+    3.298,
+    9.879
    ],
    "look": [
-    0,
-    1.9,
-    0
+    -0.2,
+    2.6,
+    0.2
    ],
    "fov": 44,
    "action": "Free show: he walks a low wire above a clapping crowd",
@@ -618,14 +618,14 @@
    "label": "Observation deck",
    "light": "day",
    "pos": [
-    0.5,
-    2.9,
-    5.2
+    0.96,
+    2.496,
+    3.976
    ],
    "look": [
-    0,
-    1.7,
-    -0.4
+    0.1,
+    1.8,
+    -0.9
    ],
    "fov": 40,
    "action": "The clerk slides the lifetime pass across the counter",
@@ -639,17 +639,17 @@
    "label": "New York · today",
    "light": "day",
    "pos": [
-    3.6,
-    2.4,
-    9.5
+    6.088,
+    6.654,
+    29.996
    ],
    "look": [
-    0,
+    -0.5,
     2.2,
-    -4
+    -1.0
    ],
    "fov": 50,
-   "action": "Two empty tower footprints; he crosses a low wire in front",
+   "action": "Two empty tower footprints with hoarding; he crosses a low wire",
    "word": 206,
    "b": 1967
   },
@@ -660,16 +660,16 @@
    "label": "",
    "light": "day",
    "pos": [
-    -3.2,
-    2.4,
-    6.4
+    -2.997,
+    2.784,
+    10.455
    ],
    "look": [
-    0,
+    0.4,
     2.4,
     0
    ],
-   "fov": 42,
+   "fov": 46,
    "action": "Side view: he stops mid-wire, points at two towers on the skyline",
    "word": 216,
    "b": 2065
@@ -681,16 +681,16 @@
    "label": "",
    "light": "day",
    "pos": [
-    0.9,
-    2.6,
-    4.6
+    2.516,
+    2.816,
+    5.569
    ],
    "look": [
-    0,
-    2.4,
+    -0.2,
+    2.6,
     0
    ],
-   "fov": 40,
+   "fov": 42,
    "action": "Close: the pass in his hand; he walks on out of frame",
    "word": 227,
    "b": 2169
@@ -1871,6 +1871,858 @@
    "word": "walks.",
    "start": 70.59,
    "end": 71.08
+  }
+ ],
+ "captions": [
+  {
+   "start": 0,
+   "end": 0.38,
+   "text": "A MAN"
+  },
+  {
+   "start": 0.38,
+   "end": 0.74,
+   "text": "WALKED ON"
+  },
+  {
+   "start": 0.74,
+   "end": 1.12,
+   "text": "A WIRE"
+  },
+  {
+   "start": 1.12,
+   "end": 1.64,
+   "text": "BETWEEN TWO"
+  },
+  {
+   "start": 1.64,
+   "end": 2.59,
+   "text": "SKYSCRAPERS"
+  },
+  {
+   "start": 2.59,
+   "end": 4.06,
+   "text": "1,350 FEET"
+  },
+  {
+   "start": 4.06,
+   "end": 4.22,
+   "text": "AND"
+  },
+  {
+   "start": 4.22,
+   "end": 4.63,
+   "text": "POLICE"
+  },
+  {
+   "start": 4.63,
+   "end": 5.52,
+   "text": "WAITING BELOW"
+  },
+  {
+   "start": 5.57,
+   "end": 6.59,
+   "text": "PHILIPPE PETIT"
+  },
+  {
+   "start": 6.59,
+   "end": 7.63,
+   "text": "TWENTY-FOUR"
+  },
+  {
+   "start": 7.63,
+   "end": 8.09,
+   "text": "A FRENCH"
+  },
+  {
+   "start": 8.09,
+   "end": 8.32,
+   "text": "STREET"
+  },
+  {
+   "start": 8.32,
+   "end": 8.99,
+   "text": "PERFORMER"
+  },
+  {
+   "start": 8.99,
+   "end": 9.12,
+   "text": "AND"
+  },
+  {
+   "start": 9.12,
+   "end": 9.25,
+   "text": "HE"
+  },
+  {
+   "start": 9.25,
+   "end": 9.41,
+   "text": "HAS"
+  },
+  {
+   "start": 9.41,
+   "end": 9.71,
+   "text": "JUST"
+  },
+  {
+   "start": 9.71,
+   "end": 9.93,
+   "text": "SEEN"
+  },
+  {
+   "start": 9.93,
+   "end": 10.41,
+   "text": "A MAGAZINE"
+  },
+  {
+   "start": 10.41,
+   "end": 10.8,
+   "text": "PHOTO"
+  },
+  {
+   "start": 10.8,
+   "end": 10.87,
+   "text": "OF"
+  },
+  {
+   "start": 10.87,
+   "end": 11.7,
+   "text": "THE TOWERS"
+  },
+  {
+   "start": 11.7,
+   "end": 11.97,
+   "text": "SO"
+  },
+  {
+   "start": 11.97,
+   "end": 12.11,
+   "text": "HE"
+  },
+  {
+   "start": 12.11,
+   "end": 12.56,
+   "text": "DECIDES"
+  },
+  {
+   "start": 12.56,
+   "end": 12.63,
+   "text": "HE"
+  },
+  {
+   "start": 12.63,
+   "end": 12.84,
+   "text": "HAS"
+  },
+  {
+   "start": 12.84,
+   "end": 12.95,
+   "text": "TO"
+  },
+  {
+   "start": 12.95,
+   "end": 13.67,
+   "text": "WALK BETWEEN"
+  },
+  {
+   "start": 13.67,
+   "end": 14.09,
+   "text": "THEM"
+  },
+  {
+   "start": 14.09,
+   "end": 14.19,
+   "text": "FOR"
+  },
+  {
+   "start": 14.19,
+   "end": 15.03,
+   "text": "SIX YEARS"
+  },
+  {
+   "start": 15.03,
+   "end": 15.15,
+   "text": "HE"
+  },
+  {
+   "start": 15.15,
+   "end": 15.63,
+   "text": "STUDIES"
+  },
+  {
+   "start": 15.63,
+   "end": 16.13,
+   "text": "THE BUILDINGS"
+  },
+  {
+   "start": 16.13,
+   "end": 16.2,
+   "text": "IN"
+  },
+  {
+   "start": 16.2,
+   "end": 16.94,
+   "text": "DISGUISE"
+  },
+  {
+   "start": 16.94,
+   "end": 17.62,
+   "text": "REPORTER"
+  },
+  {
+   "start": 17.63,
+   "end": 18.13,
+   "text": "CONSTRUCTION"
+  },
+  {
+   "start": 18.13,
+   "end": 18.67,
+   "text": "WORKER"
+  },
+  {
+   "start": 18.67,
+   "end": 18.81,
+   "text": "HE"
+  },
+  {
+   "start": 18.81,
+   "end": 19.25,
+   "text": "EVEN"
+  },
+  {
+   "start": 19.36,
+   "end": 20.18,
+   "text": "FAKE ID"
+  },
+  {
+   "start": 20.45,
+   "end": 20.92,
+   "text": "THEN"
+  },
+  {
+   "start": 20.92,
+   "end": 21.09,
+   "text": "HE"
+  },
+  {
+   "start": 21.09,
+   "end": 21.18,
+   "text": "AND"
+  },
+  {
+   "start": 21.18,
+   "end": 21.34,
+   "text": "HIS"
+  },
+  {
+   "start": 21.34,
+   "end": 21.98,
+   "text": "FRIENDS SMUGGLE"
+  },
+  {
+   "start": 21.98,
+   "end": 22.34,
+   "text": "A STEEL"
+  },
+  {
+   "start": 22.34,
+   "end": 22.95,
+   "text": "CABLE"
+  },
+  {
+   "start": 22.95,
+   "end": 23.62,
+   "text": "A POLE"
+  },
+  {
+   "start": 23.62,
+   "end": 23.75,
+   "text": "AND"
+  },
+  {
+   "start": 23.75,
+   "end": 23.97,
+   "text": "A BOW"
+  },
+  {
+   "start": 23.97,
+   "end": 24.06,
+   "text": "AND"
+  },
+  {
+   "start": 24.06,
+   "end": 24.51,
+   "text": "ARROW UP"
+  },
+  {
+   "start": 24.51,
+   "end": 25.45,
+   "text": "FREIGHT ELEVATOR"
+  },
+  {
+   "start": 25.48,
+   "end": 25.58,
+   "text": "YOU"
+  },
+  {
+   "start": 25.58,
+   "end": 26.14,
+   "text": "SEE"
+  },
+  {
+   "start": 26.14,
+   "end": 26.71,
+   "text": "THE TOWERS"
+  },
+  {
+   "start": 26.71,
+   "end": 26.84,
+   "text": "HAD"
+  },
+  {
+   "start": 26.84,
+   "end": 27.35,
+   "text": "ONLY JUST"
+  },
+  {
+   "start": 27.35,
+   "end": 27.86,
+   "text": "OPENED"
+  },
+  {
+   "start": 27.86,
+   "end": 27.97,
+   "text": "AND"
+  },
+  {
+   "start": 27.97,
+   "end": 28.73,
+   "text": "SECURITY WASN'T"
+  },
+  {
+   "start": 28.73,
+   "end": 29.04,
+   "text": "FINISHED"
+  },
+  {
+   "start": 29.04,
+   "end": 29.48,
+   "text": "YET"
+  },
+  {
+   "start": 29.48,
+   "end": 29.71,
+   "text": "THAT"
+  },
+  {
+   "start": 29.71,
+   "end": 30.26,
+   "text": "NIGHT"
+  },
+  {
+   "start": 30.26,
+   "end": 30.39,
+   "text": "THEY"
+  },
+  {
+   "start": 30.39,
+   "end": 30.63,
+   "text": "SHOOT"
+  },
+  {
+   "start": 30.63,
+   "end": 31.02,
+   "text": "A FISHING"
+  },
+  {
+   "start": 31.02,
+   "end": 31.55,
+   "text": "LINE ACROSS"
+  },
+  {
+   "start": 31.55,
+   "end": 31.66,
+   "text": "WITH"
+  },
+  {
+   "start": 31.66,
+   "end": 32.24,
+   "text": "THE BOW"
+  },
+  {
+   "start": 32.24,
+   "end": 32.44,
+   "text": "THEN"
+  },
+  {
+   "start": 32.44,
+   "end": 32.67,
+   "text": "PULL"
+  },
+  {
+   "start": 32.67,
+   "end": 32.98,
+   "text": "THE HEAVY"
+  },
+  {
+   "start": 32.98,
+   "end": 33.52,
+   "text": "CABLE OVER"
+  },
+  {
+   "start": 33.52,
+   "end": 33.66,
+   "text": "BY"
+  },
+  {
+   "start": 33.66,
+   "end": 34.23,
+   "text": "BY HAND"
+  },
+  {
+   "start": 34.23,
+   "end": 34.39,
+   "text": "AT"
+  },
+  {
+   "start": 34.39,
+   "end": 35.18,
+   "text": "SUNRISE"
+  },
+  {
+   "start": 35.18,
+   "end": 35.89,
+   "text": "PETIT STEPS"
+  },
+  {
+   "start": 35.89,
+   "end": 36.19,
+   "text": "OUT"
+  },
+  {
+   "start": 36.19,
+   "end": 36.36,
+   "text": "WITH"
+  },
+  {
+   "start": 36.36,
+   "end": 36.53,
+   "text": "NO"
+  },
+  {
+   "start": 36.53,
+   "end": 37.19,
+   "text": "HARNESS"
+  },
+  {
+   "start": 37.19,
+   "end": 37.33,
+   "text": "NO"
+  },
+  {
+   "start": 37.33,
+   "end": 37.9,
+   "text": "NET"
+  },
+  {
+   "start": 37.9,
+   "end": 38.53,
+   "text": "NOTHING"
+  },
+  {
+   "start": 38.53,
+   "end": 38.63,
+   "text": "FOR"
+  },
+  {
+   "start": 38.63,
+   "end": 39.72,
+   "text": "45 MINUTES"
+  },
+  {
+   "start": 39.72,
+   "end": 40.0,
+   "text": "HE"
+  },
+  {
+   "start": 40.26,
+   "end": 41.11,
+   "text": "EIGHT TIMES"
+  },
+  {
+   "start": 41.11,
+   "end": 41.22,
+   "text": "HE"
+  },
+  {
+   "start": 41.22,
+   "end": 41.88,
+   "text": "KNEELS"
+  },
+  {
+   "start": 41.88,
+   "end": 42.0,
+   "text": "HE"
+  },
+  {
+   "start": 42.0,
+   "end": 42.84,
+   "text": "LIES DOWN"
+  },
+  {
+   "start": 42.84,
+   "end": 42.93,
+   "text": "HE"
+  },
+  {
+   "start": 42.93,
+   "end": 43.48,
+   "text": "SALUTES"
+  },
+  {
+   "start": 43.48,
+   "end": 44.08,
+   "text": "BELOW"
+  },
+  {
+   "start": 44.08,
+   "end": 45.22,
+   "text": "TRAFFIC STOPS"
+  },
+  {
+   "start": 45.22,
+   "end": 46.06,
+   "text": "THOUSANDS STARE"
+  },
+  {
+   "start": 46.06,
+   "end": 46.3,
+   "text": "UP"
+  },
+  {
+   "start": 46.3,
+   "end": 47.04,
+   "text": "POLICE RUSH"
+  },
+  {
+   "start": 47.04,
+   "end": 47.13,
+   "text": "TO"
+  },
+  {
+   "start": 47.13,
+   "end": 47.82,
+   "text": "THE SCENE"
+  },
+  {
+   "start": 47.92,
+   "end": 48.48,
+   "text": "LUCKILY"
+  },
+  {
+   "start": 48.48,
+   "end": 48.73,
+   "text": "THEY"
+  },
+  {
+   "start": 48.73,
+   "end": 49.03,
+   "text": "CAN'T"
+  },
+  {
+   "start": 49.03,
+   "end": 49.28,
+   "text": "REACH"
+  },
+  {
+   "start": 49.28,
+   "end": 49.37,
+   "text": "HIM"
+  },
+  {
+   "start": 49.37,
+   "end": 49.52,
+   "text": "UP"
+  },
+  {
+   "start": 49.52,
+   "end": 49.87,
+   "text": "THERE"
+  },
+  {
+   "start": 50.09,
+   "end": 50.75,
+   "text": "UNLUCKILY"
+  },
+  {
+   "start": 50.75,
+   "end": 51.05,
+   "text": "THEY"
+  },
+  {
+   "start": 51.05,
+   "end": 51.19,
+   "text": "CAN"
+  },
+  {
+   "start": 51.19,
+   "end": 51.79,
+   "text": "WAIT"
+  },
+  {
+   "start": 51.79,
+   "end": 51.95,
+   "text": "WHEN"
+  },
+  {
+   "start": 51.95,
+   "end": 52.06,
+   "text": "HE"
+  },
+  {
+   "start": 52.06,
+   "end": 52.77,
+   "text": "FINALLY STEPS"
+  },
+  {
+   "start": 52.77,
+   "end": 53.11,
+   "text": "OFF"
+  },
+  {
+   "start": 53.11,
+   "end": 53.37,
+   "text": "THEY"
+  },
+  {
+   "start": 53.37,
+   "end": 53.72,
+   "text": "ARREST"
+  },
+  {
+   "start": 53.72,
+   "end": 53.84,
+   "text": "HIM"
+  },
+  {
+   "start": 53.84,
+   "end": 53.92,
+   "text": "ON"
+  },
+  {
+   "start": 53.92,
+   "end": 54.57,
+   "text": "THE ROOF"
+  },
+  {
+   "start": 54.68,
+   "end": 54.9,
+   "text": "BUT"
+  },
+  {
+   "start": 54.9,
+   "end": 55.24,
+   "text": "THE CITY"
+  },
+  {
+   "start": 55.24,
+   "end": 55.45,
+   "text": "LOVED"
+  },
+  {
+   "start": 55.45,
+   "end": 55.89,
+   "text": "IT"
+  },
+  {
+   "start": 55.89,
+   "end": 56.05,
+   "text": "SO"
+  },
+  {
+   "start": 56.05,
+   "end": 56.57,
+   "text": "THE CHARGES"
+  },
+  {
+   "start": 56.57,
+   "end": 56.6,
+   "text": "ARE"
+  },
+  {
+   "start": 56.6,
+   "end": 57.24,
+   "text": "DROPPED"
+  },
+  {
+   "start": 57.24,
+   "end": 58.0,
+   "text": "INSTEAD"
+  },
+  {
+   "start": 58.0,
+   "end": 58.11,
+   "text": "HE"
+  },
+  {
+   "start": 58.11,
+   "end": 58.78,
+   "text": "PERFORMS FREE"
+  },
+  {
+   "start": 58.78,
+   "end": 58.9,
+   "text": "IN"
+  },
+  {
+   "start": 58.9,
+   "end": 59.8,
+   "text": "CENTRAL PARK"
+  },
+  {
+   "start": 59.8,
+   "end": 60.06,
+   "text": "AND"
+  },
+  {
+   "start": 60.06,
+   "end": 60.8,
+   "text": "PORT AUTHORITY"
+  },
+  {
+   "start": 60.8,
+   "end": 61.17,
+   "text": "GIVES HIM"
+  },
+  {
+   "start": 61.17,
+   "end": 62.04,
+   "text": "LIFETIME PASS"
+  },
+  {
+   "start": 62.04,
+   "end": 62.14,
+   "text": "TO"
+  },
+  {
+   "start": 62.14,
+   "end": 62.58,
+   "text": "THE DECK"
+  },
+  {
+   "start": 62.58,
+   "end": 63.32,
+   "text": "THE TOWERS"
+  },
+  {
+   "start": 63.32,
+   "end": 63.9,
+   "text": "GONE NOW"
+  },
+  {
+   "start": 63.9,
+   "end": 64.23,
+   "text": "BUT"
+  },
+  {
+   "start": 64.23,
+   "end": 64.55,
+   "text": "PETIT"
+  },
+  {
+   "start": 64.55,
+   "end": 65.6,
+   "text": "STILL WALKING"
+  },
+  {
+   "start": 65.6,
+   "end": 65.7,
+   "text": "HE"
+  },
+  {
+   "start": 65.7,
+   "end": 66.21,
+   "text": "SAID"
+  },
+  {
+   "start": 66.21,
+   "end": 66.34,
+   "text": "IF"
+  },
+  {
+   "start": 66.34,
+   "end": 66.48,
+   "text": "HE"
+  },
+  {
+   "start": 66.48,
+   "end": 67.0,
+   "text": "SEES TWO"
+  },
+  {
+   "start": 67.0,
+   "end": 67.76,
+   "text": "TOWERS"
+  },
+  {
+   "start": 67.76,
+   "end": 67.85,
+   "text": "HE"
+  },
+  {
+   "start": 67.85,
+   "end": 68.08,
+   "text": "HAS"
+  },
+  {
+   "start": 68.08,
+   "end": 68.17,
+   "text": "TO"
+  },
+  {
+   "start": 68.17,
+   "end": 68.78,
+   "text": "WALK"
+  },
+  {
+   "start": 68.88,
+   "end": 68.99,
+   "text": "HE"
+  },
+  {
+   "start": 68.99,
+   "end": 69.3,
+   "text": "STILL"
+  },
+  {
+   "start": 69.3,
+   "end": 69.49,
+   "text": "HAS"
+  },
+  {
+   "start": 69.49,
+   "end": 69.61,
+   "text": "HIS"
+  },
+  {
+   "start": 69.61,
+   "end": 70.24,
+   "text": "PASS"
+  },
+  {
+   "start": 70.24,
+   "end": 70.33,
+   "text": "HE"
+  },
+  {
+   "start": 70.33,
+   "end": 70.56,
+   "text": "STILL"
+  },
+  {
+   "start": 70.56,
+   "end": 71.24,
+   "text": "WALKS"
   }
  ]
 }

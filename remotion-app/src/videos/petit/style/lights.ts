@@ -33,11 +33,11 @@ export const LIGHTS: Record<"day" | "golden" | "night", LightPreset> = {
   },
   night: {
     az: 118, el: 34,
-    lit: [0.46, 0.56, 0.98], shade: [0.07, 0.09, 0.2], lift: [0.02, 0.03, 0.1], lambert: 0.35, sideK: 0.8, term: 0.14,
-    charTint: [0.74, 0.8, 1.0], charShade: 0.8, charGrad: 0.09, bodyGrad: 0.24, sideTint: [0.72, 0.74, 0.94],
+    lit: [0.2, 0.26, 0.5], shade: [0.04, 0.05, 0.13], lift: [0.01, 0.02, 0.07], lambert: 0.35, sideK: 0.8, term: 0.14,
+    charTint: [0.6, 0.68, 0.96], charShade: 0.74, charGrad: 0.09, bodyGrad: 0.24, sideTint: [0.6, 0.64, 0.9],
     blob: [0.42, 0.44, 0.62], actorShadow: false,
     top: "#0a1024", hor: "#26324e", skyCurve: [0.0, 0.12, 0.34], fog: "#202b45", fogNear: 30, fogFar: 240, sunDisc: "#dfe8ff",
-    sunCol: "#9fb8ff", sunI: 1.15, sky: "#5a70a4", ground: "#22222e", hemiI: 0.5,
+    sunCol: "#a9c2ff", sunI: 0.62, sky: "#4a5c8c", ground: "#1a1a24", hemiI: 0.34,
     bias: -0.0004, normalBias: 0.025,
   },
 };

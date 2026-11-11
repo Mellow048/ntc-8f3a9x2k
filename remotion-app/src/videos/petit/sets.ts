@@ -70,7 +70,7 @@ export function bag(p:T.Object3D,x:number,y:number,z:number){const g=new T.Group
 export function mug(p:T.Object3D,x:number,y:number,z:number){const g=new T.Group();g.position.set(x,y,z);p.add(g);cyl(g,0,.17,0,.14,.34,material('beer-glass','#c79749'),.15);cyl(g,0,.34,0,.15,.07,material('foam','#f0e0ba'));const h=mesh(g,new T.TorusGeometry(.1,.025,6,14),material('handle','#c3a975'),V(.15,.18,0));return g;}
 export function bars(p:T.Object3D,z=1){const g=new T.Group();p.add(g);for(let x=-2.7;x<=2.7;x+=.45)cyl(g,x,1.85,z,.045,3.7,iron());for(const y of [.3,2,3.6])box(g,0,y,z,5.7,.09,.13,iron());return g;}
 // ---- Petit: Twin Towers, wire, elevator, street, park ----
-export function twinTowers(p:T.Object3D,opts:{gap?:number;height?:number;roofY?:number}={}){
+export function twinTowers(p:T.Object3D,opts:{gap?:number;height?:number;roofY?:number;wire?:boolean}={}){
  const gap=opts.gap??14,height=opts.height??38,roofY=opts.roofY??12;
  const glass=material('towerGlass','#ffffff',rep(towerGlass(),2,6));
  const frame=material('towerFrame','#2f4a52');
@@ -89,8 +89,8 @@ export function twinTowers(p:T.Object3D,opts:{gap?:number;height?:number;roofY?:
   // Base podium
   box(p,x,1.2,-6,8,2.4,8,material('podium','#8a9aa2'));
  }
- // Wire between roofs (dynamic sag handled in world motions; static base here)
- bar(p,V(-(gap/2+3.2),roofY+1.2,-6),V(gap/2+3.2,roofY+1.2,-6),.05,iron());
+ // Taut feed cable between the roofs (world adds the sagging walk wire where it belongs).
+ if(opts.wire!==false){bar(p,V(-(gap/2+3.2),roofY+1.2,-6),V(gap/2+3.2,roofY+1.2,-6),.05,iron());}
  return {roofY,gap};
 }
 export function wireLine(p:T.Object3D,a:T.Vector3,b:T.Vector3,sag=0){
@@ -106,19 +106,52 @@ export function elevatorCar(p:T.Object3D,x=0,z=0){
  for(const dx of [-1.4,1.4])box(p,x+dx,.15,z, .18,.3,2.6,timber());
  lettering(p,'FREIGHT',x,2.6,z+1.36,1.6,.35);
 }
+export function lobby(p:T.Object3D){
+ box(p,0,-.1,0,16,.2,14,material('marble','#e6e2d8',rep(stoneHD(),5,5)));
+ box(p,0,3.4,-4.6,16,6.8,.4,material('lobbyGlass','#ffffff',rep(towerGlass(),3,3)));
+ const frame=material('lobbyFrame','#9aa4ac',undefined,true);
+ for(const x of [-4,0,4])box(p,x,3.4,-4.36,.16,6.8,.14,frame);
+ for(const y of [1.2,3.4,5.6])box(p,0,y,-4.36,16,.14,.14,frame);
+ box(p,0,6.9,-3.2,16,.24,3.2,material('lobbyCeil','#d8d6d0'));
+ for(let i=0;i<4;i++)box(p,0,6.76,-1.9-i*1.1,9,.08,.4,material('lobbyLight','#f6f0da'));
+ for(const x of [-7.4,7.4])box(p,x,3.4,0,.3,6.8,9,material('lobbySide','#cfcbc2'));
+ // reception desk with a stone counter and a brass plate
+ box(p,-1.4,.7,-1.6,2.9,1.0,.9,material('reception','#8d9aa3'));
+ box(p,-1.4,1.25,-1.6,3.1,.12,1.1,material('counter','#e9e4d8',rep(stoneHD(),2,1)));
+ lettering(p,'PORT AUTHORITY',-1.4,1.85,-2.06,2.2,.4,'#2f4a52','#e8ecef');
+ // stacked chairs and a wet-paint bucket: nothing is finished
+ for(let i=0;i<3;i++)box(p,2.2+i*.1,.3,.2,.7,.6,.7,material('chair','#5a5f6a'));
+ cyl(p,3.6,.2,1.4,.3,.4,material('bucket','#b8452f'));
+ // stanchions with a rope
+ for(const x of [-3.6,-1.4,.8]){cyl(p,x,.5,1.1,.06,1.0,material('stanchion','#c9a24a',undefined,true));sphere(p,x,1.02,1.1,.08,material('stanchionTop','#c9a24a',undefined,true));}
+ return p;
+}
+export function carNY(p:T.Object3D,x:number,z:number,col:string,rot=0){
+ const g=new T.Group();g.position.set(x,0,z);g.rotation.y=rot;p.add(g);
+ const body=material('car'+col,col);
+ box(g,0,.52,0,1.76,.42,3.9,body);              // main body
+ box(g,0,.70,-.9,1.7,.22,2.0,body);             // rear deck rise
+ box(g,0,.70,1.02,1.72,.2,1.7,body);            // hood
+ box(g,0,.98,-.15,1.52,.44,1.86,material('carRoof'+col,col)); // cabin shell
+ box(g,0,1.02,.79,1.38,.34,.06,material('carGlass','#3f5367',undefined,true));  // windscreen
+ box(g,0,1.02,-1.06,1.38,.32,.06,material('carGlass','#3f5367',undefined,true)); // rear glass
+ for(const sx of [-1,1])box(g,sx*.77,1.0,-.2,.06,.3,1.6,material('carGlass','#3f5367',undefined,true)); // side glass
+ box(g,0,1.21,-.15,1.46,.06,1.7,material('carRoof2'+col,col)); // roof
+ for(const sz of [1.96,-1.96])box(g,0,.42,sz,1.7,.14,.12,material('chrome','#cfd3d8',undefined,true)); // bumpers
+ box(g,-.56,.6,1.98,.34,.18,.06,material('headlight','#ffe9a8'));box(g,.56,.6,1.98,.34,.18,.06,material('headlight','#ffe9a8'));
+ box(g,-.56,.58,-1.98,.3,.16,.06,material('taillight','#c0392b'));box(g,.56,.58,-1.98,.3,.16,.06,material('taillight','#c0392b'));
+ for(const dx of [-.86,.86])for(const dz of [-1.28,1.28]){
+  const tire=cyl(g,dx,.42,dz,.34,.2,material('tire','#22242a'));tire.rotation.z=Math.PI/2;
+  const hub=cyl(g,dx+(dx>0?.11:-.11),.42,dz,.17,.06,material('hub','#c9cdd2',undefined,true));hub.rotation.z=Math.PI/2;
+ }
+ box(g,0,.44,-2.02,.5,.1,.06,material('plate','#e8e2cc'));
+ return g;
+}
 export function streetNY(p:T.Object3D){
  box(p,0,-.28,-6,60,.45,80,material('street-cobble','#ffffff',rep(cobbleHD(),12,16)));
  for(const side of [-1,1]){box(p,side*5.9,.08,-6,2.4,.25,60,material('pavement','#c2b6a1',rep(stoneHD(),2,14)));box(p,side*4.66,.12,-6,.22,.3,60,stone());}
- // 1970s cars: body + cabin + wheels + lights (not boxes-as-cars)
- const car=(x:number,z:number,col:string,rot=0)=>{
-  const g=new T.Group();g.position.set(x,0,z);g.rotation.y=rot;p.add(g);
-  box(g,0,.55,0,1.7,.55,3.6,material('car'+col,col));
-  box(g,0,1.05,-.2,1.5,.5,1.8,material('carGlass','#3f5367',undefined,true));
-  for(const dx of [-.75,.75])for(const dz of [-1.2,1.2]){const w=cyl(g,dx,.32,dz,.32,.18,iron());w.rotation.z=Math.PI/2;}
-  box(g,-.6,.55,1.81,.28,.16,.06,material('headlight','#ffe9a8'));box(g,.6,.55,1.81,.28,.16,.06,material('headlight','#ffe9a8'));
-  box(g,-.6,.55,-1.81,.28,.16,.06,material('taillight','#c0392b'));box(g,.6,.55,-1.81,.28,.16,.06,material('taillight','#c0392b'));
- };
- car(-2.5,-10,'#8a3a3a');car(2.5,-14,'#3a5a8a',Math.PI);car(-2.5,-18,'#5a6a4a');
+ // 1970s cars with real body, cabin, wheels, bumpers and lights
+ carNY(p,-2.5,-10,'#8a3a3a');carNY(p,2.5,-14,'#3a5a8a',Math.PI);carNY(p,-2.5,-18,'#5a6a4a');carNY(p,2.1,-6.5,'#c9b46a',Math.PI);
  for(let i=0;i<8;i++)for(const side of [-1,1]){const z=4-i*6;cyl(p,side*4.8,.55,z,.09,1.1,iron());sphere(p,side*4.8,1.1,z,.12,iron());}
 }
 export function parkSet(p:T.Object3D){
@@ -140,6 +173,11 @@ export function poleProp(p:T.Object3D,x:number,y:number,z:number){
  cyl(g,0,0,0,.045,4.2,timber());return g;
 }
 // ---- Petit: props for the 1974 story beats ----
+export function streetHat(p:T.Object3D,x:number,z:number){
+ cyl(p,x,.045,z,.46,.06,material('hat','#3c3546'));
+ cyl(p,x,.13,z,.27,.18,material('hatband','#2c2634'));
+ cyl(p,x,.22,z,.26,.02,material('coin','#d8b45a',undefined,true));
+}
 export function tree(p:T.Object3D,x:number,z:number,h=3,s=1){
  cyl(p,x,h*.4,z,.16*s,h*.8,timber());
  const c=sphere(p,x,h*.95,z,1.1*s,material('tree','#4a7a3a'));c.scale.set(1,1.35,1);
@@ -171,14 +209,12 @@ export function toolbox(p:T.Object3D,x:number,y:number,z:number){
  return g;
 }
 export function policeCar(p:T.Object3D,x:number,z:number,rot=0){
- const g=new T.Group();g.position.set(x,0,z);g.rotation.y=rot;p.add(g);
- box(g,0,.55,0,1.9,.6,4.1,material('cruiser','#eef1f4'));
- box(g,0,1.1,-.25,1.7,.55,2,material('cruiserGlass','#3f5367',undefined,true));
- box(g,0,.62,1.3,.3,.18,1.4,material('cruiserDoor','#2e4a8a'));
- for(const dx of [-.86,.86])for(const dz of [-1.35,1.35]){const w=cyl(g,dx,.34,dz,.34,.19,iron());w.rotation.z=Math.PI/2;}
- box(g,0,1.5,-.4,.6,.16,.5,material('lightbar','#c0392b'));
- cyl(g,0,1.66,-.4,.1,.16,material('lightblue','#2d6fd0'));
- box(g,-.62,.58,2.06,.3,.17,.07,material('headlight','#ffe9a8'));box(g,.62,.58,2.06,.3,.17,.07,material('headlight','#ffe9a8'));
+ const g=carNY(p,x,z,'#eef1f4',rot);
+ box(g,0,.58,0,1.8,.44,3.94,material('cruiserPanel','#eef1f4'));
+ box(g,0,.62,.9,1.82,.2,.9,material('cruiserStripe','#2e4a8a'));
+ box(g,0,1.32,-.2,.62,.14,.46,material('lightbarBase','#3a3f48'));
+ box(g,-.16,1.42,-.2,.26,.1,.36,material('lightRed','#c0392b'));
+ box(g,.16,1.42,-.2,.26,.1,.36,material('lightBlue','#2d6fd0'));
  return g;
 }
 export function barrierTape(p:T.Object3D,x:number,z:number,w=3){
@@ -208,9 +244,14 @@ export function magazineProp(p:T.Object3D,x:number,y:number,z:number,w=1.5,h=1.9
  return o;
 }
 export function footprint(p:T.Object3D,x:number,z:number,s=7){
- box(p,x,.02,z,s,.05,s,material('towerfoot','#5f6a72',rep(stoneHD(),3,3)));
- for(const dx of [-s/2,s/2])box(p,x+dx,.2,z,.4,.4,s,material('footedge','#8a8f94'));
- for(const dz of [-s/2,s/2])box(p,x,.2,z+dz,s,.4,.4,material('footedge','#8a8f94'));
+ box(p,x,-.06,z,s,.06,s,material('towerfoot','#6c777f',rep(stoneHD(),4,4)));
+ box(p,x,.12,z,s+.5,.3,.3,material('footedge','#b8bcc0'));
+ box(p,x,.12,z-s/2,s+.5,.3,.3,material('footedge','#b8bcc0'));
+ box(p,x,-.06,z+s/2,.3,.06,s,material('footedge','#b8bcc0'));
+ // hoarding fence around the empty lot
+ for(let i=0;i<7;i++){const t=i/6-.5;box(p,x+t*(s+1.6),1.0,z-s/2-.9,.16,2,.16,timber());}
+ box(p,x,1.6,z-s/2-.9,s+1.8,.9,.08,material('hoarding','#5e7f9a'));
+ for(const dy of [-.35,.35])box(p,x,1.6+dy,z-s/2-.86,s+1.8,.05,.03,material('hoardline','#cdd6dd'));
 }
 export function smallTowers(p:T.Object3D,x:number,y:number,z:number,s=1){
  const g=new T.Group();g.position.set(x,y,z);g.scale.setScalar(s);p.add(g);

@@ -8,9 +8,9 @@ Every frame is deterministic; action ramps are clamped and hold their endpoints.
 
 | Shot | Time | Place / distinct action |
 |---|---|---|
-| 1 | 0.00–2.57 | hook: Both towers, the wire between them, the man tiny on it, street far below |
-| 2 | 2.57–4.03 | height: Straight down the tower face: street, cars, people 1,350 feet below |
-| 3 | 4.03–5.53 | policewait: Street: police car, two officers craning up at the wire |
+| 1 | 0.00–2.57 | hook: Both towers, the walk wire between them, the man tiny on it, police and cars below |
+| 2 | 2.57–4.03 | height: Straight down the tower face: street, cars and people 1,350 feet below |
+| 3 | 4.03–5.53 | policewait: Street: police car and two officers craning up at the wire |
 | 4 | 5.53–8.97 | performer: Paris square: Petit performs on a low wire, hat of coins, small crowd |
 | 5 | 8.97–11.67 | magazine: Overhead: magazine open on the table, the towers page |
 | 6 | 11.67–14.07 | decision: He points at the page and grins — the decision |
@@ -38,7 +38,7 @@ Every frame is deterministic; action ramps are clamped and hold their endpoints.
 | 28 | 54.63–57.20 | dropped: Overhead: gavel down, DROPPED stamp on the charge sheet |
 | 29 | 57.20–59.77 | park: Free show: he walks a low wire above a clapping crowd |
 | 30 | 59.77–62.53 | pass: The clerk slides the lifetime pass across the counter |
-| 31 | 62.53–65.57 | today: Two empty tower footprints; he crosses a low wire in front |
+| 31 | 62.53–65.57 | today: Two empty tower footprints with hoarding; he crosses a low wire |
 | 32 | 65.57–68.83 | quote: Side view: he stops mid-wire, points at two towers on the skyline |
 | 33 | 68.83–72.30 | walk: Close: the pass in his hand; he walks on out of frame |
 

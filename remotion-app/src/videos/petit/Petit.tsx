@@ -6,7 +6,7 @@ import {useThree} from '@react-three/fiber';
 import {EffectComposer} from '@react-three/postprocessing';
 import {BloomEffect,BlendFunction,ToneMappingEffect,ToneMappingMode} from 'postprocessing';
 import {World} from './world';
-import {WORDS,shotAt,clamp} from './story';
+import {CAPTIONS,shotAt,clamp} from './story';
 import {InkPass,noInkFallback} from './style/ink';
 import {LensBlur} from './style/lensblur';
 import {GradeEffect,GRADES,gradeFor} from './style/grade';
@@ -22,7 +22,7 @@ const Scene:React.FC=()=>{
 };
 export const Captions:React.FC=()=>{
  const f=useCurrentFrame(),t=f/30;
- const groups=useMemo(()=>{const g:{text:string;start:number;end:number}[]=[];for(let i=0;i<WORDS.length;){const a=WORDS[i],b=WORDS[i+1];const pair=!!b&&a.word.length+b.word.length<=13&&b.start-a.end<.32;g.push({text:a.word+(pair?' '+b.word:''),start:a.start,end:pair?b.end:a.end});i+=pair?2:1;}return g;},[]);
+ const groups=useMemo(()=>CAPTIONS??[],[]);
  const g=groups.find((a,i)=>t>=Math.max(0,a.start-.035)&&t<(groups[i+1]?Math.min(a.end+.15,groups[i+1].start-.035):a.end+.15));if(!g)return null;
  const scale=1+.08*(1-clamp((f-g.start*30)/4));
  return <div style={{position:'absolute',top:'73%',left:22,right:22,textAlign:'center',fontFamily:'Arial,sans-serif',fontSize:57,fontWeight:900,lineHeight:1.1,textTransform:'uppercase',color:'#fff',WebkitTextStroke:'2px #241726',paintOrder:'stroke fill',textShadow:'0 4px 0 #241726, 0 6px 12px #0008',transform:`scale(${scale})`}}>{g.text}</div>;
