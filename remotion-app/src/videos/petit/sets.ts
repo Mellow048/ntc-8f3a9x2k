@@ -78,37 +78,37 @@ export function bag(p:T.Object3D,x:number,y:number,z:number){const g=new T.Group
 export function mug(p:T.Object3D,x:number,y:number,z:number){const g=new T.Group();g.position.set(x,y,z);p.add(g);cyl(g,0,.17,0,.14,.34,material('beer-glass','#c79749'),.15);cyl(g,0,.34,0,.15,.07,material('foam','#f0e0ba'));const h=mesh(g,new T.TorusGeometry(.1,.025,6,14),material('handle','#c3a975'),V(.15,.18,0));return g;}
 export function bars(p:T.Object3D,z=1){const g=new T.Group();p.add(g);for(let x=-2.7;x<=2.7;x+=.45)cyl(g,x,1.85,z,.045,3.7,iron());for(const y of [.3,2,3.6])box(g,0,y,z,5.7,.09,.13,iron());return g;}
 // ---- Petit: Twin Towers, wire, elevator, street, park ----
-export function twinTowers(p:T.Object3D,opts:{gap?:number;height?:number;roofY?:number;wire?:boolean}={}){
- const gap=opts.gap??14,height=opts.height??38,roofY=opts.roofY??12;
+export function twinTowers(p:T.Object3D,opts:{gap?:number;height?:number;roofY?:number;wire?:boolean;z?:number}={}){
+ const gap=opts.gap??14,height=opts.height??38,roofY=opts.roofY??12,CZ=opts.z??-6;
  const glass=material('towerGlass','#ffffff',rep(towerGlass(),2,6));
  const frame=material('towerFrame','#2f4a52');
  for(const side of [-1,1]){
   const x=side*(gap/2+3.2);
   // Main shaft: box is one construction part; window grid + mullions + spandrels make it a tower.
-  box(p,x,height/2,-6,6.4,height,6.4,glass);
+  box(p,x,height/2,CZ,6.4,height,6.4,glass);
   // Vertical mullions + horizontal spandrels (real geometry in front of glass)
-  for(let i=0;i<7;i++){const xx=x-3+i;box(p,xx,height/2,-2.78,.12,height,.12,frame);}
-  for(let y=2;y<height;y+=2.2){box(p,x,y,-2.78,6.4,.16,.14,frame);}
+  for(let i=0;i<7;i++){const xx=x-3+i;box(p,xx,height/2,CZ+3.22,.12,height,.12,frame);}
+  for(let y=2;y<height;y+=2.2){box(p,x,y,CZ+3.22,6.4,.16,.14,frame);}
   // Roof: parapet, stair house with a door, water tank on legs, vents, antenna with a beacon
-  box(p,x,roofY+.3,-6,6.8,.6,6.8,frame);
-  box(p,x,roofY+.9,-8.2,6.6,.55,.55,material('parapet','#a4b0b6'));
-  box(p,x,roofY+.9,-3.8,6.6,.55,.55,material('parapet','#a4b0b6'));
-  for(const sd of [-1,1])box(p,x+sd*3.25,roofY+.9,-6,.55,.55,6.6,material('parapet','#a4b0b6'));
-  box(p,x-1.6,roofY+1.5,-7.6,2.2,1.8,2.0,material('stairhouse','#9aa6ac'));
-  box(p,x-1.6,roofY+2.5,-7.5,2.4,.18,2.2,material('stairroof','#7d8a90'));
-  box(p,x-1.6,roofY+1.0,-6.55,.7,1.1,.08,material('stairdoor','#4e5a62'));
+  box(p,x,roofY+.3,CZ,6.8,.6,6.8,frame);
+  box(p,x,roofY+.9,CZ-2.2,6.6,.55,.55,material('parapet','#a4b0b6'));
+  box(p,x,roofY+.9,CZ+2.2,6.6,.55,.55,material('parapet','#a4b0b6'));
+  for(const sd of [-1,1])box(p,x+sd*3.25,roofY+.9,CZ,.55,.55,6.6,material('parapet','#a4b0b6'));
+  box(p,x-1.6,roofY+1.5,CZ-1.6,2.2,1.8,2.0,material('stairhouse','#9aa6ac'));
+  box(p,x-1.6,roofY+2.5,CZ-1.5,2.4,.18,2.2,material('stairroof','#7d8a90'));
+  box(p,x-1.6,roofY+1.0,CZ-.55,.7,1.1,.08,material('stairdoor','#4e5a62'));
   // wooden water tank on a steel frame
-  for(const dx of [-.5,.5])for(const dz of [-.5,.5])bar(p,V(x+1.6+dx,roofY+.6,-5.4+dz),V(x+1.6+dx,roofY+1.5,-5.4+dz),.07,iron());
-  cyl(p,x+1.6,roofY+2.4,-5.4,1.0,1.9,material('tank','#9a6a44',rep(beamHD(),2,1)));
-  const cone=mesh(p,new T.ConeGeometry(1.1,.7,12),material('tanktop','#7d5636'),V(x+1.6,roofY+3.7,-5.4));
+  for(const dx of [-.5,.5])for(const dz of [-.5,.5])bar(p,V(x+1.6+dx,roofY+.6,CZ+.6+dz),V(x+1.6+dx,roofY+1.5,CZ+.6+dz),.07,iron());
+  cyl(p,x+1.6,roofY+2.4,CZ+.6,1.0,1.9,material('tank','#9a6a44',rep(beamHD(),2,1)));
+  const cone=mesh(p,new T.ConeGeometry(1.1,.7,12),material('tanktop','#7d5636'),V(x+1.6,roofY+3.7,CZ+.6));
   // vents
-  for(const vx of [.9,1.9]){cyl(p,x+vx,roofY+1.0,-4.6,.22,.7,material('vent','#8a949a'));const cap=mesh(p,new T.ConeGeometry(.3,.2,10),material('ventcap','#6f7a80'),V(x+vx,roofY+1.4,-4.6));}
-  cyl(p,x+2.4,roofY+2.4,-7.4,.08,3.2,iron());sphere(p,x+2.4,roofY+4.1,-7.4,.16,material('beacon','#ff6b5a',undefined,true));
+  for(const vx of [.9,1.9]){cyl(p,x+vx,roofY+1.0,CZ+1.4,.22,.7,material('vent','#8a949a'));const cap=mesh(p,new T.ConeGeometry(.3,.2,10),material('ventcap','#6f7a80'),V(x+vx,roofY+1.4,CZ+1.4));}
+  cyl(p,x+2.4,roofY+2.4,CZ-1.4,.08,3.2,iron());sphere(p,x+2.4,roofY+4.1,CZ-1.4,.16,material('beacon','#ff6b5a',undefined,true));
   // Base podium
-  box(p,x,1.2,-6,8,2.4,8,material('podium','#8a9aa2'));
+  box(p,x,1.2,CZ,8,2.4,8,material('podium','#8a9aa2'));
  }
  // Taut feed cable between the roofs (world adds the sagging walk wire where it belongs).
- if(opts.wire!==false){bar(p,V(-(gap/2+3.2),roofY+1.2,-6),V(gap/2+3.2,roofY+1.2,-6),.05,iron());}
+ if(opts.wire!==false){bar(p,V(-(gap/2+3.2),roofY+1.2,CZ),V(gap/2+3.2,roofY+1.2,CZ),.05,iron());}
  return {roofY,gap};
 }
 export function wireLine(p:T.Object3D,a:T.Vector3,b:T.Vector3,sag=0){
@@ -177,6 +177,22 @@ export function streetNY(p:T.Object3D){
  for(const side of [-1,1]){box(p,side*5.9,.08,-6,2.4,.25,60,material('pavement','#c2b6a1',rep(stoneHD(),2,14)));box(p,side*4.66,.12,-6,.22,.3,60,stone());}
  // 1970s cars with real body, cabin, wheels, bumpers and lights
  carNY(p,-2.5,-10,'#8a3a3a');carNY(p,2.5,-14,'#3a5a8a',Math.PI);carNY(p,-2.5,-18,'#5a6a4a');carNY(p,2.1,-6.5,'#c9b46a',Math.PI);
+ // Lower Manhattan around the street: grounded blocks both sides, cross street at the end
+ const brickM=material('nyBrick','#a46a52',rep(brick(),3,3));
+ const lime=material('nyStone','#c6bba6',rep(stoneHD(),3,3));
+ const cornice=material('nyCornice','#8f8574');
+ const winM=material('nyWin','#6a8390');
+ const rows:[number,number,number][]=[[-18,18,32],[-18,8,24],[-18,-3,29],[-18,-15,21],[-18,-27,27],[-18,-40,31],
+                                      [18,17,29],[18,7,23],[18,-4,31],[18,-16,25],[18,-28,28],[18,-41,22]];
+ for(let i=0;i<rows.length;i++){const [x,z,h]=rows[i], w=8.5+(i%3), d=9;
+  box(p,x,h/2+.2,z,w,h,d,i%2?brickM:lime);
+  box(p,x,h+.55,z,w+.7,.9,d+.7,cornice);
+  const face=x>0?x-w/2-.08:x+w/2+.08;
+  for(let yy=2.4;yy<h-1.2;yy+=3.1)for(let zz=-d*.32;zz<=d*.32;zz+=3.0)box(p,face,yy,z+zz,.12,1.5,1.1,winM);
+  for(let yy=2.0;yy<h-3;yy+=4.4)box(p,x>0?x-w/2-.55:x+w/2+.55,yy,z,.95,.14,d*.82,iron());
+ }
+ box(p,0,9,-54,76,18,14,material('nyEnd','#9d9484',rep(brick(),6,2)));
+ box(p,0,18.55,-54,76.6,.9,14.6,cornice);
  for(let i=0;i<8;i++)for(const side of [-1,1]){const z=4-i*6;cyl(p,side*4.8,.55,z,.09,1.1,iron());sphere(p,side*4.8,1.1,z,.12,iron());}
 }
 export function parkSet(p:T.Object3D){

@@ -24,7 +24,7 @@ export class Actor {
  root=new T.Group();card:T.Mesh;cv=document.createElement('canvas');g:CanvasRenderingContext2D;tex:T.CanvasTexture;
  frozen=false;expr:Expr='neutral';mode:'stand'|'march'|'stroll'|'sit'='stand';wave:number|undefined;lean=0;side=false;mirror=false;look=0;seed:number;
  /** 0 = level gaze, 1 = craning straight up. Drives pupils, brows and chin. */
- gaze=0;baseY:number|undefined;baseLean:number|undefined;
+ gaze=0;point:number|undefined;baseY:number|undefined;baseLean:number|undefined;
  constructor(p:T.Object3D,x:number,z:number,public outfit:Outfit,seed=5){
   this.seed=seed;this.cv.width=600;this.cv.height=1000;this.g=this.cv.getContext('2d')!;
   this.tex=new T.CanvasTexture(this.cv);this.tex.colorSpace=T.SRGBColorSpace;this.tex.anisotropy=2;
@@ -48,7 +48,7 @@ export class Actor {
   const sway=Math.sin(tt)*.85+Math.sin(tt*2.3)*.25;
   const nod=Math.sin(tt*.8+2.1)*.5;
   if(this.side)bodySide(p,this.outfit,{expr:this.expr,mode:this.mode==='sit'?'stand':this.mode==='stroll'?'march':this.mode,phase:f/19,blink,seed:this.seed,stride:.6});
-  else bodyFront(p,this.outfit,{expr:this.expr,mode:this.mode,phase:f/19,tilt:(this.baseLean??this.lean)+sway,wave:this.wave,look:this.look,blink,seed:this.seed,
+  else bodyFront(p,this.outfit,{expr:this.expr,mode:this.mode,phase:f/19,tilt:(this.baseLean??this.lean)+sway,wave:this.wave,point:this.point,look:this.look,blink,seed:this.seed,
     gaze:Math.max(0,Math.min(1,this.gaze+(this.gaze>0?Math.sin(tt*1.2)*.06:0))),headTilt:nod*Math.min(1,this.gaze+.3)});
   this.tex.needsUpdate=true;this.card.rotation.y=Math.atan2(cam.position.x-this.root.position.x,cam.position.z-this.root.position.z);this.card.scale.x=this.mirror?-1:1;
  }

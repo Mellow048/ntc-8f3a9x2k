@@ -450,6 +450,8 @@ const BUILD: Record<Build, { a: number; torso: number; legs: number; tw: number 
 export type FrontOpts = {
   phase?: number; expr?: Expr; mode?: "march" | "stroll" | "stand" | "sit" | "fall"; look?: number; blink?: boolean | number; lift?: number;
   prop?: Prop; tilt?: number; headTilt?: number; wave?: number;
+  /** 0..1 arm swung from hanging to pointing straight up at the sky */
+  point?: number;
   /** 0 = level gaze, 1 = craning straight up (pupils up, brows up, chin up) */
   gaze?: number;
   /** canvas angle the key light comes FROM (painted crescent + thick outline side) */
@@ -462,7 +464,7 @@ const footStroke = (p: Pen, a: P2, b: P2, w: number, col: string) => {
 };
 
 export const bodyFront = (p: Pen, o: Outfit, opts: FrontOpts) => {
-  const { phase = 0, expr = "neutral", mode = "march", look = 0, blink = false, lift = 60, prop = null, tilt = 0, headTilt = 0, wave,
+  const { phase = 0, expr = "neutral", mode = "march", look = 0, blink = false, lift = 60, prop = null, tilt = 0, headTilt = 0, wave, point,
     gaze = 0, light = DEF_LIGHT, facing = 0, seed = 1 } = opts;
   const Bd = BUILD[o.build ?? "adult"], skin = o.skin ?? SKIN, two = Math.PI * 2, lid = lidOf(blink);
   const H = headBlob(seed, Bd.a, facing), W = 2 * H.a, HH = 2 * H.b, u = W / 100;
@@ -534,6 +536,11 @@ export const bodyFront = (p: Pen, o: Outfit, opts: FrontOpts) => {
     if (rifle) {
       const G = lerp2(R0, R1, 0.1);
       arms.push({ pts: [sh(1), [tcx + 1.12 * T.a + 5 * u, sh(1)[1] + 0.45 * HH], G], front: false });
+    } else if (point !== undefined) {
+      // arm raised past the shoulder, hand above the crown: pointing at the sky
+      const S = sh(1), q = clamp(point,0,1), down = hang(1,0);
+      const elbow:P2=[tcx+0.92*T.a+6*u,S[1]-0.62*HH], hand:P2=[tcx+0.98*T.a+10*u,crown-0.62*HH];
+      arms.push({pts:[S,lerp2(down[1],elbow,q),lerp2(down[2],hand,q)],front:false});
     } else if (wave !== undefined) {
       const S = sh(1), q = clamp(wave,0,1), down = hang(1,0);
       const elbow:P2=[tcx+1.1*T.a+10*u,S[1]-.22*HH], hand:P2=[tcx+1.18*T.a+28*u,S[1]-.6*HH];
