@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import {backdrop, ball, beam, box, clamp01, cone, cyl, floor, grainTex, grp, hop, lamp, lerp, lit, mesh, panel, pool, pop, rng, rod, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, torus, woodTex,
   type G2, type Node} from './kit';
 import {actor, INVESTIGATOR, LABTECH, SHOPPER} from './cast';
-import {controller, cursor3d, fridge3d, signTex, statusTex, tempTex} from './props';
+import {cloud3d, controller, cursor3d, fridge3d, signTex, statusTex, tempTex} from './props';
 import {freezerIcon, LIGHT, puffs, spill, type Builder} from './sets';
 import {W} from './story';
 
@@ -19,22 +19,35 @@ export const showroom: Builder = (root) => {
   for (let i = 0; i < 10; i++) { const u = i / 10, u1 = (i + 1) / 10, y = (q: number) => 0.76 - 0.5 * q * (1 - q); rod(stand, [-1.12 + 2.24 * u, y(u), 0.75], [-1.12 + 2.24 * u1, y(u1), 0.75], 0.028, '#b8323a'); }
   const fresh = controller(stand, 0, 1.62, 0, 1.04), old = controller(stand, 0, 1.62, 0, 1.04, '#d6cba2');
   fresh.g.rotation.x = old.g.rotation.x = -0.08; old.g.rotation.z = -0.05;
-  old.screen.map = tempTex(50); old.status.map = statusTex('UPDATE NEEDED', '#ffb03a');
+  old.status.map = statusTex('UPDATE NEEDED', '#ffb03a');
   // as found: cobwebs, dust, a floppy disk, a note nobody read
   const dusty = grp(stand);
-  for (const [a, b] of [[[-0.7, 2.14, 0.08], [-0.2, 2.5, 0.08]], [[-0.7, 2.14, 0.08], [-0.98, 1.6, 0.08]], [[-0.2, 2.5, 0.08], [-0.98, 1.6, 0.08]], [[-0.45, 2.32, 0.08], [-0.84, 1.87, 0.08]], [[0.7, 1.1, 0.08], [0.98, 1.5, 0.08]], [[0.7, 1.1, 0.08], [0.5, 0.96, 0.3]], [[0.98, 1.5, 0.08], [0.5, 0.96, 0.3]]] as const)
-    soft(rod(dusty, [...a], [...b], 0.006, lit('#e6ecf2', 1.1)));
+  // a cobweb in the corner: spokes from one point, sagging threads between them
+  const web = (key: string, n: number, rings: number) => smat(tex('web-' + key, 256, 256, (g) => {
+    g.clearRect(0, 0, 256, 256); g.strokeStyle = 'rgba(240,246,252,.95)'; g.lineWidth = 2.6; g.lineCap = 'round';
+    const at = (k: number, q: number): [number, number] => { const a = (k / (n - 1)) * Math.PI / 2; return [6 + q * 240 * Math.cos(a), 6 + q * 240 * Math.sin(a)]; };
+    for (let k = 0; k < n; k++) { g.beginPath(); g.moveTo(6, 6); g.lineTo(...at(k, 1)); g.stroke(); }
+    g.lineWidth = 2;
+    for (let q = 1; q <= rings; q++) for (let k = 0; k < n - 1; k++) { const [x0, y0] = at(k, q / rings), [x1, y1] = at(k + 1, q / rings), [mx, my] = at(k + 0.5, q / rings * 0.9); g.beginPath(); g.moveTo(x0, y0); g.quadraticCurveTo(mx, my, x1, y1); g.stroke(); }
+  }), 1.1, true);
+  soft(panel(old.g, 0.62, 0.62, web('a', 6, 5), -0.34, 0.19, 0.086));                                               // across the top-left corner of the panel
+  soft(panel(old.g, 0.44, 0.44, web('b', 5, 4), 0.43, -0.28, 0.086)).rotation.z = Math.PI;                         // and the bottom-right one
   const spider = grp(dusty, 0.9, 2.0, 0.12); ball(spider, 0.05, '#15121c', 0, 0, 0); for (let i = 0; i < 4; i++) for (const s of [-1, 1]) rod(spider, [0, 0, 0], [s * 0.1, -0.03 + i * 0.03 - 0.04, 0], 0.006, '#15121c');
   const thread = soft(rod(dusty, [0.9, 2.9, 0.12], [0.9, 2.0, 0.12], 0.004, lit('#e6ecf2', 1.1)));
-  const floppy = grp(dusty, -0.42, 1.06, 0.36); box(floppy, 0.3, 0.3, 0.02, '#2b2d38', 0, 0.1, 0).rotation.x = -0.3; box(floppy, 0.16, 0.1, 0.022, '#c9d2d8', 0, 0.19, -0.03).rotation.x = -0.3; box(floppy, 0.2, 0.12, 0.022, '#fffdf4', 0, 0.02, 0.03).rotation.x = -0.3;
+  const floppy = panel(dusty, 0.4, 0.4, smat(tex('floppy', 200, 200, (g, w, h) => {                                  // the last update, on a floppy disk
+    g.fillStyle = '#2f5fa8'; g.fillRect(0, 0, w, h); g.strokeStyle = '#15121c'; g.lineWidth = 10; g.strokeRect(5, 5, w - 10, h - 10);
+    g.fillStyle = '#c9d2d8'; g.fillRect(52, 8, 96, 62); g.strokeRect(52, 8, 96, 62); g.fillStyle = '#2f5fa8'; g.fillRect(112, 18, 22, 42);
+    g.fillStyle = '#fffdf4'; g.fillRect(30, 96, 140, 96); g.lineWidth = 6; g.strokeRect(30, 96, 140, 96); text(g, 'v1.0', w / 2, 146, 54, '#15121c');
+  }), 1.02), -0.44, 1.14, 0.42); floppy.rotation.set(-0.28, 0, 0.12);
   const note = panel(dusty, 0.42, 0.42, smat(signTex('sticky', 210, 210, '#ffe14a', '#15121c', [['UPDATE', 60, 0.36], ['ME', 70, 0.7]]), 1.05), 0.52, 2.06, 0.1); note.rotation.z = -0.14;
   const dust = puffs(dusty, 8, '#cfc6a8', 0.3);
   const glints = [[-0.8, 2.1], [0.82, 1.3], [0.6, 2.3]].map(([x, y]) => soft(panel(stand, 0.3, 0.3, smat(tex('glint', 96, 96, (g) => { g.clearRect(0, 0, 96, 96); g.fillStyle = '#fff6c2'; g.beginPath(); g.moveTo(48, 2); g.lineTo(57, 39); g.lineTo(94, 48); g.lineTo(57, 57); g.lineTo(48, 94); g.lineTo(39, 57); g.lineTo(2, 48); g.lineTo(39, 39); g.closePath(); g.fill(); }), 1.6, true), x, y, 0.2)));
   beam(root, 0.16, 1.25, 4.2, '#fff6d0', 0.14, 0, 4.4, 0); pool(root, 1.3, '#fff2c0', 0.4, 0, 0.1);
   // the last word: one fridge, one thermometer that cannot make up its mind
   const solo = grp(root); const fr = fridge3d(solo, -0.28, 0, 1.16);
-  const th = grp(solo, 0.7, 0, 0.1); box(th, 0.3, 1.5, 0.06, '#fffdf4', 0, 1.22, 0); ball(th, 0.13, lit('#e3342f', 1.2), 0, 0.56, 0.03); for (let i = 0; i < 9; i++) box(th, i % 2 ? 0.07 : 0.12, 0.014, 0.01, '#15121c', -0.06, 0.78 + i * 0.13, 0.034);
-  const col = box(th, 0.07, 1, 0.02, lit('#e3342f', 1.2), 0.05, 0, 0.035); box(th, 0.36, 0.1, 0.4, '#8f9aa6', 0, 0.05, 0);
+  const th = grp(solo, 0.72, 0, 0.1); cyl(th, 0.03, 0.95, '#8f9aa6', 0, 0.475, 0); cyl(th, 0.2, 0.05, '#8f9aa6', 0, 0.025, 0);
+  box(th, 0.3, 1.12, 0.06, '#fffdf4', 0, 1.5, 0); ball(th, 0.12, lit('#e3342f', 1.2), 0, 1.08, 0.03); for (let i = 0; i < 7; i++) box(th, i % 2 ? 0.07 : 0.12, 0.014, 0.01, '#15121c', -0.06, 1.26 + i * 0.11, 0.034);
+  const col = box(th, 0.07, 1, 0.02, lit('#e3342f', 1.2), 0.05, 0, 0.035);
   const pud = spill(solo, '#bfe6ff', 6); pud.position.set(-0.2, 0.012, 0.75); pud.scale.setScalar(0.6);
   const drops = [0, 1, 2].map(() => soft(ball(solo, 0.03, lit('#bfe6ff', 1.2))));
   return {
@@ -48,7 +61,7 @@ export const showroom: Builder = (root) => {
       spider.position.y = 2.0 + 0.1 * Math.sin(f * 0.12); thread.scale.y = 1 - 0.11 * Math.sin(f * 0.12); thread.position.y = 2.45 + 0.05 * Math.sin(f * 0.12);
       dust.set(f, v === 'old' ? 1 : 0, 0, 1.2, 0.3, {spread: 0.8, rise: 0.9, r0: 0.03, r1: 0.1, speed: 0.008});
       old.g.rotation.z = -0.05 + shake(f, W(106), 0.03, 12);
-      const lvl = 0.5 + 0.42 * Math.sin(f * 0.33) * Math.sin(f * 0.071 + 1); col.scale.y = 0.2 + 1.1 * lvl; col.position.y = 0.66 + col.scale.y / 2;
+      const lvl = 0.5 + 0.42 * Math.sin(f * 0.33) * Math.sin(f * 0.071 + 1); col.scale.y = 0.12 + 0.74 * lvl; col.position.y = 1.14 + col.scale.y / 2;
       fr.rotation.z = 0.02 * Math.sin(f * 0.2); drops.forEach((d, i) => { const u = (f * 0.03 + i / 3) % 1; d.position.set(-0.5 + i * 0.2, 1.2 - 1.15 * u * u, 0.48); });
     },
   };
@@ -65,6 +78,7 @@ export const ikea: Builder = (root) => {
   for (const x of [1.3, 1.9, 2.5]) { cyl(out, 0.03, 2.5, '#e6e9ec', x, 1.25, -1.8); const fl = panel(out, 0.62, 0.4, tmat(swedishFlag()), x + 0.33, 2.24, -1.8); (fl.material as THREE.Material).side = THREE.DoubleSide; fl.userData = {x}; }
   for (const x of [-3, -1, 1, 3]) box(out, 0.08, 0.006, 2.4, lit('#e9edf0', 0.8), x, 0.004, 1.6);
   const flags = out.children.filter((c) => c.userData.x !== undefined) as THREE.Mesh[];
+  cloud3d(out, -1.6, 4.3, -6, 1.5); cloud3d(out, 1.9, 3.7, -6, 1.1);
   const cart = grp(out); box(cart, 1.3, 0.06, 0.6, '#ffd43b', 0, 0.2, 0); for (const x of [-0.5, 0.5]) for (const z of [-0.24, 0.24]) cyl(cart, 0.07, 0.05, '#15121c', x, 0.07, z).rotation.x = Math.PI / 2; rod(cart, [-0.62, 0.2, 0], [-0.74, 1.0, 0], 0.025, '#8f9aa6');
   box(cart, 1.2, 0.14, 0.5, '#c79a62', 0, 0.3, 0); box(cart, 1.1, 0.12, 0.44, '#b88a52', 0.02, 0.43, 0);
   const shopper = actor(out, SHOPPER(2), {a: {expr: 'smile', pose: 'both'}}, 0, 0, 0, {scale: 0.98});
@@ -86,7 +100,7 @@ export const ikea: Builder = (root) => {
     tick: ({f, t, cam, shot}) => {
       const m = shot.v === 'meatballs'; out.visible = !m; inn.visible = m;
       flags.forEach((fl, i) => { fl.rotation.y = 0.25 * Math.sin(f * 0.2 + i); });
-      const x = lerp(-2.4, -1.3, clamp01(t / 34)); cart.position.set(x + 0.9, 0, 0.6); shopper.node.position.set(x, 0.03 * Math.abs(Math.sin(f * 0.5)), 0.6); shopper.tick(f, cam);
+      const x = lerp(-1.7, -0.7, clamp01(t / 34)); cart.position.set(x + 0.9, 0, 0.6); shopper.node.position.set(x, 0.03 * Math.abs(Math.sin(f * 0.5)), 0.6); shopper.tick(f, cam);
       const k = smooth(t, 0, 12); cur.position.set(lerp(2.6, 0.9, k), lerp(4.2, 2.5, k) - hop(f, W(122), 0.2, 8), -2.0); cur.rotation.z = 0.2;
       qs.forEach((q, i) => { q.scale.setScalar(pop(f, W(123) + i * 4, 8) || 0.001); q.position.y = [1.55, 1.72, 1.9][i] + 0.04 * Math.sin(f * 0.16 + i * 2); q.rotation.z = (i - 1) * 0.18; });
       balls.forEach((b, i) => { b.position.y = 1.02 + (i > 4 ? 0.1 : 0) + (i === 6 ? hop(f, W(127), 0.06, 8) : 0); });
@@ -96,11 +110,23 @@ export const ikea: Builder = (root) => {
 };
 
 // ------------------------------------------------------------------ France's blood service: the freezers that mattered most
+/** Readout of a medical freezer. No figures: the reports give none for the blood service, so the film shows only "cold" and "warming". */
+const readout = (kind: 'ok' | 'warn' | 'alert') => tex('readout-' + kind, 256, 104, (g, w, h) => {
+  g.fillStyle = '#06131c'; g.fillRect(0, 0, w, h); g.lineCap = 'round'; g.lineJoin = 'round';
+  if (kind === 'ok') {
+    g.strokeStyle = '#7fe3ff'; g.lineWidth = 8; for (let k = 0; k < 3; k++) { const a = k * Math.PI / 3; g.beginPath(); g.moveTo(64 - 30 * Math.cos(a), 52 - 30 * Math.sin(a)); g.lineTo(64 + 30 * Math.cos(a), 52 + 30 * Math.sin(a)); g.stroke(); }
+    text(g, 'OK', 170, 56, 78, '#7fe3ff');
+  } else {
+    const c = kind === 'alert' ? '#ff5a3c' : '#ffb03a';
+    g.fillStyle = c; g.beginPath(); g.moveTo(64, 14); g.lineTo(106, 88); g.lineTo(22, 88); g.closePath(); g.fill(); text(g, '!', 64, 60, 58, '#06131c');
+    g.strokeStyle = c; g.lineWidth = 13; for (const x of [150, 206]) { g.beginPath(); g.moveTo(x, 88); g.lineTo(x, 26); g.moveTo(x - 20, 46); g.lineTo(x, 22); g.lineTo(x + 20, 46); g.stroke(); }   // warming: two arrows up
+  }
+});
 function medFreezer(p: Node, x: number, z: number) {
   const g = grp(p, x, 0, z), w = 1.0, h = 2.08, d = 0.7, bh = 0.56, top = h - 0.28, ih = top - bh;
   box(g, w, bh, d, '#8f9aa6', 0, bh / 2, 0); box(g, w, ih, 0.06, '#dfe6ec', 0, bh + ih / 2, -d / 2 + 0.03); for (const s of [-1, 1]) box(g, 0.06, ih, d, '#dfe6ec', s * (w / 2 - 0.03), bh + ih / 2, 0);
   box(g, w, 0.28, d, '#aab6c0', 0, h - 0.14, 0);
-  const display = new THREE.MeshBasicMaterial({map: tempTex(-30)}), inner = lamp('#eaf6ff', 1.1);
+  const display = new THREE.MeshBasicMaterial({map: readout('ok')}), inner = lamp('#eaf6ff', 1.1);
   panel(g, 0.44, 0.18, display, 0, h - 0.14, d / 2 + 0.006); panel(g, w - 0.12, ih - 0.02, inner, 0, bh + ih / 2, -d / 2 + 0.065);
   const bags: THREE.Object3D[] = [];
   for (let k = 0; k < 3; k++) {
@@ -123,15 +149,14 @@ export const lab: Builder = (root) => {
   const wash = pool(root, 3.2, '#ff3a2a', 0, 0, 0.4);
   const tick2 = soft(panel(root, 0.5, 0.5, smat(tex('tick', 128, 128, (g) => { g.clearRect(0, 0, 128, 128); g.fillStyle = '#2fbf71'; g.strokeStyle = '#15121c'; g.lineWidth = 8; g.beginPath(); g.arc(64, 64, 54, 0, 7); g.fill(); g.stroke(); g.strokeStyle = '#ffffff'; g.lineWidth = 14; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(38, 66); g.lineTo(58, 86); g.lineTo(92, 44); g.stroke(); }), 1.1, true), 0.74, 1.3, 0.3));
   const techA = actor(root, LABTECH, {run: {expr: 'shock', pose: 'panic'}, carry: {expr: 'nervous', pose: 'both', prop: 'crate'}, phew: {expr: 'relief', pose: 'both', prop: 'crate'}}, 0, 0, 0.55, {scale: 1.0});
-  const T = [-30, -22, -12, -2, 8].map((n) => tempTex(n));
   return {
     light: () => ({...LIGHT.cold, amb: 1.7}),
     tick: ({f, t, cam, shot}) => {
       const alarm = shot.v === 'alarm', rise = alarm ? smooth(t, 4, 60) : 0.75;
-      mf[0].display.map = T[Math.min(4, Math.floor(rise * 5))]; mf[0].inner.color.set('#eaf6ff').lerp(new THREE.Color('#ffb08a'), rise).multiplyScalar(1.1);
-      mf[1].display.map = T[0];
-      const on = alarm && Math.floor(f / 5) % 2 === 0;
-      (beacon.material as THREE.MeshBasicMaterial).color.set('#ff2a2a').multiplyScalar(alarm ? (on ? 3 : 0.5) : 0.25); (wash.material as THREE.MeshBasicMaterial).opacity = on ? 0.2 : 0;
+      mf[0].display.map = !alarm ? readout('warn') : t < 4 ? readout('ok') : readout(Math.floor(f / 6) % 2 ? 'warn' : 'alert'); mf[0].inner.color.set('#eaf6ff').lerp(new THREE.Color('#ffb08a'), rise).multiplyScalar(1.1);
+      mf[1].display.map = readout('ok');
+      const glow = alarm ? 0.5 + 0.5 * Math.sin(f * 0.6) : 0;                                           // the beacon turns: it swells and fades, it does not switch
+      (beacon.material as THREE.MeshBasicMaterial).color.set('#ff2a2a').multiplyScalar(alarm ? 0.5 + 2.5 * glow : 0.25); (wash.material as THREE.MeshBasicMaterial).opacity = 0.2 * glow;
       mf[0].bags.forEach((b, i) => { b.visible = alarm || i % 4 > 1 && i < 8; });
       tick2.visible = !alarm && f >= W(141); tick2.scale.setScalar(pop(f, W(141), 8) || 0.001); tick2.quaternion.copy(cam.quaternion);
       if (alarm) { techA.show('run'); techA.node.position.set(lerp(1.9, 0.25, smooth(f, W(132), W(134) + 6)), 0.04 * Math.abs(Math.sin(f * 0.7)), 0.6); }
@@ -185,14 +210,22 @@ const cardTex = (key: string, title: string, draw: (g: G2, w: number, h: number)
 });
 const stars = (g: G2, x: number, y: number, r: number, s: number) => { for (let k = 0; k < 12; k++) { const a = k * Math.PI / 6, cx = x + r * Math.cos(a), cy = y + r * Math.sin(a); g.beginPath(); for (let i = 0; i < 10; i++) { const b = -Math.PI / 2 + i * Math.PI / 5, q = i % 2 ? s * 0.42 : s; g.lineTo(cx + q * Math.cos(b), cy + q * Math.sin(b)); } g.closePath(); g.fillStyle = '#ffd43b'; g.fill(); } };
 export const desk: Builder = (root) => {
-  backdrop(root, ['#0f1218', '#1c222c']);
-  floor(root, 14, 12, '#2a2f3a');
-  box(root, 9, 5.4, 0.3, '#263042', 0, 2.7, -1.45);
+  backdrop(root, ['#12161e', '#222a38']);
+  floor(root, 14, 12, tmat(tiled(woodTex('office', '#4a3a30', '#2a1c14'), 5, 4)));
+  box(root, 9, 5.4, 0.3, '#34425c', 0, 2.7, -1.45); box(root, 9, 1.5, 0.34, '#4a3628', 0, 0.75, -1.44); box(root, 9, 0.07, 0.38, '#6a4a36', 0, 1.52, -1.43);   // wall, panelling, rail
+  // a window with the blinds down (the street lamp outside draws the slats) and a wall clock
+  const win = grp(root, 0.8, 2.5, -1.28); box(win, 1.12, 1.1, 0.06, '#2a2218', 0, 0, 0); panel(win, 1.0, 0.98, lit('#16224a', 1), 0, 0, 0.035);
+  for (let i = 0; i < 9; i++) soft(box(win, 1.0, 0.05, 0.02, lit('#ffd9a0', 0.92), 0, 0.42 - i * 0.105, 0.05));
+  const clock = grp(root, -0.88, 2.56, -1.28); cyl(clock, 0.3, 0.05, '#2a2218', 0, 0, 0).rotation.x = Math.PI / 2; cyl(clock, 0.26, 0.052, '#fffdf4', 0, 0, 0.006).rotation.x = Math.PI / 2;
+  for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; box(clock, 0.016, i % 3 ? 0.03 : 0.055, 0.01, '#15121c', 0.215 * Math.sin(a), 0.215 * Math.cos(a), 0.036).rotation.z = -a; }
+  const hands = [box(clock, 0.022, 0.19, 0.012, '#15121c', 0, 0, 0.042), box(clock, 0.03, 0.13, 0.012, '#15121c', 0, 0, 0.046)]; hands.forEach((hd) => hd.geometry.translate(0, hd === hands[0] ? 0.085 : 0.055, 0));
+  cyl(clock, 0.025, 0.02, '#e3342f', 0, 0, 0.05).rotation.x = Math.PI / 2;
   box(root, 3.4, 0.08, 1.2, tmat(tiled(woodTex('desk', '#6a4a36', '#3a2618'), 2, 1)), 0, 0.86, -0.5); box(root, 3.3, 0.8, 0.06, '#4a3426', 0, 0.42, 0.06);
   panel(root, 2.9, 0.9, lit('#2f6a52', 0.9), 0, 0.905, -0.5).rotation.x = -Math.PI / 2;
   // a banker's lamp at the back
-  const bl = grp(root, -1.3, 0.9, -0.85); cyl(bl, 0.14, 0.03, '#c9a94f', 0, 0.015, 0); cyl(bl, 0.02, 0.36, '#c9a94f', 0, 0.2, 0); box(bl, 0.46, 0.14, 0.2, '#2f8a55', 0.1, 0.42, 0); box(bl, 0.4, 0.02, 0.16, lit('#fff0b0', 2), 0.1, 0.345, 0);
-  pool(root, 1.6, '#fff0c0', 0.3, -0.6, -0.4, 0.92);
+  beam(root, 0.05, 0.26, 0.34, '#fff0c0', 0.2, -0.98, 1.24, -0.96);
+  const bl = grp(root, -1.08, 0.9, -0.96); cyl(bl, 0.14, 0.03, '#c9a94f', 0, 0.015, 0); cyl(bl, 0.02, 0.36, '#c9a94f', 0, 0.2, 0); box(bl, 0.46, 0.14, 0.2, '#2f8a55', 0.1, 0.42, 0); box(bl, 0.4, 0.02, 0.16, lit('#fff0b0', 2), 0.1, 0.345, 0);
+  pool(root, 1.5, '#fff0c0', 0.3, -0.5, -0.45, 0.92);
   const card = (t: THREE.Texture, w = 0.98, h = 1.12) => { const g = grp(root, 0, 0.92, -0.62); box(g, w + 0.04, h + 0.04, 0.03, '#15121c', 0, h / 2, -0.02); panel(g, w, h, smat(t, 1.04), 0, h / 2, 0); g.rotation.x = -0.1; return g; };
   const method = card(cardTex('method', 'THE METHOD', (g, w) => { g.strokeStyle = '#15121c'; g.lineWidth = 9; g.lineCap = 'round'; for (let i = 0; i < 7; i++) { g.beginPath(); g.ellipse(w / 2, 232, 22 + i * 17, 28 + i * 21, 0, Math.PI * (1.05 + (i % 3) * 0.06), Math.PI * (1.95 - (i % 2) * 0.1)); g.stroke(); } for (let i = 0; i < 4; i++) { g.beginPath(); g.ellipse(w / 2, 250, 20 + i * 22, 14 + i * 16, 0, Math.PI * 0.1, Math.PI * 0.9); g.stroke(); } }));
   const farsi = card(cardTex('farsi', 'TRACES OF FARSI', (g, w) => { g.fillStyle = '#0f1a24'; g.fillRect(50, 96, w - 100, 250); const r = rng(14); for (let i = 0; i < 9; i++) { const hot = i === 3 || i === 6; g.fillStyle = hot ? '#ffe14a' : '#3f8fa8'; g.fillRect(70 + (i % 3) * 16, 116 + i * 25, hot ? 190 : 90 + r() * 150, hot ? 16 : 9); } }));
@@ -200,10 +233,10 @@ export const desk: Builder = (root) => {
     g.fillStyle = '#e3342f'; g.strokeStyle = '#15121c'; g.lineWidth = 6; g.beginPath(); g.arc(w / 2 + 34, 176, 24, Math.PI, 0); g.lineTo(w / 2 + 34, 232); g.closePath(); g.fill(); g.stroke(); g.fillStyle = '#fffdf4'; g.beginPath(); g.arc(w / 2 + 34, 176, 9, 0, 7); g.fill();
     for (let i = 0; i < 4; i++) { g.fillStyle = '#15121c'; g.fillRect(74 + i * 66, 330, 50, 22); } }));
   // what stays shut: a safe
-  const safe = grp(root, 0, 0.9, -0.6); box(safe, 1.5, 1.22, 0.7, '#5a6474', 0, 0.61, 0); box(safe, 1.3, 1.02, 0.04, '#6e7a8c', 0, 0.61, 0.36); torus(safe, 0.2, 0.035, '#c9d2d8', -0.2, 0.62, 0.4); cyl(safe, 0.13, 0.05, '#2b2d38', -0.2, 0.62, 0.41).rotation.x = Math.PI / 2;
-  const dial = box(safe, 0.03, 0.2, 0.02, '#e6e9ec', -0.2, 0.62, 0.45); box(safe, 0.08, 0.34, 0.06, '#c9d2d8', 0.34, 0.62, 0.41);
-  panel(safe, 0.86, 0.26, smat(signTex('howweknow', 430, 130, '#ffe14a', '#15121c', [['HOW WE KNOW', 74]], {border: '#15121c'}), 1.05), 0, 1.02, 0.385);
-  const sq = [[-0.98, 1.72], [1.0, 1.86]].map(([x, y]) => soft(panel(root, 0.42, 0.52, glyph('?', '#ffe14a'), x, y, 0.2)));
+  const safe = grp(root, 0, 0.9, -0.6); box(safe, 1.24, 1.22, 0.7, '#5a6474', 0, 0.61, 0); box(safe, 1.06, 1.02, 0.04, '#6e7a8c', 0, 0.61, 0.36); torus(safe, 0.2, 0.035, '#c9d2d8', -0.16, 0.56, 0.4); cyl(safe, 0.13, 0.05, '#2b2d38', -0.16, 0.56, 0.41).rotation.x = Math.PI / 2;
+  const dial = box(safe, 0.03, 0.2, 0.02, '#e6e9ec', -0.16, 0.56, 0.45); box(safe, 0.08, 0.34, 0.06, '#c9d2d8', 0.32, 0.56, 0.41);
+  panel(safe, 0.86, 0.26, smat(signTex('howweknow', 430, 130, '#ffe14a', '#15121c', [['HOW WE KNOW', 74]], {border: '#15121c'}), 1.05), 0, 0.98, 0.385);
+  const sq = [[-0.87, 1.6], [0.88, 1.78]].map(([x, y]) => soft(panel(root, 0.4, 0.5, glyph('?', '#ffe14a'), x, y, -0.2)));
   // what France wants: a warrant, and a folder for Brussels
   const warrant = card(tex('warrant', 400, 500, (g, w, h) => {
     g.fillStyle = '#fffdf4'; g.fillRect(0, 0, w, h); g.strokeStyle = '#15121c'; g.lineWidth = 10; g.strokeRect(5, 5, w - 10, h - 10);
@@ -221,24 +254,23 @@ export const desk: Builder = (root) => {
   // the advice: two notices
   const plugIcon = (g: G2, x: number, y: number) => { g.strokeStyle = '#15121c'; g.lineWidth = 9; g.lineCap = 'round'; g.beginPath(); g.arc(x - 30, y, 34, 0, 7); g.stroke(); g.beginPath(); g.ellipse(x - 30, y, 15, 34, 0, 0, 7); g.stroke(); g.beginPath(); g.moveTo(x + 14, y); g.lineTo(x + 70, y); g.stroke(); g.fillStyle = '#15121c'; g.fillRect(x + 66, y - 20, 30, 40); g.strokeStyle = '#e3342f'; g.lineWidth = 14; g.beginPath(); g.moveTo(x - 84, y + 60); g.lineTo(x + 110, y - 60); g.stroke(); };
   const notices = [['CERT-FR', 'ALERT', '#1f4fa8'], ['FBI CYBER', 'WARNING', '#27314d']].map(([who, kind, c], i) => { const n = card(cardTex('notice' + i, who, (g, w) => plugIcon(g, w / 2 - 8, 220), c, kind), 0.98, 1.12); n.position.x = (i ? 1 : -1) * 0.56; n.rotation.z = (i ? -1 : 1) * 0.03; return n; });
-  const inv = actor(root, INVESTIGATOR(0), {look: {expr: 'stern', pose: 'hold', prop: 'magnifier'}, think: {expr: 'neutral', pose: 'think'}}, 0.95, 0, -0.1, {scale: 0.98});
+  const inv = actor(root, INVESTIGATOR(0), {look: {expr: 'stern', pose: 'hold', prop: 'magnifier'}, think: {expr: 'neutral', pose: 'think'}}, 0.72, 0, -0.1, {scale: 1.08});
   inv.mesh.scale.x = -1;                                                                               // mirrored: the glass is held toward the card
-  const cur = cursor3d(root, 0.001);
   return {
-    light: (v) => v === 'notice' ? {...LIGHT.room, amb: 1.3} : {...LIGHT.warm, amb: 1.1, sky: '#ffe2bc'},
+    light: () => ({...LIGHT.room, amb: 1.25}),
     tick: ({f, cam, shot}) => {
-      const v = shot.v;
+      const v = shot.v, hour = f / 600;
+      hands[0].rotation.z = -hour * Math.PI * 2; hands[1].rotation.z = -2.2 - hour * Math.PI / 6;
       method.visible = v === 'method'; farsi.visible = ip.visible = v === 'traces'; safe.visible = v === 'sealed'; warrant.visible = v === 'warrant'; folder.visible = v === 'sanctions'; notices.forEach((n) => { n.visible = v === 'notice'; });
-      method.position.x = -0.42; method.scale.setScalar(pop(f, W(168) - 2, 8) || 0.001); method.position.y = 0.92;
+      method.position.x = -0.3; method.scale.setScalar(pop(f, W(168) - 2, 8) || 0.001); method.position.y = 0.92;
       farsi.position.x = -0.56; ip.position.x = 0.56; farsi.scale.setScalar(pop(f, W(169) + 2, 8) || 0.001); ip.scale.setScalar(pop(f, W(174) - 1, 8) || 0.001);
       farsi.rotation.z = 0.03; ip.rotation.z = -0.03;
       inv.node.visible = v === 'method'; inv.node.position.y = hop(f, W(168), 0.08, 8); inv.tick(f, cam);
       dial.rotation.z = v === 'sealed' ? 2.2 * Math.sin(f * 0.25) * clamp01(1 - (f - W(182)) / 8) : 0; safe.position.x = shake(f, W(182), 0.03, 10);
-      sq.forEach((q, i) => { q.visible = v === 'sealed'; q.scale.setScalar(pop(f, W(180) + i * 5, 8) || 0.001); q.rotation.z = (i ? -1 : 1) * 0.18; q.position.y = [1.72, 1.86][i] + 0.04 * Math.sin(f * 0.15 + i * 2); });
+      sq.forEach((q, i) => { q.visible = v === 'sealed'; q.scale.setScalar(pop(f, W(180) + i * 5, 8) || 0.001); q.rotation.z = (i ? -1 : 1) * 0.18; q.position.y = [1.6, 1.78][i] + 0.04 * Math.sin(f * 0.15 + i * 2); });
       stamp.visible = f >= W(210); stamp.scale.setScalar(f >= W(210) ? 2.2 - 1.2 * smooth(f, W(210), W(210) + 5) : 1); warrant.position.y = 0.92 - shake(f, W(210) + 4, 0.03, 8);
       proposed.visible = f >= W(213); proposed.scale.setScalar(f >= W(213) ? 2.2 - 1.2 * smooth(f, W(213), W(213) + 5) : 1); folder.position.y = 0.92 - shake(f, W(213) + 4, 0.03, 8);
       notices.forEach((n, i) => { n.scale.setScalar(pop(f, shot.at + 2 + i * 6, 8) || 0.001); });
-      cur.visible = false;
     },
   };
 };

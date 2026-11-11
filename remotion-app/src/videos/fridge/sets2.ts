@@ -1,7 +1,7 @@
 // Sets of the fridge hack short, part 2: the two lecterns, the cable to the cloud, the technician's wall, the lecture
 // hall, the line-up.
 import * as THREE from 'three';
-import {backdrop, ball, beam, box, clamp01, cyl, floor, foldTex, grp, hop, lamp, lerp, lit, panel, pool, pop, rng, rod, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, torus, vgrad, woodTex,
+import {backdrop, ball, beam, box, clamp01, cone, cyl, floor, foldTex, grp, hop, lamp, lerp, lit, panel, pool, pop, rng, rod, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, torus, vgrad, woodTex,
   type G2, type Node, type V} from './kit';
 import {actor, PROF, SPOKES_PARIS, SPOKES_TEHRAN, TECH} from './cast';
 import {cloud3d, crowd, cursor3d, freezer, fridge3d, lectern, plant, signTex} from './props';
@@ -63,29 +63,45 @@ export const podium: Builder = (root) => {
   floor(root, 14, 12, tmat(tiled(woodTex('stage', '#6a4a36', '#3a2618'), 4, 4)));
   const paris = grp(root), tehran = grp(root);
   panel(paris, 6, 4.4, smat(flatTex('paris'), 1.02), 0, 2.2, -1.9); panel(tehran, 6, 4.4, smat(flatTex('tehran'), 1.02), 0, 2.2, -1.9);
+  panel(paris, 14, 6, lit('#16224e', 1.02), 0, 7.36, -1.91); panel(tehran, 14, 6, lit('#1f6f86', 1.02), 0, 7.36, -1.91);   // the sky goes on above the painted flats
   for (const s of [-1, 1]) { box(paris, 1.0, 5.2, 0.3, tmat(tiled(foldTex('cur-p', '#27355e', '#151d38'), 1, 1)), s * 2.35, 2.6, -1.3); box(tehran, 1.0, 5.2, 0.3, tmat(tiled(foldTex('cur-t', '#1f5a52', '#10332e'), 1, 1)), s * 2.35, 2.6, -1.3); }
   lectern(paris, 0, 0.35, '#3a2a22', plaque('PARIS', '#27355e')); lectern(tehran, 0, 0.35, '#2e2a24', plaque('TEHRAN', '#1f5a52'));
-  const fr = actor(root, SPOKES_PARIS, {idle: {expr: 'stern'}, point: {expr: 'stern', pose: 'point'}, paper: {expr: 'stern', pose: 'hold', prop: 'paper'}, sure: {expr: 'stern', pose: 'hips'}}, 0, 0, -0.3, {scale: 1.06, res: 1.2});
-  const ir = actor(root, SPOKES_TEHRAN, {idle: {expr: 'neutral'}, deny: {expr: 'stern', pose: 'cross'}, paper: {expr: 'neutral', pose: 'hold', prop: 'paper'}, read: {expr: 'neutral', pose: 'hold', prop: 'paper'}}, 0, 0, -0.3, {scale: 1.06, res: 1.2});
-  // "ice cold": frost on the lectern, icicles under its top, snow coming down
-  const ice = grp(tehran); const icicles = [-0.42, -0.28, -0.1, 0.06, 0.24, 0.4].map((x, i) => { const c = soft(box(ice, 0.05, 0.3, 0.05, lit('#dff6ff', 1.25), x, 1.0, 0.62)); c.userData = {len: 0.5 + (i * 37 % 10) / 14}; return c; });
-  const frost = soft(panel(ice, 0.8, 1.02, new THREE.MeshBasicMaterial({map: tex('lectern-frost', 128, 160, (g, w, h) => { const r = rng(21); for (let i = 0; i < 260; i++) { g.fillStyle = `rgba(235,250,255,${0.25 + r() * 0.6})`; const y = r() ** 2 * h; g.fillRect(r() * w, y, 2 + r() * 5, 2 + r() * 5); } }), transparent: true, opacity: 0, depthWrite: false}), 0, 0.62, 0.59));
+  // The speakers stand on a step behind the lectern, so the jacket and the hands show above it.
+  const UP = 0.2;
+  const fr = actor(root, SPOKES_PARIS, {idle: {expr: 'stern'}, point: {expr: 'stern', pose: 'point'}, paper: {expr: 'stern', pose: 'hold', prop: 'paper'}, sure: {expr: 'stern', pose: 'hips'}}, 0, UP, -0.3, {scale: 1.25, res: 1.2});
+  const ir = actor(root, SPOKES_TEHRAN, {idle: {expr: 'neutral'}, deny: {expr: 'stern', pose: 'cross'}, paper: {expr: 'neutral', pose: 'hold', prop: 'paper'}, read: {expr: 'neutral', pose: 'hold', prop: 'paper'}}, 0, UP, -0.3, {scale: 1.25, res: 1.2});
+  // "ice cold": frost creeps over the lectern from its edges, icicles grow under its top, snow settles on it and falls
+  const ice = grp(tehran, 0, 0, 0.35);
+  const icicles = ([[-0.46, 0.4], [-0.39, 0.24], [-0.32, 0.13], [-0.16, 0.07], [0.04, 0.09], [0.19, 0.06], [0.32, 0.12], [0.4, 0.3], [0.47, 0.19]] as const).map(([x, len]) => {
+    const c = cone(ice, 0.036, 1, lit('#e4f7ff', 1.2), x, 1.16, 0.31, 10); c.rotation.x = Math.PI; c.castShadow = false; c.userData = {len}; return c;
+  });
+  const frost = soft(panel(ice, 0.8, 1.14, new THREE.MeshBasicMaterial({map: tex('lectern-frost', 240, 342, (g, w, h) => {
+    const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, 'rgba(206,236,250,.9)'); gr.addColorStop(0.55, 'rgba(222,244,254,.94)'); gr.addColorStop(1, 'rgba(244,252,255,.98)'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
+    const r = rng(21); g.strokeStyle = 'rgba(255,255,255,.95)'; g.lineCap = 'round';
+    for (let i = 0; i < 40; i++) {                                                                                               // ice crystals: six arms each, more of them toward the foot
+      const x = r() * w, y = h * (0.32 + 0.68 * Math.sqrt(r())), q = 5 + r() * 9; g.lineWidth = 1.6 + r() * 1.4;
+      for (let k = 0; k < 3; k++) { const a = k * Math.PI / 3 + r() * 0.3; g.beginPath(); g.moveTo(x - q * Math.cos(a), y - q * Math.sin(a)); g.lineTo(x + q * Math.cos(a), y + q * Math.sin(a)); g.stroke(); }
+    }
+    g.strokeStyle = 'rgba(150,200,226,.5)'; g.lineWidth = 2; for (let i = 0; i < 5; i++) { const x = 20 + r() * (w - 40), y = 60 + r() * (h - 120); g.beginPath(); g.moveTo(x, y); g.lineTo(x + 18 + r() * 30, y + 30 + r() * 50); g.stroke(); }   // a few cracks
+  }), transparent: true, opacity: 0, depthWrite: false}), 0, 0.66, 0.2325));
+  const cap = box(ice, 1.04, 0.07, 0.62, lit('#f4fbff', 1.12), 0, 1.3, 0); cap.rotation.x = 0.16; cap.castShadow = false;
   const flakes = Array.from({length: 26}, (_, i) => soft(ball(ice, 0.022 + (i % 3) * 0.008, lit('#ffffff', 1.3))));
   return {
     light: (v) => v === 'deny' || v === 'ice' || v === 'read' ? {...LIGHT.show, sky: '#d6f4f0', amb: 1.25} : {...LIGHT.show, sky: '#d8e2ff', amb: 1.25},
     tick: ({f, t, cam, shot}) => {
       const v = shot.v, inParis = v === 'accuse' || v === 'paris' || v === 'sure';
       paris.visible = fr.node.visible = inParis; tehran.visible = ir.node.visible = !inParis;
-      if (v === 'accuse') { fr.show(f >= W(17) ? 'point' : 'idle'); fr.node.position.y = hop(f, W(17), 0.1, 8); }
-      else if (v === 'paris') { fr.show(f >= W(155) ? 'paper' : 'idle'); fr.node.position.y = hop(f, W(155), 0.08, 8); }
-      else if (v === 'sure') { fr.show('sure'); fr.node.position.y = hop(f, W(179), 0.07, 8); }
-      if (v === 'deny') { ir.show('deny'); ir.node.position.x = 0.035 * Math.sin(f * 1.1) * clamp01(1 - t / 22); ir.node.position.y = 0; }
-      else if (v === 'ice') { ir.show(f >= W(190) ? 'paper' : 'idle'); ir.node.position.set(0, hop(f, W(190), 0.08, 8), -0.3); }
-      else if (v === 'read') { ir.show('read'); ir.node.position.set(0, 0, -0.3); }
+      if (v === 'accuse') { fr.show(f >= W(17) ? 'point' : 'idle'); fr.node.position.y = UP + hop(f, W(17), 0.1, 8); }
+      else if (v === 'paris') { fr.show(f >= W(155) ? 'paper' : 'idle'); fr.node.position.y = UP + hop(f, W(155), 0.08, 8); }
+      else if (v === 'sure') { fr.show('sure'); fr.node.position.y = UP + hop(f, W(179), 0.07, 8); }
+      if (v === 'deny') { ir.show('deny'); ir.node.position.set(0.035 * Math.sin(f * 1.1) * clamp01(1 - t / 22), UP, -0.3); }
+      else if (v === 'ice') { ir.show(f >= W(190) ? 'paper' : 'idle'); ir.node.position.set(0, UP + hop(f, W(190), 0.08, 8), -0.3); }
+      else if (v === 'read') { ir.show('read'); ir.node.position.set(0, UP, -0.3); }
       const cold = v === 'ice' ? smooth(f, W(191), W(193) + 8) : v === 'read' ? 1 : 0;
-      ice.visible = cold > 0; (frost.material as THREE.MeshBasicMaterial).opacity = 0.95 * cold;
-      icicles.forEach((c) => { const len = c.userData.len * cold; c.scale.set(1, Math.max(0.01, len), 1); c.position.y = 1.11 - 0.15 * len; });
-      flakes.forEach((m, i) => { const u = ((f * 0.012 + i * 0.137) % 1); m.visible = cold > 0.3; m.position.set(-1.4 + (i * 0.61 % 1) * 2.8 + 0.1 * Math.sin(f * 0.07 + i), 3.0 - 2.9 * u, 0.2 + (i % 5) * 0.2); });
+      ice.visible = cold > 0; (frost.material as THREE.MeshBasicMaterial).opacity = cold;
+      icicles.forEach((c) => { const len = Math.max(0.01, c.userData.len * cold); c.scale.set(1, len, 1); c.position.y = 1.165 - len / 2; });
+      cap.scale.set(1, Math.max(0.01, cold), 1);
+      flakes.forEach((m, i) => { const u = ((f * 0.012 + i * 0.137) % 1); m.visible = cold > 0.3; m.position.set(-1.4 + (i * 0.61 % 1) * 2.8 + 0.1 * Math.sin(f * 0.07 + i), 3.0 - 2.9 * u, -0.15 + (i % 5) * 0.2); });
       fr.tick(f, cam); ir.tick(f, cam);
     },
   };
@@ -107,47 +123,65 @@ const glyph = (s: string, c: string) => smat(tex('glyph-' + s + c, 128, 160, (g,
 export const cable: Builder = (root) => {
   backdrop(root, ['#12203a', '#25406a']);
   floor(root, 14, 12, tmat(tiled(tileTex('cable', '#dfe6ea', '#bcc7cf', 2, '#d3dbe0'), 7, 6)));
-  box(root, 9, 5.4, 0.3, '#2c4a78', 0, 2.7, -1.3);
-  const unit = grp(root, -0.62, 0, -0.5); const fz = freezer(unit, 0, 0, {seed: 11}); unit.scale.setScalar(0.74);
-  const socket = box(root, 0.14, 0.12, 0.08, '#15202b', 0, 0, 0);
-  const cloud = cloud3d(root, 0.72, 1.96, -0.55, 0.62), grey = cloud3d(root, 0.72, 1.96, -0.56, 0.62, '#8f9aa6');
-  const globe = soft(panel(cloud, 0.42, 0.42, smat(tex('globe', 128, 128, (g) => { g.clearRect(0, 0, 128, 128); g.strokeStyle = '#2f6fc0'; g.lineWidth = 8; g.beginPath(); g.arc(64, 64, 50, 0, 7); g.stroke(); g.beginPath(); g.ellipse(64, 64, 22, 50, 0, 0, 7); g.stroke(); g.beginPath(); g.moveTo(14, 64); g.lineTo(114, 64); g.moveTo(22, 38); g.lineTo(106, 38); g.moveTo(22, 90); g.lineTo(106, 90); g.stroke(); }), 1, true), 0.06, 0, 0.2));
-  const line = rope(root, 16, 0.022, '#35a0ff'), line2 = rope(root, 14, 0.022, '#35a0ff');
-  const plug = grp(root); box(plug, 0.11, 0.08, 0.07, '#e6e9ec', 0, 0, 0); box(plug, 0.05, 0.03, 0.05, '#c9a94f', -0.07, 0, 0);
+  box(root, 9, 5.4, 0.3, '#2c4a78', 0, 2.7, -1.3); box(root, 9, 0.2, 0.34, '#1d3356', 0, 0.1, -1.29);
+  // Two freezers, each with a network box on top: one for the question and the advice, both for the two answers.
+  const units = [11, 23].map((seed) => {
+    const g = grp(root, 0, 0, -0.5), fz = freezer(g, 0, 0, {seed});
+    box(g, 0.34, 0.12, 0.24, '#e6e9ec', 0.3, 2.36, 0.04);
+    const led = soft(ball(g, 0.032, lamp('#3fe07a', 2), 0.19, 2.36, 0.17));
+    return {g, fz, led};
+  });
+  /** where the cable goes into the network box of a freezer standing at x, scaled s */
+  const port = (x: number, sc: number): V => [x + 0.3 * sc, 2.42 * sc + 0.05, -0.5 + 0.04 * sc];
+  const cloud = cloud3d(root, 0, 0, -0.55, 0.6);
+  soft(panel(cloud, 0.46, 0.46, smat(tex('globe', 128, 128, (g) => { g.clearRect(0, 0, 128, 128); g.strokeStyle = '#2f6fc0'; g.lineWidth = 8; g.beginPath(); g.arc(64, 64, 50, 0, 7); g.stroke(); g.beginPath(); g.ellipse(64, 64, 22, 50, 0, 0, 7); g.stroke(); g.beginPath(); g.moveTo(14, 64); g.lineTo(114, 64); g.moveTo(22, 38); g.lineTo(106, 38); g.moveTo(22, 90); g.lineTo(106, 90); g.stroke(); }), 1, true), 0.06, 0.02, 0.24));
+  const lines = [rope(root, 16, 0.02, '#35a0ff'), rope(root, 14, 0.02, '#35a0ff')];
+  const plugs = [0, 1].map(() => { const g = grp(root); box(g, 0.1, 0.12, 0.08, '#f4f6f8', 0, 0, 0); box(g, 0.05, 0.06, 0.05, '#c9a94f', 0, -0.085, 0); return g; });
   const pulses = Array.from({length: 4}, () => soft(ball(root, 0.045, lit('#bfe9ff', 2.2))));
-  const qs = [0, 1].map((i) => soft(panel(root, 0.5, 0.62, glyph('?', '#ffe14a'), i ? 1.02 : 0.2, i ? 1.35 : 2.2, 0.1)));
-  const lock = grp(root); box(lock, 0.34, 0.28, 0.1, '#e7b93c', 0, 0, 0); torus(lock, 0.1, 0.03, '#8f959e', 0, 0.2, 0); cyl(lock, 0.035, 0.02, '#15121c', 0, 0, 0.06).rotation.x = Math.PI / 2;
+  const qs = [0, 1].map(() => soft(panel(root, 0.52, 0.65, glyph('?', '#ffe14a'), 0, 0, 0.1)));
+  const lock = grp(root); box(lock, 0.32, 0.26, 0.1, '#e7b93c', 0, 0, 0); torus(lock, 0.1, 0.03, '#8f959e', 0, 0.19, 0); cyl(lock, 0.035, 0.02, '#15121c', 0, 0, 0.06).rotation.x = Math.PI / 2;
   const spark = soft(panel(root, 0.5, 0.5, smat(tex('spark', 128, 128, (g) => { g.clearRect(0, 0, 128, 128); g.fillStyle = '#ffe14a'; g.strokeStyle = '#15121c'; g.lineWidth = 6; g.lineJoin = 'round'; g.beginPath(); for (let i = 0; i < 16; i++) { const a = i * Math.PI / 8, r = i % 2 ? 26 : 58; g.lineTo(64 + r * Math.cos(a), 64 + r * Math.sin(a)); } g.closePath(); g.fill(); g.stroke(); }), 1.3, true)));
+  const badge = (letter: string, bg: string, fg: string) => soft(panel(root, 0.4, 0.4, smat(tex('badge-' + letter, 160, 160, (g) => { g.clearRect(0, 0, 160, 160); g.fillStyle = bg; g.strokeStyle = '#15121c'; g.lineWidth = 11; g.beginPath(); g.arc(80, 80, 70, 0, 7); g.fill(); g.stroke(); text(g, letter, 80, 86, 104, fg); }), 1.08, true)));
+  const badges = [badge('A', '#e3342f', '#ffffff'), badge('B', '#ffe14a', '#15121c')];
   const cur = cursor3d(root, 0.36);
-  const tech = actor(root, TECH, {pull: {expr: 'stern', pose: 'point'}, done: {expr: 'smile', pose: 'hips'}}, 0.98, 0, 0.5, {scale: 0.98});
-  tech.mesh.scale.x = -1;                                                                              // mirrored: reaching toward the freezer
+  const tech = actor(root, TECH, {pull: {expr: 'stern', pose: 'point'}, done: {expr: 'smile', pose: 'hips'}}, 0.56, 0, 0.3, {scale: 0.94});
+  tech.mesh.scale.x = -1;                                                                              // mirrored: pointing at the cable
+  const SAG = 0.25;
   return {
     light: () => ({...LIGHT.cold, amb: 1.55}),
-    tick: ({f, t, cam, shot}) => {
-      const v = shot.v, choice = v === 'choice';
-      unit.position.x = choice ? 0 : -0.62; fz.set(-18, f);
-      const sx = (choice ? 0 : -0.62) + 0.3, A: V = [sx, 1.56, -0.2], B: V = [choice ? 0.92 : 0.5, choice ? 2.02 : 1.86, -0.5];
-      socket.position.set(sx - 0.02, 1.56, -0.25);
-      const out = v === 'unplug' ? smooth(f, W(220), W(220) + 9) : 0;                                 // the plug comes out on "off"
-      const end: V = [lerp(A[0], A[0] + 0.5, out), lerp(A[1], 0.62, out * out), lerp(A[2], 0.1, out)];
-      line.set(choice ? [-0.92, 0.6, 0.15] : end, choice ? [-0.5, 0.06, 0.3] : B, choice ? -0.25 : lerp(0.34, 0.1, out), true);
-      line2.set(A, B, 0.3, choice);
-      plug.visible = !choice || true; plug.position.set(choice ? -0.5 : end[0], choice ? 0.06 : end[1], choice ? 0.3 : end[2]); plug.rotation.z = choice ? -0.4 : -0.9 * out;
-      const gone = v === 'unplug' ? smooth(f, W(220) + 4, W(222) + 6) : 0;
-      cloud.visible = !choice || true; grey.visible = false;
-      cloud.position.set(choice ? 0.98 : 0.72 + 0.5 * gone, (choice ? 2.08 : 1.96) + 0.05 * Math.sin(f * 0.08) + 0.3 * gone, -0.55); cloud.scale.setScalar(0.62 * (1 - 0.35 * gone));
-      globe.visible = gone < 0.5;
-      pulses.forEach((m, i) => { const u = (f * 0.03 + i / 4) % 1, on = (v === 'why' || choice) && true; m.visible = on; m.position.copy(line2.at(A, B, 0.3, choice ? u : u)); if (!choice) m.position.copy(line.at(end, B, 0.34, i % 2 ? u : 1 - u)); });
-      qs.forEach((q, i) => { q.visible = v === 'why'; q.scale.setScalar(pop(f, W(66) + i * 5, 8)); q.position.y = (i ? 1.3 : 2.16) + 0.05 * Math.sin(f * 0.15 + i * 2); q.rotation.z = (i ? -1 : 1) * 0.16; });
-      spark.visible = v === 'unplug' && f >= W(220) && f < W(220) + 8; spark.position.set(A[0] + 0.08, A[1], 0.0); spark.scale.setScalar(pop(f, W(220), 5)); spark.quaternion.copy(cam.quaternion);
-      tech.node.visible = v === 'unplug'; tech.show(f >= W(220) + 6 ? 'done' : 'pull'); tech.node.position.y = hop(f, W(220), 0.1, 8); tech.tick(f, cam);
-      // the two answers: the cable pulled out and lying on the floor, or the cable left in with a padlock on it
-      lock.visible = choice; const mid = line2.at(A, B, 0.3, 0.5); lock.position.set(mid.x, mid.y - 0.02, mid.z + 0.08); lock.scale.setScalar(choice ? pop(f, W(234) + 4, 8) || 0.001 : 1);
-      // the tail: the pointer comes down the line from the cloud, meets the padlock, and drops out of the picture
+    tick: ({f, cam, shot}) => {
+      const v = shot.v, choice = v === 'choice', sc = choice ? 0.74 : 0.8, xs = choice ? [-0.64, 0.64] : [-0.55, 9];
+      units.forEach((u, i) => { u.g.visible = choice || i === 0; u.g.position.x = xs[i]; u.g.scale.setScalar(sc); u.fz.set(-18, f); });
+      cloud.position.set(choice ? 0 : 0.45, (choice ? 2.14 : 2.3) + 0.03 * Math.sin(f * 0.08), -0.55); cloud.scale.setScalar(choice ? 0.55 : 0.6);
+      const up = cloud.position.y - (choice ? 2.14 : 2.3);
+      // --- one freezer: plugged in ("why"), then unplugged on "off" and left swinging from the cloud
+      const P = port(xs[0], sc), C: V = [0.2, 2.18 + up, -0.5];
+      const tau = v === 'unplug' ? f - W(220) : -1, L = Math.hypot(P[0] - C[0], P[1] + 0.06 - C[1]), th0 = Math.atan2(P[0] - C[0], C[1] - P[1] - 0.06);
+      const th = tau < 0 ? th0 : th0 * Math.exp(-tau / 18) * Math.cos(0.34 * tau), end: V = tau < 0 ? [P[0], P[1] + 0.06, P[2]] : [C[0] + L * Math.sin(th), C[1] - L * Math.cos(th), lerp(P[2], C[2], clamp01(tau / 8))];
+      // --- two freezers: A's cable hangs loose between them, B's cable stays in and gets a padlock
+      const PB = port(xs[1], sc), CA: V = [-0.16, 2.02 + up, -0.5], CB: V = [0.16, 2.02 + up, -0.5], sway = 0.09 * Math.sin(f * 0.07), endA: V = [CA[0] + 0.62 * Math.sin(sway), CA[1] - 0.62 * Math.cos(sway), -0.5], endB: V = [PB[0], PB[1] + 0.06, PB[2]];
+      if (choice) { lines[0].set(endA, CA, 0.01); lines[1].set(endB, CB, 0.1); plugs[0].position.set(...endA); plugs[0].rotation.z = sway; plugs[1].position.set(...endB); plugs[1].rotation.z = 0; }
+      else { lines[0].set(end, C, tau < 0 ? SAG : lerp(SAG, 0.02, smooth(tau, 0, 6))); lines[1].set(end, C, 0, false); plugs[0].position.set(...end); plugs[0].rotation.z = tau < 0 ? 0 : th; }
+      plugs[1].visible = choice;
+      const dead = '#ff3a3a', live = '#3fe07a';
+      (units[0].led.material as THREE.MeshBasicMaterial).color.set(choice || tau >= 0 ? dead : live).multiplyScalar(choice || tau >= 0 ? 2.2 : 1.6 + 0.8 * Math.sin(f * 0.4));
+      (units[1].led.material as THREE.MeshBasicMaterial).color.set(live).multiplyScalar(1.6 + 0.8 * Math.sin(f * 0.4));
+      pulses.forEach((m, i) => {                                                                       // data going up and down the cable while it is plugged in
+        const u = (f * 0.03 + i / 4) % 1; m.visible = choice || tau < 0;
+        m.position.copy(choice ? lines[1].at(endB, CB, 0.1, i % 2 ? u : 1 - u) : lines[0].at(end, C, SAG, i % 2 ? u : 1 - u)); m.position.z += 0.03;
+      });
+      qs.forEach((q, i) => { q.visible = v === 'why'; q.scale.setScalar(pop(f, W(66) + i * 5, 8) || 0.001); q.position.set(i ? 0.86 : 0.3, (i ? 1.52 : 1.16) + 0.05 * Math.sin(f * 0.15 + i * 2), 0.1); q.rotation.z = (i ? -1 : 1) * 0.16; });
+      spark.visible = tau >= 0 && tau < 8; spark.position.set(P[0], P[1] + 0.04, P[2] + 0.2); spark.scale.setScalar(pop(f, W(220), 5) || 0.001); spark.quaternion.copy(cam.quaternion);
+      tech.node.visible = v === 'unplug'; tech.show(tau >= 6 ? 'done' : 'pull'); tech.node.position.y = hop(f, W(220), 0.12, 8); tech.tick(f, cam);
+      // the letters of the two answers, on the doors
+      badges.forEach((b, i) => { b.visible = choice && f >= W(i ? 232 : 230); b.position.set(xs[i], 1.0, -0.5 + 0.47 * sc); b.scale.setScalar(pop(f, W(i ? 232 : 230), 8) || 0.001); b.rotation.z = (i ? 1 : -1) * 0.08; });
+      const mid = lines[1].at(endB, CB, 0.1, 0.5);
+      lock.visible = choice && f >= W(232) + 2; lock.position.set(mid.x, mid.y - 0.03, mid.z + 0.1); lock.scale.setScalar(pop(f, W(232) + 2, 8) || 0.001);
+      // the tail: the pointer comes down B's cable from the cloud, meets the padlock, and drops out of the picture
       const a0 = TOTAL - 42, slide = smooth(f, a0, a0 + 12), bonk = f >= a0 + 12, fall = smooth(f, a0 + 22, a0 + 34);
-      cur.visible = choice && f >= a0; const pc = line2.at(A, B, 0.3, lerp(1, 0.58, slide));
-      cur.position.set(pc.x + 0.03 + (bonk ? shake(f, a0 + 12, 0.07, 9) : 0) + 0.3 * fall, pc.y + 0.02 - 2.6 * fall * fall, pc.z + 0.14); cur.rotation.z = 2.4 + 1.4 * fall;
-      if (choice && bonk) lock.rotation.z = shake(f, a0 + 12, 0.25, 12); else lock.rotation.z = 0;
+      cur.visible = choice && f >= a0; const pc = lines[1].at(endB, CB, 0.1, lerp(1, 0.6, slide));
+      cur.position.set(pc.x + 0.02 + (bonk ? shake(f, a0 + 12, 0.07, 9) : 0) - 0.25 * fall, pc.y + 0.03 - 2.6 * fall * fall, pc.z + 0.16); cur.rotation.z = -0.6 - 1.4 * fall;
+      lock.rotation.z = choice && bonk ? shake(f, a0 + 12, 0.25, 12) : 0;
     },
   };
 };
@@ -168,23 +202,28 @@ export const tech: Builder = (root) => {
   });
   const scr = new THREE.MeshBasicMaterial({map: dash(false)});
   box(root, 2.26, 1.32, 0.08, '#15171d', 0, 1.7, -1.46); panel(root, 2.12, 1.19, scr, 0, 1.7, -1.415);
-  // the sun crosses the top of the wall, then the moon
-  const sun = soft(ball(root, 0.14, lit('#ffd43b', 1.8))), moon = soft(ball(root, 0.12, lit('#e6f0ff', 1.5)));
-  const dusk = soft(panel(root, 9, 5.4, new THREE.MeshBasicMaterial({color: '#0a1030', transparent: true, opacity: 0, depthWrite: false}), 0, 2.7, -1.38));
+  // a strip of window over the monitor: the sun crosses it, the sky goes dark, the moon follows
+  const sky = lamp('#8fd0ff', 1);
+  box(root, 2.5, 0.72, 0.06, '#f4efe4', 0, 2.78, -1.49); panel(root, 2.34, 0.56, sky, 0, 2.78, -1.455);
+  for (const x of [-0.39, 0.39]) box(root, 0.04, 0.56, 0.03, '#f4efe4', x, 2.78, -1.43); box(root, 2.6, 0.05, 0.14, '#f4efe4', 0, 2.44, -1.42);
+  const sun = soft(ball(root, 0.12, lit('#ffd43b', 1.8))), moon = soft(ball(root, 0.1, lit('#f4f8ff', 1.5)));
+  const starsN = [[-0.9, 2.92], [-0.5, 2.66], [0.1, 2.94], [0.62, 2.7], [0.98, 2.9]].map(([x, y]) => soft(ball(root, 0.018, lamp('#ffffff', 1.4), x, y, -1.45)));
+  const dusk = soft(panel(root, 9, 5.4, new THREE.MeshBasicMaterial({color: '#0a1030', transparent: true, opacity: 0, depthWrite: false}), 0, 2.7, -1.494));
   box(root, 2.6, 0.07, 0.8, '#5a4030', 0, 0.86, -0.95); for (const x of [-1.2, 1.2]) box(root, 0.08, 0.84, 0.7, '#4a3426', x, 0.42, -0.95);
   box(root, 0.6, 0.03, 0.2, '#2b2d38', -0.3, 0.915, -0.85); cyl(root, 0.05, 0.11, '#f3f1ea', 0.35, 0.95, -0.9); plant(root, -1.05, -1.0, 0.52).position.y = 0.9;
   const lampOn = soft(ball(root, 0.09, lamp('#ffe9b0', 0), -0.82, 1.2, -0.95)); cyl(root, 0.02, 0.3, '#3d4450', -0.82, 1.05, -0.95);
-  const t = actor(root, TECH, {day: {expr: 'smile', pose: 'hips'}, night: {expr: 'neutral', pose: 'phone', prop: 'phone'}}, 0.9, 0, -0.1, {scale: 1.0});
+  const t = actor(root, TECH, {day: {expr: 'smile', pose: 'hips'}, night: {expr: 'neutral', pose: 'phone', prop: 'phone'}}, 0.7, 0, -0.1, {scale: 1.0});
   return {
     light: () => ({...LIGHT.room, amb: 1.4}),
     tick: ({f, cam, shot}) => {
-      const k = smooth(f, W(75) - 2, W(77) + 6), a = Math.PI * clamp01((f - shot.at) / (W(77) + 14 - shot.at));
+      const N = W(75) + 6, k = smooth(f, N - 5, N + 5), a = Math.PI * clamp01((f - shot.at) / (N + 22 - shot.at));   // night falls on frame N
       scr.map = dash(k > 0.5);
-      sun.visible = k < 0.5; moon.visible = k >= 0.5;
-      const arc = (u: number, m: THREE.Mesh) => m.position.set(-1.0 + 2.0 * u, 2.46 + 0.0 * Math.sin(Math.PI * u), -1.4);
-      arc(clamp01(a / Math.PI * 1.6), sun); arc(clamp01((a / Math.PI - 0.5) * 1.6), moon);
-      (dusk.material as THREE.MeshBasicMaterial).opacity = 0.5 * k; (lampOn.material as THREE.MeshBasicMaterial).color.set('#ffe9b0').multiplyScalar(2.2 * k);
-      t.show(k > 0.5 ? 'night' : 'day'); t.node.position.y = hop(f, W(75) - 1, 0.08, 8); t.tick(f, cam);
+      sun.visible = k < 0.5; moon.visible = k >= 0.5; starsN.forEach((m) => { m.visible = k > 0.6; });
+      const arc = (u: number, m: THREE.Mesh) => m.position.set(-0.98 + 1.96 * u, 2.6 + 0.3 * Math.sin(Math.PI * u), -1.44);
+      arc(clamp01((f - shot.at) / (N + 2 - shot.at)), sun); arc(0.08 + 0.5 * clamp01((f - N) / 24), moon);
+      sky.color.set('#8fd0ff').lerp(new THREE.Color('#ff9a5a'), Math.sin(Math.PI * clamp01(k * 1.4)) * 0.8).lerp(new THREE.Color('#0d1638'), k);
+      (dusk.material as THREE.MeshBasicMaterial).opacity = 0.45 * k; (lampOn.material as THREE.MeshBasicMaterial).color.set('#ffe9b0').multiplyScalar(2.2 * k);
+      t.show(k > 0.5 ? 'night' : 'day'); t.node.position.y = hop(f, N, 0.08, 8); t.tick(f, cam);
     },
   };
 };
@@ -194,18 +233,18 @@ export const lecture: Builder = (root) => {
   backdrop(root, ['#2a2018', '#3a2c22']);
   floor(root, 14, 12, tmat(tiled(woodTex('hall', '#8a6a4a', '#5a4030'), 4, 4)));
   box(root, 9, 5.4, 0.3, '#dccfb8', 0, 2.7, -1.55);
-  box(root, 2.56, 1.52, 0.08, '#6b4a2d', -0.1, 1.62, -1.36);
-  panel(root, 2.4, 1.36, smat(tex('chalk', 720, 408, (g, w, h) => {
+  box(root, 2.16, 1.52, 0.08, '#6b4a2d', -0.32, 1.62, -1.36);
+  panel(root, 2.0, 1.36, smat(tex('chalk', 600, 408, (g, w, h) => {
     g.fillStyle = '#2f5a4a'; g.fillRect(0, 0, w, h); const r = rng(6); for (let i = 0; i < 500; i++) { g.fillStyle = `rgba(255,255,255,${r() * 0.05})`; g.fillRect(r() * w, r() * h, 30 * r(), 3); }
     g.strokeStyle = '#f4f1e6'; g.lineWidth = 7; g.lineJoin = 'round'; g.lineCap = 'round';
-    g.strokeRect(96, 70, 150, 270); g.beginPath(); g.moveTo(96, 160); g.lineTo(246, 160); g.moveTo(222, 100); g.lineTo(222, 140); g.moveTo(222, 190); g.lineTo(222, 250); g.stroke();                 // a fridge in chalk
-    g.beginPath(); g.moveTo(420, 196); g.quadraticCurveTo(340, 150, 268, 200); g.moveTo(268, 200); g.lineTo(296, 178); g.moveTo(268, 200); g.lineTo(300, 214); g.stroke();                                // arrow
-    text(g, 'SECURITY', 540, 120, 62, '#f4f1e6'); text(g, 'RISK?', 540, 190, 76, '#ffe14a');
-    g.lineWidth = 5; g.beginPath(); g.moveTo(430, 232); g.lineTo(650, 232); g.stroke();
-    ['UPDATED?', 'LOCKED?'].forEach((s, i) => { g.strokeRect(430, 262 + i * 52, 30, 30); text(g, s, 478, 279 + i * 52, 34, '#f4f1e6', {align: 'left'}); });
-  }), 1), -0.1, 1.62, -1.315);
-  box(root, 2.4, 0.05, 0.13, '#6b4a2d', -0.1, 0.9, -1.28); for (const [x, c] of [[-0.9, '#f4f1e6'], [-0.72, '#ffe14a'], [0.6, '#ff9ab0']] as const) box(root, 0.12, 0.03, 0.03, c, x, 0.94, -1.27);
-  const prof = actor(root, PROF, {point: {expr: 'smile', pose: 'point'}, shrug: {expr: 'smile', pose: 'shrug'}}, 1.0, 0, -0.45, {scale: 1.02});
+    g.strokeRect(46, 70, 150, 270); g.beginPath(); g.moveTo(46, 160); g.lineTo(196, 160); g.moveTo(172, 100); g.lineTo(172, 140); g.moveTo(172, 190); g.lineTo(172, 250); g.stroke();                   // a fridge in chalk
+    g.beginPath(); g.moveTo(330, 196); g.quadraticCurveTo(276, 156, 218, 200); g.moveTo(218, 200); g.lineTo(246, 178); g.moveTo(218, 200); g.lineTo(250, 214); g.stroke();                                // arrow
+    text(g, 'SECURITY', 440, 112, 62, '#f4f1e6'); text(g, 'RISK?', 440, 184, 78, '#ffe14a');
+    g.lineWidth = 5; g.beginPath(); g.moveTo(340, 232); g.lineTo(540, 232); g.stroke();
+    ['UPDATED?', 'LOCKED?'].forEach((n, i) => { g.strokeRect(340, 262 + i * 52, 30, 30); text(g, n, 386, 279 + i * 52, 34, '#f4f1e6', {align: 'left'}); });
+  }), 1), -0.32, 1.62, -1.315);
+  box(root, 2.0, 0.05, 0.13, '#6b4a2d', -0.32, 0.9, -1.28); for (const [x, c] of [[-1.0, '#f4f1e6'], [-0.82, '#ffe14a'], [0.3, '#ff9ab0']] as const) box(root, 0.12, 0.03, 0.03, c, x, 0.94, -1.27);
+  const prof = actor(root, PROF, {point: {expr: 'smile', pose: 'point'}, shrug: {expr: 'smile', pose: 'shrug'}}, 0.82, 0, -0.45, {scale: 1.06});
   prof.mesh.scale.x = -1;                                                                              // mirrored: pointing at the board
   crowd(root, -1.25, 1.3, [1.7, 2.5], -0.98, 7, ['#2a2430', '#3a2f3a', '#20242c']);
   return {
@@ -225,28 +264,28 @@ export const lineup: Builder = (root) => {
   const stool = (x: number, hgt: number) => { cyl(root, 0.2, 0.05, '#6b4a2d', x, hgt, -0.45); for (let i = 0; i < 3; i++) { const a = i * 2.094; rod(root, [x + 0.14 * Math.cos(a), hgt, -0.45 + 0.14 * Math.sin(a)], [x + 0.22 * Math.cos(a), 0, -0.45 + 0.22 * Math.sin(a)], 0.02, '#5a4030'); } };
   const tag = (x: number, y: number, n: string) => panel(root, 0.3, 0.2, smat(signTex('tag-' + n, 150, 100, '#fffdf4', '#15121c', [[n, 76]], {border: '#15121c'}), 1.05), x, y, -0.02);
   // 1: a router; 2: a laptop
-  stool(-0.98, 0.95); const router = grp(root, -0.98, 0.98, -0.45); box(router, 0.5, 0.1, 0.3, '#f4f6f8', 0, 0.05, 0); for (const x of [-0.2, 0, 0.2]) rod(router, [x, 0.1, -0.1], [x * 1.3, 0.5, -0.12], 0.016, '#2b2d38');
+  stool(-1.0, 0.95); const router = grp(root, -1.0, 0.98, -0.45); box(router, 0.5, 0.1, 0.3, '#f4f6f8', 0, 0.05, 0); for (const x of [-0.2, 0, 0.2]) rod(router, [x, 0.1, -0.1], [x * 1.3, 0.5, -0.12], 0.016, '#2b2d38');
   const leds = [-0.16, -0.08, 0, 0.08].map((x) => soft(ball(router, 0.018, lamp('#3fe07a', 2), x, 0.06, 0.155)));
-  stool(-0.22, 0.8); const lap = grp(root, -0.22, 0.83, -0.45); box(lap, 0.5, 0.03, 0.34, '#8f96a3', 0, 0.015, 0); const lid = box(lap, 0.5, 0.34, 0.025, '#3a4050', 0, 0.19, -0.19); lid.rotation.x = -0.25;
+  stool(-0.3, 0.8); const lap = grp(root, -0.3, 0.83, -0.45); box(lap, 0.5, 0.03, 0.34, '#8f96a3', 0, 0.015, 0); const lid = box(lap, 0.5, 0.34, 0.025, '#3a4050', 0, 0.19, -0.19); lid.rotation.x = -0.25;
   panel(lap, 0.44, 0.28, lit('#9fe0ff', 1.1), 0, 0.19, -0.172).rotation.x = -0.25;
-  tag(-0.98, 0.6, '1'); tag(-0.22, 0.6, '2');
+  tag(-1.0, 0.6, '1'); tag(-0.3, 0.6, '2');
   // 3: the fridge, with a halo
-  const fridge = fridge3d(root, 0.72, -0.45, 1.0); tag(0.72, 0.62, '3').position.z = -0.08;
+  const fridge = fridge3d(root, 0.6, -0.45, 1.0); tag(0.6, 0.62, '3').position.z = -0.08;
   panel(fridge, 0.66, 0.5, smat(tex('fridge-face', 264, 200, (g, w, h) => {
     g.clearRect(0, 0, w, h);
     for (const s of [-1, 1]) { g.fillStyle = '#ffffff'; g.strokeStyle = '#15121c'; g.lineWidth = 7; g.beginPath(); g.ellipse(w / 2 + s * 48, 78, 30, 36, 0, 0, 7); g.fill(); g.stroke(); g.fillStyle = '#15121c'; g.beginPath(); g.arc(w / 2 + s * 48 - 9, 62, 13, 0, 7); g.fill(); }
     g.fillStyle = '#15121c'; g.beginPath(); g.ellipse(w / 2 + 6, 150, 13, 16, 0, 0, 7); g.fill();                                       // whistling
   }), 1, true), 0, 1.5, 0.356);
-  const halo = soft(torus(root, 0.3, 0.035, lit('#ffe14a', 2.2), 0.72, 2.02, -0.45)); halo.rotation.x = 1.25;
+  const halo = soft(torus(root, 0.3, 0.035, lit('#ffe14a', 2.2), 0.6, 2.02, -0.45)); halo.rotation.x = 1.25;
   const note = soft(panel(root, 0.3, 0.36, smat(tex('note', 96, 116, (g) => { g.clearRect(0, 0, 96, 116); g.fillStyle = '#15121c'; g.beginPath(); g.ellipse(34, 90, 20, 14, -0.3, 0, 7); g.fill(); g.fillRect(48, 18, 8, 74); g.beginPath(); g.moveTo(48, 18); g.quadraticCurveTo(84, 22, 84, 54); g.quadraticCurveTo(70, 36, 48, 40); g.fill(); }), 1, true)));
-  beam(root, 0.14, 1.0, 3.6, '#fff6d0', 0.16, 0.72, 3.9, -0.45); pool(root, 0.95, '#fff2c0', 0.5, 0.72, -0.3);
+  beam(root, 0.14, 1.0, 3.6, '#fff6d0', 0.16, 0.6, 3.9, -0.45); pool(root, 0.95, '#fff2c0', 0.5, 0.6, -0.3);
   return {
     light: () => ({...LIGHT.show, amb: 1.1}),
     tick: ({f, t, cam}) => {
       leds.forEach((l, i) => (l.material as THREE.MeshBasicMaterial).color.set('#3fe07a').multiplyScalar((Math.floor(f / 3) + i) % 3 ? 0.4 : 2.4));
       fridge.position.y = hop(f, W(83), 0.08, 9); fridge.rotation.z = 0.03 * Math.sin(f * 0.12);
       halo.position.y = 2.02 + 0.03 * Math.sin(f * 0.15) + fridge.position.y; halo.scale.setScalar(pop(f, W(83) + 2, 8) || 0.001);
-      const u = (f * 0.02) % 1; note.position.set(1.05 + 0.25 * u, 1.55 + 0.5 * u, 0.0); note.quaternion.copy(cam.quaternion); note.scale.setScalar(Math.sin(Math.PI * u)); note.visible = t > 6;
+      const u = (f * 0.02) % 1; note.position.set(0.98 + 0.2 * u, 1.55 + 0.5 * u, 0.0); note.quaternion.copy(cam.quaternion); note.scale.setScalar(Math.sin(Math.PI * u)); note.visible = t > 6;
     },
   };
 };

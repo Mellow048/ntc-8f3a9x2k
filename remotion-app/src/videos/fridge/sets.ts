@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import {backdrop, ball, box, clamp01, cone, cyl, floor, grainTex, grp, hop, lamp, lerp, lit, mesh, panel, pool, pop, rng, rod, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, torus,
   type G2, type Node, type V} from './kit';
 import {actor, FIREFIGHTER, HACKER, SHOPPER, WORKER} from './cast';
-import {controller, cursor3d, freezer, fridge3d, signTex, statusTex, streetLamp, tempAt, trolley} from './props';
+import {controller, cursor3d, freezer, fridge3d, risingTex, signTex, statusTex, streetLamp, tempAt, trolley} from './props';
 import {W, type Shot} from './story';
 
 export type Ctx = {f: number; /** frames since the shot began */ t: number; cam: THREE.PerspectiveCamera; shot: Shot};
@@ -25,8 +25,9 @@ export const LIGHT: Record<'day' | 'room' | 'cold' | 'dark' | 'warm' | 'show' | 
 
 // ------------------------------------------------------------------ things several sets share
 /** soft puffs that rise and fade: steam off a warm freezer, smoke out of a door */
+const puffTex = () => tex('puff', 96, 96, (g) => { const gr = g.createRadialGradient(48, 48, 3, 48, 48, 47); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.5, 'rgba(255,255,255,.8)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 96, 96); });
 export function puffs(p: Node, n: number, color: string, opacity: number) {
-  const ms = Array.from({length: n}, () => soft(ball(p, 1, new THREE.MeshBasicMaterial({color, transparent: true, opacity, depthWrite: false, fog: false}))));
+  const ms = Array.from({length: n}, () => soft(mesh(p, new THREE.PlaneGeometry(2.6, 2.6), new THREE.MeshBasicMaterial({map: puffTex(), color, transparent: true, opacity, depthWrite: false, fog: false}))));
   return {
     /** k = 0 (none) .. 1; puffs leave from (x ± spread, y, z), rise `rise`, grow from r0 to r1 */
     set(f: number, k: number, x: number, y: number, z: number, o: {spread?: number; rise?: number; r0?: number; r1?: number; drift?: number; speed?: number} = {}) {
@@ -91,8 +92,8 @@ export const aisle: Builder = (root) => {
       cur.visible = v === 'hook';
       if (v === 'hook') { const k = smooth(f, 2, W(1) + 2), tap = hop(f, W(1) + 2, 0.07, 6); cur.position.set(lerp(1.5, 0.2, k), lerp(3.2, 2.14, k) - tap, -0.2 + 0.02); cur.rotation.z = 0.25 * (1 - k); }
       worker.node.visible = v === 'morning' || v === 'restored'; shopper.node.visible = v === 'restored'; tub.visible = v === 'restored';
-      if (v === 'morning') { worker.show('shock'); worker.node.position.set(-0.98, hop(f, W(31), 0.14, 9), 0.78); }
-      if (v === 'restored') { worker.show('stock'); worker.node.position.set(-0.62, 0, 0.5); shopper.node.position.y = 0.03 * Math.abs(Math.sin(f * 0.2)); tub.position.set(-0.24, 1.62 + 0.03 * Math.sin(f * 0.3), 0.52); }
+      if (v === 'morning') { worker.show('shock'); worker.node.position.set(-0.6, hop(f, W(31), 0.14, 9), 0.62); }
+      if (v === 'restored') { worker.show('stock'); worker.node.position.set(-0.62, 0, 0.5); shopper.node.position.set(0.66, 0.03 * Math.abs(Math.sin(f * 0.2)), 0.8); tub.position.set(-0.24, 1.62 + 0.03 * Math.sin(f * 0.3), 0.52); }
       worker.tick(f, cam); shopper.tick(f, cam);
     },
   };
@@ -103,35 +104,33 @@ export const panelSet: Builder = (root) => {
   backdrop(root, ['#141c28', '#202c3c']);
   floor(root, 12, 10, '#3a4250');
   const walls = [tmat(tiled(tileTex('wall-a', '#d3dbe1', '#aab6bf', 4), 7, 5)), tmat(tiled(tileTex('wall-b', '#f0e2b8', '#c9b98a', 4), 7, 5))].map((m) => box(root, 8, 5.4, 0.3, m, 0, 2.7, -0.45));
-  const c = controller(root, 0, 1.42, -0.22, 1.5);
-  for (const x of [-0.5, 0.5]) { cyl(root, 0.045, 1.6, '#8f9aa6', x, 3.0, -0.25); cyl(root, 0.045, 0.7, '#8f9aa6', x, 0.3, -0.25); }
-  const labels = panel(root, 1.86, 0.2, smat(tex('key-labels', 930, 100, (g, w, h) => { g.fillStyle = '#eef2f5'; g.fillRect(0, 0, w, h); ['COOL', 'DEFROST', 'ALARM'].forEach((s, i) => text(g, s, w / 2 + (i - 1) * 300, h / 2 + 3, 58, '#15202b', {spacing: 3})); }), 1), 0, 0.68, -0.13);
-  labels.castShadow = false;
+  const c = controller(root, 0, 1.42, -0.22, 1.25);
+  for (const x of [-0.42, 0.42]) { cyl(root, 0.045, 1.6, '#8f9aa6', x, 2.95, -0.25); cyl(root, 0.045, 0.75, '#8f9aa6', x, 0.36, -0.25); }
   // rings of sound around the alarm key, until it is muted
-  const rings = [0, 1, 2].map((i) => soft(torus(root, 0.24 + i * 0.09, 0.012, lamp('#ffd43b', 1.4), 0.6, 1.015, -0.02)));
-  const cur = cursor3d(root, 0.5);
+  const rings = [0, 1, 2].map((i) => soft(torus(root, 0.2 + i * 0.075, 0.011, lamp('#ffd43b', 1.4), 0.5, 1.1325, -0.04)));
+  const cur = cursor3d(root, 0.44);
   const ST = {cool: statusTex('COOLING', '#7fe3ff'), mute: statusTex('ALARM: MUTED', '#ff5a3c'), def: statusTex('DEFROST', '#ffb03a'), stuck: statusTex('DEFROST · NO END', '#ff5a3c')};
-  const key = (i: number): V => [(-0.4 + i * 0.4) * 1.5, 1.42 - 0.27 * 1.5, -0.22 + 0.16 * 1.5];
+  const key = (i: number): V => [(-0.4 + i * 0.4) * 1.25, 1.42 - 0.23 * 1.25, -0.22 + 0.16 * 1.25];
   return {
     light: (v) => v === 'again' ? {...LIGHT.room, amb: 1.4} : {...LIGHT.cold, amb: 1.35},
     tick: ({f, t, shot}) => {
       const v = shot.v;
       walls[0].visible = v !== 'again'; walls[1].visible = v === 'again';
       let temp = -18, target = 2, press = 0, arrive = 6;
-      const muted = v !== 'mute' || f >= W(55) + 3, defrost = v === 'stuck' || v === 'again' && f >= W(113) || v === 'defrost' && f >= W(60);
-      if (v === 'mute') { target = 2; arrive = W(55) + 2 - shot.at; press = hop(f, W(55) + 2, 1, 6); }
+      const M = W(57) - 1, muted = v !== 'mute' || f >= M, defrost = v === 'stuck' || v === 'again' && f >= W(113) || v === 'defrost' && f >= W(60);
+      if (v === 'mute') { target = 2; arrive = M - 1 - shot.at; press = hop(f, M - 1, 1, 6); }
       else if (v === 'defrost') { target = 1; arrive = W(60) - 1 - shot.at; press = hop(f, W(60) - 1, 1, 6); temp = lerp(-18, -6, smooth(f, W(60), W(60) + 16)); }
       else if (v === 'stuck') { target = 1; arrive = 0; press = 0.8; temp = lerp(-6, 50, smooth(t, 0, 30)); }
       else if (v === 'again') { target = 1; arrive = W(113) - 1 - shot.at; press = f >= W(113) ? 0.8 : 0; temp = lerp(-18, 40, smooth(f, W(113), W(113) + 14)); }
-      c.screen.map = tempAt(temp);
+      c.screen.map = v === 'again' && f >= W(113) ? risingTex() : tempAt(temp);   // no temperature was reported for November: arrows, not a number
       c.status.map = v === 'stuck' && Math.floor(f / 6) % 4 !== 3 ? ST.stuck : defrost ? ST.def : muted && v === 'mute' ? ST.mute : ST.cool;
-      c.slash.visible = muted; c.slash.scale.setScalar(v === 'mute' ? pop(f, W(55) + 3, 7) : 1);
+      c.slash.visible = muted; c.slash.scale.setScalar(v === 'mute' ? pop(f, M, 7) : 1);
       c.keys[1].color.set(defrost ? '#ffb03a' : '#ffe9c2').multiplyScalar(defrost ? 1.6 + 0.3 * Math.sin(f * 0.5) : 1);
       c.keys[2].color.set(muted ? '#8f8a7a' : '#fff0a8');
       rings.forEach((r, i) => { const u = ((f * 0.06 + i / 3) % 1); r.visible = !muted; r.scale.setScalar(0.7 + 0.8 * u); (r.material as THREE.MeshBasicMaterial).color.set('#ffd43b').multiplyScalar(1.6 * (1 - u)); });
-      const [kx, ky, kz] = key(target), k = smooth(t, 0, Math.max(3, arrive)), from: V = v === 'mute' ? [1.7, 2.6, 0.5] : v === 'defrost' ? [0.9, 1.0, 0.25] : [1.6, 2.7, 0.5];
+      const [kx, ky, kz] = key(target), k = v === 'stuck' ? 1 : smooth(t, 0, Math.max(3, arrive)), from: V = v === 'mute' ? [1.7, 2.6, 0.5] : v === 'defrost' ? [0.9, 1.0, 0.25] : [1.6, 2.7, 0.5];
       cur.position.set(lerp(from[0], kx + 0.02, k), lerp(from[1], ky - 0.03, k), lerp(from[2], kz + 0.04, k) - 0.05 * press); cur.rotation.z = 0.3 * (1 - k);
-      cur.scale.setScalar(0.5 * (1 - 0.1 * press));
+      cur.scale.setScalar(0.44 * (1 - 0.1 * press));
       c.g.position.x = shake(f, v === 'stuck' ? shot.at : -99, 0.012, 10);
     },
   };
@@ -141,7 +140,7 @@ export const panelSet: Builder = (root) => {
 export const lair: Builder = (root) => {
   backdrop(root, ['#05080d', '#0b1118']);
   floor(root, 14, 12, tmat(tiled(grainTex('lair', '#1c2026', 0.14), 5, 4)));
-  box(root, 9, 5.4, 0.3, '#121820', 0, 2.7, -2.25);
+  box(root, 9, 5.4, 0.3, '#1b2632', 0, 2.7, -2.25); const halo = pool(root, 2.3, '#2aa8e0', 0.34, 0, -2.08, 1.7); halo.rotation.x = 0;
   const T = {
     login: screenTex('login', (g, w, h) => {                                                         // a made-up remote-access page: a list of stores, all cold
       g.fillStyle = '#12303a'; g.fillRect(0, 0, w, 46); text(g, 'REMOTE ACCESS · STORE COOLING', w / 2, 25, 24, '#9ff0ff', {font: 'Montserrat', spacing: 2, maxWidth: w - 30});
@@ -164,14 +163,14 @@ export const lair: Builder = (root) => {
   };
   const scr = new THREE.MeshBasicMaterial({map: T.login});
   box(root, 2.34, 1.38, 0.08, '#0b0d12', 0, 1.7, -2.02); panel(root, 2.2, 1.24, scr, 0, 1.7, -1.975);
-  const side = [-1, 1].map((s) => { const m = new THREE.MeshBasicMaterial({map: T.code}); box(root, 0.86, 0.58, 0.06, '#0b0d12', s * 1.72, 1.9, -1.9).rotation.y = -s * 0.4; const pn = panel(root, 0.78, 0.5, m, s * 1.7, 1.9, -1.86); pn.rotation.y = -s * 0.4; return m; });
+  const side = [-1, 1].map((s) => { const m = new THREE.MeshBasicMaterial({map: T.code}); box(root, 0.86, 0.58, 0.06, '#0b0d12', s * 1.22, 2.72, -1.9).rotation.y = -s * 0.3; const pn = panel(root, 0.78, 0.5, m, s * 1.21, 2.72, -1.86); pn.rotation.y = -s * 0.3; return m; });
   box(root, 3.2, 0.07, 0.8, '#262b33', 0, 0.86, -1.45); for (const x of [-1.5, 1.5]) box(root, 0.08, 0.84, 0.7, '#1d2128', x, 0.42, -1.45);
   for (const x of [-0.7, 0.1, 0.8]) box(root, 0.5, 0.03, 0.17, '#12151a', x, 0.915, -1.3);
   for (const [x, c] of [[-0.25, '#3fe07a'], [0.45, '#ff5a8a'], [1.2, '#ffd43b']] as const) cyl(root, 0.035, 0.13, c, x, 0.96, -1.5);
   box(root, 3.1, 0.03, 0.03, lit('#35c8ff', 2), 0, 0.81, -1.04);                                       // LED strip under the desk edge
   const cur = cursor3d(root, 0.3);
-  const H = [-0.95, 0.96, 0].map((x, i) => actor(root, HACKER(i), {idle: {}, point: {pose: 'point'}, cross: {pose: 'cross'}, hips: {pose: 'hips'}}, x, 0, i === 2 ? -0.5 : -0.2, {scale: i === 2 ? 0.94 : 1.0}));
-  const L = [-0.98, 0.98].map((x, i) => actor(root, HACKER(i, 'heart'), {a: {pose: 'both'}}, x, 0, -0.1, {scale: 1.0}));
+  const H = [-0.74, 0.76, 0].map((x, i) => actor(root, HACKER(i), {idle: {}, point: {pose: 'point'}, cross: {pose: 'cross'}, hips: {pose: 'hips'}}, x, 0, i === 2 ? -0.5 : -0.2, {scale: i === 2 ? 0.94 : 1.0}));
+  const L = [-0.78, 0.78].map((x, i) => actor(root, HACKER(i, 'heart'), {a: {pose: 'both'}}, x, 0, -0.1, {scale: 1.0}));
   // what they fell for: a small fridge on a stand, hearts rising
   const love = grp(root, 0, 0, -0.45); cyl(love, 0.42, 0.5, '#2b303a', 0, 0.25, 0, 0.34); fridge3d(love, 0, 0, 0.62).position.y = 0.5;
   const hearts = Array.from({length: 6}, () => soft(panel(love, 0.26, 0.26, smat(tex('heart', 96, 96, (g) => heart(g, 48, 50, 40)), 1.2, true))));
@@ -185,8 +184,8 @@ export const lair: Builder = (root) => {
       love.visible = v === 'love'; hearts.forEach((h, i) => { const u = ((f * 0.022 + i / 6) % 1); h.position.set(Math.sin(i * 2.4) * 0.5 + 0.08 * Math.sin(f * 0.1 + i), 1.5 + 1.0 * u, 0.3); h.scale.setScalar(0.5 + 0.6 * Math.sin(Math.PI * u)); h.quaternion.copy(cam.quaternion); });
       H.forEach((a, i) => {
         a.node.visible = v !== 'love';
-        if (v === 'accused') { a.show(['cross', 'hips', 'cross'][i]); a.node.position.set([-0.82, 0.82, 0][i], 0, i === 2 ? 0.1 : -0.25); }
-        else { a.show(i === 1 && f >= W(52) ? 'point' : 'idle'); a.node.position.set([-0.95, 0.96, 0][i], i === 2 ? -0.5 : 0, i === 2 ? -1.0 : -0.2); a.node.visible = v !== 'love' && i !== 2; }
+        if (v === 'accused') { a.show(['cross', 'hips', 'cross'][i]); a.node.position.set([-0.76, 0.76, 0][i], 0, i === 2 ? 0.1 : -0.25); }
+        else { a.show(i === 1 && f >= W(52) ? 'point' : 'idle'); a.node.position.set([-0.74, 0.76, 0][i], i === 2 ? -0.5 : 0, i === 2 ? -1.0 : -0.2); a.node.visible = v !== 'love' && i !== 2; }
         a.tick(f, cam);
       });
       L.forEach((a, i) => { a.node.visible = v === 'love'; a.node.position.y = 0.05 * Math.abs(Math.sin(f * 0.3 + i * 1.5)); a.tick(f, cam); });
@@ -213,7 +212,7 @@ export const mapSet: Builder = (root) => {
   floor(root, 12, 10, '#1b2638');
   box(root, 9, 5.6, 0.3, '#18243a', 0, 2.8, -0.65);
   const pts = FRANCE.map(proj);
-  const fr = grp(root, 0, 1.42, -0.48);
+  const fr = grp(root, 0, 1.42, -0.48); fr.scale.setScalar(0.82);
   panel(fr, 2.6, 2.6, smat(tex('france', 780, 780, (g, w, h) => {
     g.fillStyle = '#122036'; g.fillRect(0, 0, w, h); g.strokeStyle = 'rgba(160,200,255,.12)'; g.lineWidth = 2;
     for (let i = 1; i < 8; i++) { g.beginPath(); g.moveTo(i * w / 8, 0); g.lineTo(i * w / 8, h); g.moveTo(0, i * h / 8); g.lineTo(w, i * h / 8); g.stroke(); }
@@ -227,10 +226,10 @@ export const mapSet: Builder = (root) => {
   while (dots.length < 64) {
     const x = (r() - 0.5) * 2.2, y = (r() - 0.5) * 2.2;
     if (!inside(x, y, pts) || dots.some((d) => Math.hypot(d.m.position.x - x, d.m.position.y - y) < 0.11)) continue;
-    dots.push({m: soft(ball(fr, 0.04, lit('#ff6a3a', 2.2), x, y, 0.03)), ring: soft(torus(fr, 0.07, 0.012, lamp('#ffb03a', 1.6), x, y, 0.03)), at: Math.floor(r() * 44)});
+    dots.push({m: soft(ball(fr, 0.04, lit('#ff6a3a', 2.2), x, y, 0.03)), ring: soft(mesh(fr, new THREE.RingGeometry(0.052, 0.066, 28), new THREE.MeshBasicMaterial({color: '#ffc98a', transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending}), x, y, 0.036)), at: Math.floor(r() * 44)});
   }
   // Europe as a board of tiles, laid out roughly as the countries lie
-  const eu = grp(root, 0, 1.42, -0.48), P = 0.47, tiles = TILES.map(([code, name, cx, ry, hit]) => {
+  const eu = grp(root, 0, 1.52, -0.48), P = 0.47, tiles = TILES.map(([code, name, cx, ry, hit]) => {
     const x = (cx - 2) * P, y = (1.5 - ry) * P, base = code === 'FR' ? '#e9b930' : '#31435f';
     const cold = tmat(tex('tile-' + code, 168, 168, (g, w, h) => { g.fillStyle = base; g.fillRect(0, 0, w, h); text(g, code, w / 2, h * 0.42, 86, code === 'FR' ? '#15121c' : '#dfe8f5'); text(g, code === 'FR' ? 'OCT 11–12' : name, w / 2, h * 0.8, 23, code === 'FR' ? '#15121c' : '#9fb4d0', {font: 'Montserrat', maxWidth: w - 16}); }));
     const hot = smat(tex('tile-hot-' + code, 168, 168, (g, w, h) => { g.fillStyle = '#ff5a3c'; g.fillRect(0, 0, w, h); text(g, code, w / 2, h * 0.42, 86, '#ffffff'); text(g, name, w / 2, h * 0.8, 23, '#fff0e0', {font: 'Montserrat', maxWidth: w - 16}); }), 1.15);
@@ -244,7 +243,7 @@ export const mapSet: Builder = (root) => {
     tick: ({f, t, shot}) => {
       const europe = shot.v === 'europe';
       fr.visible = !europe; eu.visible = europe;
-      dots.forEach((d) => { const a = t - 3 - d.at, k = pop(a, 0, 7); d.m.visible = a >= 0; d.m.scale.setScalar(Math.max(0.01, k)); d.ring.visible = a >= 0 && a < 14; d.ring.scale.setScalar(1 + a * 0.28); (d.ring.material as THREE.MeshBasicMaterial).color.set('#ffb03a').multiplyScalar(Math.max(0, 1.6 * (1 - a / 14))); });
+      dots.forEach((d) => { const a = t - 3 - d.at, k = pop(a, 0, 7); d.m.visible = a >= 0; d.m.scale.setScalar(Math.max(0.01, k)); d.ring.visible = a >= 0 && a < 16; d.ring.scale.setScalar(1 + a * 0.13); (d.ring.material as THREE.MeshBasicMaterial).opacity = Math.max(0, 0.95 * (1 - a / 16)); });
       hits.forEach((x, i) => {                                                                        // the pointer visits the five countries in turn
         const at = shot.at + 4 + i * 8, on = f >= at; x.face.material = on ? x.hot : x.cold;
         const k = on ? 1 + 0.25 * Math.max(0, 1 - (f - at) / 6) : 1; x.b.scale.setScalar(k); x.face.scale.setScalar(k); x.face.position.z = 0.037 * k + (on ? 0.004 : 0);
@@ -307,6 +306,7 @@ export const front: Builder = (root) => {
   const beacons = [0.2, 0.9].map((x) => soft(box(truck, 0.2, 0.12, 0.2, lamp('#3aa0ff', 2), x, 1.68, 0)));
   const fire = actor(root, FIREFIGHTER, {a: {expr: 'stern', pose: 'both', prop: 'hose'}}, -0.95, 0, -0.2, {scale: 1.04});
   const blink = pool(root, 3.2, '#3aa0ff', 0, -1.2, 0.4);
+  const jet = Array.from({length: 10}, () => soft(ball(root, 0.05, lit('#cfeeff', 1.25))));
   return {
     light: (v) => v === 'dump' ? {...LIGHT.day, amb: 1.6} : v === 'fire' ? {...LIGHT.dusk, sky: '#ffb080', amb: 1.1, key: '#ffb070', keyI: 1.1} : {...LIGHT.dark, sky: '#9fb0ff', amb: 0.85, keyI: 0.7},
     tick: ({f, t, cam, shot}) => {
@@ -315,7 +315,7 @@ export const front: Builder = (root) => {
       shutter.visible = lock.visible = isNight; inside.color.set(isFire ? '#ff9a4a' : isDump ? '#fff0c8' : '#20283a').multiplyScalar(isFire ? 1.5 + 0.4 * Math.sin(f * 0.7) : 0.9);
       cctv.rotation.y = 0.5 * Math.sin(f * 0.05); (led.material as THREE.MeshBasicMaterial).color.setScalar(Math.floor(f / 10) % 2 ? 0.2 : 2).multiply(new THREE.Color('#ff3a3a'));
       (armed.material as THREE.MeshBasicMaterial).color.set('#3fe07a').multiplyScalar(1.4 + 0.8 * Math.sin(f * 0.25));
-      cat.visible = v === 'locked'; cat.position.set(lerp(1.5, -0.3, clamp01(t / 46)), 0.03 * Math.abs(Math.sin(f * 0.6)), -0.9); cat.scale.x = -1; tail.rotation.z = 0.2 * Math.sin(f * 0.3);
+      cat.visible = v === 'locked'; cat.position.set(lerp(1.25, -0.45, clamp01(t / 46)), 0.12 + 0.03 * Math.abs(Math.sin(f * 0.6)), -1.4); cat.scale.x = -1; tail.rotation.z = 0.2 * Math.sin(f * 0.3);
       paws.forEach((p, i) => { p.position.z = 0.03 * Math.sin(f * 0.6 + i * 1.6); p.rotation.x = 0.4 * Math.sin(f * 0.6 + i * 1.6); });
       dump.visible = cart.visible = pusher.node.visible = carrier.node.visible = isDump; goo.forEach((g2) => { g2.visible = isDump; });
       if (isDump) {
@@ -326,9 +326,10 @@ export const front: Builder = (root) => {
       truck.visible = fire.node.visible = flame.visible = isFire;
       smoke.set(f, isFire ? 1 : 0, 0, 1.3, -1.75, {spread: 0.8, rise: 2.4, r0: 0.25, r1: 0.85, drift: 0.7, speed: 0.014});
       (flame.material as THREE.MeshBasicMaterial).color.set('#ff7a2a').multiplyScalar(1.6 + 0.5 * Math.sin(f * 0.9));
-      beacons.forEach((b, i) => (b.material as THREE.MeshBasicMaterial).color.set('#3aa0ff').multiplyScalar((Math.floor(f / 4) + i) % 2 ? 3 : 0.3));
-      (blink.material as THREE.MeshBasicMaterial).opacity = isFire ? 0.22 * (Math.floor(f / 4) % 2) : 0;
+      beacons.forEach((b, i) => (b.material as THREE.MeshBasicMaterial).color.set('#3aa0ff').multiplyScalar(1.65 + 1.35 * Math.sin(f * 0.55 + i * Math.PI)));
+      (blink.material as THREE.MeshBasicMaterial).opacity = isFire ? 0.11 * (1 + Math.sin(f * 0.55)) : 0;
       fire.node.position.y = hop(f, shot.at + 3, 0.08, 8);
+      jet.forEach((m, i) => { const u = (f * 0.045 + i / 10) % 1; m.visible = isFire; m.position.set(lerp(-0.42, 0.3, u), 1.12 + 1.5 * u - 1.75 * u * u, lerp(-0.1, -1.95, u)); m.scale.setScalar(0.7 + 1.6 * u); });
       pusher.tick(f, cam); carrier.tick(f, cam); fire.tick(f, cam);
     },
   };

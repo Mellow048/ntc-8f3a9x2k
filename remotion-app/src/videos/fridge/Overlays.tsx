@@ -115,24 +115,24 @@ export const Overlays: React.FC = () => {
   return (
     <AbsoluteFill style={{pointerEvents: 'none'}}>
       {during(0, W(1)) ? <Stamp f={f} at={W(1)} text="THE FREEZER HACK" top="10%" size={11.5} /> : null}
-      {during(1, W(9) - 2) ? <Count f={f} from={W(9) - 2} to={W(12) + 4} total={700} label="FRENCH STORES · ABOUT, SAYS THE PROSECUTOR" /> : null}
+      {during(1, W(9) - 2) ? <Count f={f} from={W(9) - 2} to={W(12) + 4} total={700} label="SHOPS HIT · PARIS PROSECUTOR" /> : null}
       {during(2, W(15)) ? <Stamp f={f} at={W(15)} text="FRANCE SAYS: IRAN" tone="yellow" top="9.5%" size={11.5} /> : null}
       {during(2, W(17) + 2) ? <Pill f={f} at={W(17) + 2} text="IRAN CALLS THAT BASELESS" top="19.5%" /> : null}
       {during(3, W(20)) ? <Day f={f} at={W(20)} day="OCTOBER"><Big size={8.4}>11–12</Big></Day> : null}
       {during(4, W(26)) ? <Stamp f={f} at={W(26)} text="50°C" top="9%" size={15} /> : null}
       {during(4, W(27) + 3) ? <Pill f={f} at={W(27) + 3} text="122°F · “AS HIGH AS”, REUTERS" top="20.5%" /> : null}
-      {during(5, W(31)) ? <Stamp f={f} at={W(31)} text="TENS OF MILLIONS OF €" tone="yellow" top="9.5%" size={9.6} /> : null}
-      {during(5, W(32) + 3) ? <Pill f={f} at={W(32) + 3} text="FOOD LOST · ONE CHAIN'S ESTIMATE" top="18.5%" /> : null}
+      {during(5, W(31)) || during(6) ? <Stamp f={f} at={W(31)} text="TENS OF MILLIONS OF €" tone="yellow" top="9.5%" size={9.6} /> : null}
+      {during(5, W(32) + 3) || during(6) ? <Pill f={f} at={W(32) + 3} text="ONE RETAILER'S ESTIMATE" top="18.5%" /> : null}
       {during(7, W(37)) ? <Stamp f={f} at={W(37)} text="15+ FIRES" top="9.5%" size={13} /> : null}
       {during(7, W(40)) ? <Pill f={f} at={W(40)} text="OFFICIAL REPORT: AT LEAST 15" top="20%" /> : null}
-      {during(8, W(43)) ? <Stamp f={f} at={W(43)} text="NO BREAK-IN" tone="white" top="9.5%" size={12.5} /> : null}
+      {during(8, W(43)) ? <Stamp f={f} at={W(43)} text="NO BREAK-IN" tone="white" top="34%" size={12.5} /> : null}
       {during(9, W(50)) ? <Pill f={f} at={W(50)} text="THE PROSECUTOR'S ACCOUNT" /> : null}
-      {during(10, W(55) + 3) ? <Stamp f={f} at={W(55) + 3} text="ALARMS: OFF" top="9.5%" size={12.5} /> : null}
+      {during(10, W(57)) || during(11) ? <Stamp f={f} at={W(57)} text="ALARMS: OFF" top="9.5%" size={12.5} /> : null}
       {during(12, W(62)) ? <Stamp f={f} at={W(62)} text="DEFROST: NO END" tone="yellow" top="9.5%" size={11.5} /> : null}
       {during(14, W(71)) ? <Pill f={f} at={W(71)} text="SAYS THE BOSS OF A FRENCH CHAIN" /> : null}
       {during(15, W(79)) ? <Pill f={f} at={W(79)} text="A CYBERSECURITY PROFESSOR" /> : null}
       {during(16, W(82)) || during(17) ? <Quote f={f} at={W(82)} text={<>A fridge doesn't look like a security risk, <Hot>and that's exactly why attackers like it.</Hot></>} by="PROF. KATERINA MITROKOTSA · NEWSWEEK" size={5} /> : null}
-      {during(18, W(97)) ? <NameTag f={f} at={W(97)} name="DANFOSS" role="DANISH MAKER OF MANY OF THE PANELS" /> : null}
+      {during(18, W(97)) ? <NameTag f={f} at={W(97)} name="DANFOSS" role="DANISH MAKER OF MANY PANELS" /> : null}
       {during(19, W(106)) ? <Stamp f={f} at={W(106)} text="OUTDATED" tone="yellow" top="9.5%" size={13} /> : null}
       {during(19, W(107)) ? <Pill f={f} at={W(107)} text="DANFOSS: “OUTDATED FIRMWARE”" top="20%" /> : null}
       {during(20, W(108)) ? <Day f={f} at={W(108)} day="NOVEMBER"><Big>2</Big></Day> : null}
@@ -142,7 +142,7 @@ export const Overlays: React.FC = () => {
       {during(23, W(124)) ? <Stamp f={f} at={W(124)} text="STATUS: UNKNOWN" tone="yellow" top="9.5%" size={11.5} /> : null}
       {during(24, W(132)) ? <NameTag f={f} at={W(132)} name="FRANCE'S BLOOD SERVICE" role="ITS COLD STORAGE · NOV 2" size={8} /> : null}
       {during(25, W(138)) ? <Stamp f={f} at={W(138)} text="NOTHING LOST" tone="green" top="9.5%" size={12.5} /> : null}
-      {during(25, W(140)) ? <Pill f={f} at={W(140)} text="PRODUCTS NOT DAMAGED · CBS NEWS" top="20%" /> : null}
+      {during(25, W(140)) ? <Pill f={f} at={W(140)} text="NOT DAMAGED · CBS NEWS" top="20%" /> : null}
       {during(26, W(145)) ? <Stamp f={f} at={W(145)} text="NO PROVEN LINK" tone="white" top="9.5%" size={12} /> : null}
       {during(27, S(27)[0] + 3) ? <Quote f={f} at={S(27)[0] + 3} text={<>…the first offensive cyber campaign carried out <Hot>purely for the purposes of sabotage on French soil.</Hot></>} by="FRENCH FOREIGN MINISTRY, NOV 10" size={4.7} /> : null}
       {during(28, W(159)) ? <NameTag f={f} at={W(159)} name="SHAHID KAVEH" role="THE UNIT FRANCE ACCUSES · NOV 9" size={9.4} /> : null}
@@ -151,7 +151,7 @@ export const Overlays: React.FC = () => {
       {during(31, W(178)) ? <Stamp f={f} at={W(178)} text="“WITH CERTAINTY”" tone="yellow" top="9.5%" size={11} /> : null}
       {during(31, W(179)) ? <Pill f={f} at={W(179)} text="JEAN-NOËL BARROT · VIA CNN" top="19.5%" /> : null}
       {during(32, W(182)) ? <Stamp f={f} at={W(182)} text="HOW? NOT DISCLOSED" tone="white" top="9.5%" size={10} /> : null}
-      {during(32, W(183) + 3) ? <Pill f={f} at={W(183) + 3} text="CNN, NOV 10" top="19%" /> : null}
+      {during(32, W(182) + 6) ? <Pill f={f} at={W(182) + 6} text="THE MINISTER, VIA CNN" top="19%" /> : null}
       {during(33, W(186)) ? <Stamp f={f} at={W(186)} text="DENIED" tone="white" top="9.5%" size={14} /> : null}
       {during(34, W(189)) ? <NameTag f={f} at={W(189)} name="IRAN'S FOREIGN MINISTRY" role="STATEMENT · NOV 10" size={7.8} /> : null}
       {during(35, W(195)) || during(36) ? <Quote f={f} at={W(195)} text={<><Hot>A government that cannot even manage the temperature of its own refrigerators</Hot> now seeks to shift the blame onto foreign actors through these preposterous accusations.</>} by="IRAN'S FOREIGN MINISTRY, NOV 10" size={4.4} /> : null}
@@ -159,12 +159,12 @@ export const Overlays: React.FC = () => {
       {during(38, W(212)) ? <Pill f={f} at={W(212)} text="FRANCE WILL ASK THE EU" /> : null}
       {during(39, W(215)) ? <Pill f={f} at={W(215)} text="FRANCE'S CERT-FR AND THE FBI" /> : null}
       {during(40, W(219)) ? <Stamp f={f} at={W(219)} text="“OFF THE PUBLIC INTERNET”" tone="white" top="9.5%" size={7.6} rot={-2} /> : null}
-      {during(40, W(221)) ? <Pill f={f} at={W(221)} text="FBI CYBER · VIA CBS NEWS" top="17.5%" /> : null}
+      {during(40, W(221)) ? <Pill f={f} at={W(221)} text="FBI CYBER · VIA CBS NEWS" top="16.8%" /> : null}
       {f >= closing ? (
         <>
           <div style={row('8.5%')}><div style={{...anton, fontSize: '10cqw', color: '#fff', WebkitTextStroke: `1.5cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, transform: `scale(${pop(f, W(223), 8)})`}}>WHAT DO YOU THINK?</div></div>
           {f >= W(230) ? <Choice f={f} at={W(230)} letter="A" text="UNPLUG IT" top="16.5%" tone="red" /> : null}
-          {f >= W(233) ? <Choice f={f} at={W(233)} letter="B" text="LOCK IT DOWN" top="23.5%" tone="yellow" /> : null}
+          {f >= W(232) ? <Choice f={f} at={W(232)} letter="B" text="LOCK IT DOWN" top="23.5%" tone="yellow" /> : null}
         </>
       ) : null}
     </AbsoluteFill>

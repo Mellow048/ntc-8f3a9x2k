@@ -72,7 +72,7 @@ def script_words() -> list[dict]:
                 display = display[:-1]
             token = SPOKEN.get(display.lower(), re.sub(r"[^a-z']", "", display.lower()))
             sentence_end = raw[-1] in ".!?" and raw.lower() not in SPOKEN
-            out.append({"word": display, "token": token, "line": li + 1, "ends_sentence": sentence_end})
+            out.append({"word": display, "token": token, "line": li + 1, "ends_sentence": sentence_end, "comma": raw[-1] in ",:;"})   # comma: a caption never runs across it
     return out
 
 
@@ -242,7 +242,7 @@ def main() -> None:
     for w, (a, b) in zip(words, raw_times):
         s, e = remap(a) * scale, remap(b) * scale
         result.append({"word": w["word"], "start": round(s, 3), "end": round(max(s + 0.02, e), 3),
-                       "line": w["line"], "ends_sentence": w["ends_sentence"]})
+                       "line": w["line"], "ends_sentence": w["ends_sentence"], "comma": w["comma"]})
     sr = vm.SR
     for prev, cur in zip(result, result[1:]):
         if cur["start"] < prev["end"]:                 # no overlaps after the edits

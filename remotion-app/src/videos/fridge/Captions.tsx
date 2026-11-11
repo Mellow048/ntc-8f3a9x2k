@@ -6,12 +6,14 @@ import {WORDS, type Word} from './story';
 type Caption = {start: number; end: number; text: string; hot: boolean};
 /** words that carry the story get the accent colour */
 const HOT = /^(hackers|heat|freezers|freezer|iran|fifty|celsius|melted|spoiled|fires|nobody|online|muted|alarms|defrost|never|stop|fridge|risk|attackers|danfoss|outdated|trick|ikea|meatballs|blood|time|neither|tied|culprit|guard|farsi|ip|certain|exactly|denies|ice|cold|refrigerators|warrants|sanctions|advice|internet)$/i;
+/** words that stand alone so the pairs after them fall on phrases: "melted | ice cream", "the same | trick | hit stores" */
+const SOLO = new Set([31, 113]);
 function groups(words: Word[]): Caption[] {
   const out: Caption[] = [];
   for (let i = 0; i < words.length;) {
     const a = words[i], b = words[i + 1];
-    // never bridge a sentence end or a real pause, never more than two words
-    const pair = !!b && !a.ends_sentence && !/^quote$/i.test(a.word) && b.start - a.end < 0.16 && a.word.length + b.word.length <= 15;   // "Quote:" stands alone
+    // never bridge a sentence end, a comma or a real pause, never more than two words ("Quote:" stands alone)
+    const pair = !!b && !a.ends_sentence && !a.comma && !SOLO.has(i) && b.start - a.end < 0.16 && a.word.length + b.word.length <= 15;
     const last = pair ? b : a, next = words[i + (pair ? 2 : 1)];
     const end = next && next.start - last.end < 0.3 ? next.start : last.end + 0.14;
     out.push({start: Math.max(0, a.start - 0.03), end, text: (pair ? `${a.word} ${b.word}` : a.word).toUpperCase(), hot: HOT.test(a.word) || (pair && HOT.test(b.word))});

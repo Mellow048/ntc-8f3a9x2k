@@ -90,6 +90,11 @@ export const tempTex = (t: number) => tex(`temp-${t}`, 256, 128, (g, w, h) => {
   g.fillStyle = '#06131c'; g.fillRect(0, 0, w, h);
   text(g, `${t < 0 ? '−' : ''}${Math.abs(t)}°C`, w / 2, h / 2 + 5, 100, t >= 40 ? '#ff5a3c' : t > 0 ? '#ffb03a' : '#7fe3ff', {maxWidth: w - 22});
 });
+/** "getting warmer", with no figure: for places where no temperature was reported */
+export const risingTex = () => tex('temp-rising', 256, 128, (g, w, h) => {
+  g.fillStyle = '#06131c'; g.fillRect(0, 0, w, h); g.strokeStyle = '#ffb03a'; g.lineWidth = 15; g.lineCap = 'round'; g.lineJoin = 'round';
+  for (const x of [64, 128, 192]) { g.beginPath(); g.moveTo(x, 104); g.lineTo(x, 30); g.moveTo(x - 26, 58); g.lineTo(x, 26); g.lineTo(x + 26, 58); g.stroke(); }
+});
 export const TEMPS = [-18, -9, 0, 9, 18, 27, 36, 45, 50];
 /** the readout for a temperature between -18 and 50 */
 export const tempAt = (t: number) => tempTex(TEMPS.reduce((a, b) => Math.abs(b - t) < Math.abs(a - t) ? b : a));
@@ -182,14 +187,15 @@ export function controller(p: Node, x: number, y: number, z: number, s = 1, body
   box(g, 0.34, 0.1, 0.02, lit('#9fb4c8', 0.9), 0.42, 0.22, 0.075);
   const keys = (['cool', 'defrost', 'alarm'] as const).map((k, i) => {
     const m = lamp(['#9fe6ff', '#ffe9c2', '#fff0a8'][i], 1), kx = -0.4 + i * 0.4;
-    cyl(g, 0.15, 0.05, '#8f9aa6', kx, -0.27, 0.07).rotation.x = Math.PI / 2;
-    const top = cyl(g, 0.125, 0.04, m, kx, -0.27, 0.1); top.rotation.x = Math.PI / 2;
-    soft(panel(g, 0.17, 0.17, smat(keyTex(k), 1, true), kx, -0.27, 0.125));
+    cyl(g, 0.15, 0.05, '#8f9aa6', kx, -0.23, 0.07).rotation.x = Math.PI / 2;
+    const top = cyl(g, 0.125, 0.04, m, kx, -0.23, 0.1); top.rotation.x = Math.PI / 2;
+    soft(panel(g, 0.17, 0.17, smat(keyTex(k), 1, true), kx, -0.23, 0.125));
     return m;
   });
   // the red slash that goes over the alarm key when it is muted
-  const slash = grp(g, 0.4, -0.27, 0.14); const bar = box(slash, 0.4, 0.055, 0.02, lit('#ff2a2a', 1.4), 0, 0, 0); bar.rotation.z = -0.78; torus(slash, 0.17, 0.022, lit('#ff2a2a', 1.4), 0, 0, 0); slash.visible = false;
-  return {g, screen, keys, slash, status, keyAt: (i) => [-0.4 + i * 0.4, -0.27, 0.16]};
+  panel(g, 1.2, 0.085, smat(tex('key-names', 960, 68, (c, w, h) => { c.clearRect(0, 0, w, h); ['COOL', 'DEFROST', 'ALARM'].forEach((n, i) => text(c, n, w / 2 + (i - 1) * 320, h / 2 + 3, 56, '#15202b', {spacing: 4})); }), 1, true), 0, -0.435, 0.063);
+  const slash = grp(g, 0.4, -0.23, 0.14); const bar = box(slash, 0.4, 0.055, 0.02, lit('#ff2a2a', 1.4), 0, 0, 0); bar.rotation.z = -0.78; torus(slash, 0.17, 0.022, lit('#ff2a2a', 1.4), 0, 0, 0); slash.visible = false;
+  return {g, screen, keys, slash, status, keyAt: (i) => [-0.4 + i * 0.4, -0.23, 0.16]};
 }
 
 /** the mouse pointer, out in the physical world: whoever is on the other end of the line */
@@ -219,9 +225,9 @@ export function trolley(p: Node, x: number, z: number, load = true) {
 /** a lectern with a plaque and two microphones */
 export function lectern(p: Node, x: number, z: number, wood: string, plaque: THREE.Texture) {
   const g = grp(p, x, 0, z);
-  box(g, 1.0, 0.1, 0.62, wood, 0, 0.05, 0); box(g, 0.78, 1.04, 0.46, wood, 0, 0.6, 0); box(g, 1.0, 0.07, 0.6, wood, 0, 1.15, 0).rotation.x = 0.16;
-  panel(g, 0.62, 0.3, smat(plaque, 1.05), 0, 0.72, 0.235);
-  for (const s of [-1, 1]) { rod(g, [s * 0.22, 1.17, -0.06], [s * 0.15, 1.5, 0.12], 0.014, '#2b2d38'); const m = ball(g, 0.05, '#3a3f4a', s * 0.15, 1.52, 0.14); m.scale.set(1, 1.3, 1); }
+  box(g, 1.0, 0.1, 0.62, wood, 0, 0.05, 0); box(g, 0.78, 1.12, 0.46, wood, 0, 0.64, 0); box(g, 1.0, 0.07, 0.6, wood, 0, 1.24, 0).rotation.x = 0.16;
+  panel(g, 0.58, 0.21, smat(plaque, 1.05), 0, 1.05, 0.235);
+  for (const s of [-1, 1]) { rod(g, [s * 0.3, 1.26, -0.08], [s * 0.36, 1.5, 0.06], 0.014, '#2b2d38'); const m = ball(g, 0.05, '#3a3f4a', s * 0.36, 1.52, 0.07); m.scale.set(1, 1.3, 1); }
   return g;
 }
 /** small household fridge with a freezer drawer */

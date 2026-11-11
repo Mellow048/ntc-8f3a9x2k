@@ -216,14 +216,14 @@ def build_music():
     ta, stop_a = cut_t(1), Wt(81) - 0.05
     lv = lambda t: (2 if t < cut_t(2) - 0.4 else 3 if t < cut_t(3) - 0.4 else 1 if t < cut_t(4) - 0.4 else 2 if t < cut_t(7) - 0.5 else 3 if t < cut_t(8) - 0.4
                     else 1 if t < cut_t(11) - 0.5 else 3 if t < cut_t(13) - 0.4 else 2)
-    mute = (Wt(55), Wt(58) - 0.05)                                  # "muted the alarms": the drums go with them
+    mute = ((Wf(57) - 1) / FPS, Wt(60))                             # the alarm is muted: the drums go with it, until the defrost starts
     n_a = groove(ta, stop_a, lv, hooks=(1, 3, 5, 9, 11), mute=mute)
     put("hits", I.cymbal(0.5, R, 1.6), ta, 0.4)
     EVENTS.append((ta, "break-in tune", f"{BPM:.0f} bpm, D minor: plucked bass in eighths, off-beat plucked chords, kick and brushes, glockenspiel"))
     put("hits", I.timpani(I.m2f(38), 0.9, R, 1.6), Wt(17), 0.9)
     put("hits", I.brass(I.m2f(50), 0.5, 0.8, R, "stab"), Wt(17), 0.5)
     EVENTS.append((Wt(17), "hit", "timpani and a brass stab on 'Iran': the spokesperson points"))
-    EVENTS.append((mute[0], "drums out", "'muted the alarms': kick, brushes and hats drop out until 'started a defrost'"))
+    EVENTS.append((mute[0], "drums out", "the alarm key is pressed: kick, brushes and hats drop out until the defrost starts"))
     for j, m in enumerate((62, 64, 65, 67, 69, 70, 72, 74)):          # "and never let it stop": a scale that keeps climbing
         put("lead", glock(m + 12, 0.4), Wt(61) + j * B / 2, 0.5, -0.3 + 0.08 * j)
     EVENTS.append((Wt(61), "climbing scale", "eight glockenspiel notes up under 'and never let it stop'"))
@@ -273,20 +273,20 @@ def build_music():
     put("hits", I.timpani(I.m2f(38), 1.0, R, 2.0), Wt(157), 1.0)
     put("hits", I.brass(I.m2f(38), 0.9, 0.85, R, "tuba"), Wt(157), 0.5); put("hits", I.brass(I.m2f(50), 0.9, 0.8, R, "horn"), Wt(157), 0.4)
     EVENTS.append((td + 0.1, "timpani roll", "building to 'culprit'"))
-    EVENTS.append((Wt(157), "hit", "timpani and low brass on 'culprit'"))
+    EVENTS.append((Wt(157), "timpani and brass", "on 'culprit'"))
     tg = cut_t(28)
     lvd = lambda t: 1 if t < cut_t(29) - 0.4 else 2
     groove(tg, stop_d, lvd, hooks=(3, 5))
     EVENTS.append((tg, "break-in tune back", "sparse under the accusation, steady under the evidence"))
     put("hits", I.brass(I.m2f(50), 0.35, 0.85, R, "stab"), Wt(179), 0.5); put("hits", I.brass(I.m2f(57), 0.35, 0.8, R, "stab"), Wt(179), 0.4)
-    EVENTS.append((Wt(179), "hit", "a brass stab on 'certain'"))
+    EVENTS.append((Wt(179), "brass stab", "on 'certain'"))
     EVENTS.append((stop_d, "music stops", "'How exactly?'"))
     put("lead", pizz(69, 0.5, 0.6), Wt(183), 0.6); put("lead", pizz(62, 0.8, 0.6), Wt(184), 0.6)
     EVENTS.append((Wt(183), "two plucked notes", "falling, under 'It won't say'"))
 
     # ---- E: Iran's answer. One hit, then the cold: a glockenspiel line coming down, and nothing under the quote.
     put("hits", I.timpani(I.m2f(33), 0.9, R, 1.8), Wt(186), 0.9)
-    EVENTS.append((Wt(186), "hit", "timpani on 'denies'"))
+    EVENTS.append((Wt(186), "timpani", "on 'denies'"))
     for j, m in enumerate((93, 89, 86, 81, 77, 74, 69)):
         put("lead", glock(m, 1.4), Wt(192) + j * 0.1, 0.6, -0.4 + 0.13 * j)
     EVENTS.append((Wt(192), "icy run", "seven glockenspiel notes down on 'ice cold'"))
@@ -457,20 +457,20 @@ def build_sfx(voice_lufs):
         fx(cut_t(i) - 0.1, w, -17, 0.35 if i % 2 else -0.35)
     EVENTS.append((cut_t(1), "swish", f"on {len(CUTS) - 1 - len(quiet)} cuts, alternating left and right"))
 
-    stamps = [(Wt(1), "THE FREEZER HACK"), (Wt(15), "FRANCE SAYS: IRAN"), (Wt(26), "50°C"), (Wt(31), "TENS OF MILLIONS OF €"), (Wt(37), "15+ FIRES"), (Wt(43), "NO BREAK-IN"), (Wt(55) + f_(3), "ALARMS: OFF"),
+    stamps = [(Wt(1), "THE FREEZER HACK"), (Wt(15), "FRANCE SAYS: IRAN"), (Wt(26), "50°C"), (Wt(31), "TENS OF MILLIONS OF €"), (Wt(37), "15+ FIRES"), (Wt(43), "NO BREAK-IN"), (Wt(57), "ALARMS: OFF"),
               (Wt(62), "DEFROST: NO END"), (Wt(106), "OUTDATED"), (Wt(115), "100+ STORES"), (Wt(124), "STATUS: UNKNOWN"), (Wt(138), "NOTHING LOST"), (Wt(145), "NO PROVEN LINK"), (Wt(178), "“WITH CERTAINTY”"),
               (Wt(182), "HOW? NOT DISCLOSED"), (Wt(186), "DENIED"), (Wt(210), "REQUESTED, on the warrant"), (Wt(213), "SOUGHT, on the sanctions folder"), (Wt(219), "“OFF THE PUBLIC INTERNET”")]
     for t, why in stamps:
         fx(t, thud(), -8.5, 0, "stamp thud", why + " stamp")
-    pops = [(Wt(17) + f_(2), "Iran calls that baseless"), (Wt(20), "calendar: October 11–12"), (Wt(27) + f_(3), "122°F, Reuters"), (Wt(32) + f_(3), "one chain's estimate"), (Wt(40), "official report: at least 15"),
+    pops = [(Wt(17) + f_(2), "Iran calls that baseless"), (Wt(20), "calendar: October 11–12"), (Wt(27) + f_(3), "122°F, Reuters"), (Wt(32) + f_(3), "one retailer's estimate"), (Wt(40), "official report: at least 15"),
             (Wt(50), "the prosecutor's account"), (Wt(66), "question mark"), (Wt(66) + f_(5), "question mark"), (Wt(71), "the boss of a French chain"), (Wt(79), "a cybersecurity professor"), (Wt(82), "quote card: the professor"),
             (Wt(97), "name tag: Danfoss"), (Wt(107), "Danfoss: outdated firmware"), (Wt(108), "calendar: November 2"), (Wt(117), "at least five countries, AFP"), (Wt(121), "one store in Belgium"),
             (Wt(123), "question mark"), (Wt(123) + f_(4), "question mark"), (Wt(123) + f_(8), "question mark"), (Wt(132), "name tag: France's blood service"), (Wt(140), "products not damaged"),
             (Wt(145) + f_(6), "question mark on the second string"), (cut_t(27) + f_(3), "quote card: French Foreign Ministry"), (Wt(159), "name tag: Shahid Kaveh"), (Wt(162), "context: the Iran war"),
             (Wt(165) + f_(2), "the prosecutor's evidence"), (Wt(168) - f_(2), "evidence card: the method"), (Wt(169) + f_(2), "evidence card: traces of Farsi"), (Wt(174) - f_(1), "evidence card: IP addresses"),
-            (Wt(179), "Barrot, via CNN"), (Wt(180), "question mark"), (Wt(180) + f_(5), "question mark"), (Wt(183) + f_(3), "CNN, Nov 10"), (Wt(189), "name tag: Iran's Foreign Ministry"), (Wt(195), "quote card: Iran's Foreign Ministry"),
+            (Wt(179), "Barrot, via CNN"), (Wt(180), "question mark"), (Wt(180) + f_(5), "question mark"), (Wt(182) + f_(6), "the minister, via CNN"), (Wt(189), "name tag: Iran's Foreign Ministry"), (Wt(195), "quote card: Iran's Foreign Ministry"),
             (Wt(209), "for the unit's leaders"), (Wt(212), "France will ask the EU"), (cut_t(39) + f_(2), "notice: CERT-FR"), (cut_t(39) + f_(8), "notice: FBI Cyber"), (Wt(215), "CERT-FR and the FBI"),
-            (Wt(221), "FBI Cyber, via CBS News"), (Wt(223), "WHAT DO YOU THINK?"), (Wt(230), "card A"), (Wt(233), "card B")]
+            (Wt(221), "FBI Cyber, via CBS News"), (Wt(223), "WHAT DO YOU THINK?"), (Wt(230), "card A"), (Wt(232), "card B")]
     for n, (t, why) in enumerate(pops):
         fx(t, pop(380 + 60 * (n % 3), 900 + 110 * (n % 3)), -13, 0.15 if n % 2 else -0.15, "pop", why)
 
@@ -485,6 +485,7 @@ def build_sfx(voice_lufs):
     fx(Wt(1) + f_(2), click(), -11, 0.2, "click", "the pointer taps the freezer's readout")
     fx(Wt(4), hiss(0.8, 1800, 8000), -15, 0, "hiss", "the cabinets warm up")
     a, z = (Wf(9) - 2) / FPS, (Wf(12) + 4) / FPS
+    fx(a, pop(500, 1100), -13, 0, "pop", "the counter appears")
     roll(a, z)
     EVENTS.append((a, "counter ticks", "the number rolls to 700 while dots light up across France"))
     fx(z, ding(1568, 0.9), -10.5, 0, "counter lands", "700")
@@ -507,11 +508,13 @@ def build_sfx(voice_lufs):
         for j in range(3):
             fx(Wt(i) + j * 0.06 * R.uniform(0.8, 1.2), key(), -17, R.uniform(-0.2, 0.2))
     EVENTS.append((Wt(48), "typing", "somebody at a keyboard, somewhere"))
+    fx(Wt(52), click(), -13, 0.3, "click", "one of the hoods points at the list")
     for k in range(3):
         fx(Wt(54) + k * 0.09, blip(880 + 220 * k), -15, 0.2)
     EVENTS.append((Wt(54), "three rising beeps", "'online': the list of stores turns red"))
-    fx(cut_t(10) + 0.02, bell_ring(max(0.1, (Wf(55) + 2 - CUTS[10]) / FPS)), -11, 0.3, "alarm bell", "rings until the pointer reaches the alarm key, then is cut dead")
-    fx(Wt(55) + f_(2), click(), -11, 0.2, "click", "the alarm key")
+    bell0, bell1 = Wt(54) + f_(9), (Wf(57) - 1) / FPS
+    fx(bell0, bell_ring(bell1 - bell0), -12, 0.3, "alarm bell", "starts as the stores turn red, rings across the cut, and is cut dead when the pointer presses the alarm key")
+    fx(bell1 - f_(1), click(), -11, 0.2, "click", "the alarm key")
     fx(Wt(60) - f_(1), click(), -11, 0, "click", "the defrost key")
     fx(Wt(60), slide(260, 700, 0.3), -14, 0, "power up", "the defrost starts")
     a, z = cut_t(12) + 0.05, shot_end(12) - 0.1
@@ -521,8 +524,9 @@ def build_sfx(voice_lufs):
     for k in range(5):
         fx(cut_t(13) + 0.5 + k * 0.2, blip(1320 + 180 * (k % 2), 0.03), -18, 0.3 - 0.15 * k)
     EVENTS.append((cut_t(13) + 0.5, "data blips", "packets up and down the cable"))
-    fx(Wt(75) - f_(1), pop(600, 300, 0.08), -14, 0.3, "pop", "day turns to night on the technician's wall")
-    fx(Wt(76), crickets(0.6, R, 2), -20, 0)
+    night = (Wf(75) + 6) / FPS
+    fx(night, pop(600, 300, 0.08), -13, 0.3, "pop", "night falls in the technician's window; he gets his phone out")
+    fx(night + 0.1, crickets(0.5, R, 2), -19, 0)
     # 5: the professor, the line-up, the hackers in love
     fx(Wt(80), knock(), -13, 0.3, "click", "the pointer on the blackboard")
     fx(Wt(81), knock(), -14, 0.3, "click", "the pointer on the blackboard")
@@ -569,7 +573,7 @@ def build_sfx(voice_lufs):
     # 15: the question, and the tail
     for k in range(2):
         fx(cut_t(41) + 0.25 + k * 0.42, blip(1976, 0.06), -17, 0.4, "checkout beep" if k == 0 else "", "the shop is open again")
-    fx(Wt(234) + f_(4), click(), -11, 0.3, "click", "a padlock closes on the line")
+    fx(Wt(232) + f_(2), click(), -11, 0.3, "click", "a padlock closes on B's cable")
     a0 = (TOTAL - 42) / FPS
     fx(a0, slide(1700, 700, 0.4), -14, 0.4, "pop", "the pointer comes down the line from the cloud")
     fx(a0 + f_(12), boing(), -11.5, 0.3, "boing", "it meets the padlock")
@@ -613,7 +617,10 @@ def limiter(x, ceil_db, look=0.003, rel=0.08):
     return x * out[None, :], out
 
 
-GRAPHIC_SOUNDS = {"stamp thud", "pop", "boing", "ding", "ping", "counter lands", "click", "hit", "gasp", "power down", "power up", "three rising beeps", "the music melts", "F major chord", "final chord"}
+GRAPHIC_SOUNDS = {"stamp thud", "pop", "boing", "ding", "ping", "counter lands", "click", "hit", "gasp", "power down", "power up", "three rising beeps"}
+
+
+SOLO = {31, 113}                                                   # the same two words Captions.tsx keeps on their own
 
 
 def planned_changes():
@@ -625,7 +632,7 @@ def planned_changes():
     i = 0
     while i < len(WORDS):                                         # same grouping and timing as Captions.tsx
         a, b = WORDS[i], WORDS[i + 1] if i + 1 < len(WORDS) else None
-        pair = bool(b) and not a["ends_sentence"] and a["word"].lower() != "quote" and b["start"] - a["end"] < 0.16 and len(a["word"]) + len(b["word"]) <= 15
+        pair = bool(b) and not a["ends_sentence"] and not a["comma"] and i not in SOLO and b["start"] - a["end"] < 0.16 and len(a["word"]) + len(b["word"]) <= 15
         i += 2 if pair else 1
         last, nxt = (b if pair else a), WORDS[i] if i < len(WORDS) else None
         caps.append((max(0.0, a["start"] - 0.03), nxt["start"] if nxt and nxt["start"] - last["end"] < 0.3 else last["end"] + 0.14))

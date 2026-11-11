@@ -4,7 +4,7 @@ import words from './words.json';
 import type {V} from './kit';
 
 export const FPS = 30;
-export type Word = {word: string; start: number; end: number; line: number; ends_sentence: boolean};
+export type Word = {word: string; start: number; end: number; line: number; ends_sentence: boolean; /** a comma, colon or semicolon follows */ comma: boolean};
 export const WORDS = words as Word[];
 /** frame on which narration word i starts */
 export const W = (i: number) => Math.round(WORDS[i].start * FPS);
@@ -39,20 +39,20 @@ export const SHOTS: Shot[] = [
   s(20, 'front', 'night', [1.2, 1.3, 9.6], [0, 1.5, -2], 40, {push: 0.08}),                           // 3
   s(23, 'aisle', 'hot', [1.5, 1.5, 5.3], [0, 1.4, -0.4], 42, {to: [0.9, 1.5, 4.9]}),                  // 4
   s(29, 'aisle', 'morning', [-0.5, 1.45, 5.7], [0, 1.4, -0.3], 42, {push: 0.1}),                      // 5
-  s(34, 'front', 'dump', [1.1, 1.5, 6.3], [0.6, 1.25, 0.2], 42, {push: 0.08}),                        // 6
+  s(34, 'front', 'dump', [0.9, 1.5, 6.3], [0.45, 1.25, 0.2], 42, {push: 0.08}),                        // 6
   s(36, 'front', 'fire', [-1.4, 1.4, 6.6], [0, 1.4, -1.2], 42, {push: 0.1}),                          // 7
   // 3  "Nobody set foot in a store. Someone got into the control panels online, muted the alarms, started a defrost, and never let it stop."
-  s(42, 'front', 'locked', [-0.5, 1.35, 4.4], [0, 1.35, -1.9], 42, {push: 0.1}),                      // 8
+  s(42, 'front', 'locked', [-0.5, 1.25, 4.4], [0, 1.1, -1.9], 42, {push: 0.1}),                        // 8
   s(48, 'lair', 'login', [0.4, 1.45, 5.6], [0, 1.4, -0.9], 42, {push: 0.12}),                         // 9
-  s(55, 'panel', 'mute', [0.9, 1.35, 4.3], [0.25, 1.35, -0.2], 40, {push: 0.1}),                      // 10
-  s(58, 'panel', 'defrost', [-0.5, 1.35, 4.3], [0, 1.35, -0.2], 40, {push: 0.12}),                    // 11
+  s(55, 'panel', 'mute', [0.6, 1.4, 4.9], [0.1, 1.38, -0.2], 40, {push: 0.08}),                       // 10
+  s(58, 'panel', 'defrost', [-0.4, 1.4, 4.9], [0, 1.38, -0.2], 40, {push: 0.1}),                      // 11
   s(61, 'panel', 'stuck', [0.2, 1.4, 5.2], [0, 1.4, -0.2], 40, {push: 0.1}),                          // 12
   // 4  "Why are freezers online? So technicians can watch them day and night."
-  s(66, 'cable', 'why', [0.3, 1.45, 5.9], [0, 1.4, -0.3], 42, {push: 0.1}),                           // 13
+  s(66, 'cable', 'why', [0.3, 1.35, 5.3], [0, 1.3, -0.3], 42, {push: 0.08}),                           // 13
   s(70, 'tech', 'watch', [0.4, 1.45, 5.7], [0, 1.4, -0.6], 42, {push: 0.1}),                          // 14
   // 5  "One professor's verdict. Quote: a fridge doesn't look like a security risk, and that's exactly why attackers like it."
   s(78, 'lecture', 'intro', [0.4, 1.45, 5.8], [0, 1.4, -0.5], 42, {push: 0.1}),                       // 15
-  s(82, 'lineup', 'innocent', [0.3, 1.4, 5.9], [0, 1.35, -0.4], 42, {push: 0.12}),                    // 16
+  s(82, 'lineup', 'innocent', [0.2, 1.4, 5.9], [0, 1.35, -0.4], 42, {push: 0.08}),                     // 16
   s(90, 'lair', 'love', [-0.3, 1.45, 5.6], [0, 1.4, -0.6], 42, {push: 0.12}),                         // 17
   // 6  "Danfoss, which makes many of those panels, points to outdated software."
   s(97, 'showroom', 'new', [0.5, 1.5, 5.6], [0, 1.4, 0], 42, {push: 0.12}),                           // 18
@@ -73,13 +73,13 @@ export const SHOTS: Shot[] = [
   // 11 "Prosecutors cite its methods, traces of Farsi, and Iranian IP addresses. France says it's certain. How exactly? It won't say."
   s(165, 'desk', 'method', [0.5, 1.6, 5.6], [0, 1.4, -0.3], 42, {push: 0.1}),                         // 29
   s(169, 'desk', 'traces', [-0.3, 1.55, 5.5], [0, 1.4, -0.3], 42, {push: 0.08}),                      // 30
-  s(176, 'podium', 'sure', [0.3, 1.5, 4.9], [0, 1.5, -0.5], 42, {push: 0.12, close: true}),           // 31
-  s(180, 'desk', 'sealed', [0.3, 1.55, 5.5], [0, 1.4, -0.3], 42, {push: 0.12}),                       // 32
+  s(176, 'podium', 'sure', [0.3, 1.55, 4.9], [0, 1.55, -0.5], 42, {push: 0.12, close: true}),           // 31
+  s(180, 'desk', 'sealed', [0.3, 1.55, 5.5], [0, 1.4, -0.3], 42, {push: 0.08}),                        // 32
   // 12 "Iran denies it. And its reply is ice cold. Quote: a government that cannot even manage the temperature of its own refrigerators."
   s(185, 'podium', 'deny', [-0.4, 1.45, 5.9], [0, 1.45, -0.5], 42, {push: 0.1}),                      // 33
   s(188, 'podium', 'ice', [0.5, 1.45, 5.7], [0, 1.45, -0.5], 42, {push: 0.12}),                       // 34
-  s(194, 'podium', 'read', [0.2, 1.5, 4.9], [0, 1.5, -0.5], 42, {push: 0.1, close: true}),            // 35
-  s(201, 'showroom', 'fridge', [0.4, 1.5, 5.6], [0, 1.4, 0], 42, {push: 0.14}),                       // 36
+  s(194, 'podium', 'read', [0.2, 1.66, 5.3], [0, 1.66, -0.5], 42, {push: 0.05, close: true}),            // 35
+  s(201, 'showroom', 'fridge', [0.4, 1.6, 5.6], [0, 1.6, 0], 42, {push: 0.12}),                        // 36
   // 13 "France wants arrest warrants and European sanctions."
   s(207, 'desk', 'warrant', [0.3, 1.55, 5.5], [0, 1.4, -0.3], 42, {push: 0.1}),                       // 37
   s(211, 'desk', 'sanctions', [-0.3, 1.55, 5.5], [0, 1.4, -0.3], 42, {push: 0.1}),                    // 38
@@ -88,7 +88,7 @@ export const SHOTS: Shot[] = [
   s(217, 'cable', 'unplug', [-0.3, 1.45, 5.9], [0, 1.4, -0.3], 42, {push: 0.1}),                      // 40
   // 15 "So what do you think: should a freezer be online at all?"
   s(223, 'aisle', 'restored', [0.4, 1.45, 5.9], [0, 1.4, -0.3], 42, {push: 0.08}),                    // 41
-  s(228, 'cable', 'choice', [0.2, 1.45, 6.0], [0, 1.4, -0.3], 42, {push: 0.05}),                      // 42
+  s(228, 'cable', 'choice', [0.2, 1.5, 6.0], [0, 1.45, -0.3], 42, {push: 0.05}),                      // 42
 ];
 /** shot on screen at frame f */
 export const shotAt = (f: number) => { let i = 0; while (i + 1 < SHOTS.length && SHOTS[i + 1].at <= f) i++; return i; };
