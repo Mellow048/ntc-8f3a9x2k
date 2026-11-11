@@ -17,7 +17,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |   0.81 |   24 | the music melts | 'heat': the shop music slows like a tape and sinks, as the readout climbs |
 |   0.83 |   25 | hiss | the cabinets warm up |
 |   1.73 |   52 | break-in tune | 118 bpm, E minor: plucked bass in eighths, off-beat plucked chords, kick and brushes, glockenspiel |
-|   1.73 |   52 | swish | on 36 cuts, alternating left and right |
+|   1.73 |   52 | swish | on 36 shot changes, alternating left and right; two of them (frames 500 and 530) are not cuts but new pushes inside the one take on the control panel |
 |   1.83 |   55 | counter ticks | the number rolls to 700 while dots light up across France |
 |   1.83 |   55 | pop | the counter appears |
 |   2.80 |   84 | counter lands | 700 |

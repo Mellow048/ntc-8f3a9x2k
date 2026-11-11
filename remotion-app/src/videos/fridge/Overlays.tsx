@@ -127,12 +127,12 @@ export const Overlays: React.FC = () => {
       {during(7, W(40)) ? <Pill f={f} at={W(40)} text="OFFICIAL REPORT: AT LEAST 15" top="20%" /> : null}
       {during(8, W(43)) ? <Stamp f={f} at={W(43)} text="NO BREAK-IN" tone="white" top="34%" size={12.5} /> : null}
       {during(9, W(50)) ? <Pill f={f} at={W(50)} text="THE PROSECUTOR'S ACCOUNT" /> : null}
-      {during(10, W(57)) || during(11) ? <Stamp f={f} at={W(57)} text="ALARMS: OFF" top="9.5%" size={12.5} /> : null}
+      {during(10, W(57)) || during(11) || (during(12) && f < W(62)) ? <Stamp f={f} at={W(57)} text="ALARMS: OFF" top="9.5%" size={12.5} /> : null}{/* 10-12 are one take: the stamp stays until the next one replaces it */}
       {during(12, W(62)) ? <Stamp f={f} at={W(62)} text="DEFROST: NO END" tone="yellow" top="9.5%" size={11.5} /> : null}
       {during(14, W(71)) ? <Pill f={f} at={W(71)} text="SAYS THE BOSS OF A FRENCH CHAIN" /> : null}
       {during(15, W(79)) ? <Pill f={f} at={W(79)} text="A CYBERSECURITY PROFESSOR" /> : null}
       {during(16, W(82)) || during(17) ? <Quote f={f} at={W(82)} text={<>A fridge doesn't look like a security risk, <Hot>and that's exactly why attackers like it.</Hot></>} by="PROF. KATERINA MITROKOTSA · NEWSWEEK" size={5} /> : null}
-      {during(18, W(97)) ? <NameTag f={f} at={W(97)} name="DANFOSS" role="DANISH MAKER OF MANY PANELS" /> : null}
+      {during(18, W(97)) || (during(19) && f < W(106)) ? <NameTag f={f} at={W(97)} name="DANFOSS" role="DANISH MAKER OF MANY PANELS" /> : null}{/* match cut: the tag stays until the stamp replaces it */}
       {during(19, W(106)) ? <Stamp f={f} at={W(106)} text="OUTDATED" tone="yellow" top="9.5%" size={13} /> : null}
       {during(19, W(107)) ? <Pill f={f} at={W(107)} text="DANFOSS: “OUTDATED FIRMWARE”" top="20%" /> : null}
       {during(20, W(108)) ? <Day f={f} at={W(108)} day="NOVEMBER"><Big>2</Big></Day> : null}
@@ -153,7 +153,7 @@ export const Overlays: React.FC = () => {
       {during(32, W(182)) ? <Stamp f={f} at={W(182)} text="HOW? NOT DISCLOSED" tone="white" top="9.5%" size={10} /> : null}
       {during(32, W(182) + 6) ? <Pill f={f} at={W(182) + 6} text="THE MINISTER, VIA CNN" top="19%" /> : null}
       {during(33, W(186)) ? <Stamp f={f} at={W(186)} text="DENIED" tone="white" top="9.5%" size={14} /> : null}
-      {during(34, W(189)) ? <NameTag f={f} at={W(189)} name="IRAN'S FOREIGN MINISTRY" role="STATEMENT · NOV 10" size={7.8} /> : null}
+      {during(34, W(189)) || (during(35) && f < W(195)) ? <NameTag f={f} at={W(189)} name="IRAN'S FOREIGN MINISTRY" role="STATEMENT · NOV 10" size={7.8} /> : null}{/* 34 and 35 are one take: the tag stays until the quote card takes its place */}
       {during(35, W(195)) || during(36) ? <Quote f={f} at={W(195)} text={<><Hot>A government that cannot even manage the temperature of its own refrigerators</Hot> now seeks to shift the blame onto foreign actors through these preposterous accusations.</>} by="IRAN'S FOREIGN MINISTRY, NOV 10" size={4.4} /> : null}
       {during(37, W(209)) ? <Pill f={f} at={W(209)} text="FOR THE UNIT'S LEADERS" /> : null}
       {during(38, W(212)) ? <Pill f={f} at={W(212)} text="FRANCE WILL ASK THE EU" /> : null}

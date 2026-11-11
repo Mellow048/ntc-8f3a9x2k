@@ -120,7 +120,7 @@ export const panelSet: Builder = (root) => {
       const M = W(57) - 1, muted = v !== 'mute' || f >= M, defrost = v === 'stuck' || v === 'again' && f >= W(113) || v === 'defrost' && f >= W(60);
       if (v === 'mute') { target = 2; arrive = M - 1 - shot.at; press = hop(f, M - 1, 1, 6); }
       else if (v === 'defrost') { target = 1; arrive = W(60) - 1 - shot.at; press = hop(f, W(60) - 1, 1, 6); temp = lerp(-18, -6, smooth(f, W(60), W(60) + 16)); }
-      else if (v === 'stuck') { target = 1; arrive = 0; press = 0.8; temp = lerp(-6, 50, smooth(t, 0, 30)); }
+      else if (v === 'stuck') { target = 1; arrive = 0; press = 0.8 * smooth(t, 0, 4); temp = lerp(-6, 50, smooth(t, 0, 30)); }
       else if (v === 'again') { target = 1; arrive = W(113) - 1 - shot.at; press = f >= W(113) ? 0.8 : 0; temp = lerp(-18, 40, smooth(f, W(113), W(113) + 14)); }
       c.screen.map = v === 'again' && f >= W(113) ? risingTex() : tempAt(temp);   // no temperature was reported for November: arrows, not a number
       c.status.map = v === 'stuck' && Math.floor(f / 6) % 4 !== 3 ? ST.stuck : defrost ? ST.def : muted && v === 'mute' ? ST.mute : ST.cool;
@@ -128,8 +128,8 @@ export const panelSet: Builder = (root) => {
       c.keys[1].color.set(defrost ? '#ffb03a' : '#ffe9c2').multiplyScalar(defrost ? 1.6 + 0.3 * Math.sin(f * 0.5) : 1);
       c.keys[2].color.set(muted ? '#8f8a7a' : '#fff0a8');
       rings.forEach((r, i) => { const u = ((f * 0.06 + i / 3) % 1); r.visible = !muted; r.scale.setScalar(0.7 + 0.8 * u); (r.material as THREE.MeshBasicMaterial).color.set('#ffd43b').multiplyScalar(1.6 * (1 - u)); });
-      const [kx, ky, kz] = key(target), k = v === 'stuck' ? 1 : smooth(t, 0, Math.max(3, arrive)), from: V = v === 'mute' ? [1.7, 2.6, 0.5] : v === 'defrost' ? [0.9, 1.0, 0.25] : [1.6, 2.7, 0.5];
-      cur.position.set(lerp(from[0], kx + 0.02, k), lerp(from[1], ky - 0.03, k), lerp(from[2], kz + 0.04, k) - 0.05 * press); cur.rotation.z = 0.3 * (1 - k);
+      const [kx, ky, kz] = key(target), k = v === 'stuck' ? 1 : smooth(t, 0, Math.max(3, arrive)), from: V = v === 'mute' ? [1.7, 2.6, 0.5] : v === 'defrost' ? [key(2)[0] + 0.02, key(2)[1] - 0.03, key(2)[2] + 0.04] : [1.6, 2.7, 0.5];   // 'defrost' goes on from the alarm key: 10-12 are one take
+      cur.position.set(lerp(from[0], kx + 0.02, k), lerp(from[1], ky - 0.03, k), lerp(from[2], kz + 0.04, k) - 0.05 * press); cur.rotation.z = v === 'defrost' ? 0 : 0.3 * (1 - k);
       cur.scale.setScalar(0.44 * (1 - 0.1 * press));
       c.g.position.x = shake(f, v === 'stuck' ? shot.at : -99, 0.012, 10);
     },

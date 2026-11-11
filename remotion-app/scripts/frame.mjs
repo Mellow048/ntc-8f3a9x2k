@@ -12,18 +12,25 @@ const film = args.length && !/^\d+$/.test(args[0]) ? args.shift() : 'fridge';
 const src = fs.readFileSync(new URL(`../src/videos/${film}/story.ts`, import.meta.url), 'utf8');
 const re = /^\s*s\((\d+), '(\w+)', '(\w+)', (\[[^\]]+\]), (\[[^\]]+\]), ([\d.]+)(?:, (\{[^}]*\}))?\)/gm;
 const shots = []; let m;
-while ((m = re.exec(src))) shots.push({kind: m[2], v: m[3], cam: JSON.parse(m[4]), target: JSON.parse(m[5]), fov: +m[6], ...(m[7] ? Function(`return (${m[7]})`)() : {})});
+while ((m = re.exec(src))) shots.push({word: +m[1], kind: m[2], v: m[3], cam: JSON.parse(m[4]), target: JSON.parse(m[5]), fov: +m[6], ...(m[7] ? Function(`return (${m[7]})`)() : {})});
 const [idx, ...pts] = args;
 const shot = shots[+idx];
 if (!shot) { console.error(`${film}: ${shots.length} shots; give a shot index`); process.exit(2); }
-console.log(`${film} shot ${idx}: ${shot.kind}/${shot.v} cam ${shot.cam} target ${shot.target} fov ${shot.fov}`,
-  shot.to ? `to ${shot.to}` : `push ${shot.push ?? 0.1}`, shot.targetTo ? `target to ${shot.targetTo}` : '');
-for (const u of [0, 1]) {                                          // the same camera move as World.ts, at its two ends
-  const cam = new THREE.PerspectiveCamera(shot.fov, 9 / 16, 0.1, 320), focus = new THREE.Vector3(...shot.target), p = new THREE.Vector3(...shot.cam);
-  if (shot.targetTo) focus.lerp(new THREE.Vector3(...shot.targetTo), u);
-  if (shot.to) p.lerp(new THREE.Vector3(...shot.to), u); else p.lerp(focus, u * (shot.push ?? 0.1));
+// Frames, as story.ts counts them: a shot starts two frames ahead of its word. A take can run over several shots (`join`): the move of
+// its first shot then runs across all of them, so this shot shows only its share of that move.
+const words = JSON.parse(fs.readFileSync(new URL(`../src/videos/${film}/words.json`, import.meta.url), 'utf8'));
+const FPS = 30, at = (i) => Math.max(0, Math.round(words[shots[i].word].start * FPS) - 2);
+const total = Math.round((words[words.length - 1].end + 1.55) * FPS), end = (i) => (i + 1 < shots.length ? at(i + 1) : total);
+let a = +idx, b = +idx; while (a > 0 && shots[a].join) a--; while (shots[b + 1]?.join) b++;
+const mv = shots[a], ease = (f) => { const t = (f - at(a)) / (end(b) - at(a)); return mv.soft ? t * t * (3 - 2 * t) : 1 - (1 - t) ** 2.2; };
+console.log(`${film} shot ${idx}: ${shot.kind}/${shot.v} frames ${at(+idx)}-${end(+idx) - 1}`, a !== b ? `| part of the take over shots ${a}-${b} (frames ${at(a)}-${end(b) - 1})` : '',
+  `| cam ${mv.cam} target ${mv.target} fov ${mv.fov}`, mv.to ? `to ${mv.to}` : `push ${mv.push ?? 0.1}`, mv.targetTo ? `target to ${mv.targetTo}` : '');
+for (const [label, f] of [[' start', at(+idx)], [' end  ', end(+idx)]]) {                 // the same camera move as World.ts, at this shot's two ends
+  const u = ease(f), cam = new THREE.PerspectiveCamera(mv.fov, 9 / 16, 0.1, 320), focus = new THREE.Vector3(...mv.target), p = new THREE.Vector3(...mv.cam);
+  if (mv.targetTo) focus.lerp(new THREE.Vector3(...mv.targetTo), u);
+  if (mv.to) p.lerp(new THREE.Vector3(...mv.to), u); else p.lerp(focus, u * (mv.push ?? 0.1));
   cam.position.copy(p); cam.lookAt(focus); cam.updateProjectionMatrix(); cam.updateMatrixWorld();
-  const d = p.distanceTo(focus), h = 2 * d * Math.tan(shot.fov * Math.PI / 360);
-  console.log(u ? ' end  ' : ' start', `frame at target: ${(h * 9 / 16).toFixed(2)} wide x ${h.toFixed(2)} tall |`,
+  const d = p.distanceTo(focus), h = 2 * d * Math.tan(mv.fov * Math.PI / 360);
+  console.log(label, `camera ${p.toArray().map((x) => x.toFixed(2))} | frame at target: ${(h * 9 / 16).toFixed(2)} wide x ${h.toFixed(2)} tall |`,
     pts.map((s) => { const v = new THREE.Vector3(...s.split(',').map(Number)).project(cam); return `(${((v.x + 1) * 50).toFixed(0)}%, ${((1 - v.y) * 50).toFixed(0)}%)`; }).join(' '));
 }

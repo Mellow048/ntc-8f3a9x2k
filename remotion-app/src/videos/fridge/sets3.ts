@@ -32,14 +32,14 @@ export const showroom: Builder = (root) => {
   }), 1.1, true);
   soft(panel(old.g, 0.62, 0.62, web('a', 6, 5), -0.34, 0.19, 0.086));                                               // across the top-left corner of the panel
   soft(panel(old.g, 0.44, 0.44, web('b', 5, 4), 0.43, -0.28, 0.086)).rotation.z = Math.PI;                         // and the bottom-right one
-  const spider = grp(dusty, 0.9, 2.0, 0.12); ball(spider, 0.05, '#15121c', 0, 0, 0); for (let i = 0; i < 4; i++) for (const s of [-1, 1]) rod(spider, [0, 0, 0], [s * 0.1, -0.03 + i * 0.03 - 0.04, 0], 0.006, '#15121c');
-  const thread = soft(rod(dusty, [0.9, 2.9, 0.12], [0.9, 2.0, 0.12], 0.004, lit('#e6ecf2', 1.1)));
+  const spider = grp(dusty, 0.82, 2.0, 0.12); ball(spider, 0.05, '#15121c', 0, 0, 0); for (let i = 0; i < 4; i++) for (const s of [-1, 1]) rod(spider, [0, 0, 0], [s * 0.1, -0.03 + i * 0.03 - 0.04, 0], 0.006, '#15121c');
+  const thread = soft(rod(dusty, [0.82, 2.9, 0.12], [0.82, 2.0, 0.12], 0.004, lit('#e6ecf2', 1.1)));
   const floppy = panel(dusty, 0.4, 0.4, smat(tex('floppy', 200, 200, (g, w, h) => {                                  // the last update, on a floppy disk
     g.fillStyle = '#2f5fa8'; g.fillRect(0, 0, w, h); g.strokeStyle = '#15121c'; g.lineWidth = 10; g.strokeRect(5, 5, w - 10, h - 10);
     g.fillStyle = '#c9d2d8'; g.fillRect(52, 8, 96, 62); g.strokeRect(52, 8, 96, 62); g.fillStyle = '#2f5fa8'; g.fillRect(112, 18, 22, 42);
     g.fillStyle = '#fffdf4'; g.fillRect(30, 96, 140, 96); g.lineWidth = 6; g.strokeRect(30, 96, 140, 96); text(g, 'v1.0', w / 2, 146, 54, '#15121c');
   }), 1.02), -0.44, 1.14, 0.42); floppy.rotation.set(-0.28, 0, 0.12);
-  const note = panel(dusty, 0.42, 0.42, smat(signTex('sticky', 210, 210, '#ffe14a', '#15121c', [['UPDATE', 60, 0.36], ['ME', 70, 0.7]]), 1.05), 0.52, 2.06, 0.1); note.rotation.z = -0.14;
+  const note = panel(dusty, 0.42, 0.42, smat(signTex('sticky', 210, 210, '#ffe14a', '#15121c', [['UPDATE', 60, 0.36], ['ME', 70, 0.7]]), 1.05), 0.53, 1.98, 0.1); note.rotation.z = -0.14;
   const dust = puffs(dusty, 8, '#cfc6a8', 0.3);
   const glints = [[-0.8, 2.1], [0.82, 1.3], [0.6, 2.3]].map(([x, y]) => soft(panel(stand, 0.3, 0.3, smat(tex('glint', 96, 96, (g) => { g.clearRect(0, 0, 96, 96); g.fillStyle = '#fff6c2'; g.beginPath(); g.moveTo(48, 2); g.lineTo(57, 39); g.lineTo(94, 48); g.lineTo(57, 57); g.lineTo(48, 94); g.lineTo(39, 57); g.lineTo(2, 48); g.lineTo(39, 39); g.closePath(); g.fill(); }), 1.6, true), x, y, 0.2)));
   beam(root, 0.16, 1.25, 4.2, '#fff6d0', 0.14, 0, 4.4, 0); pool(root, 1.3, '#fff2c0', 0.4, 0, 0.1);

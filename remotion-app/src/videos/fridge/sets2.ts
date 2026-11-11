@@ -94,7 +94,7 @@ export const podium: Builder = (root) => {
       if (v === 'accuse') { fr.show(f >= W(17) ? 'point' : 'idle'); fr.node.position.y = UP + hop(f, W(17), 0.1, 8); }
       else if (v === 'paris') { fr.show(f >= W(155) ? 'paper' : 'idle'); fr.node.position.y = UP + hop(f, W(155), 0.08, 8); }
       else if (v === 'sure') { fr.show('sure'); fr.node.position.y = UP + hop(f, W(179), 0.07, 8); }
-      if (v === 'deny') { ir.show('deny'); ir.node.position.set(0.035 * Math.sin(f * 1.1) * clamp01(1 - t / 22), UP, -0.3); }
+      if (v === 'deny') { ir.show('deny'); ir.node.position.set(0.03 * Math.sin(t * 0.7) * clamp01(1 - t / 24), UP, -0.3); }   // a slow "no": the shot is close
       else if (v === 'ice') { ir.show(f >= W(190) ? 'paper' : 'idle'); ir.node.position.set(0, UP + hop(f, W(190), 0.08, 8), -0.3); }
       else if (v === 'read') { ir.show('read'); ir.node.position.set(0, UP, -0.3); }
       const cold = v === 'ice' ? smooth(f, W(191), W(193) + 8) : v === 'read' ? 1 : 0;

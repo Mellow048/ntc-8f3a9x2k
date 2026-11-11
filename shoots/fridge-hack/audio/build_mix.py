@@ -466,7 +466,10 @@ def build_sfx(voice_lufs):
             continue
         w = cached(("whoosh", i % 3), lambda: whoosh(0.26, R, peak=0.11, f_lo=500, f_hi=2600 + 300 * (i % 3), tail=0.07))
         fx(cut_t(i) - 0.1, w, -17, 0.35 if i % 2 else -0.35)
-    EVENTS.append((cut_t(1), "swish", f"on {len(CUTS) - 1 - len(quiet)} cuts, alternating left and right"))
+    # Shots 11, 12 and 35 go on in the same take as the shot before (the camera carries straight on). 35 was quiet already; on 11 and 12
+    # the swish stays: it goes with the pointer sliding to the defrost key and with the panel starting to shake.
+    EVENTS.append((cut_t(1), "swish", f"on {len(CUTS) - 1 - len(quiet)} shot changes, alternating left and right; two of them (frames {CUTS[11]} and {CUTS[12]}) "
+                   "are not cuts but new pushes inside the one take on the control panel"))
 
     stamps = [(Wt(1), "THE FREEZER HACK"), (Wt(15), "FRANCE SAYS: IRAN"), (Wt(26), "50°C"), (Wt(31), "TENS OF MILLIONS OF €"), (Wt(37), "15+ FIRES"), (Wt(43), "NO BREAK-IN"), (Wt(57), "ALARMS: OFF"),
               (Wt(62), "DEFROST: NO END"), (Wt(106), "OUTDATED"), (Wt(115), "100+ STORES"), (Wt(124), "STATUS: UNKNOWN"), (Wt(138), "NOTHING LOST"), (Wt(145), "NO PROVEN LINK"), (Wt(178), "“WITH CERTAINTY”"),
