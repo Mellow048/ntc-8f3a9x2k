@@ -3,12 +3,13 @@
 #
 #   scripts/pick.sh <outDir> <frame,frame,...> [width]
 #
-# Uses the FridgeReview composition (src/Root.tsx): output frame i shows film frame number i of the list.
+# Uses a review composition of src/Root.tsx (REVIEW=FridgeReview by default, e.g. REVIEW=BinanceReview): output frame i shows
+# film frame number i of the list.
 set -euo pipefail
 out=$1; list=$2; width=${3:-360}
 n=$(awk -F, '{print NF}' <<<"$list")
 rm -rf "$out"; mkdir -p "$out"
-node scripts/stills.mjs FridgeReview "$out" --every=1 --range=0-$((n - 1)) --width="$width" --log=10 --props="{\"frames\":[$list]}"
+node scripts/stills.mjs "${REVIEW:-FridgeReview}" "$out" --every=1 --range=0-$((n - 1)) --width="$width" --log=10 --props="{\"frames\":[$list]}"
 i=0
 for f in ${list//,/ }; do
   src=$(printf '%s/f%04d.jpeg' "$out" "$i")
