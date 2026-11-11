@@ -6,7 +6,8 @@
 //            --props='{"fx":"nolens"}' (input props; the Nvidia short reads `fx` to switch post passes off for profiling)
 //
 // Uses software WebGL (SwiftShader). Set REMOTION_BROWSER to a Chrome/Chromium binary if Remotion's own
-// download is not usable on the machine.
+// download is not usable on the machine. The compositions come from src/index.ts; set REMOTION_ENTRY to bundle
+// another entry file instead.
 import path from 'node:path';
 import fs from 'node:fs';
 import {bundle} from '@remotion/bundler';
@@ -20,7 +21,7 @@ const chromiumOptions = {gl: 'swiftshader'};
 const t0 = Date.now(), log = (m) => console.log(`[${((Date.now() - t0) / 1000).toFixed(1)}s] ${m}`);
 
 fs.mkdirSync(outDir, {recursive: true});
-const serveUrl = await bundle({entryPoint: path.resolve('src/index.ts')});
+const serveUrl = await bundle({entryPoint: path.resolve(process.env.REMOTION_ENTRY || 'src/index.ts')});
 log('bundled');
 const inputProps = JSON.parse(opt.props ?? '{}');
 const comp = await selectComposition({serveUrl, id, browserExecutable, chromiumOptions, inputProps});

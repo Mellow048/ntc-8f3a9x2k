@@ -2,8 +2,10 @@
 //
 //   node scripts/plan.mjs <CompositionId> [chunks=20]
 //
+// The compositions come from src/index.ts; set REMOTION_ENTRY to bundle another entry file instead.
+//
 // Asks Remotion how long the composition is, then prints two lines in GitHub's step-output format:
-//   frames=2041
+//   frames=2075
 //   matrix={"include":[{"part":"01","range":"0-102"}, ...]}
 // Every range is inclusive, the way `remotion render --frames=a-b` wants it. Parts are numbered so that sorting the
 // file names puts them back in order.
@@ -13,7 +15,7 @@ import {selectComposition} from '@remotion/renderer';
 
 const [id, chunksArg] = process.argv.slice(2);
 if (!id) { console.error('usage: node scripts/plan.mjs <CompositionId> [chunks]'); process.exit(2); }
-const serveUrl = await bundle({entryPoint: path.resolve('src/index.ts')});
+const serveUrl = await bundle({entryPoint: path.resolve(process.env.REMOTION_ENTRY || 'src/index.ts')});
 const comp = await selectComposition({serveUrl, id, browserExecutable: process.env.REMOTION_BROWSER || undefined, chromiumOptions: {gl: 'swiftshader'}, inputProps: {}});
 const frames = comp.durationInFrames;
 // no part shorter than one second: a tiny part costs a whole job's set-up for nothing

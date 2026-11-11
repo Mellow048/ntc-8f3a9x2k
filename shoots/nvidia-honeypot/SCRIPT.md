@@ -1,6 +1,6 @@
 # "Nvidia's CEO and the Suspected Spy" — SCRIPT
 
-**Status (2026-11-10):** script approved (narration v5) · voice chosen by the user and locked · picture, graphics and sound built · rendered on GitHub Actions at 720 × 1280 and committed as `final-720p.mp4` (details under Render) · technically checked, finished picture reviewed on contact sheets · **not yet approved by the user, and nobody has listened to the sound**
+**Status: approved by the user** after watching the 2026-11-10 render ("so well done and not lazy", "maybe the best one"). Script approved (narration v5) · voice chosen by the user and locked · rendered on GitHub Actions at 720 × 1280 and committed as `final-720p.mp4` (details under Render). At the user's request the film and this source are kept on `main` as the reference for news shorts: `references/news/nvidia-spy/`.
 
 ## Researched facts and sources
 
@@ -105,7 +105,7 @@ To change the pace, re-run `build_voice.py` with a different `--target-seconds`,
 - Ending: the last chord lands in the pause after "…most expensive date in history?", rings under "What are your thoughts about this?", and two bass plucks close it. The picture holds 1.5 s after the last word.
 - Effects follow the picture: stamp thuds, pops for the cards, mail dings as the six laptops ping, typing under the quote, a market bell, a counter that ticks up to the total, running feet, a desk bell on "Five minutes!", camera shutters in the press rooms, a cash register on "expensive date". Each is set relative to the voice (`fx(..., lu)` in the script).
 
-Sound was judged with meters only (loudness, true peak, level of the music against the voice per moment). Nobody has listened to it in this session.
+The sound was set with meters only (loudness, true peak, level of the music against the voice per moment); the agent that made it did not listen to it. The user approved the finished film as it is.
 
 ## Render
 
@@ -131,6 +131,6 @@ What was checked on the finished file, and how:
 - The sound in the file is `audio/mix.wav` and starts on frame 0 (the two line up at an offset of 0 samples).
 - Picture: 139 frames (every 15th) on six contact sheets, plus the two shots that were corrected and the last frame at full size. Every caption on them is on one line and clear of faces, signs and props.
 - The three frame jumps the first report of this render listed (frames 658, 988 and 1801) are caption changes. The list of expected caption frames in `qa-shots.json` was one frame early for captions that follow each other without a gap; it is corrected and the report was written again from the same picture (run `42920218027`, commit `669ca01`; the MP4 it produced is byte-for-byte the same file). That report lists no unexpected jump.
-- Not checked: nobody has listened to the film, and nobody has watched it in motion. The sound was judged from measurements, the picture from still frames.
+- Not checked by the agent that made it: it did not listen to the film or watch it in motion. The sound was set from measurements and the picture was reviewed on still frames. The user then watched the finished film and approved it.
 
 Earlier render, replaced: commit `b00addc`, run `42910502857` (2041 frames, 68.03 s). Its music was 10.5 LU under the voice, one caption wrapped onto two lines over the Congress members, and a nameplate sat under a caption.

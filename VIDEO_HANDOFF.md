@@ -240,11 +240,12 @@ The session that created this guide uses `arena/2524fc8a-ntc-8f3a9x2k`. Follow t
 
 After each delivery or user correction, update the approval history and current checkpoint. Distinguish **planned**, **implemented**, **rendering**, **reviewed**, **delivered**, and **user-approved**. Record unresolved problems honestly. Do not make the next agent infer status from the presence of an old `final-720p.mp4`.
 
-## 9. Separate stream: Nvidia news short (delivered, awaiting user review)
+## 9. Separate stream: Nvidia news short (approved by the user)
 
 A different kind of film from the engineering series: a one-minute news explainer, "Nvidia's CEO and the Suspected Spy". It does not replace or change the City Hall checkpoint in section 3.
 
-- **Status:** delivered on branch `arena/44d045b4-ntc-8f3a9x2k`. Technically checked and the finished picture reviewed on contact sheets. **Not user-approved yet.** The sound was judged with meters only; nobody has listened to it.
+- **Status: user-approved.** The user watched the delivered MP4 and said: "so well done and not lazy", "maybe the best one". At the user's request the film and its source are kept on `main` as the reference for **news shorts**, a separate category from the regular explainer shorts: `references/news/nvidia-spy/`, with the category described in `AGENTS.md`, `README.md` and `IMPORTANT.md`. Before that it was technically checked and its finished picture reviewed on contact sheets; the agent set the sound with meters and did not listen to it.
+- **Produced on** branch `arena/44d045b4-ntc-8f3a9x2k`. The branch name is provenance, not a dependency: use the copy on `main`.
 - **File:** `shoots/nvidia-honeypot/final-720p.mp4`, render commit **`56cbf5b`**, run **`42918009608`**. 720×1280, 30 fps, **2075 frames / 69.167 s**, 51,611,759 bytes; H.264 + 48 kHz stereo AAC. Finished-file QA: −14.6 LUFS, −1.8 dBFS true peak; no silence, black, unplanned white or frozen frames; the only frame jumps are cuts, caption changes and arriving graphics.
 - **What the user decided:** narration v5 approved; voice = the 4th of six full reads (Arena `voice-15`; twelve earlier auditions were rejected as artificial); then "make the video and render it in github". The user was annoyed at being given six reads to choose from: offer one candidate, not a menu.
 - **Everything about the film** is in `shoots/nvidia-honeypot/SCRIPT.md`: sourced facts, accuracy rules, beat map, voice, sound, render. Film code: `remotion-app/src/videos/nvidia/` (composition `NvidiaShort`). Sound: `shoots/nvidia-honeypot/audio/build_mix.py`.
