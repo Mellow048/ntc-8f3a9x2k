@@ -303,7 +303,9 @@ def build_music():
     put("comp", I.pad([m2f(m) for m in (74, 79, 86)], q1 - q0, 0.5, R, att=0.4, rel=0.6, warm=3000.0), q0, 0.13)
     EVENTS.append((q0, "music out", "the reply is read over a thin, high chord and nothing else"))
     put("bass", bassn(43, 0.8), Wt(183), 0.9); put("bass", bassn(38, 0.8), Wt(185), 0.8)
-    EVENTS.append((Wt(183), "two bass notes", "'And President Trump?': G, then D, and nothing under his sentence"))
+    p0, p1 = Wt(186), WORDS[193]["end"] + 0.25
+    put("comp", I.pad([m2f(m) for m in (67, 74, 79)], p1 - p0, 0.5, R, att=0.3, rel=0.5, warm=3000.0), p0, 0.13)
+    EVENTS.append((Wt(183), "two bass notes", "'And President Trump?': G, then D; his sentence is read over one thin open fifth, like the reply before it"))
     put("lead", pizz(67, 0.5, 0.6), WORDS[193]["end"] + 0.04, 0.6); put("lead", pizz(73, 0.7, 0.6), WORDS[193]["end"] + 0.04 + SW * B, 0.6)
     EVENTS.append((WORDS[193]["end"] + 0.04, "two plucked notes", "rising a tritone after 'if it's North Korea': nobody has settled it"))
 
@@ -584,6 +586,7 @@ def build_sfx(voice_lufs):
     for k, t in enumerate((cut_t(36) + 0.06, cut_t(36) + 0.3, cut_t(36) + 0.62, Wt(186) - 0.1)):
         fx(t, shutter(), -15 - (k == 3) * 3, (-0.5, 0.5, -0.2, 0.4)[k])
     EVENTS.append((cut_t(36) + 0.06, "camera shutters", "reporters on the terrace"))
+    fx(Wt(187), shutter(), -17, 0.4, "click", "a camera fires as the president shrugs on 'we don't know'")
     # 13: the court, the ice
     fx(cut_t(38) + 0.04, gavel(), -11.5, 0.3, "gavel", "a court, and nobody in the dock")
     fx(cut_t(38) + 0.24, gavel(), -12.5, 0.3)
@@ -643,7 +646,7 @@ def limiter(x, ceil_db, look=0.003, rel=0.08):
 
 
 # sounds that go with something arriving in the picture: the ten frames from each are allowed to jump
-GRAPHIC_SOUNDS = {"stamp thud", "pop", "ding", "ping", "counter lands", "click", "hit", "marker", "call tone", "frame off", "zap", "clunk", "chime", "ice", "gavel", "buzzer"}
+GRAPHIC_SOUNDS = {"stamp thud", "pop", "ding", "ping", "counter lands", "click", "hit", "marker", "call tone", "frame off", "zap", "clunk", "chime", "ice", "gavel", "buzzer", "falling whistle"}
 
 
 SOLO = {6, 25, 45, 117, 139, 170, 189, 224}                         # the same words Captions.tsx keeps on their own

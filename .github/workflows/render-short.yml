@@ -223,10 +223,30 @@ jobs:
         run: |
           cat > out/mux.sh <<'EOS'
           if [ -n "$MIX" ]; then
-            ffmpeg -v error -y -i out/video.mp4 -i "$MIX" -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -movflags +faststart -shortest out/final.mp4
+            # The sound is padded or cut to the picture's exact length, so no picture is lost at the end. (With -shortest, a
+            # mix that ended inside the last AAC frame cost one film its last two frames.)
+            DUR="$(ffprobe -v error -show_entries format=duration -of csv=p=0 out/video.mp4)"
+            peak() { ffmpeg -hide_banner -nostats -i "$1" -map 0:a:0 -af volumedetect -f null - 2>&1 | sed -nE 's/.*max_volume: (-?[0-9.]+) dB.*/\1/p'; }
+            SRC="$(peak "$MIX")"
+            # ffmpeg's AAC encoder has been seen to write a full-scale click that is not in the WAV: five samples, 3.7 dB above
+            # the mix's own peak, from the runner's build and from no other build tried. So: encode, decode, measure, and keep
+            # the first setting whose peak stays within 1 dB of the WAV's.
+            OK=""
+            for OPTS in "-b:a 192k" "-b:a 192k -aac_coder fast" "-b:a 256k" "-b:a 192k -aac_pns 0 -aac_is 0 -aac_tns 0" "-b:a 320k"; do
+              ffmpeg -v error -y -i "$MIX" -af apad -t "$DUR" -c:a aac $OPTS out/audio.m4a
+              GOT="$(peak out/audio.m4a)"
+              echo "aac $OPTS: peak $GOT dBFS (the WAV: $SRC dBFS)"
+              if python3 -c "import sys; sys.exit(0 if float('$GOT') <= float('$SRC') + 1.0 else 1)"; then OK="$OPTS"; break; fi
+              echo "::warning::aac $OPTS wrote a peak of $GOT dBFS into a mix that peaks at $SRC dBFS; trying the next setting"
+            done
+            test -n "$OK"
+            ffmpeg -v error -y -i out/video.mp4 -i out/audio.m4a -map 0:v:0 -map 1:a:0 -c copy -movflags +faststart out/final.mp4
           else
             ffmpeg -v error -y -i out/video.mp4 -c copy -movflags +faststart out/final.mp4
           fi
+          GOT="$(ffprobe -v error -select_streams v:0 -count_packets -show_entries stream=nb_read_packets -of csv=p=0 out/final.mp4 | tr -dc '0-9')"
+          echo "frames with the sound on: '$GOT', expected '$FRAMES'"
+          test "$GOT" = "$FRAMES"
           # GitHub refuses files over 100 MB; squeeze only if the film would not fit.
           BYTES="$(stat -c %s out/final.mp4)"
           if [ "$BYTES" -gt 95000000 ]; then
@@ -248,6 +268,9 @@ jobs:
             LUFS="$(grep -m1 '^LOUDNESS' out/qa.txt | sed -E 's/.*I: +(-?[0-9.]+) LUFS.*/\1/')"
             echo "integrated loudness: $LUFS LUFS (gate -17 to -13)"
             python3 -c "import sys; v = float('$LUFS'); sys.exit(0 if -17 <= v <= -13 else 1)"
+            PEAK="$(grep -m1 '^LOUDNESS' out/qa.txt | sed -E 's/.*Peak: +(-?[0-9.]+) dBFS.*/\1/')"
+            echo "true peak: $PEAK dBFS (gate: at most -1.0)"
+            python3 -c "import sys; sys.exit(0 if float('$PEAK') <= -1.0 else 1)"
           fi
           EOS
           bash out/step.sh "Check the film" out/check.sh

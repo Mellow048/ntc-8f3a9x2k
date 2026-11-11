@@ -3,7 +3,7 @@
 Written by `build_mix.py`. All music and effects are synthesized in that script; nothing is sampled.
 
 - length 75.300 s (2259 frames at 30 fps), 48 kHz stereo, 16-bit
-- integrated loudness -14.5 LUFS, true peak -2.3 dBTP, limiter at most 2.8 dB
+- integrated loudness -14.5 LUFS, true peak -2.3 dBTP, limiter at most 2.4 dB
 - stems at mix gain: voice -15.6 LUFS, music -21.2 LUFS, effects -26.4 LUFS
 - music after ducking: 5.7 LU under the voice while someone speaks, 5.6 LU under it over the whole film
 - the same above 300 Hz (what a phone speaker plays): 6.2 LU under the voice; loudest 200 ms under a spoken word 2.9 LU under it
@@ -120,10 +120,11 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  55.93 | 1678 | music out | the reply is read over a thin, high chord and nothing else |
 |  55.93 | 1678 | pop | quote card: Kim Yo Jong's statement |
 |  58.16 | 1745 | camera shutters | reporters on the terrace |
-|  58.17 | 1745 | two bass notes | 'And President Trump?': G, then D, and nothing under his sentence |
+|  58.17 | 1745 | two bass notes | 'And President Trump?': G, then D; his sentence is read over one thin open fifth, like the reply before it |
 |  58.33 | 1750 | pop | name tag: President Trump |
 |  59.10 | 1773 | pop | name tag, lower |
 |  59.13 | 1774 | pop | quote card: the president |
+|  59.80 | 1794 | click | a camera fires as the president shrugs on 'we don't know' |
 |  61.47 | 1844 | two plucked notes | rising a tritone after 'if it's North Korea': nobody has settled it |
 |  61.87 | 1856 | caper back | bass and ride for the empty dock and the ice, snaps and chords for the refund, the riff for the months on the wall |
 |  61.91 | 1857 | gavel | a court, and nobody in the dock |

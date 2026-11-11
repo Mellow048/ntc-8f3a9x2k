@@ -54,7 +54,7 @@ export const fbi: Builder = (root) => {
     light: () => ({...LIGHT.show, sky: '#d8e2ff', amb: 1.3}),
     tick: ({f, cam, shot}) => {
       agent.show(f >= W(169) + 6 ? 'point' : 'idle'); agent.node.position.y = UP + hop(f, W(169) + 6, 0.08, 8);
-      hot.opacity = shot.v === 'nk' ? smooth(f, W(171), W(171) + 5) * (0.82 + 0.18 * Math.sin((f - W(171)) * 0.2)) : 0;
+      hot.opacity = shot.v === 'nk' ? smooth(f, W(171), W(171) + 5) * (0.92 + 0.08 * Math.sin((f - W(171)) * 0.2)) : 0;
       agent.tick(f, cam);
     },
   };
