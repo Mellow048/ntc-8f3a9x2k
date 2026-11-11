@@ -93,7 +93,7 @@ const Count: React.FC<{f: number; from: number; to: number; total: number; prefi
     </div>
   );
 };
-const Big: React.FC<{children: React.ReactNode}> = ({children}) => <span style={{...anton, fontSize: '11.5cqw', color: INK, lineHeight: 1}}>{children}</span>;
+const Big: React.FC<{children: React.ReactNode; size?: number}> = ({children, size = 11.5}) => <span style={{...anton, fontSize: `${size}cqw`, color: INK, lineHeight: 1}}>{children}</span>;
 
 /** A or B: the two ways to read the story */
 const Choice: React.FC<{f: number; at: number; letter: 'A' | 'B'; text: string; top: string; tone: Tone}> = ({f, at, letter, text, top, tone}) => {
@@ -111,55 +111,60 @@ const Choice: React.FC<{f: number; at: number; letter: 'A' | 'B'; text: string; 
 export const Overlays: React.FC = () => {
   const f = useCurrentFrame();
   const during = (i: number, from = S(i)[0]) => f >= from && f < S(i)[1];
-  const closing = S(43)[0];
+  const closing = S(41)[0];
   return (
     <AbsoluteFill style={{pointerEvents: 'none'}}>
-      {during(0, W(2)) ? <Stamp f={f} at={W(2)} text="THE THREAT" top="10%" size={12.5} /> : null}
-      {during(1, W(7)) ? <Stamp f={f} at={W(7)} text="A 13-YEAR WAIT" tone="yellow" top="9.5%" size={12} /> : null}
-      {during(2, W(13)) ? <Pill f={f} at={W(13)} text="THE STUDIO: ROCKSTAR GAMES" /> : null}
-      {during(3, W(17)) ? <NameTag f={f} at={W(17)} name="GRAND THEFT AUTO VI" role="OPEN-WORLD CRIME GAME · PS5 AND XBOX" size={8.2} /> : null}
-      {during(4, W(22)) ? <Day f={f} at={W(22)} day="NOV"><Big>19</Big></Day> : null}
-      {during(5, W(27) - 2) ? <Count f={f} from={W(27) - 2} to={W(31) + 8} total={230000000} suffix="+" label="COPIES OF GTA V SOLD" /> : null}
-      {during(5, W(32) + 6) ? <Pill f={f} at={W(32) + 6} text="ONLY MINECRAFT HAS SOLD MORE" top="23%" /> : null}
-      {during(6, W(34)) ? <Pill f={f} at={W(34)} text="AUGUST 18, 2026" /> : null}
-      {during(7, W(38)) ? <NameTag f={f} at={W(38)} name="CYBERLEEK" role="ANONYMOUS ACCOUNT · IDENTITY UNKNOWN" /> : null}
-      {during(9, W(44)) ? <Stamp f={f} at={W(44)} text="LEAKED" top="9.5%" size={13} /> : null}
-      {during(10, W(47)) ? <Pill f={f} at={W(47)} text="THE LEAKER'S STATED REASON" /> : null}
-      {during(11, W(55)) ? <Stamp f={f} at={W(55)} text="NO DISC" top="9.5%" size={13.5} /> : null}
-      {during(12, W(58)) ? <Pill f={f} at={W(58)} text="CONFIRMED BY ROCKSTAR, JUNE 2026" /> : null}
-      {during(13, W(63)) ? <Pill f={f} at={W(63)} text="COIN HOLDERS VOTED ON LEAKS" /> : null}
-      {during(14, W(68)) ? <Stamp f={f} at={W(68)} text="CRYPTO COIN" tone="yellow" top="9.5%" size={12} /> : null}
-      {during(15, W(77)) || during(16) ? <Count f={f} from={W(77)} to={W(81) + 6} total={200000} prefix="$" suffix="+" label="OUTSIDE ESTIMATES, AUGUST" color="#7dffa0" /> : null}
-      {during(17, W(84)) ? <Quote f={f} at={W(84)} text={<>CL was transparent about the token from day one: <Hot>a donation, never an investment.</Hot></>} by="CYBERLEEK'S STATEMENT, OCT 14" size={4.6} /> : null}
-      {during(18, W(89)) ? <NameTag f={f} at={W(89)} name="ROCKSTAR GAMES" role="THE STUDIO BEHIND GRAND THEFT AUTO" /> : null}
-      {during(19, W(94)) ? <Quote f={f} at={W(94)} text={<>…has been <Hot>heartbreaking for our team</Hot>, and this is obviously not how we intended for you to see the game after all this time.</>} by="ROCKSTAR GAMES, AUG 26" size={4.5} /> : null}
-      {during(20, W(100)) ? <NameTag f={f} at={W(100)} name="TAKE-TWO" role="ROCKSTAR'S PARENT COMPANY" /> : null}
-      {during(21, W(105)) ? <Pill f={f} at={W(105)} text="SUBPOENAS: MICROSOFT, DISCORD" /> : null}
-      {during(22, W(110)) ? <Day f={f} at={W(110)} day="OCT"><Big>10</Big></Day> : null}
-      {during(23, W(117)) ? <Stamp f={f} at={W(117)} text="$30,000,000" tone="yellow" top="9.5%" size={12.5} /> : null}
-      {during(24, W(121)) ? <Stamp f={f} at={W(121)} text="THE WHOLE GAME" top="10%" size={10.5} /> : null}
-      {during(25, W(126)) ? <Pill f={f} at={W(126)} text="POSTED ON THE LEAKER'S WEBSITE" /> : null}
-      {during(26, W(129)) ? <Quote f={f} at={W(129)} text={<>Take-Two gets one way out: <Hot>physical disks and a public apology.</Hot></>} by="CYBERLEEK'S WEBSITE, OCT 10" size={5} /> : null}
-      {during(27, W(136)) ? <Pill f={f} at={W(136)} text="YES, THAT IS THE REAL QUOTE" /> : null}
-      {during(28, W(144)) || during(29) ? <Stamp f={f} at={W(144)} text="UNVERIFIED" tone="yellow" top="9.5%" size={13} /> : null}
-      {during(30, W(155)) ? <Stamp f={f} at={W(155)} text="$7.8 MILLION" tone="green" top="9.5%" size={10.5} dx={-8} /> : null}
-      {during(30, W(157)) ? <Pill f={f} at={W(157)} text="PEAK, OCT 11 · SOURCE: IGN" top="20%" /> : null}
-      {during(32, S(32)[0] + 5) ? <Stamp f={f} at={S(32)[0] + 5} text="DOWN 78%" top="9.5%" size={12} dx={-9} /> : null}
-      {during(33, W(167)) ? <Stamp f={f} at={W(167)} text="$1.7 MILLION" top="9.5%" size={12} dx={4} /> : null}
-      {during(33, W(168)) ? <Pill f={f} at={W(168)} text="OCT 13 · SOURCE: IGN" top="20%" dx={14} /> : null}
-      {during(34, W(172)) ? <Stamp f={f} at={W(172)} text="CALLED OFF" tone="white" top="9.5%" size={12.5} /> : null}
-      {during(35, W(176)) || during(36) ? <Quote f={f} at={W(176)} text={<>The Edict stands. <Hot>The leeks stop here. For now.</Hot></>} by="CYBERLEEK, OCT 14" size={5.6} /> : null}
-      {during(37, W(187)) ? <Stamp f={f} at={W(187)} text="NOT IDENTIFIED" tone="yellow" top="9.5%" size={10.5} /> : null}
-      {during(37, W(189)) ? <Stamp f={f} at={W(189)} text="NOT CHARGED" tone="green" top="18.5%" size={10.5} rot={3} /> : null}
-      {during(38, W(191)) || during(39) ? <Pill f={f} at={W(191)} text="TAKE-TWO EARNINGS CALL, NOV 9" /> : null}
-      {during(40, W(199)) ? <NameTag f={f} at={W(199)} name="STRAUSS ZELNICK" role="CEO OF TAKE-TWO" /> : null}
-      {during(41, W(202)) ? <Quote f={f} at={W(202)} text={<>…discs just — and note I said discs — <Hot>don't really make sense for the consumer.</Hot></>} by="STRAUSS ZELNICK, AUGUST 2026" size={4.8} /> : null}
-      {during(42, W(211)) ? <Pill f={f} at={W(211)} text="THE BOX HOLDS A CODE, NOT A DISC" /> : null}
+      {during(0, W(1)) ? <Stamp f={f} at={W(1)} text="THE FREEZER HACK" top="10%" size={11.5} /> : null}
+      {during(1, W(9) - 2) ? <Count f={f} from={W(9) - 2} to={W(12) + 4} total={700} label="FRENCH STORES · ABOUT, SAYS THE PROSECUTOR" /> : null}
+      {during(2, W(15)) ? <Stamp f={f} at={W(15)} text="FRANCE SAYS: IRAN" tone="yellow" top="9.5%" size={11.5} /> : null}
+      {during(2, W(17) + 2) ? <Pill f={f} at={W(17) + 2} text="IRAN CALLS THAT BASELESS" top="19.5%" /> : null}
+      {during(3, W(20)) ? <Day f={f} at={W(20)} day="OCTOBER"><Big size={8.4}>11–12</Big></Day> : null}
+      {during(4, W(26)) ? <Stamp f={f} at={W(26)} text="50°C" top="9%" size={15} /> : null}
+      {during(4, W(27) + 3) ? <Pill f={f} at={W(27) + 3} text="122°F · “AS HIGH AS”, REUTERS" top="20.5%" /> : null}
+      {during(5, W(31)) ? <Stamp f={f} at={W(31)} text="TENS OF MILLIONS OF €" tone="yellow" top="9.5%" size={9.6} /> : null}
+      {during(5, W(32) + 3) ? <Pill f={f} at={W(32) + 3} text="FOOD LOST · ONE CHAIN'S ESTIMATE" top="18.5%" /> : null}
+      {during(7, W(37)) ? <Stamp f={f} at={W(37)} text="15+ FIRES" top="9.5%" size={13} /> : null}
+      {during(7, W(40)) ? <Pill f={f} at={W(40)} text="OFFICIAL REPORT: AT LEAST 15" top="20%" /> : null}
+      {during(8, W(43)) ? <Stamp f={f} at={W(43)} text="NO BREAK-IN" tone="white" top="9.5%" size={12.5} /> : null}
+      {during(9, W(50)) ? <Pill f={f} at={W(50)} text="THE PROSECUTOR'S ACCOUNT" /> : null}
+      {during(10, W(55) + 3) ? <Stamp f={f} at={W(55) + 3} text="ALARMS: OFF" top="9.5%" size={12.5} /> : null}
+      {during(12, W(62)) ? <Stamp f={f} at={W(62)} text="DEFROST: NO END" tone="yellow" top="9.5%" size={11.5} /> : null}
+      {during(14, W(71)) ? <Pill f={f} at={W(71)} text="SAYS THE BOSS OF A FRENCH CHAIN" /> : null}
+      {during(15, W(79)) ? <Pill f={f} at={W(79)} text="A CYBERSECURITY PROFESSOR" /> : null}
+      {during(16, W(82)) || during(17) ? <Quote f={f} at={W(82)} text={<>A fridge doesn't look like a security risk, <Hot>and that's exactly why attackers like it.</Hot></>} by="PROF. KATERINA MITROKOTSA · NEWSWEEK" size={5} /> : null}
+      {during(18, W(97)) ? <NameTag f={f} at={W(97)} name="DANFOSS" role="DANISH MAKER OF MANY OF THE PANELS" /> : null}
+      {during(19, W(106)) ? <Stamp f={f} at={W(106)} text="OUTDATED" tone="yellow" top="9.5%" size={13} /> : null}
+      {during(19, W(107)) ? <Pill f={f} at={W(107)} text="DANFOSS: “OUTDATED FIRMWARE”" top="20%" /> : null}
+      {during(20, W(108)) ? <Day f={f} at={W(108)} day="NOVEMBER"><Big>2</Big></Day> : null}
+      {during(21, W(115)) ? <Stamp f={f} at={W(115)} text="100+ STORES" top="9.5%" size={12.5} /> : null}
+      {during(21, W(117)) ? <Pill f={f} at={W(117)} text="AT LEAST FIVE COUNTRIES · AFP" top="20%" /> : null}
+      {during(22, W(121)) ? <Pill f={f} at={W(121)} text="ONE STORE IN BELGIUM · IKEA" /> : null}
+      {during(23, W(124)) ? <Stamp f={f} at={W(124)} text="STATUS: UNKNOWN" tone="yellow" top="9.5%" size={11.5} /> : null}
+      {during(24, W(132)) ? <NameTag f={f} at={W(132)} name="FRANCE'S BLOOD SERVICE" role="ITS COLD STORAGE · NOV 2" size={8} /> : null}
+      {during(25, W(138)) ? <Stamp f={f} at={W(138)} text="NOTHING LOST" tone="green" top="9.5%" size={12.5} /> : null}
+      {during(25, W(140)) ? <Pill f={f} at={W(140)} text="PRODUCTS NOT DAMAGED · CBS NEWS" top="20%" /> : null}
+      {during(26, W(145)) ? <Stamp f={f} at={W(145)} text="NO PROVEN LINK" tone="white" top="9.5%" size={12} /> : null}
+      {during(27, S(27)[0] + 3) ? <Quote f={f} at={S(27)[0] + 3} text={<>…the first offensive cyber campaign carried out <Hot>purely for the purposes of sabotage on French soil.</Hot></>} by="FRENCH FOREIGN MINISTRY, NOV 10" size={4.7} /> : null}
+      {during(28, W(159)) ? <NameTag f={f} at={W(159)} name="SHAHID KAVEH" role="THE UNIT FRANCE ACCUSES · NOV 9" size={9.4} /> : null}
+      {during(28, W(162)) ? <Pill f={f} at={W(162)} text="CONTEXT: THE IRAN WAR, SINCE FEB" top="24%" /> : null}
+      {during(29, W(165) + 2) || during(30) ? <Pill f={f} at={W(165) + 2} text="THE PROSECUTOR'S EVIDENCE" /> : null}
+      {during(31, W(178)) ? <Stamp f={f} at={W(178)} text="“WITH CERTAINTY”" tone="yellow" top="9.5%" size={11} /> : null}
+      {during(31, W(179)) ? <Pill f={f} at={W(179)} text="JEAN-NOËL BARROT · VIA CNN" top="19.5%" /> : null}
+      {during(32, W(182)) ? <Stamp f={f} at={W(182)} text="HOW? NOT DISCLOSED" tone="white" top="9.5%" size={10} /> : null}
+      {during(32, W(183) + 3) ? <Pill f={f} at={W(183) + 3} text="CNN, NOV 10" top="19%" /> : null}
+      {during(33, W(186)) ? <Stamp f={f} at={W(186)} text="DENIED" tone="white" top="9.5%" size={14} /> : null}
+      {during(34, W(189)) ? <NameTag f={f} at={W(189)} name="IRAN'S FOREIGN MINISTRY" role="STATEMENT · NOV 10" size={7.8} /> : null}
+      {during(35, W(195)) || during(36) ? <Quote f={f} at={W(195)} text={<><Hot>A government that cannot even manage the temperature of its own refrigerators</Hot> now seeks to shift the blame onto foreign actors through these preposterous accusations.</>} by="IRAN'S FOREIGN MINISTRY, NOV 10" size={4.4} /> : null}
+      {during(37, W(209)) ? <Pill f={f} at={W(209)} text="FOR THE UNIT'S LEADERS" /> : null}
+      {during(38, W(212)) ? <Pill f={f} at={W(212)} text="FRANCE WILL ASK THE EU" /> : null}
+      {during(39, W(215)) ? <Pill f={f} at={W(215)} text="FRANCE'S CERT-FR AND THE FBI" /> : null}
+      {during(40, W(219)) ? <Stamp f={f} at={W(219)} text="“OFF THE PUBLIC INTERNET”" tone="white" top="9.5%" size={7.6} rot={-2} /> : null}
+      {during(40, W(221)) ? <Pill f={f} at={W(221)} text="FBI CYBER · VIA CBS NEWS" top="17.5%" /> : null}
       {f >= closing ? (
         <>
-          <div style={row('8.5%')}><div style={{...anton, fontSize: '10cqw', color: '#fff', WebkitTextStroke: `1.5cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, transform: `scale(${pop(f, W(215), 8)})`}}>WHAT DO YOU THINK?</div></div>
-          {f >= W(231) ? <Choice f={f} at={W(231)} letter="A" text="DISC IN THE BOX" top="16.5%" tone="red" /> : null}
-          {f >= W(234) + 4 ? <Choice f={f} at={W(234) + 4} letter="B" text="A CODE IS FINE" top="23.5%" tone="yellow" /> : null}
+          <div style={row('8.5%')}><div style={{...anton, fontSize: '10cqw', color: '#fff', WebkitTextStroke: `1.5cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, transform: `scale(${pop(f, W(223), 8)})`}}>WHAT DO YOU THINK?</div></div>
+          {f >= W(230) ? <Choice f={f} at={W(230)} letter="A" text="UNPLUG IT" top="16.5%" tone="red" /> : null}
+          {f >= W(233) ? <Choice f={f} at={W(233)} letter="B" text="LOCK IT DOWN" top="23.5%" tone="yellow" /> : null}
         </>
       ) : null}
     </AbsoluteFill>

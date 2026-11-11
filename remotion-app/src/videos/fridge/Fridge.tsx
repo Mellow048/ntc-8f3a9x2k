@@ -1,4 +1,4 @@
-// "The GTA 6 leaker who wanted a disc": a 74-second vertical news short.
+// "The hack that melted 700 supermarkets": a 74-second vertical news short.
 // Picture: three.js sets with flat cartoon characters, ink outlines, lens blur, bloom and a grade.
 // Timing: every cut, pose and caption is keyed to the narration words (story.ts).
 import React, {useMemo} from 'react';
@@ -11,7 +11,7 @@ import {BlendFunction, BloomEffect, ToneMappingEffect, ToneMappingMode} from 'po
 import {InkPass, noInkFallback} from '../pendulum/ink';
 import {GradeEffect, GRADES, GRADE_STRENGTH} from '../pendulum/grade';
 import {LensBlurEffect} from '../pendulum/lensblur';
-import {LeekWorld} from './World';
+import {FridgeWorld} from './World';
 import {useFonts} from './fonts';
 import {Captions} from './Captions';
 import {Overlays} from './Overlays';
@@ -22,7 +22,7 @@ const OFF = String((getInputProps() as {fx?: string}).fx ?? '');
 const Scene: React.FC = () => {
   const frame = useCurrentFrame();
   const {camera, scene} = useThree();
-  const world = useMemo(() => new LeekWorld(), []);
+  const world = useMemo(() => new FridgeWorld(), []);
   const fx = useMemo(() => ({
     ink: new InkPass(scene, camera as THREE.PerspectiveCamera),
     // A light depth-of-field kernel (10 + 30 taps instead of 16 + 64 + 32): the blur is by far the slowest pass in
@@ -51,7 +51,7 @@ const Scene: React.FC = () => {
   return <><primitive object={world.root} dispose={null} />{post}</>;
 };
 
-export const CyberleekShort: React.FC = () => {
+export const FridgeHackShort: React.FC = () => {
   const {width, height} = useVideoConfig();
   const ready = useFonts();
   return (

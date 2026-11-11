@@ -1,18 +1,18 @@
-// Development aid: every character of the GTA 6 leaker short on one page, to check costumes and poses at a glance.
-//   node scripts/stills.mjs CyberleekCastSheet out/cast --frames=0
+// Development aid: every character of the fridge hack short on one page, to check costumes and poses at a glance.
+//   node scripts/stills.mjs FridgeCastSheet out/cast --frames=0
 import React, {useEffect, useRef} from 'react';
 import {AbsoluteFill} from 'remotion';
 import {useFonts} from './fonts';
-import {drawActor, LEEK, ZELNICK, LAWYER, REPORTER, DETECTIVE, EXEC, DEV, FAN, type Look, type Draw} from './cast';
+import {drawActor, FIREFIGHTER, HACKER, INVESTIGATOR, LABTECH, PROF, SHOPPER, SPOKES_PARIS, SPOKES_TEHRAN, TECH, WORKER, type Look, type Draw} from './cast';
 
 const CELLS: [Look, Draw][] = [
-  [LEEK, {}], [LEEK, {pose: 'point'}], [LEEK, {pose: 'hold', prop: 'sign'}], [LEEK, {pose: 'both', prop: 'jar'}],
-  [LEEK, {pose: 'phone', prop: 'cup'}], [LEEK, {pose: 'cross'}], [LEEK, {pose: 'shrug'}], [LEEK, {pose: 'panic'}],
-  [ZELNICK, {expr: 'neutral', pose: 'point'}], [ZELNICK, {expr: 'smile', pose: 'shrug'}], [LAWYER(0), {expr: 'stern', pose: 'hold', prop: 'paper'}], [LAWYER(1), {expr: 'stern', pose: 'hold', prop: 'paper'}],
-  [LAWYER(2), {expr: 'stern', prop: 'case'}], [REPORTER(0), {expr: 'stern', pose: 'hold', prop: 'magnifier'}], [REPORTER(1), {expr: 'neutral', pose: 'think'}], [DETECTIVE, {expr: 'dazed', pose: 'think'}],
-  [EXEC(0), {expr: 'nervous', pose: 'think'}], [EXEC(1), {expr: 'shock', pose: 'hold', prop: 'paper'}], [DEV(0), {expr: 'shock', pose: 'panic'}], [DEV(1), {expr: 'dazed', pose: 'think'}],
-  [DEV(2), {expr: 'pained'}], [DEV(3), {expr: 'dazed', pose: 'hips'}], [FAN(0), {expr: 'grin', pose: 'both', prop: 'pad'}], [FAN(3), {expr: 'shock', pose: 'panic'}],
-  [FAN(4), {expr: 'grin', pose: 'hold', prop: 'disc'}], [FAN(5), {expr: 'laugh', pose: 'hold', prop: 'sign'}], [FAN(6), {expr: 'stern', pose: 'cross'}], [FAN(7), {expr: 'laugh', pose: 'hold', prop: 'slip'}],
+  [HACKER(0), {}], [HACKER(1), {pose: 'point'}], [HACKER(2), {pose: 'cross'}], [HACKER(0, 'heart'), {pose: 'both'}],
+  [WORKER(0), {expr: 'shock', pose: 'panic'}], [WORKER(0), {expr: 'smile', pose: 'hold'}], [WORKER(1), {expr: 'nervous', pose: 'both', prop: 'box'}], [WORKER(2), {expr: 'pained', pose: 'both'}],
+  [FIREFIGHTER, {expr: 'stern', pose: 'both', prop: 'hose'}], [TECH, {expr: 'smile', pose: 'hips'}], [TECH, {expr: 'neutral', pose: 'phone', prop: 'phone'}], [TECH, {expr: 'stern', pose: 'point'}],
+  [PROF, {expr: 'smile', pose: 'point'}], [PROF, {expr: 'smile', pose: 'shrug'}], [LABTECH, {expr: 'shock', pose: 'panic'}], [LABTECH, {expr: 'relief', pose: 'both', prop: 'crate'}],
+  [SPOKES_PARIS, {expr: 'stern', pose: 'point'}], [SPOKES_PARIS, {expr: 'stern', pose: 'hold', prop: 'paper'}], [SPOKES_PARIS, {expr: 'stern', pose: 'hips'}], [INVESTIGATOR(0), {expr: 'stern', pose: 'hold', prop: 'magnifier'}],
+  [SPOKES_TEHRAN, {expr: 'stern', pose: 'cross'}], [SPOKES_TEHRAN, {expr: 'neutral', pose: 'hold', prop: 'paper'}], [SPOKES_TEHRAN, {expr: 'smile_closed', pose: 'hold', prop: 'paper'}], [INVESTIGATOR(1), {expr: 'neutral', pose: 'think'}],
+  [SHOPPER(1), {expr: 'smile', pose: 'think'}], [SHOPPER(2), {expr: 'smile', pose: 'both'}], [SHOPPER(4), {expr: 'smile', pose: 'think'}], [SHOPPER(0), {expr: 'grin'}],
 ];
 
 export const CastSheet: React.FC = () => {

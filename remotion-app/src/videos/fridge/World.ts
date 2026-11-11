@@ -1,15 +1,15 @@
-// The world of the GTA 6 leaker short: every set is built once, one is shown per shot, and the same two lights are
+// The world of the fridge hack short: every set is built once, one is shown per shot, and the same two lights are
 // re-coloured for each set (no shader recompiles between shots). Cuts are hard; each shot pushes in or travels.
 import * as THREE from 'three';
 import {SHOTS, shotAt, shotEnd, type Kind} from './story';
-import {lair, mountain, spot, store, type Builder, type SetDef} from './sets';
-import {chart, coin, feed, studio, vice} from './sets2';
-import {court, fans, lineup, office} from './sets3';
+import {aisle, front, lair, mapSet, panelSet, type Builder, type SetDef} from './sets';
+import {cable, lecture, lineup, podium, tech} from './sets2';
+import {board, desk, ikea, lab, showroom} from './sets3';
 import {clamp01} from './kit';
 
-const BUILDERS: Record<Kind, Builder> = {lair, spot, store, mountain, vice, studio, feed, coin, chart, court, office, fans, lineup};
+const BUILDERS: Record<Kind, Builder> = {aisle, panel: panelSet, lair, map: mapSet, front, podium, cable, tech, lecture, lineup, showroom, ikea, lab, board, desk};
 
-export class LeekWorld {
+export class FridgeWorld {
   root = new THREE.Group();
   /** where the lens is focused this frame */
   focus = new THREE.Vector3();

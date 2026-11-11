@@ -5,7 +5,7 @@ import {WORDS, type Word} from './story';
 
 type Caption = {start: number; end: number; text: string; hot: boolean};
 /** words that carry the story get the accent colour */
-const HOT = /^(leaker|threatened|cyberleek|vegetable|leaked|protest|disc|discs|disks|code|crypto|coin|donation|investment|heartbreaking|court|unmask|thirty|million|apology|polite|verified|peaked|don't|buy|leeks|identified|charged|pre-orders|disagree|eighty|dollars)$/i;
+const HOT = /^(hackers|heat|freezers|freezer|iran|fifty|celsius|melted|spoiled|fires|nobody|online|muted|alarms|defrost|never|stop|fridge|risk|attackers|danfoss|outdated|trick|ikea|meatballs|blood|time|neither|tied|culprit|guard|farsi|ip|certain|exactly|denies|ice|cold|refrigerators|warrants|sanctions|advice|internet)$/i;
 function groups(words: Word[]): Caption[] {
   const out: Caption[] = [];
   for (let i = 0; i < words.length;) {

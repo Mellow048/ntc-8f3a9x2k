@@ -1,5 +1,5 @@
-// Timing for the GTA 6 leaker short. Everything is keyed to words of the locked narration (words.json, written by
-// shoots/gta6-cyberleek/build_voice.py), so re-timing the voice moves the picture with it.
+// Timing for the fridge hack short. Everything is keyed to words of the locked narration (words.json, written by
+// shoots/fridge-hack/build_voice.py), so re-timing the voice moves the picture with it.
 import words from './words.json';
 import type {V} from './kit';
 
@@ -11,7 +11,7 @@ export const W = (i: number) => Math.round(WORDS[i].start * FPS);
 /** hold the closing question long enough to read it and reach for the comments */
 export const TOTAL = Math.round((WORDS[WORDS.length - 1].end + 1.55) * FPS);
 
-export type Kind = 'lair' | 'spot' | 'store' | 'mountain' | 'vice' | 'studio' | 'feed' | 'coin' | 'chart' | 'court' | 'office' | 'fans' | 'lineup';
+export type Kind = 'aisle' | 'panel' | 'lair' | 'map' | 'front' | 'podium' | 'cable' | 'tech' | 'lecture' | 'lineup' | 'showroom' | 'ikea' | 'lab' | 'board' | 'desk';
 export type Shot = {
   /** first frame (cut lands just ahead of the word) */
   at: number; kind: Kind;
@@ -31,67 +31,65 @@ const cut = (word: number, lead = 2) => Math.max(0, W(word) - lead);
 const s = (word: number, kind: Kind, v: string, cam: V, target: V, fov: number, more: Partial<Shot> = {}): Shot => ({at: cut(word), kind, v, cam, target, fov, ...more});
 
 export const SHOTS: Shot[] = [
-  // 1  "A leaker threatened to release the most awaited video game on Earth. Before the studio could!"
-  s(0, 'lair', 'hook', [0.5, 1.5, 6.0], [0, 1.4, -0.6], 42, {push: 0.1}),                              // 0
-  s(5, 'spot', 'earth', [0.4, 1.6, 6.8], [0, 1.75, 0], 40, {push: 0.12}),                             // 1
-  s(12, 'studio', 'shock', [0.5, 1.5, 6.2], [0, 1.7, -1], 42, {push: 0.14}),                          // 2
-  // 2  "It's Grand Theft Auto Six, out November nineteenth. The last one sold two hundred thirty million copies!"
-  s(16, 'vice', 'title', [-1.2, 1.3, 10.5], [0, 3.0, -3], 42, {push: 0.08}),                          // 3
-  s(21, 'vice', 'cruise', [7.3, 1.15, 9.2], [6.4, 0.95, 1.6], 40, {to: [9.7, 1.15, 9.2], targetTo: [8.8, 0.95, 1.6]}),   // 4
-  s(24, 'mountain', 'copies', [0.8, 1.2, 11], [0, 3.6, 0], 44, {push: 0.06}),                          // 5
-  // 3  "In August, an account called Cyberleek, like the vegetable, started posting leaked clips."
-  s(33, 'lair', 'post', [-0.9, 1.6, 4.9], [-0.3, 1.55, -1.2], 40, {to: [0.4, 1.6, 4.5], targetTo: [-0.1, 1.55, -1.2]}),   // 6
-  s(37, 'spot', 'name', [-0.4, 1.5, 5.3], [0, 1.6, 0], 38, {push: 0.12, close: true}),                // 7
-  s(39, 'spot', 'veg', [0.3, 1.5, 6.3], [0.1, 1.5, 0], 38, {push: 0.08}),                             // 8
-  s(42, 'feed', 'clips', [0.5, 1.6, 8.2], [0, 2.6, -0.6], 40, {push: 0.1}),                           // 9
-  // 4  "They called it a protest: the boxed game has no disc. Just a download code."
-  s(46, 'spot', 'protest', [0.5, 1.45, 6.0], [0, 1.75, 0], 38, {push: 0.1}),                          // 10
-  s(51, 'store', 'open', [0.5, 1.6, 4.9], [0, 1.45, 0], 40, {push: 0.1}),                             // 11
-  s(57, 'store', 'code', [0.1, 1.5, 3.3], [0.36, 1.42, 0.45], 38, {push: 0.06, close: true}),         // 12
-  // 5  "But every clip advertised the leaker's own crypto coin."
-  s(61, 'feed', 'ads', [-0.6, 1.8, 7.2], [0, 2.7, -0.6], 40, {push: 0.1}),                            // 13
-  s(65, 'coin', 'hero', [0.5, 1.5, 6.6], [0.05, 1.65, 0], 40, {push: 0.14}),                          // 14
-  // 6  "Outside estimates say it made them at least two hundred thousand dollars. Cyberleek's words: a donation, never an investment."
-  s(70, 'coin', 'cash', [-0.5, 1.5, 6.6], [0.15, 1.55, 0], 40, {push: 0.1}),                          // 15
-  s(78, 'coin', 'pile', [1.15, 1.15, 5.6], [0.75, 1.3, 0.3], 38, {push: 0.08}),                       // 16
-  s(82, 'spot', 'jar', [-0.4, 1.45, 5.1], [0, 1.65, 0], 38, {push: 0.1, close: true}),                // 17
-  // 7  "Rockstar called the leaks, quote, heartbreaking for our team. Its owner, Take-Two, went to court to unmask the leaker."
-  s(89, 'studio', 'sad', [-0.6, 1.5, 6.4], [0, 1.7, -1], 42, {push: 0.1}),                            // 18
-  s(93, 'studio', 'close', [0.95, 1.5, 3.1], [0.45, 1.5, -0.45], 38, {push: 0.06, close: true}),      // 19
-  s(98, 'court', 'steps', [0.4, 1.4, 11.5], [0, 3.0, 0], 42, {push: 0.08}),                           // 20
-  s(104, 'spot', 'unmask', [0.3, 1.5, 5.5], [0, 1.6, 0], 38, {push: 0.12, close: true}),              // 21
-  // 8  "Then in October, the threat: if the coin hits thirty million dollars, the whole game goes public!"
-  s(108, 'lair', 'october', [-0.6, 1.5, 5.9], [-0.15, 1.45, -1], 42, {push: 0.1}),                       // 22
-  s(113, 'chart', 'target', [0.7, 1.5, 7.8], [0, 2.8, -2.9], 44, {push: 0.08}),                        // 23
-  s(120, 'lair', 'button', [0.9, 1.45, 5.9], [0.14, 1.45, 0.5], 38, {push: 0.08, close: true}),          // 24
-  // 9  "Take-Two's way out? Quote: physical disks and a public apology. Honestly? Most polite threat I've ever heard."
-  s(125, 'office', 'note', [0.5, 1.6, 6.2], [0, 1.3, -0.5], 42, {push: 0.1}),                        // 25
-  s(128, 'spot', 'demand', [0.4, 1.5, 5.7], [0.1, 1.5, 0.2], 38, {push: 0.1}),                        // 26
-  s(135, 'spot', 'tea', [-0.5, 1.4, 5.3], [0, 1.4, 0.1], 38, {push: 0.12}),                           // 27
-  // 10 "Nobody has verified they even have the whole game."
-  s(142, 'spot', 'crate', [0.6, 1.6, 9.2], [0.34, 1.5, 0.2], 38, {push: 0.05}),                          // 28
-  s(147, 'spot', 'crate', [0.85, 1.5, 6.25], [0.74, 1.4, 0.5], 38, {push: 0.06}),         // 29
-  // 11 "The coin peaked at seven point eight million. Fans said: don't buy it. Two days later? One point seven."
-  s(151, 'chart', 'peak', [-0.3, 1.4, 6.6], [0, 2.5, -2.9], 42, {push: 0.1}),                      // 30
-  s(159, 'fans', 'no', [0.4, 1.5, 6.0], [0, 1.7, -0.3], 40, {push: 0.1}),                             // 31
-  s(164, 'chart', 'fall', [0.3, 1.3, 6.2], [0.05, 2.3, -2.9], 42, {push: 0.04}),                       // 32
-  s(167, 'chart', 'bottom', [0.1, 1.2, 7.0], [0, 0.97, -1.0], 40, {push: 0.03}),                    // 33
-  // 12 "So Cyberleek called it off. Quote: the leeks stop here. For now."
-  s(170, 'lair', 'off', [0.5, 1.5, 5.9], [0, 1.4, -0.8], 42, {push: 0.1}),                            // 34
-  s(175, 'lair', 'door', [1.3, 1.5, 4.8], [2.3, 1.55, -2.7], 40, {push: 0.1}),                        // 35
-  s(180, 'lair', 'peek', [1.9, 1.5, 2.4], [2.6, 1.6, -2.9], 38, {push: 0.12, close: true}),           // 36
-  // 13 "So far, nobody's been publicly identified or charged. And Take-Two says pre-orders are far ahead of expectations."
-  s(182, 'lineup', 'row', [0.42, 1.2, 7.6], [0.42, 1.15, 0], 40, {push: 0.05}),                        // 37
-  s(190, 'vice', 'queue', [1.0, 1.6, 8.8], [0, 2.0, -1.6], 42, {push: 0.1}),                          // 38
-  s(195, 'vice', 'meter', [-0.5, 1.7, 6.4], [0, 3.6, -2.5], 40, {push: 0.1}),                         // 39
-  // 14 "Take-Two's boss says discs don't really make sense for the consumer. Plenty of players disagree."
-  s(199, 'office', 'ceo', [0.6, 1.5, 5.9], [0, 1.4, 0], 40, {push: 0.1}),                             // 40
-  s(202, 'office', 'close', [-0.75, 1.55, 3.9], [-0.3, 1.6, 0.1], 38, {push: 0.08, close: true}),     // 41
-  s(210, 'fans', 'discs', [-0.4, 1.4, 6.0], [0, 1.5, -0.3], 40, {push: 0.1}),                         // 42
-  // 15 "So what do you think: if you pay eighty dollars for a game, should there be a disc in the box?"
-  s(214, 'store', 'final', [0.3, 1.6, 5.4], [-0.1, 1.45, 0], 40, {push: 0.08}),                       // 43
-  s(219, 'store', 'price', [-0.08, 1.45, 4.1], [-0.04, 1.3, 0.5], 38, {push: 0.06, close: true}),     // 44
-  s(227, 'store', 'choice', [0, 1.55, 5.2], [0, 1.5, 0.2], 40, {push: 0.06}),                         // 45
+  // 1  "Hackers turned up the heat in the freezers of about seven hundred French supermarkets. And France says Iran did it!"
+  s(0, 'aisle', 'hook', [0.3, 1.45, 5.9], [0, 1.4, -0.4], 42, {push: 0.12}),                          // 0
+  s(8, 'map', 'france', [0.2, 1.45, 5.6], [0, 1.42, -0.4], 42, {push: 0.1}),                          // 1
+  s(14, 'podium', 'accuse', [0.4, 1.45, 5.9], [0, 1.45, -0.5], 42, {push: 0.14}),                     // 2
+  // 2  "Overnight in October, some freezers hit fifty degrees Celsius. By morning: melted ice cream, spoiled meat, and more than a dozen fires."
+  s(20, 'front', 'night', [1.2, 1.3, 9.6], [0, 1.5, -2], 40, {push: 0.08}),                           // 3
+  s(23, 'aisle', 'hot', [1.5, 1.5, 5.3], [0, 1.4, -0.4], 42, {to: [0.9, 1.5, 4.9]}),                  // 4
+  s(29, 'aisle', 'morning', [-0.5, 1.45, 5.7], [0, 1.4, -0.3], 42, {push: 0.1}),                      // 5
+  s(34, 'front', 'dump', [1.1, 1.5, 6.3], [0.6, 1.25, 0.2], 42, {push: 0.08}),                        // 6
+  s(36, 'front', 'fire', [-1.4, 1.4, 6.6], [0, 1.4, -1.2], 42, {push: 0.1}),                          // 7
+  // 3  "Nobody set foot in a store. Someone got into the control panels online, muted the alarms, started a defrost, and never let it stop."
+  s(42, 'front', 'locked', [-0.5, 1.35, 4.4], [0, 1.35, -1.9], 42, {push: 0.1}),                      // 8
+  s(48, 'lair', 'login', [0.4, 1.45, 5.6], [0, 1.4, -0.9], 42, {push: 0.12}),                         // 9
+  s(55, 'panel', 'mute', [0.9, 1.35, 4.3], [0.25, 1.35, -0.2], 40, {push: 0.1}),                      // 10
+  s(58, 'panel', 'defrost', [-0.5, 1.35, 4.3], [0, 1.35, -0.2], 40, {push: 0.12}),                    // 11
+  s(61, 'panel', 'stuck', [0.2, 1.4, 5.2], [0, 1.4, -0.2], 40, {push: 0.1}),                          // 12
+  // 4  "Why are freezers online? So technicians can watch them day and night."
+  s(66, 'cable', 'why', [0.3, 1.45, 5.9], [0, 1.4, -0.3], 42, {push: 0.1}),                           // 13
+  s(70, 'tech', 'watch', [0.4, 1.45, 5.7], [0, 1.4, -0.6], 42, {push: 0.1}),                          // 14
+  // 5  "One professor's verdict. Quote: a fridge doesn't look like a security risk, and that's exactly why attackers like it."
+  s(78, 'lecture', 'intro', [0.4, 1.45, 5.8], [0, 1.4, -0.5], 42, {push: 0.1}),                       // 15
+  s(82, 'lineup', 'innocent', [0.3, 1.4, 5.9], [0, 1.35, -0.4], 42, {push: 0.12}),                    // 16
+  s(90, 'lair', 'love', [-0.3, 1.45, 5.6], [0, 1.4, -0.6], 42, {push: 0.12}),                         // 17
+  // 6  "Danfoss, which makes many of those panels, points to outdated software."
+  s(97, 'showroom', 'new', [0.5, 1.5, 5.6], [0, 1.4, 0], 42, {push: 0.12}),                           // 18
+  s(104, 'showroom', 'old', [-0.4, 1.5, 5.4], [0, 1.4, 0], 42, {push: 0.12}),                         // 19
+  // 7  "Three weeks later, the same trick hit stores from Sweden to Belgium. Even an IKEA. No word on the meatballs."
+  s(108, 'panel', 'again', [0.3, 1.4, 5.2], [0, 1.4, -0.2], 40, {push: 0.12}),                        // 20
+  s(114, 'map', 'europe', [-0.2, 1.45, 5.6], [0, 1.42, -0.4], 42, {push: 0.1}),                       // 21
+  s(120, 'ikea', 'store', [0.8, 1.3, 9.2], [0, 1.5, -2], 40, {push: 0.1}),                            // 22
+  s(123, 'ikea', 'meatballs', [0.3, 1.5, 4.6], [0, 1.3, 0], 40, {push: 0.14}),                        // 23
+  // 8  "Someone even went for freezers at France's blood service. Staff caught it in time."
+  s(128, 'lab', 'alarm', [0.4, 1.45, 5.8], [0, 1.4, -0.4], 42, {push: 0.1}),                          // 24
+  s(137, 'lab', 'saved', [-0.4, 1.45, 5.6], [0, 1.4, -0.3], 42, {push: 0.08}),                        // 25
+  // 9  "Neither has been tied to the first attack."
+  s(142, 'board', 'nolink', [0.3, 1.45, 5.6], [0, 1.42, -0.4], 42, {push: 0.1}),                      // 26
+  // 10 "For the first, France now names a culprit: a hacking unit of Iran's Revolutionary Guard."
+  s(150, 'podium', 'paris', [-0.4, 1.45, 5.9], [0, 1.45, -0.5], 42, {push: 0.1}),                     // 27
+  s(158, 'lair', 'accused', [0.3, 1.45, 5.8], [0, 1.4, -0.4], 42, {push: 0.12}),                      // 28
+  // 11 "Prosecutors cite its methods, traces of Farsi, and Iranian IP addresses. France says it's certain. How exactly? It won't say."
+  s(165, 'desk', 'method', [0.5, 1.6, 5.6], [0, 1.4, -0.3], 42, {push: 0.1}),                         // 29
+  s(169, 'desk', 'traces', [-0.3, 1.55, 5.5], [0, 1.4, -0.3], 42, {push: 0.08}),                      // 30
+  s(176, 'podium', 'sure', [0.3, 1.5, 4.9], [0, 1.5, -0.5], 42, {push: 0.12, close: true}),           // 31
+  s(180, 'desk', 'sealed', [0.3, 1.55, 5.5], [0, 1.4, -0.3], 42, {push: 0.12}),                       // 32
+  // 12 "Iran denies it. And its reply is ice cold. Quote: a government that cannot even manage the temperature of its own refrigerators."
+  s(185, 'podium', 'deny', [-0.4, 1.45, 5.9], [0, 1.45, -0.5], 42, {push: 0.1}),                      // 33
+  s(188, 'podium', 'ice', [0.5, 1.45, 5.7], [0, 1.45, -0.5], 42, {push: 0.12}),                       // 34
+  s(194, 'podium', 'read', [0.2, 1.5, 4.9], [0, 1.5, -0.5], 42, {push: 0.1, close: true}),            // 35
+  s(201, 'showroom', 'fridge', [0.4, 1.5, 5.6], [0, 1.4, 0], 42, {push: 0.14}),                       // 36
+  // 13 "France wants arrest warrants and European sanctions."
+  s(207, 'desk', 'warrant', [0.3, 1.55, 5.5], [0, 1.4, -0.3], 42, {push: 0.1}),                       // 37
+  s(211, 'desk', 'sanctions', [-0.3, 1.55, 5.5], [0, 1.4, -0.3], 42, {push: 0.1}),                    // 38
+  // 14 "The official advice? Take the freezers off the internet."
+  s(214, 'desk', 'notice', [0.2, 1.55, 5.5], [0, 1.4, -0.3], 42, {push: 0.1}),                        // 39
+  s(217, 'cable', 'unplug', [-0.3, 1.45, 5.9], [0, 1.4, -0.3], 42, {push: 0.1}),                      // 40
+  // 15 "So what do you think: should a freezer be online at all?"
+  s(223, 'aisle', 'restored', [0.4, 1.45, 5.9], [0, 1.4, -0.3], 42, {push: 0.08}),                    // 41
+  s(228, 'cable', 'choice', [0.2, 1.45, 6.0], [0, 1.4, -0.3], 42, {push: 0.05}),                      // 42
 ];
+/** shot on screen at frame f */
 export const shotAt = (f: number) => { let i = 0; while (i + 1 < SHOTS.length && SHOTS[i + 1].at <= f) i++; return i; };
 export const shotEnd = (i: number) => (i + 1 < SHOTS.length ? SHOTS[i + 1].at : TOTAL);
