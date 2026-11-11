@@ -110,7 +110,7 @@ in order. The general version of these steps is in
 |---|---|
 | `kit.ts`, `fonts.ts`, `props.ts`, `Captions.tsx`, the frame component (`Gta6.tsx`), `World.ts` | `story.ts`: 46 shots, each cut on a spoken word |
 | The card components in `Overlays.tsx` (stamp, name tag, pill, quote, calendar leaf, A/B) | All 41 graphic cues; the counter, rewritten to roll to any number |
-| The shared cartoon body and the post passes in `pendulum/` | Every costume in `cast.ts`, above all the hood with no face |
+| The shared cartoon body and post passes in `pendulum/`; the costume kit in `cast.ts` (hair, glasses, suits, hoodies) | In `cast.ts`: the hood with no face, the things people hold (disc, placard, teacup, donation jar, controller, code slip), this film's cast list |
 | `build_voice.py` apart from the text and the pauses | All 13 sets in `sets.ts`, `sets2.ts`, `sets3.ts` |
 | The mixing half of `build_mix.py`: levels, ducking, limiter, report | The score and every effect in `build_mix.py` |
 | The render workflow and the review scripts | One new camera move: `targetTo`, a look-at point that travels with the camera |
