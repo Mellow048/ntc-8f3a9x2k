@@ -303,16 +303,16 @@
    "label": "Rooftop · night",
    "light": "night",
    "pos": [
-    -12.703,
-    40.785,
-    1.938
+    -13.577,
+    41.116,
+    3.827
    ],
    "look": [
-    0,
+    -1,
     40.0,
     -6
    ],
-   "fov": 50,
+   "fov": 52,
    "action": "A friend draws the bow; fishing line flies across the gap",
    "word": 100,
    "b": 966
@@ -324,14 +324,14 @@
    "label": "",
    "light": "night",
    "pos": [
-    -11.205,
-    40.933,
-    2.473
+    -10.232,
+    40.728,
+    3.596
    ],
    "look": [
-    -1,
-    39.8,
-    -5.5
+    -5.5,
+    39.9,
+    -4.6
    ],
    "fov": 50,
    "action": "Two friends haul the heavy cable hand over hand",
@@ -513,16 +513,16 @@
    "label": "",
    "light": "day",
    "pos": [
-    6.445,
-    41.47,
-    4.852
+    9.609,
+    40.65,
+    3.343
    ],
    "look": [
-    -0.2,
-    39.8,
-    -5.0
+    6.4,
+    39.9,
+    -4.6
    ],
-   "fov": 48,
+   "fov": 50,
    "action": "Two cops on the roof, empty hands, staring out along the wire",
    "word": 155,
    "b": 1502
@@ -534,16 +534,16 @@
    "label": "",
    "light": "day",
    "pos": [
-    5.517,
-    40.511,
-    0.284
+    11.833,
+    40.063,
+    0.69
    ],
    "look": [
-    1.3,
-    39.4,
+    8.4,
+    39.2,
     -4.4
    ],
-   "fov": 42,
+   "fov": 44,
    "action": "The same two sit down to wait, coffees, folded arms",
    "word": 162,
    "b": 1553
@@ -555,16 +555,16 @@
    "label": "",
    "light": "day",
    "pos": [
-    5.301,
-    40.319,
-    -0.26
+    11.573,
+    40.477,
+    1.389
    ],
    "look": [
-    0.6,
-    39.4,
+    8.0,
+    39.6,
     -4.8
    ],
-   "fov": 44,
+   "fov": 46,
    "action": "He steps off the wire into their arms on the roof",
    "word": 166,
    "b": 1639

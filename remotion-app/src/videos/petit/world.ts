@@ -163,14 +163,14 @@ export class World{
  // ---- 13 elevator: doors close, up to 104 ----
  if(place==='elevator'){room(p,'service');elevatorCar(p,0,-1.5);
   // the gear is already inside the car; the leaves close on it and the floor number climbs
-  const coil=dyn(cableCoil(p,-.55,.42,-.75,.42));
-  const pole=dyn(poleProp(p,.35,1.6,-.8));pole.rotation.z=Math.PI/2+.1;
-  const ind=dyn(lettering(p,'104',0,3.74,-.18,.85,.26,'#1c2026','#ffd27a'));
+  const coil=dyn(cableCoil(p,-.05,.4,-.1,.46));
+  const pole=dyn(poleProp(p,.45,1.5,.02));pole.rotation.z=.55;
+  const ind=dyn(lettering(p,'104',0,3.76,-.18,1.0,.3,'#1c2026','#ffd27a'));
   const doorL=dyn(box(p,-.72,1.34,-.21,.72,2.56,.07,material('elevdoor3','#a8b8c0')));
   const doorR=dyn(box(p,.72,1.34,-.21,.72,2.56,.07,material('elevdoor3','#a8b8c0')));
   const v=A(-2.15,1.3,PETIT,5),f1=A(2.25,1.15,FRIEND,6);
   v.expr='nervous';f1.expr='neutral';
-  this.motions.push((f,u)=>{const q=action(f,84,16);doorL.position.x=-.72-q*.5;doorR.position.x=.72+q*.5;
+  this.motions.push((f,u)=>{const q=action(f,85,10);doorL.position.x=-.72-q*.4;doorR.position.x=.72+q*.4;
    const floor=4+Math.floor(Math.min(21,u*22));ind.position.y=3.74+Math.sin(f*.5)*.01;
    v.wave=.3*(1-q);f1.wave=.25*(1-q);v.gaze=.55*(1-q);f1.gaze=.45*(1-q);v.look=.2;f1.look=-.2;
    void floor;});
@@ -193,7 +193,7 @@ export class World{
   line.scale.y=.02;
   const arrow=dyn(cyl(p,0,0,0,.035,1.1,material('shaft','#f0dfae')));
   arrow.rotation.x=Math.PI/2;
-  const v=A(-3.6,-4.9,PETIT,5,DECK);v.expr='nervous';v.gaze=.5;
+  const v=A(-3.6,WZ,PETIT,5,WIRE);v.expr='nervous';v.gaze=.5;v.mode='stand';
   lamp(p,-9.6,DECK+1.4,-4.4,true);lamp(p,9.4,DECK+1.4,-4.4,true);
   this.motions.push((f)=>{const q=.02+.98*action(f,100,20);
    line.scale.y=q;line.position.copy(LA).addScaledVector(LB.clone().sub(LA),q/2);
@@ -203,11 +203,11 @@ export class World{
  }
  // ---- 16 pull: hauling the cable by hand ----
  if(place==='pull'){deck();wire();
-  const f1=A(-7.6,-4.4,FRIEND,6,DECK),f2=A(-6.2,-3.4,FRIEND,7,DECK);
-  const CA=V(-7.2,DECK+.4,-4.2),CB=V(7.2,WIRE,WZ);
-  const cable=dyn(bar(p,CA,CB,.05,iron()));
+  const f1=A(-9.4,-4.3,FRIEND,6,DECK),f2=A(-7.7,-3.9,FRIEND,7,DECK);
+  const CA=V(-7.0,DECK+.55,-4.1),CB=V(7.2,WIRE,WZ);
+  const cable=dyn(bar(p,CA,CB,.075,material('cable-haul','#cfd6e2')));
   cable.scale.y=.3;
-  const v=A(-4.4,-4.8,PETIT,5,DECK);v.expr='nervous';
+  const v=A(-3.2,WZ,PETIT,5,WIRE);v.expr='nervous';
   lamp(p,-9.6,DECK+1.2,-4.2,true);
   this.motions.push((f)=>{const q=.3+.7*action(f,111,26);cable.scale.y=q;cable.position.copy(CA).addScaledVector(CB.clone().sub(CA),q/2);
    // alternating hand-over-hand hauling
@@ -267,7 +267,7 @@ export class World{
  // ---- 25 reach: they cannot reach him ----
  if(place==='reach'){deck();wire();
   const v=A(-1.4,WZ,PETIT,5,WIRE);v.expr='grin';
-  const c1=A(.6,-4.3,POLICE,9,DECK),c2=A(2.4,-4.3,POLICE,10,DECK);
+  const c1=A(7.4,-4.3,POLICE,9,DECK),c2=A(9.3,-4.3,POLICE,10,DECK);
   c1.expr='stern';c2.expr='stern';c1.look=-.5;c2.look=-.45;c1.gaze=.75;c2.gaze=.7;
   const v2=v;
   this.motions.push((f)=>{c1.wave=.35+.3*Math.sin(f*.1);c2.wave=.2+.2*Math.sin(f*.13+1);
@@ -275,9 +275,9 @@ export class World{
  }
  // ---- 26 wait: they can wait ----
  if(place==='wait'){deck();wire();
-  const c1=A(.4,-4.4,POLICE,9,DECK),c2=A(2.3,-4.4,POLICE,10,DECK);
+  const c1=A(7.5,-4.4,POLICE,9,DECK),c2=A(9.4,-4.4,POLICE,10,DECK);
   c1.mode='sit';c2.mode='sit';c1.expr='stern';c2.expr='nervous';c1.gaze=.35;c2.gaze=.2;
-  const mugA=mug(p,.9,DECK,-4.2),mugB=mug(p,2.8,DECK,-4.2);
+  const mugA=mug(p,8.0,DECK,-4.0),mugB=mug(p,9.9,DECK,-4.0);
   const pet=A(-1.2,WZ,PETIT,5,WIRE);pet.expr='grin';pet.mode='sit';
   this.motions.push((f)=>{c1.wave=.55+.25*Math.sin(f*.09);c2.wave=.4;
    mugA.position.y=DECK+.1*Math.max(0,Math.sin(f*.07));mugB.position.y=DECK+.1*Math.max(0,Math.sin(f*.055+2));
@@ -285,9 +285,9 @@ export class World{
  }
  // ---- 27 arrest ----
  if(place==='arrest'){deck();wire();
-  const v=A(1.2,-5.0,PETIT,5,DECK);v.expr='shock';
-  const c1=A(.2,-4.4,POLICE,9,DECK),c2=A(2.3,-4.4,POLICE,10,DECK);c1.expr='stern';c2.expr='stern';
-  this.motions.push((f)=>{const q=action(f,166,14);c1.root.position.x=.2+q*.75;c2.root.position.x=2.3-q*.75;v.wave=.35*q;v.look=.3*q;});
+  const v=A(7.5,-5.0,PETIT,5,DECK);v.expr='shock';
+  const c1=A(6.9,-4.4,POLICE,9,DECK),c2=A(9.6,-4.4,POLICE,10,DECK);c1.expr='stern';c2.expr='stern';
+  this.motions.push((f)=>{const q=action(f,166,14);c1.root.position.x=6.9+q*.45;c2.root.position.x=9.6-q*.45;v.wave=.35*q;v.look=.3*q;});
  }
  // ---- 28 dropped: charges dropped ----
  if(place==='dropped'){roomSet();desk(p,0,-1.2,3.4);
