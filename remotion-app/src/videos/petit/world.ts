@@ -204,12 +204,12 @@ export class World{
  // ---- 16 pull: hauling the cable by hand ----
  if(place==='pull'){deck();wire();
   const f1=A(-7.3,-3.1,FRIEND,6,DECK),f2=A(-7.3,-4.9,FRIEND,7,DECK);
-  const CA=V(-7.1,DECK+1.35,-4.0),CB=V(7.2,WIRE,WZ);
+  const CA=V(-7.1,DECK+1.2,-4.0),CB=V(7.2,WIRE,WZ);
   const cableLen=CA.distanceTo(CB),cableDir=CB.clone().sub(CA).normalize();
-  const cable=dyn(bar(p,CA,CB,.14,material('cable-haul','#e8eef8')));
-  cable.scale.y=cableLen*.3;cable.position.copy(CA).addScaledVector(cableDir,cableLen*.15);
+  const cable=dyn(bar(p,CA,CB,.07,material('cable-haul','#cbd5e6')));
+  cable.scale.y=cableLen*.8;cable.position.copy(CA).addScaledVector(cableDir,cableLen*.4);
   const v=A(1.6,WZ,PETIT,5,WIRE);v.expr='nervous';
-  this.motions.push((f)=>{const q=.3+.7*action(f,111,26);const len=cableLen*q;
+  this.motions.push((f)=>{const q=.8+.2*action(f,111,26);const len=cableLen*q;
    cable.scale.y=len;cable.position.copy(CA).addScaledVector(cableDir,len/2);
    // alternating hand-over-hand hauling
    const beat=Math.sin(f*.42);f1.wave=.5+.45*beat;f2.wave=.5-.45*beat;v.wave=.25*q;
