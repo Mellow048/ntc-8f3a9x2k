@@ -81,11 +81,21 @@ export function twinTowers(p:T.Object3D,opts:{gap?:number;height?:number;roofY?:
   // Vertical mullions + horizontal spandrels (real geometry in front of glass)
   for(let i=0;i<7;i++){const xx=x-3+i;box(p,xx,height/2,-2.78,.12,height,.12,frame);}
   for(let y=2;y<height;y+=2.2){box(p,x,y,-2.78,6.4,.16,.14,frame);}
-  // Roof parapet, antenna, rooftop boxes
+  // Roof: parapet, stair house with a door, water tank on legs, vents, antenna with a beacon
   box(p,x,roofY+.3,-6,6.8,.6,6.8,frame);
-  cyl(p,x,roofY+2.2,-6,.07,3.6,iron());sphere(p,x,roofY+4.1,-6,.14,material('beacon','#ff6b5a'));
-  box(p,x-1.5,roofY+.9,-6,1.6,.9,1.2,material('roofbox','#5a6a72'));
-  box(p,x+1.4,roofY+.7,-6,1.2,.7,1,material('roofbox2','#6a7a82'));
+  box(p,x,roofY+.9,-8.2,6.6,.55,.55,material('parapet','#a4b0b6'));
+  box(p,x,roofY+.9,-3.8,6.6,.55,.55,material('parapet','#a4b0b6'));
+  for(const sd of [-1,1])box(p,x+sd*3.25,roofY+.9,-6,.55,.55,6.6,material('parapet','#a4b0b6'));
+  box(p,x-1.6,roofY+1.5,-7.6,2.2,1.8,2.0,material('stairhouse','#9aa6ac'));
+  box(p,x-1.6,roofY+2.5,-7.5,2.4,.18,2.2,material('stairroof','#7d8a90'));
+  box(p,x-1.6,roofY+1.0,-6.55,.7,1.1,.08,material('stairdoor','#4e5a62'));
+  // wooden water tank on a steel frame
+  for(const dx of [-.5,.5])for(const dz of [-.5,.5])bar(p,V(x+1.6+dx,roofY+.6,-5.4+dz),V(x+1.6+dx,roofY+1.5,-5.4+dz),.07,iron());
+  cyl(p,x+1.6,roofY+2.4,-5.4,1.0,1.9,material('tank','#9a6a44',rep(beamHD(),2,1)));
+  const cone=mesh(p,new T.ConeGeometry(1.1,.7,12),material('tanktop','#7d5636'),V(x+1.6,roofY+3.7,-5.4));
+  // vents
+  for(const vx of [.9,1.9]){cyl(p,x+vx,roofY+1.0,-4.6,.22,.7,material('vent','#8a949a'));const cap=mesh(p,new T.ConeGeometry(.3,.2,10),material('ventcap','#6f7a80'),V(x+vx,roofY+1.4,-4.6));}
+  cyl(p,x+2.4,roofY+2.4,-7.4,.08,3.2,iron());sphere(p,x+2.4,roofY+4.1,-7.4,.16,material('beacon','#ff6b5a',undefined,true));
   // Base podium
   box(p,x,1.2,-6,8,2.4,8,material('podium','#8a9aa2'));
  }
@@ -255,11 +265,11 @@ export function footprint(p:T.Object3D,x:number,z:number,s=7){
  for(const dy of [-.6,.6])box(p,x,1.25+dy,z-s/2-.84,hw,.07,.03,material('hoardline','#cdd6dd'));
  box(p,x,2.3,z-s/2-.9,hw+.1,.12,.16,timber());
 }
-export function skyline(p:T.Object3D,z=-58){
- const glass=material('skyGlass','#7fa8bd',rep(towerGlass(),2,4));
- const far=material('skyGlass2','#9ab6c6',rep(towerGlass(),2,3));
- const roofM=material('skyRoof','#6b7880');
- const hs=[26,34,20,42,29,37,23,31,45,25,33,19];
+export function skyline(p:T.Object3D,z=-82){
+ const glass=material('skyGlass','#6f93a6',rep(towerGlass(),2,4));
+ const far=material('skyGlass2','#86a3b4',rep(towerGlass(),2,3));
+ const roofM=material('skyRoof','#5d6a72');
+ const hs=[18,24,14,28,20,26,16,22,30,17,23,13];
  for(let i=0;i<hs.length;i++){
   const x=-66+i*12, h=hs[i], w=7+(i%3)*1.4, d=6+(i%2)*2;
   box(p,x,h/2,z-(i%2)*8,w,h,d,i%2?glass:far);

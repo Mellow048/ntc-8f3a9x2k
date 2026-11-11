@@ -1,6 +1,6 @@
 import * as T from 'three';
 import {V,box,cyl,sphere,bar,material,timber,iron,stone,wood,mesh,lamp,batchStatic} from './build';
-import {ground,room,desk,lettering,paper,twinTowers,wireLine,elevatorCar,streetNY,parkSet,bowProp,poleProp,mug,
+import {ground,room,desk,lettering,paper,house,twinTowers,wireLine,elevatorCar,streetNY,parkSet,bowProp,poleProp,mug,
  cableCoil,pressCamera,toolbox,policeCar,barrierTape,signBoard,magazineProp,footprint,smallTowers,tree,parkBench,
  lobby,streetHat,carNY,skyline} from './sets';
 import {Actor,PETIT,FRIEND,POLICE,WORKER,REPORTER,CLERK,person} from './cast';
@@ -37,7 +37,7 @@ export class World{
   for(const sd of [-1,1])cyl(p,sd*6.9,DECK+.4,-6,.09,.9,iron());   // wire anchor posts at the gap edge
   };
  const wire=()=>wireLine(p,V(-SPAN,WIRE,WZ),V(SPAN,WIRE,WZ),.25);
- const plaza=()=>{streetNY(p);skyline(p,-70);twinTowers(p,{gap:14,height:TOWER,roofY:TOWER,wire:false});};
+ const plaza=()=>{streetNY(p);twinTowers(p,{gap:14,height:TOWER,roofY:TOWER,wire:false});};
  const roomSet=()=>room(p,'office');
  const lowWire=(x:number,z:number,half=3)=>{for(const s of [-half,half])cyl(p,x+s,half?2.2/2:1,z,.08,2.2,timber());bar(p,V(x-half,2.2,z),V(x+half,2.2,z),.035,iron());};
  const upCrowd=(n:number,x0:number,z0:number,dx:number)=>{for(let i=0;i<n;i++){const a=A(x0+(i%3)*dx,z0-Math.floor(i/3)*1.5,person(i+2),i+11);a.look=-.9;a.expr='shock';}};
@@ -64,15 +64,17 @@ export class World{
   const t1=A(-2.2,-2.4,person(2),11),t2=A(-3.8,-1.9,person(3),12);t1.look=-1;t2.look=-1;
  }
  // ---- 4 performer: Paris square, juggling on a low wire ----
- if(place==='performer'){ground(p);
-  tree(p,-4.6,-2.4,3.2);tree(p,4.8,-3.0,3.5);tree(p,-6.0,-6,3.1);tree(p,6.2,-6.4,3);
-  lamp(p,-4.6,2.6,-3.2);lamp(p,5.2,2.6,-4.6);
-  for(const x of [-2.6,2.6])cyl(p,x,1.3,0,.09,2.6,timber());
-  bar(p,V(-2.6,2.6,0),V(2.6,2.6,0),.04,iron());
-  const v=A(0,0,PETIT,5,2.6);v.expr='grin';v.wave=.9;
-  streetHat(p,1.6,.9);box(p,1.6,.02,.9,.9,.06,.9,material('hathold','#6a6f78'));
-  A(-2.9,2.4,person(1),11).expr='smile';A(2.8,2.6,person(2),12).expr='laugh';A(3.4,1.0,person(3),13).expr='smile';
-  A(-3.6,.9,person(5),14).expr='smile';A(-1.4,3.2,person(6),15).expr='smile';
+ if(place==='performer'){ground(p);skyline(p,-60);
+  house(p,-8.4,-9.5,7,10,1);house(p,8.6,-10,7.5,11,2);
+  lamp(p,-4.8,2.6,-3.4);lamp(p,5.4,2.8,-4.2);
+  const v=A(0,0,PETIT,5);v.expr='grin';v.wave=.85;
+  // three juggling clubs in the air
+  const balls=[0,1,2].map(i=>{const b=dyn(sphere(p,-1+i*1.0,2.4,0,.14,material('club','#d8b45a',undefined,true)));return b;});
+  this.motions.push((f)=>{balls.forEach((b,i)=>{const t=f*.16+i*2.1;b.position.x=Math.sin(t)*1.05;b.position.y=2.5+Math.abs(Math.cos(t))*.5;b.position.z=Math.cos(t)*.3;});});
+  streetHat(p,1.5,.85);box(p,1.5,.03,.85,.95,.06,.95,material('hathold','#5c626c'));
+  A(-1.7,2.1,person(1),11).expr='smile';A(1.8,2.2,person(2),12).expr='laugh';
+  A(2.9,.9,person(3),13).expr='smile';A(-2.9,1.0,person(5),14).expr='smile';
+  A(0,3.2,person(6),15).expr='smile';
  }
  // ---- 5 magazine: the photo of the towers ----
  if(place==='magazine'){roomSet();desk(p,0,-1.0);
@@ -248,7 +250,7 @@ export class World{
  if(place==='today'){ground(p);skyline(p,-70);
   footprint(p,-4.6,-9,6);footprint(p,6.4,-11,5);
   parkBench(p,-6.6,1.6);parkBench(p,6.2,2.2);
-  for(let i=0;i<4;i++)tree(p,-9+i*6,-2.6,3.0+i*.2);
+  for(let i=0;i<4;i++)tree(p,-11+i*7.4,-4.2,2.2+i*.15,.75);
   for(const x of [-2.9,2.9])cyl(p,x,1.1,0,.08,2.2,timber());
   bar(p,V(-2.9,2.2,0),V(2.9,2.2,0),.035,iron());
   const v=A(-2.0,0,PETIT,5,2.2);v.mode='march';v.side=true;v.expr='neutral';

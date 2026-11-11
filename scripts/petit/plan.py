@@ -8,10 +8,10 @@ w=json.loads((ROOT/'shoots/petit/voice/words.json').read_text())['words']
 # The camera sits `distance` metres from the subject, swung `yaw` degrees round it from +Z and lifted
 # `pitch` degrees above the subject's eye line. Framing is derived, so every shot is composed on purpose.
 rows=[
-(0,'hook','New York · 1974','day',[0,40.1,-6],26,0,18,55,'Both towers, the walk wire between them, the man tiny on it, police and cars below'),
+(0,'hook','New York · 1974','day',[0,40.1,-6],34,0,10,55,'Both towers, the walk wire between them, the man tiny on it, police and cars below'),
 (9,'height','','day',[0,1.0,-4],22,40,38,52,'Straight down the tower face: street, cars and people 1,350 feet below'),
 (15,'policewait','','day',[1.6,1.5,-1.2],11,-12,-2,52,'Street: police car and two officers craning up at the wire'),
-(21,'performer','Paris','day',[0,1.6,.4],7.6,6,2,44,'Paris square: Petit performs on a low wire, hat of coins, small crowd'),
+(21,'performer','Paris','day',[0,1.7,.2],8.4,5,2,44,'Paris square: Petit performs on a low wire, hat of coins, small crowd'),
 (29,'magazine','','day',[0,1.6,-.9],4.6,4,18,40,'Overhead: magazine open on the table, the towers page'),
 (40,'decision','','day',[0,1.9,-.5],5.2,8,6,42,'He points at the page and grins — the decision'),
 (49,'study','New York','day',[1.3,2.2,.6],6.6,26,-6,46,'Tower base: Petit with press camera and notebook, craning up'),
@@ -38,7 +38,7 @@ rows=[
 (177,'dropped','City Hall','day',[.2,1.5,-1.0],4.4,6,26,38,'Overhead: gavel down, DROPPED stamp on the charge sheet'),
 (187,'park','Central Park','day',[-.2,2.6,.2],10,14,4,44,'Free show: he walks a low wire above a clapping crowd'),
 (194,'pass','Observation deck','day',[.1,1.8,-.9],5.0,10,8,40,'The clerk slides the lifetime pass across the counter'),
-(206,'today','New York · today','day',[0,2.3,-2.4],15,12,4,48,'Two empty tower footprints with hoarding; he crosses a low wire'),
+(206,'today','New York · today','day',[0,2.2,-3.0],13,14,3,46,'Two empty tower footprints with hoarding; he crosses a low wire'),
 (216,'quote','','day',[.4,2.4,0],12,-16,2,46,'Side view: he stops mid-wire, points at two towers on the skyline'),
 (227,'walk','','day',[-.2,2.6,0],6.2,26,2,42,'Close: the pass in his hand; he walks on out of frame'),
 ]

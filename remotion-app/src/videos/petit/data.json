@@ -10,8 +10,8 @@
    "light": "day",
    "pos": [
     0.0,
-    48.134,
-    18.727
+    46.004,
+    27.483
    ],
    "look": [
     0,
@@ -72,14 +72,14 @@
    "label": "Paris",
    "light": "day",
    "pos": [
-    0.794,
-    1.865,
-    7.954
+    0.732,
+    1.993,
+    8.563
    ],
    "look": [
     0,
-    1.6,
-    0.4
+    1.7,
+    0.2
    ],
    "fov": 44,
    "action": "Paris square: Petit performs on a low wire, hat of coins, small crowd",
@@ -639,16 +639,16 @@
    "label": "New York · today",
    "light": "day",
    "pos": [
-    3.111,
-    3.346,
-    12.236
+    3.141,
+    2.88,
+    9.597
    ],
    "look": [
     0,
-    2.3,
-    -2.4
+    2.2,
+    -3.0
    ],
-   "fov": 48,
+   "fov": 46,
    "action": "Two empty tower footprints with hoarding; he crosses a low wire",
    "word": 206,
    "b": 1967
