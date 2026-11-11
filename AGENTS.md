@@ -1,17 +1,33 @@
-# Agent entry point
+# Agent entry point — read before making a video
 
-Before working on any video, read **[VIDEO_HANDOFF.md](VIDEO_HANDOFF.md)** in full. The user requested this durable guide so they do not have to repeat preferences across sessions. It contains the approval/rejection history, current production checkpoint, narration/physics lessons, render/delivery pitfalls, and release checklist.
+1. Read **[IMPORTANT.md](IMPORTANT.md)** for current mandatory release gates.
+2. Read **[VIDEO_HANDOFF.md](VIDEO_HANDOFF.md)** for preferences, approval history
+   and the current checkpoint. Preserve other agents' work and follow your
+   current platform-assigned branch, never an old branch in these documents.
+3. Watch and study **[the approved Taipei 101 and Beer Flood references](references/approved/README.md)**.
+   They contain real MP4s, original renderer/audio source, saved narration,
+   timing data, locked dependencies, provenance and standalone study entries.
+   Do not infer quality from filenames like `final.mp4` in older rejected work.
 
-Critical user overrides to the older skill/template defaults:
+## Stop repeating the user's corrections
 
-- Export **720 × 1280 only**, not 2K.
-- Use synchronized **1–2-word changing subtitles**, despite the old no-caption rule.
-- Use Arena TTS for new narration; preserve approved saved narration when unchanged.
-- Work on one film at a time at the accepted Taipei/detailed-bridge quality level.
-- Detailed recognizable 3D environments, immediate readable hooks, purposeful faster editing, and physical motion locked to narration—not unrelated idle loops.
-- Keep the voice clear; only a tiny lift in music intensity at the opening.
-- Deliver the finished MP4 on the assigned working branch, not just as an Actions artifact.
+- 720×1280/30fps; changing 1–2-word captions; Arena narration.
+- Detailed recognizable objects: **no generic boxes passed off as cars**,
+  toy scenery, blue-block water or blurry “cinematic” cover for missing work.
+- Distinct action-led story beats, not repeated angles of the same scene.
+  Mechanisms, people and water react to the words with believable physics.
+- Original, film-specific, clearly audible music at normal volume; narration
+  intelligible. No automatically reused march, gloomy drone or buried score.
+- Planned spoken cadence and a resolved visual/music ending, not a hard stop.
+- Preview before expensive rendering. Review the finished MP4, not just stills
+  or a QA report. State exactly what was actually checked.
+- Do not defend placeholders as finished work, exaggerate quality or claim
+  user approval. Do not force the user to repeat these requirements.
 
-Read the handoff's **Current work** section before treating any existing export as the latest version. Update that section after significant progress, failures, delivery, or user feedback. Later explicit user instructions take precedence over historical notes. Follow the current session's platform branch instructions; a branch name recorded in the handoff is historical context, not permission to change branches.
+Taipei and Beer are study examples, **not templates for recycling scripts,
+melodies or sets in unrelated stories**. No “one-shot perfect” guarantee exists.
+If the result visibly misses the benchmark, improve it before claiming success.
 
-Latest City Hall feedback: good picture, but too lecture-like and too much of the same building. Rebuild around a dramatic truthful hook and genuinely different action scenes, not more facade angles. `main` intentionally holds lightweight documentation; see the handoff for production snapshot recovery before assuming referenced video files exist.
+Update durable guidance after explicit feedback, keeping historical approvals
+separate from technical passes. Existing City Hall checkpoint in the handoff
+belongs to a different production stream; do not overwrite it with this batch.

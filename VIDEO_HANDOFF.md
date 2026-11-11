@@ -4,6 +4,44 @@ This is the durable handoff for the user’s cartoon engineering shorts. **Read 
 
 This records explicit user feedback separately from implementation lessons. It is not a guarantee that an unreviewed first render will be accepted. The goal is a strong first delivery, not another round of the same avoidable mistakes.
 
+## Latest durable feedback — curiosity remasters and reference preservation
+
+Read [IMPORTANT.md](IMPORTANT.md) for consolidated current gates and
+[references/approved/README.md](references/approved/README.md) for actual,
+branch-independent approved Taipei and Beer videos **and source** on main.
+The user's latest request explicitly authorizes those two reference MP4s and
+source snapshots on main, superseding the older documentation-only policy
+**for this reference library**, not for every historical export.
+
+- Beer Flood: accepted; use the detailed motion revision, not first cuts.
+- Yamaguchi: accepted as “good enough”; confusing duplicate people, unclear
+  bomb context and repeated angles had required correction. Do not label that
+  qualified acceptance as the primary quality benchmark.
+- Lake Peigneur: second visual revision was kept, then an audio/ending polish
+  received “okay nice nice”. Saved final production checkpoint:
+  `d1dea6bac184bca33f64b92bd41304b8629651c2`,
+  `deliveries/lake-polished/lake-polished-720p.mp4` (38.4 s, 720×1280/30fps).
+  No remaining request to re-render these three shorts.
+- Flat blue water blocks, toy-like assets, static scenery and alternate-angle
+  repetition were rejected. Geometry must be recognizably what it depicts;
+  do not defend generic boxes as cars. Check meaningful on-screen detail.
+- Background music was inaudible at ordinary volume and too depressing.
+  Final Lake polish uses a new brighter 112 BPM cue, music measured after
+  ducking at ~5–6 LU below speech instead of ~9–11, with narration clear.
+  Do not apply the historical “only tiny opening lift” as a blanket instruction
+  to bury every film's score. Write distinct music for each film; reusing DSP
+  is different from reusing melody/recording/timbre blindly. No promise about
+  platform reused-content decisions can be made from musical similarity alone.
+- “The mine did not” ended too abruptly. The accepted polish retains the
+  original Arena words, inserts a 0.5-second pause after “the mine”, and adds
+  a one-second resolved visual/music tail. It does **not** synthesize “Well”.
+  Plan ending cadence before rendering; when only sound/pacing needs repair,
+  reuse picture where practical rather than another hour-long 3D render.
+- The user is deleting branches: reference MP4s + source are now real tracked
+  files in `references/approved/`, not just historical branch links. Other
+  production recovery paths below remain historical; do not assume all media
+  are on main. Preserve the separate City Hall stream's checkpoint below.
+
 ## 1. What the user wants
 
 Make entertaining, approximately one-minute engineering/science shorts in the approved **2D cartoon characters inside a detailed, ink-outlined 3D environment** style. Explain a surprising real mechanism with understandable cause and effect.
@@ -25,7 +63,7 @@ Make entertaining, approximately one-minute engineering/science shorts in the ap
 2. **Immediately readable hook.** At first glance, viewers must know what they are seeing. An unexplained abstract close-up risks a scroll. Establish the recognizable subject, then reveal the surprising detail right on its spoken mention.
 3. **Retention-conscious editing.** Faster cuts inside longer passages, stronger purposeful camera moves, meaningful inserts, and visual progression. Do not leave a single weak shot running while the narrator moves through several ideas.
 4. **Motion must listen to the narrator.** The user specifically disliked an apparent stuck/idle animation unrelated to “expands,” “narrows,” or “opens.” Keyframe the actual mechanism to those words. Hold its end state. Do not wiggle it constantly to make the scene look alive.
-5. **Music: only a tiny early lift in intensity.** The bridge score felt too soothing. The requested correction was a *tiny, tiny* increase at the beginning—not loud trailer music, an overpowering beat, or a buried narrator.
+5. **Audible, film-specific music with clear narration.** The bridge once needed only a tiny opening lift, but Lake later established that buried music and a depressing mood are unacceptable. Assess ordinary-volume playback; the accepted Lake polish used music ~5–6 LU below speech after ducking. Do not make a quiet bridge-specific cue a blanket mix rule.
 6. **Match the first approved Taipei video’s care.** The user loved that original, then said the five-video batch had degraded badly. The approved bridge rebuild/retention pass is now an additional concrete benchmark.
 
 ## 2. Approval history — do not repeat rejected approaches
@@ -48,7 +86,7 @@ Make entertaining, approximately one-minute engineering/science shorts in the ap
 
 ## 3. Current work — NEXT AGENT READ THIS BEFORE RENDERING
 
-**City Hall needs an entertainment-first revision.** The user said the picture was good but the video felt like a lecture: most of it was the same building from start to end, with no genuinely new scenes. The hook was too explanatory. They suggested something dramatic like **“anti-earthquake building!”** More camera angles alone do not solve this feedback.
+**The entertainment-first City Hall revision is now delivered; awaiting user review.** The user said the picture was good but the video felt like a lecture: most of it was the same building from start to end, with no genuinely new scenes. The hook was too explanatory. They suggested something dramatic like **“anti-earthquake building!”** More camera angles alone do not solve this feedback.
 
 ### Latest explicit creative direction
 
@@ -57,31 +95,28 @@ Make entertaining, approximately one-minute engineering/science shorts in the ap
 - Use tension → surprise → visual payoff → short explanation → callback. Entertain first; facts support the action rather than becoming a lecture.
 - Do not make all the fresh scenes merely inserts of the dome/facade. Keep the recognizable City Hall architecture as brief context and payoff, not the majority of screen time.
 - Preserve correct physics, approved visual quality, 720p, short synchronized captions and clear narration. A new hook/script may require new Arena narration and realignment; do not silently mismatch old words and new visuals.
-- The last export below is **delivered but revision requested**, NOT user-approved. No entertainment-first replacement MP4 exists yet at this checkpoint.
+- The entertainment-first export below is **delivered and reviewed technically/visually, but NOT yet user-approved**. Do not confuse it with the earlier lecture-like export.
 
 ### Latest delivered checkpoint
 
-- New MP4: `shoots/spring-building/final-720p.mp4` — **the new detailed remaster**, no longer the old low-detail batch export.
-- Delivery commit: `788cc88`; successful full render and QA run: **`42789733540`**. The job took 1h10m13s.
-- File: 60,345,284 bytes; 720×1280, 30 fps, 1890 frames / 63.000 s; 48 kHz stereo AAC.
-- Finished-file QA: −15.0 LUFS, −1.3 dBFS peak; no detected silence, black frames, unplanned white frames, ≥12-frame freezes, or unplanned frame-difference spikes. Report: `shoots/spring-building/qa-report.md`.
-- Approved existing Arena narration retained in `voice/voice.wav` / `voice/words.json`; synchronized 1–2-word captions preserved.
-- Source: `remotion-app/src/videos/spring-remaster/`; `SpringBuildingShort` routes to `SpringWorld` through `engineering-series/Series.tsx`.
-- 31 shots: detailed City Hall, civic plaza, foundation cutaway, layered bearing close-ups, jelly/tray analogy, and clearance/moat demonstration.
-- Mix: `shoots/spring-building/audio/mix-remaster.wav`, generated by `mix_remaster.py`. Use this, not the legacy `audio/mix.wav`, when reproducing the remaster.
-- Follow-up physics fixes completed: exterior/history plaza moves with its foundation; rubber shears continuously through its thickness while steel shims remain rigid. All motion is deterministic, uses finite narrated demonstrations, and leaves smaller nonzero building motion.
-- Typecheck, motion tests, diagnostic visual review, full-video technical QA, and a 20-frame finished-video visual review completed.
-- Temporary diagnostic/recovery/publishing workflow changes have been restored to the normal workflow baseline from `7bc7551`.
+- Latest file: `shoots/spring-building/final-720p.mp4`, delivery commit **`6da3f5c`**; successful full render/QA run **`42807708835`**.
+- 720×1280, 30 fps, **1865 frames / 62.167 s**, 36,545,230 bytes; 48 kHz stereo AAC. Finished-file QA: −15.0 LUFS, −1.4 dBFS peak; no detected silence, black/unplanned white frames, ≥12-frame freezes or unplanned frame-difference spikes.
+- New narration starts **“An anti earthquake building? Watch this.”** Generated using the same selected Arena voice (`voice-01` worked in this session); files: `voice/action-take.mp3`, `voice/action.wav`, `voice/action-words.json`. Do not use the old `voice.wav`/`words.json` to reproduce this revision. The old recordings remain for historical reference.
+- Current script: `ACTION-SCRIPT.txt` and `SCRIPT.md`. `prepare_action.py` performs deterministic processing and PocketSphinx alignment; `build_series_data.py` now selects the action words for City Hall. Updated series script/plan metadata matches the new words.
+- Thirty cuts across a shake-table lab, office reactions, kitchen/tray analogy, workshop assembly, basement bearing, brief City Hall context and moat clearance. Landmark exterior/cutaway/moat shots total **17.1%** of runtime. New set source: `spring-remaster/actionSets.ts`.
+- `story.ts` drives the exact word-timed action. Motion tests also assert a lab opening, at least seven different shot kinds, and less than 20% landmark coverage. This checks coverage, not actual audience retention.
+- New mix: `audio/mix-remaster.wav` via `mix_remaster.py`, using `voice/action.wav`. Tiny opening rhythmic lift retained. No unrelated films were re-rendered.
+- Diagnostic runs `42805980076` and `42806540786` were reviewed; final character placement was corrected. Typecheck and motion tests passed. Twenty representative frames from the completed MP4 were visually reviewed, including the hero in-frame, contrasting model motion, kitchen/tray, rubber layers/shear and clearance.
+- Temporary publishing/diagnostic workflow changes restored to the regular workflow baseline.
+- Documentation-only PR **#2** put this guide/entry-point docs on `main` without importing media or production source. A follow-up documentation-only PR updates this checkpoint with the delivered action revision. Both must be squash merges; do not merge the production commit history into `main` just to update the guide.
 
-### Relevant history, so it is not repeated
+### Why the previous version was rejected
 
-The user interrupted the first City Hall pass to request this handoff, then asked where the MP4 was. At that point it was **not finished**; only diagnostic frames existed, and the user was explicitly told that. Do not repeat the mistake of leaving export status ambiguous.
-
-Initial diagnostic run `42786877450` rendered all 16 stills but failed to push its review sheets because a concurrent documentation push advanced the branch. Recovery run `42789516662` succeeded and committed `review/initial-*.jpg` in `91686ea`. Those sheets were reviewed before full rendering. No rerender of the full series was necessary.
+The 63-second export in `788cc88` / snapshot `1d36f6d` had good picture quality, but the user said it felt like a lecture and showed the same building for most of its duration. It is superseded. More facade angles were not enough. The user’s initial request for the handoff also interrupted that first export; avoid leaving “rendering” versus “finished” ambiguous.
 
 ### Next action
 
-Implement the entertainment-first City Hall revision above. Do not move to another topic yet. After City Hall is approved and the user asks to continue, the next planned topic is **The Airport Built on the Ocean** (Kansai). Keep the bridge unchanged. If revising City Hall, regenerate its QA metadata and targeted mix as appropriate, inspect stills, render only at 720p, and update this checkpoint after delivery.
+Wait for feedback on the action-led revision. Do not move to another topic until this one is accepted and the user asks to continue. Next planned topic after acceptance: **The Airport Built on the Ocean** (Kansai). Keep the approved bridge unchanged.
 
 ## 4. Motion/storytelling lessons from the accepted bridge
 
@@ -147,7 +182,7 @@ These are practical lessons, not permission to ignore later user requests.
 
 - Narration is primary; duck music beneath speech.
 - Original synthesized music/effects, not unlicensed commercial tracks.
-- Standard convention inherited from the production wrapper: music +3 dB, SFX −6 dB, voice unchanged; master to the intended range.
+- Historical +3 dB music/−6 dB SFX conventions are not sufficient release criteria. Measure post-duck music relative to narration and inspect the finished MP4; use the current IMPORTANT.md audio gates.
 - The successful bridge opening pulse was very quiet (about −35 dBFS peak) and faded away within roughly the first 7.4 seconds. Treat that as an implementation reference, not a mandate to reuse exactly the same sound in every film.
 - 48 kHz stereo final mix; aim around −15 LUFS and keep peaks at or below −1 dBFS after mux. Check the finished MP4, not only the WAV.
 - Rebuild the relevant mix after changing timing. Do not accidentally run all-series audio generation for a one-film revision.
@@ -158,7 +193,7 @@ These are practical lessons, not permission to ignore later user requests.
 
 The user requested that these handoff Markdown files be kept on `main` **without merging the large video/audio assets**. This documentation-only merge deliberately does not make all referenced production paths exist on `main`.
 
-Last complete production snapshot before the entertainment-first revision: **`1d36f6d95233394f91df6de7577f2dfefe729f0d`**. Existing video/source links tied to a deleted branch may stop resolving; prefer this immutable commit as the recovery reference. The documentation PR's source history also records the production work. Download any finished videos you want to retain before deleting branches; documentation is not a media backup.
+Latest complete production snapshot including the delivered entertainment-first revision: **`6da3f5c50a7dfeaaf1e92955c6cad1505aa06e05`**. The older `1d36f6d95233394f91df6de7577f2dfefe729f0d` snapshot is the superseded lecture-like version. Existing video/source links tied to a deleted branch may stop resolving; prefer this immutable commit as the recovery reference. The documentation PR's source history also records the production work. Download any finished videos you want to retain before deleting branches; documentation is not a media backup.
 
 A new agent should inspect the current checkout and remote before claiming production files are present. If needed, fetch the production snapshot and selectively restore only the source/assets needed for the requested short **onto the platform-assigned working branch**, not by switching to a historical branch or importing all old renders into `main`. Do not assume the user wants large binaries added back to `main`.
 
@@ -228,7 +263,8 @@ The session that created this guide uses `arena/2524fc8a-ntc-8f3a9x2k`. Follow t
 - [ ] Detailed setting and real attachment/load paths; no toy placeholder assets.
 - [ ] Every physical transition follows the words, in the correct direction, with stable endpoints.
 - [ ] Faster meaningful cuts, purposeful camera movement, and clear demonstration shots.
-- [ ] Music restrained, voice intelligible; opening lift subtle.
+- [ ] Distinct mood-appropriate score audible at normal volume, voice clear; verify finished MP4, not just master loudness.
+- [ ] Deliberate final spoken cadence and resolved short visual/music tail.
 - [ ] 1–2-word subtitles synchronized, legible, and unobstructed.
 - [ ] Typecheck, motion tests and regenerated QA metadata.
 - [ ] Diagnostic visual review against approved originals, then final 720p render.
