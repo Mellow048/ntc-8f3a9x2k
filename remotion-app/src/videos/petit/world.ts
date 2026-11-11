@@ -193,7 +193,7 @@ export class World{
   line.scale.y=.02;
   const arrow=dyn(cyl(p,0,0,0,.035,1.1,material('shaft','#f0dfae')));
   arrow.rotation.x=Math.PI/2;
-  const v=A(-3.6,WZ,PETIT,5,WIRE);v.expr='nervous';v.gaze=.5;v.mode='stand';
+  const v=A(-1.4,WZ,PETIT,5,WIRE);v.expr='nervous';v.gaze=.5;v.mode='stand';
   lamp(p,-9.6,DECK+1.4,-4.4,true);lamp(p,9.4,DECK+1.4,-4.4,true);
   this.motions.push((f)=>{const q=.02+.98*action(f,100,20);
    line.scale.y=q;line.position.copy(LA).addScaledVector(LB.clone().sub(LA),q/2);
@@ -204,11 +204,11 @@ export class World{
  // ---- 16 pull: hauling the cable by hand ----
  if(place==='pull'){deck();wire();
   const f1=A(-8.9,-4.4,FRIEND,6,DECK),f2=A(-7.5,-4.9,FRIEND,7,DECK);
-  const CA=V(-6.9,DECK+.95,-4.4),CB=V(7.2,WIRE,WZ);
-  const cable=dyn(bar(p,CA,CB,.075,material('cable-haul','#cfd6e2')));
+  const CA=V(-6.9,DECK+1.15,-4.5),CB=V(7.2,WIRE,WZ);
+  const cable=dyn(bar(p,CA,CB,.1,material('cable-haul','#dfe6f0')));
   cable.scale.y=.3;
   const v=A(-2.0,WZ,PETIT,5,WIRE);v.expr='nervous';
-  lamp(p,-9.6,DECK+1.2,-4.2,true);
+  lamp(p,-11.6,DECK+1.2,-2.2,true);
   this.motions.push((f)=>{const q=.3+.7*action(f,111,26);cable.scale.y=q;cable.position.copy(CA).addScaledVector(CB.clone().sub(CA),q/2);
    // alternating hand-over-hand hauling
    const beat=Math.sin(f*.42);f1.wave=.5+.45*beat;f2.wave=.5-.45*beat;v.wave=.25*q;
