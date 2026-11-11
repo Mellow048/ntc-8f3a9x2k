@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import {backdrop, ball, beam, box, clamp01, cyl, floor, foldTex, grainTex, grp, hop, lamp, lerp, lit, mesh, panel, pool, pop, rng, rod, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, vgrad, woodTex,
   type G2, type V} from './kit';
 import {actor, AGENT, ANCHOR, ENGINEER, JUDGE, PRESIDENT, SPOKES} from './cast';
-import {boom, drawHood, drawMask, flagNK, flagPole, flagUS, GOLD, lectern, palm, pumpkin, signTex, tvCamera} from './props';
+import {boom, drawHood, drawMask, flagNK, flagPole, flagUS, GOLD, lectern, palm, pumpkin, signTex} from './props';
 import {LIGHT, type Builder} from './sets';
 import {W} from './story';
 
@@ -60,14 +60,14 @@ export const fbi: Builder = (root) => {
   };
 };
 
-// ------------------------------------------------------------------ North Korea's reply, read out on state television
+// ------------------------------------------------------------------ North Korea's reply, carried by its state news agency.
+// The figure is the agency's voice, nobody in particular: the statement's author is named on the quote card and is not drawn.
 export const pyong: Builder = (root) => {
   backdrop(root, ['#1a0a10', '#3a1420']);
   floor(root, 14, 12, tmat(tiled(tileTex('py', '#b9a98f', '#9a8a70', 2, '#c6b79d'), 7, 6)));
   box(root, 9, 5.6, 0.3, tmat(tiled(foldTex('py-cur', '#8a1f2a', '#56121a'), 3, 1)), 0, 2.8, -1.95);
   flagPole(root, -1.12, -1.4, flagNK()); flagPole(root, 1.12, -1.4, flagNK(), {left: true});
-  lectern(root, 0, 0.35, '#3a2a22', signTex('plaque-py', 400, 190, '#56121a', '#fffdf4', [['PYONGYANG', 120, 0.56]], {border: '#e7c56a'}));
-  tvCamera(root, -1.25, 1.9, -0.55, 0.9);
+  lectern(root, 0, 0.35, '#3a2a22', signTex('plaque-py', 400, 190, '#56121a', '#fffdf4', [['STATE MEDIA', 112, 0.56]], {border: '#e7c56a'}));
   const UP = 0.2;
   const reader = actor(root, ANCHOR, {idle: {expr: 'stern'}, read: {expr: 'stern', pose: 'hold', prop: 'paper'}}, 0, UP, -0.3, {scale: 1.25, res: 1.2});
   return {
@@ -100,7 +100,7 @@ export const party: Builder = (root) => {
   bulbs.forEach((b) => { b.castShadow = false; });
   for (let i = 0; i < 14; i++) { const u0 = i / 14, u1 = (i + 1) / 14, y = (u: number) => 3.46 - 0.62 * 4 * u * (1 - u); rod(root, [lerp(-2.2, 2.2, u0), y(u0), -0.9], [lerp(-2.2, 2.2, u1), y(u1), -0.9], 0.008, '#15161b'); }
   soft(mesh(root, new THREE.CircleGeometry(0.5, 32), lit('#fff3c4', 1.25), 1.5, 5.2, -9));
-  boom(root, [-1.6, 0.45, 1.7], [-0.52, 1.26, 0.5]); boom(root, [1.6, 0.4, 1.7], [0.55, 1.2, 0.5], '#b3211d'); boom(root, [0.35, 0.0, 2.2], [0.1, 1.02, 0.62], '#2f6fd0');
+  boom(root, [-1.6, 0.45, 1.7], [-0.52, 1.26, 0.5]); boom(root, [1.6, 0.4, 1.7], [0.55, 1.2, 0.5], '#b3211d'); boom(root, [-0.95, 0.0, 2.3], [-0.14, 1.0, 0.62], '#2f6fd0');
   const pres = actor(root, PRESIDENT, {idle: {expr: 'neutral'}, shrug: {expr: 'neutral', pose: 'shrug'}}, 0, 0, 0, {scale: 1.12, res: 1.2});
   return {
     light: () => ({...LIGHT.dusk, sky: '#c9b0ff', ground: '#4a3a5a', amb: 1.25, key: '#ffd0a0', keyI: 1.2}),
@@ -160,10 +160,11 @@ export const wall: Builder = (root) => {
   return {
     light: () => ({...LIGHT.room, amb: 1.4}),
     tick: ({f, shot}) => {
-      const run = W(218) + 1, each = 9;
+      // the string runs from June to October a little ahead of the camera that follows it
+      const head = shot.v === 'campaign' ? lerp(XS[0], XS[4], smooth(f, W(218) - 2, W(222) - 16)) : XS[0];
       ring.visible = f >= W(216); ring.scale.setScalar(pop(f, W(216), 6));
-      strings.forEach((s, i) => { const k = shot.v === 'campaign' ? clamp01((f - run - i * each) / each) : 0; s.m.visible = k > 0; s.m.scale.x = Math.max(0.001, s.len * k); });
-      pins.forEach((p, i) => { const at = i === 0 ? 0 : run + i * each; p.visible = i === 0 || (shot.v === 'campaign' && f >= at); p.scale.setScalar(i === 0 ? 1 : pop(f, at, 6)); });
+      strings.forEach((s, i) => { const k = clamp01((head - XS[i]) / s.len); s.m.visible = k > 0; s.m.scale.x = Math.max(0.001, s.len * k); });
+      pins.forEach((p, i) => { p.visible = i === 0 || head >= XS[i] - 0.001; });
     },
   };
 };
@@ -173,22 +174,22 @@ export const final: Builder = (root) => {
   backdrop(root, ['#07090f', '#131a2a']);
   floor(root, 14, 12, tmat(tiled(grainTex('final', '#1b2232', 0.1), 5, 4)));
   const LX = -0.64, RX = 0.66;
-  const eng = actor(root, ENGINEER(1), {a: {expr: 'neutral'}, b: {expr: 'nervous', pose: 'both'}}, LX, 0, 0.2, {scale: 1.0, res: 1.0});
+  const eng = actor(root, ENGINEER(1), {a: {expr: 'neutral'}}, LX, 0, 0.2, {scale: 1.0, res: 1.0});                       // nobody here is made to squirm: the light asks the question
   const win = tex('final-facade', 256, 512, (g, w, h) => { g.fillStyle = '#1a2038'; g.fillRect(0, 0, w, h); const q = rng(5); for (let y = 0; y < 12; y++) for (let x = 0; x < 4; x++) { g.fillStyle = q() < 0.55 ? '#ffd98a' : '#2f3b66'; g.fillRect(x * 64 + 11, y * 42.6 + 9, 42, 26); } });
-  box(root, 0.92, 2.7, 0.7, tmat(win), RX, 1.35, -0.75);
-  box(root, 0.98, 0.26, 0.08, '#11141d', RX, 2.36, -0.38); panel(root, 0.9, 0.2, smat(signTex('binance-small', 450, 100, '#11141d', GOLD, [['BINANCE', 90, 0.56]]), 1.2), RX, 2.36, -0.335);
-  const co = actor(root, SPOKES, {a: {expr: 'neutral'}, b: {expr: 'stern', pose: 'cross'}}, RX, 0, 0.25, {scale: 0.98, res: 1.0});
-  const spots = [LX, RX].map((x) => ({cone: beam(root, 0.16, 0.8, 5.2, '#fff0c8', 0, x, 5.2, 0.2), floor: pool(root, 0.95, '#fff0c8', 0, x, 0.2)}));
-  const q = soft(panel(root, 0.6, 0.86, smat(tex('qmark', 256, 368, (g) => text(g, '?', 128, 196, 330, '#ffe14a', {stroke: INK, sw: 44})), 1.2, true), 0.01, 1.42, -0.2));
+  box(root, 0.92, 2.24, 0.7, tmat(win), RX, 1.12, -0.75);
+  box(root, 0.98, 0.26, 0.08, '#11141d', RX, 1.85, -0.38); panel(root, 0.9, 0.2, smat(signTex('binance-small', 450, 100, '#11141d', GOLD, [['BINANCE', 90, 0.56]]), 1.2), RX, 1.85, -0.335);
+  const co = actor(root, SPOKES, {a: {expr: 'neutral'}}, RX, 0, 0.25, {scale: 0.98, res: 1.0});
+  const spots = [LX, RX].map((x) => ({cone: beam(root, 0.14, 0.6, 5.2, '#fff0c8', 0, x, 5.2, 0.2), floor: pool(root, 0.9, '#fff0c8', 0, x, 0.2)}));   // the two cones never overlap
+  const q = soft(panel(root, 0.6, 0.86, smat(tex('qmark', 256, 368, (g) => text(g, '?', 128, 196, 330, '#ffe14a', {stroke: INK, sw: 44})), 1.2, true), 0.01, 1.3, -0.2));
   return {
     light: () => ({...LIGHT.dark, sky: '#c6d0ff', amb: 1.05, keyI: 0.7}),
     tick: ({f, cam, shot}) => {
       const a = shot.v === 'choice' ? smooth(f, W(231) - 2, W(231) + 6) : 0, b = shot.v === 'choice' ? smooth(f, W(234) - 2, W(234) + 6) : 0;
-      [a, b].forEach((k, i) => { (spots[i].cone.material as THREE.MeshBasicMaterial).opacity = 0.03 + 0.15 * k; (spots[i].floor.material as THREE.MeshBasicMaterial).opacity = 0.12 + 0.4 * k; });
+      [a, b].forEach((k, i) => { (spots[i].cone.material as THREE.MeshBasicMaterial).opacity = 0.025 + 0.05 * k; (spots[i].floor.material as THREE.MeshBasicMaterial).opacity = 0.12 + 0.3 * k; });
       const shade = (k: number) => '#' + new THREE.Color('#7f879c').lerp(new THREE.Color('#ffffff'), k).getHexString();
-      eng.tint(shade(a)).show(a > 0.5 ? 'b' : 'a'); co.tint(shade(b)).show(b > 0.5 ? 'b' : 'a');
+      eng.tint(shade(a)).show('a'); co.tint(shade(b)).show('a');
       eng.node.position.y = hop(f, W(231), 0.08, 8); co.node.position.y = hop(f, W(234), 0.08, 8);
-      q.position.y = 1.42 + 0.05 * Math.sin(f * 0.08); q.rotation.z = 0.08 * Math.sin(f * 0.05); q.scale.setScalar(pop(f, shot.v === 'whose' ? W(223) : 0, 8));
+      q.position.y = 1.3 + 0.05 * Math.sin(f * 0.08); q.rotation.z = 0.08 * Math.sin(f * 0.05); q.scale.setScalar(pop(f, shot.v === 'whose' ? W(223) : 0, 8));
       eng.tick(f, cam); co.tick(f, cam);
     },
   };

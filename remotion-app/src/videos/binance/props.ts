@@ -1,5 +1,6 @@
 // Furniture and set dressing shared by several sets of the Binance heist short.
 import * as THREE from 'three';
+import {NOINK} from '../pendulum/ink';
 import {ball, box, cone, cyl, grp, lamp, lerp, lit, mesh, panel, rod, rng, rrect, slab, smat, soft, tex, text, tiled, torus, vgrad, type G2, type Node, type V} from './kit';
 import {drawHood, drawMask, type MaskKind} from './cast';
 
@@ -346,3 +347,16 @@ export function assistant(p: Node, x: number, y: number, z: number) {
   return {g, head, face, bulb, set(on: boolean) { mat.map = on ? taken : nice; (bulb.material as THREE.MeshBasicMaterial).color.set(on ? '#ff8a2a' : '#7ff0e0').multiplyScalar(1.8); }};
 }
 export {cone, lerp, mesh, vgrad};
+
+/**
+ * A glow hanging in the air, facing down the set: brightest in the middle and gone long before its edge. (A pool of light stood on
+ * end keeps its full strength over half its radius and shows as a disc.)
+ */
+export function halo(p: Node, r: number, color: string, opacity: number, x: number, y: number, z: number) {
+  const t = tex('halo', 128, 128, (g) => {
+    const gr = g.createRadialGradient(64, 64, 0, 64, 64, 64); for (let i = 0; i <= 12; i++) gr.addColorStop(i / 12, `rgba(255,255,255,${((1 - i / 12) ** 2.6).toFixed(4)})`);
+    g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
+  });
+  const m = new THREE.MeshBasicMaterial({map: t, color, transparent: true, opacity, depthWrite: false, blending: THREE.AdditiveBlending, fog: false});
+  const o = new THREE.Mesh(new THREE.CircleGeometry(r, 40), m); o.position.set(x, y, z); o.layers.set(NOINK); o.renderOrder = 2; p.add(o); return o;
+}

@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import {backdrop, box, clamp01, cyl, floor, grainTex, grp, hop, lamp, lerp, lit, mesh, panel, pool, pop, rng, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, torus,
   type Node, type V} from './kit';
 import {actor, USER} from './cast';
-import {coin, coinStack, coinStream, GOLD, glints, iceBlock, level, signTex, streetLamp, wallClock} from './props';
+import {coin, coinStack, coinStream, GOLD, glints, halo as glow, iceBlock, level, signTex, streetLamp, wallClock} from './props';
 import {W, type Shot} from './story';
 
 export type Ctx = {f: number; /** frames since the shot began */ t: number; cam: THREE.PerspectiveCamera; shot: Shot};
@@ -60,7 +60,7 @@ export const vault: Builder = (root) => {
   }
   const twinkle = glints(root, stacks.filter((_, i) => i % 2 === 0).map((s) => [s.top[0] + 0.1, s.top[1] + 0.06, s.top[2] + 0.2] as V));
   const HOLE: V = [0.6, 2.1, -2.235];
-  const hole = breach(root, ...HOLE, 0.42), halo = pool(root, 0.95, '#35e0d0', 0.26, HOLE[0], -2.225, HOLE[1]); halo.rotation.x = 0;
+  const hole = breach(root, ...HOLE, 0.42), halo = glow(root, 1.5, '#35e0d0', 0.5, HOLE[0], HOLE[1], -2.225);
   const clock = wallClock(root, -0.56, 2.1, -2.2, 0.38);
   const stream = coinStream(root, 56, 0.09), last = coin(root, 0.14);
   const alarm = pool(root, 3.2, '#ff3b2a', 0, 0, -0.6, 0.2);
@@ -78,6 +78,7 @@ export const vault: Builder = (root) => {
       stacks.forEach(({m, a}) => level(m, 1 - smooth(d, a * 0.68, a * 0.68 + 0.3)));
       twinkle(f, v === 'wallets');
       hole.set(f, open, v !== 'last' || f < W(166)); halo.visible = open > 0.5;
+      clock.g.visible = v !== 'wallets';                                                               // June: no clock is running yet
       clock.set(hrs, min, from); clock.g.rotation.z = v === 'last' ? shake(f, W(166), 0.05, 10) : 0;
       stream.set(f, f0, f1, (i) => { const s = stacks[(i * 7) % stacks.length]; return [s.top[0], Math.max(0.3, s.top[1] * (1 - d)) + 0.2, s.top[2]]; }, [0.15, 3.0, -1.3], () => HOLE, 0.034);
       const u = smooth(f, W(163), W(166)); last.visible = v === 'last' && u < 0.99;
@@ -137,7 +138,7 @@ export const chart: Builder = (root) => {
     const h = i < 4 ? H1 : H2 - 4 * H1, g = grp(root, X1, BASE + i * H1, Z), geo = new THREE.CylinderGeometry(R, R, h, 24); geo.translate(0, h / 2, 0);
     soft(mesh(g, geo, ghostMat));
     for (const y of [0, h]) soft(torus(g, R, 0.012, lit('#ffe14a', 1.3), 0, y, 0)).rotation.x = Math.PI / 2;
-    if (i < 4) soft(panel(g, 0.42, 0.24, smat(label('x' + i, 256, 146, [[`${i + 1}×`, 120, 0.54, '#ffe14a']]), 1, true), 0, h / 2, R + 0.03));
+    if (i < 4) soft(panel(g, 0.42, 0.24, smat(label('x' + i, 256, 146, [[`${i + 1}X`, 120, 0.54, '#ffe14a']]), 1, true), 0, h / 2, R + 0.03));
     return g;
   });
   const dashes = Array.from({length: 5}, (_, i) => soft(panel(root, 0.07, 0.022, lit('#ffe14a', 1.4), X1 + R + 0.1 + i * 0.105, BASE + H2, Z + 0.02)));

@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import {backdrop, ball, box, clamp01, cone, cyl, floor, grainTex, grp, hop, lamp, lerp, lit, mesh, panel, pool, pop, rng, rod, rrect, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, vgrad, woodTex,
   type G2, type Node, type V} from './kit';
 import {actor, CON, ENGINEER, FAKE, SECURITY} from './cast';
-import {assistant, briefcase, bubble, bug, cardboardFlat, cursor3d, drawHood, drawMask, envelope, folder, GOLD, laptop, magnifier, maskCard, monitor, mug, officeChair, person, plant, ringLight, screenTex, signTex, skylineTex, table} from './props';
+import {assistant, briefcase, bubble, bug, cardboardFlat, cursor3d, drawHood, drawMask, envelope, folder, GOLD, halo, laptop, magnifier, maskCard, monitor, mug, officeChair, person, plant, ringLight, screenTex, signTex, skylineTex, table} from './props';
 import {LIGHT, type Builder} from './sets';
 import {W} from './story';
 
@@ -104,7 +104,7 @@ export const den: Builder = (root) => {
   const ceo = actor(root, FAKE('ceo'), {desk: {pose: 'desk', mode: 'sit'}, oops: {pose: 'shrug', mode: 'sit'}, bare: {pose: 'hold', prop: 'mask', bare: true}}, 0, 0.44, -0.2, {scale: 1.1, res: 1.1});
   const pd = actor(root, FAKE('pd'), {bare: {pose: 'hold', prop: 'mask', bare: true}, on: {pose: 'hips'}}, 0.05, 0, -0.4, {scale: 1.0, res: 1.1});
   const cons = [0, 1, 2].map((i) => actor(root, CON(i), {idle: {}, point: {pose: 'point'}, cross: {pose: 'cross'}, type: {pose: 'type', mode: 'sit'}}, 0, 0, -1, {scale: 1.0}));
-  const glow = pool(root, 1.5, '#ff3b2a', 0, 0, 0.4, 0.9); glow.rotation.x = 0;
+  const glow = halo(root, 2.0, '#ff3b2a', 0, 0, 1.15, -1.2);                                          // behind the two at the laptops, never over them
   return {
     light: (v) => v === 'hook' || v === 'hr' || v === 'photos' || v === 'ceo' || v === 'nocompany' ? {...LIGHT.room, amb: 1.5} : {...LIGHT.dark, sky: '#7fe0d0', ground: '#16303a', amb: 0.95, key: '#d8fff4', keyI: 0.75},
     tick: ({f, t, cam, shot}) => {
@@ -126,14 +126,14 @@ export const den: Builder = (root) => {
       if (v === 'director') { const on = f >= W(86); pd.show(on ? 'on' : 'bare'); pd.node.position.y = hop(f, W(86), 0.12, 9); }
       cons.forEach((a, i) => {
         let on = false;
-        if (v === 'chart' || v === 'names') { on = i > 0; a.show(i === 1 ? 'point' : 'cross'); a.node.position.set(i === 1 ? -1.0 : 1.0, 0, -1.25); }
+        if (v === 'chart') { on = i > 0; a.show(i === 1 ? 'point' : 'cross'); a.node.position.set(i === 1 ? -0.72 : 0.72, 0, -0.9); }
         else if (v === 'director') { on = i === 2; a.show('cross'); a.node.position.set(-0.95, 0, -1.1); }
         else if (v === 'nojob') { on = i === 1; a.show('idle'); a.node.position.set(0, 0, -1.0); }
         else if (v === 'remote') { on = i < 2; a.show('type'); a.node.position.set(i ? 0.42 : -0.42, 0.44, -0.2); }
         else if (v === 'nocompany') { on = i === 2; a.show('idle'); a.node.position.set(1.95, 0, -0.2); }
         a.node.visible = on; a.tick(f, cam);
       });
-      (glow.material as THREE.MeshBasicMaterial).opacity = v === 'remote' ? 0.3 + 0.1 * Math.sin(f * 0.2) : 0;
+      (glow.material as THREE.MeshBasicMaterial).opacity = v === 'remote' ? 0.42 + 0.1 * Math.sin(f * 0.2) : 0;
       (bulb.material as THREE.MeshBasicMaterial).color.set('#ffe9b0').multiplyScalar(2.0 + 0.2 * Math.sin(f * 0.11));
       hr.tick(f, cam); ceo.tick(f, cam); pd.tick(f, cam);
     },
@@ -165,7 +165,12 @@ export const home: Builder = (root) => {
   const card = (key: string, draw: (g: G2, w: number, h: number) => void, bg = '#f4f6fa') => screenTex('home-' + key, draw, 512, 368, bg);
   const callTile = (kind: 'hr' | 'ceo') => card('call-' + kind, (g, w, h) => {
     g.fillStyle = '#e8e1d2'; g.fillRect(0, 0, w, h); g.fillStyle = '#8fd0f5'; g.fillRect(30, 40, 120, 130); drawHood(g, w / 2, h / 2 + 46, 132); drawMask(g, w / 2, h / 2 + 40, 92, kind);
-    g.fillStyle = '#e3342f'; rrect(g, w - 150, 18, 132, 46, 12); g.fill(); text(g, '● LIVE', w - 84, 43, 30, '#ffffff', {font: 'Montserrat'});
+    if (kind === 'hr') { g.fillStyle = '#e3342f'; rrect(g, w - 150, 18, 132, 46, 12); g.fill(); text(g, '● LIVE', w - 84, 43, 30, '#ffffff', {font: 'Montserrat'}); }
+    else {                                                                                            // round two was "in a popular social chat app": a chat, not a claim of video
+      g.fillStyle = '#ffffff'; g.strokeStyle = INK; g.lineWidth = 6; rrect(g, w - 176, 22, 150, 84, 26); g.fill(); g.stroke();
+      g.beginPath(); g.moveTo(w - 150, 102); g.lineTo(w - 168, 134); g.lineTo(w - 116, 104); g.closePath(); g.fill(); g.stroke(); g.fillRect(w - 148, 96, 34, 8);
+      g.fillStyle = INK; for (let i = 0; i < 3; i++) { g.beginPath(); g.arc(w - 138 + i * 37, 64, 10, 0, 7); g.fill(); }
+    }
   });
   const T = {
     msg: card('msg', (g, w, h) => {
@@ -174,7 +179,7 @@ export const home: Builder = (root) => {
     }),
     hr: callTile('hr'), ceo: callTile('ceo'),
     file: card('file', (g, w, h) => { folder(g, w / 2, 132, 150); text(g, 'ASSIGNMENT', w / 2, 248, 54, INK); g.fillStyle = '#c9d2de'; rrect(g, 70, 296, w - 140, 36, 18); g.fill(); }),
-    bug: card('bug', (g, w, h) => { bug(g, w / 2, 150, 150); text(g, 'MALWARE', w / 2, 316, 70, '#ffffff', {stroke: INK}); }, '#b3211d'),
+    bug: card('bug', (g, w, h) => { bug(g, w / 2, h / 2 + 6, 220); }, '#b3211d'),
   };
   const scr = new THREE.MeshBasicMaterial({map: T.msg}), bub = bubble(root, 0.44, 1.52, 0.2, 0.86, 0.62, scr, [-0.5, -0.3]);
   const bar = soft(panel(bub.g, 0.62, 0.05, lit('#2fbf71', 1.1), 0, -0.219, 0.004));
@@ -190,12 +195,14 @@ export const home: Builder = (root) => {
       else if (v === 'assign' || v === 'work') { on = 'file'; st = 'glad'; fill = v === 'work' ? 1 : smooth(f, W(117), W(119) + 12); }
       else if (v === 'malware') { on = 'bug'; st = 'glad'; }
       bub.g.visible = !!on; if (on) scr.map = T[on];
-      bub.g.scale.setScalar(pop(f, at, 7)); bub.g.position.y = 1.52 + 0.012 * Math.sin(f * 0.08); bub.g.rotation.z = v === 'malware' ? shake(f, shot.at, 0.06, 12) : 0;
+      const dive = v === 'work' ? smooth(f, shot.at + 2, shot.at + 12) : 0;                              // the file goes into the work computer
+      bub.g.scale.setScalar(0.93 * (v === 'work' ? Math.max(0.001, 1 - dive) : pop(f, at, 7))); bub.g.visible = !!on && dive < 0.99;
+      bub.g.position.set(lerp(0.44, -0.28, dive), lerp(1.52, 0.95, dive * dive) + 0.012 * Math.sin(f * 0.08), lerp(0.2, 0.42, dive)); bub.g.rotation.z = v === 'malware' ? shake(f, shot.at, 0.06, 12) : 0;
       bar.visible = fill >= 0; bar.scale.x = Math.max(0.001, fill); bar.position.x = -0.31 * (1 - fill);
       tagM.color.set(v === 'malware' ? '#ff8a7a' : '#ffffff');
       (red.material as THREE.MeshBasicMaterial).opacity = v === 'malware' ? 0.42 * smooth(f, shot.at, shot.at + 10) * (0.8 + 0.2 * Math.sin(f * 0.18)) : 0;
       eng.show(st); eng.node.position.y = 0.44 + (v === 'ping' ? hop(f, W(78), 0.06, 8) : 0); eng.tick(f, cam);
-      lap.g.rotation.z = 0;
+      lap.g.position.y = 0.74 + (v === 'work' ? hop(f, shot.at + 11, 0.05, 7) : 0);
     },
   };
 };
@@ -224,13 +231,13 @@ export const office: Builder = (root) => {
     text(g, 'developer tool', 132, 88, 46, INK, {font: 'Montserrat', align: 'left', weight: 700});
     for (let i = 0; i < 3; i++) { g.fillStyle = '#c9d2de'; rrect(g, 44, 170 + i * 62, w - 88 - i * 60, 38, 12); g.fill(); }
   }, 512, 368, '#f4f6fa');
-  const bub = bubble(root, 0.52, 1.5, 0.2, 0.86, 0.62, new THREE.MeshBasicMaterial({map: search}), [-0.42, -0.3]);
+  const bub = bubble(root, 0.64, 1.54, 0.2, 0.86, 0.62, new THREE.MeshBasicMaterial({map: search}), [-0.46, -0.3]);
   const beacon = pool(root, 2.6, '#ff3b2a', 0, 0, 0.2, 0.3);
   return {
     light: () => ({...LIGHT.day, amb: 1.6, keyI: 1.5}),
     tick: ({f, cam, shot}) => {
       const v = shot.v, caught = v === 'caught';
-      bub.g.visible = v === 'search'; bub.g.scale.setScalar(pop(f, shot.at + 1, 7));
+      bub.g.visible = v === 'search'; bub.g.scale.setScalar(0.86 * pop(f, shot.at + 1, 7));
       lap.g.visible = !caught; guard.node.visible = caught;
       eng.show(caught ? 'hands' : v === 'search' ? 'think' : 'type'); eng.node.position.set(caught ? -0.4 : 0, caught ? hop(f, W(54), 0.08, 8) : 0.44, -0.32);
       guard.node.position.set(lerp(0.3, 0.66, smooth(f, shot.at, shot.at + 10)), hop(f, W(54), 0.06, 8), 0.85);
@@ -298,7 +305,7 @@ export const net: Builder = (root) => {
   table(root, -2.75, 0.1, 1.25, 0.62, {top: '#e2c39c', leg: '#7a5636', skirt: '#cfa97c'});
   laptop(root, -2.75, 0.74, 0.16, {ry: Math.PI, w: 0.52, body: '#aeb7c3', back: smat(takenTag(), 1.3)}); tent(root, 'B', -3.18, 0.74, 0.3); mug(root, -2.3, 0.74, 0.25, '#ff7a59');
   plant(root, -3.75, -0.7, 1.0, '#d9a441');
-  const glowB = pool(root, 1.0, '#ff3b2a', 0.3, -2.75, 0.3, 0.95); glowB.rotation.x = 0;
+  const glowB = halo(root, 1.5, '#ff3b2a', 0.4, -2.75, 1.0, -0.15);
   // the assistant
   box(root, 1.2, 0.42, 0.8, '#222c44', 0, 0.21, 0); box(root, 1.26, 0.04, 0.86, lit(GOLD, 1.05), 0, 0.42, 0);
   const ai = assistant(root, 0, 0.44, 0);
@@ -307,7 +314,7 @@ export const net: Builder = (root) => {
     table(root, x, 0.1, 1.0, 0.62, {top: '#eef0f3', leg: '#8a94a3', skirt: '#dfe3ea'}); tent(root, i ? 'C' : 'A', x + 0.34, 0.74, 0.3);
     const tag = new THREE.MeshBasicMaterial({map: assetTag()}), lap = laptop(root, x - 0.08, 0.74, 0.16, {ry: Math.PI, w: 0.5, back: tag});
     const who = actor(root, ENGINEER(i ? 2 : 0), {a: {expr: 'neutral', pose: 'type', mode: 'sit'}}, x - 0.08, 0.44, -0.5, {scale: 1.05});
-    const glow = pool(root, 0.9, '#ff3b2a', 0, x - 0.08, 0.32, 0.95); glow.rotation.x = 0;
+    const glow = halo(root, 1.0, '#ff3b2a', 0, x - 0.08, 0.9, 0.02);                                     // a red light around the lid, in front of its owner's chest and fading before the face
     return {tag, lap, who, glow};
   });
   const w1 = wire(root, [-2.47, H, 0.2], [-0.5, H, 0.2]), w2 = wire(root, [0.5, H, 0.2], [2.1, H, 0.2]), wc = wire(root, [2.64, H, 0.2], [3.2, H, 0.2]);
@@ -318,10 +325,10 @@ export const net: Builder = (root) => {
       const taken = W(140), a = W(147), c = W(148) + 2;
       w1(smooth(f, W(134) + 2, taken)); w2(smooth(f, W(141) - 4, a - 2)); wc(smooth(f, a, c));
       ai.set(f >= taken); ai.head.rotation.z = shake(f, taken, 0.09, 14); ai.head.position.y = 0.62 + hop(f, taken, 0.08, 8);
-      (glowB.material as THREE.MeshBasicMaterial).opacity = 0.26 + 0.08 * Math.sin(f * 0.17);
+      (glowB.material as THREE.MeshBasicMaterial).opacity = 0.4 + 0.1 * Math.sin(f * 0.17);
       seats.forEach((s, i) => {
         const at = i ? c : a, on = f >= at; s.tag.map = on ? tT : tA; s.tag.color.setScalar(on ? 1.3 : 1);
-        (s.glow.material as THREE.MeshBasicMaterial).opacity = on ? 0.3 * smooth(f, at, at + 6) * (0.85 + 0.15 * Math.sin(f * 0.17 + i)) : 0;
+        (s.glow.material as THREE.MeshBasicMaterial).opacity = on ? 0.42 * smooth(f, at, at + 6) * (0.85 + 0.15 * Math.sin(f * 0.17 + i)) : 0;
         s.lap.g.position.y = 0.74 + hop(f, at, 0.05, 7); s.who.tick(f, cam);
       });
     },
