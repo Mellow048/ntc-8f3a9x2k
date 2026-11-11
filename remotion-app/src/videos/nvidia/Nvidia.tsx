@@ -1,4 +1,4 @@
-// "Nvidia's CEO, an affair and an alleged spy": a 68-second vertical short.
+// "Nvidia's CEO, an affair and an alleged spy": a 69-second vertical short.
 // Picture: three.js sets with flat cartoon characters, ink outlines, lens blur, bloom and a grade.
 // Timing: every cut, pose and caption is keyed to the narration words (story.ts).
 import React, {useMemo} from 'react';
