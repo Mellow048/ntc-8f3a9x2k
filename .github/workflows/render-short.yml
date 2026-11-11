@@ -5,7 +5,7 @@ name: Render short
 # Software WebGL is slow (seconds per frame), so the film is split into frame ranges that render in parallel jobs.
 # A last job stitches the parts, adds the sound mix, checks the result and publishes it.
 #
-#   gh workflow run render-short.yml --ref <branch> -f composition=CyberleekShort
+#   gh workflow run render-short.yml --ref <branch> -f composition=FridgeHackShort
 
 on:
   workflow_dispatch:
@@ -13,11 +13,11 @@ on:
       composition:
         description: "Remotion composition id"
         required: false
-        default: "CyberleekShort"
+        default: "FridgeHackShort"
       mix:
         description: "Final sound mix, WAV path in the repo (empty = silent video)"
         required: false
-        default: "shoots/gta6-cyberleek/audio/mix.wav"
+        default: "shoots/fridge-hack/audio/mix.wav"
       crf:
         description: "x264 CRF (lower is better)"
         required: false
@@ -37,11 +37,11 @@ on:
       shots:
         description: "Shot list for the check (JSON read by templates/scripts/short_qa.py; empty = none)"
         required: false
-        default: "shoots/gta6-cyberleek/qa-shots.json"
+        default: "shoots/fridge-hack/qa-shots.json"
       publish:
         description: "Commit the MP4 and its QA report to this branch at this path ({size} is replaced; empty = artifact only)"
         required: false
-        default: "shoots/gta6-cyberleek/final-{size}p.mp4"
+        default: "shoots/fridge-hack/final-{size}p.mp4"
       parts_from:
         description: "Run id whose rendered parts to reuse instead of rendering (same picture, new sound mix)"
         required: false

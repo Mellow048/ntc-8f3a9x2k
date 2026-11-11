@@ -3,11 +3,11 @@
 Written by `build_mix.py`. All music and effects are synthesized in that script; nothing is sampled.
 
 - length 74.200 s (2226 frames at 30 fps), 48 kHz stereo, 16-bit
-- integrated loudness -14.5 LUFS, true peak -2.3 dBTP, limiter at most 2.9 dB
-- stems at mix gain: voice -15.6 LUFS, music -21.0 LUFS, effects -26.8 LUFS
-- music after ducking: 5.5 LU under the voice while someone speaks, 5.4 LU under it over the whole film
-- the same above 300 Hz (what a phone speaker plays): 6.5 LU under the voice; loudest 200 ms under a spoken word 3.0 LU under it
-- voice over the bed while speaking: median 5.4 LU, 10th percentile 1.7 LU
+- integrated loudness -14.5 LUFS, true peak -2.2 dBTP, limiter at most 2.9 dB
+- stems at mix gain: voice -15.6 LUFS, music -21.1 LUFS, effects -26.9 LUFS
+- music after ducking: 5.6 LU under the voice while someone speaks, 5.5 LU under it over the whole film
+- the same above 300 Hz (what a phone speaker plays): 6.6 LU under the voice; loudest 200 ms under a spoken word 3.6 LU under it
+- voice over the bed while speaking: median 5.3 LU, 10th percentile 1.8 LU
 
 | time s | frame | sound | why |
 |---|---|---|---|
@@ -103,10 +103,10 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  42.43 | 1273 | two plucked notes | a rising question under 'tied to the first attack' |
 |  42.63 | 1279 | pop | question mark on the second string |
 |  43.67 | 1310 | pop | quote card: French Foreign Ministry |
-|  43.67 | 1310 | timpani roll | building to 'culprit' |
+|  43.67 | 1310 | timpani roll | building through 'names a culprit' |
 |  44.80 | 1344 | click | the statement is held up |
-|  45.13 | 1354 | timpani and brass | on 'culprit' |
 |  45.77 | 1373 | break-in tune back | sparse under the accusation, steady under the evidence |
+|  45.77 | 1373 | timpani and brass | after 'culprit', on the cut to the unit France accuses |
 |  45.87 | 1376 | pop | name tag: Shahid Kaveh |
 |  46.63 | 1399 | pop | context: the Iran war |
 |  48.20 | 1446 | pop | the prosecutor's evidence |
@@ -114,8 +114,8 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  49.63 | 1489 | pop | evidence card: traces of Farsi |
 |  51.13 | 1534 | pop | evidence card: IP addresses |
 |  52.80 | 1584 | stamp thud | “WITH CERTAINTY” stamp |
-|  52.90 | 1587 | brass stab | on 'certain' |
 |  52.90 | 1587 | pop | Barrot, via CNN |
+|  53.32 | 1600 | brass stab | as 'certain' ends; then the music stops for 'How exactly?' |
 |  53.46 | 1604 | music stops | 'How exactly?' |
 |  53.50 | 1605 | pop | question mark |
 |  53.53 | 1606 | dial clicks | the safe's dial turns and turns |
@@ -129,7 +129,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  56.73 | 1702 | click | the statement is held up |
 |  57.40 | 1722 | cold wind | 'ice cold' |
 |  57.40 | 1722 | ice crackle | frost over the lectern, icicles under it |
-|  57.87 | 1736 | icy run | seven glockenspiel notes down on 'ice cold' |
+|  57.45 | 1723 | icy run | seven glockenspiel notes down as the frost spreads, before 'ice cold' |
 |  58.80 | 1764 | music out | the reply is read over a thin, cold, high chord and nothing else |
 |  59.43 | 1783 | pop | quote card: Iran's Foreign Ministry |
 |  60.00 | 1800 | three drips | the only other sound under the quote |
@@ -153,7 +153,8 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  71.13 | 2134 | pop | card A |
 |  71.77 | 2153 | pop | card B |
 |  71.83 | 2155 | click | a padlock closes on B's cable |
-|  72.80 | 2184 | pop | the pointer comes down the line from the cloud |
+|  72.73 | 2182 | pop | the pointer is back: in from the top right, straight for B's cable |
 |  72.87 | 2186 | button | two notes, C then F: the tune closes while the pointer comes down the line |
-|  73.20 | 2196 | boing | it meets the padlock |
-|  73.53 | 2206 | falling whistle | and drops out of the picture |
+|  73.00 | 2190 | boing | it bounces off the padlock |
+|  73.33 | 2200 | click | it tries A's plug, which hangs loose and only swings |
+|  73.57 | 2207 | falling whistle | and drops out of the picture |

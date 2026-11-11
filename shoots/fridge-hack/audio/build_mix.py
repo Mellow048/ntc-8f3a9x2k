@@ -38,10 +38,12 @@ TARGET_LUFS = -14.5
 CEIL_DB = -2.3                 # leaves room for the AAC encode: the finished MP4 must stay under -1 dBFS
 MUSIC_UNDER_VOICE = -5.5       # music loudness while someone is speaking, after ducking, LU relative to the voice.
                                # The user rejected scores 9-11 LU under the voice as inaudible and accepted 5-6 (IMPORTANT.md).
-POCKET_DB = -5.0               # extra dip in the music's 1.2-5 kHz band under speech: room for consonants at that level
-MUSIC_CEIL = -3.5              # while someone speaks, no 200 ms of music may be louder than this (LU relative to the voice,
+POCKET_DB = -5.5               # extra dip in the music's 1.2-5 kHz band under speech: room for consonants at that level
+MUSIC_CEIL = -4.3              # while someone speaks, no 200 ms of music may be louder than this (LU relative to the voice,
                                # both measured above 300 Hz, where speech is understood and where a phone speaker plays):
                                # a stab that lands on a word is pulled back to the bed, one that lands in a gap is not
+MUSIC_CEIL_FULL = -3.4         # the same for the whole spectrum, relative to the voice's programme loudness: a timpani roll or a full
+                               # bar of kick and bass under a word is held to the level of the bed
 DUCK_DB = -4.0                 # how far the music dips under speech (it comes up for the breaths and the ending)
 
 WORDS = json.load(open(os.path.join(SHOOT, "voice", "words.json")))
@@ -267,19 +269,20 @@ def build_music():
     EVENTS.append((Wt(145), "two plucked notes", "a rising question under 'tied to the first attack'"))
 
     # ---- D: France names a culprit. Timpani, then the tune, steady, for the evidence. It stops on "How exactly?"
-    td, stop_d = cut_t(27), Wt(180) - 0.04
-    for ts, v in I.snare_roll(td + 0.1, Wt(157) - 0.03, 0.1, 0.6, R, rate=26):
-        put("drums", I.timpani(I.m2f(38), v * 0.5, R, 0.5), ts, 0.5)
-    put("hits", I.timpani(I.m2f(38), 1.0, R, 2.0), Wt(157), 1.0)
-    put("hits", I.brass(I.m2f(38), 0.9, 0.85, R, "tuba"), Wt(157), 0.5); put("hits", I.brass(I.m2f(50), 0.9, 0.8, R, "horn"), Wt(157), 0.4)
-    EVENTS.append((td + 0.1, "timpani roll", "building to 'culprit'"))
-    EVENTS.append((Wt(157), "timpani and brass", "on 'culprit'"))
+    td, stop_d, tg_roll = cut_t(27), Wt(180) - 0.04, cut_t(28)
+    for ts, v in I.snare_roll(td + 0.1, tg_roll - 0.03, 0.1, 0.5, R, rate=26):
+        put("drums", I.timpani(I.m2f(38), v * 0.5, R, 0.5), ts, 0.34)
     tg = cut_t(28)
+    put("hits", I.timpani(I.m2f(38), 1.0, R, 2.0), tg, 1.0)
+    put("hits", I.brass(I.m2f(38), 0.9, 0.85, R, "tuba"), tg, 0.5); put("hits", I.brass(I.m2f(50), 0.9, 0.8, R, "horn"), tg, 0.4)
+    EVENTS.append((td + 0.1, "timpani roll", "building through 'names a culprit'"))
+    EVENTS.append((tg, "timpani and brass", "after 'culprit', on the cut to the unit France accuses"))
     lvd = lambda t: 1 if t < cut_t(29) - 0.4 else 2
     groove(tg, stop_d, lvd, hooks=(3, 5))
     EVENTS.append((tg, "break-in tune back", "sparse under the accusation, steady under the evidence"))
-    put("hits", I.brass(I.m2f(50), 0.35, 0.85, R, "stab"), Wt(179), 0.5); put("hits", I.brass(I.m2f(57), 0.35, 0.8, R, "stab"), Wt(179), 0.4)
-    EVENTS.append((Wt(179), "brass stab", "on 'certain'"))
+    sure = WORDS[179]["end"] - 0.02
+    put("hits", I.brass(I.m2f(50), 0.3, 0.85, R, "stab"), sure, 0.5); put("hits", I.brass(I.m2f(57), 0.3, 0.8, R, "stab"), sure, 0.4)
+    EVENTS.append((sure, "brass stab", "as 'certain' ends; then the music stops for 'How exactly?'"))
     EVENTS.append((stop_d, "music stops", "'How exactly?'"))
     put("lead", pizz(69, 0.5, 0.6), Wt(183), 0.6); put("lead", pizz(62, 0.8, 0.6), Wt(184), 0.6)
     EVENTS.append((Wt(183), "two plucked notes", "falling, under 'It won't say'"))
@@ -288,8 +291,8 @@ def build_music():
     put("hits", I.timpani(I.m2f(33), 0.9, R, 1.8), Wt(186), 0.9)
     EVENTS.append((Wt(186), "timpani", "on 'denies'"))
     for j, m in enumerate((93, 89, 86, 81, 77, 74, 69)):
-        put("lead", glock(m, 1.4), Wt(192) + j * 0.1, 0.6, -0.4 + 0.13 * j)
-    EVENTS.append((Wt(192), "icy run", "seven glockenspiel notes down on 'ice cold'"))
+        put("lead", glock(m, 1.4), Wt(191) + 0.05 + j * 0.095, 0.5, -0.4 + 0.13 * j)
+    EVENTS.append((Wt(191) + 0.05, "icy run", "seven glockenspiel notes down as the frost spreads, before 'ice cold'"))
     put("comp", I.pad([I.m2f(m) for m in (74, 81, 86)], Wt(206) + 0.4 - Wt(194), 0.5, R, att=0.4, rel=0.6, warm=3000.0), Wt(194), 0.14)
     EVENTS.append((Wt(194), "music out", "the reply is read over a thin, cold, high chord and nothing else"))
 
@@ -478,7 +481,7 @@ def build_sfx(voice_lufs):
         t = a
         while t < z:
             u = (t - a) / (z - a)
-            fx(t, tick(f0 + (f1 - f0) * u), -21 + 2 * u, 0.1)
+            fx(t, tick(f0 + (f1 - f0) * u), -22.5 + 2 * u, 0.1)
             t += step_s - 0.02 * u
 
     # 1: the hook, the map, the accusation
@@ -574,10 +577,11 @@ def build_sfx(voice_lufs):
     for k in range(2):
         fx(cut_t(41) + 0.25 + k * 0.42, blip(1976, 0.06), -17, 0.4, "checkout beep" if k == 0 else "", "the shop is open again")
     fx(Wt(232) + f_(2), click(), -11, 0.3, "click", "a padlock closes on B's cable")
-    a0 = (TOTAL - 42) / FPS
-    fx(a0, slide(1700, 700, 0.4), -14, 0.4, "pop", "the pointer comes down the line from the cloud")
-    fx(a0 + f_(12), boing(), -11.5, 0.3, "boing", "it meets the padlock")
-    fx(a0 + f_(22), slide(900, 160, 0.42), -14, 0.3, "falling whistle", "and drops out of the picture")
+    a0 = (TOTAL - 44) / FPS
+    fx(a0, slide(1700, 800, 0.24), -14, 0.4, "pop", "the pointer is back: in from the top right, straight for B's cable")
+    fx(a0 + f_(8), boing(), -11.5, 0.3, "boing", "it bounces off the padlock")
+    fx(a0 + f_(18), click(), -11.5, -0.2, "click", "it tries A's plug, which hangs loose and only swings")
+    fx(a0 + f_(25), slide(900, 160, 0.42), -14, 0, "falling whistle", "and drops out of the picture")
     return buf[:, :N]
 
 
@@ -660,9 +664,10 @@ def short_loudness(x, win=0.2):
     return -0.691 + 10 * np.log10(ndimage.uniform_filter1d(p, ns(win), mode="nearest") + 1e-12)
 
 
-def ride(music, talk, ceil_lufs):
-    """Pull the music back wherever its speech band would be louder than `ceil_lufs` while someone is speaking."""
-    over = np.maximum(0.0, short_loudness(speech_band(music)) - ceil_lufs) * talk
+def ride(music, talk, ceil_lufs, ceil_full):
+    """Pull the music back wherever its speech band would be louder than `ceil_lufs`, or the whole of it louder than
+    `ceil_full`, while someone is speaking (a drum roll is all bass: the speech band alone does not see it)."""
+    over = np.maximum(0.0, np.maximum(short_loudness(speech_band(music)) - ceil_lufs, short_loudness(music) - ceil_full)) * talk
     over = ndimage.uniform_filter1d(ndimage.maximum_filter1d(over, ns(0.04)), ns(0.06), mode="nearest")
     return music * dbg(-over)[None, :]
 
@@ -686,7 +691,7 @@ def build_stems():
     for _ in range(5):                                            # level and ceiling depend on each other: settle both
         g = v_lufs + MUSIC_UNDER_VOICE - integrated(music[:, speaking])
         static += g
-        music = ride(music * dbg(g), talk, v_band + MUSIC_CEIL)
+        music = ride(music * dbg(g), talk, v_band + MUSIC_CEIL, v_lufs + MUSIC_CEIL_FULL)
     end = np.ones(N)
     end[-ns(0.5):] = np.linspace(1, 0, ns(0.5)) ** 2
     DIAG.update(duck=duck, talk=talk, v_band=v_band, before_ride=raw * dbg(static), after_ride=music.copy())

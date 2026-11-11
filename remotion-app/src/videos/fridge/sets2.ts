@@ -170,18 +170,22 @@ export const cable: Builder = (root) => {
         const u = (f * 0.03 + i / 4) % 1; m.visible = choice || tau < 0;
         m.position.copy(choice ? lines[1].at(endB, CB, 0.1, i % 2 ? u : 1 - u) : lines[0].at(end, C, SAG, i % 2 ? u : 1 - u)); m.position.z += 0.03;
       });
-      qs.forEach((q, i) => { q.visible = v === 'why'; q.scale.setScalar(pop(f, W(66) + i * 5, 8) || 0.001); q.position.set(i ? 0.86 : 0.3, (i ? 1.52 : 1.16) + 0.05 * Math.sin(f * 0.15 + i * 2), 0.1); q.rotation.z = (i ? -1 : 1) * 0.16; });
+      qs.forEach((q, i) => { q.visible = v === 'why'; q.scale.setScalar(pop(f, W(66) + i * 5, 8) || 0.001); q.position.set(i ? 0.76 : 0.28, (i ? 1.52 : 1.16) + 0.05 * Math.sin(f * 0.15 + i * 2), 0.1); q.rotation.z = (i ? -1 : 1) * 0.16; });
       spark.visible = tau >= 0 && tau < 8; spark.position.set(P[0], P[1] + 0.04, P[2] + 0.2); spark.scale.setScalar(pop(f, W(220), 5) || 0.001); spark.quaternion.copy(cam.quaternion);
       tech.node.visible = v === 'unplug'; tech.show(tau >= 6 ? 'done' : 'pull'); tech.node.position.y = hop(f, W(220), 0.12, 8); tech.tick(f, cam);
       // the letters of the two answers, on the doors
       badges.forEach((b, i) => { b.visible = choice && f >= W(i ? 232 : 230); b.position.set(xs[i], 1.0, -0.5 + 0.47 * sc); b.scale.setScalar(pop(f, W(i ? 232 : 230), 8) || 0.001); b.rotation.z = (i ? 1 : -1) * 0.08; });
       const mid = lines[1].at(endB, CB, 0.1, 0.5);
       lock.visible = choice && f >= W(232) + 2; lock.position.set(mid.x, mid.y - 0.03, mid.z + 0.1); lock.scale.setScalar(pop(f, W(232) + 2, 8) || 0.001);
-      // the tail: the pointer comes down B's cable from the cloud, meets the padlock, and drops out of the picture
-      const a0 = TOTAL - 42, slide = smooth(f, a0, a0 + 12), bonk = f >= a0 + 12, fall = smooth(f, a0 + 22, a0 + 34);
-      cur.visible = choice && f >= a0; const pc = lines[1].at(endB, CB, 0.1, lerp(1, 0.6, slide));
-      cur.position.set(pc.x + 0.02 + (bonk ? shake(f, a0 + 12, 0.07, 9) : 0) - 0.25 * fall, pc.y + 0.03 - 2.6 * fall * fall, pc.z + 0.16); cur.rotation.z = -0.6 - 1.4 * fall;
-      lock.rotation.z = choice && bonk ? shake(f, a0 + 12, 0.25, 12) : 0;
+      // The tail: the pointer is back. It goes for B's cable and bounces off the padlock, tries A's plug, which hangs
+      // loose and only swings, and drops out of the picture. Either answer keeps it out.
+      const a0 = TOTAL - 44, k1 = smooth(f, a0, a0 + 8), k2 = smooth(f, a0 + 11, a0 + 18), fall = smooth(f, a0 + 25, a0 + 39);
+      const from: V = [1.7, 3.0, 0], hit: V = [mid.x + 0.06, mid.y - 0.02, 0], tap: V = [endA[0] + 0.07, endA[1] + 0.02, 0];
+      cur.visible = choice && f >= a0;
+      cur.position.set(lerp(lerp(from[0], hit[0], k1), tap[0], k2) + shake(f, a0 + 8, 0.08, 8) - 0.12 * fall, lerp(lerp(from[1], hit[1], k1), tap[1], k2) - 2.9 * fall * fall, -0.5 + 0.3);
+      cur.rotation.z = 0.25 * (1 - k1) - 1.9 * fall; cur.scale.setScalar(0.42);
+      lock.rotation.z = choice ? shake(f, a0 + 8, 0.3, 12) : 0;
+      if (choice && f >= a0 + 18) { const u = f - a0 - 18, sw = sway - 0.6 * Math.exp(-u / 11) * Math.sin(u * 0.5), e: V = [CA[0] + 0.62 * Math.sin(sw), CA[1] - 0.62 * Math.cos(sw), -0.5]; lines[0].set(e, CA, 0.01); plugs[0].position.set(...e); plugs[0].rotation.z = sw; }
     },
   };
 };
