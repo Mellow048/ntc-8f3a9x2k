@@ -297,9 +297,9 @@
       "label": "",
       "light": "day",
       "pos": [
-        2.866,
-        2.136,
-        7.254
+        1.95,
+        2.206,
+        8.552
       ],
       "look": [
         0,
@@ -339,16 +339,16 @@
       "label": "Rooftop · night",
       "light": "night",
       "pos": [
-        -15.971,
-        40.054,
-        0.499
+        -11.399,
+        40.684,
+        2.063
       ],
       "look": [
-        -4.5,
-        39.6,
-        -5.6
+        -5.4,
+        39.9,
+        -4.6
       ],
-      "fov": 54,
+      "fov": 50,
       "action": "A friend draws the bow; fishing line flies across the gap",
       "word": 100,
       "b": 966
@@ -360,16 +360,16 @@
       "label": "",
       "light": "night",
       "pos": [
-        -16.463,
-        40.533,
-        -0.563
+        -11.689,
+        40.632,
+        1.304
       ],
       "look": [
-        -3.5,
-        39.8,
-        -5.8
+        -8,
+        39.9,
+        -4.6
       ],
-      "fov": 54,
+      "fov": 50,
       "action": "Two friends haul the heavy cable hand over hand",
       "word": 111,
       "b": 1026
