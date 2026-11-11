@@ -1,0 +1,15 @@
+Hackers stole six point three billion dollars from Binance, the world's biggest crypto exchange. Their way in? A fake job interview!
+It's the biggest crypto heist on record: over four times the last one.
+Binance says it began in June, when one of its engineers downloaded a rigged copy of a developer tool.
+Security caught it. But by then, the hackers knew who worked on the wallets, where the crypto sits.
+In September, a second engineer got a message on a job site, from a so-called project director.
+Interview one, on video: a fake H.R. rep, who shared personal photos to build trust.
+Interview two: the CEO. Of a company that doesn't exist.
+It ended with an assignment to download. It went onto a work computer. It was malware. Spoiler: there was no job.
+Through that computer, and Binance's own A.I. tool, the hackers took over two wallet engineers' machines.
+October twenty-ninth: most of the money was gone in about twenty minutes. The last, nearly four hours later.
+The F.B.I. says North Korea did it. North Korea calls that, quote: an absurd rhetoric.
+And President Trump? Quote: we don't know if it's North Korea.
+No one's been charged, and less than half the money is frozen.
+Binance says it's covering every loss, and that this wasn't one mistake, but a months-long campaign.
+So whose job was it to stop this: the engineer's, or the company's?
