@@ -4,6 +4,10 @@ These are **the user's own approved originals**, not the unrelated third-party
 style-study images elsewhere in `references/`. Both MP4s and source snapshots
 are stored here on `main`; they do not depend on a surviving branch link.
 
+News shorts are a separate category with their own reference:
+[`../news/`](../news/README.md). Use it only when the user asks about real-life
+news; for the regular shorts this library is for, ignore it.
+
 | Film | Video | Source / guide | Role |
 |---|---|---|---|
 | Taipei 101 — The Giant Golden Ball Inside Skyscrapers | [final-720p.mp4](taipei-101/final-720p.mp4) | [Study and reproduce](taipei-101/README.md) | Primary approved care/look/storytelling benchmark |

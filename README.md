@@ -13,12 +13,30 @@ word-timed physical storytelling, original sound and Arena narration.
 - **[Approved reference library](references/approved/README.md)** — actual
   Taipei 101 and accepted Beer Flood MP4s **plus their source**, preserved on
   `main` so deleting a historical branch does not remove these examples.
+- **[News reference](references/news/README.md)** — the approved Nvidia news
+  short, MP4 **plus source**, in its own folder because it is a different
+  category. **Only for requests about real-life news**; see below.
+
+## Two kinds of short
+
+| | Regular short (default) | News short |
+|---|---|---|
+| The user asks for | Something explained or an entertaining story: engineering, science, history, curiosities | A short about real-life news: real people, companies or events that are in the news |
+| Study | [`references/approved/`](references/approved/README.md) | [`references/news/`](references/news/README.md) |
+| Rules | [IMPORTANT.md](IMPORTANT.md) §1–5 | §1–5 plus the news gates in §6 |
+| The other reference | Ignore `references/news/` | — |
+
+The news film is on a different level and in a different category: the user
+called it "so well done and not lazy" and "maybe the best one". Agents making
+a news short must study it. Agents making a regular short must leave it alone
+and not borrow its structure, graphics, tone or music.
 
 ## Repository map
 
 | Path | Purpose |
 |---|---|
 | `references/approved/` | User-approved original films, source snapshots, manifests and reproduction notes |
+| `references/news/` | User-approved **news** short (Nvidia), source snapshot, manifest, news rules. Separate category: only for real-life news requests |
 | `references/STYLE_BIBLE.md`, `frames/`, `reports/`, `sheets/` | Legacy private style study; not original film deliverables |
 | `templates/bridge/` | Vendored renderer/style implementation; use with current overrides |
 | `templates/audio/` | Audio implementation examples, not a mandatory recurring score |
@@ -49,5 +67,6 @@ for new topics rather than recycling the reference film.
 The vendored `cartoon-3d-short` skill comes from
 [mromidev/claude-animated-shorts](https://github.com/mromidev/claude-animated-shorts)
 (MIT). See `LICENSE` and `UPSTREAM-README.md`. Approved original film provenance
-is recorded in `references/approved/*/manifest.json`; legacy third-party study
-images remain distinct from those originals.
+is recorded in `references/approved/*/manifest.json` and
+`references/news/*/manifest.json`; legacy third-party study images remain
+distinct from those originals.

@@ -4,6 +4,8 @@ This is the durable handoff for the user’s cartoon engineering shorts. **Read 
 
 This records explicit user feedback separately from implementation lessons. It is not a guarantee that an unreviewed first render will be accepted. The goal is a strong first delivery, not another round of the same avoidable mistakes.
 
+**Two kinds of short (added 2026-11-11).** Sections 1–8 are about the regular shorts: explaining or entertaining films on engineering, science, history and curiosities. **News shorts**, about real-life news, are a separate category with their own approved reference in `references/news/` and their own section 9. When the user wants a regular short, ignore section 9 and `references/news/`. When the user asks about the news, read section 9 and study that reference.
+
 ## Latest durable feedback — curiosity remasters and reference preservation
 
 Read [IMPORTANT.md](IMPORTANT.md) for consolidated current gates and
@@ -315,3 +317,22 @@ hash unchanged; no 3D render/re-encode. Full 2090-frame decode and new audio
 checks pass. Sources and reproducible remux command are in the production log.
 Original v1 remains pinned at `6b096c8`. Agent did not listen; v2 music approval
 is pending, distinct from user's positive feedback on v1 story/picture.
+
+
+## 9. Separate category: news shorts (approved reference on `main`)
+
+A news short covers real-life news: real people, companies or events that are in the news. It is a different category from the films in sections 1–8, and it does not replace or change the City Hall checkpoint in section 3.
+
+**When this section applies:** only when the user asks for a short about the news. For a regular explaining or entertaining short, ignore this section and `references/news/` and use `references/approved/`.
+
+- **Approved film:** "Nvidia's CEO and the Suspected Spy", 69 seconds. The user watched the delivered MP4 and said: "so well done and not lazy", "maybe the best one". The user then asked for the MP4 and the source to be put on `main` as a reference in a folder of its own, because it is "on a different level and category", and for `AGENTS.md`, `README.md` and `IMPORTANT.md` to describe this type of film. This authorizes this one film on `main`, as the Taipei and Beer references were authorized; it is not a policy for every export.
+- **Where:** `references/news/README.md` (category rules, when to study and when to ignore) and `references/news/nvidia-spy/` (MP4, one frame of every shot, source snapshot, manifest, study guide, rebuild recipe). Check the files with `python references/news/verify.py`.
+- **File:** `references/news/nvidia-spy/final-720p.mp4`. 720×1280, 30 fps, 2075 frames / 69.167 s, 51,611,759 bytes; H.264 + 48 kHz stereo AAC. Finished-file QA: −14.6 LUFS, −1.8 dBFS true peak; no silence, black, unplanned white or frozen frames; every frame jump is a cut, a caption change or an arriving graphic. Produced on branch `arena/44d045b4-ntc-8f3a9x2k`, render run `42918009608`. The branch is provenance, not a dependency.
+- **What the agent checked before delivery, and what it did not:** it checked the finished file technically and reviewed the picture on 139 still frames. It did not listen to the sound, which was set from meters, and did not watch the film in motion. The approval is the user's, after watching it.
+- **What the user decided on the way:** approved the fifth draft of the narration; rejected twelve voice auditions as sounding artificial, then picked one of six full reads; then "make the video and render it in github". The user was annoyed at being given six reads to choose from: **offer one candidate, not a menu.** Voice IDs are session-local; the saved `voice.wav` in the reference is the record of that voice.
+- **Accuracy rules for news** are in `IMPORTANT.md` §6 and `references/news/README.md`. In short: sources for every fact, every unproven claim attributed every time, the denial and "not charged" kept in the film, quotes exactly as reported, public figures as simple caricatures with name tags and anyone not charged as an anonymous figure, jokes about the situation and never about the family.
+- **Timing is data, not code:** picture, captions, graphics and sound all read the narration's `words.json`. To re-time, run `build_voice.py`, then `build_mix.py`, then render. The read is brisk (1.2×), so three beats of silence were put back on purpose: after "Quote:", after the email quote, before the closing question.
+- **Sound:** the first render had the music 10.5 LU under the voice and was replaced; that is the range recorded above as inaudible. The approved mix has it 5.5 LU under while someone speaks (6.8 LU counting only what a phone speaker plays, above 300 Hz). Words stay clear because the music's 1.2–5 kHz band dips under speech and an accent that lands on a word is held about 3 LU under it. The score is original to this film (112 bpm, A minor, a spy groove); a new film needs its own.
+- **Render workflow:** the film's workflow is in the snapshot at `references/news/nvidia-spy/source/.github/workflows/render-short.yml`. It splits a composition into 20 frame ranges on parallel runners: 8 to 11 minutes for this film instead of more than an hour in one job. `-f parts_from=<run id>` reuses the rendered picture of an earlier run when only the sound changed (about 2 minutes; parts are kept 3 days). The live `.github/workflows/render-short.yml` on `main` is still the older single-job workflow; copy the snapshot's file over it on your working branch to use the parallel one. Failing steps and the check summary are written to the run's annotations, because job logs could not be downloaded from the sandbox.
+- **Lessons from this film:** keep the caption band (70–82 % of the height) free of signs, props and heads; size captions to fit one line; white props need an unlit material or they grey out; lens blur only on close shots (it was more than half the render cost).
+- **Known small things, left as they are:** the "ON AIR" sign is partly behind a graphic in the interview shot; two board members are cut by the frame edge in the board-statement shot.
