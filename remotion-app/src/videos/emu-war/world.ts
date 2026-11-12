@@ -668,7 +668,9 @@ export class World {
         : id === 9 ? i < 4
         : false;
       e.mesh.visible = !!show;
-      if (show) {
+      // a billboard inside the lens fills the whole frame with a neck: keep the cast out of the camera's lap
+      if (show && Math.hypot(cam.position.x - b.x, cam.position.z - b.z) < 3.4) e.mesh.visible = false;
+      if (e.mesh.visible) {
         const running = id === 4 || (id === 3 && f > 700);
         e.update(b.x, b.z, Math.atan2(cam.position.x - b.x, cam.position.z - b.z), Math.cos(b.rot) < 0,
           { gait: b.gait + t * 1.6, head: b.head, run: running });
@@ -735,6 +737,9 @@ export class World {
     if (this.solo.mesh.visible) shade(this.solo.mesh.position.x, this.solo.mesh.position.z, 1.4, 0.85);
     if (this.runner.mesh.visible) shade(this.runner.mesh.position.x, this.runner.mesh.position.z, 1.2, 0.75);
     for (const m of this.men) if (m.mesh.visible) shade(m.mesh.position.x, m.mesh.position.z, 1.0, 0.7);
+    this.men.forEach((m) => {
+      if (m.mesh.visible && Math.hypot(cam.position.x - m.mesh.position.x, cam.position.z - m.mesh.position.z) < 3.0) m.mesh.visible = false;
+    });
     if (this.farmer.mesh.visible) shade(this.farmer.mesh.position.x, this.farmer.mesh.position.z, 1.0, 0.7);
     if (this.truck.visible) shade(this.truck.position.x, this.truck.position.z, 2.8, 1.5);
     if (this.crate.visible) shade(A.crate[0], A.crate[1], 1.3, 1.0);
