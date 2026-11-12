@@ -1,6 +1,6 @@
 # "The Hack That Melted 700 Supermarkets" — SCRIPT
 
-**Status: delivered on 2026-11-11 and approved by the user the same day, after watching it: "awesome sauce, same banger".** It is on its branch only; the user has not asked for it to be added to the news references on `main`. News short about the cyberattack that heated supermarket freezers across France in October 2026, and France's accusation, on 9 November, that a hacking unit of Iran's Revolutionary Guard did it. Made in the order written in `references/news/README.md`, after the two films in `references/news/`.
+**Status: delivered on 2026-11-11 and approved by the user the same day, after watching it: "awesome sauce, same banger".** On 2026-11-12 the user asked for its source to be put on `main`: it is kept as a reference in `references/news/fridge-hack/`. News short about the cyberattack that heated supermarket freezers across France in October 2026, and France's accusation, on 9 November, that a hacking unit of Iran's Revolutionary Guard did it. Made in the order written in `references/news/README.md`, after the two films in `references/news/`.
 
 ## Researched facts and sources
 

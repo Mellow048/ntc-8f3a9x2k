@@ -1,6 +1,6 @@
 # "The $6.3 Billion Job Interview" — SCRIPT
 
-**Status: delivered on 2026-11-12. The user has not watched it yet, so it is not approved.** It is on its branch only. News short about the theft of about $6.3 billion in crypto from Binance on 29 October 2026, which Binance's own report traces to a fake job interview, and about who is said to have done it. Chosen by the user from six ideas ("i pick 1"). Made in the order written in `references/news/README.md`, after the two films in `references/news/` and the freezer film on this branch.
+**Status: delivered on 2026-11-12. The user's reply: "you are the best at this!", with the request to put its source on `main`.** It is kept as a reference in `references/news/binance-heist/`. News short about the theft of about $6.3 billion in crypto from Binance on 29 October 2026, which Binance's own report traces to a fake job interview, and about who is said to have done it. Chosen by the user from six ideas ("i pick 1"). Made in the order written in `references/news/README.md`, after the two films in `references/news/` and the freezer film on this branch.
 
 ## Researched facts and sources
 
