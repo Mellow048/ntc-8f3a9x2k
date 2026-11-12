@@ -1,5 +1,5 @@
 SPECS 720x1280 30/1 fps, 2259 frames, 75.300 s; audio: aac 48000 Hz 2ch
-LOUDNESS I:         -14.6 LUFS | LRA:         2.1 LU | Peak:       -1.9 dBFS
+LOUDNESS I:         -14.6 LUFS | LRA:         2.1 LU | Peak:       -2.1 dBFS
 SILENCES none
 FRAMES 2259; black []; unplanned white []; frozen spans >=12f []
 POPS (unplanned frame-diff spikes > 3x local median): []
