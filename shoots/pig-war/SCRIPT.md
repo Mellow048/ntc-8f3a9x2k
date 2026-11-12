@@ -29,27 +29,27 @@ left out of the narration. The pig's breed is left out; only "a pig" is said.
 
 > One pig started a war between Britain and America. The pig lost. Nobody else got hurt.
 >
-> San Juan Island, 1859. Britain runs sheep here. America has a potato patch.
+> San Juan Island, 1859. Britain runs sheep. America has a potato patch.
 >
-> The border ran through the middle of the channel. There are two channels.
+> The border ran down the middle of the channel. There are two channels.
 >
-> June fifteenth. A pig is in Lyman Cutlar's potatoes. Again. He shoots it.
+> June fifteenth. A pig is in Lyman Cutlar's potatoes. Again. He's had enough.
 >
-> The pig belongs to the Hudson's Bay Company. Cutlar offers ten dollars. The company wants a hundred. "It's up to you," the man says, "to keep your potatoes out of my pig."
+> The company wants a hundred dollars. Cutlar offers ten.
 >
-> Britain threatens to arrest him. The settlers call the army: sixty-six soldiers under a captain named George Pickett, who will one day charge at Gettysburg.
+> "It's up to you," the man says, "to keep your potatoes out of my pig."
 >
-> Britain answers with five warships and two thousand men. America has four hundred and sixty-one soldiers and fourteen cannons.
+> Britain threatens to arrest him. Five warships arrive. America sends four hundred and sixty-one men.
 >
-> Same order on both sides: defend yourself, don't fire first.
+> Same order on both sides: don't fire first.
 >
-> Then the governor orders the marines ashore. Admiral Baynes refuses. Two great nations, he says, in a war over a squabble about a pig.
+> The governor orders the marines ashore. Admiral Baynes refuses: two great nations, in a war over a squabble about a pig.
 >
-> He's right. But nobody can say it out loud. The pig was never the point. Two neighbours, one parking space, and neither will back out first.
+> He's right. But nobody can say it out loud. Two empires, one island, and neither will move first.
 >
-> Washington sends General Winfield Scott. A hundred men each, two camps, and they settle it later. Later is twelve years. In 1872 the Kaiser draws the line. It's still the border.
+> They agree on a hundred men each, two camps, and settle it later. Later is twelve years. In 1872 the Kaiser draws the line. It's still the border.
 >
-> Nobody died in the Pig War except the pig. The camps are a park now. The marines left a garden. Somebody still plants it.
+> Nobody died except the pig. The camps are a park now, and the marines left a garden. Somebody still plants it.
 >
 > The war lasted twelve years. The garden is still going.
 
@@ -70,6 +70,13 @@ left out of the narration. The pig's breed is left out; only "a pig" is said.
 | 11 Resolution | "Winfield Scott… still the border" | General on a ship's deck with a map; then the two camps over seasons; then a hand drawing the final line |
 | 12 Payoff | "Nobody died… still plants it" | Empty camps in morning light; the garden: roses, a rake, a marine's headstone-free camp with a watering can |
 | 13 Button | "The war lasted twelve years. The garden is still going." | Slow push on the garden, wind, a single bloom; the pig's ghost nothing — no gag, just the flowers |
+
+### Voice note
+
+The TTS moderation refused "He shoots it" and would not generate the line. The
+narration now says "He's had enough" and the picture carries the shot: the gun,
+the pig down in the rows, and the next line ("the company wants a hundred
+dollars") closes the loop. Same beat, less exposition.
 
 ## Captions
 
