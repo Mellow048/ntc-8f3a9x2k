@@ -212,8 +212,8 @@ export const Overlays: React.FC = () => {
         <>
           <div style={row('8%')}><div style={{...anton, fontSize: '8.6cqw', color: '#fff', WebkitTextStroke: `1.4cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, transform: `scale(${pop(f, W(213), 8)})`}}>WHAT STOPS A FAKE BOSS?</div></div>
           {f >= W(218) ? <Choice f={f} at={W(218)} letter="A" text="SHARPER EMPLOYEES" top="20.4%" tone="red" size={6.6} /> : null}
-          {f >= W(222) ? <Choice f={f} at={W(222)} letter="B" text="A TWO-PERSON RULE" top="25.4%" tone="yellow" size={6.6} /> : null}
-          {f >= W(216) ? <Pill f={f} at={W(216)} text="ONE WIRE WAS STOPPED BY A BACK OFFICE" top="15.6%" size={3.4} /> : null}
+          {f >= W(222) ? <Choice f={f} at={W(222)} letter="B" text="TWO-PERSON RULE" top="25.4%" tone="yellow" size={6.6} /> : null}
+          {f >= W(216) ? <Pill f={f} at={W(216)} text="A BACK OFFICE STOPPED ONE · INDICTMENT" top="15.6%" size={3.4} /> : null}
         </>
       ) : null}
     </AbsoluteFill>

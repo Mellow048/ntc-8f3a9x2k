@@ -102,10 +102,10 @@ export const desk: Builder = (root) => {
     tick: ({f, cam, shot}) => {
       const v = shot.v;
       let on: keyof typeof T | null = null, st = 'type', at = shot.at, jump = -99;
-      if (v === 'ring') { at = W(2) - 3; on = f >= at ? 'ring' : null; st = f >= W(2) + 4 ? 'look' : 'type'; jump = W(2) + 4; }
+      if (v === 'ring') { at = W(1) - 1; on = f >= at ? 'ring' : null; st = f >= W(2) + 4 ? 'look' : 'type'; jump = W(2) + 4; }   // it rings on 'boss'; she looks up on 'calls'
       else if (v === 'email') { at = W(55) - 2; on = f >= at ? 'email' : null; st = f >= W(55) + 6 ? 'read' : 'type'; }
       else if (v === 'answer') { on = 'live'; st = 'wave'; }
-      else if (v === 'believe') { on = 'live'; st = 'nod'; }
+      else if (v === 'believe') { on = 'live'; st = 'nod'; at = shot.at - 30; }                          // the call has been up since 'answer': the card does not arrive again
       else if (v === 'send') { const sent = f >= W(113); on = sent ? 'sent' : 'live'; at = sent ? W(113) : shot.at - 30; st = sent ? 'done' : 'type'; jump = W(113); }
       bub.g.visible = !!on; if (on) scr.map = T[on];
       const ringing = v === 'ring' && on ? 0.03 * Math.sin(f * 0.9) : 0;                                 // it rings

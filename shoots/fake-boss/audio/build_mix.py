@@ -545,7 +545,7 @@ def build_sfx(voice_lufs):
             (F(172, -3), "quote card: the boast; he holds up a cup"), (F(180), "October 2024, indictment"), (F(185), "'a major investment bank', indictment"),
             (F(192, 2), "the employee was deceived, indictment"), (F(198), "$2,849,000 never left, indictment"), (F(202, 4), "extradition requests pending, DOJ, Nov 5"),
             (F(207), "'merely accusations', Justice Department, Nov 5"), (F(211, 4), "defence: no comment reported, AP, Nov 6"), (F(213), "WHAT STOPS A FAKE BOSS?"),
-            (F(216), "one wire was stopped by a back office")]
+            (F(216), "a back office stopped one, indictment")]
     for n, (t, why) in enumerate(pops):
         fx(t, pop(380 + 60 * (n % 3), 900 + 110 * (n % 3)), -13, 0.15 if n % 2 else -0.15, "pop", why)
 
@@ -570,8 +570,9 @@ def build_sfx(voice_lufs):
     # 1: her desk, the call, the reveal
     keys(0.04, 5)
     EVENTS.append((0.04, "typing", "an ordinary morning in accounts"))
-    fx(F(2, -3), ringtone(), -11.5, 0.3, "ring", "a video call comes in: THE BOSS")
-    fx(F(2, -3) + 0.56, ringtone(), -13, 0.3)
+    fx(F(1, -1), ringtone(), -11.5, 0.3, "ring", "a video call comes in on 'boss': THE BOSS")
+    fx(F(2, 2), ringtone(), -12.5, 0.3, "ring", "it rings again, and she looks up")
+    fx(F(2, 2) + 0.56, ringtone(), -14.5, 0.3)
     call_tone(cut_t(1) + f_(1), "call tone", "she answers: we are looking at her screen")
     fx(F(11), shh(), -15, 0.1, "shh", "a finger to his lips: 'tell no one'")
     for j in range(5):

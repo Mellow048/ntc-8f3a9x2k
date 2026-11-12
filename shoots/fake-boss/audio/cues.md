@@ -14,7 +14,8 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |---|---|---|---|
 |   0.00 |    0 | music in | a waltz in F sharp minor, three in a bar at 174 bpm: plucked bass, pizzicato chords, brushes, and a horn with the tune: the boss |
 |   0.04 |    1 | typing | an ordinary morning in accounts |
-|   0.53 |   16 | ring | a video call comes in: THE BOSS |
+|   0.13 |    4 | ring | a video call comes in on 'boss': THE BOSS |
+|   0.70 |   21 | ring | it rings again, and she looks up |
 |   1.73 |   52 | swish | on 37 cuts, alternating left and right; none on the 7 joins inside a take, none on the cut in to the boast |
 |   1.77 |   53 | call tone | she answers: we are looking at her screen |
 |   2.10 |   63 | pop | his words in a balloon: WIRE $5,000,000 |
@@ -169,7 +170,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  68.40 | 2052 | pop | defence: no comment reported, AP, Nov 6 |
 |  69.45 | 2084 | open chord | C sharp with a fourth and a seventh on the vibraphone: it hangs under the question and does not resolve |
 |  69.70 | 2091 | pop | WHAT STOPS A FAKE BOSS? |
-|  70.27 | 2108 | pop | one wire was stopped by a back office |
+|  70.27 | 2108 | pop | a back office stopped one, indictment |
 |  71.13 | 2134 | clunk | a spotlight comes up on the employee with the magnifying glass |
 |  72.67 | 2180 | clunk | a spotlight comes up on the two who check each other |
 |  74.68 | 2240 | button | the music box: C sharp, F sharp, A, the tune's first notes, and then the leading note, where it stops: a question mark |
