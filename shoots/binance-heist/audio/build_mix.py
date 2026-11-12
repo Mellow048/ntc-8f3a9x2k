@@ -52,7 +52,7 @@ DUCK_DB = -4.0                 # how far the music dips under speech (it comes u
 # Words the read all but swallows, by word number: (lift for the voice, dip for music and effects) in dB, for that word only.
 # "it" in "Security caught it." trails off 12 LU under the rest of the read and a beat of the bass lands on it: over the word's
 # own 150 ms, music and effects were 7.9 LU louder than the voice, against 3.4 for the worst word of the approved freezer film
-# by the same measure (word_margins below; the last line of the cue sheet's header). Lifted and cleared, it reads 0.4 over them.
+# by the same measure (word_margins below; the last line of the cue sheet's header). Lifted and cleared, it reads 1.1 over them.
 # Found after the third render, by measuring; the first three renders have the word covered.
 WEAK_WORDS = {55: (5.0, -4.0)}
 
