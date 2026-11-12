@@ -132,8 +132,8 @@ const run = (keys: Key[], f: number) => {
 const CAMS: Record<number, Key[]> = {
   // 1 — macro on the boar's snout in the furrow; rows run away from the lens, low sun behind the pig.
   1: [
-    { f: 2, s: { pos: [2.92, 0.52, 6.58], look: [1.10, 0.40, 6.55], fov: 30, roll: -0.012 } },
-    { f: 70, s: { pos: [2.58, 0.48, 6.57], look: [1.12, 0.41, 6.55], fov: 27, roll: -0.006 } },
+    { f: 2, s: { pos: [4.35, 0.68, 7.05], look: [1.20, 0.47, 6.50], fov: 28, roll: -0.012 } },
+    { f: 70, s: { pos: [3.85, 0.62, 6.92], look: [1.22, 0.47, 6.51], fov: 26, roll: -0.006 } },
   ],
   // 2 — pull back one step: the pig, the fence, and a sloop's bow hanging in the haze beyond the bluff.
   2: [

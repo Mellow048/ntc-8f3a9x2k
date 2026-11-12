@@ -132,7 +132,7 @@ export const buildPatch = (R: THREE.Object3D) => {
   const stem = lam("potatoStem", () => ({ color: "#4e6f34" }));
 
   // the patch floor, sunk 4 cm so the ridges stand proud of it
-  b.add(quad(V(PATCH.x0, 0, PATCH.z0), V(PATCH.x1, 0, PATCH.z0), V(PATCH.x1, 0, PATCH.z1), V(PATCH.x0, 0, PATCH.z1), 5.6, 8.4), dirt);
+  b.add(quad(V(PATCH.x0, 0.03, PATCH.z0), V(PATCH.x1, 0.03, PATCH.z0), V(PATCH.x1, 0.03, PATCH.z1), V(PATCH.x0, 0.03, PATCH.z1), 5.6, 8.4), dirt);
 
   const push = (g: THREE.BufferGeometry, m: THREE.Matrix4) => b.add(g, dirt, m);
   const rnd = rng(7);

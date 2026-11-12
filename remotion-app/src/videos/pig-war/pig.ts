@@ -15,10 +15,11 @@ export class Pig {
   private torso: THREE.Mesh;
 
   constructor(parent: THREE.Object3D) {
-    const hide = lam("pigHide", () => ({ color: "#4b3a2f" }));
-    const hideLit = lam("pigHideHi", () => ({ color: "#5a4638" }));
-    const snout = lam("pigSnout", () => ({ color: "#8a5a50" }));
+    const hide = lam("pigHide", () => ({ color: "#6a5340" }));
+    const hideLit = lam("pigHideHi", () => ({ color: "#7a6146" }));
+    const snout = lam("pigSnout", () => ({ color: "#a06b5c" }));
     const horn = lam("pigTusk", () => ({ color: "#efe4cd" }));
+    const dark = lam("pigDark", () => ({ color: "#221a18" }));
 
     // torso: a boar's slab-sided barrel with a shoulder ridge
     this.torso = new THREE.Mesh(sphere(1), hide);
@@ -53,6 +54,25 @@ export class Pig {
     disc.rotation.z = Math.PI / 2;
     disc.position.set(0.46, -0.06, 0);
     this.head.add(disc);
+
+    // eyes: small beads set just above the snout root, each with a wet catchlight
+    for (const s of [-1, 1]) {
+      const eye = new THREE.Mesh(sphere(0.038, 10, 8), dark);
+      eye.position.set(0.235, 0.075, s * 0.115);
+      this.head.add(eye);
+      const glint = new THREE.Mesh(sphere(0.013, 8, 6), horn);
+      glint.position.set(0.263, 0.09, s * 0.122);
+      this.head.add(glint);
+      // nostril in the disc
+      const nostril = new THREE.Mesh(sphere(0.021, 8, 6), dark);
+      nostril.scale.set(0.5, 1, 0.8);
+      nostril.position.set(0.472, -0.055, s * 0.032);
+      this.head.add(nostril);
+    }
+    // mouth: a shallow dark slot under the snout
+    const mouth = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.012, 0.11), dark);
+    mouth.position.set(0.44, -0.135, 0);
+    this.head.add(mouth);
 
     for (const s of [-1, 1]) {
       const ear = new THREE.Mesh(cyl(0.002, 0.085, 0.17, 6), hide);
