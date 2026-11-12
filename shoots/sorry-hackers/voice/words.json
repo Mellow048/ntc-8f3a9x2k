@@ -562,1255 +562,1255 @@
  {
   "word": "B.Y.O.D.",
   "start": 22.927,
-  "end": 25.105,
+  "end": 24.715,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "claimed",
-  "start": 25.105,
-  "end": 25.388,
+  "start": 24.715,
+  "end": 24.998,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 25.388,
-  "end": 25.496,
+  "start": 24.998,
+  "end": 25.106,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "attack",
-  "start": 25.496,
-  "end": 25.904,
+  "start": 25.106,
+  "end": 25.514,
   "line": 4,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "and",
-  "start": 26.008,
-  "end": 26.274,
+  "start": 25.618,
+  "end": 25.884,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 26.274,
-  "end": 26.341,
+  "start": 25.884,
+  "end": 25.951,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "personal",
-  "start": 26.341,
-  "end": 26.741,
+  "start": 25.951,
+  "end": 26.351,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "data",
-  "start": 26.741,
-  "end": 26.941,
+  "start": 26.351,
+  "end": 26.551,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "of",
-  "start": 26.941,
-  "end": 27.174,
+  "start": 26.551,
+  "end": 26.784,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "every",
-  "start": 27.174,
-  "end": 27.424,
+  "start": 26.784,
+  "end": 27.034,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "student",
-  "start": 27.424,
-  "end": 27.807,
+  "start": 27.034,
+  "end": 27.417,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "and",
-  "start": 27.807,
-  "end": 27.882,
+  "start": 27.417,
+  "end": 27.492,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "employee",
-  "start": 27.882,
-  "end": 28.407,
+  "start": 27.492,
+  "end": 28.017,
   "line": 4,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Then",
-  "start": 28.407,
-  "end": 28.703,
+  "start": 28.017,
+  "end": 28.313,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "it",
-  "start": 28.703,
-  "end": 28.778,
+  "start": 28.313,
+  "end": 28.388,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "apologized",
-  "start": 28.778,
-  "end": 29.544,
+  "start": 28.388,
+  "end": 29.154,
   "line": 5,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Quote",
-  "start": 29.688,
-  "end": 29.988,
+  "start": 29.298,
+  "end": 29.598,
   "line": 5,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "we",
-  "start": 30.298,
-  "end": 30.415,
+  "start": 29.908,
+  "end": 30.025,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "did",
-  "start": 30.415,
-  "end": 30.532,
+  "start": 30.025,
+  "end": 30.142,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "not",
-  "start": 30.532,
-  "end": 30.698,
+  "start": 30.142,
+  "end": 30.308,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "know",
-  "start": 30.698,
-  "end": 30.898,
+  "start": 30.308,
+  "end": 30.508,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "that",
-  "start": 30.898,
-  "end": 30.998,
+  "start": 30.508,
+  "end": 30.608,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "it",
-  "start": 30.998,
-  "end": 31.065,
+  "start": 30.608,
+  "end": 30.675,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "was",
-  "start": 31.065,
-  "end": 31.198,
+  "start": 30.675,
+  "end": 30.808,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "running",
-  "start": 31.198,
-  "end": 31.431,
+  "start": 30.808,
+  "end": 31.041,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "machines",
-  "start": 31.431,
-  "end": 31.823,
+  "start": 31.041,
+  "end": 31.433,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "related",
-  "start": 31.823,
-  "end": 32.181,
+  "start": 31.433,
+  "end": 31.791,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "to",
-  "start": 32.181,
-  "end": 32.298,
+  "start": 31.791,
+  "end": 31.908,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "assisting",
-  "start": 32.298,
-  "end": 32.698,
+  "start": 31.908,
+  "end": 32.308,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "patients",
-  "start": 32.698,
-  "end": 33.123,
+  "start": 32.308,
+  "end": 32.733,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "in",
-  "start": 33.123,
-  "end": 33.198,
+  "start": 32.733,
+  "end": 32.808,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "real",
-  "start": 33.198,
-  "end": 33.448,
+  "start": 32.808,
+  "end": 33.058,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "time",
-  "start": 33.448,
-  "end": 33.831,
+  "start": 33.058,
+  "end": 33.441,
   "line": 5,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "It",
-  "start": 34.304,
-  "end": 34.429,
+  "start": 33.914,
+  "end": 34.039,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "offered",
-  "start": 34.429,
-  "end": 34.662,
+  "start": 34.039,
+  "end": 34.272,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 34.662,
-  "end": 34.729,
+  "start": 34.272,
+  "end": 34.339,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "hospital",
-  "start": 34.729,
-  "end": 35.162,
+  "start": 34.339,
+  "end": 34.772,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 35.162,
-  "end": 35.187,
+  "start": 34.772,
+  "end": 34.797,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "free",
-  "start": 35.187,
-  "end": 35.487,
+  "start": 34.797,
+  "end": 35.097,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "key",
-  "start": 35.487,
-  "end": 35.895,
+  "start": 35.097,
+  "end": 35.505,
   "line": 6,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "and",
-  "start": 35.965,
-  "end": 36.115,
+  "start": 35.575,
+  "end": 35.725,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "any",
-  "start": 36.115,
-  "end": 36.331,
+  "start": 35.725,
+  "end": 35.941,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "patient",
-  "start": 36.331,
-  "end": 36.665,
+  "start": 35.941,
+  "end": 36.275,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "affected",
-  "start": 36.665,
-  "end": 36.981,
+  "start": 36.275,
+  "end": 36.591,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "up",
-  "start": 36.981,
-  "end": 37.065,
+  "start": 36.591,
+  "end": 36.675,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "to",
-  "start": 37.065,
-  "end": 37.14,
+  "start": 36.675,
+  "end": 36.75,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "twenty-five",
-  "start": 37.14,
-  "end": 37.631,
+  "start": 36.75,
+  "end": 37.241,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "hundred",
-  "start": 37.631,
-  "end": 37.864,
+  "start": 37.241,
+  "end": 37.474,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "dollars",
-  "start": 37.864,
-  "end": 38.331,
+  "start": 37.474,
+  "end": 37.941,
   "line": 6,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "for",
-  "start": 38.438,
-  "end": 38.572,
+  "start": 38.048,
+  "end": 38.182,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 38.572,
-  "end": 38.713,
+  "start": 38.182,
+  "end": 38.323,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "inconvenience",
-  "start": 38.713,
-  "end": 39.413,
+  "start": 38.323,
+  "end": 39.023,
   "line": 6,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Quote",
-  "start": 39.582,
-  "end": 39.907,
+  "start": 39.192,
+  "end": 39.517,
   "line": 7,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "we",
-  "start": 40.222,
-  "end": 40.38,
+  "start": 39.832,
+  "end": 39.99,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "have",
-  "start": 40.38,
-  "end": 40.588,
+  "start": 39.99,
+  "end": 40.198,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "morals",
-  "start": 40.588,
-  "end": 41.13,
+  "start": 40.198,
+  "end": 40.74,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "and",
-  "start": 41.21,
-  "end": 41.327,
+  "start": 40.82,
+  "end": 40.937,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "we",
-  "start": 41.327,
-  "end": 41.476,
+  "start": 40.937,
+  "end": 41.086,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "have",
-  "start": 41.476,
-  "end": 41.618,
+  "start": 41.086,
+  "end": 41.228,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 41.618,
-  "end": 41.651,
+  "start": 41.228,
+  "end": 41.261,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "heart",
-  "start": 41.651,
-  "end": 42.018,
+  "start": 41.261,
+  "end": 41.628,
   "line": 7,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "we",
-  "start": 42.11,
-  "end": 42.293,
+  "start": 41.72,
+  "end": 41.903,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "are",
-  "start": 42.293,
-  "end": 42.352,
+  "start": 41.903,
+  "end": 41.962,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "not",
-  "start": 42.352,
-  "end": 42.552,
+  "start": 41.962,
+  "end": 42.162,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "villains",
-  "start": 42.552,
-  "end": 43.035,
+  "start": 42.162,
+  "end": 42.645,
   "line": 7,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "One",
-  "start": 43.494,
-  "end": 43.686,
+  "start": 43.104,
+  "end": 43.296,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "catch",
-  "start": 43.686,
-  "end": 44.11,
+  "start": 43.296,
+  "end": 43.72,
   "line": 8,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Quote",
-  "start": 44.276,
-  "end": 44.667,
+  "start": 43.886,
+  "end": 44.277,
   "line": 8,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "we",
-  "start": 44.988,
-  "end": 45.18,
+  "start": 44.598,
+  "end": 44.79,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "are",
-  "start": 45.18,
-  "end": 45.246,
+  "start": 44.79,
+  "end": 44.856,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "still",
-  "start": 45.246,
-  "end": 45.513,
+  "start": 44.856,
+  "end": 45.123,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "going",
-  "start": 45.513,
-  "end": 45.738,
+  "start": 45.123,
+  "end": 45.348,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "to",
-  "start": 45.738,
-  "end": 45.821,
+  "start": 45.348,
+  "end": 45.431,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "keep",
-  "start": 45.821,
-  "end": 46.005,
+  "start": 45.431,
+  "end": 45.615,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 46.005,
-  "end": 46.088,
+  "start": 45.615,
+  "end": 45.698,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "data",
-  "start": 46.088,
-  "end": 46.438,
+  "start": 45.698,
+  "end": 46.048,
   "line": 8,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "The",
-  "start": 46.994,
-  "end": 47.069,
+  "start": 46.604,
+  "end": 46.679,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "university",
-  "start": 47.069,
-  "end": 47.519,
+  "start": 46.679,
+  "end": 47.129,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "says",
-  "start": 47.519,
-  "end": 47.769,
+  "start": 47.129,
+  "end": 47.379,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "it",
-  "start": 47.769,
-  "end": 47.836,
+  "start": 47.379,
+  "end": 47.446,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "made",
-  "start": 47.836,
-  "end": 48.044,
+  "start": 47.446,
+  "end": 47.654,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "no",
-  "start": 48.044,
-  "end": 48.211,
+  "start": 47.654,
+  "end": 47.821,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "concessions",
-  "start": 48.211,
-  "end": 49.01,
+  "start": 47.821,
+  "end": 48.62,
   "line": 9,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "and",
-  "start": 49.01,
-  "end": 49.152,
+  "start": 48.62,
+  "end": 48.762,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "warns",
-  "start": 49.152,
-  "end": 49.677,
+  "start": 48.762,
+  "end": 49.287,
   "line": 9,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "do",
-  "start": 49.76,
-  "end": 49.894,
+  "start": 49.37,
+  "end": 49.504,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "not",
-  "start": 49.894,
-  "end": 50.06,
+  "start": 49.504,
+  "end": 49.67,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "answer",
-  "start": 50.06,
-  "end": 50.435,
+  "start": 49.67,
+  "end": 50.045,
   "line": 9,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "An",
-  "start": 50.622,
-  "end": 50.739,
+  "start": 50.232,
+  "end": 50.349,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "offer",
-  "start": 50.739,
-  "end": 51.106,
+  "start": 50.349,
+  "end": 50.716,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "of",
-  "start": 51.106,
-  "end": 51.197,
+  "start": 50.716,
+  "end": 50.807,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "money",
-  "start": 51.197,
-  "end": 51.547,
+  "start": 50.807,
+  "end": 51.157,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "can",
-  "start": 51.651,
-  "end": 51.793,
+  "start": 51.261,
+  "end": 51.403,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "be",
-  "start": 51.793,
-  "end": 51.909,
+  "start": 51.403,
+  "end": 51.519,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "one",
-  "start": 51.909,
-  "end": 52.168,
+  "start": 51.519,
+  "end": 51.778,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "more",
-  "start": 52.168,
-  "end": 52.409,
+  "start": 51.778,
+  "end": 52.019,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "scam",
-  "start": 52.409,
-  "end": 52.818,
+  "start": 52.019,
+  "end": 52.428,
   "line": 9,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "The",
-  "start": 53.147,
-  "end": 53.213,
+  "start": 52.757,
+  "end": 52.823,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "group",
-  "start": 53.213,
-  "end": 53.624,
+  "start": 52.823,
+  "end": 53.234,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "hit",
-  "start": 53.624,
-  "end": 53.766,
+  "start": 53.234,
+  "end": 53.376,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "back",
-  "start": 53.766,
-  "end": 54.132,
+  "start": 53.376,
+  "end": 53.742,
   "line": 10,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "the",
-  "start": 54.351,
-  "end": 54.442,
+  "start": 53.961,
+  "end": 54.052,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "university",
-  "start": 54.442,
-  "end": 55.125,
+  "start": 54.052,
+  "end": 54.735,
   "line": 10,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "it",
-  "start": 55.241,
-  "end": 55.366,
+  "start": 54.851,
+  "end": 54.976,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "wrote",
-  "start": 55.366,
-  "end": 55.666,
+  "start": 54.976,
+  "end": 55.276,
   "line": 10,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "had",
-  "start": 55.865,
-  "end": 55.99,
+  "start": 55.475,
+  "end": 55.6,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 55.99,
-  "end": 56.023,
+  "start": 55.6,
+  "end": 55.633,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "full",
-  "start": 56.023,
-  "end": 56.365,
+  "start": 55.633,
+  "end": 55.975,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "panic",
-  "start": 56.365,
-  "end": 56.631,
+  "start": 55.975,
+  "end": 56.241,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "attack",
-  "start": 56.631,
-  "end": 56.998,
+  "start": 56.241,
+  "end": 56.608,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "and",
-  "start": 57.177,
-  "end": 57.326,
+  "start": 56.787,
+  "end": 56.936,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "switched",
-  "start": 57.326,
-  "end": 57.71,
+  "start": 56.936,
+  "end": 57.32,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "its",
-  "start": 57.71,
-  "end": 57.901,
+  "start": 57.32,
+  "end": 57.511,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "own",
-  "start": 57.901,
-  "end": 58.151,
+  "start": 57.511,
+  "end": 57.761,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "machines",
-  "start": 58.151,
-  "end": 58.576,
+  "start": 57.761,
+  "end": 58.186,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "off",
-  "start": 58.576,
-  "end": 58.859,
+  "start": 58.186,
+  "end": 58.469,
   "line": 10,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Two",
-  "start": 59.04,
-  "end": 59.199,
+  "start": 58.65,
+  "end": 58.809,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "weeks",
-  "start": 59.199,
-  "end": 59.432,
+  "start": 58.809,
+  "end": 59.042,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "later",
-  "start": 59.432,
-  "end": 59.698,
+  "start": 59.042,
+  "end": 59.308,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 59.698,
-  "end": 59.773,
+  "start": 59.308,
+  "end": 59.383,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "group",
-  "start": 59.773,
-  "end": 59.99,
+  "start": 59.383,
+  "end": 59.6,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "claimed",
-  "start": 59.99,
-  "end": 60.448,
+  "start": 59.6,
+  "end": 60.058,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "Vanderbilt",
-  "start": 60.448,
-  "end": 60.898,
+  "start": 60.058,
+  "end": 60.508,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "University",
-  "start": 60.898,
-  "end": 61.515,
+  "start": 60.508,
+  "end": 61.125,
   "line": 11,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "where",
-  "start": 61.668,
-  "end": 61.768,
+  "start": 61.278,
+  "end": 61.378,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "computers",
-  "start": 61.768,
-  "end": 62.21,
+  "start": 61.378,
+  "end": 61.82,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "reportedly",
-  "start": 62.21,
-  "end": 62.693,
+  "start": 61.82,
+  "end": 62.303,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "said",
-  "start": 62.693,
-  "end": 62.993,
+  "start": 62.303,
+  "end": 62.603,
   "line": 11,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "quote",
-  "start": 63.111,
-  "end": 63.428,
+  "start": 62.721,
+  "end": 63.038,
   "line": 11,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "failure",
-  "start": 63.807,
-  "end": 64.199,
+  "start": 63.417,
+  "end": 63.809,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "to",
-  "start": 64.199,
-  "end": 64.298,
+  "start": 63.809,
+  "end": 63.908,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "communicate",
-  "start": 64.298,
-  "end": 64.823,
+  "start": 63.908,
+  "end": 64.433,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "will",
-  "start": 64.823,
-  "end": 64.973,
+  "start": 64.433,
+  "end": 64.583,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "result",
-  "start": 64.973,
-  "end": 65.365,
+  "start": 64.583,
+  "end": 64.975,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "in",
-  "start": 65.365,
-  "end": 65.457,
+  "start": 64.975,
+  "end": 65.067,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "this",
-  "start": 65.457,
-  "end": 65.598,
+  "start": 65.067,
+  "end": 65.208,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "estate",
-  "start": 65.598,
-  "end": 65.906,
+  "start": 65.208,
+  "end": 65.516,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "being",
-  "start": 65.906,
-  "end": 66.156,
+  "start": 65.516,
+  "end": 65.766,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "brought",
-  "start": 66.156,
-  "end": 66.39,
+  "start": 65.766,
+  "end": 66.0,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "to",
-  "start": 66.39,
-  "end": 66.465,
+  "start": 66.0,
+  "end": 66.075,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 66.465,
-  "end": 66.54,
+  "start": 66.075,
+  "end": 66.15,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "ground",
-  "start": 66.54,
-  "end": 66.831,
+  "start": 66.15,
+  "end": 66.441,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "completely",
-  "start": 66.831,
-  "end": 67.389,
+  "start": 66.441,
+  "end": 66.999,
   "line": 11,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "No",
-  "start": 67.968,
-  "end": 68.109,
+  "start": 67.578,
+  "end": 67.719,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "one",
-  "start": 68.109,
-  "end": 68.293,
+  "start": 67.719,
+  "end": 67.903,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "has",
-  "start": 68.293,
-  "end": 68.459,
+  "start": 67.903,
+  "end": 68.069,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "been",
-  "start": 68.459,
-  "end": 68.593,
+  "start": 68.069,
+  "end": 68.203,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "charged",
-  "start": 68.593,
-  "end": 69.076,
+  "start": 68.203,
+  "end": 68.686,
   "line": 12,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "So",
-  "start": 69.707,
-  "end": 69.906,
+  "start": 69.317,
+  "end": 69.516,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "what",
-  "start": 69.906,
-  "end": 70.14,
+  "start": 69.516,
+  "end": 69.75,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "was",
-  "start": 70.14,
-  "end": 70.381,
+  "start": 69.75,
+  "end": 69.991,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "that",
-  "start": 70.381,
-  "end": 70.515,
+  "start": 69.991,
+  "end": 70.125,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "apology",
-  "start": 70.515,
-  "end": 71.04,
+  "start": 70.125,
+  "end": 70.65,
   "line": 13,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "a",
-  "start": 71.257,
-  "end": 71.315,
+  "start": 70.867,
+  "end": 70.925,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "conscience",
-  "start": 71.315,
-  "end": 71.873,
+  "start": 70.925,
+  "end": 71.483,
   "line": 13,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "or",
-  "start": 72.071,
-  "end": 72.188,
+  "start": 71.681,
+  "end": 71.798,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "marketing",
-  "start": 72.188,
-  "end": 72.621,
+  "start": 71.798,
+  "end": 72.231,
   "line": 13,
   "ends_sentence": true,
   "comma": false

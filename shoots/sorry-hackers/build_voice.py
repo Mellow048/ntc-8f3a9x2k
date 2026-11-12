@@ -108,7 +108,7 @@ def align(x48: np.ndarray, tokens: list[str]) -> list[tuple[float, float]]:
 # Deliberate beats: (narration line, word, seconds of silence added after that word in the finished read).
 BEATS = [(1, "center", 0.2), (1, "money", 0.2), (5, "Quote", 0.2), (5, "time", 0.3), (7, "Quote", 0.2), (7, "villains", 0.3), (8, "Quote", 0.2), (8, "data", 0.35), (11, "quote", 0.2), (11, "completely", 0.35), (12, "charged", 0.45)]
 # Spelled-out initials come with a pause after every letter. (narration line, word, seconds of silence left between its letters)
-SQUEEZE: list = []
+SQUEEZE: list = [(4, "B.Y.O.D.", 0.04)]
 
 
 def add_beats(audio: np.ndarray, words: list[dict], sr: int = vm.SR):
