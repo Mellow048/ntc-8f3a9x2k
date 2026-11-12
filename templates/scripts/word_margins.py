@@ -42,6 +42,8 @@ for i, w in enumerate(bm.WORDS):
     a, b = w["start"] + 0.03, w["end"] - 0.03
     if b - a < 0.12:
         a, b = (a + b) / 2 - 0.06, (a + b) / 2 + 0.06
+    if a < 0:                                    # a first word that starts at zero: the window may not start before the file does
+        a, b = 0.0, b - a
     v, bed = lufs(kv, a, b), lufs(kb, a, b)
     rows.append((v - bed, i, w["word"], w["start"], v, bed))
 m = np.array([r[0] for r in rows])

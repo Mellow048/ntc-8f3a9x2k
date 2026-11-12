@@ -8,7 +8,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 - music after ducking: 5.8 LU under the voice while someone speaks, 5.5 LU under it over the whole film
 - the same above 300 Hz (what a phone speaker plays): 6.7 LU under the voice; loudest 200 ms under a spoken word 3.5 LU under it
 - voice over the bed while speaking: median 5.3 LU, 10th percentile 1.7 LU
-- word by word, the voice over music and effects across each word's own span: median 6.0 LU, 10th percentile 1.8 LU, lowest -1.2 LU ('from', word 5); 4 of 227 words under 0; 'for' (word 119) is lifted 3.5 dB with the bed 4 dB down under it
+- word by word, the voice over music and effects across each word's own span: median 6.0 LU, 10th percentile 1.9 LU, lowest -1.2 LU ('from', word 5); 4 of 227 words under 0; 'for' (word 119) is lifted 3.5 dB with the bed 4 dB down under it
 
 | time s | frame | sound | why |
 |---|---|---|---|

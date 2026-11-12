@@ -778,6 +778,8 @@ def word_margins(voice, bed):
         a, b = w["start"] + 0.03, w["end"] - 0.03
         if b - a < 0.12:
             a, b = (a + b) / 2 - 0.06, (a + b) / 2 + 0.06
+        if a < 0:                                    # a first word that starts at zero: the window may not start before the file does
+            a, b = 0.0, b - a
         out.append(lu(kv, a, b) - lu(kb, a, b))
     return np.array(out)
 
