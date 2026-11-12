@@ -180,7 +180,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  47.30 | 1419 | pop | one count of robbery, up to 20 years |
 |  47.77 | 1433 | paper | the plea agreement, what he admits lands |
 |  47.93 | 1438 | pop | the same agreement |
-|  48.77 | 1463 | marker | 'stole 24 bags' |
+|  48.27 | 1448 | marker | 'stole 24 bags' |
 |  49.00 | 1470 | the caper, as it was | 'the jewel heist': bass, brushes, snaps and the tune in B minor, less than half a bar of it |
 |  49.17 | 1475 | stamp thud | ADMITS THE HEIST stamp |
 |  49.50 | 1485 | pop | the other counts are to be dropped, CNS |

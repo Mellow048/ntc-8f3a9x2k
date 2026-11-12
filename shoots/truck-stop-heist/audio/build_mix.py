@@ -711,7 +711,7 @@ def build_sfx(voice_lufs):
         fx(t, pop(380 + 60 * (n % 3), 900 + 110 * (n % 3)), -13, 0.15 if n % 2 else -0.15, "pop", why)
     for t, why in [(F(32, 1), "July 10, 2022"), (cut_t(19) + f_(1), "2022"), (F(96, 2), "2023"), (F(97, 3), "2024"), (F(98, 3), "2025"), (F(148, 1), "Nov. 9, 2026")]:
         fx(t, paper(), -12.5, -0.3, "flap", "calendar leaf: " + why)
-    for t, why in [(F(107), "the newspaper's headline"), (F(153), "'interference with commerce by robbery'"), (F(168), "'stole 24 bags'"), (F(211), "DECLARED VALUE")]:
+    for t, why in [(F(107), "the newspaper's headline"), (F(153), "'interference with commerce by robbery'"), (F(166), "'stole 24 bags'"), (F(211), "DECLARED VALUE")]:
         fx(t, marker(), -13.5, -0.1, "marker", why)
     for i, why in [(5, "the plea agreement"), (22, "the newspaper"), (26, "the officer's pad"), (30, "the plea agreement"), (33, "the plea agreement, what he admits"), (42, "the shipping form")]:
         fx(cut_t(i), paper(), -13, 0.1, "paper", why + " lands")

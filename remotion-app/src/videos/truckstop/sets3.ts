@@ -97,7 +97,7 @@ export const deal: Builder = (root) => {
     tick: ({f, shot}) => {
       const key = shot.v as keyof typeof PAGES, P = PAGES[key];
       pm.map = T[key]; page.position.y = 1.48 + 0.01 * Math.sin(f * 0.06); page.scale.setScalar(pop(f, shot.at - 2, 8));
-      const cue = key === 'page' ? W(153) : key === 'same' ? W(168) : key === 'news' ? W(107) : key === 'form' ? W(211) : 1e9;
+      const cue = key === 'page' ? W(153) : key === 'same' ? W(166) : key === 'news' ? W(107) : key === 'form' ? W(211) : 1e9;
       const k = P.hot ? smooth(f, cue, cue + 9) : 0;
       if (P.hot) { const [y0, y1, x0, x1] = P.hot, full = (x1 - x0) / PW * W_; mark.scale.set(Math.max(0.001, full * k), (y1 - y0) / PH * H_, 1); mark.position.set(-W_ / 2 + x0 / PW * W_ + full * k / 2, H_ / 2 - (y0 + y1) / 2 / PH * H_, 0.004); }
       mark.visible = k > 0.01;
