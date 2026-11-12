@@ -194,7 +194,7 @@ export class World {
     const onStep = id === 18;
     this.cutlar.set(-6.02, -0.02, 4.0, cam.position, {
       outfit: CUTLAR, view: "front", expr: id === 18 ? "neutral" : "neutral", mode: "stand", phase: 0,
-      look: 0.2, light: 0.5, seed: 3, scale: 1.14,
+      look: 0.2, light: 0.5, seed: 3, scale: 1.02,
     }, onStep);
 
     this.target.copy(focus);

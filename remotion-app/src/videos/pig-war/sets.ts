@@ -83,7 +83,7 @@ export const buildCabin = (R: THREE.Object3D) => {
   const stone = lam("cabinStone", () => ({ map: stoneHD() }));
   const roofM = lam("cabinRoof", () => ({ map: roofHD("#6b5c48") }));
   const glass = lam("cabinGlass", () => ({ color: "#2a2f38" }));
-  const W = 5.6, D = 4.4, H = 2.45, y0 = 0.06;
+  const W = 5.6, D = 4.4, H = 2.62, y0 = 0.06;
   // walls
   b.add(boxGeo(V(cx - W / 2, y0, cz - D / 2), V(cx + W / 2, y0 + H, cz + D / 2), 2.0), logs);
   // gable ends: the ridge runs front-to-back, so the triangle faces the patch (+x wall) and the door side reads as a cabin
@@ -110,7 +110,7 @@ export const buildCabin = (R: THREE.Object3D) => {
   }
   b.add(boxGeo(V(cx - 0.16, yt + gableH - 0.02, z0 - 0.55), V(cx + 0.16, yt + gableH + 0.16, z1 + 0.55), 1.4), trim);
   // door on the patch side (+x wall), window beside it
-  b.add(boxGeo(V(cx + W / 2 - 0.02, y0, cz + 0.55), V(cx + W / 2 + 0.06, y0 + 1.95, cz + 1.45), 0.9), trim);
+  b.add(boxGeo(V(cx + W / 2 - 0.02, y0, cz + 0.5), V(cx + W / 2 + 0.06, y0 + 2.24, cz + 1.5), 0.9), trim);
   b.add(boxGeo(V(cx + W / 2 - 0.02, y0, cz - 1.35), V(cx + W / 2 + 0.05, y0 + 1.05, cz - 0.35), 0.7), glass);
   b.add(boxGeo(V(cx + W / 2 - 0.02, y0 - 0.02, cz - 1.43), V(cx + W / 2 + 0.1, y0 + 1.13, cz - 0.27), 0.5), trim);
   // chimney
@@ -144,11 +144,11 @@ export const buildPatch = (R: THREE.Object3D) => {
   for (let z = PATCH.z0 + 0.5, k = 0; z < PATCH.z1; z += PATCH.rowGap, k++) {
     // the ridge: a half-buried cylinder along x, so the furrow walls are rounded like a hoe-drawn ridge
     const len = PATCH.x1 - PATCH.x0;
-    const g = new THREE.CylinderGeometry(PATCH.rowW * 0.62, PATCH.rowW * 0.62, len, 10, 1, false);
-    g.rotateZ(Math.PI / 2).translate((PATCH.x0 + PATCH.x1) / 2, PATCH.rowTop - PATCH.rowW * 0.34, z);
+    const g = new THREE.CylinderGeometry(PATCH.rowW * 0.52, PATCH.rowW * 0.52, len, 10, 1, false);
+    g.rotateZ(Math.PI / 2).translate((PATCH.x0 + PATCH.x1) / 2, PATCH.rowTop - PATCH.rowW * 0.28, z);
     push(g, new THREE.Matrix4());
     // plants down the ridge
-    for (let x = PATCH.x0 + 0.22; x < PATCH.x1 - 0.16; x += 0.34) {
+    for (let x = PATCH.x0 + 0.2; x < PATCH.x1 - 0.14; x += 0.3) {
       const jx = (rnd() - 0.5) * 0.14, jz = (rnd() - 0.5) * 0.22, s = 0.7 + rnd() * 0.55;
       // a low clump of leaves, three lobes, sitting on the crown of the ridge
       for (let k2 = 0; k2 < 3; k2++) {
@@ -156,7 +156,7 @@ export const buildPatch = (R: THREE.Object3D) => {
         const t = new THREE.Matrix4().compose(
           V(x + jx + Math.cos(a) * r, PATCH.rowTop + (0.05 + rnd() * 0.05) * s, z + jz + Math.sin(a) * r),
           new THREE.Quaternion().setFromEuler(new THREE.Euler(rnd() * 0.5, rnd() * 3, rnd() * 0.5)),
-          V(0.095 * s, 0.065 * s, 0.09 * s));
+          V(0.135 * s, 0.10 * s, 0.125 * s));
         b.add(new THREE.IcosahedronGeometry(1, 1), rnd() > 0.5 ? leaf : leaf2, t);
       }
       const t2 = new THREE.Matrix4().compose(V(x + jx, PATCH.rowTop + 0.03, z + jz),
