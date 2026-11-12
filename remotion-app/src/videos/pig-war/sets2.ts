@@ -10,10 +10,11 @@ const flat = (w: number, d: number, y: number) => new THREE.PlaneGeometry(w, d).
 
 /** painted ground plane, tiled */
 const ground = (R: THREE.Object3D, tex: THREE.Material, w: number, d: number, rep: number, y = 0) => {
+  const map = (tex as THREE.MeshLambertMaterial).map;
+  map?.repeat?.set(rep, rep);
   const m = new THREE.Mesh(flat(w, d, y), tex);
   m.receiveShadow = true;
   R.add(m);
-  void rep;
   return m;
 };
 
@@ -62,7 +63,7 @@ export const addSheep = (b: Batch, x: number, z: number, yaw: number, s = 1, y =
 };
 
 export const buildBellevue = (R: THREE.Object3D) => {
-  ground(R, lam("grassHD", () => ({ map: grassHD() })), 700, 700, 60);
+  ground(R, lam("grassHD", () => ({ map: grassHD() })), 700, 700, 75);
   const b = new Batch();
   const rnd = rng(11);
   // the flock on the slope
@@ -84,8 +85,13 @@ export const buildBellevue = (R: THREE.Object3D) => {
   const logs = lam("cabinLogs", () => ({ map: planksHD() }));
   const roofM = lam("cabinRoof", () => ({ map: roofHD("#6b5c48") }));
   const barn = new Batch();
-  barn.add(boxGeo(V(-46, 0, -44), V(-16, 5.2, -26), 3.0), logs);
-  barn.add(boxGeo(V(-47, 5.0, -26), V(-15, 5.5, -44), 3.0), roofM);
+  barn.add(boxGeo(V(-46, 0, -44), V(-16, 4.4, -26), 3.0), logs);
+  // roof: two slabs from a ridge down to the eaves, overhanging both ends
+  const slope = Math.atan2(2.2, 8.6);
+  for (const sgn of [-1, 1]) {
+    const m = new THREE.Matrix4().compose(V(-31, 5.4, -31 + sgn * 4.5), new THREE.Quaternion().setFromEuler(new THREE.Euler(sgn * slope, 0, 0)), V(1, 1, 1));
+    barn.add(boxGeo(V(-1.5, -0.1, -4.9), V(1.5, 0.1, 4.9), 3.0), roofM, new THREE.Matrix4().multiplyMatrices(m, new THREE.Matrix4().makeScale(10, 1, 1)));
+  }
   barn.add(boxGeo(V(-38, 0, -56), V(-30, 4.0, -48), 2.4), logs);
   barn.add(boxGeo(V(-39, 3.9, -48), V(-29, 4.4, -56), 2.4), roofM);
   barn.build(R);
@@ -135,7 +141,7 @@ export const buildSea = (R: THREE.Object3D) => {
 
 // ---------------- the camps ----------------
 export const buildCamp = (R: THREE.Object3D) => {
-  ground(R, lam("campGround", () => ({ map: grassHD() })), 700, 700, 60);
+  ground(R, lam("campGround", () => ({ map: grassHD() })), 700, 700, 75);
   const dirt = lam("campDirt", () => ({ map: cobbleHD() }));
   const planks = lam("planksHD", () => ({ map: planksHD() }));
   const canvas = lam("campCanvas", () => ({ color: "#ded6c2" }));
@@ -183,22 +189,22 @@ export const buildCamp = (R: THREE.Object3D) => {
 // ---------------- interiors: chart table, offices, the Geneva room ----------------
 export const buildRoom = (R: THREE.Object3D) => {
   const wood = lam("planksHD", () => ({ map: planksHD() }));
-  const wall = lam("roomWall", () => ({ color: "#cfc0a4" }));
+  const wall = lam("roomWall", () => ({ color: "#d9cbb0" }));
   const plaster = lam("roomPlaster", () => ({ color: "#e2d8c2" }));
   const b = new Batch();
   // shell: floor, four walls, ceiling
-  b.add(flat(14, 12, 0).translate(0, 0.01, 0), wood);
-  for (const [x, z, w, d] of [[0, -6, 14, 0.2], [0, 6, 14, 0.2], [-7, 0, 0.2, 12], [7, 0, 0.2, 12]] as const)
-    b.add(boxGeo(V(x - w / 2, 0, z - d / 2), V(x + w / 2, 4.2, z + d / 2), 2.4), wall);
-  b.add(boxGeo(V(-7, 4.2, -6), V(7, 4.4, 6), 2.0), plaster);
+  b.add(flat(9, 8, 0).translate(0, 0.01, 0), wood);
+  for (const [x, z, w, d] of [[0, -4, 9, 0.2], [0, 4, 9, 0.2], [-4.5, 0, 0.2, 8], [4.5, 0, 0.2, 8]] as const)
+    b.add(boxGeo(V(x - w / 2, 0, z - d / 2), V(x + w / 2, 3.3, z + d / 2), 2.4), wall);
+  b.add(boxGeo(V(-4.5, 3.3, -4), V(4.5, 3.5, 4), 2.0), plaster);
   // window on the far wall, with light behind it
-  b.add(boxGeo(V(-1.6, 1.2, -6.12), V(1.6, 3.2, -5.98), 0.8), lam("roomGlass", () => ({ color: "#dfe9f2" })));
+  b.add(boxGeo(V(-1.1, 1.3, -4.12), V(1.1, 2.7, -3.98), 0.8), lam("roomGlass", () => ({ color: "#dfe9f2" })));
   b.build(R);
   // the long table: chart, papers, a brass ruler, a lamp
   const t = new Batch();
-  t.add(boxGeo(V(-3.4, 0.92, -1.4), V(3.4, 1.0, 1.6), 1.4), wood);
-  for (const [x, z] of [[-3.2, -1.2], [3.2, -1.2], [-3.2, 1.4], [3.2, 1.4]])
-    t.add(boxGeo(V(x - 0.09, 0, z - 0.09), V(x + 0.09, 0.92, z + 0.09), 1.0), wood);
+  t.add(boxGeo(V(-1.5, 0.9, -1.0), V(1.5, 0.97, 0.7), 1.4), wood);
+  for (const [x, z] of [[-1.35, -0.85], [1.35, -0.85], [-1.35, 0.55], [1.35, 0.55]])
+    t.add(boxGeo(V(x - 0.07, 0, z - 0.07), V(x + 0.07, 0.9, z + 0.07), 1.0), wood);
   // the chart itself: a painted sheet with a coastline and a channel
   const chartTex = ctex("chartSheet", 1024, 640, (g, r) => {
     g.fillStyle = "#efe3c6"; g.fillRect(0, 0, 1024, 640);
@@ -211,18 +217,18 @@ export const buildRoom = (R: THREE.Object3D) => {
     g.strokeStyle = "#8a3b2e"; g.lineWidth = 4; g.setLineDash([14, 10]);
     g.beginPath(); g.moveTo(300, 40); g.bezierCurveTo(340, 240, 360, 380, 340, 600); g.stroke();
   });
-  const chart = new THREE.Mesh(new THREE.PlaneGeometry(4.6, 2.9), lam("chartSheet", () => ({ map: chartTex })));
+  const chart = new THREE.Mesh(new THREE.PlaneGeometry(1.6, 1.0), lam("chartSheet", () => ({ map: chartTex })));
   chart.rotation.x = -Math.PI / 2;
-  chart.position.set(0, 1.01, 0.1);
+  chart.position.set(0, 0.98, -0.12);
   R.add(chart);
   t.build(R);
   // lamp: a warm emissive globe over a brass stand
   const lampMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(2.6, 2.1, 1.3) });
-  const globe = new THREE.Mesh(new THREE.SphereGeometry(0.16, 12, 10), lampMat);
-  globe.position.set(2.6, 1.5, 0.9);
+  const globe = new THREE.Mesh(new THREE.SphereGeometry(0.12, 12, 10), lampMat);
+  globe.position.set(1.5, 1.32, 0.55);
   R.add(globe);
-  const post = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.06, 0.5, 8), lam("brass", () => ({ color: "#b08c3f" })));
-  post.position.set(2.6, 1.25, 0.9);
+  const post = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.05, 0.4, 8), lam("brass", () => ({ color: "#b08c3f" })));
+  post.position.set(1.5, 1.12, 0.55);
   R.add(post);
 };
 
@@ -251,7 +257,7 @@ export const buildDeck = (R: THREE.Object3D) => {
 
 // ---------------- Gettysburg, seen from a long way off ----------------
 export const buildField = (R: THREE.Object3D) => {
-  ground(R, lam("grassHD", () => ({ map: grassHD() })), 900, 900, 70);
+  ground(R, lam("grassHD", () => ({ map: grassHD() })), 900, 900, 75);
   const b = new Batch();
   const trees = lam("pigScrub", () => ({ color: "#43643a" }));
   const rnd = rng(23);
