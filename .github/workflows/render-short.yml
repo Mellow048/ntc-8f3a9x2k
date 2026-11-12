@@ -27,6 +27,14 @@ on:
         description: "true = render the stills and stop (build loop, no video)"
         required: false
         default: "false"
+      assemble_only:
+        description: "true = skip rendering and only join the chunks of an earlier run"
+        required: false
+        default: "false"
+      chunks_run:
+        description: "Run id holding the chunk-* artifacts (empty = this run)"
+        required: false
+        default: ""
 
 # The film is rendered in three frame ranges on three runners at once, then joined here. A single
 # software-WebGL pass over 3000 frames takes ~3 h on one runner and can hit the job timeout; three
@@ -34,6 +42,7 @@ on:
 # is a stream copy.
 jobs:
   render:
+    if: inputs.assemble_only != 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -154,34 +163,55 @@ jobs:
 
   assemble:
     needs: render
-    if: inputs.stills_only != 'true'
+    if: always() && inputs.stills_only != 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: read
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v4
+      - name: Install ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -y
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -1
+
+      - name: Fetch chunks
+        uses: actions/download-artifact@v4
         with:
           pattern: chunk-*
           path: chunks
+          run-id: ${{ inputs.chunks_run || github.run_id }}
+          github-token: ${{ github.token }}
 
       - name: Join chunks and mux the mix
         run: |
-          set -e
-          ls -lh chunks/*
+          set -x
+          ls -lhR chunks | head -40
           : > list.txt
-          for p in 0 1 2; do echo "file '$PWD/chunks/chunk-$p/part.mp4'" >> list.txt; done
+          for d in $(ls -d chunks/chunk-* | sort -V); do
+            f="$(find "$d" -name '*.mp4' | head -1)"
+            echo "file '$PWD/$f'" >> list.txt
+          done
           cat list.txt
           ffmpeg -y -f concat -safe 0 -i list.txt -c copy video.mp4
-          if [ -n "${{ github.event.inputs.mix }}" ]; then
-            ffmpeg -y -i video.mp4 -i "${{ github.event.inputs.mix }}" \
+          if [ ! -s video.mp4 ]; then
+            echo "stream copy failed; re-encoding the join"
+            ffmpeg -y -f concat -safe 0 -i list.txt -c:v libx264 -crf 16 -pix_fmt yuv420p -r 30 video.mp4
+          fi
+          if [ -n "${{ inputs.mix }}" ]; then
+            ffmpeg -y -i video.mp4 -i "${{ inputs.mix }}" \
               -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest final.mp4
           else
             cp video.mp4 final.mp4
           fi
-          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate,sample_rate,channels -of default=nw=1 final.mp4
+          ffprobe -v error -show_entries format=duration,size,bit_rate \
+            -show_entries stream=codec_type,codec_name,width,height,r_frame_rate,nb_frames,sample_rate,channels \
+            -of default=nw=1 final.mp4
 
       - name: Publish MP4 to the branch
         env:
@@ -192,7 +222,7 @@ jobs:
           git config user.name "Arena CI"
           git config user.email "ci@arena.ai"
           git add -f shoots/pig-war/PIG_WAR.mp4
-          git commit -m "Render: pig-war short ${{ github.run_id }}" || true
+          git commit -m "Render: pig-war short (run ${{ inputs.chunks_run || github.run_id }})" || true
           git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           for i in 1 2 3; do
             git fetch origin "$GITHUB_REF_NAME" || true
@@ -202,10 +232,31 @@ jobs:
           done
           echo "could not push mp4"; exit 1
 
+      # whatever happened, put the evidence where the build can read it (logs are unreachable from here)
+      - name: Keep the join log
+        if: always()
+        run: |
+          mkdir -p shoots/pig-war/qa
+          {
+            echo "# join log — chunks from run ${{ inputs.chunks_run || github.run_id }}"
+            echo
+            echo '```'
+            ls -lR chunks 2>&1 | head -40
+            cat list.txt 2>&1
+            [ -f video.mp4 ] && ffprobe -v error -show_entries format=duration -of default=nw=1 video.mp4 2>&1
+            [ -f final.mp4 ] && ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate,sample_rate,channels -of default=nw=1 final.mp4 2>&1
+            echo '```'
+          } > shoots/pig-war/qa/join.md
+          git add -A shoots/pig-war/qa/join.md
+          git commit -m "QA: join log for run ${{ inputs.chunks_run || github.run_id }}" || true
+          git remote set-url origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git push origin "HEAD:${GITHUB_REF_NAME}" || true
+
       - name: Upload video
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cartoon-3d-short
+          name: pig-war-final
           path: final.mp4
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 14
