@@ -311,10 +311,13 @@ export const PROSECUTOR: Look = suit('prosecutor', 15, '#1f2a44', '#f0c19a', '#a
 
 // ---------- billboards ----------
 const cache = new Map<string, THREE.CanvasTexture>();
-function texture(look: Look, d: Draw, res: number) {
-  const key = look.id + JSON.stringify(d) + res; let t = cache.get(key); if (t) return t;
-  const cv = document.createElement('canvas'); cv.width = Math.round(600 * res); cv.height = Math.round(1000 * res);
-  drawActor(cv.getContext('2d')!, look, d, res);
+/** a figure that holds a plate out to one side needs a wider sheet of paper, or the plate is cut off at its edge */
+const WIDE = 1.4;
+function texture(look: Look, d: Draw, res: number, wide = false) {
+  const key = look.id + JSON.stringify(d) + res + (wide ? 'w' : ''); let t = cache.get(key); if (t) return t;
+  const cv = document.createElement('canvas'), W = wide ? 600 * WIDE : 600; cv.width = Math.round(W * res); cv.height = Math.round(1000 * res);
+  const g = cv.getContext('2d')!; g.translate(Math.round((W - 600) / 2 * res), 0);
+  drawActor(g, look, d, res);
   t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; cache.set(key, t); return t;
 }
 export type Actor = {
@@ -330,10 +333,11 @@ export function actor(parent: Node, look: Look, states: Record<string, Draw>, x:
   const scale = o.scale ?? 1, res = o.res ?? 0.7, node = new THREE.Group(); node.position.set(x, y, z); parent.add(node);
   const blinks = !look.blank;
   const maps = new Map<string, [THREE.Texture, THREE.Texture]>();
-  for (const [k, d] of Object.entries(states)) maps.set(k, [texture(look, d, res), blinks ? texture(look, {...d, blink: true}, res) : texture(look, d, res)]);
+  const wide = Object.values(states).some((d) => d.prop === 'plate' && !d.wear);
+  for (const [k, d] of Object.entries(states)) maps.set(k, [texture(look, d, res, wide), blinks ? texture(look, {...d, blink: true}, res, wide) : texture(look, d, res, wide)]);
   const first = Object.keys(states)[0];
   const material = new THREE.MeshBasicMaterial({map: maps.get(first)![0], transparent: true, alphaTest: 0.45, side: THREE.DoubleSide});
-  const w = 1.296 * scale, h = 2.16 * scale, geo = new THREE.PlaneGeometry(w, h); geo.translate(0, h * 0.475, 0);     // soles on the ground
+  const w = 1.296 * scale * (wide ? WIDE : 1), h = 2.16 * scale, geo = new THREE.PlaneGeometry(w, h); geo.translate(0, h * 0.475, 0);     // soles on the ground
   const m = new THREE.Mesh(geo, material); m.layers.set(NOINK); node.add(m);
   if (o.shadow !== 0) pool(node, 0.46 * scale, '#000000', o.shadow ?? 0.34, 0, 0, 0.014, false).scale.set(1, 0.55, 1);
   const ph = o.phase ?? look.seed * 1.7, wp = new THREE.Vector3();

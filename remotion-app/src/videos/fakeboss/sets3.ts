@@ -73,20 +73,32 @@ export const petfood: Builder = (root) => {
     g.beginPath(); g.moveTo(40, 30); g.lineTo(w - 40, 30); g.lineTo(w - 22, h - 14); g.lineTo(22, h - 14); g.closePath(); g.fill(); g.stroke();
     g.fillStyle = '#ffd43b'; g.fillRect(36, 30, w - 72, 44); g.strokeRect(36, 30, w - 72, 44);
     paw(g, w / 2, 168, 110, '#fff6dc'); text(g, 'PET FOOD', w / 2, 316, 74, '#ffffff', {stroke: INK, sw: 12, maxWidth: w - 60});
-  }), 1, true), 0.5, 2.5, -1.5));
-  for (const s of [-1, 1]) rod(root, [0.5 + s * 0.3, 1.9, -1.52], [0.5 + s * 0.3, 2.1, -1.52], 0.03, '#8a94a3');
-  palm(root, -1.75, -1.0, 3.0, -0.3, 0.9); palm(root, 1.8, -1.2, 2.7, 0.3, 0.85);
-  roadSign(root, 'FLORIDA', -0.74, 0.3);
+  }), 1, true), -0.6, 2.5, -1.5));
+  for (const s of [-1, 1]) rod(root, [-0.6 + s * 0.3, 1.9, -1.52], [-0.6 + s * 0.3, 2.1, -1.52], 0.03, '#8a94a3');
+  palm(root, 1.5, -0.9, 3.0, -0.3, 0.9);
+  const road = grp(root); roadSign(road, 'FLORIDA', -0.74, 0.3);
   // the dog, and the bowl
   const sit = new THREE.MeshBasicMaterial({map: dogTex(false), transparent: true, alphaTest: 0.4}), upM = new THREE.MeshBasicMaterial({map: dogTex(true), transparent: true, alphaTest: 0.4});
-  const DY = 0.5, dog = soft(panel(root, 1.08, 1.08, sit, 0.2, DY, 0.6)); pool(root, 0.5, '#000000', 0.3, 0.22, 0.62, 0.014, false).scale.set(1, 0.5, 1);
-  cyl(root, 0.22, 0.12, '#e3342f', 0.95, 0.06, 0.82, 0.17); cyl(root, 0.14, 0.01, '#5a1a16', 0.95, 0.122, 0.82);
-  for (const [x, z] of [[1.22, 1.0], [0.7, 1.05], [1.2, 0.62]]) ball(root, 0.03, '#8a5a36', x, 0.03, z);
+  // a pallet of the product, with the dog on top of it
+  const sack = tex('sack', 256, 96, (g, w, h) => {
+    g.fillStyle = '#e8590c'; g.fillRect(0, 0, w, h); g.fillStyle = '#ffd43b'; g.fillRect(0, 0, 44, h); paw(g, 150, 52, 62, '#fff6dc');
+    g.strokeStyle = INK; g.lineWidth = 8; g.strokeRect(0, 0, w, h);
+  });
+  const sackM = tmat(sack), topM = new THREE.MeshLambertMaterial({color: '#e8590c'}), SH = 0.26, TOP = 0.1 + 2 * SH, PX = 0.3, PZ = 0.55;
+  box(root, 2.1, 0.1, 1.0, '#a8824e', PX, 0.05, PZ);
+  for (let lay = 0; lay < 2; lay++) for (let i = 0; i < 3; i++) {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(0.66, SH - 0.012, 0.9), [topM, topM, topM, topM, sackM, sackM]);
+    m.position.set(PX + (i - 1) * 0.68 + (lay ? 0.03 : -0.02), 0.1 + SH * (lay + 0.5), PZ + (lay ? -0.02 : 0.02)); m.castShadow = true; m.receiveShadow = true; root.add(m);
+  }
+  const DX = PX - 0.3, DY = TOP + 0.5, dog = soft(panel(root, 1.08, 1.08, sit, DX, DY, PZ + 0.1)); pool(root, 0.42, '#000000', 0.3, DX, PZ + 0.1, TOP + 0.006, false).scale.set(1, 0.5, 1);
+  const BX = PX + 0.62; cyl(root, 0.2, 0.11, '#e3342f', BX, TOP + 0.055, PZ + 0.2, 0.155); cyl(root, 0.125, 0.01, '#5a1a16', BX, TOP + 0.112, PZ + 0.2);
+  for (const [x, z] of [[BX + 0.26, PZ + 0.36], [BX - 0.3, PZ + 0.4]]) ball(root, 0.03, '#8a5a36', x, TOP + 0.03, z);
   const fly = bundleStream(root, 9, 0.9);
   return {
     light: () => ({...LIGHT.day, sky: '#fff0d0', key: '#ffe6b8'}),
     tick: ({f, shot}) => {
       const gone = shot.v === 'bowl', at = W(132) - 2;
+      road.visible = !gone;                                                                             // in the close shot it would be half a word at the edge
       dog.material = gone && f >= at + 5 ? upM : sit; dog.position.y = DY + (gone ? hop(f, at + 5, 0.07, 8) : 0); dog.rotation.z = 0.02 * Math.sin(f * 0.11);
       if (gone) fly.set(f, at - 6, shot.at + 400, () => [-0.85, 0.8, -1.0], [0.3, 3.3, -0.2], (i) => [2.8, 2.5 + 0.2 * (i % 3), 0.4], 0.036); else fly.hide();
     },
@@ -142,7 +154,7 @@ export const crypto: Builder = (root) => {
   const notes = bundleStream(root, 8, 0.9), coins = coinStream(root, 12, 0.1);
   halo(root, 1.6, '#f2c230', 0.16, 0.9, 1.1, -0.7);
   return {
-    light: () => ({...LIGHT.dark, sky: '#c9c6ff', amb: 1.1, keyI: 0.8}),
+    light: () => ({...LIGHT.dark, sky: '#c9c6ff', amb: 1.45, keyI: 1.0}),
     tick: ({f, shot}) => {
       notes.set(f, shot.at - 30, shot.at + 400, (i) => [-2.4, 2.2 + 0.3 * (i % 3), 0.4], [-1.0, 3.2, -0.2], () => [MX, 1.85, -0.4], 0.05);
       const k = 0.25 + 0.75 * smooth(f, shot.at, shot.at + 34);
@@ -221,14 +233,14 @@ export const gate: Builder = (root) => {
   const plate = panel(line, 0.72, 0.54, stripes, 0, 2.2, GZ - 0.02, Math.PI);
   // the way out
   box(root, 0.9, 0.9, 0.1, '#1a2030', B[0], 1.25, -2.08); panel(root, 0.6, 0.2, smat(signTex('out', 300, 100, '#2fbf71', '#ffffff', [['OUT', 84, 0.56]], {border: '#ffffff'}), 1.1), B[0], 1.86, -2.05);
-  panel(root, 0.8, 0.2, smat(signTex('back-office', 600, 150, '#ffe14a', INK, [['BACK OFFICE', 112, 0.56]], {border: INK}), 1), lerp(A[0], B[0], 0.6), 1.62, lerp(A[2], B[2], 0.6) + 0.08);
+  panel(line, 0.72, 0.2, smat(signTex('back-office', 540, 150, '#ffe14a', INK, [['BACK OFFICE', 104, 0.56]], {border: INK}), 1), 0, 1.62, GZ - 0.06, Math.PI);
   // the wire: a bundle with its price on it
   const cargo = grp(root); bundle(cargo, 1.5, true).position.y = 0.06;
   soft(panel(cargo, 0.74, 0.24, smat(label('wire-sum', 592, 192, [['$2,849,000', 150, 0.54, '#ffffff']]), 1, true), 0, 0.42, 0));
   const ok = soft(panel(root, 0.34, 0.34, smat(tickTex(), 1.1, true), A[0] + 0.1, 1.62, A[2] - 0.2));
   const red = halo(root, 1.3, '#ff3b2a', 0, 0.2, 1.2, -0.7);
   const emp = actor(root, STAFF(3), {idle: {expr: 'neutral', pose: 'type'}, ok: {expr: 'smile', pose: 'point'}, oh: {expr: 'nervous', pose: 'both'}}, -0.6, 0, 0.12, {scale: 1.0, res: 1.2});
-  const clerk = actor(root, STAFF(4), {idle: {expr: 'neutral', pose: 'cross'}, stop: {expr: 'stern', pose: 'hold', prop: 'paddle'}}, 0.82, 0, -0.62, {scale: 1.02, res: 1.2});
+  const clerk = actor(root, STAFF(4), {idle: {expr: 'neutral', pose: 'cross'}, stop: {expr: 'stern', pose: 'hold', prop: 'paddle'}}, 1.06, 0, -0.62, {scale: 1.02, res: 1.2});
   return {
     light: () => ({...LIGHT.cold, amb: 1.35}),
     tick: ({f, cam, shot}) => {

@@ -46,8 +46,8 @@ export const three: Builder = (root) => {
   const partners = [-1.35, -0.42, 0.45, 1.32].map((x, i) => actor(root, PARTNER(i % 3), {a: {}}, x, 0, -1.3, {scale: 0.9, res: 0.8, phase: i * 2.1}).tint('#70758c'));
   const spots = XS.map((x) => ({cone: beam(root, 0.14, 0.62, 5.2, '#fff0c8', 0.05, x, 5.2, Z), floor: pool(root, 0.9, '#fff0c8', 0.3, x, Z)}));
   // the names on the case's title page, as stickers
-  const stick = (key: string, name: string, i: number, y: number, dx: number, at: number, rot: number) => ({m: soft(panel(root, 0.56, 0.32, smat(aliasTex(key, name), 1, true), XS[i] + dx, y, Z + 0.4 + 0.01 * y)), at, rot});
-  const stickers = [stick('rocky', 'ROCKY BALBOA', 0, 0.98, 0.02, W(156), -0.07), stick('cash', 'SUPERMAN CASH', 1, 1.06, -0.05, W(158), 0.06), stick('mission', 'IMPOSSIBLE MISSION', 1, 0.82, 0.06, W(160), -0.05)];
+  const stick = (key: string, name: string, i: number, y: number, dx: number, at: number, rot: number) => ({m: soft(panel(root, 0.56, 0.32, smat(aliasTex(key, name), 1, true), XS[i] + dx, y, Z + 0.45 - 0.03 * y)), at, rot});
+  const stickers = [stick('rocky', 'ROCKY BALBOA', 0, 0.98, 0.02, W(156), -0.07), stick('cash', 'SUPERMAN CASH', 1, 1.17, -0.05, W(158), 0.06), stick('mission', 'IMPOSSIBLE MISSION', 1, 0.93, 0.06, W(160), -0.05)];
   // when and where each was arrested, as the Justice Department gave it on November 5
   const leaves = ([['JUNE', '17', 'SPAIN', W(199)], ['AUGUST', '5', 'SPAIN', W(200)], ['SEPT', '7', 'U.K.', W(202)]] as const).map(([m, d, p, at], i) => ({m: soft(panel(root, 0.5, 0.666, smat(leafTex(m, d, p), 1, true), XS[i], 2.3, Z + 0.05)), at, rot: [-0.06, 0.04, -0.03][i]}));
   return {
@@ -139,10 +139,10 @@ export const paper: Builder = (root) => {
     const M = (s: string, x: number, y: number, size: number, weight: 700 | 900 = 700, align: CanvasTextAlign = 'center') => text(g, s, x, y, size, '#1a1c24', {font: 'Montserrat', weight, align});
     g.fillStyle = '#fffdf6'; g.fillRect(0, 0, w, h);
     M('UNITED STATES DISTRICT COURT', w / 2, 196, 44, 900); M('SOUTHERN DISTRICT OF NEW YORK', w / 2, 252, 44, 900);
-    g.fillStyle = '#1a1c24'; g.fillRect(80, 306, w - 160, 4); g.fillRect(80, 770, w - 160, 4); g.fillRect(560, 340, 4, 400);
+    g.fillStyle = '#1a1c24'; g.fillRect(80, 306, w - 160, 4); g.fillRect(80, 770, w - 160, 4); g.fillRect(596, 340, 4, 400);
     M('UNITED STATES OF AMERICA', 96, 384, 30, 700, 'left'); M('- v. -', 250, 440, 30, 700);
-    M('JACOB SOALL,', 96, 512, 44, 900, 'left'); M('SHARON HAZAN, and', 96, 572, 44, 900, 'left'); M('GUY SHEETRIT,', 96, 632, 44, 900, 'left'); M('Defendants.', 300, 704, 30, 700, 'left');
-    text(g, 'SEALED', 760, 442, 66, '#1a1c24'); text(g, 'SUPERSEDING', 760, 528, 66, '#1a1c24', {maxWidth: 330}); text(g, 'INDICTMENT', 760, 618, 76, '#b3211d', {maxWidth: 340});
+    M('JACOB SOALL,', 96, 512, 40, 900, 'left'); M('SHARON HAZAN, and', 96, 572, 40, 900, 'left'); M('GUY SHEETRIT,', 96, 632, 40, 900, 'left'); M('Defendants.', 300, 704, 30, 700, 'left');
+    text(g, 'SEALED', 762, 442, 62, '#1a1c24'); text(g, 'SUPERSEDING', 762, 528, 62, '#1a1c24', {maxWidth: 290}); text(g, 'INDICTMENT', 762, 618, 72, '#b3211d', {maxWidth: 300});
     M('COUNT ONE', w / 2, 838, 38, 900); M('(Conspiracy to Commit Wire Fraud)', w / 2, 890, 30); M('The Grand Jury charges:', 96, 962, 30, 700, 'left');
     g.fillStyle = '#c3c7d1'; const q = rng(9); for (let i = 0; i < 7; i++) g.fillRect(96, 1010 + i * 38, (w - 192) * (i % 4 === 3 ? 0.5 + q() * 0.3 : 1), 14);
   }), 1), 0, 0, 0));
@@ -158,18 +158,18 @@ export const scales: Builder = (root) => {
   for (const x of [-1.7, 1.7]) box(root, 0.22, 5.6, 0.2, '#4a321e', x, 2.8, -2.05);
   const brass = '#d9b24a', sc = grp(root, 0, 0, -0.8);
   cyl(sc, 0.34, 0.08, brass, 0, 0.04, 0); cyl(sc, 0.05, 2.5, brass, 0, 1.29, 0); ball(sc, 0.1, brass, 0, 2.62, 0);
-  const arm = grp(sc, 0, 2.5, 0); box(arm, 1.56, 0.07, 0.07, brass, 0, 0, 0);
+  const arm = grp(sc, 0, 2.5, 0); box(arm, 1.4, 0.07, 0.07, brass, 0, 0, 0);
   const pans = [-1, 1].map((s) => {
-    const p = grp(arm, s * 0.74, 0, 0);
-    for (const d of [-1, 1]) rod(p, [0, 0, 0], [d * 0.27, -0.78, 0], 0.012, brass);
-    cyl(p, 0.32, 0.05, brass, 0, -0.805, 0, 0.27);
+    const p = grp(arm, s * 0.66, 0, 0);
+    for (const d of [-1, 1]) rod(p, [0, 0, 0], [d * 0.26, -0.78, 0], 0.012, brass);
+    cyl(p, 0.3, 0.05, brass, 0, -0.805, 0, 0.26);
     return p;
   });
   // the indictment stands in one pan, and the scales have not moved
   panel(pans[0], 0.5, 0.65, smat(tex('pan-paper', 300, 390, (g, w, h) => {
     g.fillStyle = '#fffdf6'; g.fillRect(0, 0, w, h); g.strokeStyle = INK; g.lineWidth = 8; g.strokeRect(4, 4, w - 8, h - 8);
     text(g, 'INDICTMENT', w / 2, 70, 58, '#b3211d', {maxWidth: w - 40}); g.fillStyle = '#c3c7d1'; for (let i = 0; i < 8; i++) g.fillRect(34, 128 + i * 30, (w - 68) * (i === 7 ? 0.5 : 1), 12);
-  }), 1), 0, -0.45, 0.02).rotation.x = -0.1;
+  }), 1), 0, -0.45, 0.12);
   const defs = [-0.78, 0, 0.78].map((x, i) => actor(root, DEFENDANT(i), {a: {}}, x, 0, 0.3, {scale: 0.9, res: 1.0}));
   beam(root, 0.3, 1.5, 5.4, '#fff0c8', 0.07, 0, 5.4, 0.1); pool(root, 1.7, '#fff0c8', 0.3, 0, 0.2);
   return {

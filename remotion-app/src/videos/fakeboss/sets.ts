@@ -151,7 +151,7 @@ export const call: Builder = (root) => {
     g.beginPath(); g.moveTo(62, 232); g.lineTo(18, 296); g.lineTo(132, 236); g.closePath(); g.fill(); g.stroke();
     rrect(g, 10, 10, w - 20, 230, 40); g.fill(); g.stroke(); g.fillRect(56, 220, 74, 14);
     text(g, 'WIRE', w / 2, 84, 88, INK); text(g, '$5,000,000', w / 2, 172, 80, '#e3342f', {maxWidth: w - 64});
-  }), 1, true), 0.74, 1.9, 0.1));
+  }), 1, true), 0.68, 1.74, 0.1));
   // his voice, as a row of bars, and a frame round his face: both turn the colour of a fake when the picture breaks up
   const barM = lamp('#ffffff', 1.15), bars = Array.from({length: 11}, (_, i) => soft(panel(root, 0.036, 0.3, barM, 0.42 + i * 0.056, 1.68, 0.14)));
   const frameM = new THREE.MeshBasicMaterial({map: tex('face-frame', 256, 288, (g, w, h) => {
@@ -174,7 +174,7 @@ export const call: Builder = (root) => {
       boss.node.visible = !isLaw && !fakeOn; fake.node.visible = fakeOn; lawyer.node.visible = isLaw;
       boss.show(v === 'hush' ? 'hush' : v === 'wire' && f >= W(6) + 3 ? 'wire' : 'talk'); boss.node.position.y = UP + (v === 'wire' ? hop(f, W(6) + 3, 0.06, 8) : 0);
       fake.show(ph === 3 ? 'off' : 'wear'); fake.node.position.x = ph === 1 || ph === 2 ? shake(f, g1, 0.035, 7) : 0; fake.node.position.y = UP + (ph === 3 ? hop(f, g2, 0.1, 8) : 0);
-      say.visible = v === 'wire' && f >= W(7) - 1; say.scale.setScalar(pop(f, W(7) - 1, 7)); say.rotation.z = 0.035 * Math.sin(f * 0.07);
+      say.visible = v === 'wire' && f >= W(7) - 1; say.scale.setScalar(0.92 * pop(f, W(7) - 1, 7)); say.rotation.z = 0.035 * Math.sin(f * 0.07);
       const voiced = (v === 'voice' && f >= W(15) - 2) || (v === 'reveal' && ph < 3);
       bars.forEach((b, i) => { b.visible = voiced; b.scale.y = 0.22 + 0.78 * Math.abs(Math.sin(f * 0.47 + i * 1.3) * Math.sin(f * 0.13 + i * 0.6)); });
       const framed = (v === 'voice' && f >= W(17) - 2) || (v === 'reveal' && ph < 3);
@@ -200,8 +200,8 @@ export const room: Builder = (root) => {
   box(root, 9, 5.6, 0.3, tmat(tiled(grainTex('room-wall', '#333b4a', 0.1), 4, 3)), 0, 2.8, -2.1);
   rod(root, [-4, 3.1, -1.9], [4, 3.1, -1.9], 0.05, '#4a5262'); rod(root, [1.55, 0, -1.9], [1.55, 3.1, -1.9], 0.04, '#4a5262');
   // a rail with the face that is not in use on it
-  box(root, 1.2, 0.05, 0.05, '#5b6170', -0.85, 2.34, -1.9);
-  const spare = (face: Face) => { const p = soft(panel(root, 0.42, 0.5, smat(plateTex(face), 1.05, true), -0.85, 2.04, -1.88)); rod(root, [-0.85, 2.3, -1.89], [-0.85, 2.34, -1.89], 0.012, '#c9ced6'); return p; };
+  box(root, 1.2, 0.05, 0.05, '#5b6170', -0.85, 2.66, -1.9);
+  const spare = (face: Face) => { const p = soft(panel(root, 0.42, 0.5, smat(plateTex(face), 1.05, true), -0.85, 2.36, -1.88)); rod(root, [-0.85, 2.62, -1.89], [-0.85, 2.66, -1.89], 0.012, '#c9ced6'); return p; };
   const spareBoss = spare('boss'), spareLaw = spare('lawyer');
   table(root, 0, 0.3, 1.9, 0.72, {top: '#3a4254', leg: '#232834', skirt: '#2c3342'});
   laptop(root, 0.12, 0.74, 0.36, {ry: Math.PI, w: 0.52, body: '#2b303c', back: lit('#0d3b44', 1)});
@@ -232,7 +232,7 @@ export const room: Builder = (root) => {
     }),
     out: tile('boss'), law: tile('lawyer'),
   };
-  const scr = new THREE.MeshBasicMaterial({map: T.out}), bub = bubble(root, -0.62, 1.62, 0.2, 0.86, 0.62, scr, [0.5, -0.3]);
+  const scr = new THREE.MeshBasicMaterial({map: T.out}), bub = bubble(root, -0.62, 1.54, 0.2, 0.86, 0.62, scr, [0.5, -0.3]);
   return {
     light: () => ({...LIGHT.dark, sky: '#b9c8ff', amb: 1.05, keyI: 0.7}),
     tick: ({f, cam, shot}) => {
@@ -247,7 +247,7 @@ export const room: Builder = (root) => {
       else if (v === 'script') { law.show('script'); y = hop(f, W(103) - 14, 0.05, 8); }
       gen.node.position.y = law.node.position.y = y;
       bub.g.visible = !!on; if (on) scr.map = T[on];
-      bub.g.scale.setScalar(0.93 * pop(f, at, 7)); bub.g.position.y = 1.62 + 0.012 * Math.sin(f * 0.08);
+      bub.g.scale.setScalar(0.93 * pop(f, at, 7)); bub.g.position.y = 1.54 + 0.012 * Math.sin(f * 0.08);
       (glow.material as THREE.MeshBasicMaterial).opacity = v === 'script' ? 0.08 : 0.2 + 0.06 * Math.sin(f * 0.15);
       gen.tick(f, cam); law.tick(f, cam);
     },

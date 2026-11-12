@@ -39,7 +39,7 @@ const NameTag: React.FC<{f: number; at: number; name: string; role: string; top?
   return (
     <div style={{...row(top), flexDirection: 'column', alignItems: 'center'}}>
       <div style={{...anton, ...sticker(PAPER, INK), fontSize: `${size}cqw`, padding: '0.02em 0.3em 0', transform: `scale(${k}) rotate(-2deg)`, zIndex: 1}}>{name}</div>
-      <div style={{...mont(900), ...sticker(YELLOW, INK), fontSize: '3.5cqw', padding: '0.25em 0.7em', marginTop: '-0.35em', letterSpacing: '0.04em', whiteSpace: 'nowrap', transform: `translateX(${slide}cqw) rotate(1deg)`, opacity: c01((f - at - 2) / 3), zIndex: 2}}>{role}</div>
+      <div style={{...mont(900), ...sticker(YELLOW, INK), fontSize: `${Math.min(3.5, 80 / (0.74 * role.length + 1.4))}cqw`, padding: '0.25em 0.7em', marginTop: '-0.35em', letterSpacing: '0.04em', whiteSpace: 'nowrap', transform: `translateX(${slide}cqw) rotate(1deg)`, opacity: c01((f - at - 2) / 3), zIndex: 2}}>{role}</div>
     </div>
   );
 };
@@ -53,7 +53,7 @@ const Quote: React.FC<{f: number; at: number; text: React.ReactNode; by: string;
         <div style={{...mont(900), fontSize: `${size}cqw`, lineHeight: 1.16, color: INK, textAlign: 'center', letterSpacing: '-0.01em'}}>{text}</div>
       </div>
       <div style={{display: 'flex', justifyContent: 'flex-end', marginTop: '-1.4cqw', paddingRight: '3cqw'}}>
-        <div style={{...mont(900), ...sticker(INK, '#ffffff'), border: `0.5cqw solid ${INK}`, boxShadow: 'none', fontSize: '3.1cqw', padding: '0.9cqw 2.2cqw', letterSpacing: '0.05em', whiteSpace: 'nowrap', transform: 'rotate(1.5deg)'}}>{by}</div>
+        <div style={{...mont(900), ...sticker(INK, '#ffffff'), border: `0.5cqw solid ${INK}`, boxShadow: 'none', fontSize: `${Math.min(3.1, 72 / (0.7 * by.length + 1.4))}cqw`, padding: '0.9cqw 2.2cqw', letterSpacing: '0.05em', whiteSpace: 'nowrap', transform: 'rotate(1.5deg)'}}>{by}</div>
       </div>
     </div>
   </div>
@@ -152,8 +152,9 @@ export const Overlays: React.FC = () => {
       {during(1) || during(2) ? <Call f={f} from={S(1)[0]} /> : null}
       {during(3) || during(4) ? <Call f={f} from={S(3)[0]} leave={W(19)} /> : null}
       {during(18) ? <Call f={f} from={S(18)[0]} /> : null}
-      {/* lines 2-12 are one side's account, from an indictment that no court has tested: say so for as long as it runs */}
-      {f >= S(5)[0] && f < S(41)[0] ? <Tab f={f} at={S(5)[0]} text="PROSECUTORS' ACCOUNT" /> : null}
+      {/* lines 2-12 are one side's account, from an indictment that no court has tested: say so for as long as it runs.
+          Shot 5 is the prosecutor himself, with his office on the tag: the tab comes in with what he says. */}
+      {f >= S(6)[0] && f < S(41)[0] ? <Tab f={f} at={S(6)[0]} text="PROSECUTORS' ACCOUNT" /> : null}
 
       {during(2, W(12)) ? <Pill f={f} at={W(12)} text="“KEEP THE TRANSACTION SECRET” · INDICTMENT" size={3.3} /> : null}
       {during(4, W(20) - 1) ? <Stamp f={f} at={W(20) - 1} text="MADE WITH A.I." top="9.5%" size={12.5} /> : null}
@@ -168,12 +169,12 @@ export const Overlays: React.FC = () => {
       {during(10, W(49)) ? <Pill f={f} at={W(49)} text="UNSEALED NOV 5, 2026 · NOT TESTED IN COURT" /> : null}
       {during(11, W(55) + 4) ? <Pill f={f} at={W(55) + 4} text="TO STAFF WHO COULD APPROVE A WIRE · INDICTMENT" size={3.2} /> : null}
       {during(12, W(61)) ? <Pill f={f} at={W(61)} text="ONE EMAIL, OCT 8, 2024 · INDICTMENT" /> : null}
-      {during(13, W(63) - 2) ? <Quote f={f} at={W(63) - 2} text={<>We need to <Hot>loop you into a deal</Hot> we’ve been working on.</>} by="EMAIL QUOTED IN THE INDICTMENT · OCT 8, 2024" size={5} /> : null}
+      {during(13, W(63) - 2) ? <Quote f={f} at={W(63) - 2} text={<>We need to <Hot>loop you into a deal</Hot> we’ve been working on.</>} by="EMAIL QUOTED IN THE INDICTMENT" size={5} /> : null}
       {during(14, W(76)) ? <Pill f={f} at={W(76)} text="“A PHONE OR VIDEO CALL” · INDICTMENT" /> : null}
       {during(15, W(80)) ? <Pill f={f} at={W(80)} text="“MIMIC THE VOICE” · INDICTMENT" /> : null}
       {during(16, W(82)) ? <Pill f={f} at={W(82)} text="“AND AT TIMES THE IMAGE” · INDICTMENT" /> : null}
       {during(17, W(85) + 3) ? <Pill f={f} at={W(85) + 3} text="“TO CONVINCE THE VICTIM EMPLOYEE” · INDICTMENT" size={3.2} /> : null}
-      {during(18, W(91)) ? <NameTag f={f} at={W(91)} name="“OUR LAWYER”" role="THE ONE WHO ASKS FOR THE WIRE" /> : null}
+      {during(18, W(91)) ? <NameTag f={f} at={W(91)} name="THE LAWYER" role="“OUR LEGAL REPRESENTATIVE” · THE EMAIL" /> : null}
       {during(19, W(92)) ? <Pill f={f} at={W(92)} text="“IMPERSONATED ATTORNEYS” · INDICTMENT" /> : null}
       {during(20, W(96)) ? <Pill f={f} at={W(96)} text="OFTEN FROM A TOP-50 LAW FIRM · INDICTMENT" /> : null}
       {during(21, W(101)) ? <Pill f={f} at={W(101)} text="U.S. ATTORNEY'S OFFICE, NOV 5" /> : null}
