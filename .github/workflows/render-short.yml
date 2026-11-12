@@ -31,6 +31,8 @@ on:
 jobs:
   render:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     timeout-minutes: 180
     env:
       REMOTION_TMP: ${{ github.workspace }}/.remotion-tmp
@@ -98,6 +100,20 @@ jobs:
           ffmpeg -y -i remotion-app/out/final.mp4 -i "${{ github.event.inputs.mix }}" \
             -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -shortest remotion-app/out/final-muxed.mp4
           mv remotion-app/out/final-muxed.mp4 remotion-app/out/final.mp4
+
+      # Artifacts live on blob storage, which the build environment cannot reach; in stills-only mode the
+      # stills are also committed to the branch so the frames can be reviewed straight from the repo.
+      - name: Archive stills to the branch
+        if: inputs.stills_only == 'true'
+        run: |
+          mkdir -p shoots/pig-war/stills
+          rm -f shoots/pig-war/stills/*.png
+          cp remotion-app/out/stills/*.png shoots/pig-war/stills/
+          git config user.name "Arena CI"
+          git config user.email "ci@arena.ai"
+          git add -A shoots/pig-war/stills
+          git commit -m "CI: stills from run ${{ github.run_id }}" || echo "nothing to commit"
+          git push origin HEAD:${{ github.ref_name }}
 
       - name: Upload video
         if: inputs.stills_only != 'true'
