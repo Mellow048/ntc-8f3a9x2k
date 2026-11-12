@@ -8,6 +8,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 - music after ducking: 5.7 LU under the voice while someone speaks, 5.6 LU under it over the whole film
 - the same above 300 Hz (what a phone speaker plays): 6.2 LU under the voice; loudest 200 ms under a spoken word 2.9 LU under it
 - voice over the bed while speaking: median 5.2 LU, 10th percentile 1.9 LU
+- word by word, the voice over music and effects across each word's own span: median 5.8 LU, 10th percentile 2.4 LU, lowest -3.4 LU ('the', word 202); 7 of 235 words under 0; 'it' (word 55) is lifted 5 dB with the bed 4 dB down under it
 
 | time s | frame | sound | why |
 |---|---|---|---|
@@ -31,7 +32,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |   8.47 |  254 | stamp thud | OVER 4X THE LAST ONE stamp |
 |   8.50 |  255 | ping | the old record stacked up 3 times |
 |   8.70 |  261 | ping | the old record stacked up 4 times |
-|   8.90 |  267 | ping | the old record stacked up 5 times |
+|   8.90 |  267 | ping | the sliver on top of four: what 'over' four times means |
 |   9.20 |  276 | pop | the last one: Bybit, 2025 |
 |  10.60 |  318 | typing | an engineer at work |
 |  10.90 |  327 | pop | calendar: June 2026 |

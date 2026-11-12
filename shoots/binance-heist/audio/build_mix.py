@@ -12,8 +12,10 @@ films use; the tunes, their instruments and every effect cue are this film's own
 The score: a caper in C minor, 130 bpm, swung: a walking plucked bass, a ride cymbal, finger snaps, damped vibraphone
 chords and a muted-brass riff that climbs C, E flat, F, F sharp, G. The fake company has its own music: a bossa in
 E flat major, the kind a switchboard plays while you hold, which runs under both interviews and stops dead when the
-painted office falls over. Nothing plays under the three statements about who did it. The film ends on the first
-four notes of the riff, which stop on the F sharp: a question.
+painted office falls over. No tune plays under the three statements about who did it: a hit and a drum roll for the
+FBI, then one thin held chord under North Korea's reply and one under the president's sentence (with nothing at all
+there, the render check reports a hole in the sound). The film ends on the first four notes of the riff, which stop
+on the F sharp: a question.
 """
 from __future__ import annotations
 
@@ -47,6 +49,12 @@ MUSIC_CEIL = -4.3              # while someone speaks, no 200 ms of music may be
 MUSIC_CEIL_FULL = -3.4         # the same for the whole spectrum, relative to the voice's programme loudness: a timpani roll or a full
                                # bar of kick and bass under a word is held to the level of the bed
 DUCK_DB = -4.0                 # how far the music dips under speech (it comes up for the breaths and the ending)
+# Words the read all but swallows, by word number: (lift for the voice, dip for music and effects) in dB, for that word only.
+# "it" in "Security caught it." trails off 12 LU under the rest of the read and a beat of the bass lands on it: over the word's
+# own 150 ms, music and effects were 7.9 LU louder than the voice, against 3.4 for the worst word of the approved freezer film
+# by the same measure (word_margins below; the last line of the cue sheet's header). Lifted and cleared, it reads 0.4 over them.
+# Found after the third render, by measuring; the first three renders have the word covered.
+WEAK_WORDS = {55: (5.0, -4.0)}
 
 WORDS = json.load(open(os.path.join(SHOOT, "voice", "words.json")))
 STORY = open(os.path.join(REPO, "remotion-app", "src", "videos", "binance", "story.ts")).read()
@@ -523,7 +531,8 @@ def build_sfx(voice_lufs):
     # 2: the record
     fx(cut_t(3) + 0.1, slide(220, 660, 0.72), -15, 0.2, "rising tone", "the tall pile comes up out of the floor")
     for i in range(4):
-        fx(Wt(28) + f_(2 + i * 6), ding(1047 * 2 ** (i / 6), 0.5), -12.5, -0.3 + 0.1 * i, "ping", f"the old record stacked up {i + 2} times")
+        fx(Wt(28) + f_(2 + i * 6), ding(1047 * 2 ** (i / 6), 0.5), -12.5, -0.3 + 0.1 * i, "ping",
+           f"the old record stacked up {i + 2} times" if i < 3 else "the sliver on top of four: what 'over' four times means")
     # 3: June
     keys((36, 37))
     EVENTS.append((Wt(36), "typing", "an engineer at work"))
@@ -610,6 +619,28 @@ def build_sfx(voice_lufs):
 
 
 # ------------------------------------------------------------------------------------------------ mix
+def word_env(i, db, lead=0.05, tail=0.04, ramp=0.03):
+    """a gain curve that is `db` over narration word i (from `lead` before it to `tail` after it) and 0 dB everywhere else"""
+    a, b = WORDS[i]["start"] - lead, WORDS[i]["end"] + tail
+    t = np.arange(N) / SR
+    k = (0.5 - 0.5 * np.cos(np.pi * np.clip((t - a + ramp) / ramp, 0, 1))) * (0.5 - 0.5 * np.cos(np.pi * np.clip((b + ramp - t) / ramp, 0, 1)))
+    return dbg(db * k)
+
+
+def word_margins(voice, bed):
+    """for every narration word, the loudness of the voice minus that of everything else, both over the word's own span
+    (30 ms off each end, never less than 120 ms). A word that reads well under zero is covered by what plays with it."""
+    kv, kb = kfilt(voice), kfilt(bed)
+    lu = lambda x, a, b: -0.691 + 10 * np.log10(max(1e-12, float((x[:, ns(a): ns(b)] ** 2).mean(axis=1).sum())))
+    out = []
+    for w in WORDS:
+        a, b = w["start"] + 0.03, w["end"] - 0.03
+        if b - a < 0.12:
+            a, b = (a + b) / 2 - 0.06, (a + b) / 2 + 0.06
+        out.append(lu(kv, a, b) - lu(kb, a, b))
+    return np.array(out)
+
+
 def speech_gain(voice, depth_db, att=0.05, rel=0.25):
     """1 where nobody speaks, `depth_db` under the voice. Keyed from the voice itself: the read is cut so tight that
     the word timings leave no gaps."""
@@ -722,6 +753,10 @@ def build_stems():
     DIAG.update(duck=duck, talk=talk, v_band=v_band, before_ride=raw * dbg(static), after_ride=music.copy())
     music *= end[None, :]
     sfx = build_sfx(v_lufs) * end[None, :]
+    for i, (up, down) in WEAK_WORDS.items():                      # after every level is set: nothing else in the mix moves
+        voice = voice * word_env(i, up)[None, :]
+        g = word_env(i, down, ramp=0.05)[None, :]
+        music, sfx = music * g, sfx * g
     return voice, music, sfx, v_lufs, speaking
 
 
@@ -740,6 +775,8 @@ def main():
     for w in WORDS:
         spoken |= (tc >= w["start"] + 0.03) & (tc <= w["end"] - 0.03)
     margin = (mv - mb)[spoken & (mv > v_lufs - 10)]
+    per = word_margins(voice * gain, bed * gain)
+    low = int(np.argmin(per))
     report = [
         f"- length {mix.shape[1] / SR:.3f} s ({TOTAL} frames at {FPS} fps), 48 kHz stereo, 16-bit",
         f"- integrated loudness {integrated(mix):.1f} LUFS, true peak {true_peak(mix):.1f} dBTP, limiter at most {-20 * np.log10(gr.min()):.1f} dB",
@@ -748,6 +785,9 @@ def main():
         f"- the same above 300 Hz (what a phone speaker plays): {DIAG['v_band'] - integrated(speech_band(music)[:, speaking]):.1f} LU under the voice; "
         f"loudest 200 ms under a spoken word {DIAG['v_band'] - short_loudness(speech_band(music))[DIAG['talk'] > 0.9].max():.1f} LU under it",
         f"- voice over the bed while speaking: median {np.median(margin):.1f} LU, 10th percentile {np.percentile(margin, 10):.1f} LU",
+        f"- word by word, the voice over music and effects across each word's own span: median {np.median(per):.1f} LU, 10th percentile {np.percentile(per, 10):.1f} LU, "
+        f"lowest {per[low]:.1f} LU ('{WORDS[low]['word']}', word {low}); {int((per < 0).sum())} of {len(per)} words under 0"
+        + "".join(f"; '{WORDS[i]['word']}' (word {i}) is lifted {up:g} dB with the bed {-down:g} dB down under it" for i, (up, down) in WEAK_WORDS.items()),
     ]
     print("\n".join(report))
     print("buses, LUFS before the mix (caper with riff, hold music):", {k: (round(float(x), 1), round(float(y), 1)) for k, (x, y) in DIAG["buses"].items()})
