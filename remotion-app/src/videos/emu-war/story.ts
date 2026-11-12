@@ -27,18 +27,40 @@ export const glide = (u: number) => { const x = clamp01(u); return x * x * x * (
 
 /** light preset keys (see lights in world.ts) */
 export type Light = "day" | "golden" | "dusk";
-export type ShotDef = { id: number; a: number; b: number; light: Light };
+export type ShotDef = { id: number; a: number; b: number; light: Light; parent: number };
 export const SHOTS: ShotDef[] = [
-  { id: 1, a: 0, b: 333, light: "golden" },   // 0.00-11.10 hook + setting
-  { id: 2, a: 333, b: 600, light: "day" },    // 11.10-20.00 the ask, the truck
-  { id: 3, a: 600, b: 789, light: "day" },    // 20.00-26.31 the dam, the guns
-  { id: 4, a: 789, b: 1002, light: "day" },   // 26.31-33.40 scatter + chase
-  { id: 5, a: 1002, b: 1170, light: "day" },  // 33.40-39.01 the count
-  { id: 6, a: 1170, b: 1363, light: "golden" },// 39.01-45.42 not a target
-  { id: 7, a: 1363, b: 1601, light: "day" },  // 45.42-53.38 fifty kilos, the hose
-  { id: 8, a: 1601, b: 1759, light: "dusk" }, // 53.38-58.64 the line
-  { id: 9, a: 1759, b: 1984, light: "dusk" }, // 58.64-66.12 withdrawal, papers, permit
-  { id: 10, a: 1984, b: TOTAL, light: "golden" },// 66.12-73.20 closer
+  { id: 1, a: 0, b: 46, light: "golden", parent: 3 },
+  { id: 2, a: 46, b: 99, light: "golden", parent: 3 },
+  { id: 3, a: 99, b: 125, light: "golden", parent: 3 },
+  { id: 4, a: 130, b: 198, light: "golden", parent: 1 },
+  { id: 5, a: 203, b: 273, light: "day", parent: 1 },
+  { id: 6, a: 273, b: 328, light: "day", parent: 1 },
+  { id: 7, a: 333, b: 408, light: "day", parent: 2 },
+  { id: 8, a: 408, b: 458, light: "day", parent: 9 },
+  { id: 9, a: 462, b: 528, light: "day", parent: 2 },
+  { id: 10, a: 528, b: 595, light: "day", parent: 5 },
+  { id: 11, a: 600, b: 681, light: "day", parent: 3 },
+  { id: 12, a: 681, b: 718, light: "day", parent: 3 },
+  { id: 13, a: 722, b: 784, light: "day", parent: 3 },
+  { id: 14, a: 789, b: 855, light: "day", parent: 4 },
+  { id: 15, a: 855, b: 911, light: "day", parent: 4 },
+  { id: 16, a: 916, b: 957, light: "day", parent: 4 },
+  { id: 17, a: 957, b: 993, light: "day", parent: 4 },
+  { id: 18, a: 1002, b: 1114, light: "day", parent: 5 },
+  { id: 19, a: 1119, b: 1163, light: "day", parent: 5 },
+  { id: 20, a: 1170, b: 1265, light: "golden", parent: 6 },
+  { id: 21, a: 1272, b: 1280, light: "golden", parent: 6 },
+  { id: 22, a: 1285, b: 1357, light: "golden", parent: 6 },
+  { id: 23, a: 1362, b: 1497, light: "golden", parent: 6 },
+  { id: 24, a: 1502, b: 1568, light: "day", parent: 7 },
+  { id: 25, a: 1568, b: 1596, light: "day", parent: 7 },
+  { id: 26, a: 1601, b: 1687, light: "dusk", parent: 8 },
+  { id: 27, a: 1692, b: 1753, light: "dusk", parent: 3 },
+  { id: 28, a: 1759, b: 1818, light: "dusk", parent: 9 },
+  { id: 29, a: 1823, b: 1906, light: "dusk", parent: 9 },
+  { id: 30, a: 1911, b: 1978, light: "dusk", parent: 9 },
+  { id: 31, a: 1983, b: 2052, light: "dusk", parent: 9 },
+  { id: 32, a: 2057, b: 2196, light: "golden", parent: 10 },
 ];
 export const FLASH_AT = -100; // no flash in this film (kept for the composition shape)
 export const shotAt = (f: number) => SHOTS.find((s) => f >= s.a && f < s.b) ?? SHOTS[SHOTS.length - 1];
@@ -90,57 +112,10 @@ const SUBJ = {
   water: [-4.6, 0.85, -6.6] as V3,      // the closer: the bird back at the dam
 };
 
-const CAMS: Record<number, Key[]> = {
-  1: [
-    { f: 0, s: look(SUBJ.fence, 5.2, 1.25, 44, 0.42) },
-    { f: 150, s: look(SUBJ.fence, 4.2, 1.1, 40, 0.36) },
-    { f: 250, s: look([-0.6, 0.9, 1.0], 3.4, 1.0, 37, 0.30) },
-  ],
-  2: [
-    { f: 333, s: look(SUBJ.shed, 7.4, 1.6, 42, -0.72) },
-    { f: 430, s: look(SUBJ.shed, 6.2, 1.5, 38, -0.66) },
-    { f: 500, s: look(SUBJ.shed, 5.4, 1.45, 40, -0.60, -0.02) },
-  ],
-  3: [
-    { f: 600, s: look(SUBJ.dam, 9.6, 1.45, 42, 0.92) },
-    { f: 690, s: look(SUBJ.dam, 7.8, 1.3, 34, 0.88) },
-  ],
-  4: [
-    { f: 789, s: look(SUBJ.scatter, 7.8, 1.55, 46, 0.5) },
-    { f: 880, s: look(SUBJ.chase, 7.0, 1.9, 46, 0.95, -0.04) },
-    { f: 960, s: look(SUBJ.chase, 5.6, 1.85, 40, 0.9, -0.03) },
-  ],
-  5: [
-    { f: 1002, s: look(SUBJ.tally, 4.4, 1.2, 40, 0.62) },
-    { f: 1090, s: look(SUBJ.tally, 3.4, 1.05, 33, 0.58, 0.02) },
-  ],
-  6: [
-    { f: 1170, s: look(SUBJ.solo, 4.6, 1.25, 36, 0.22) },
-    { f: 1290, s: look(SUBJ.solo, 3.9, 1.15, 31, 0.2, -0.02) },
-  ],
-  7: [
-    { f: 1363, s: look(SUBJ.solo, 4.4, 1.2, 35, 0.2) },
-    { f: 1440, s: look(SUBJ.hose, 2.4, 1.0, 40, 0.1) },
-    { f: 1540, s: look(SUBJ.hose, 1.9, 0.85, 34, 0.08, 0.03) },
-  ],
-  8: [
-    { f: 1601, s: look(SUBJ.rank, 9.2, 1.45, 38, -0.85) },
-    { f: 1700, s: look(SUBJ.rank, 7.6, 1.35, 32, -0.8) },
-  ],
-  9: [
-    { f: 1759, s: look(SUBJ.leaving, 8.4, 1.7, 44, -0.5) },
-    { f: 1820, s: look([9.8, 1.7, -4.4], 5.0, 1.75, 36, -0.15) },
-    { f: 1900, s: look([9.8, 1.7, -4.4], 3.6, 1.7, 30, -0.1, 0.02) },
-    { f: 1928, s: look([4.6, 1.15, 0.6], 2.4, 1.25, 34, 0.18) },
-  ],
-  10: [
-    { f: 1984, s: look(SUBJ.water, 5.4, 1.25, 38, 0.66) },
-    { f: 2100, s: look(SUBJ.water, 4.4, 1.15, 32, 0.6) },
-  ],
-};
+
 /** the last key of every shot is pulled onto the shot's last frame, so a shot never sits still at the end */
 const anchored = (id: number): Key[] => {
-  const keys = (CAMS[id] ?? CAMS[1]).map((k) => ({ f: k.f, s: k.s }));
+  const keys = table(id).map((k) => ({ f: k.f, s: k.s }));
   const shot = SHOTS[id - 1];
   if (shot && keys.length > 1) {
     const last = keys[keys.length - 1];
@@ -153,6 +128,7 @@ const anchored = (id: number): Key[] => {
   return keys;
 };
 export const camAt = (id: number, f: number): Cam => run(anchored(id), f);
+const table = (id: number): Key[] => (EMU_CAMS[id] ?? EMU_CAMS[1]);
 
 // ---------------------------------------------------------------- the world
 /** Fixed anchors, shared by world.ts and the camera keys above. */
@@ -344,3 +320,136 @@ export function dofAt(f: number): { cInf: number; focus?: (f: number) => V3 } {
   return { cInf };
 }
 export const FOREGROUND = false;
+
+// ---- the camera table: two keys per shot, straight linear between them. A different picture and a
+// different distance for every line (see WHY-THE-REFERENCES-WORK.md and SHOT-PLAN.md).
+const EMU_CAMS: Record<number, Key[]> = {
+  1: [
+    { f: 0, s: look([A.gun[0], 1.05, A.gun[1]], 3.2, 1.15, 34, 0.4) },
+    { f: 45, s: look([A.gun[0], 1.05, A.gun[1]], 2.6, 1.1, 30, 0.35) },
+  ],
+  2: [
+    { f: 46, s: look([A.dam[0], 1.0, A.dam[1]], 9, 1.3, 44, 0.9) },
+    { f: 98, s: look([A.dam[0], 1.0, A.dam[1]], 7.4, 1.25, 38, 1.25) },
+  ],
+  3: [
+    { f: 99, s: look([A.dam[0], 1.05, A.dam[1]], 6.5, 1.05, 30, 0.55) },
+    { f: 124, s: look([A.dam[0], 1.05, A.dam[1]], 4.2, 1.05, 24, 0.5) },
+  ],
+  4: [
+    { f: 130, s: look([0.4, 1.2, 0.2], 26, 9, 46, 0.9) },
+    { f: 197, s: look([0.4, 1.2, 0.2], 20, 4.5, 42, 0.85) },
+  ],
+  5: [
+    { f: 203, s: look(SUBJ.fence, 4, 1.15, 36, 0.9) },
+    { f: 272, s: look(SUBJ.fence, 4, 1.12, 36, 0.35) },
+  ],
+  6: [
+    { f: 273, s: look(SUBJ.fence, 5.5, 1.2, 38, 0.3) },
+    { f: 327, s: look(SUBJ.fence, 4.6, 1.15, 34, 0.28) },
+  ],
+  7: [
+    { f: 333, s: look(SUBJ.shed, 6.5, 1.5, 34, -0.7) },
+    { f: 407, s: look(SUBJ.shed, 4.8, 1.4, 30, -0.66) },
+  ],
+  8: [
+    { f: 408, s: look([4.6, 1.15, 0.6], 1.7, 1.3, 28, 0.15) },
+    { f: 457, s: look([4.6, 1.15, 0.6], 1.25, 1.42, 24, 0.12) },
+  ],
+  9: [
+    { f: 462, s: look([A.trackX, 1.1, 2.0], 8.5, 1.6, 38, -1.1) },
+    { f: 527, s: look([A.trackX, 1.1, 2.0], 5.8, 1.45, 34, -1) },
+  ],
+  10: [
+    { f: 528, s: look([A.crate[0], 0.9, A.crate[1]], 3.4, 1.1, 30, 0.6) },
+    { f: 594, s: look([A.crate[0], 0.9, A.crate[1]], 2.3, 1, 26, 0.55) },
+  ],
+  11: [
+    { f: 600, s: look([A.dam[0], 1.4, A.dam[1]], 16, 2.2, 44, 0.8) },
+    { f: 680, s: look([A.dam[0], 1.4, A.dam[1]], 13, 1.2, 40, 0.75) },
+  ],
+  12: [
+    { f: 681, s: look([A.gun[0], 1.1, A.gun[1]], 6, 1.2, 32, 0.5) },
+    { f: 717, s: look([A.gun[0], 1.1, A.gun[1]], 4.4, 1.15, 28, 0.46) },
+  ],
+  13: [
+    { f: 722, s: look([A.gun[0], 1.0, A.gun[1]], 2.3, 1.05, 26, 0.25) },
+    { f: 783, s: look([A.gun[0], 1.0, A.gun[1]], 1.5, 1.02, 22, 0.22) },
+  ],
+  14: [
+    { f: 789, s: look(SUBJ.scatter, 9, 1.5, 44, 0.2) },
+    { f: 854, s: look(SUBJ.scatter, 6.5, 1.4, 38, 0.9) },
+  ],
+  15: [
+    { f: 855, s: look([A.trackX, 1.2, 4.0], 9, 1.7, 40, -0.9) },
+    { f: 910, s: look([A.trackX, 1.2, 4.0], 7, 1.55, 34, -0.8) },
+  ],
+  16: [
+    { f: 916, s: look(SUBJ.chase, 7, 1.5, 38, 0.9) },
+    { f: 956, s: look(SUBJ.chase, 6, 1.45, 34, 1.1) },
+  ],
+  17: [
+    { f: 957, s: look(SUBJ.chase, 5.5, 1.2, 34, 0.2) },
+    { f: 992, s: look(SUBJ.chase, 5, 1.18, 30, 0.18) },
+  ],
+  18: [
+    { f: 1002, s: look(SUBJ.tally, 5, 1.1, 34, 0.5) },
+    { f: 1113, s: look(SUBJ.tally, 4.2, 1.05, 30, 0.75) },
+  ],
+  19: [
+    { f: 1119, s: look([A.crate[0], 1.0, A.crate[1]], 2.6, 1, 28, 0.55) },
+    { f: 1162, s: look([A.crate[0], 1.0, A.crate[1]], 1.8, 0.98, 24, 0.52) },
+  ],
+  20: [
+    { f: 1170, s: look(SUBJ.solo, 5.5, 1.1, 32, 0.2) },
+    { f: 1264, s: look(SUBJ.solo, 4.6, 1.08, 28, 0.18) },
+  ],
+  21: [
+    { f: 1272, s: look(SUBJ.solo, 4.6, 1.05, 30, 0.15) },
+    { f: 1279, s: look(SUBJ.solo, 3.2, 1.05, 24, 0.14) },
+  ],
+  22: [
+    { f: 1285, s: look(SUBJ.solo, 4.2, 1.15, 30, 0.3) },
+    { f: 1356, s: look(SUBJ.solo, 4, 1.15, 30, 0.55) },
+  ],
+  23: [
+    { f: 1362, s: look(SUBJ.solo, 3.6, 1.6, 30, 0.1) },
+    { f: 1496, s: look(SUBJ.solo, 3, 0.7, 26, 0.1) },
+  ],
+  24: [
+    { f: 1502, s: look(SUBJ.hose, 2.6, 1, 36, 0.1) },
+    { f: 1567, s: look(SUBJ.hose, 2, 0.8, 30, 0.08) },
+  ],
+  25: [
+    { f: 1568, s: look(SUBJ.hose, 2, 0.8, 30, 0.1) },
+    { f: 1595, s: look(SUBJ.hose, 3, 1.1, 36, 0.1) },
+  ],
+  26: [
+    { f: 1601, s: look(SUBJ.rank, 6.5, 1.3, 32, -0.9) },
+    { f: 1686, s: look(SUBJ.rank, 6, 1.28, 30, -0.6) },
+  ],
+  27: [
+    { f: 1692, s: look([A.dam[0], 1.3, A.dam[1]], 10, 1.4, 40, 1.1) },
+    { f: 1752, s: look([A.dam[0], 1.3, A.dam[1]], 8, 1.35, 36, 1.05) },
+  ],
+  28: [
+    { f: 1759, s: look(SUBJ.leaving, 10, 1.6, 40, -0.5) },
+    { f: 1817, s: look(SUBJ.leaving, 13, 1.6, 34, -0.5) },
+  ],
+  29: [
+    { f: 1823, s: look([9.8, 1.7, -4.4], 3.2, 1.75, 30, -0.15) },
+    { f: 1905, s: look([9.8, 1.7, -4.4], 2.4, 1.72, 26, -0.12) },
+  ],
+  30: [
+    { f: 1911, s: look([4.6, 1.15, 0.6], 2, 1.25, 28, 0.18) },
+    { f: 1977, s: look([4.6, 1.15, 0.6], 1.6, 1.22, 24, 0.16) },
+  ],
+  31: [
+    { f: 1983, s: look([4.6, 1.2, 0.6], 2.2, 1.55, 30, 0.18) },
+    { f: 2051, s: look([4.6, 1.2, 0.6], 2.2, 1, 26, 0.16) },
+  ],
+  32: [
+    { f: 2057, s: look(SUBJ.water, 7.5, 1.2, 34, 0.6) },
+    { f: 2195, s: look(SUBJ.water, 6.5, 1.18, 30, 0.58) },
+  ],
+};

@@ -9,7 +9,7 @@
 import * as THREE from "three";
 import { NOINK } from "./ink";
 import { EmuCard, ManCard, DIGGER, OFFICER_OUT, FARMER_OUT } from "./cast";
-import { FPS, A, camAt, crewAt, dustAt, flockAt, gunAt, truckAt, dofAt, SOLO, SOLO_WATER, RUNNER, type Light } from "./story";
+import { FPS, A, SHOTS, camAt, crewAt, dustAt, flockAt, gunAt, truckAt, dofAt, SOLO, SOLO_WATER, RUNNER, type Light } from "./story";
 
 /** Deterministic noise for every procedural texture and prop jitter.
  *  The film is rendered in parallel chunks on separate machines: an unseeded Math.random() makes each chunk's
@@ -649,7 +649,9 @@ export class World {
     this.fog.far = P.fog[2] as number;
   }
 
-  update(id: number, f: number, cam: THREE.PerspectiveCamera, scene: THREE.Scene) {
+  update(id0: number, f: number, cam: THREE.PerspectiveCamera, scene: THREE.Scene) {
+    // 32 cuts, 10 staging groups: every shot inherits the set and cast of its parent shot
+    const id = SHOTS[id0 - 1]?.parent ?? id0;
     if (scene.fog !== this.fog) scene.fog = this.fog;
     const c = camAt(id, f);
     cam.position.set(...c.pos);
