@@ -6,7 +6,8 @@ following `references/news/PLAYBOOK.md`, starting from the sixth film's folders 
 The user chose it ("lets do number 2 and 1") from six topics offered on 12 November; number 2, the hackers who said
 sorry, was made first.
 
-**Status:** in production. Not yet rendered.
+**Status:** delivered on 2026-11-12. Two full renders; the final file is `shoots/truck-stop-heist/final-720p.mp4`
+at commit `d65998a` (run `43196917478`). Waiting for the user's verdict.
 
 ## The story in one line
 
@@ -206,8 +207,8 @@ made them, so the files are the reference. `build_voice.py` needs `pocketsphinx`
 
 ## Sound
 
-`audio/build_mix.py` writes `audio/mix.wav` (70.77 s, 48 kHz stereo, -14.5 LUFS, true peak -2.8 dBTP) and the cue
-sheet `audio/cues.md` (217 cues), which starts with the measured levels. Everything but the voice is synthesized in
+`audio/build_mix.py` writes `audio/mix.wav` (70.77 s, 48 kHz stereo, -14.5 LUFS, true peak -2.7 dBTP) and the cue
+sheet `audio/cues.md` (218 cues), which starts with the measured levels. Everything but the voice is synthesized in
 that script with the kit in `templates/audio`; nothing is sampled. The build is deterministic: two runs give the same
 file.
 
@@ -264,3 +265,60 @@ file.
   and a sheet of paper that lands, stamp thuds and pops for the graphics. Each has its reason in `audio/cues.md`.
 
 The sound was set with meters only. The agent that made it did not listen to it.
+
+## Render
+
+Rendered on GitHub Actions by `.github/workflows/render-short.yml`: twenty parts in parallel, joined, the sound laid
+under, the finished file checked with `templates/scripts/short_qa.py`, and the file and the report committed to the
+branch by the run itself. Two full runs of about eleven minutes each.
+
+| Run | Commit | Why it was made |
+|-----|--------|-----------------|
+| `43194740570` | `8b863f6` | The first full render (published as `3107ff9`). The check was clean. It was started before the picture had been read through once more for things that jump, and that reading found five small ones the check does not catch: a little plane that left the frame after four frames; a bag and a form that appeared inside the frame before falling; the beam of the scale restarting its rocking at the join in the last take (a hop of two degrees); a tag on the map that came up after the one beyond it; a fourth bite without its sound. Every shot was looked at on frames of this file. |
+| `43196917478` | `ee5d242` | **The final file** (published as `d65998a`). Those five are put right. The check is clean, and the sound encode passed the comparison with its WAV at the first setting. |
+
+```
+gh workflow run render-short.yml --ref <branch> -f composition=TruckStopShort \
+  -f mix=shoots/truck-stop-heist/audio/mix.wav -f shots=shoots/truck-stop-heist/qa-shots.json \
+  -f publish='shoots/truck-stop-heist/final-{size}p.mp4' -f size=720 -f chunks=20
+```
+
+Stills for review are made locally: `REVIEW=TruckStopReview remotion-app/scripts/pick.sh <dir> <frame,frame,...> 400`.
+
+## Result
+
+- **File:** [`shoots/truck-stop-heist/final-720p.mp4` at commit `d65998a`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/d65998a79b7e22aa0df917c8cc6114937925ac2c/shoots/truck-stop-heist/final-720p.mp4).
+  720x1280, 30 fps, 2123 frames, 70.767 s, 41,012,667 bytes, H.264 with 48 kHz stereo AAC.
+  SHA-256 `8d09de5b979ab34e0fb2cdd01f390681fb8d83e3b97d31ffc2c38976383ef87f`.
+- **Finished-file check** (`qa-report.md`, written by the run): -14.6 LUFS integrated, loudness range 1.8 LU, true
+  peak -2.6 dBTP; no silence; no black, unplanned white or frozen frames; no unplanned frame jumps. The encode
+  against its WAV, run again locally (`templates/scripts/aac_check.py`): highest sample -2.68 dBFS against the WAV's
+  -2.75, nothing late, no sample that stands clear of the WAV. With four-times oversampling the file reads
+  -2.64 dBTP: 1.6 dB inside the gate, where the sixth film had nothing to spare.
+- **Picture, second render against the first,** frame by frame: frames 535-548 (the tag on the map), 1618-1647 (the
+  plane), 1813-1820 (the bag), 1899-1909 (the form) and 1995-2122 (the beam rocks in another phase from the join
+  on) differ; every other frame reads 39.1 dB PSNR or more, 48.4 at the median, which is what two encodes of the
+  same picture read.
+- **The joins, measured in the finished file.** The measure is the mean change between one frame and the next; the 42
+  cuts measure 33.6 or more, 69.3 at the median. Into frame 1559: 0.7. Into 1605: 0.5. Into 1995: 0.8. Each is what
+  the frames before it read. Nothing jumps at a join.
+- **Looked at, all of it on still frames:** the cast sheet; 219 local stills in five rounds and a first four (four
+  fifths of the way through every shot, then every fault found, then the frames either side of the five cuts
+  between two shots of one set and of the three joins, then the last frame of every shot); one frame in every 24 of
+  the first render (89 frames, every shot); the five places that changed, the three joins and the last four seconds
+  on 29 frames of the final file.
+- **Not done:** nobody has watched the film in motion or listened to it. The sound was measured, not heard.
+- **Known small things, left as they are:**
+  - A line on screen reads LEBEC · 70 MILES NORTH OF LOS ANGELES; the report says "about 70 miles".
+  - The tab AS THE L.A. TIMES REPORTS lies over the first stretch of the red line on the map (shot 24) and touches
+    the top edge of the officer's pad (shot 26). It covers no word.
+  - The cell tower beside the road also stands in the shot where the truck leaves the show.
+  - The clock on the diner's wall, half in the frame, reads twelve past two while the driver eats in the opening
+    seconds; the story's times are on the sign outside and in the close shot of the same clock.
+  - The cards the figures hold are small: PLEA DEAL and NOT GUILTY are legible on a phone held close; the line
+    above them says the same.
+  - `cast.ts` keeps the drawing code for a hood from the film before this one; nothing uses it.
+- **The story on the day:** searched again on 12 November 2026 at about 09:50 UTC. Nothing has moved since the
+  filing of 9 November: the plea hearing of 19 November is still ahead, the two men not yet arrested are still
+  wanted, no ruling on the deported man's case and no further recovery is reported. Nothing the film says has
+  changed. After 19 November the line NOT ENTERED YET will be out of date: it carries its date on screen.

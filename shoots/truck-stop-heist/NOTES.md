@@ -329,3 +329,10 @@ Search excerpts read 12 Nov 2026, about 08:10 UTC. Nothing here has been checked
   - Kroll (May 2025): "a tragedy on multiple levels"; "Some of my clients left the jewelry trade. Others are trying
     to find a way to hang in"; many are elderly.
   - Compared in the press with Brink's-Mat (1983), Antwerp (2003), Hatton Garden (2015).
+
+## The story on the day (12 Nov 2026, about 09:50 UTC)
+
+Searched again. Nothing has moved since the filing of 9 November: the plea hearing of 19 November is still ahead; KGET
+(11 Nov) repeats the earlier reports and, like KTLA, writes "sentenced" where the hearing is for the plea; iHeart and
+KESQ carry City News Service. No report of an arrest of the two men still wanted, of a ruling on the deported man's
+case, or of any jewelry recovered.
