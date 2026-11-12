@@ -9,7 +9,7 @@ import {gapTex, INK, jewelBag, LIGHT, rings, type Builder} from './sets';
 
 // ------------------------------------------------------------------ the seven: nobody's face, a number each
 /** where each of the seven stands: three in front, four on a step behind */
-export const SEVEN: [number, number, number][] = [[-0.82, 0, 0.1], [0, 0, 0.1], [0.82, 0, 0.1], [-1.23, 0.5, -0.9], [-0.41, 0.5, -0.9], [0.41, 0.5, -0.9], [1.23, 0.5, -0.9]];
+export const SEVEN: [number, number, number][] = [[-0.7, 0, 0.1], [0, 0, 0.1], [0.7, 0, 0.1], [-1.05, 0.5, -0.9], [-0.35, 0.5, -0.9], [0.35, 0.5, -0.9], [1.05, 0.5, -0.9]];
 const outline = () => tex('seven-gone', 300, 500, (g, w, h) => {
   g.strokeStyle = '#ffffff'; g.lineWidth = 9; g.setLineDash([22, 16]); g.lineCap = 'round';
   g.beginPath(); g.arc(w / 2, 104, 78, 0, 7); g.stroke(); rrect(g, w / 2 - 86, 196, 172, 200, 44); g.stroke(); g.beginPath(); g.moveTo(w / 2 - 40, 396); g.lineTo(w / 2 - 40, 486); g.moveTo(w / 2 + 40, 396); g.lineTo(w / 2 + 40, 486); g.stroke();
@@ -19,8 +19,8 @@ export const seven: Builder = (root) => {
   backdrop(root, ['#0b0e1a', '#1a2038']);
   floor(root, 14, 12, tmat(tiled(woodTex('seven-floor', '#4a3b34', '#2a201c'), 4, 4)));
   panel(root, 9, 5.4, tmat(tiled(foldTex('seven-curtain', '#2b3a66', '#18203c', 12), 2, 1)), 0, 2.7, -1.9);
-  box(root, 3.9, 0.5, 1.0, '#3a2f2a', 0, 0.25, -0.9); box(root, 3.94, 0.04, 1.04, '#5a463c', 0, 0.5, -0.9);
-  const crew: Actor[] = SEVEN.map(([x, y, z], i) => actor(root, CREW(i), {idle: {pose: 'hang'}, deal: {pose: 'both', prop: 'card', text: 'PLEA DEAL'}, not: {pose: 'both', prop: 'card', text: 'NOT GUILTY'}, up: {pose: 'shrug'}}, x, y, z, {scale: 0.92, res: 1.0, wide: true}));
+  box(root, 3.4, 0.5, 1.0, '#3a2f2a', 0, 0.25, -0.9); box(root, 3.44, 0.04, 1.04, '#5a463c', 0, 0.5, -0.9);
+  const crew: Actor[] = SEVEN.map(([x, y, z], i) => actor(root, CREW(i), {idle: {pose: 'hang'}, deal: {pose: 'both', prop: 'card', text: 'PLEA DEAL', big: true}, not: {pose: 'both', prop: 'card', text: 'NOT GUILTY', big: true}, up: {pose: 'shrug'}}, x, y, z, {scale: 0.92, res: 1.0, wide: true}));
   const gone = SEVEN.map(([x, y, z]) => soft(panel(root, 0.66, 1.1, smat(outline(), 1.1, true), x, y + 1.0, z)));
   const spots = SEVEN.map(([x, y, z]) => pool(root, 0.62, '#fff0c8', 0, x, z, y + 0.016));
   const key = beam(root, 0.14, 0.7, 5.4, '#fff0c8', 0, SEVEN[0][0], 5.4, SEVEN[0][2]);
@@ -198,7 +198,7 @@ export const scale: Builder = (root) => {
     return p;
   });
   const jewels = jewelBag(pans[0], 0, 0.02, 0.15, 1.05); jewels.g.position.y = 0.03;
-  const form = soft(panel(pans[1], 0.62, 0.8, smat(formTex(), 1.05), 0, 0.46, 0.05)); form.rotation.z = 0.06;
+  const form = soft(panel(pans[1], 0.54, 0.7, smat(formTex(), 1.05), 0, 0.4, 0.05)); form.rotation.z = 0.06;
   const tagA = soft(panel(root, 1.0, 0.45, smat(priceTex('$100 MILLION', 'THE JEWELERS', '#ffe14a', INK), 1.1, true), 0, 0, 0.3)), tagB = soft(panel(root, 1.0, 0.45, smat(priceTex('$8.7 MILLION', "BRINK'S: DECLARED", '#fffdf4', INK), 1.1, true), 0, 0, 0.3));
   const spots = [-1, 1].map((s) => ({cone: beam(root, 0.14, 0.8, 5.4, s < 0 ? '#ffe9a8' : '#dfe9ff', 0, s * PAN_X, 5.4, 0), floor: pool(root, 1.0, s < 0 ? '#ffe9a8' : '#dfe9ff', 0, s * PAN_X, 0)}));
   halo(root, 3.2, '#ffe9b0', 0.1, 0, 2.0, -1.6);
@@ -214,9 +214,9 @@ export const scale: Builder = (root) => {
       arm.rotation.z = tilt;
       pans.forEach((p, i) => { const s = i ? 1 : -1; p.position.set(s * PAN_X * Math.cos(tilt), BEAM_Y + s * PAN_X * Math.sin(tilt) - DROP, 0); });
       jewels.g.visible = a > 0.01; jewels.g.position.y = 0.03 + 1.6 * (1 - a) ** 2; jewels.tw(f, a > 0.9);
-      form.visible = b > 0.01; form.position.y = 0.46 + 1.5 * (1 - b) ** 1.6; form.position.x = 0.25 * Math.sin((1 - b) * 9) * (1 - b); form.rotation.z = 0.06 + 0.5 * Math.sin((1 - b) * 7) * (1 - b);
-      tagA.visible = a > 0.6; tagA.scale.setScalar(pop(f, v === 'left' ? A + 8 : -99, 8)); tagA.position.set(pans[0].position.x, pans[0].position.y + 1.08, 0.3);
-      tagB.visible = b > 0.6; tagB.scale.setScalar(pop(f, v === 'right' ? B + 10 : -99, 8)); tagB.position.set(pans[1].position.x, pans[1].position.y + 1.2, 0.3);
+      form.visible = b > 0.01; form.position.y = 0.4 + 1.5 * (1 - b) ** 1.6; form.position.x = 0.25 * Math.sin((1 - b) * 9) * (1 - b); form.rotation.z = 0.06 + 0.5 * Math.sin((1 - b) * 7) * (1 - b);
+      tagA.visible = a > 0.6; tagA.scale.setScalar(pop(f, v === 'left' ? A + 8 : -99, 8)); tagA.position.set(pans[0].position.x, pans[0].position.y + 1.02, 0.3);
+      tagB.visible = b > 0.6; tagB.scale.setScalar(pop(f, v === 'right' ? B + 10 : -99, 8)); tagB.position.set(pans[1].position.x, pans[1].position.y + 1.02, 0.3);
       const ka = v === 'choice' ? smooth(f, QA, QA + 8) : 0, kb = v === 'choice' ? smooth(f, QB, QB + 8) : 0;
       spots.forEach((s, i) => { const k = i ? kb : ka; (s.cone.material as THREE.MeshBasicMaterial).opacity = 0.02 + 0.06 * k; (s.floor.material as THREE.MeshBasicMaterial).opacity = 0.08 + 0.3 * k; });
     },

@@ -98,28 +98,27 @@ export function car(p: Node, color: string): Car {
 }
 
 // ------------------------------------------------------------------ a bag of jewels
-const bagFront = (n: number) => tex('bag-front-' + n, 256, 180, (g, w, h) => {
-  g.fillStyle = '#7d8798'; g.fillRect(0, 0, w, h); g.fillStyle = '#6b7586'; g.fillRect(0, h * 0.78, w, h * 0.22);
-  g.strokeStyle = '#3d4450'; g.lineWidth = 7; g.setLineDash([10, 7]); g.beginPath(); g.moveTo(14, 34); g.lineTo(w - 14, 34); g.stroke(); g.setLineDash([]);
-  g.fillStyle = '#fffdf4'; g.strokeStyle = INK; g.lineWidth = 5; rrect(g, w / 2 - 60, 62, 120, 76, 8); g.fill(); g.stroke();
-  text(g, String(n).padStart(2, '0'), w / 2, 92, 46, INK); g.fillStyle = INK; for (let i = 0; i < 9; i++) g.fillRect(w / 2 - 44 + i * 10, 118, i % 3 ? 4 : 7, 14);
+const tagTex = (n: number) => tex('bag-tag-' + n, 150, 100, (g, w, h) => {
+  g.fillStyle = '#fffdf4'; g.strokeStyle = INK; g.lineWidth = 7; rrect(g, 4, 4, w - 8, h - 8, 10); g.fill(); g.stroke();
+  text(g, String(n).padStart(2, '0'), w / 2, 38, 52, INK); g.fillStyle = INK; for (let i = 0; i < 10; i++) g.fillRect(22 + i * 11, 70, i % 3 ? 4 : 7, 16);
 });
-/** one sealed bag with a numbered tag, facing +z; its origin is under its middle */
+const CANVAS = '#7d8798';
+/** one sealed bag with a numbered tag and a red seal on its neck, facing +z; its origin is under its middle */
 export function bag(p: Node, x: number, y: number, z: number, n = 1, s = 1) {
   const g = grp(p, x, y, z); g.scale.setScalar(s);
-  box(g, 0.4, 0.28, 0.32, '#7d8798', 0, 0.14, 0); soft(panel(g, 0.39, 0.27, tmat(bagFront(n)), 0, 0.14, 0.162));
-  const hd = torus(g, 0.07, 0.014, '#3d4450', 0, 0.29, 0); hd.scale.set(1.2, 0.7, 1);
+  ball(g, 0.2, CANVAS, 0, 0.145, 0).scale.set(1.08, 0.74, 0.8); cyl(g, 0.045, 0.07, '#6b7586', 0, 0.3, 0, 0.06); const seal = torus(g, 0.05, 0.016, '#d62f2f', 0, 0.285, 0); seal.rotation.x = Math.PI / 2;
+  soft(panel(g, 0.17, 0.115, smat(tagTex(n), 1), 0, 0.14, 0.162));
   return g;
 }
 /** an open bag heaped with jewels */
 export function jewelBag(p: Node, x: number, z: number, ry = 0, s = 1) {
   const g = grp(p, x, 0, z); g.rotation.y = ry; g.scale.setScalar(s); const r = rng(Math.round(x * 97 + z * 31) + 301);
-  box(g, 0.72, 0.36, 0.46, '#7d8798', 0, 0.18, 0); box(g, 0.74, 0.05, 0.48, '#6b7586', 0, 0.36, 0);
-  soft(panel(g, 0.3, 0.18, tmat(bagFront(1 + Math.round(r() * 60))), 0, 0.17, 0.232));
-  const heap = ball(g, 0.3, lit('#f2c230', 1.05), 0, 0.36, 0); heap.scale.set(1.05, 0.42, 0.66);
+  ball(g, 0.38, CANVAS, 0, 0.25, 0).scale.set(1.0, 0.66, 0.78); const rim = torus(g, 0.27, 0.035, '#5b6576', 0, 0.44, 0); rim.rotation.x = Math.PI / 2; rim.scale.set(1, 0.72, 1);
+  soft(panel(g, 0.2, 0.135, smat(tagTex(1 + Math.round(r() * 60)), 1), 0, 0.2, 0.3));
+  const heap = ball(g, 0.27, lit('#f2c230', 1.05), 0, 0.44, 0); heap.scale.set(1.0, 0.42, 0.72);
   const pts: V[] = [];
   for (let i = 0; i < 16; i++) {
-    const a = r() * 6.28, d = Math.sqrt(r()) * 0.27, gx = Math.cos(a) * d, gz = Math.sin(a) * d * 0.6, gy = 0.44 + 0.1 * (1 - d / 0.27) + r() * 0.03, c = GEMS[i % GEMS.length];
+    const a = r() * 6.28, d = Math.sqrt(r()) * 0.23, gx = Math.cos(a) * d, gz = Math.sin(a) * d * 0.66, gy = 0.52 + 0.09 * (1 - d / 0.23) + r() * 0.03, c = GEMS[i % GEMS.length];
     if (i % 5 === 4) { const t = torus(g, 0.055, 0.016, lit('#ffd84a', 1.3), gx, gy, gz); t.rotation.set(r() * 3, r() * 3, 0); }
     else { const m = mesh(g, new THREE.OctahedronGeometry(0.05 + r() * 0.035), lit(c, 1.5), gx, gy, gz); m.rotation.set(r() * 3, r() * 3, r() * 3); if (i % 3 === 0) pts.push([gx, gy + 0.05, gz + 0.05]); }
   }
@@ -131,7 +130,7 @@ export const loot: Builder = (root) => {
   backdrop(root, ['#07090f', '#161c30']);
   floor(root, 14, 12, tmat(tiled(grainTex('loot-floor', '#1b2236', 0.1), 5, 4)));
   halo(root, 3.0, '#ffe9b0', 0.14, 0, 1.0, -1.6);
-  const cone = beam(root, 0.2, 1.7, 5.6, '#fff0c8', 0.07, 0, 5.6, 0), spot = pool(root, 1.9, '#fff0c8', 0.4, 0, 0);
+  const cone = beam(root, 0.16, 1.5, 5.6, '#fff0c8', 0.04, 0, 5.6, 0), spot = pool(root, 1.9, '#fff0c8', 0.4, 0, 0);
   const SPOTS: [number, number, number][] = [[-0.78, 0.25, 0.3], [0.02, -0.3, -0.12], [0.8, 0.2, -0.32]];
   const bags = SPOTS.map(([x, z, ry]) => jewelBag(root, x, z, ry, 1.15));
   const gaps = SPOTS.map(([x, z, ry]) => { const m = soft(panel(root, 0.95, 0.66, smat(gapTex('loot', 380, 264), 1, true), x, 0.02, z)); m.rotation.set(-Math.PI / 2, 0, ry); return m; });
@@ -142,7 +141,7 @@ export const loot: Builder = (root) => {
       const gone = shot.v === 'pile' ? W(8) : 1e9;
       bags.forEach((b, i) => { const at = gone + i * 3, k = f < at ? 1 + 0.03 * Math.sin(f * 0.2 + i) : Math.max(0, 1 - (f - at) / 3); b.g.visible = k > 0.02; b.g.scale.setScalar(1.15 * k); b.g.position.y = f < at ? hop(f, shot.at + 4 + i * 5, 0.05, 8) : 0.3 * (1 - k); b.tw(f + i * 17, k > 0.9); });
       gaps.forEach((m, i) => { const at = gone + i * 3 + 2; m.visible = f >= at; m.scale.setScalar(pop(f, at, 7)); });
-      const k = f < gone ? 1 : 0.55; (cone.material as THREE.MeshBasicMaterial).opacity = 0.07 * k; (spot.material as THREE.MeshBasicMaterial).opacity = 0.4 * k;
+      const k = f < gone ? 1 : 0.55; (cone.material as THREE.MeshBasicMaterial).opacity = 0.04 * k; (spot.material as THREE.MeshBasicMaterial).opacity = 0.4 * k;
     },
   };
 };
@@ -151,7 +150,7 @@ export const loot: Builder = (root) => {
 const clockFace = (t: string) => tex('stop-clock-' + t, 520, 200, (g, w, h) => {
   g.fillStyle = '#0d0f14'; g.fillRect(0, 0, w, h); g.shadowColor = '#ffb020'; g.shadowBlur = 20; text(g, t, w / 2 - 54, h / 2 + 8, 150, '#ffc94a'); text(g, 'A.M.', w - 84, h / 2 + 38, 54, '#ffc94a'); g.shadowBlur = 0;
 });
-export const RIG_AT: V = [0.9, 0, -0.6];
+export const RIG_AT: V = [1.0, 0, -3.4];
 export const RIG_RY = 1.05;
 const TIMES = ['2:05', '2:08', '2:11', '2:14', '2:17', '2:20', '2:23', '2:26', '2:29', '2:32'];
 export const stop: Builder = (root) => {
@@ -159,20 +158,20 @@ export const stop: Builder = (root) => {
   floor(root, 60, 50, tmat(tiled(grainTex('stop-tar', '#2b2f3c', 0.12), 16, 14)));
   for (let i = -5; i <= 5; i++) { const m = floor(root, 0.1, 7, lit('#8a8f9c', 1), 0.014, i * 2.4 + 0.4, 1.5); m.rotation.z = -0.5; }
   // the travel center: a low building with a lit diner and a canopy
-  box(root, 11, 2.7, 2.4, '#3a4058', 0.5, 1.35, -8.2); box(root, 11.4, 0.3, 3.2, '#c9372c', 0.5, 2.85, -7.9); box(root, 11.2, 0.06, 3.0, lit('#fff0c8', 1.25), 0.5, 2.68, -7.9);
-  soft(panel(root, 9.4, 1.25, smat(tex('stop-windows', 1024, 140, (g, w, h) => {
+  box(root, 13, 2.7, 2.4, '#3a4058', 0.5, 1.35, -11.7); box(root, 13.4, 0.3, 3.2, '#c9372c', 0.5, 2.85, -11.4); box(root, 13.2, 0.06, 3.0, lit('#fff0c8', 1.25), 0.5, 2.68, -11.4);
+  soft(panel(root, 11.4, 1.25, smat(tex('stop-windows', 1024, 140, (g, w, h) => {
     g.fillStyle = '#ffd98a'; g.fillRect(0, 0, w, h); g.fillStyle = '#3a4058'; for (let i = 0; i <= 8; i++) g.fillRect(i * w / 8 - 7, 0, 14, h); g.fillRect(0, h * 0.62, w, 9);
     g.fillStyle = '#b9742f'; for (let i = 0; i < 8; i++) { g.fillRect(i * w / 8 + 26, h * 0.7, 74, h * 0.3); }
-  }), 1.2), 0.5, 1.45, -6.98));
-  soft(panel(root, 2.4, 0.5, smat(signTex('stop-diner', 480, 100, '#16181f', '#ff7a59', [['DINER · OPEN 24 HRS', 64, 0.56]], {glow: '#ff7a59'}), 1.5), 2.6, 3.3, -7.0));
+  }), 1.2), 0.5, 1.45, -10.48));
+  soft(panel(root, 2.4, 0.5, smat(signTex('stop-diner', 480, 100, '#16181f', '#ff7a59', [['DINER · OPEN 24 HRS', 64, 0.56]], {glow: '#ff7a59'}), 1.5), 3.6, 3.3, -10.5));
   // the tall sign: a name, and a clock under it
-  const SX = -1.9, SZ = -5;
+  const SX = -2.4, SZ = -8;
   cyl(root, 0.1, 4.9, '#5b6170', SX, 2.45, SZ); box(root, 2.56, 1.0, 0.22, '#23252e', SX, 4.35, SZ); box(root, 1.86, 0.74, 0.2, '#23252e', SX, 3.44, SZ);
   soft(panel(root, 2.42, 0.86, smat(signTex('stop-sign', 720, 256, '#d62f2f', '#ffe14a', [['TRAVEL CENTER', 104, 0.38], ['LEBEC · CALIFORNIA', 46, 0.78]], {border: '#ffe14a'}), 1.3), SX, 4.35, SZ + 0.115));
   const clockM = new THREE.MeshBasicMaterial({map: clockFace(TIMES[0])}), faces = TIMES.map(clockFace); soft(panel(root, 1.72, 0.6, clockM, SX, 3.44, SZ + 0.105));
-  streetLamp(root, 3.3, 1.2, 3.6, '#ffe9b0', 2.2); pool(root, 2.6, '#ffe9b0', 0.3, 3.3, 1.2); streetLamp(root, -3.6, -1.6, 3.6, '#ffe9b0', 2.2); pool(root, 2.6, '#ffe9b0', 0.26, -3.6, -1.6);
+  streetLamp(root, 3.4, -1.4, 3.6, '#ffe9b0', 2.2); pool(root, 2.6, '#ffe9b0', 0.3, 3.4, -1.4); streetLamp(root, -3.9, -4.6, 3.6, '#ffe9b0', 2.2); pool(root, 2.6, '#ffe9b0', 0.26, -3.9, -4.6);
   // other rigs asleep in the lot: dark shapes with a few marker lights
-  for (const [x, z, ry] of [[-5.6, -3.4, 1.05], [6.4, -4.6, 1.05], [-7.8, 1.2, 1.05]] as const) {
+  for (const [x, z, ry] of [[-5.8, -6.6, 1.05], [6.6, -7.8, 1.05], [-8.2, -1.8, 1.05]] as const) {
     const o = grp(root, x, 0, z); o.rotation.y = ry; box(o, 4.6, 2.0, 1.5, '#262a3a', -2.1, 1.72, 0); box(o, 1.7, 1.9, 1.4, '#1f2233', 1.2, 1.3, 0);
     for (let i = 0; i < 4; i++) box(o, 0.1, 0.05, 0.02, lit('#ffb347', 1.4), -4.0 + i * 1.3, 2.62, 0.76);
   }
@@ -181,11 +180,11 @@ export const stop: Builder = (root) => {
   pool(root, 2.2, '#dfe6ff', 0.2, rear.x - 0.3, rear.z + 0.7);
   // the lock, cut, on the ground behind the doors
   const lock = grp(root, rear.x - 0.42, 0, rear.z + 0.62); lock.rotation.y = 0.5;
-  const lb = box(lock, 0.3, 0.24, 0.1, '#f2c230', 0, 0.12, 0); lb.rotation.z = 0.5; cyl(lock, 0.035, 0.11, INK, 0.0, 0.13, 0.03).rotation.x = Math.PI / 2;
-  for (const [x, y, rz] of [[-0.24, 0.05, 1.2], [0.2, 0.04, -0.3]] as const) { const t = mesh(lock, new THREE.TorusGeometry(0.1, 0.028, 8, 20, Math.PI * 0.8), '#c9ced6', x, y, 0.02); t.rotation.set(-1.2, 0, rz); }
+  const lb = grp(lock, 0, 0.07, 0); lb.rotation.set(-1.05, 0, 0.35); box(lb, 0.34, 0.26, 0.09, '#f2c230', 0, 0, 0); box(lb, 0.27, 0.19, 0.02, '#d9a520', 0, 0, 0.046); cyl(lb, 0.035, 0.03, INK, 0, 0.02, 0.055).rotation.x = Math.PI / 2; box(lb, 0.03, 0.08, 0.02, INK, 0, -0.04, 0.058);
+  for (const [x, y, rz] of [[-0.3, 0.04, 1.2], [0.27, 0.035, -0.3]] as const) { const t = mesh(lock, new THREE.TorusGeometry(0.1, 0.03, 8, 20, Math.PI * 0.8), '#c9ced6', x, y, 0.06); t.rotation.set(-1.3, 0, rz); }
   const spark = glints(lock, [[0.02, 0.3, 0.1], [-0.2, 0.16, 0.12], [0.22, 0.14, 0.1]]);
   return {
-    light: () => LIGHT.night,
+    light: () => ({...LIGHT.night, amb: 1.2, keyI: 0.9}),
     tick: ({f, shot}) => {
       const v = shot.v;
       // the clock on the sign: 2:05 when the truck pulls in; it runs to 2:32 while the narrator says "twenty-seven minutes"
@@ -200,7 +199,7 @@ export const stop: Builder = (root) => {
 };
 
 // ------------------------------------------------------------------ the diner, seen from behind the counter
-export const CLOCK: V = [1.2, 2.42, -2.36];
+export const CLOCK: V = [1.0, 2.42, -2.36];
 export const diner: Builder = (root) => {
   backdrop(root, ['#3a2a22', '#5a4030']);
   floor(root, 12, 10, tmat(tiled(tex('diner-floor', 128, 128, (g) => { g.fillStyle = '#e9e2d0'; g.fillRect(0, 0, 128, 128); g.fillStyle = '#2f3a4a'; g.fillRect(0, 0, 64, 64); g.fillRect(64, 64, 64, 64); }, true), 8, 7)));
@@ -246,7 +245,7 @@ export const diner: Builder = (root) => {
       if (v === 'eat') { st = Math.floor(t / 9) % 2 ? 'chew' : 'bite'; own = true; }
       else if (v === 'in') { const k = smooth(f, shot.at - 4, shot.at + 22); x = -2.3 + 2.3 * k; z = -1.0 + 1.3 * k; st = k < 0.98 ? 'walk' : 'sit'; }
       else { st = Math.floor(f / 9) % 2 ? 'chew' : 'bite'; own = true; }
-      man.node.position.set(x, st === 'walk' ? 0 : 0.02, z); man.show(st); man.tick(f, cam);
+      man.node.position.set(x, st === 'walk' ? 0 : 0.36, z); man.show(st); man.tick(f, cam);
       burger.visible = !own; plate.visible = v !== 'in' || t > 24; plate.position.x = 0.05 + (v === 'in' ? 2.2 * (1 - smooth(f, shot.at + 24, shot.at + 34)) : 0);
     },
   };
@@ -258,7 +257,7 @@ export const cab: Builder = (root) => {
   nightSky(root, -20);
   floor(root, 40, 30, tmat(tiled(grainTex('cab-tar', '#2b2f3c', 0.12), 14, 10)));
   pool(root, 3.2, '#ffe9b0', 0.2, 1.2, 1.4);
-  const BLUE = '#2f4f9a', IN = '#5a4a44', Y0 = 0.95;
+  const BLUE = '#4a72c9', IN = lit('#7a6052', 1), Y0 = 0.95;
   // wheels, frame, tank, the front of the trailer behind
   box(root, 5.4, 0.24, 1.0, '#23252e', 0.4, 0.74, -0.5);
   for (const [x, r] of [[-1.25, 0.46], [-0.2, 0.46], [2.45, 0.44]] as const) { const w = cyl(root, r, 0.34, '#1b1d24', x, r, 0.02); w.rotation.x = Math.PI / 2; const h = cyl(root, 0.18, 0.36, '#c9ced6', x, r, 0.03); h.rotation.x = Math.PI / 2; }
@@ -269,13 +268,13 @@ export const cab: Builder = (root) => {
   box(root, 0.1, 2.2, 1.2, BLUE, -1.72, Y0 + 1.05, -0.42); box(root, 0.08, 0.9, 1.2, BLUE, 0.26, Y0 + 1.72, -0.42);
   soft(panel(root, 0.5, 1.25, tmat(tiled(foldTex('cab-curtain', '#8a5a6a', '#5a3442', 6), 1, 1)), 0.2, Y0 + 0.66, 0.12));   // the curtain, pushed back
   box(root, 1.72, 0.2, 0.8, '#e9e2d0', -0.76, Y0 + 0.25, -0.5); box(root, 1.76, 0.12, 0.84, '#6b4628', -0.76, Y0 + 0.1, -0.5);
-  const pillow = ball(root, 0.2, '#fffdf4', -1.38, Y0 + 0.45, -0.5); pillow.scale.set(1.25, 0.55, 1.5);
-  const blanket = box(root, 1.3, 0.3, 0.86, tmat(tiled(tex('cab-plaid', 64, 64, (g) => { g.fillStyle = '#3f6fb5'; g.fillRect(0, 0, 64, 64); g.fillStyle = 'rgba(255,255,255,0.35)'; g.fillRect(0, 26, 64, 10); g.fillRect(26, 0, 10, 64); g.fillStyle = 'rgba(0,0,0,0.25)'; g.fillRect(0, 54, 64, 6); g.fillRect(54, 0, 6, 64); }, true), 6, 2)), -0.33, Y0 + 0.5, -0.36);
+  const pillow = ball(root, 0.2, '#fffdf4', -1.12, Y0 + 0.42, -0.5); pillow.scale.set(2.2, 0.5, 1.5);
+  const blanket = box(root, 0.98, 0.3, 0.86, tmat(tiled(tex('cab-plaid', 64, 64, (g) => { g.fillStyle = '#3f6fb5'; g.fillRect(0, 0, 64, 64); g.fillStyle = 'rgba(255,255,255,0.35)'; g.fillRect(0, 26, 64, 10); g.fillRect(26, 0, 10, 64); g.fillStyle = 'rgba(0,0,0,0.25)'; g.fillRect(0, 54, 64, 6); g.fillRect(54, 0, 6, 64); }, true), 6, 2)), -0.13, Y0 + 0.5, -0.36);
   soft(panel(root, 0.5, 0.36, lit('#ffd98a', 1.15), -1.2, Y0 + 1.5, -0.955)); box(root, 0.56, 0.42, 0.04, '#3a2c22', -1.2, Y0 + 1.5, -0.97);   // a little window with the lot's light in it
   // the cab in front: seat, wheel, windscreen, hood
   box(root, 1.1, 0.1, 1.2, BLUE, 0.85, Y0 - 0.02, -0.42); box(root, 1.1, 0.12, 1.2, BLUE, 0.85, Y0 + 1.68, -0.42); box(root, 1.1, 1.6, 0.08, IN, 0.85, Y0 + 0.8, -1.0);
-  box(root, 0.5, 0.14, 0.5, '#3d4450', 0.72, Y0 + 0.42, -0.45); box(root, 0.14, 0.7, 0.5, '#3d4450', 0.5, Y0 + 0.8, -0.45); box(root, 0.1, 0.3, 0.1, '#23252e', 0.72, Y0 + 0.2, -0.45);
-  const wheel = torus(root, 0.2, 0.03, '#23252e', 1.22, Y0 + 0.86, -0.45); wheel.rotation.y = Math.PI / 2; wheel.rotation.x = 0.5; box(root, 0.3, 0.5, 0.9, '#3d4450', 1.36, Y0 + 0.36, -0.45);
+  box(root, 0.5, 0.14, 0.5, '#8a94a8', 0.72, Y0 + 0.42, -0.45); box(root, 0.14, 0.7, 0.5, '#8a94a8', 0.5, Y0 + 0.8, -0.45); box(root, 0.1, 0.3, 0.1, '#5b6170', 0.72, Y0 + 0.2, -0.45);
+  const wheel = torus(root, 0.2, 0.035, '#c9ced6', 1.22, Y0 + 0.86, -0.45); wheel.rotation.y = Math.PI / 2; wheel.rotation.x = 0.5; box(root, 0.3, 0.5, 0.9, '#3d4450', 1.36, Y0 + 0.36, -0.45);
   box(root, 0.06, 1.0, 1.2, lit('#27304f', 1), 1.42, Y0 + 1.1, -0.42).rotation.z = -0.22; box(root, 1.1, 1.0, 1.1, BLUE, 2.05, Y0 + 0.4, -0.47); box(root, 0.08, 0.7, 0.9, '#c9ced6', 2.62, Y0 + 0.45, -0.47);
   box(root, 0.08, 0.16, 0.3, lit('#fff3c0', 1.6), 2.63, Y0 + 0.16, -0.1);
   halo(root, 1.3, '#ffd98a', 0.16, -0.8, Y0 + 1.1, -0.9);
@@ -283,7 +282,7 @@ export const cab: Builder = (root) => {
   const zs = [0, 1, 2].map(() => soft(panel(root, 0.3, 0.3, smat(zTex(), 1.1, true), 0, 0, 0)));
   const seat = soft(panel(root, 0.62, 0.95, smat(gapTex('seat', 250, 380, '#ffe14a'), 1.1, true), 0.74, Y0 + 0.9, -0.1));
   return {
-    light: () => ({...LIGHT.night, amb: 1.25, keyI: 0.9}),
+    light: () => ({...LIGHT.night, amb: 1.7, keyI: 1.1}),
     tick: ({f, cam, shot}) => {
       man.tick(f, cam); man.node.rotation.y = 0; blanket.scale.y = 1 + 0.05 * Math.sin(f * 0.11);
       zs.forEach((z, i) => { const u = (f * 0.022 + i / 3) % 1; z.position.set(-1.2 + 0.5 * u + 0.06 * Math.sin(u * 9 + i), Y0 + 0.85 + 0.7 * u, 0.1); z.scale.setScalar(0.5 + 0.9 * u); (z.material as THREE.MeshBasicMaterial).opacity = Math.min(1, u * 5) * (1 - u) ** 0.7; (z.material as THREE.MeshBasicMaterial).transparent = true; z.rotation.z = -0.25; });

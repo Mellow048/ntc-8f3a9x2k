@@ -12,7 +12,7 @@ export const show: Builder = (root) => {
   backdrop(root, ['#2a2440', '#4a3f66']);
   floor(root, 14, 12, tmat(tiled(tex('show-carpet', 128, 128, (g) => { g.fillStyle = '#7a2f4a'; g.fillRect(0, 0, 128, 128); g.fillStyle = '#8f3a58'; for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) if ((i + j) % 2) { g.beginPath(); g.arc(i * 32 + 16, j * 32 + 16, 9, 0, 7); g.fill(); } }, true), 7, 6)));
   box(root, 12, 5, 0.2, '#e9e2d0', 0, 2.5, -2.9);
-  soft(panel(root, 3.5, 0.82, smat(signTex('show-banner', 1050, 246, '#1f2a55', '#ffe14a', [['INTERNATIONAL', 60, 0.25], ['GEM & JEWELRY SHOW', 104, 0.66]], {border: '#ffe14a'}), 1.1), 0, 3.25, -2.78));
+  const banner = soft(panel(root, 3.5, 0.82, smat(signTex('show-banner', 1050, 246, '#1f2a55', '#ffe14a', [['INTERNATIONAL', 60, 0.25], ['GEM & JEWELRY SHOW', 104, 0.66]], {border: '#ffe14a'}), 1.1), 0, 3.25, -2.78));
   for (const x of [-1.2, 0, 1.2]) box(root, 0.6, 0.06, 0.16, lit('#fff6dc', 1.5), x, 4.3, -1.2);
   const XS = [-1.18, 0, 1.18], NAMES = ['DIAMONDS', 'GOLD · GEMS', 'WATCHES'];
   const sets = XS.map((x, i) => {
@@ -44,7 +44,7 @@ export const show: Builder = (root) => {
         s.jewels.visible = open; s.marks.visible = !open; s.marks.scale.setScalar(open ? 1 : pop(f, shot.at - 30 + i * 3, 7)); s.tw(f + i * 13, open);
         s.who.show(open ? 'hi' : shot.v === 'claim' && i === 1 ? 'paper' : 'low'); s.who.node.position.y = open ? hop(f, shot.at + 5 + i * 4, 0.05, 8) : 0; s.who.tick(f, cam);
       });
-      (glow.material as THREE.MeshBasicMaterial).opacity = open ? 0.14 : 0.05;
+      (glow.material as THREE.MeshBasicMaterial).opacity = open ? 0.14 : 0.05; banner.visible = shot.v !== 'claim';
     },
   };
 };
@@ -65,14 +65,19 @@ export const map: Builder = (root) => {
     g.beginPath(); CA.forEach(([lo, la], i) => (i ? g.lineTo(mx(lo), my(la)) : g.moveTo(mx(lo), my(la)))); g.closePath(); g.fillStyle = '#f2d9a0'; g.fill(); g.strokeStyle = INK; g.lineWidth = 12; g.lineJoin = 'round'; g.stroke();
     text(g, 'CALIFORNIA', mx(-117.0), my(36.6), 62, '#b08a4a', {maxWidth: 330});
     const city = (name: string, lon: number, lat: number, dx: number, dy: number, size = 34, align: CanvasTextAlign = 'left') => { g.fillStyle = INK; g.beginPath(); g.arc(mx(lon), my(lat), 9, 0, 7); g.fill(); text(g, name, mx(lon) + dx, my(lat) + dy, size, INK, {font: 'Montserrat', align}); };
-    city('SAN FRANCISCO', -122.42, 37.77, -4, -30, 30, 'left'); city('LOS ANGELES', -118.25, 34.05, 18, 32, 30); city('PASADENA', -118.14, 34.15, 20, -4, 26);
+    city('SAN FRANCISCO', -122.42, 37.77, -18, -4, 30, 'right'); city('LOS ANGELES', -118.25, 34.05, -18, 30, 30, 'right');
   }), 1), 0, CY, Z);
   // the route: a line of beads that light up one after another
   const N = 46, beads: THREE.Mesh[] = [], at = (u: number): [number, number] => { const s = u * (ROUTE.length - 1), i = Math.min(ROUTE.length - 2, Math.floor(s)), k = s - i; return [ROUTE[i][0] + (ROUTE[i + 1][0] - ROUTE[i][0]) * k, ROUTE[i][1] + (ROUTE[i + 1][1] - ROUTE[i][1]) * k]; };
   for (let i = 0; i < N; i++) { const [lo, la] = at(i / (N - 1)); beads.push(soft(mesh(root, new THREE.CircleGeometry(0.02, 12), lit('#e3342f', 1.2), bx(lo), by(la), Z + 0.012))); }
   const pinTex = (label: string, col: string) => tex('map-pin-' + label, 300, 120, (g, w, h) => { g.fillStyle = INK; rrect(g, 3, 3, w - 6, h - 6, 22); g.fill(); g.fillStyle = col; rrect(g, 13, 13, w - 26, h - 26, 15); g.fill(); text(g, label, w / 2, h / 2 + 4, 62, '#ffffff', {maxWidth: w - 44}); });
-  const pin = (label: string, lon: number, lat: number, col: string, dx = 0, w = 0.5) => { const g = grp(root, bx(lon), by(lat), Z + 0.02); soft(panel(g, w, w * 0.4, smat(pinTex(label, col), 1.05, true), dx, 0.22, 0.02)); soft(mesh(g, new THREE.ConeGeometry(0.045, 0.11, 3), lit(INK, 1), 0, 0.055, 0.015)).rotation.set(Math.PI, 0, 0); return g; };
-  const start = pin('SAN MATEO', -122.31, 37.56, '#2f6fd0', 0.22), end = pin('LEBEC', -118.87, 34.84, '#e3342f', 0.12, 0.4), mid = pin('BUTTONWILLOW', -119.47, 35.4, '#5b6170', -0.3, 0.5);
+  /** a dot on the place, a tag beside it and a line between the two */
+  const pin = (label: string, lon: number, lat: number, col: string, dx: number, dy: number, w = 0.5) => {
+    const g = grp(root, bx(lon), by(lat), Z + 0.02), len = Math.hypot(dx, dy), line = soft(panel(g, len, 0.022, lit(INK, 1), dx / 2, dy / 2, 0.004)); line.rotation.z = Math.atan2(dy, dx);
+    soft(mesh(g, new THREE.CircleGeometry(0.042, 20), lit(INK, 1), 0, 0, 0.008)); soft(mesh(g, new THREE.CircleGeometry(0.027, 20), lit(col, 1.1), 0, 0, 0.012));
+    soft(panel(g, w, w * 0.4, smat(pinTex(label, col), 1.05, true), dx, dy, 0.02)); return g;
+  };
+  const start = pin('SAN MATEO', -122.31, 37.56, '#2f6fd0', 0.42, -0.05), end = pin('LEBEC', -118.87, 34.84, '#e3342f', 0.3, 0.2, 0.4), mid = pin('BUTTONWILLOW', -119.47, 35.4, '#5b6170', -0.36, 0.14, 0.5);
   const truck = grp(root, 0, 0, Z + 0.03); soft(panel(truck, 0.13, 0.065, lit('#fffdf4', 1.1), 0, 0, 0.004)); soft(panel(truck, 0.15, 0.085, lit(INK, 1), 0, 0, 0));
   // cell towers along the way, and the ring each one sends when a phone passes
   const TW_U = [0.08, 0.26, 0.44, 0.62, 0.8, 0.96], towerTex = tex('map-tower', 120, 160, (g) => { g.strokeStyle = INK; g.lineWidth = 12; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(60, 20); g.lineTo(24, 148); g.moveTo(60, 20); g.lineTo(96, 148); g.moveTo(40, 96); g.lineTo(80, 96); g.moveTo(49, 58); g.lineTo(71, 58); g.stroke(); g.fillStyle = '#e3342f'; g.beginPath(); g.arc(60, 18, 14, 0, 7); g.fill(); });
@@ -109,8 +114,8 @@ export const road: Builder = (root) => {
   const dashes = Array.from({length: 22}, () => floor(root, 0.14, 1.5, lit('#f3ead0', 1), 0.018, 0, 0)), posts = Array.from({length: 24}, (_, i) => box(root, 0.06, 0.7, 0.06, lit(i % 2 ? '#ffb347' : '#f3f1ea', 1.1), (i % 2 ? 1 : -1) * 2.5, 0.35, 0));
   ball(root, 1.3, lit('#f6f1d8', 1.25), -9, 17, -68);
   // the sign by the show's exit
-  const sign = grp(root, 2.9, 0, -1.5); for (const s of [-1, 1]) cyl(sign, 0.05, 2.3, '#8a94a3', s * 0.85, 1.15, 0); box(sign, 2.06, 0.96, 0.07, '#e8e2d4', 0, 2.05, 0);
-  soft(panel(sign, 1.96, 0.86, smat(signTex('road-exit', 784, 344, '#1f6a44', '#ffffff', [['SAN MATEO COUNTY', 76, 0.3], ['EVENT CENTER', 104, 0.68]], {border: '#ffffff'}), 1.05), 0, 2.05, 0.04));
+  const sign = grp(root, 0, 0, -3); for (const s of [-1, 1]) cyl(sign, 0.07, 3.7, '#8a94a3', s * 2.7, 1.85, 0); box(sign, 5.5, 0.12, 0.12, '#8a94a3', 0, 3.66, 0); box(sign, 2.26, 0.9, 0.07, '#e8e2d4', -0.95, 3.2, 0.06);
+  soft(panel(sign, 2.16, 0.8, smat(signTex('road-exit', 864, 320, '#1f6a44', '#ffffff', [['SAN MATEO COUNTY', 80, 0.3], ['EVENT CENTER', 110, 0.68]], {border: '#ffffff'}), 1.05), -0.95, 3.2, 0.1));
   const truck = rig(root); truck.g.rotation.y = Math.PI / 2;
   const cars = [car(root, '#3d4450'), car(root, '#5a3f44')]; cars.forEach((c) => { c.g.rotation.y = Math.PI / 2; });
   const beams = cars.map(() => pool(root, 1.5, '#fff3c0', 0.26, 0, 0)); beams.forEach((b) => b.scale.set(0.8, 1, 2.2));
@@ -119,11 +124,11 @@ export const road: Builder = (root) => {
   const ping = [rings(root, 3, '#7af0e0'), rings(root, 3, '#7af0e0')], reach = rings(root, 3, '#7af0e0');
   const phones = cars.map(() => soft(panel(root, 0.26, 0.4, smat(phoneTex(), 1.2, true), 0, 0, 0)));
   return {
-    light: (v) => v === 'leave' ? {...LIGHT.dusk, amb: 1.0, keyI: 0.9} : LIGHT.night,
+    light: (v) => v === 'leave' ? {...LIGHT.night, sky: '#d6dcff', amb: 1.45, keyI: 1.0} : {...LIGHT.night, amb: 1.15},
     tick: ({f, shot}) => {
       const v = shot.v, speed = 0.3, t = f - shot.at;
       dashes.forEach((d, i) => { d.position.z = -56 + ((i * 3 + f * speed) % 66); }); posts.forEach((p, i) => { p.position.z = -60 + ((Math.floor(i / 2) * 6 + f * speed) % 72); });
-      sign.visible = v === 'leave'; sign.position.z = -1.5 + t * 0.12;
+      sign.visible = v === 'leave'; sign.position.z = -3 + t * 0.05;
       const tz = v === 'leave' ? -3.5 - 6.5 * smooth(f, shot.at - 4, shot.at + 60) : -14 + 0.2 * Math.sin(f * 0.05);
       truck.g.position.set(0.95, 0, tz + 2.2); truck.tick(f, true);
       const follow = v !== 'leave';
@@ -155,7 +160,7 @@ export const cold: Builder = (root) => {
   const web = soft(panel(root, 0.7, 0.7, smat(webTex(), 1, true), -0.5, 2.36, -0.4)); web.rotation.z = -Math.PI / 2;
   const spider = grp(root, 0.62, 0, -0.36); ball(spider, 0.045, lit('#15121c', 1), 0, 0, 0); const thread = soft(box(spider, 0.006, 1, 0.006, lit('#e6eaf5', 1), 0, 0.5, 0));
   const dust = soft(panel(main, 0.9, 0.12, new THREE.MeshBasicMaterial({color: '#cfd3de', transparent: true, opacity: 0.35, depthWrite: false}), 0, 0.71, 0.05)); dust.rotation.x = -Math.PI / 2 + 0.3;
-  cyl(root, 0.012, 1.2, '#23252e', 0, 4.2, 0.1); const bulb = ball(root, 0.1, lit('#ffe9b0', 1), 0, 3.56, 0.1), cone = beam(root, 0.1, 1.5, 3.5, '#ffe9b0', 0.05, 0, 3.5, 0.1), glow = halo(root, 1.5, '#ffd98a', 0, 0, 1.9, -0.3);
+  cyl(root, 0.012, 1.2, '#23252e', 0, 4.2, 0.1); const bulb = ball(root, 0.1, lit('#ffe9b0', 1), 0, 3.56, 0.1), cone = beam(root, 0.1, 1.1, 3.5, '#ffe9b0', 0.03, 0, 3.5, 0.1), glow = halo(root, 1.5, '#ffd98a', 0, 0, 1.9, -0.3);
   // what was in it: a prepaid phone
   const phone = grp(root, 0, 1.9, -0.55); box(phone, 0.22, 0.36, 0.04, '#23252e', 0, 0, 0); soft(panel(phone, 0.17, 0.15, lit('#7af0e0', 1.5), 0, 0.08, 0.022));
   for (let i = 0; i < 9; i++) box(phone, 0.035, 0.03, 0.01, '#8a94a3', -0.055 + (i % 3) * 0.055, -0.045 - Math.floor(i / 3) * 0.045, 0.022);
@@ -165,7 +170,7 @@ export const cold: Builder = (root) => {
     tick: ({f, shot}) => {
       const on = shot.v === 'break', k = on ? smooth(f, shot.at + 2, shot.at + 12) : 0, sway = 0.05 * Math.sin(f * 0.07);
       bulb.position.x = sway * 3; (bulb.material as THREE.MeshBasicMaterial).color.set('#ffe9b0').multiplyScalar(on ? 1 + 1.6 * k : 0.7 + 0.25 * Math.sin(f * 0.9) * (f % 40 < 6 ? 1 : 0));
-      (cone.material as THREE.MeshBasicMaterial).opacity = on ? 0.05 + 0.07 * k : 0.035; cone.rotation.z = sway; (glow.material as THREE.MeshBasicMaterial).opacity = 0.22 * k;
+      (cone.material as THREE.MeshBasicMaterial).opacity = on ? 0.03 + 0.04 * k : 0.02; cone.rotation.z = sway; (glow.material as THREE.MeshBasicMaterial).opacity = 0.22 * k;
       lid.rotation.x = -1.25 * k; dust.visible = !on; web.visible = !on;
       const drop = on ? 0 : 0.5 + 0.34 * smooth(f, shot.at, shot.at + 30) + 0.02 * Math.sin(f * 0.2); spider.visible = !on; spider.position.y = 3.28 - drop; thread.scale.y = drop; thread.position.y = drop / 2;
       phone.visible = on && k > 0.3; phone.position.y = 1.62 + 0.5 * smooth(f, shot.at + 8, shot.at + 20) + 0.02 * Math.sin(f * 0.2); phone.rotation.y = 0.3 * Math.sin(f * 0.1); ping(f, on && f > shot.at + 16, [0, phone.position.y + 0.06, -0.5], 0.5, 0, 0.05);
@@ -189,7 +194,6 @@ export const crash: Builder = (root) => {
   floor(root, 40, 3, tmat(tiled(tileTex('crash-walk', '#6a7084', '#4a5064', 4), 20, 2)), 0.08, 0, -3.5); box(root, 40, 0.16, 0.2, '#8a8f9c', 0, 0.08, -1.95);
   box(root, 14, 5, 0.4, '#3a3550', 0, 2.5, -5.2);
   soft(panel(root, 3.0, 1.5, smat(tex('crash-shop', 600, 300, (g, w, h) => { g.fillStyle = '#ffd98a'; g.fillRect(0, 0, w, h); g.fillStyle = '#3a3550'; g.fillRect(w / 2 - 8, 0, 16, h); g.fillRect(0, h - 40, w, 40); g.fillStyle = '#c9742f'; for (let i = 0; i < 5; i++) g.fillRect(40 + i * 112, 130 + (i % 2) * 30, 70, 130); }), 1.15), -2.2, 1.55, -4.98));
-  soft(panel(root, 1.6, 0.4, smat(signTex('crash-open', 400, 100, '#16181f', '#7af0e0', [['24 HR MARKET', 62, 0.56]], {glow: '#7af0e0'}), 1.5), -2.2, 2.65, -4.98));
   streetLamp(root, 2.9, -2.4, 3.8, '#ffe9b0', 2.2); pool(root, 3.0, '#ffe9b0', 0.3, 2.4, -0.6);
   // two cars, one into the back of the other
   const a = car(root, '#3f6fb5'), b = car(root, '#b9443a'); a.g.position.set(-1.15, 0, -0.4); b.g.position.set(0.98, 0, -0.52); b.g.rotation.y = -0.14;
@@ -201,7 +205,7 @@ export const crash: Builder = (root) => {
   const who = actor(root, SOMEONE, {tell: {pose: 'phone', prop: 'phone'}, idle: {pose: 'hang'}}, -0.5, 0, 1.3, {scale: 1.0, res: 1.1, wide: true});
   const DIGITS = '5550142'.split(''), digits = DIGITS.map((d) => soft(panel(root, 0.17, 0.21, smat(digitTex(d), 1.25, true), 0, 0, 0)));
   const pad = grp(root, ...PAD); box(pad, 0.5, 0.66, 0.03, '#3d4450', 0, 0, -0.02); soft(panel(pad, 0.47, 0.61, smat(padTex(), 1), 0, 0, 0)); const pen = cyl(pad, 0.012, 0.3, '#e3342f', 0.2, -0.16, 0.06); pen.rotation.z = -0.5; pen.rotation.x = 0.4;
-  const tag = soft(panel(root, 0.86, 0.36, smat(tex('crash-witness', 430, 180, (g, w, h) => { g.fillStyle = INK; rrect(g, 3, 3, w - 6, 120, 24); g.fill(); g.fillStyle = '#ffe14a'; rrect(g, 13, 13, w - 26, 100, 16); g.fill(); text(g, 'WITNESS', w / 2, 66, 84, INK); g.fillStyle = INK; g.beginPath(); g.moveTo(w / 2 - 26, 118); g.lineTo(w / 2 + 26, 118); g.lineTo(w / 2, 176); g.closePath(); g.fill(); }), 1.1, true), -0.5, 2.62, 1.3));
+  const tag = soft(panel(root, 0.86, 0.36, smat(tex('crash-witness', 430, 180, (g, w, h) => { g.fillStyle = INK; rrect(g, 3, 3, w - 6, 120, 24); g.fill(); g.fillStyle = '#ffe14a'; rrect(g, 13, 13, w - 26, 100, 16); g.fill(); text(g, 'WITNESS', w / 2, 66, 84, INK); g.fillStyle = INK; g.beginPath(); g.moveTo(w / 2 - 26, 118); g.lineTo(w / 2 + 26, 118); g.lineTo(w / 2, 176); g.closePath(); g.fill(); }), 1.1, true), -0.5, 2.4, 1.3));
   return {
     light: () => ({...LIGHT.night, amb: 1.2, keyI: 0.9}),
     tick: ({f, cam, shot}) => {
@@ -214,7 +218,7 @@ export const crash: Builder = (root) => {
       // "handed police his burner number": the digits go from his phone to the officer's pad
       digits.forEach((d, i) => { const at = W(122) + i * 4, u = (f - at) / 16; d.visible = v === 'hand' && u > 0 && u < 1; d.position.set(-0.22 + 0.72 * u, 1.5 + 0.25 * Math.sin(Math.PI * u), 1.42); d.scale.setScalar(0.7 + 0.5 * Math.sin(Math.PI * Math.min(1, u * 1.2))); });
       pad.visible = v === 'note'; pad.scale.setScalar(v === 'note' ? pop(f, shot.at - 3, 7) : 1); pen.position.x = 0.2 + 0.03 * Math.sin(f * 0.9); pen.position.y = -0.16 + shake(f, shot.at + 2, 0.02, 14);
-      tag.visible = v === 'wide' && f >= W(132) - 2; tag.scale.setScalar(pop(f, W(132) - 2, 8)); tag.position.y = 2.62 + 0.03 * Math.sin(f * 0.12);
+      tag.visible = v === 'wide' && f >= W(132) - 2; tag.scale.setScalar(pop(f, W(132) - 2, 8)); tag.position.y = 2.4 + 0.03 * Math.sin(f * 0.12);
     },
   };
 };
@@ -250,7 +254,7 @@ export const airport: Builder = (root) => {
       const cue = W(142) - 2, k = smooth(f, shot.at - 6, cue + 2), halted = f >= cue;
       const x = -1.5 + 1.35 * k; man.node.position.set(x, hop(f, cue, 0.07, 7), 0.4); man.show(halted ? 'halt' : 'walk'); man.tick(f, cam);
       bagG.position.set(x - 0.52, 0, 0.36); bagG.rotation.z = halted ? 0 : -0.16;
-      cops.forEach((c, i) => { const s = i ? 1 : -1, u = smooth(f, cue - 8, cue + 4), cx = s * (2.6 - 1.55 * u) + (i ? 0.05 : -0.35); c.node.position.set(cx, 0, 0.55); c.show(u > 0.96 ? 'stop' : 'walk'); c.mesh.scale.x = s < 0 ? -1 : 1; c.tick(f, cam); });
+      cops.forEach((c, i) => { const s = i ? 1 : -1, u = smooth(f, cue - 8, cue + 4), cx = s * (2.5 - 1.6 * u) + (i ? -0.1 : -0.3); c.node.position.set(cx, 0, 0.55); c.show(u > 0.96 ? 'stop' : 'walk'); c.mesh.scale.x = s < 0 ? -1 : 1; c.tick(f, cam); });
     },
   };
 };

@@ -33,7 +33,8 @@ export type Look = {
 export type Draw = {expr?: Expr; pose?: Pose; prop?: Prop; blink?: boolean; tilt?: number; look?: number; mode?: 'stand' | 'sit' | 'march'; phase?: number;
   /** the face in the hood */ emo?: Emo;
   /** a paper halo on a wire */ halo?: 'on' | 'askew';
-  /** the word on a card */ text?: string};
+  /** the word on a card */ text?: string;
+  /** a bigger card, for a word that has to be read from far away */ big?: boolean};
 
 const curve = (a: P2, k: P2, b: P2, n = 12): P2[] => {
   const c: P2 = [2 * k[0] - (a[0] + b[0]) / 2, 2 * k[1] - (a[1] + b[1]) / 2], out: P2[] = [];
@@ -83,10 +84,10 @@ function drawProp(p: Pen, d: Draw, hands: P2[], u: number, look: Look) {
   const g = p.g, R = hands[1] ?? [430, 600], L = hands[0] ?? [170, 600], prop = d.prop ?? null, fist = (h: P2 = R) => p.dot(h[0], h[1], 5.5 * u);
   if (!prop) return;
   if (prop === 'card') {                                                                            // a card held up in both hands, with a word on it
-    const x = (L[0] + R[0]) / 2, y = Math.min(L[1], R[1]) - 14 * u, w = Math.abs(R[0] - L[0]) * 0.5 + 30 * u, h = 26 * u, word = d.text ?? 'SORRY';
+    const kb = d.big ? 1.5 : 1, x = (L[0] + R[0]) / 2, y = Math.min(L[1], R[1]) - 14 * u * kb, w = (Math.abs(R[0] - L[0]) * 0.5 + 30 * u) * (d.big ? 1.3 : 1), h = 26 * u * kb, word = d.text ?? 'SORRY';
     p.rot = [-0.05, x, y]; p.poly(rounded(x - w, y - h, 2 * w, 2 * h, 5 * u), '#fffdf4', 2.6 * u); p.rot = null;
     g.save(); g.translate(x, y); g.rotate(-0.05); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#e3342f';
-    let px = 40 * u; g.font = `400 ${px}px Anton, sans-serif`; const mw = g.measureText(word).width; if (mw > 1.7 * w) { px *= 1.7 * w / mw; g.font = `400 ${px}px Anton, sans-serif`; }
+    let px = 40 * u * kb; g.font = `400 ${px}px Anton, sans-serif`; const mw = g.measureText(word).width; if (mw > 1.7 * w) { px *= 1.7 * w / mw; g.font = `400 ${px}px Anton, sans-serif`; }
     g.fillText(word, 0, 2 * u); g.restore(); fist(L); fist(R);
   } else if (prop === 'flowers') {                                                                  // a bunch of flowers in paper
     const [x, y] = [R[0] + 4 * u, R[1] - 6 * u], cols = ['#ff6b9a', '#ffd43b', '#ff8a3c', '#ffffff', '#ff6b9a'];
