@@ -31,6 +31,10 @@ on:
         description: "true = skip rendering and only join the chunks of an earlier run"
         required: false
         default: "false"
+      qa_only:
+        description: "true = skip rendering; measure and fix the delivered MP4 and grab QA frames"
+        required: false
+        default: "false"
       chunks_run:
         description: "Run id holding the chunk-* artifacts (empty = this run)"
         required: false
@@ -42,7 +46,7 @@ on:
 # is a stream copy.
 jobs:
   render:
-    if: inputs.assemble_only != 'true'
+    if: inputs.assemble_only != 'true' && inputs.qa_only != 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -260,3 +264,95 @@ jobs:
           path: final.mp4
           if-no-files-found: warn
           retention-days: 14
+
+  qa:
+    if: inputs.qa_only == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -y
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -1
+
+      # The mix was built by RMS, not by the loudness meter. Measure the delivered file and, if it is
+      # off the -15 LUFS gate, re-mux the same video stream with the gain and a limiter. No re-render.
+      - name: Level the delivery and grab QA frames
+        run: |
+          set -e
+          V=shoots/pig-war/PIG_WAR.mp4
+          O=shoots/pig-war/qa
+          mkdir -p "$O"; rm -f "$O"/*.jpg "$O"/QC.md
+
+          ffprobe -v error -show_entries format=duration,size,bit_rate             -show_entries stream=codec_type,codec_name,width,height,r_frame_rate,nb_frames,sample_rate,channels             -of default=nw=1 "$V" > /tmp/probe.txt 2>&1
+
+          ffmpeg -hide_banner -nostats -i "$V" -af ebur128=peak=true -f null - 2> /tmp/loud0.txt || true
+          I=$(grep -A6 "Integrated loudness" /tmp/loud0.txt | grep " I:" | tail -1 | sed 's/.*I: *//; s/ *LUFS//')
+          TP=$(grep -A2 "True peak" /tmp/loud0.txt | grep "Peak:" | tail -1 | sed 's/.*Peak: *//; s/ *dBFS//')
+          echo "measured I=$I LUFS  TP=$TP dBTP"
+          GAIN=$(python3 - "$I" <<'EOF'
+          import sys
+          try: i = float(sys.argv[1])
+          except Exception: i = -20.0
+          g = -15.0 - i
+          print(f"{max(-24.0, min(24.0, g)):.2f}")
+          EOF
+          )
+          echo "applying $GAIN dB"
+          ffmpeg -y -v error -i "$V" -c:v copy -af "volume=${GAIN}dB,alimiter=limit=0.85:level=disabled" \
+            -c:a aac -b:a 192k -ar 48000 -movflags +faststart "/tmp/leveled.mp4"
+          ffprobe -v error -show_entries format=duration -of default=nw=1 "/tmp/leveled.mp4" | grep -q "duration" \
+            && mv /tmp/leveled.mp4 "$V"
+
+          ffmpeg -hide_banner -nostats -i "$V" -af ebur128=peak=true -f null - 2> /tmp/loud1.txt || true
+          I2=$(grep -A6 "Integrated loudness" /tmp/loud1.txt | grep " I:" | tail -1 | sed 's/.*I: *//; s/ *LUFS//')
+          TP2=$(grep -A2 "True peak" /tmp/loud1.txt | grep "Peak:" | tail -1 | sed 's/.*Peak: *//; s/ *dBFS//')
+
+          {
+            echo "# Pig War — QA of the delivered file"
+            echo
+            echo "\`shoots/pig-war/PIG_WAR.mp4\`"
+            echo
+            echo '```'
+            cat /tmp/probe.txt
+            echo '```'
+            echo
+            echo "| measure | before | after |"
+            echo "|---|---|---|"
+            echo "| integrated loudness (LUFS) | $I | $I2 |"
+            echo "| true peak (dBTP) | $TP | $TP2 |"
+            echo "| gain applied (dB) | | $GAIN |"
+            echo
+            echo "## frames"
+            echo
+          } > "$O/QC.md"
+
+          for T in 2 9 16 24 30 38 46 52 58 64 71 76 82 88 92 97 101; do
+            ffmpeg -y -v error -ss "$T" -i "$V" -frames:v 1 -q:v 3 "$O/t$(printf '%03d' "$T").jpg"
+            echo "- ${T}s → \`t$(printf '%03d' "$T").jpg\`" >> "$O/QC.md"
+          done
+          sed -n '1,40p' "$O/QC.md"
+
+      - name: Commit QA and the leveled MP4
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "Arena CI"
+          git config user.email "ci@arena.ai"
+          git add -f shoots/pig-war/PIG_WAR.mp4 shoots/pig-war/qa
+          git commit -m "QA: measure, level and sample the delivered file" || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          for i in 1 2 3; do
+            git fetch origin "$GITHUB_REF_NAME" || true
+            git rebase "origin/$GITHUB_REF_NAME" || git rebase --abort || true
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then echo "qa pushed"; exit 0; fi
+            sleep 5
+          done
+          echo "could not push qa"; exit 1
