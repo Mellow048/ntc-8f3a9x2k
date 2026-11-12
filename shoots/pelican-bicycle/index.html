@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pelican on a bicycle</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body { display: grid; place-items: center; min-height: 100vh; padding: 20px; background: #e8ede8; }
+  svg { display: block; width: min(100%, 960px); height: auto; border-radius: 8px; box-shadow: 0 16px 45px #304d4a24; }
+</style>
+</head>
+<body>
+<svg viewBox="0 0 1000 750" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<title id="title">A pelican riding a bicycle</title>
+<desc id="desc">A cheerful white pelican pedals a red bicycle along a coastal road, with the sea and a lighthouse in the distance.</desc>
+<defs>
+  <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#a7d9d4"/><stop offset="1" stop-color="#e2ede0"/></linearGradient>
+  <linearGradient id="sea" x2="0" y2="1"><stop stop-color="#7ebcba"/><stop offset="1" stop-color="#b5d6c9"/></linearGradient>
+  <linearGradient id="body" x2="0.8" y2="1"><stop stop-color="#fffdf1"/><stop offset="1" stop-color="#d5dfd5"/></linearGradient>
+  <linearGradient id="beak" x2="0.2" y2="1"><stop stop-color="#f6b75f"/><stop offset="1" stop-color="#db8143"/></linearGradient>
+  <g id="wheel">
+    <circle r="122" fill="#f6e9d0" stroke="#263d40" stroke-width="12"/>
+    <circle r="110" fill="none" stroke="#f8f4e5" stroke-width="4"/>
+    <g stroke="#889f99" stroke-width="2.2">
+      <path d="M-107 0H107 M0-107V107 M-76-76 76 76 M76-76-76 76 M-99-41 99 41 M-99 41 99-41 M-41-99 41 99 M41-99-41 99"/>
+    </g>
+    <circle r="9" fill="#263d40"/><circle r="3" fill="#f3ddaa"/>
+  </g>
+</defs>
+<!-- A quiet coastal setting -->
+<rect width="1000" height="750" fill="url(#sky)"/>
+<circle cx="821" cy="130" r="49" fill="#f7e5b1" opacity=".86"/>
+<g fill="#fffdf0" opacity=".65"><path d="M105 135q19-24 44-8 25-37 63-8 24-6 37 16z"/><path d="M560 91q15-18 34-5 19-27 48-5 19-5 29 10z"/></g>
+<path d="M0 358 Q144 326 280 350 T560 349 T1000 335 V490 H0Z" fill="#b5d3c5"/>
+<path d="M0 383 Q150 368 300 382 T600 378 T1000 369 V514 H0Z" fill="url(#sea)"/>
+<g fill="none" stroke="#e8f2df" stroke-width="3" stroke-linecap="round" opacity=".7"><path d="M45 415h89m29 0h30M730 416h84m22 0h28M75 455h67m30 0h43M671 457h44m18 0h87"/></g>
+<!-- lighthouse -->
+<path d="M852 363 860 280h25l9 83z" fill="#f5ecda" stroke="#728e83" stroke-width="2"/><path d="M858 308h30l2 17h-34z" fill="#d98670"/><path d="M858 280v-13h29v13M855 267l17-14 18 14z" fill="#c97460" stroke="#728e83" stroke-width="2"/><rect x="867" y="284" width="9" height="12" rx="4" fill="#597d7a"/>
+<path d="M0 505 Q230 484 440 503 T1000 491 V750 H0Z" fill="#d9d4b6"/>
+<path d="M0 581 Q290 565 522 579 T1000 572 V750 H0Z" fill="#b7b9a5"/>
+<path d="M0 608 Q300 593 550 605 T1000 600" fill="none" stroke="#eee5ca" stroke-width="3" opacity=".75"/>
+<g stroke="#92a992" stroke-width="3" stroke-linecap="round" fill="none"><path d="M100 565q-6-20-15-24m15 24q4-17 12-23M906 555q-4-19-12-24m12 24q5-18 13-24"/></g>
+<ellipse cx="502" cy="671" rx="372" ry="21" fill="#748b7f" opacity=".22"/>
+<!-- Wheels and bicycle -->
+<use href="#wheel" x="263" y="536"/><use href="#wheel" x="738" y="536"/>
+<!-- rear mudguard -->
+<path d="M139 493a132 132 0 0 1 215-55" fill="none" stroke="#c45446" stroke-width="8" stroke-linecap="round"/>
+<path d="M627 462a132 132 0 0 1 206-25" fill="none" stroke="#c45446" stroke-width="8" stroke-linecap="round"/>
+<!-- frame -->
+<g fill="none" stroke="#9a443b" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M263 536 394 398 491 536 263 536 354 424 661 424 491 536 394 398"/><path d="M738 536 650 353"/></g>
+<g fill="none" stroke="#e98269" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M263 532 394 394 491 532 263 532 354 420 661 420 491 532 394 394"/><path d="M735 532 647 350"/></g>
+<!-- saddle and handlebars -->
+<path d="M378 398 370 375" stroke="#354849" stroke-width="8"/><path d="M336 373q25-10 60-5 12 2 8 9-3 5-20 5h-39q-13-1-9-9z" fill="#344749"/>
+<path d="M650 355 634 322q-4-9 7-12l48-10q15-3 18 9 2 10-11 14" fill="none" stroke="#344749" stroke-width="9" stroke-linecap="round"/><path d="M681 301l18-4" stroke="#a05b46" stroke-width="10" stroke-linecap="round"/>
+<!-- drivetrain -->
+<circle cx="491" cy="536" r="27" fill="#f0d9b6" stroke="#344749" stroke-width="5"/><circle cx="491" cy="536" r="12" fill="none" stroke="#a3a79b" stroke-width="3"/>
+<path d="M491 536 521 560" stroke="#344749" stroke-width="6" stroke-linecap="round"/><path d="M510 562h26" stroke="#344749" stroke-width="8" stroke-linecap="round"/>
+<!-- far leg, foot on opposite pedal -->
+<path d="M421 358q-14 50 20 91l26 36" fill="none" stroke="#b97845" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M465 483q-3 12 9 14l24-3q8-2 5-7-2-4-11-3l-16-6z" fill="#d99850" stroke="#714e37" stroke-width="3"/>
+<!-- tail and body -->
+<path d="M340 305q-37-1-64-27 4 35 34 55-23 0-38-6 18 29 66 33z" fill="#dce6dc" stroke="#344749" stroke-width="4" stroke-linejoin="round"/>
+<path d="M359 272q-38 5-46 45-10 54 50 76 57 21 112-6 37-18 43-59 5-35-31-48z" fill="url(#body)" stroke="#344749" stroke-width="5"/>
+<!-- wing -->
+<path d="M337 305q35-34 102-20 39 9 49 37-27 42-81 45-48 2-70-62z" fill="#f7f8ed" stroke="#344749" stroke-width="4"/>
+<path d="M355 317q10 27 31 34m-17-42q13 28 33 36m-16-40q17 28 35 34" fill="none" stroke="#bccbc1" stroke-width="3" stroke-linecap="round"/>
+<!-- near leg and foot clearly reaching the pedal -->
+<path d="M410 375q-9 40 24 68l75 93" fill="none" stroke="#cf8b4c" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M507 531q6-3 11 3l7 13 15 4q8 2 7 7-1 5-10 5l-24-3q-8-1-10-8l-4-12z" fill="#edaa5e" stroke="#714e37" stroke-width="3" stroke-linejoin="round"/>
+<!-- neck curling up to the head -->
+<path d="M456 316q49-2 57-36 5-21-4-48-14-42 10-69 19-21 50-16 30 5 38 31 5 19-6 35-10 15-27 21-3 22 6 44 17 42-7 68-29 34-99 23z" fill="url(#body)" stroke="#344749" stroke-width="5" stroke-linejoin="round"/>
+<path d="M522 253q18 23 14 48-4 20-20 32" fill="none" stroke="#bccbc1" stroke-width="3" stroke-linecap="round"/>
+<!-- pouch and unmistakable long beak -->
+<path d="M575 197q32 4 80 10l112 7q-31 15-66 43-35 29-78 24-42-5-56-30-8-15-8-30z" fill="#e9a65c" stroke="#344749" stroke-width="4" stroke-linejoin="round"/>
+<path d="M574 195q41-5 83 0l114 14q9 2 4 7l-20 5-112-6-70 1z" fill="url(#beak)" stroke="#344749" stroke-width="4" stroke-linejoin="round"/>
+<path d="M585 225q30 5 56 3" fill="none" stroke="#c77f46" stroke-width="3" stroke-linecap="round"/>
+<circle cx="570" cy="181" r="13" fill="#fffdf3"/><circle cx="573" cy="182" r="5" fill="#263d40"/><circle cx="575" cy="180" r="1.5" fill="white"/>
+<path d="M555 160q12-6 22-2" fill="none" stroke="#344749" stroke-width="3" stroke-linecap="round"/>
+<!-- wing tip holding the handlebar -->
+<path d="M471 319q50 17 92 11l59-13q9-2 12 5 2 8-8 12l-57 21q-52 14-94 0" fill="#edf2e7" stroke="#344749" stroke-width="4" stroke-linejoin="round"/>
+<path d="M618 318q5-10 13-8l5 8 8-2q7 1 6 6-1 5-9 7l-17 3" fill="#edf2e7" stroke="#344749" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- little road details -->
+<g fill="#f2e8cf" opacity=".8"><ellipse cx="65" cy="666" rx="19" ry="3"/><ellipse cx="881" cy="651" rx="25" ry="3"/><ellipse cx="937" cy="691" rx="13" ry="2"/></g>
+</svg>
+</body>
+</html>
