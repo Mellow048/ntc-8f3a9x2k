@@ -88,21 +88,23 @@ Everything from IND and DOJ is an allegation. The release says so itself (fact 1
 - **The closing question judges nobody:** sharper employees, or a rule that nobody sends millions alone. The
   indictment itself contains both: employees who believed the call, and a back office that stopped a wire.
 
-## Narration (241 words, 15 lines), and the facts behind each line
+## Narration (228 words, 14 lines), and the facts behind each line
+
+The first draft (242 words in 15 lines) read at 79.5 seconds. Two lines went ("Sign a secrecy agreement. Then call our
+lawyer." and the places of the arrests, which are on screen instead), and the read was taken again.
 
 1. Your boss calls you on video: wire five million dollars, and tell no one. His voice. His face. It isn't him!
    *(the scheme as the indictment describes it: facts 4, 9, 10, 11; five million is the size of the listed losses, fact 13)*
 2. Prosecutors in New York say three men and their partners tried that on thousands of companies, using A.I., and took about a hundred and twenty-nine million dollars. *(1, 2, 4, 5)*
 3. The indictment says it began with an email in the CEO's name. *(7)*
 4. One read, quote: we need to loop you into a deal we've been working on. *(7, exact words)*
-5. Sign a secrecy agreement. Then call our lawyer. *(7, paraphrase, not given as a quotation)*
-6. Then, the call: the CEO's voice, and sometimes his face, made by A.I. *(9)*
-7. The lawyer was fake too, using a real attorney's name from a giant law firm. *(8)*
-8. One defendant, prosecutors say, kept a handwritten script. Its title: Lawyer Call. *(15)*
-9. Then: wire the money. A Missouri hospital system sent four point eight million dollars. A Florida pet food company, five point two million. *(11, 13)*
-10. The money went to accounts in at least nine countries, then into crypto. *(14)*
-11. Two defendants have aliases in the indictment. Rocky Balboa. Superman Cash. Impossible Mission. *(2)*
-12. One allegedly boasted that at laundering money he was, quote: number one all over the world. *(16, exact words)*
-13. But it didn't always work. At one New York investment bank, an employee approved the wire. The back office stopped it. *(12)*
-14. All three were arrested this year, in Spain and Britain. These are accusations: they are presumed innocent. *(17, 19)*
-15. So what stops a fake boss: sharper employees, or a rule that nobody sends millions alone?
+5. Then, the call: the CEO's voice, and sometimes his face, made by A.I. *(9)*
+6. Next came a lawyer: also fake, under a real attorney's name. *(8)*
+7. One defendant, prosecutors say, kept a handwritten script. Its title: Lawyer Call. *(15)*
+8. And it worked, the indictment says. A Missouri hospital system sent four point eight million dollars. A Florida pet food company, five point two million. *(5, 11, 13)*
+9. The money went to accounts in at least nine countries, then into crypto. *(14)*
+10. Two defendants have aliases in the indictment. Rocky Balboa. Superman Cash. Impossible Mission. *(2)*
+11. One allegedly boasted that at laundering money he was, quote: number one all over the world. *(16, exact words)*
+12. But it didn't always work. At one New York investment bank, an employee approved the wire. The back office stopped it. *(12)*
+13. All three were arrested this year. These are accusations: they are presumed innocent. *(17, 19)*
+14. So what stops a fake boss: sharper employees, or a rule that nobody sends millions alone?
