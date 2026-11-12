@@ -178,7 +178,7 @@ const SETCAM: Record<SetId, Cam> = {
   garden: { pos: [22, 1.8, 8], look: [26, 0.8, -3], fov: 32, roll: 0 },
   park: { pos: [20, 2.2, 14], look: [26, 1.2, -6], fov: 34, roll: 0 },
   grave: { pos: [30, 1.5, -44], look: [28, 0.6, -56], fov: 30, roll: 0 },
-  chart: { pos: [0.15, 1.95, 2.9], look: [0, 0.98, -0.1], fov: 42, roll: 0 },
+  chart: { pos: [0, 2.5, 1.05], look: [0, 0.95, -0.45], fov: 44, roll: 0 },
   office: { pos: [0, 1.9, 3.0], look: [0, 1.1, -0.4], fov: 44, roll: 0 },
   harney: { pos: [0, 1.85, 2.9], look: [0.2, 1.15, -0.5], fov: 42, roll: 0 },
   washington: { pos: [0, 1.8, 2.8], look: [0, 1.1, -0.4], fov: 44, roll: 0 },

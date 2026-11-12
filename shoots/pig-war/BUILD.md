@@ -14,7 +14,9 @@ attempted, and none should be until every set exists.
 | `voice/words.json` / `timing.json` | word times + group anchors (the timeline of everything else) |
 | `SHOT_PLAN.md` | 60 shots, 14 sets, cut on the sentence that opens each shot |
 | `remotion-app/src/videos/pig-war/` | renderer scaffold; `PigWarShort` registered in `Root.tsx` |
-| sets built | **patch only** — cabin, potato rows, boundary fence, treeline, shore, water, far hills, warship |
+| sets built | **all six locations exist** — patch (detailed), Belle Vue, the strait/fleet, the camps (tents, blockhouse, redoubt, cemetery, garden, tennis), interiors (chart table, desk, lamp), a ship's deck, Gettysburg |
+| quality | patch is up to standard; the other five are **blockout** — right composition and content, wrong density and detail |
+| cameras | every shot has one: 5 hand-keyed, the rest a per-shot creep-in on that set's base framing |
 | cast | `Figure` (toon cards) + outfits: CUTLAR, GRIFFIN, SETTLER, US_INFANTRY, MARINE, RN_OFFICER |
 | the boar | `pig.ts`, real geometry, face, walk cycle, rooting |
 | shots with cameras | 1, 2, 17, 18, 19 — every other shot falls back to `PATCH_WIDE`, so a full render now would show the patch for 200 s |
@@ -60,15 +62,18 @@ overwritten on the next run and should be deleted from git before the final deli
 
 ## Next, in order
 
-1. **Set 2: Belle Vue** — sheep, the landing beach, the grown farm, the Company's yard and office.
-   Covers shots 8–15, 22, 55.
-2. **Set 3: the strait** — five hulls at anchor, the island from the water, the redoubt and American
-   Camp, the excursion boat. Covers 3, 4, 7, 28–36, 44–47, 51.
-3. **Set 4: interiors** — chart table, Harney's office, Washington, Scott's cabin, Geneva, the
-   Kaiser's map. Covers 5, 6, 27, 38–40, 48–50.
-4. **Set 5: English Camp** — tents, barracks, blockhouse, tennis, billiards, garden, cemetery, the
-   park entrance. Covers 41–43, 52, 57–60.
-5. Captions (1–2 words, from `words.json`), then the score, then the mix.
+Every location now exists, so the remaining work is quality, not coverage:
+
+1. **Detail pass, Belle Vue** (shots 8–15, 22, 55): flock density and scale, the landing lighter,
+   the tally, the yard with Griffin and the auctioneer, the ledger for shot 22.
+2. **Detail pass, the strait and the camps** (3, 4, 7, 28–36, 41–47, 51–52, 57–60): island
+   shoreline, five distinguishable hulls, the excursion boat, tents/barracks/blockhouse, the
+   cemetery, the garden.
+3. **Detail pass, interiors** (5, 6, 27, 38–40, 48–50): proper charts at human scale, paper, seals,
+   the commissioners, the Kaiser's map resolving into the modern border.
+4. **Cast for every shot**: only Cutlar (18) and the boar exist on screen so far. Each shot needs
+   its people stagged and posed from `words.json`.
+5. Captions (1–2 words from `words.json`), then the originalscore, then the mix.
 6. QA with `templates/scripts/short_qa.py`, then `Render short` with `size=720`, `crf=16`.
 
 ## Known defects
