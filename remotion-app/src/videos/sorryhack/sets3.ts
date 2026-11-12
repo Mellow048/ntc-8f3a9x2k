@@ -18,12 +18,13 @@ const letterTex = (ch: string) => tex('den-letter-' + ch, 200, 240, (g, w, h) =>
   const cv = document.createElement('canvas'); cv.width = 20; cv.height = 24; const c = cv.getContext('2d')!; c.fillStyle = '#fff'; c.font = '400 26px Anton, sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(ch, 10, 13.5);
   const d = c.getImageData(0, 0, 20, 24).data; g.fillStyle = '#ffffff'; for (let y = 0; y < 24; y++) for (let x = 0; x < 20; x++) if (d[(y * 20 + x) * 4 + 3] > 110) { g.beginPath(); g.arc(18 + x * 8.6, 20 + y * 8.6, 3.5, 0, 7); g.fill(); }
 });
-const crateTex = () => tex('den-crate', 512, 384, (g, w, h) => {
+/** the crate is 0.95 by CRATE_H: the word sits in the upper half of its front, above the band the captions use, in the wide shots and in the close one */
+const CRATE_H = 0.86;
+const crateTex = () => tex('den-crate', 512, 464, (g, w, h) => {
   g.fillStyle = '#b98a52'; g.fillRect(0, 0, w, h); g.strokeStyle = '#7a5630'; g.lineWidth = 10; for (let i = 1; i < 4; i++) { g.beginPath(); g.moveTo(0, i * h / 4); g.lineTo(w, i * h / 4); g.stroke(); }
   g.strokeStyle = '#6a4826'; g.lineWidth = 26; g.strokeRect(13, 13, w - 26, h - 26);
-  g.save(); g.translate(w / 2, h * 0.62); g.rotate(-0.04); text(g, 'DATA', 0, 0, 176, '#2a1c10', {maxWidth: w - 90}); g.restore();
+  g.save(); g.translate(w / 2, 152); g.rotate(-0.04); text(g, 'DATA', 0, 0, 168, '#2a1c10', {maxWidth: w - 90}); g.restore();
 });
-const tagTex = () => tex('den-tag', 420, 150, (g, w, h) => { g.fillStyle = '#ffe14a'; rrect(g, 5, 5, w - 10, h - 10, 16); g.fill(); g.strokeStyle = INK; g.lineWidth = 9; g.stroke(); text(g, 'ITS CLAIM', w / 2, 52, 60, INK); text(g, 'UNCONFIRMED', w / 2, 108, 46, '#b3211d', {maxWidth: w - 40}); });
 const bannerTex = () => tex('den-banner', 1200, 330, (g, w, h) => {
   g.fillStyle = '#fffdf4'; rrect(g, 6, 6, w - 12, h - 12, 26); g.fill(); g.strokeStyle = INK; g.lineWidth = 12; g.stroke();
   text(g, 'SORRY', w / 2, 104, 150, '#e3342f'); text(g, 'FOR THE INCONVENIENCE', w / 2, 240, 104, INK, {maxWidth: w - 80});
@@ -60,19 +61,20 @@ export const den: Builder = (root) => {
   const screens = [-1.0, 0, 1.0].map((x, i) => new THREE.MeshBasicMaterial({map: codeTex(11 + i * 7)})); [-1.0, 0, 1.0].forEach((x, i) => monitor(root, x, 0.8, -1.4, 0.74, 0.5, screens[i], 0));
   const wash = halo(root, 3.0, GREEN, 0.1, 0, 1.3, -1.9);
   // the name the group gave itself, letter by letter
-  const LX = [-0.84, -0.28, 0.28, 0.84], LY = 2.52, letters = ['B', 'Y', 'O', 'D'].map((ch, i) => { const m = new THREE.MeshBasicMaterial({map: letterTex(ch), transparent: true}); box(root, 0.5, 0.6, 0.05, '#12141c', LX[i], LY, -2.0); soft(panel(root, 0.46, 0.55, m, LX[i], LY, -1.97)); return m; });
+  // (it is taken down for the five shots that have a quotation where it hangs: a card over half a sign is two things to read at once)
+  const sign = grp(root, 0, 0, 0), CARDS = new Set(['quote', 'morals', 'villains', 'keep', 'hug']);
+  const LX = [-0.84, -0.28, 0.28, 0.84], LY = 2.52, letters = ['B', 'Y', 'O', 'D'].map((ch, i) => { const m = new THREE.MeshBasicMaterial({map: letterTex(ch), transparent: true}); box(sign, 0.5, 0.6, 0.05, '#12141c', LX[i], LY, -2.0); soft(panel(sign, 0.46, 0.55, m, LX[i], LY, -1.97)); return m; });
   const XS = [-0.78, 0, 0.78], Z = 0.1, crew = hoods(root, XS, Z, Object.keys(DRAW));
   const spots = XS.map((x) => pool(root, 0.9, '#b8ffb0', 0.2, x, Z));
   // heaven's own spotlight, for the line about morals
   const gold = beam(root, 0.5, 1.9, 5.6, '#ffe9a8', 0, 0, 5.6, Z), goldPool = pool(root, 2.0, '#ffe9a8', 0, 0, Z);
   // the long banner, and the crate
   const banner = soft(panel(root, 2.08, 0.57, smat(bannerTex(), 1.02, true), 0, 1.0, Z + 0.4));
-  const CRX = 0.5, crate = grp(root, CRX, 0, 0.75); box(crate, 0.95, 0.66, 0.6, tmat(crateTex()), 0, 0.33, 0); box(crate, 0.99, 0.05, 0.64, '#8a6236', 0, 0.68, 0);
+  const CRX = 0.5, crate = grp(root, CRX, 0, 0.75); box(crate, 0.95, CRATE_H, 0.6, tmat(crateTex()), 0, CRATE_H / 2, 0); box(crate, 0.99, 0.05, 0.64, '#8a6236', 0, CRATE_H + 0.02, 0);
   const files = tex('den-files', 360, 160, (g) => { g.clearRect(0, 0, 360, 160); [['#ffc94a', 60], ['#7ec8e3', 150], ['#ff9f6b', 240], ['#b8e986', 310]].forEach(([c, x], i) => folder(g, x as number, 96 - (i % 2) * 10, 96, c as string)); });
-  const papers = soft(panel(crate, 0.86, 0.38, smat(files, 1, true), 0, 0.83, -0.05));
-  const tag = soft(panel(crate, 0.44, 0.157, smat(tagTex(), 1.02, true), 0.2, 0.54, 0.31)); tag.rotation.z = -0.05;
-  // a padlock for the crate
-  const LKY = 0.53, lock = grp(crate, -0.3, LKY, 0.32); soft(panel(lock, 0.2, 0.24, smat(tex('den-lock', 200, 240, (g) => padlock(g, 100, 110, 82)), 1.02, true)));
+  const papers = soft(panel(crate, 0.86, 0.38, smat(files, 1, true), 0, CRATE_H + 0.17, -0.05));
+  // a padlock for the crate: on the lid's edge, over the word
+  const LKY = CRATE_H - 0.03, lock = grp(crate, 0, LKY, 0.32); soft(panel(lock, 0.2, 0.24, smat(tex('den-lock', 200, 240, (g) => padlock(g, 100, 110, 82)), 1.02, true)));
   const blare = arcs(root, 3, '#ffe14a'), LETTER = new THREE.Color('#b8ffb0');
   const tints = ['#ffffff', '#ffffff', '#ffffff'];
   return {
@@ -95,9 +97,10 @@ export const den: Builder = (root) => {
       else if (v === 'villains') { heaven = 1; st.fill('heart'); up(1, W(134) + 3, 'askew', 0.05); }
       else if (v === 'catch') { st.fill('b'); crateIn = smooth(f, W(136) - 3, W(136) + 5); }
       else if (v === 'keep') { st.fill('guard'); crateIn = 1; XS.forEach((_, i) => { y[i] += hop(f, t0 + 2 + i * 2, 0.04, 7); }); }
-      else if (v === 'hug') { st.fill('hug'); crateIn = 1; crateX = 0.39; crateY = 0.55; x[0] = -1.5; lockAt = W(143) + 1; XS.forEach((_, i) => { y[i] += hop(f, lockAt + 2 + i, 0.03, 6); }); }   // lid on, held to the chest; the third is out of this close shot
+      else if (v === 'hug') { st.fill('hug'); crateIn = 1; crateX = 0.39; crateY = 0.35; x[0] = -1.5; lockAt = W(143) + 1; XS.forEach((_, i) => { y[i] += hop(f, lockAt + 2 + i, 0.03, 6); }); }   // lid on, held to the chest; the third is out of this close shot
       else if (v === 'hit') { st.fill('evil'); x[2] = 2.6; y[1] += hop(f, t0 + 2, 0.08, 8); shout = f >= t0 + 3; }                 // a close shot of the one with the megaphone
       crew.forEach((a, i) => { a.show(st[i]); a.node.position.set(x[i], y[i], z[i]); a.tint(tints[i]); a.tick(f, cam); });
+      sign.visible = !CARDS.has(v);
       letters.forEach((m, i) => { const on = i < lit4, born = v === 'name' ? W(70) + i * ((W(71) - W(70) - 6) / 4) : -99; m.color.setScalar(on ? 1.25 + 0.9 * Math.max(0, 1 - (f - born) / 5) : 0.16); if (on) m.color.multiply(LETTER); });
       screens.forEach((m, i) => m.color.setScalar(0.8 + 0.12 * Math.sin(f * 0.3 + i * 2)));
       (wash.material as THREE.MeshBasicMaterial).opacity = heaven ? 0.03 : 0.1;
@@ -179,7 +182,7 @@ export const lab: Builder = (root) => {
   backdrop(root, ['#2a2018', '#4a3828']);
   floor(root, 14, 12, tmat(tiled(woodTex('lab-floor', '#a8845a', '#6a4a30'), 5, 5)));
   box(root, 9, 5.6, 0.3, '#8a7660', 0, 2.8, -2.0); box(root, 9, 0.12, 0.32, '#d9b24a', 0, 1.62, -1.99); box(root, 9, 1.56, 0.32, '#5a4634', 0, 0.78, -1.99);
-  panel(root, 1.5, 0.36, smat(signTex('lab-sign', 620, 150, '#141414', '#d9b24a', [['COMPUTER LAB', 100, 0.56]], {border: '#d9b24a'}), 1), 0.2, 2.3, -1.84);
+  const sign = panel(root, 1.5, 0.36, smat(signTex('lab-sign', 620, 150, '#141414', '#d9b24a', [['COMPUTER LAB', 100, 0.56]], {border: '#d9b24a'}), 1), 0.2, 2.3, -1.84);
   // shelves of books along the back
   box(root, 1.2, 1.3, 0.3, '#5a4028', -1.25, 0.75, -1.8); for (const y of [0.45, 0.85, 1.25]) for (let i = 0; i < 9; i++) box(root, 0.1, 0.3, 0.2, ['#7a3b34', '#35506e', '#4f6b4a', '#8a6a3a', '#5a4468'][(i + Math.round(y * 10)) % 5], -1.75 + i * 0.125, y, -1.72);
   table(root, 0, 0.25, 2.7, 0.7, {h: 0.78, top: '#c9a27a', leg: '#3a3f4a', skirt: '#8a6a4a'});
@@ -194,6 +197,7 @@ export const lab: Builder = (root) => {
     light: (v) => v === 'ground' ? {...LIGHT.dark, sky: '#d8ffd0', amb: 0.95, keyI: 0.7} : {...LIGHT.room, amb: 1.4},
     tick: ({f, cam, shot}) => {
       const v = shot.v, at = W(195) + 2, on = v !== 'said' || f >= at, quake = v === 'ground' ? shake(f, W(211), 0.05, 14) : 0;
+      sign.visible = v !== 'quote';                                                                      // in the close shot one end of it shows beside the card
       scr.forEach((m, i) => { m.map = on ? talk : calm; m.color.setScalar(on ? 1.15 + 0.25 * Math.sin(f * 0.8 + i) : 1); });
       mons.forEach((m) => { m.parent!.rotation.z = quake; });
       MX.forEach((x, i) => wave[i](f + i * 7, on, [x + 0.07, 1.16, 0.36], v === 'quote' ? 0.44 : 0.52, 0.32, v === 'ground' ? 0.07 : 0.05));

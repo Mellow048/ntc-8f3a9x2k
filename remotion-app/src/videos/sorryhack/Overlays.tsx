@@ -157,6 +157,7 @@ export const Overlays: React.FC = () => {
       {during(24, W(119) + 2) ? <Pill f={f} at={W(119) + 2} text="NOT KNOWN IF ANYONE HAS BEEN PAID" /> : null}
       {over(25, 26, W(123) - 2) ? <Quote f={f} at={W(123) - 2} text={<>We have <Hot>morals</Hot> and we have a <Hot>heart</Hot>, we are <Hot>not villains</Hot> …</>} by={POST} size={5} /> : null}
       {over(28, 29, W(138) - 2) ? <Quote f={f} at={W(138) - 2} text={<>… we are <Hot>still going to keep the data</Hot> …</>} by="THE SAME POST" size={5.4} /> : null}
+      {over(28, 29, W(141)) ? <Pill f={f} at={W(141)} text="WHAT IT HOLDS: NOT CONFIRMED BY UNM" top="25.2%" /> : null}
       {during(30, W(148)) ? <Pill f={f} at={W(148)} text="ONE DAY AFTER THE OFFER" /> : null}
       {during(31, W(155)) ? <Stamp f={f} at={W(155)} text="DO NOT RESPOND" top="9.5%" size={11.5} /> : null}
       {during(31, W(154)) ? <Pill f={f} at={W(154)} text="UNM NOTICE · OCT. 28, 2026" top="20%" /> : null}

@@ -117,6 +117,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  43.47 | 1304 | thud | it stops |
 |  44.00 | 1320 | music out | 'we are still going to keep the data' is read over one low chord of G minor |
 |  44.53 | 1336 | pop | quote card: 'we are still going to keep the data' |
+|  45.13 | 1354 | pop | what it holds: not confirmed by UNM |
 |  45.60 | 1368 | clack | a padlock drops on to the crate |
 |  46.53 | 1396 | plain chords | the university's notice: a plucked bass on the beats and a held chord a bar, no tune and no drums |
 |  46.57 | 1397 | paper | the university's notice, Oct. 28, 12:39 p.m. |

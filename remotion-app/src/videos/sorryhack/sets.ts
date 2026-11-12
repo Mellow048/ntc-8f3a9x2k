@@ -90,8 +90,8 @@ export function ambulance(p: Node): Ambulance {
 }
 
 // ------------------------------------------------------------------ the emergency entrance (no likeness of the real building)
-const palms = (p: THREE.Group, x: number, z: number, s = 1) => {                                       // a desert shrub and a yucca: this is the high desert, not a lawn
-  ball(p, 0.34 * s, '#7f9a5a', x, 0.2 * s, z).scale.y = 0.7; for (let i = 0; i < 5; i++) { const a = i * 1.26; const b = box(p, 0.05 * s, 0.7 * s, 0.05 * s, '#6f8f4f', x + 0.5 * s + 0.1 * s * Math.cos(a), 0.34 * s, z + 0.1 * s * Math.sin(a)); b.rotation.z = 0.5 * Math.cos(a); b.rotation.x = 0.5 * Math.sin(a); }
+const shrub = (p: THREE.Group, x: number, z: number, s = 1) => {                                       // sagebrush, two tufts: this is the high desert, not a lawn
+  ball(p, 0.34 * s, '#7f9a5a', x, 0.2 * s, z).scale.y = 0.7; ball(p, 0.22 * s, '#90a968', x + 0.42 * s, 0.13 * s, z + 0.1 * s).scale.y = 0.7;
 };
 export const er: Builder = (root) => {
   backdrop(root, ['#5aa6e8', '#f3e6c8']);
@@ -113,7 +113,7 @@ export const er: Builder = (root) => {
     off: tex('er-glitch', 760, 160, (g, w, h) => { const q = rng(5); g.fillStyle = '#16181f'; g.fillRect(0, 0, w, h); for (let i = 0; i < 90; i++) { g.fillStyle = ['#d62f2f', '#8dff7a', '#f3f1ea', '#2f6fd0'][i % 4]; g.fillRect(q() * w, q() * h, 30 + q() * 150, 5 + q() * 12); } }),
   };
   const signM = new THREE.MeshBasicMaterial({map: SIGNS.er}); box(root, 2.5, 0.62, 0.1, '#2a2d36', 0, 2.52, 0.36); panel(root, 2.38, 0.5, signM, 0, 2.52, 0.415);
-  palms(root, -2.7, 0.1, 1.2); palms(root, 2.9, -0.2, 1.0); palms(root, 3.6, 3.4, 0.9); plant(root, -1.95, -0.9, 1.2, '#b9623a'); plant(root, 1.95, -0.9, 1.2, '#b9623a');
+  shrub(root, -2.7, 0.1, 1.2); shrub(root, 2.9, -0.2, 1.0); shrub(root, 3.6, 3.4, 0.9); plant(root, -1.95, -0.9, 1.2, '#b9623a'); plant(root, 1.95, -0.9, 1.2, '#b9623a');
   const amb = ambulance(root);
   const nurse = actor(root, NURSE(3), {idle: {expr: 'neutral'}, stop: {expr: 'stern', pose: 'push'}, way: {expr: 'stern', pose: 'point'}, hi: {expr: 'smile', pose: 'wave'}}, -1.12, 0, 0.45, {scale: 1.0, res: 1.1, wide: true});
   const two = [actor(root, NURSE(0), {a: {expr: 'smile'}}, -0.55, 0, -0.9, {scale: 0.95, res: 0.9}), actor(root, NURSE(1), {a: {expr: 'smile', pose: 'wave'}}, 0.5, 0, -1.0, {scale: 0.95, res: 0.9})];
@@ -186,7 +186,7 @@ export const road: Builder = (root) => {
   box(root, 60, 0.1, 0.16, '#e8e2d4', 0, 0.05, -0.56);
   soft(panel(root, 46, 7, smat(ridge(), 1, true), 0, 3.2, -16));
   for (const [x, z, w, h, c] of [[-4.2, -5, 2.4, 1.5, '#d9a273'], [3.6, -5.5, 3, 1.9, '#c98f62'], [0.3, -7, 2.2, 1.3, '#e0b88c']] as const) { box(root, w, h, 1.6, c, x, h / 2, z); box(root, w + 0.1, 0.12, 1.7, '#b97f52', x, h + 0.06, z); }
-  palms(root, -3.2, -1.5, 1.2); palms(root, 2.6, -1.9, 1.0); palms(root, -0.9, -2.6, 0.8);
+  shrub(root, -3.2, -1.5, 1.2); shrub(root, 2.6, -1.9, 1.0); shrub(root, -0.9, -2.6, 0.8);
   // the sign over the road
   for (const s of [-1, 1]) cyl(root, 0.06, 2.7, '#8a94a3', 0.25 + s * 1.0, 1.35, -0.9); box(root, 2.44, 1.44, 0.07, '#e8e2d4', 0.25, 2.05, -0.86); panel(root, 2.3, 1.3, smat(arrowSign(), 1), 0.25, 2.05, -0.82);
   // a clock on top of it (a portrait frame cannot hold the two side by side)
@@ -208,13 +208,14 @@ export const ward: Builder = (root) => {
   backdrop(root, ['#20404a', '#356470']);
   floor(root, 14, 12, tmat(tiled(tileTex('ward-floor', '#dfe9e6', '#b9cbc6', 4), 6, 5)));
   box(root, 9, 5.6, 0.3, '#cfe5df', 0, 2.8, -2.0); box(root, 9, 0.5, 0.32, '#27b3ad', 0, 1.25, -1.99); box(root, 9, 0.22, 0.34, '#f1ebe0', 0, 0.11, -1.98);
-  panel(root, 1.5, 0.36, smat(signTex('ward-sign', 620, 150, '#2b3550', '#ffffff', [["NURSES' STATION", 96, 0.56]]), 1), 0.45, 2.22, -1.84);
+  const sign = panel(root, 1.5, 0.36, smat(signTex('ward-sign', 620, 150, '#2b3550', '#ffffff', [["NURSES' STATION", 96, 0.56]]), 1), 0.45, 2.22, -1.84);
   // a whiteboard of beds, as wards keep
   box(root, 1.3, 0.8, 0.05, '#c9ced6', -1.05, 1.9, -1.84); panel(root, 1.2, 0.7, smat(tex('ward-board', 480, 280, (g, w, h) => {
     g.fillStyle = '#fbfbf6'; g.fillRect(0, 0, w, h); const q = rng(3); for (let r = 0; r < 5; r++) { g.fillStyle = ['#2f6fd0', '#2fbf71', '#f2a51f'][r % 3]; g.fillRect(24, 30 + r * 48, 44, 26); g.fillStyle = '#8f97a6'; g.fillRect(84, 36 + r * 48, 120 + q() * 220, 12); }
   }), 1), -1.05, 1.9, -1.81);
   plant(root, 1.75, -1.4, 1.0, '#27b3ad');
   table(root, 0, 0.25, 2.7, 0.7, {h: 0.98, top: '#f3ead8', leg: '#8a94a3', skirt: '#3f8f9a'}); box(root, 2.74, 0.06, 0.1, '#2f7480', 0, 0.99, 0.6);
+  box(root, 2.54, 0.34, 0.03, '#3f8f9a', 0, 0.17, 0.51);                                                   // the desk's front goes down to the floor: the feet of two chairs read as a scribble beside the caption
   const XS = [-0.42, 0.72], MX = [-1.0, 0.14];
   XS.forEach((x) => officeChair(root, x, -0.42, '#3f5d8a'));
   const calm = screenTex('ward-calm', (g, w, h) => {
@@ -228,6 +229,7 @@ export const ward: Builder = (root) => {
     light: () => ({...LIGHT.cold, amb: 1.5}),
     tick: ({f, cam, shot}) => {
       const at = W(33) - 3, on = shot.v === 'claim' || f >= at;                                          // the screens turn on "voice"
+      sign.visible = shot.v !== 'claim';                                                                 // in the close shot it would sit half under the line that says whose claim this is
       scr.forEach((m, i) => { m.map = on ? talk : calm; m.color.setScalar(on ? 1.15 + 0.2 * Math.sin(f * 0.8 + i) : 1); });
       MX.forEach((x, i) => wave[i](f + i * 7, on, [x + 0.07, 1.36, 0.36], shot.v === 'claim' ? 0.42 : 0.5, 0.32));
       nurses.forEach((n, i) => { n.show(!on ? 'type' : shot.v === 'claim' ? 'look' : 'hear'); n.node.position.y = 0.44 + hop(f, at + 1 + i * 3, 0.07, 8); n.tick(f, cam); });

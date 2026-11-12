@@ -612,7 +612,7 @@ def build_sfx(voice_lufs):
             (F(66), "first seen about a month earlier, Gizmodo"), (F(70, 22), "no one has said who is behind it"), (cut_t(16), "tab: THE GROUP'S OWN WORDS"), (F(71, 2), "on its own leak site, BleepingComputer"),
             (F(79), "UNM: 'did not penetrate core systems or servers'"), (F(85, 6), "its post of Oct. 27, quoted by Gizmodo"), (F(87, -2), "quote card: 'we did not know'"), (F(106), "'(ONLY for the hospital sector)', its post"),
             (F(111), "'please provide us proof', its post"), (F(118), "the university: 'do not respond'"), (F(119, 2), "not known if anyone has been paid"), (F(123, -2), "quote card: 'we have morals'"),
-            (F(138, -2), "quote card: 'we are still going to keep the data'"), (F(148), "one day after the offer"), (F(154), "UNM notice, Oct. 28, 2026"), (F(159), "'false offers of payments', UNM"),
+            (F(138, -2), "quote card: 'we are still going to keep the data'"), (F(141), "what it holds: not confirmed by UNM"), (F(148), "one day after the offer"), (F(154), "UNM notice, Oct. 28, 2026"), (F(159), "'false offers of payments', UNM"),
             (F(165), "IC3.gov, the FBI's complaint center"), (cut_t(34), "tab: THE GROUP'S OWN WORDS"), (F(168), "its email to DataBreaches.net, published Nov. 2"), (F(175, -2), "quote card: 'a full panic attack'"),
             (F(192, 2), "Vanderbilt has not said who did it"), (F(196), "as The Register reported, Nov. 10, 2026"), (F(199, -2), "quote card: the recording"), (F(214), "no arrest reported, as of Nov. 12, 2026"),
             (F(216), "UNM: 'under criminal investigation'"), (F(219), "WHAT WAS THAT APOLOGY?"), (F(221), "'never seen' in 20 years, DataBreaches.net")]
