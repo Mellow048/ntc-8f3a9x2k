@@ -3,8 +3,6 @@ import { Composition } from "remotion";
 import { SupermarketShort } from "./videos/supermarket/Supermarket";
 import { TOTAL, FPS } from "./videos/supermarket/story";
 // news:imports — one line per news film in this checkout (references/news/restore.py adds it)
-import { FridgeCompositions } from "./videos/fridge/register";
-import { BinanceCompositions } from "./videos/binance/register";
 
 export const Root: React.FC = () => {
   return (
@@ -18,8 +16,6 @@ export const Root: React.FC = () => {
         height={1920}
       />
       {/* news:compositions — one line per news film in this checkout (references/news/restore.py adds it) */}
-      <FridgeCompositions />
-      <BinanceCompositions />
     </>
   );
 };
