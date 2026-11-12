@@ -1,0 +1,1826 @@
+[
+ {
+  "word": "Prosecutors",
+  "start": 0.0,
+  "end": 0.604,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "say",
+  "start": 0.604,
+  "end": 0.796,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 0.796,
+  "end": 0.846,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hundred",
+  "start": 0.846,
+  "end": 1.229,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "million",
+  "start": 1.229,
+  "end": 1.554,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "dollars",
+  "start": 1.554,
+  "end": 1.887,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 1.887,
+  "end": 1.987,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "jewels",
+  "start": 1.987,
+  "end": 2.387,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "vanished",
+  "start": 2.387,
+  "end": 2.812,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "from",
+  "start": 2.812,
+  "end": 2.962,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 2.962,
+  "end": 3.003,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "truck",
+  "start": 3.003,
+  "end": 3.42,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 3.42,
+  "end": 3.637,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "twenty-seven",
+  "start": 3.637,
+  "end": 4.27,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "minutes",
+  "start": 4.27,
+  "end": 4.711,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "while",
+  "start": 4.865,
+  "end": 5.098,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "one",
+  "start": 5.098,
+  "end": 5.298,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "driver",
+  "start": 5.298,
+  "end": 5.656,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "ate",
+  "start": 5.656,
+  "end": 6.031,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "and",
+  "start": 6.114,
+  "end": 6.255,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 6.255,
+  "end": 6.389,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "other",
+  "start": 6.389,
+  "end": 6.555,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "slept",
+  "start": 6.555,
+  "end": 7.08,
+  "line": 1,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Now",
+  "start": 7.489,
+  "end": 7.697,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "one",
+  "start": 7.697,
+  "end": 7.881,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "of",
+  "start": 7.881,
+  "end": 7.956,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 7.956,
+  "end": 8.089,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "accused",
+  "start": 8.089,
+  "end": 8.547,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "has",
+  "start": 8.547,
+  "end": 8.789,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 8.789,
+  "end": 8.83,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "plea",
+  "start": 8.83,
+  "end": 9.055,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "deal",
+  "start": 9.055,
+  "end": 9.422,
+  "line": 1,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "July",
+  "start": 9.831,
+  "end": 10.24,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "twenty",
+  "start": 10.24,
+  "end": 10.573,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "twenty-two",
+  "start": 10.573,
+  "end": 11.148,
+  "line": 2,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "A",
+  "start": 11.334,
+  "end": 11.409,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Brink's",
+  "start": 11.409,
+  "end": 11.676,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "big",
+  "start": 11.676,
+  "end": 11.892,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "rig",
+  "start": 11.892,
+  "end": 12.159,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "leaves",
+  "start": 12.159,
+  "end": 12.367,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 12.367,
+  "end": 12.417,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "jewelry",
+  "start": 12.417,
+  "end": 12.826,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "show",
+  "start": 12.826,
+  "end": 13.109,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "near",
+  "start": 13.109,
+  "end": 13.284,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "San",
+  "start": 13.284,
+  "end": 13.509,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Francisco",
+  "start": 13.509,
+  "end": 14.075,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "with",
+  "start": 14.075,
+  "end": 14.284,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "seventy-three",
+  "start": 14.284,
+  "end": 14.983,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bags",
+  "start": 14.983,
+  "end": 15.483,
+  "line": 2,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 15.846,
+  "end": 15.98,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "indictment",
+  "start": 15.98,
+  "end": 16.388,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "says",
+  "start": 16.388,
+  "end": 16.58,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 16.58,
+  "end": 16.613,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "crew",
+  "start": 16.613,
+  "end": 16.846,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "followed",
+  "start": 16.846,
+  "end": 17.154,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 17.154,
+  "end": 17.263,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "for",
+  "start": 17.263,
+  "end": 17.388,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "three",
+  "start": 17.388,
+  "end": 17.654,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hundred",
+  "start": 17.654,
+  "end": 17.913,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "miles",
+  "start": 17.913,
+  "end": 18.362,
+  "line": 2,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Just",
+  "start": 18.744,
+  "end": 18.977,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "after",
+  "start": 18.977,
+  "end": 19.227,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "two",
+  "start": 19.227,
+  "end": 19.502,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "A.M.",
+  "start": 19.502,
+  "end": 20.241,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 20.348,
+  "end": 20.489,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "pulls",
+  "start": 20.489,
+  "end": 20.748,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "into",
+  "start": 20.748,
+  "end": 20.939,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 20.939,
+  "end": 20.973,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "truck",
+  "start": 20.973,
+  "end": 21.223,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "stop",
+  "start": 21.223,
+  "end": 21.547,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "One",
+  "start": 21.681,
+  "end": 21.906,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "driver",
+  "start": 21.906,
+  "end": 22.239,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "goes",
+  "start": 22.239,
+  "end": 22.522,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 22.522,
+  "end": 22.622,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 22.622,
+  "end": 22.797,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "eat",
+  "start": 22.797,
+  "end": 23.039,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 23.144,
+  "end": 23.294,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "other",
+  "start": 23.294,
+  "end": 23.519,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "is",
+  "start": 23.519,
+  "end": 23.619,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "asleep",
+  "start": 23.619,
+  "end": 23.968,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 23.968,
+  "end": 24.035,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 24.035,
+  "end": 24.093,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bunk",
+  "start": 24.093,
+  "end": 24.41,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Twenty-seven",
+  "start": 24.524,
+  "end": 24.957,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "minutes",
+  "start": 24.957,
+  "end": 25.182,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "later",
+  "start": 25.182,
+  "end": 25.499,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "the",
+  "start": 25.588,
+  "end": 25.663,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "lock",
+  "start": 25.663,
+  "end": 25.921,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "is",
+  "start": 25.921,
+  "end": 26.029,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "cut",
+  "start": 26.029,
+  "end": 26.371,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "and",
+  "start": 26.465,
+  "end": 26.598,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "twenty-four",
+  "start": 26.598,
+  "end": 26.939,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bags",
+  "start": 26.939,
+  "end": 27.298,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "are",
+  "start": 27.298,
+  "end": 27.348,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "gone",
+  "start": 27.348,
+  "end": 27.748,
+  "line": 4,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "For",
+  "start": 28.364,
+  "end": 28.456,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "nearly",
+  "start": 28.456,
+  "end": 28.681,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "three",
+  "start": 28.681,
+  "end": 28.914,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "years",
+  "start": 28.914,
+  "end": 29.439,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "nobody",
+  "start": 29.548,
+  "end": 29.865,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "was",
+  "start": 29.865,
+  "end": 30.006,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "charged",
+  "start": 30.006,
+  "end": 30.481,
+  "line": 5,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 31.033,
+  "end": 31.116,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "break",
+  "start": 31.116,
+  "end": 31.508,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "the",
+  "start": 31.754,
+  "end": 31.904,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "L.A.",
+  "start": 31.904,
+  "end": 32.755,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Times",
+  "start": 32.755,
+  "end": 33.014,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "reports",
+  "start": 33.014,
+  "end": 33.505,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "phones",
+  "start": 33.673,
+  "end": 33.981,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "that",
+  "start": 33.981,
+  "end": 34.123,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "pinged",
+  "start": 34.123,
+  "end": 34.398,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "cell",
+  "start": 34.398,
+  "end": 34.706,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "towers",
+  "start": 34.706,
+  "end": 35.056,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "along",
+  "start": 35.056,
+  "end": 35.289,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 35.289,
+  "end": 35.339,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "route",
+  "start": 35.339,
+  "end": 35.597,
+  "line": 6,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "And",
+  "start": 35.764,
+  "end": 35.839,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "one",
+  "start": 35.839,
+  "end": 35.956,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "of",
+  "start": 35.956,
+  "end": 36.031,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 36.031,
+  "end": 36.098,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "crew",
+  "start": 36.098,
+  "end": 36.356,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "had",
+  "start": 36.356,
+  "end": 36.447,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "handed",
+  "start": 36.447,
+  "end": 36.714,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "police",
+  "start": 36.714,
+  "end": 37.047,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "his",
+  "start": 37.047,
+  "end": 37.181,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "burner",
+  "start": 37.181,
+  "end": 37.439,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "number",
+  "start": 37.439,
+  "end": 37.655,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 37.655,
+  "end": 37.739,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "night",
+  "start": 37.739,
+  "end": 37.905,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "before",
+  "start": 37.905,
+  "end": 38.289,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "as",
+  "start": 38.492,
+  "end": 38.584,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 38.584,
+  "end": 38.617,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "witness",
+  "start": 38.617,
+  "end": 38.992,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 38.992,
+  "end": 39.117,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 39.117,
+  "end": 39.142,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "crash",
+  "start": 39.142,
+  "end": 39.6,
+  "line": 6,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Seven",
+  "start": 40.04,
+  "end": 40.374,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "men",
+  "start": 40.374,
+  "end": 40.574,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "were",
+  "start": 40.574,
+  "end": 40.715,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "charged",
+  "start": 40.715,
+  "end": 41.215,
+  "line": 7,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "One",
+  "start": 41.39,
+  "end": 41.549,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "was",
+  "start": 41.549,
+  "end": 41.665,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "stopped",
+  "start": 41.665,
+  "end": 41.99,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "at",
+  "start": 41.99,
+  "end": 42.057,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "an",
+  "start": 42.057,
+  "end": 42.149,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "airport",
+  "start": 42.149,
+  "end": 42.532,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 42.532,
+  "end": 42.64,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Panama",
+  "start": 42.64,
+  "end": 43.098,
+  "line": 7,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "This",
+  "start": 43.324,
+  "end": 43.54,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "month",
+  "start": 43.54,
+  "end": 43.824,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "he",
+  "start": 43.824,
+  "end": 44.026,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "agreed",
+  "start": 44.026,
+  "end": 44.309,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 44.309,
+  "end": 44.376,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "plead",
+  "start": 44.376,
+  "end": 44.626,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "guilty",
+  "start": 44.626,
+  "end": 44.934,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 44.934,
+  "end": 45.026,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "robbing",
+  "start": 45.026,
+  "end": 45.376,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 45.376,
+  "end": 45.417,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "different",
+  "start": 45.417,
+  "end": 45.734,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "truck",
+  "start": 45.734,
+  "end": 46.059,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "one",
+  "start": 46.175,
+  "end": 46.4,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "carrying",
+  "start": 46.4,
+  "end": 46.775,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "AirTags",
+  "start": 46.775,
+  "end": 47.391,
+  "line": 8,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "In",
+  "start": 47.836,
+  "end": 47.945,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 47.945,
+  "end": 48.003,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "same",
+  "start": 48.003,
+  "end": 48.261,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "deal",
+  "start": 48.261,
+  "end": 48.519,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "he",
+  "start": 48.658,
+  "end": 48.766,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "admits",
+  "start": 48.766,
+  "end": 49.075,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 49.075,
+  "end": 49.158,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "jewel",
+  "start": 49.158,
+  "end": 49.4,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "heist",
+  "start": 49.4,
+  "end": 49.775,
+  "line": 8,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Three",
+  "start": 50.2,
+  "end": 50.483,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "others",
+  "start": 50.483,
+  "end": 50.741,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "have",
+  "start": 50.741,
+  "end": 50.825,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "pleaded",
+  "start": 50.825,
+  "end": 51.166,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "not",
+  "start": 51.166,
+  "end": 51.4,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "guilty",
+  "start": 51.4,
+  "end": 51.841,
+  "line": 9,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Two",
+  "start": 52.039,
+  "end": 52.289,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "were",
+  "start": 52.289,
+  "end": 52.489,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "never",
+  "start": 52.489,
+  "end": 52.873,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "arrested",
+  "start": 52.873,
+  "end": 53.389,
+  "line": 9,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "One",
+  "start": 53.576,
+  "end": 53.793,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "was",
+  "start": 53.793,
+  "end": 53.959,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "deported",
+  "start": 53.959,
+  "end": 54.409,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "before",
+  "start": 54.409,
+  "end": 54.693,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "trial",
+  "start": 54.693,
+  "end": 55.101,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "prosecutors",
+  "start": 55.249,
+  "end": 55.857,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "say",
+  "start": 55.857,
+  "end": 56.314,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "they",
+  "start": 56.314,
+  "end": 56.439,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "didn't",
+  "start": 56.439,
+  "end": 56.722,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "know",
+  "start": 56.722,
+  "end": 57.014,
+  "line": 9,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Most",
+  "start": 57.553,
+  "end": 57.795,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "of",
+  "start": 57.795,
+  "end": 57.87,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 57.87,
+  "end": 57.936,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "jewels",
+  "start": 57.936,
+  "end": 58.566,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "are",
+  "start": 58.566,
+  "end": 58.666,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "still",
+  "start": 58.666,
+  "end": 58.924,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "missing",
+  "start": 58.924,
+  "end": 59.324,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 59.477,
+  "end": 59.577,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "jewelers",
+  "start": 59.577,
+  "end": 59.969,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "put",
+  "start": 59.969,
+  "end": 60.16,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "them",
+  "start": 60.16,
+  "end": 60.294,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "at",
+  "start": 60.294,
+  "end": 60.41,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 60.41,
+  "end": 60.46,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hundred",
+  "start": 60.46,
+  "end": 60.943,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "million",
+  "start": 60.943,
+  "end": 61.368,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "dollars",
+  "start": 61.368,
+  "end": 61.86,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Brink's",
+  "start": 62.009,
+  "end": 62.367,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "says",
+  "start": 62.367,
+  "end": 62.717,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "they",
+  "start": 62.774,
+  "end": 62.916,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "declared",
+  "start": 62.916,
+  "end": 63.332,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "eight",
+  "start": 63.332,
+  "end": 63.524,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "point",
+  "start": 63.524,
+  "end": 63.791,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "seven",
+  "start": 63.791,
+  "end": 64.149,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "million",
+  "start": 64.149,
+  "end": 64.582,
+  "line": 11,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "So",
+  "start": 65.128,
+  "end": 65.328,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "which",
+  "start": 65.328,
+  "end": 65.662,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "number",
+  "start": 65.662,
+  "end": 65.928,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "counts",
+  "start": 65.928,
+  "end": 66.42,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "what",
+  "start": 66.565,
+  "end": 66.781,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 66.781,
+  "end": 66.873,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "jewelers",
+  "start": 66.873,
+  "end": 67.281,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "lost",
+  "start": 67.281,
+  "end": 67.764,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "or",
+  "start": 67.843,
+  "end": 68.243,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "what",
+  "start": 68.354,
+  "end": 68.562,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "they",
+  "start": 68.562,
+  "end": 68.696,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "declared",
+  "start": 68.696,
+  "end": 69.229,
+  "line": 12,
+  "ends_sentence": true,
+  "comma": false
+ }
+]

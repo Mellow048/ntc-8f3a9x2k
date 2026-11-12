@@ -4,6 +4,7 @@ import { SupermarketShort } from "./videos/supermarket/Supermarket";
 import { TOTAL, FPS } from "./videos/supermarket/story";
 // news:imports — one line per news film in this checkout (references/news/restore.py adds it)
 import { SorryHackCompositions } from "./videos/sorryhack/register";
+import { TruckStopCompositions } from "./videos/truckstop/register";
 
 export const Root: React.FC = () => {
   return (
@@ -18,6 +19,7 @@ export const Root: React.FC = () => {
       />
       {/* news:compositions — one line per news film in this checkout (references/news/restore.py adds it) */}
       <SorryHackCompositions />
+      <TruckStopCompositions />
     </>
   );
 };

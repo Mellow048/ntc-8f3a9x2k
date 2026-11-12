@@ -254,3 +254,78 @@ Search excerpts read 12 Nov 2026, about 08:10 UTC. Nothing here has been checked
 | What does he plead to? | **One count of robbery of another truck (AirTags, Fontana, 11 March 2022);** the jewelry count is to be dismissed at sentencing; **he admits the jewelry heist in the statement of facts.** | Pasadena Now/CNS, reading the agreement; Reuters ("in return for prosecutors dropping several other charges"). |
 | How much? | Victims: about $100 million. Government's restitution figure: at least **$100,312,031.54**. Brink's and the defendant: declared value under $10 million ($8.7 million in Brink's suit). | Pasadena Now; LA Times Oct 2025. Say whose number each is. |
 | Has he pleaded? | **No: he has signed an agreement to.** | All three. |
+
+## The primary document found (12 Nov, 08:31 UTC)
+
+- **U.S. Attorney's Office, Central District of California, press release, Tuesday 17 June 2025:** "Two Southern
+  California Men Arrested on Charges Alleging They Committed the Largest Jewelry Heist in U.S. History".
+  <https://www.justice.gov/usao-cdca/pr/two-southern-california-men-arrested-charges-alleging-they-committed-largest-jewelry>
+  (search excerpt; to fetch in full)
+  - "...a federal indictment charging them with breaking into a Brinks semitruck and stole approximately $100
+    million worth of gold, diamonds, rubies, emeralds, and luxury watches that were in transport from an
+    international jewelry show near San Francisco in July 2022 – in what is considered to be the largest jewelry
+    heist in U.S. history."
+  - "The indictment, returned June 11, charges the following seven defendants with two counts of conspiracy to
+    commit theft from interstate and foreign shipment and theft from interstate and foreign shipment" (the seven,
+    as listed above). Five "also are charged with two counts of conspiracy to interfere with commerce by robbery
+    and interference with commerce by robbery (Hobbs Act), as well as additional counts of theft".
+  - "According to the indictment, on the evening of July 10, 2022, Mestanza, Lugo, and Alban scouted a Brinks
+    semitruck leaving an international jewelry show in San Mateo, California with 73 bags containing millions of
+    dollars of jewelry." "While the truck was stopped in Lebec, those defendants stole 24 bags from the Brinks truck
+    containing approximately $100 million of jewelry. In the following days, Mestanza, Presilla, Alban, Lugo, and
+    Valencia all deactivated their cellphone numbers that they had been using during the heist."
+  - Maximums: 20 years for each robbery charge; five years for the theft conspiracy; ten for each theft charge.
+- **LA Times, Miller, Mejia and Winton, 17 June 2025 (updated 7:01 p.m. PT)**, "'Largest jewelry heist in U.S.
+  history': 7 indicted in massive Brink's job", first part (chunk 0 of 5):
+  <https://www.latimes.com/california/story/2025-06-17/multimillion-dollar-brinks-heist>
+  - "thieves who had worked their way up to a major score after honing their covert craft in the parking lots and
+    truck stops of San Bernardino County"; "the men may have gotten more than they bargained for: a haul that could
+    be worth up to $100 million".
+  - "the theft of 24 bags containing jewelry, gems, watches and other precious items on July 11, 2022"; "at the
+    Flying J Travel Center in Lebec"; "an Interstate 5 truck stop about 70 miles north of Los Angeles".
+  - AUSA Kevin Butler: "It was a long time coming, and there were times when the victims and members of the team
+    wondered whether we'd see this success."
+  - Akil Davis, FBI Los Angeles: "gratified that we can finally begin to give answers to the victims of this massive
+    theft and deliver them a measure of justice".
+  - "Some of the stolen jewelry — including watches — was recovered after search warrants were executed Tuesday.
+    Authorities also recovered a large amount of cash. ... much of the stolen jewels remain missing."
+  - The show: the International Gem and Jewelry Show, San Mateo County Event Center, from 8 July 2022; "Prosecutors
+    allege that Padilla spent days casing out the show."
+
+## Read in full, 12 Nov 2026 (08:33 UTC)
+
+- **The press release of 17 June 2025, No. 25-175 (fetched, all of it; URL above):**
+  - "Some of that jewelry was recovered during the execution of search warrants on June 16."
+  - "From the evening of July 10 to the morning of July 11, Mestanza, Padilla, Lugo, Valencia, Presilla, Macias, and
+    other co-conspirators followed the Brinks truck approximately 300 miles from that jewelry show in San Mateo to
+    rest stops in Buttonwillow and Lebec, north of Los Angeles."
+  - Other thefts alleged: "$240,573 worth of Samsung electronics from an interstate cargo shipment in Ontario on
+    March 2, 2022. Those same defendants, and Alban, allegedly then robbed a box truck driver of $57,377 worth of
+    Apple AirTags. One of the robbers brandished a knife and threatened the driver." 25 May 2022: an attempt at a
+    Fontana rest stop "using a crowbar", then "approximately $14,081 worth of Samsung electronics".
+  - "An indictment contains allegations that a defendant has committed a crime. Every defendant is presumed to be
+    innocent until and unless proven guilty in court."
+  - Investigating: the FBI, the L.A. County Sheriff's Department, the Fontana and Ontario police. Prosecuting:
+    AUSAs Jena A. MacCabe and Kevin J. Butler, Violent and Organized Crime Section.
+- **LA Times, 17 June 2025, second part (chunk 1 of 5 read):**
+  - "The semitruck's departure from the event center around 8:25 p.m. triggered a series of phone calls among some
+    of the defendants, the indictment said. Through the night, several of them allegedly followed the southbound
+    Brink's truck, which was piloted by one driver while another dozed in the vehicle's sleeping compartment. It
+    traveled on the I-5 for about 300 miles, pausing at a rest area in Buttonwillow before pulling into the Lebec
+    truck stop at 2:05 a.m. on July 11."
+  - "When driver [name] left the semitruck to get a meal inside the Flying J, the thieves made their move. They'd
+    have 27 minutes to pull off the heist."
+  - "It was a little after 2 a.m. when the thieves allegedly breached the big rig's trailer, bypassing its defenses
+    without alerting the sleeping guard. Then, they stole 24 bags of jewelry. Afterward, according to the
+    indictment, the men headed for East Hollywood. The defendants may not have grasped how large their score was."
+  - "The court filing does not say how the defendants gained access to the trailer; it also does not note the
+    presence of any weapons, such as guns or knives."
+  - "At 2:32 a.m., [the driver] ... returned to his vehicle and noticed its rear lock had been cut away. A little
+    before 4 a.m., two L.A. County sheriff's deputies responded to a 'vehicle burglary call for service' at the
+    truck stop, whose parking lot was filled with 18-wheelers."
+  - A victim, Jean Malki (co-owner, Forty-Seventh & Fifth Inc.): "there's nothing you can do, because you lost
+    everything." His company lost as many as 650 pieces. Another jeweler put his loss at at least $12 million.
+    Jewelers often take goods from each other without paying up front, so some did not own what they lost.
+  - Kroll (May 2025): "a tragedy on multiple levels"; "Some of my clients left the jewelry trade. Others are trying
+    to find a way to hang in"; many are elderly.
+  - Compared in the press with Brink's-Mat (1983), Antwerp (2003), Hatton Garden (2015).

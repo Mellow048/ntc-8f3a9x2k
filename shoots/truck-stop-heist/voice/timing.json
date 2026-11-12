@@ -1,0 +1,86 @@
+{
+ "source": "raw-take.mp3",
+ "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
+ "raw_seconds": 89.84,
+ "tight_seconds": 80.56,
+ "pauses_cut": 46,
+ "tempo": 1.2,
+ "eq": {
+  "bass_shelf_db": -1.0,
+  "presence_db": 1.5
+ },
+ "squeezed": [
+  {
+   "line": 3,
+   "word": "A.M.",
+   "seconds_removed": 0.085
+  },
+  {
+   "line": 6,
+   "word": "L.A.",
+   "seconds_removed": 0.155
+  }
+ ],
+ "beats": [
+  {
+   "line": 1,
+   "after": "slept",
+   "at": 7.19,
+   "seconds": 0.2
+  },
+  {
+   "line": 1,
+   "after": "deal",
+   "at": 9.282,
+   "seconds": 0.25
+  },
+  {
+   "line": 4,
+   "after": "gone",
+   "at": 27.453,
+   "seconds": 0.3
+  },
+  {
+   "line": 5,
+   "after": "charged",
+   "at": 29.886,
+   "seconds": 0.3
+  },
+  {
+   "line": 6,
+   "after": "crash",
+   "at": 38.66,
+   "seconds": 0.25
+  },
+  {
+   "line": 8,
+   "after": "AirTags",
+   "at": 46.216,
+   "seconds": 0.25
+  },
+  {
+   "line": 8,
+   "after": "heist",
+   "at": 48.305,
+   "seconds": 0.3
+  },
+  {
+   "line": 9,
+   "after": "know",
+   "at": 55.299,
+   "seconds": 0.3
+  },
+  {
+   "line": 11,
+   "after": "million",
+   "at": 62.527,
+   "seconds": 0.4
+  }
+ ],
+ "seconds": 69.428,
+ "words": 228,
+ "words_per_second": 3.28,
+ "lufs": -16.4,
+ "lra": 2.3,
+ "peak": -1.6
+}
