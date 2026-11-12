@@ -78,8 +78,11 @@ def main():
         sys.exit(f"no such reference: {a.slug}. Choose from: " + ", ".join(sorted(p.parent.name for p in HERE.glob("*/manifest.json"))))
     man = json.loads((ref / "manifest.json").read_text())
     src = ref / "source"
-    film_dir = man.get("film_dir") or next(p.name for p in sorted((src / "remotion-app/src/videos").iterdir()) if p.is_dir() and p.name != "pendulum")
-    shoot = man.get("shoot") or next(p.name for p in sorted((src / "shoots").iterdir()) if p.is_dir())
+    # Only what the manifest lists is the reference. Anything else found in the folder (node_modules after a type-check,
+    # caches) is not, and is never copied.
+    listed = sorted(f["path"][len("source/"):] for f in man["files"] if f["path"].startswith("source/"))
+    film_dir = man.get("film_dir") or next(r.split("/")[3] for r in listed if r.startswith("remotion-app/src/videos/") and r.split("/")[3] != "pendulum")
+    shoot = man.get("shoot") or next(r.split("/")[1] for r in listed if r.startswith("shoots/") and r.count("/") > 1)
     film, shoot_rel = f"remotion-app/src/videos/{film_dir}", f"shoots/{shoot}"
 
     for rel in (film, shoot_rel):
@@ -87,13 +90,16 @@ def main():
             if not a.force:
                 sys.exit(f"{rel} already exists in this checkout. Pass --force to overwrite it with the reference's copy.")
             shutil.rmtree(REPO / rel)
-        shutil.copytree(src / rel, REPO / rel)
-    print(f"copied  {film}/  and  {shoot_rel}/")
+    own = [r for r in listed if r.startswith((film + "/", shoot_rel + "/"))]
+    for rel in own:
+        (REPO / rel).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src / rel, REPO / rel)
+    print(f"copied  {film}/  and  {shoot_rel}/  ({len(own)} files)")
 
     added, kept = [], []
-    for p in sorted(q for q in src.rglob("*") if q.is_file()):
-        rel = str(p.relative_to(src))
-        if rel.startswith((film + "/", shoot_rel + "/")) or rel == "remotion-app/src/reference-entry.tsx":
+    for rel in listed:
+        p = src / rel
+        if rel in own or rel == "remotion-app/src/reference-entry.tsx":
             continue
         live = REPO / rel
         if not live.exists() or (a.shared and sha(live) != sha(p)):
