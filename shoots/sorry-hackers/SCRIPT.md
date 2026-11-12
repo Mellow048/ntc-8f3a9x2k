@@ -6,7 +6,8 @@ following `references/news/PLAYBOOK.md`, starting from `restore.py fake-boss`. F
 six topics offered on 12 November; the other one chosen is the truck-stop jewel heist, made after this.
 
 **Status:** delivered on 2026-11-12. One full render, run `43180281971`; the file is
-`shoots/sorry-hackers/final-720p.mp4` at commit `6b3c149`. Waiting for the user's verdict.
+`shoots/sorry-hackers/final-720p.mp4` at commit `6b3c149`. **Approved at the first delivery**, together with the
+seventh film: "another banger after banger. great job lad." Kept as `references/news/sorry-hackers/`.
 
 ## The story in one line
 

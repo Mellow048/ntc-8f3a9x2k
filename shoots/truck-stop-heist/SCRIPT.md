@@ -7,7 +7,8 @@ The user chose it ("lets do number 2 and 1") from six topics offered on 12 Novem
 sorry, was made first.
 
 **Status:** delivered on 2026-11-12. Two full renders; the final file is `shoots/truck-stop-heist/final-720p.mp4`
-at commit `d65998a` (run `43196917478`). Waiting for the user's verdict.
+at commit `d65998a` (run `43196917478`). **Approved at the first delivery**, together with the sixth film:
+"another banger after banger. great job lad." Kept as `references/news/truck-stop-heist/`.
 
 ## The story in one line
 
@@ -303,7 +304,7 @@ Stills for review are made locally: `REVIEW=TruckStopReview remotion-app/scripts
   cuts measure 33.6 or more, 69.3 at the median. Into frame 1559: 0.7. Into 1605: 0.5. Into 1995: 0.8. Each is what
   the frames before it read. Nothing jumps at a join.
 - **Looked at, all of it on still frames:** the cast sheet; 219 local stills in five rounds and a first four (four
-  fifths of the way through every shot, then every fault found, then the frames either side of the five cuts
+  fifths of the way through every shot, then every fault found, then the frames either side of the six cuts
   between two shots of one set and of the three joins, then the last frame of every shot); one frame in every 24 of
   the first render (89 frames, every shot); the five places that changed, the three joins and the last four seconds
   on 29 frames of the final file.
