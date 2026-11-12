@@ -124,6 +124,25 @@ jobs:
           done
           echo "could not push stills"; exit 1
 
+      - name: Publish MP4 to the branch
+        if: inputs.stills_only != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp remotion-app/out/final.mp4 shoots/pig-war/PIG_WAR.mp4
+          git config user.name "Arena CI"
+          git config user.email "ci@arena.ai"
+          git add -f shoots/pig-war/PIG_WAR.mp4
+          git commit -m "Render: pig-war short ${{ github.run_id }}" || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          for i in 1 2 3; do
+            git fetch origin "$GITHUB_REF_NAME" || true
+            git rebase "origin/$GITHUB_REF_NAME" || git rebase --abort || true
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then echo "mp4 pushed"; exit 0; fi
+            sleep 5
+          done
+          echo "could not push mp4"; exit 1
+
       - name: Upload video
         if: inputs.stills_only != 'true'
         uses: actions/upload-artifact@v4

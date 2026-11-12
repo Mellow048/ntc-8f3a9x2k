@@ -33,6 +33,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SHOOT = os.path.dirname(HERE)
 VOICE = os.path.join(SHOOT, "voice")
 GROUPS = os.path.join(VOICE, "groups")
+OUTDIR = VOICE
 OUT = os.path.join(VOICE, "narration.wav")
 
 VOWELS = "aeiouy"

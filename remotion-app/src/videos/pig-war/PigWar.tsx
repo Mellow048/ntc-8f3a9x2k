@@ -16,7 +16,7 @@ import { InkPass, noInkFallback } from "./ink";
 import { LensBlur } from "./lensblur";
 import { GradeEffect, GRADES, GRADE_STRENGTH, gradeFor } from "./grade";
 import { Kit } from "./build";
-import { TOTAL, SHOTS, layersAt, dofAt } from "./story";
+import { CAPTIONS, TOTAL, SHOTS, layersAt, dofAt } from "./story";
 
 export const PIGWAR_FRAMES = TOTAL;
 
@@ -93,6 +93,27 @@ const ShotView: React.FC<{ id: number; kit: Kit; alpha: number }> = ({ id, kit, 
   </AbsoluteFill>
 );
 
+/** 1-2 word cards, lower third, changing with the narration (/s/words.json) */
+const Caption: React.FC<{ f: number }> = ({ f }) => {
+  const t = f / 30;
+  const c = CAPTIONS.find((x) => t >= x.a && t < x.b);
+  if (!c) return null;
+  const k = Math.min(1, (t - c.a) / 0.08); // a short pop as the card lands
+  return (
+    <AbsoluteFill style={{ justifyContent: "flex-end", alignItems: "center", paddingBottom: 168 }}>
+      <div style={{
+        transform: `scale(${0.94 + 0.06 * k}) rotate(-1.2deg)`,
+        fontFamily: "Inter, 'Arial Black', Arial, sans-serif",
+        fontWeight: 900, fontSize: 78, letterSpacing: 1, lineHeight: 1,
+        color: "#fffaf0", textTransform: "uppercase",
+        WebkitTextStroke: "10px #241726", paintOrder: "stroke fill",
+        textShadow: "0 6px 0 rgba(36,23,38,0.35)",
+        whiteSpace: "nowrap",
+      }}>{c.text}</div>
+    </AbsoluteFill>
+  );
+};
+
 export const PigWarShort: React.FC = () => {
   const f = useCurrentFrame();
   const kit = useKit();
@@ -100,6 +121,7 @@ export const PigWarShort: React.FC = () => {
   return (
     <AbsoluteFill style={{ background: "#cfe3f2" }}>
       {layersAt(f).map((l, i) => <ShotView key={i ? "over" : "base"} id={l.id} kit={kit} alpha={l.alpha} />)}
+      <Caption f={f} />
     </AbsoluteFill>
   );
 };

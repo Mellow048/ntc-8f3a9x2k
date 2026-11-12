@@ -1,207 +1,108 @@
 {
  "groups": [
   {
-   "file": "g00.wav",
+   "file": "g01.wav",
    "start": 0.05,
    "chunks": [
     "One pig started a war between Britain and America.",
     "The pig lost.",
-    "Nobody else got hurt."
-   ]
-  },
-  {
-   "file": "g01.wav",
-   "start": 5.54,
-   "chunks": [
-    "San Juan Island.",
-    "Twenty miles long,",
+    "Nobody else got hurt.",
+    "San Juan Island sits between Vancouver Island and the mainland:",
+    "twenty miles long,",
     "seven wide,",
-    "sitting between Vancouver Island and the mainland.",
-    "In 1846 the two countries signed a border.",
-    "It ran,",
-    "they agreed,",
-    "through the middle of the channel.",
-    "There are two channels.",
-    "Nobody wrote down which one.",
-    "So for thirteen years,",
-    "both countries owned the island on paper,",
-    "and neither would move."
+    "and worth arguing about."
    ]
   },
   {
    "file": "g02.wav",
-   "start": 26.33,
+   "start": 13.65,
    "chunks": [
-    "Britain got there first,",
-    "with sheep.",
-    "In 1853 the Hudson's Bay Company landed thirteen hundred sheep on the south end and called the place Belle Vue.",
-    "Six years later there were four thousand,",
-    "plus cattle,",
-    "horses,",
-    "and forty hogs that went wherever they liked."
+    "In 1846 the two countries agreed a border down the middle of the channel.",
+    "There are two channels.",
+    "Nobody wrote down which one.",
+    "So for thirteen years both countries owned the island on paper,",
+    "and neither would move."
    ]
   },
   {
    "file": "g03.wav",
-   "start": 43.79,
+   "start": 26.45,
    "chunks": [
-    "Americans came anyway.",
-    "Eighteen,",
-    "twenty-five of them,",
-    "gold miners who had missed the gold rush and wanted land.",
-    "They cut claims out of the Company's best pasture.",
-    "Washington Territory sent the Company a tax bill:",
-    "eighty dollars and thirty-three cents.",
-    "The Company refused to pay,",
-    "and the county threatened to auction the sheep.",
-    "Nobody fired a shot in six years of that.",
-    "Then a pig got into a potato patch."
+    "Britain got there first,",
+    "with sheep.",
+    "In 1853 the Hudson's Bay Company landed thirteen hundred sheep and called the place Belle Vue."
    ]
   },
   {
    "file": "g04.wav",
-   "start": 66.01,
+   "start": 35.21,
    "chunks": [
-    "June fifteenth,",
-    "1859.",
-    "Lyman Cutlar,",
-    "twenty-something,",
-    "from Kentucky,",
-    "looked out of his cabin at a black boar in his potatoes.",
-    "It was not the first time.",
-    "He had already asked Griffin to keep his hogs off the land.",
-    "This time he had had enough."
+    "Six years later there were four thousand,",
+    "plus cattle,",
+    "horses,",
+    "and forty hogs that went wherever they liked.",
+    "Americans came anyway:",
+    "twenty-five miners who had missed the gold rush,",
+    "cutting claims out of the Company's best pasture."
    ]
   },
   {
    "file": "g05.wav",
-   "start": 82.66,
+   "start": 48.4,
    "chunks": [
-    "The pig belonged to Charles Griffin,",
-    "who ran Belle Vue for the Company.",
+    "Then,",
+    "on the fifteenth of June,",
+    "1859,",
+    "a black boar got into Lyman Cutlar's potato patch.",
+    "Cutlar had already asked Charles Griffin to keep his hogs off the land.",
+    "This time he had had enough."
+   ]
+  },
+  {
+   "file": "g06.wav",
+   "start": 61.77,
+   "chunks": [
     "Griffin wanted a hundred dollars.",
     "Cutlar offered ten,",
     "and said there was a better chance of lightning striking Griffin than of him getting a hundred dollars for that hog."
    ]
   },
   {
-   "file": "g06.wav",
-   "start": 95.13,
-   "chunks": [
-    "Britain threatened to arrest him and put every American off the island.",
-    "So the settlers did the obvious thing.",
-    "They asked their army to come."
-   ]
-  },
-  {
    "file": "g07.wav",
-   "start": 103.26,
+   "start": 70.22,
    "chunks": [
-    "General William Harney sent Captain George Pickett with sixty-four men.",
-    "Pickett camped a mile north of the farm and declared the island American.",
-    "Britain sent five warships.",
-    "By August there were four hundred and sixty-one Americans behind an earthwork with fourteen guns,",
-    "facing two thousand British sailors and marines and a hundred and sixty-seven guns.",
-    "On an island with more sheep than people."
+    "Britain threatened to arrest him.",
+    "So the settlers asked their army to come."
    ]
   },
   {
    "file": "g08.wav",
-   "start": 126.31,
+   "start": 74.53,
    "chunks": [
-    "Both sides had the same orders.",
-    "Defend yourself.",
-    "Do not fire first.",
-    "Then the governor of Vancouver Island ordered the marines ashore,",
-    "and Admiral Baynes read the order and refused.",
-    "Two great nations,",
-    "he said,",
-    "in a war over a squabble about a pig."
+    "America sent sixty-four men.",
+    "Britain sent five warships and two thousand men.",
+    "The two sides stood facing each other,",
+    "and were told not to fire first."
    ]
   },
   {
    "file": "g09.wav",
-   "start": 141.4,
+   "start": 83.46,
    "chunks": [
-    "Victoria ran excursion boats out to watch.",
-    "Officers from the two camps went to church together on a British warship,",
-    "and drank whisky in Griffin's front room."
-   ]
-  },
-  {
-   "file": "g10.wav",
-   "start": 149.87,
-   "chunks": [
-    "Washington was horrified.",
-    "President Buchanan sent General Winfield Scott,",
-    "who talked both sides into a joint occupation:",
-    "one company each,",
-    "a hundred men,",
-    "until the diplomats settled it.",
-    "Harney was recalled.",
-    "The diplomats took twelve years.",
-    "The marines built English Camp on Garrison Bay:",
-    "barracks,",
-    "a hospital,",
-    "a blockhouse,",
-    "tennis courts,",
-    "a bowling green,",
-    "a library,",
-    "a billiard room,",
-    "and a garden.",
-    "On the hill above,",
-    "a small cemetery.",
-    "The Americans held the windy south end,",
-    "and waited."
-   ]
-  },
-  {
-   "file": "g11.wav",
-   "start": 180.39,
-   "chunks": [
-    "In 1861 Pickett went home to join the Confederacy.",
-    "Two years later he led the charge at Gettysburg.",
-    "The island he had claimed was still waiting."
-   ]
-  },
-  {
-   "file": "g12.wav",
-   "start": 189.11,
-   "chunks": [
-    "In 1871 the two countries finally agreed to arbitrate,",
-    "and handed the question to the Kaiser of Germany.",
-    "A commission argued in Geneva for a year.",
-    "On the twenty-first of October,",
-    "1872,",
-    "the Kaiser drew the line through Haro Strait.",
-    "The island was American.",
-    "Six weeks later the marines marched down to their boats."
-   ]
-  },
-  {
-   "file": "g13.wav",
-   "start": 208.91,
-   "chunks": [
-    "Lyman Cutlar never owned the land he shot the pig for.",
-    "He left the island,",
-    "and died in 1874,",
-    "aged forty.",
-    "Charles Griffin stayed.",
-    "The American settlers elected him their constable."
-   ]
-  },
-  {
-   "file": "g14.wav",
-   "start": 219.7,
-   "chunks": [
-    "Nobody died in the Pig War except the pig.",
-    "The camps are a national park now,",
-    "and the garden at English Camp is planted every spring.",
-    "The war lasted twelve years.",
-    "The garden is still going."
+    "They didn't.",
+    "For twelve years British and American soldiers shared the island:",
+    "church,",
+    "whisky,",
+    "tennis,",
+    "a garden.",
+    "In 1872 a German emperor drew the line,",
+    "and the Americans kept the island.",
+    "Nobody died in that war.",
+    "Only the pig.",
+    "The garden is still there."
    ]
   }
  ],
- "duration": 231.93,
+ "duration": 100.55,
  "sr": 44100
 }

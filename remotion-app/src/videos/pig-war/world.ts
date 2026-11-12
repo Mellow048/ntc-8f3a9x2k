@@ -16,7 +16,7 @@ const MYLIGHTS: Record<"day" | "golden", LightPreset> = {
 import { TONE, CHAR, untone } from "./shade";
 import { NOINK } from "./ink";
 import { Pig } from "./pig";
-import { Figure, CUTLAR } from "./cast";
+import { Figure, CUTLAR, GRIFFIN, SETTLER } from "./cast";
 import { patchWorld, SHIP_AT } from "./sets";
 import { buildBellevue, buildSea, buildCamp, buildRoom, buildDeck, buildField } from "./sets2";
 import { FPS, SHOTS, camAt, pigAt, type ShotDef, type SetId } from "./story";
@@ -48,6 +48,7 @@ export class World {
   root = new THREE.Group();
   private pig: Pig;
   private cutlar: Figure;
+  private griffin: Figure;
   private hemi: THREE.HemisphereLight; private sun: THREE.DirectionalLight; private fill: THREE.DirectionalLight;
   private sky: THREE.Mesh; private skyMat: THREE.ShaderMaterial;
   private fog = new THREE.Fog("#bccbec", 25, 420);
@@ -113,6 +114,7 @@ export class World {
 
     this.pig = new Pig(R);
     this.cutlar = new Figure(R);
+    this.griffin = new Figure(R);
   }
 
   /** one location at a time: rebuild only when the shot changes place */
@@ -224,12 +226,16 @@ export class World {
     const atPatch = s.set === "patch" || s.set === "fence" || s.set === "porch" || s.set === "claim";
     this.pig.group.visible = atPatch;
     if (atPatch) this.pig.update(pigAt(id, f));
-    // Cutlar on his step (shot 18); he is off the set for every other shot for now
-    const onStep = id === 18;
-    this.cutlar.set(-6.02, 0.18, 4.0, cam.position, {
-      outfit: CUTLAR, view: "front", expr: id === 18 ? "neutral" : "neutral", mode: "stand", phase: 0,
-      look: 0.2, light: 0.5, seed: 3, scale: 1.02,
-    }, onStep);
+    // the two men: Cutlar at his fence (or his door), Griffin on the far side of it
+    const atFence = s.set === "fence", atDoor = s.set === "porch" || id === 11;
+    this.cutlar.set(atFence ? 4.35 : -6.02, atFence ? 0 : 0.18, atFence ? 6.55 : 4.0, cam.position, {
+      outfit: CUTLAR, view: "front", expr: atFence ? "stern" : "neutral", mode: "stand", phase: 0,
+      look: atFence ? -0.3 : 0.2, light: 0.5, seed: 3, scale: 1.02,
+    }, atFence || atDoor);
+    this.griffin.set(7.35, 0, 6.35, cam.position, {
+      outfit: GRIFFIN, view: "front", expr: id === 13 ? "grin" : "stern", mode: "stand", phase: 0,
+      look: 0.3, light: 0.5, seed: 5, scale: 1.0,
+    }, atFence);
 
     this.target.copy(focus);
     return this.target;
