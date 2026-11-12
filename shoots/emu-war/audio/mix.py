@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.join(ROOT, "..", "..", "templates", "audio"))
 from dsp import SR, ns, st, read_wav, write_wav, integrated, momentary_max, true_peak, dbg, lp, hp, rng, place, pan  # noqa: E402
 import instruments as I  # noqa: E402
 
-DUR = 72.0
+DUR = 73.2
 N = ns(DUR)
 TARGET_LUFS = -15.0
 CEIL_DBTP = -1.2
@@ -25,7 +25,7 @@ GAP_LIFT = 1.8               # and lifts into the pauses so it is never muzak
 SECTIONS = [
     ("hook", 0.0, 11.1), ("ask", 11.1, 20.0), ("dam", 20.0, 26.3), ("scatter", 26.3, 33.4),
     ("tally", 33.4, 39.0), ("explain", 39.0, 45.43), ("hose", 45.43, 53.37), ("line", 53.37, 58.63),
-    ("dusk", 58.63, 66.13), ("closer", 66.13, 72.0),
+    ("dusk", 58.63, 66.13), ("closer", 66.13, 73.2),
 ]
 
 
@@ -177,7 +177,7 @@ def main():
     # ---- cues.md
     lines = ["# The Emu War -- mix",
              "",
-             f"72.000 s / 48 kHz / stereo / 24-bit. Master {integrated(out):.1f} LUFS integrated, "
+             f"73.200 s / 48 kHz / stereo / 24-bit. Master {integrated(out):.1f} LUFS integrated, "
              f"true peak {true_peak(out):.2f} dBTP. Voice untouched apart from one gain; music rides "
              f"{abs(MUSIC_UNDER):.1f} LU under the local speech and lifts {GAP_LIFT:.1f} dB into the pauses.",
              "", "| section | in | out | music level | shot |", "|---|---|---|---|---|"]

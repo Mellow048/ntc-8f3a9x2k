@@ -1,6 +1,6 @@
 # The Emu War -- mix
 
-72.000 s / 48 kHz / stereo / 24-bit. Master -15.1 LUFS integrated, true peak -1.25 dBTP. Voice untouched apart from one gain; music rides 5.5 LU under the local speech and lifts 1.8 dB into the pauses.
+73.200 s / 48 kHz / stereo / 24-bit. Master -15.1 LUFS integrated, true peak -1.25 dBTP. Voice untouched apart from one gain; music rides 5.5 LU under the local speech and lifts 1.8 dB into the pauses.
 
 | section | in | out | music level | shot |
 |---|---|---|---|---|
@@ -13,7 +13,7 @@
 | hose | 45.43 | 53.37 | -1.0 dB | 7 |
 | line | 53.37 | 58.63 | -2.5 dB | 8 |
 | dusk | 58.63 | 66.13 | +3.2 dB | 9 |
-| closer | 66.13 | 72.00 | +0.7 dB | 10 |
+| closer | 66.13 | 73.20 | +1.3 dB | 10 |
 
 ## SFX
 

@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.join(HERE, "..", "..", "..", "templates", "audio"))
 from dsp import SR, ns, rng, place, pan, fades, make_ir, convolve_st, lp, hp, write_wav, integrated, true_peak  # noqa: E402
 import instruments as I  # noqa: E402
 
-DUR = 72.0
+DUR = 73.2
 N = ns(DUR)
 Q = 60.0 / 112.0          # beat
 BAR = 4 * Q               # bar
@@ -30,7 +30,7 @@ TELL = (39.0, 45.4)
 HOSE = (45.4, 53.4)
 LINE = (53.4, 58.6)
 DUSK = (58.6, 66.1)
-CLOSE = (66.1, 72.0)
+CLOSE = (66.1, 73.2)
 
 
 def bar_time(bar):
@@ -188,7 +188,7 @@ def build():
     bus.add(I.vibes(midi(72), 0.22, r=rng(95), dur=1.6), 62.0, 1.0, 0.2, 0.55)
 
     # ---------------- 10  the closer (66.1 - 72): D major, warm, tail
-    close = I.pad([midi(m) for m in (38, 50, 57, 62, 66, 69)], 6.0, vel=0.40, r=rng(97), att=0.35, rel=2.2, warm=900.0)
+    close = I.pad([midi(m) for m in (38, 50, 57, 62, 66, 69)], 7.2, vel=0.40, r=rng(97), att=0.35, rel=2.2, warm=900.0)
     bus.add(close, 66.1, 1.0, 0.0, 0.6)
     bus.add(I.pluck(midi(38), 0.55, r=rng(98), dur=2.4, bright=0.3), 66.1, 1.0, -0.05, 0.4)
     for k, (t, m) in enumerate([(66.4, 74), (67.2, 78), (68.0, 81), (69.2, 86)]):
@@ -202,7 +202,7 @@ def build():
     mix = hp(mix, 42.0)
     mix = lp(mix, 15500.0)
     mix[:, : ns(0.02)] *= np.linspace(0, 1, ns(0.02))[None, :]
-    end = ns(DUR - 1.6)
+    end = ns(DUR - 2.6)
     mix[:, end:] *= np.linspace(1, 0, mix.shape[1] - end)[None, :] ** 1.5
     peak = np.max(np.abs(mix))
     mix = mix / peak * 10 ** (-6.0 / 20)          # -6 dBFS peak; the mix sets the real level
