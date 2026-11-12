@@ -18,6 +18,7 @@ attempted, and none should be until every set exists.
 | cast | `Figure` (toon cards) + outfits: CUTLAR, GRIFFIN, SETTLER, US_INFANTRY, MARINE, RN_OFFICER |
 | the boar | `pig.ts`, real geometry, face, walk cycle, rooting |
 | shots with cameras | 1, 2, 17, 18, 19 — every other shot falls back to `PATCH_WIDE`, so a full render now would show the patch for 200 s |
+| stills | `stills/f00030.png` (hook), `stills/f02050.png` (Cutlar's doorway) — both approved-looking at this stage |
 | captions | not built |
 | score | not built |
 | mix | not built |
@@ -72,9 +73,7 @@ overwritten on the next run and should be deleted from git before the final deli
 
 ## Known defects
 
-- A stray thin triangle outlines above the cabin roof (a gable/roof ink edge) — the far gable is
-  the suspect; drop it or offset it.
-- The boar's legs are still slim for a boar; the shoulder hump should read more.
+- The boar's shoulder hump barely reads; the legs are still slim for a boar.
 - Shot 2 shows the warship's masts and yards but not its bow: the hedgerow hides the hull. Either
   move the hedge or bring the ship a little closer.
 - Water is a flat plane with painted crest textures; the standing rule wants real wave geometry
