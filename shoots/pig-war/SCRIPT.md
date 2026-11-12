@@ -117,8 +117,11 @@ it crowds the coda), and any claim about which side "won" the argument.
 
 ## Voice
 
-Ten line groups (the v1 grouping) are superseded; v2 is recorded in about
-eighteen groups so each act keeps a known anchor for cut timing.
+Recorded in **fifteen line groups** (`voice/groups/gNN.wav` + `.txt`), one per
+beat: each group's start time is exact, and `scripts/voice_trim.py` only has to
+align the words inside a group. Measured pace is ~2.9 words per second, so the
+finished read lands near **3:40** with the tight gaps; the last five groups are
+still to be recorded.
 
 ## Captions
 
