@@ -65,7 +65,7 @@ export const map: Builder = (root) => {
     g.beginPath(); CA.forEach(([lo, la], i) => (i ? g.lineTo(mx(lo), my(la)) : g.moveTo(mx(lo), my(la)))); g.closePath(); g.fillStyle = '#f2d9a0'; g.fill(); g.strokeStyle = INK; g.lineWidth = 12; g.lineJoin = 'round'; g.stroke();
     text(g, 'CALIFORNIA', mx(-117.0), my(36.6), 62, '#b08a4a', {maxWidth: 330});
     const city = (name: string, lon: number, lat: number, dx: number, dy: number, size = 34, align: CanvasTextAlign = 'left') => { g.fillStyle = INK; g.beginPath(); g.arc(mx(lon), my(lat), 9, 0, 7); g.fill(); text(g, name, mx(lon) + dx, my(lat) + dy, size, INK, {font: 'Montserrat', align}); };
-    city('SAN FRANCISCO', -122.42, 37.77, -18, -4, 30, 'right'); city('LOS ANGELES', -118.25, 34.05, -18, 30, 30, 'right');
+    city('SAN FRANCISCO', -122.42, 37.77, 16, -30, 28, 'left');
   }), 1), 0, CY, Z);
   // the route: a line of beads that light up one after another
   const N = 46, beads: THREE.Mesh[] = [], at = (u: number): [number, number] => { const s = u * (ROUTE.length - 1), i = Math.min(ROUTE.length - 2, Math.floor(s)), k = s - i; return [ROUTE[i][0] + (ROUTE[i + 1][0] - ROUTE[i][0]) * k, ROUTE[i][1] + (ROUTE[i + 1][1] - ROUTE[i][1]) * k]; };
@@ -77,7 +77,7 @@ export const map: Builder = (root) => {
     soft(mesh(g, new THREE.CircleGeometry(0.042, 20), lit(INK, 1), 0, 0, 0.008)); soft(mesh(g, new THREE.CircleGeometry(0.027, 20), lit(col, 1.1), 0, 0, 0.012));
     soft(panel(g, w, w * 0.4, smat(pinTex(label, col), 1.05, true), dx, dy, 0.02)); return g;
   };
-  const start = pin('SAN MATEO', -122.31, 37.56, '#2f6fd0', 0.42, -0.05), end = pin('LEBEC', -118.87, 34.84, '#e3342f', 0.3, 0.2, 0.4), mid = pin('BUTTONWILLOW', -119.47, 35.4, '#5b6170', -0.36, 0.14, 0.5);
+  const start = pin('SAN MATEO', -122.31, 37.56, '#2f6fd0', 0.42, -0.05), end = pin('LEBEC', -118.87, 34.84, '#e3342f', 0.16, 0.19, 0.36), mid = pin('BUTTONWILLOW', -119.47, 35.4, '#5b6170', -0.42, 0.2, 0.5);
   const truck = grp(root, 0, 0, Z + 0.03); soft(panel(truck, 0.13, 0.065, lit('#fffdf4', 1.1), 0, 0, 0.004)); soft(panel(truck, 0.15, 0.085, lit(INK, 1), 0, 0, 0));
   // cell towers along the way, and the ring each one sends when a phone passes
   const TW_U = [0.08, 0.26, 0.44, 0.62, 0.8, 0.96], towerTex = tex('map-tower', 120, 160, (g) => { g.strokeStyle = INK; g.lineWidth = 12; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(60, 20); g.lineTo(24, 148); g.moveTo(60, 20); g.lineTo(96, 148); g.moveTo(40, 96); g.lineTo(80, 96); g.moveTo(49, 58); g.lineTo(71, 58); g.stroke(); g.fillStyle = '#e3342f'; g.beginPath(); g.arc(60, 18, 14, 0, 7); g.fill(); });
@@ -114,8 +114,8 @@ export const road: Builder = (root) => {
   const dashes = Array.from({length: 22}, () => floor(root, 0.14, 1.5, lit('#f3ead0', 1), 0.018, 0, 0)), posts = Array.from({length: 24}, (_, i) => box(root, 0.06, 0.7, 0.06, lit(i % 2 ? '#ffb347' : '#f3f1ea', 1.1), (i % 2 ? 1 : -1) * 2.5, 0.35, 0));
   ball(root, 1.3, lit('#f6f1d8', 1.25), -9, 17, -68);
   // the sign by the show's exit
-  const sign = grp(root, 0, 0, -3); for (const s of [-1, 1]) cyl(sign, 0.07, 3.7, '#8a94a3', s * 2.7, 1.85, 0); box(sign, 5.5, 0.12, 0.12, '#8a94a3', 0, 3.66, 0); box(sign, 2.26, 0.9, 0.07, '#e8e2d4', -0.95, 3.2, 0.06);
-  soft(panel(sign, 2.16, 0.8, smat(signTex('road-exit', 864, 320, '#1f6a44', '#ffffff', [['SAN MATEO COUNTY', 80, 0.3], ['EVENT CENTER', 110, 0.68]], {border: '#ffffff'}), 1.05), -0.95, 3.2, 0.1));
+  const sign = grp(root, 0, 0, -3); for (const s of [-1, 1]) cyl(sign, 0.07, 3.7, '#8a94a3', s * 2.7, 1.85, 0); box(sign, 5.5, 0.12, 0.12, '#8a94a3', 0, 3.66, 0); box(sign, 2.1, 0.86, 0.07, '#e8e2d4', 0.35, 3.2, 0.06);
+  soft(panel(sign, 2.0, 0.76, smat(signTex('road-exit', 840, 320, '#1f6a44', '#ffffff', [['SAN MATEO COUNTY', 80, 0.3], ['EVENT CENTER', 110, 0.68]], {border: '#ffffff'}), 1.05), 0.35, 3.2, 0.1));
   const truck = rig(root); truck.g.rotation.y = Math.PI / 2;
   const cars = [car(root, '#3d4450'), car(root, '#5a3f44')]; cars.forEach((c) => { c.g.rotation.y = Math.PI / 2; });
   const beams = cars.map(() => pool(root, 1.5, '#fff3c0', 0.26, 0, 0)); beams.forEach((b) => b.scale.set(0.8, 1, 2.2));
@@ -203,7 +203,7 @@ export const crash: Builder = (root) => {
   // the officer and the witness, in front of the cars
   const cop = actor(root, COP(0), {write: {expr: 'neutral', pose: 'hold', prop: 'clip'}, nod: {expr: 'smile', pose: 'hold', prop: 'clip'}}, 0.62, 0, 1.3, {scale: 1.0, res: 1.1, wide: true});
   const who = actor(root, SOMEONE, {tell: {pose: 'phone', prop: 'phone'}, idle: {pose: 'hang'}}, -0.5, 0, 1.3, {scale: 1.0, res: 1.1, wide: true});
-  const DIGITS = '5550142'.split(''), digits = DIGITS.map((d) => soft(panel(root, 0.17, 0.21, smat(digitTex(d), 1.25, true), 0, 0, 0)));
+  const DIGITS = '5550142'.split('').reverse(), digits = DIGITS.map((d) => soft(panel(root, 0.17, 0.21, smat(digitTex(d), 1.25, true), 0, 0, 0)));
   const pad = grp(root, ...PAD); box(pad, 0.5, 0.66, 0.03, '#3d4450', 0, 0, -0.02); soft(panel(pad, 0.47, 0.61, smat(padTex(), 1), 0, 0, 0)); const pen = cyl(pad, 0.012, 0.3, '#e3342f', 0.2, -0.16, 0.06); pen.rotation.z = -0.5; pen.rotation.x = 0.4;
   const tag = soft(panel(root, 0.86, 0.36, smat(tex('crash-witness', 430, 180, (g, w, h) => { g.fillStyle = INK; rrect(g, 3, 3, w - 6, 120, 24); g.fill(); g.fillStyle = '#ffe14a'; rrect(g, 13, 13, w - 26, 100, 16); g.fill(); text(g, 'WITNESS', w / 2, 66, 84, INK); g.fillStyle = INK; g.beginPath(); g.moveTo(w / 2 - 26, 118); g.lineTo(w / 2 + 26, 118); g.lineTo(w / 2, 176); g.closePath(); g.fill(); }), 1.1, true), -0.5, 2.4, 1.3));
   return {

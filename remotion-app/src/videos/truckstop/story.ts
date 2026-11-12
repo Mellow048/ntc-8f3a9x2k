@@ -54,11 +54,11 @@ export const SHOTS: Shot[] = [
   // 2  "July twenty twenty-two. A Brink's big rig leaves a jewelry show near San Francisco with seventy-three bags. The indictment
   //     says a crew followed it for three hundred miles."
   s(32, 'show', 'open', [0.4, 1.7, 8.0], [0, 1.7, -0.6], 42, {push: 0.07}),                               // 6
-  s(35, 'road', 'leave', [-1.3, 1.7, 7.4], [0.9, 1.6, -4], 42, {push: 0.03}),                             // 7
+  s(35, 'road', 'leave', [-1.3, 1.7, 7.4], [0.9, 1.7, -4], 42, {push: 0.03}),                             // 7
   s(43, 'map', 'start', [-0.2, 1.95, 2.6], [-0.45, 1.98, -0.4], 42, {push: 0.08}),                        // 8
   s(46, 'trailer', 'full', [0.25, 1.5, 3.4], [0, 1.45, -1.3], 42, {push: 0.1}),                           // 9
   s(49, 'road', 'follow', [0, 3.4, 7.6], [0.3, 1.3, -7], 42, {push: 0.04}),                               // 10
-  s(56, 'map', 'route', [0.15, 1.7, 3.0], [-0.25, 1.62, -0.4], 42, {push: 0.06}),                         // 11
+  s(56, 'map', 'route', [0.2, 1.7, 3.0], [-0.18, 1.62, -0.4], 42, {push: 0.06}),                          // 11
   // 3  "Just after two A.M. it pulls into a truck stop. One driver goes in to eat. The other is asleep in the bunk."
   s(60, 'stop', 'clock', [-1.1, 3.2, -1.4], [-2.4, 3.9, -8], 42, {push: 0.06}),                           // 12
   s(64, 'stop', 'arrive', [-0.6, 2.0, 13.2], [0.6, 2.8, -3], 42, {push: 0.04}),                           // 13  far wider than the sign before it
@@ -77,9 +77,9 @@ export const SHOTS: Shot[] = [
   s(105, 'deal', 'news', [-0.3, 1.66, 4.9], [0, 1.66, -0.4], 42, {push: 0.08}),                           // 22
   s(108, 'road', 'towers', [-2.6, 1.5, 4.6], [1.2, 2.56, -5], 42, {push: 0.05}),                          // 23
   s(112, 'map', 'pings', [0.4, 1.4, 2.5], [-0.1, 1.48, -0.4], 42, {push: 0.06}),                          // 24
-  s(116, 'crash', 'hand', [0.2, 1.65, 5.9], [0.05, 1.6, 1.2], 42, {push: 0.08}),                          // 25
-  s(127, 'crash', 'note', [0.5, 1.4, 3.7], [0.62, 1.38, 1.9], 42, {push: 0.08, close: true}),             // 26  an insert: the officer's pad fills the frame
-  s(130, 'crash', 'wide', [-0.7, 1.9, 9.6], [0, 2.0, 0.3], 42, {push: 0.05}),                             // 27
+  s(116, 'crash', 'hand', [0.2, 1.45, 5.9], [0.05, 1.3, 1.2], 42, {push: 0.08}),                          // 25
+  s(127, 'crash', 'note', [0.5, 1.45, 3.7], [0.62, 1.43, 1.9], 42, {push: 0.08, close: true}),            // 26  an insert: the officer's pad fills the frame
+  s(130, 'crash', 'wide', [-0.7, 1.8, 9.6], [0, 1.65, 0.3], 42, {push: 0.05}),                            // 27
   // 7  "Seven men were charged. One was stopped at an airport in Panama."
   s(136, 'seven', 'charged', [0.35, 1.5, 6.8], [0, 1.6, -0.3], 42, {push: 0.06}),                         // 28
   s(140, 'airport', 'stop', [0.2, 1.6, 7.6], [-0.2, 1.5, 0.4], 42, {push: 0.05}),                         // 29

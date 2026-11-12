@@ -245,7 +245,7 @@ export const diner: Builder = (root) => {
       if (v === 'eat') { st = Math.floor(t / 9) % 2 ? 'chew' : 'bite'; own = true; }
       else if (v === 'in') { const k = smooth(f, shot.at - 4, shot.at + 22); x = -2.3 + 2.3 * k; z = -1.0 + 1.3 * k; st = k < 0.98 ? 'walk' : 'sit'; }
       else { st = Math.floor(f / 9) % 2 ? 'chew' : 'bite'; own = true; }
-      man.node.position.set(x, st === 'walk' ? 0 : 0.36, z); man.show(st); man.tick(f, cam);
+      man.node.position.set(x, st === 'walk' ? 0.25 : 0.62, z); man.show(st); man.tick(f, cam);   // the counter hides the floor: he stands and sits higher than a floor would let him
       burger.visible = !own; plate.visible = v !== 'in' || t > 24; plate.position.x = 0.05 + (v === 'in' ? 2.2 * (1 - smooth(f, shot.at + 24, shot.at + 34)) : 0);
     },
   };
