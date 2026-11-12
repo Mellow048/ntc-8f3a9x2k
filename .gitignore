@@ -11,6 +11,9 @@ out/
 remotion-webpack-bundle-*/
 puppeteer_dev_chrome_profile-*/
 
+# stems stay on disk, regenerate with audio/mix.py (large; commit only mix.wav + music.wav)
+shoots/*/audio/stem_*.wav
+
 # voice takes (large; commit only final voice.wav per short)
 shoots/*/voice/*.tmp.wav
 
