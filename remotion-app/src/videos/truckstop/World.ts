@@ -1,13 +1,13 @@
-// The world of the sorry hackers short: every set is built once, one is shown per shot, and the same two lights are
+// The world of the truck-stop heist short: every set is built once, one is shown per shot, and the same two lights are
 // re-coloured for each set (no shader recompiles between shots). Cuts are hard; each shot pushes in or travels.
 import * as THREE from 'three';
 import {SHOTS, shotAt, shotEnd, type Kind} from './story';
-import {er, map, road, ward, type Builder, type SetDef} from './sets';
-import {bedside, home, ids, notice, waiting} from './sets2';
-import {campus, den, final, lab, lineup, their} from './sets3';
+import {cab, diner, loot, stop, trailer, type Builder, type SetDef} from './sets';
+import {airport, cold, crash, map, road, show} from './sets2';
+import {court, deal, scale, seven, tags} from './sets3';
 import {clamp01} from './kit';
 
-const BUILDERS: Record<Kind, Builder> = {er, map, den, ward, road, waiting, notice, ids, bedside, home, their, campus, lab, lineup, final};
+const BUILDERS: Record<Kind, Builder> = {loot, stop, diner, cab, seven, deal, show, road, map, trailer, cold, crash, airport, tags, court, scale};
 
 export class TruckStopWorld {
   root = new THREE.Group();

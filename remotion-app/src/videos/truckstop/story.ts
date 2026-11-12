@@ -1,4 +1,4 @@
-// Timing for the sorry hackers short. Everything is keyed to words of the locked narration (words.json, written by
+// Timing for the truck-stop heist short. Everything is keyed to words of the locked narration (words.json, written by
 // shoots/truck-stop-heist/build_voice.py), so re-timing the voice moves the picture with it.
 import words from './words.json';
 import type {V} from './kit';
@@ -11,7 +11,7 @@ export const W = (i: number) => Math.round(WORDS[i].start * FPS);
 /** hold the closing question long enough to read it and reach for the comments */
 export const TOTAL = Math.round((WORDS[WORDS.length - 1].end + 1.55) * FPS);
 
-export type Kind = 'er' | 'map' | 'den' | 'ward' | 'road' | 'waiting' | 'notice' | 'ids' | 'bedside' | 'home' | 'their' | 'campus' | 'lab' | 'lineup' | 'final';
+export type Kind = 'loot' | 'stop' | 'diner' | 'cab' | 'seven' | 'deal' | 'show' | 'road' | 'map' | 'trailer' | 'cold' | 'crash' | 'airport' | 'tags' | 'court' | 'scale';
 export type Shot = {
   /** first frame (cut lands just ahead of the word) */
   at: number; kind: Kind;
@@ -43,70 +43,71 @@ const cut = (word: number, lead = 2) => Math.max(0, W(word) - lead);
 const s = (word: number, kind: Kind, v: string, cam: V, target: V, fov: number, more: Partial<Shot> = {}): Shot => ({at: cut(word), kind, v, cam, target, fov, ...more});
 
 export const SHOTS: Shot[] = [
-  // 1  "A cyberattack sent ambulances away from New Mexico's only top-level trauma center. Then the hackers said sorry, and offered patients money!"
-  s(0, 'er', 'hit', [0.5, 1.55, 9.2], [0.15, 1.5, -0.6], 42, {push: 0.08}),                               // 0
-  s(4, 'er', 'away', [-0.5, 1.5, 7.0], [0, 1.35, 0.2], 42, {push: 0.05}),                                 // 1
-  s(8, 'map', 'only', [0.3, 1.6, 5.4], [0, 1.55, -0.4], 42, {push: 0.1}),                                 // 2
-  s(12, 'den', 'sorry', [0.4, 1.4, 6.3], [0, 1.2, -0.2], 42, {push: 0.1}),                                // 3
-  s(17, 'den', 'money', [0.45, 1.4, 3.6], [0.78, 1.3, 0.1], 42, {push: 0.08, close: true}),               // 4
-  // 2  "October twenty-sixth, the University of New Mexico's health system. Staff say a voice came from their computers, claiming their data was stolen."
-  // 5-6 are one take: the morning of the day, then in on the building
-  s(21, 'er', 'date', [-0.6, 1.6, 9.2], [0, 1.7, -0.8], 42, {to: [-0.2, 1.5, 7.6]}),                      // 5
-  s(23, 'er', 'name', [-0.6, 1.6, 9.2], [0, 1.7, -0.8], 42, {join: true}),                                // 6
-  s(30, 'ward', 'voice', [0.3, 1.45, 5.6], [0, 1.25, -0.3], 42, {push: 0.09}),                            // 7
-  s(38, 'ward', 'claim', [-0.2, 1.4, 3.4], [0.3, 1.3, 0.1], 42, {push: 0.07, close: true}),               // 8
-  // 3  "For two hours, ambulances went elsewhere. Outpatient surgeries stopped for the day. By the next afternoon, the university said, systems were back."
-  s(43, 'road', 'two', [0.1, 1.9, 5.8], [0.25, 2.35, -0.8], 42, {push: 0.07}),                            // 9
-  s(46, 'road', 'else', [0.6, 1.6, 8.4], [0.1, 1.55, 0], 42, {push: 0.08}),                               // 10
-  s(49, 'waiting', 'stop', [0.35, 1.45, 6.2], [0, 1.3, -0.4], 42, {push: 0.09}),                          // 11
-  s(55, 'notice', 'back', [0.3, 1.66, 4.9], [0, 1.66, -0.4], 42, {push: 0.08}),                           // 12
-  s(62, 'er', 'back', [0.6, 1.5, 8.2], [0.1, 1.4, -0.3], 42, {push: 0.07}),                               // 13
-  // 4  "A new group calling itself B.Y.O.D. claimed the attack, and the personal data of every student and employee."
-  // 14-15 are one take: they come out of the dark, then the name they gave themselves lights up over them
-  s(65, 'den', 'new', [-0.35, 1.3, 6.2], [0, 1.25, -0.2], 42, {to: [-0.1, 1.5, 6.9], targetTo: [0, 1.6, -0.2]}),   // 14
-  s(70, 'den', 'name', [-0.35, 1.3, 6.2], [0, 1.25, -0.2], 42, {join: true}),                             // 15
-  s(71, 'den', 'claim', [0.5, 1.35, 5.0], [0, 1.25, 0], 42, {push: 0.08}),                                // 16
-  s(74, 'ids', 'every', [-0.7, 1.7, 5.2], [-0.2, 1.6, -0.6], 42, {to: [0.5, 1.6, 4.6], targetTo: [0.2, 1.6, -0.6]}),   // 17
-  // 5  "Then it apologized. Quote: we did not know that it was running machines related to assisting patients in real time."
-  s(83, 'den', 'apol', [0.3, 1.4, 6.0], [0, 1.2, -0.2], 42, {push: 0.09}),                                // 18
-  s(86, 'den', 'quote', [-0.45, 1.4, 4.2], [-0.3, 1.3, 0], 42, {push: 0.07}),                             // 19
-  // 20-21 are one take at the bed: the computer locks, and the nurse carries on by hand
-  s(95, 'bedside', 'lock', [-0.25, 1.4, 5.4], [-0.1, 1.25, -0.2], 42, {to: [0, 1.4, 5.2], targetTo: [0, 1.25, -0.2]}),        // 20
-  s(99, 'bedside', 'paper', [-0.25, 1.4, 5.4], [-0.1, 1.25, -0.2], 42, {join: true}),                     // 21
-  // 6  "It offered the hospital a free key, and any patient affected up to twenty-five hundred dollars, for the inconvenience."
-  s(103, 'den', 'key', [0.25, 1.42, 3.5], [0, 1.36, 0.1], 42, {push: 0.08, close: true}),                 // 22
-  s(110, 'home', 'offer', [0.35, 1.4, 5.3], [0, 1.25, -0.2], 42, {push: 0.09}),                           // 23
-  s(119, 'den', 'inconv', [-0.3, 1.35, 5.8], [0, 1.15, 0], 42, {push: 0.08}),                             // 24
-  // 7  "Quote: we have morals and we have a heart, we are not villains."
-  s(122, 'den', 'morals', [0.3, 1.46, 7.7], [0, 1.46, 0.1], 42, {push: 0.2}),                             // 25  far wider than the banner before it: three small figures under a great light
-  s(131, 'den', 'villains', [-0.2, 1.6, 3.5], [0, 1.6, 0.1], 42, {push: 0.07, close: true}),              // 26
-  // 8  "One catch. Quote: we are still going to keep the data."
-  s(135, 'den', 'catch', [0.5, 1.35, 6.4], [0.15, 1.14, -0.2], 42, {push: 0.09}),                         // 27
-  s(137, 'den', 'keep', [0.5, 1.35, 6.4], [0.15, 1.14, -0.2], 42, {join: true}),                          // 28  one take: a second wide camera beside the first made the picture hop
-  s(143, 'den', 'hug', [0.55, 1.55, 4.8], [0.4, 1.25, 0.4], 42, {push: 0.07, close: true}),               // 29
-  // 9  "The university says it made no concessions, and warns: do not answer. An offer of money can be one more scam."
-  s(146, 'notice', 'noconc', [-0.3, 1.66, 4.9], [0, 1.66, -0.4], 42, {push: 0.08}),                       // 30
-  s(153, 'home', 'warn', [-0.4, 1.4, 5.8], [0, 1.25, -0.2], 42, {push: 0.08}),                            // 31
-  s(158, 'home', 'hook', [0.2, 1.5, 4.0], [0.12, 1.45, 0], 42, {push: 0.07, close: true}),                // 32
-  s(164, 'notice', 'report', [0.2, 1.66, 4.7], [0, 1.66, -0.4], 42, {push: 0.07}),                        // 33
-  // 10 "The group hit back: the university, it wrote, had a full panic attack and switched its own machines off."
-  s(167, 'den', 'hit', [0.5, 1.45, 4.1], [0.36, 1.4, 0.1], 42, {push: 0.08, close: true}),                // 34
-  s(171, 'their', 'panic', [0.4, 1.5, 6.2], [0, 1.4, -0.4], 42, {push: 0.06}),                            // 35
-  s(180, 'their', 'off', [-0.75, 1.35, 3.6], [-0.9, 1.25, -0.3], 42, {to: [0.2, 1.5, 5.4], targetTo: [0.1, 1.4, -0.4]}),   // 36
-  // 11 "Two weeks later the group claimed Vanderbilt University, where computers reportedly said, quote: failure to communicate will
-  //     result in this estate being brought to the ground completely."
-  // 37-38 are one take: the campus, then in on its sign
-  s(186, 'campus', 'later', [0.5, 1.5, 8.6], [0, 1.45, -0.4], 42, {to: [0.2, 1.3, 7.2], targetTo: [0, 1.2, -0.4]}),  // 37
-  s(192, 'campus', 'name', [0.5, 1.5, 8.6], [0, 1.45, -0.4], 42, {join: true}),                           // 38
-  s(194, 'lab', 'said', [0.35, 1.5, 6.0], [0, 1.25, -0.3], 42, {push: 0.09}),                             // 39
-  s(198, 'lab', 'quote', [-0.3, 1.35, 3.5], [-0.42, 1.25, 0.1], 42, {push: 0.07, close: true}),           // 40
-  s(206, 'lab', 'ground', [0.2, 0.9, 5.6], [0, 1.3, -0.3], 42, {push: 0.1}),                              // 41
-  // 12 "No one has been charged."
-  s(213, 'lineup', 'none', [0.3, 1.5, 6.4], [0, 1.4, -0.4], 42, {push: 0.08}),                            // 42
-  // 13 "So what was that apology: a conscience, or marketing?"
-  // 43-44 are one take: the question, then a light on each answer
-  s(218, 'final', 'what', [0.1, 1.35, 6.6], [-0.1, 1.2, -0.2], 42, {to: [-0.02, 1.35, 6.3]}),             // 43
-  s(223, 'final', 'choice', [0.1, 1.35, 6.6], [-0.1, 1.2, -0.2], 42, {join: true}),                       // 44
+  // 1  "Prosecutors say a hundred million dollars in jewels vanished from a truck in twenty-seven minutes, while one driver ate and the
+  //     other slept. Now one of the accused has a plea deal."
+  s(0, 'loot', 'pile', [0.3, 1.7, 5.9], [0, 0.62, 0], 42, {push: 0.08}),                                  // 0
+  s(9, 'stop', 'wide', [0.6, 1.9, 12.6], [0.4, 2.7, -1], 42, {push: 0.05}),                               // 1
+  s(15, 'diner', 'eat', [0.35, 1.75, 4.3], [0.05, 1.5, 0.3], 42, {push: 0.07, close: true}),              // 2
+  s(19, 'cab', 'sleep', [-0.6, 1.9, 3.5], [-0.9, 1.6, -0.3], 42, {push: 0.06, close: true}),              // 3
+  s(23, 'seven', 'one', [0.3, 1.6, 8.3], [0, 1.75, -0.3], 42, {push: 0.06}),                              // 4
+  s(28, 'deal', 'sign', [0.3, 1.66, 4.9], [0, 1.66, -0.4], 42, {push: 0.08}),                             // 5
+  // 2  "July twenty twenty-two. A Brink's big rig leaves a jewelry show near San Francisco with seventy-three bags. The indictment
+  //     says a crew followed it for three hundred miles."
+  s(32, 'show', 'open', [0.4, 1.7, 8.0], [0, 1.7, -0.6], 42, {push: 0.07}),                               // 6
+  s(35, 'road', 'leave', [-1.3, 1.7, 7.4], [0.9, 1.6, -4], 42, {push: 0.03}),                             // 7
+  s(43, 'map', 'start', [-0.2, 1.95, 2.6], [-0.45, 1.98, -0.4], 42, {push: 0.08}),                        // 8
+  s(46, 'trailer', 'full', [0.25, 1.5, 3.4], [0, 1.45, -1.3], 42, {push: 0.1}),                           // 9
+  s(49, 'road', 'follow', [0, 3.4, 7.6], [0.3, 1.3, -7], 42, {push: 0.04}),                               // 10
+  s(56, 'map', 'route', [0.15, 1.7, 3.0], [-0.25, 1.62, -0.4], 42, {push: 0.06}),                         // 11
+  // 3  "Just after two A.M. it pulls into a truck stop. One driver goes in to eat. The other is asleep in the bunk."
+  s(60, 'stop', 'clock', [-0.6, 3.2, 1.6], [-1.9, 3.9, -5], 42, {push: 0.06}),                            // 12
+  s(64, 'stop', 'arrive', [-0.5, 1.8, 12.4], [0.5, 2.5, -1], 42, {push: 0.04}),                           // 13  far wider than the sign before it
+  s(70, 'diner', 'in', [-0.4, 1.8, 5.6], [-0.5, 1.6, -0.6], 42, {push: 0.06}),                            // 14
+  s(76, 'cab', 'alone', [-0.1, 1.95, 7.2], [-0.15, 1.85, -0.4], 42, {push: 0.05}),                        // 15
+  // 4  "Twenty-seven minutes later, the lock is cut and twenty-four bags are gone."
+  s(83, 'diner', 'clock', [0.7, 2.3, 1.2], [1.2, 2.42, -2.36], 42, {push: 0.1}),                          // 16
+  s(86, 'stop', 'lock', [-2.6, 1.0, 6.3], [-1.55, 0.42, 3.6], 42, {push: 0.08}),                          // 17
+  s(90, 'trailer', 'gone', [-0.2, 1.55, 3.3], [0, 1.45, -1.3], 42, {push: 0.08}),                         // 18
+  // 5  "For nearly three years, nobody was charged."
+  s(95, 'cold', 'box', [0.3, 1.9, 4.2], [0, 1.85, -0.7], 42, {push: 0.08}),                               // 19
+  s(99, 'seven', 'none', [-0.3, 1.6, 8.6], [0, 1.75, -0.3], 42, {push: 0.05}),                            // 20
+  // 6  "The break, the L.A. Times reports: phones that pinged cell towers along the route. And one of the crew had handed police his
+  //     burner number the night before, as a witness to a crash."
+  s(102, 'cold', 'break', [-0.25, 1.9, 3.5], [0, 1.95, -0.6], 42, {push: 0.1}),                           // 21
+  s(105, 'deal', 'news', [-0.3, 1.66, 4.9], [0, 1.66, -0.4], 42, {push: 0.08}),                           // 22
+  s(108, 'road', 'towers', [-2.6, 1.5, 4.6], [1.2, 2.56, -5], 42, {push: 0.05}),                          // 23
+  s(112, 'map', 'pings', [0.4, 1.4, 2.5], [-0.1, 1.48, -0.4], 42, {push: 0.06}),                          // 24
+  s(116, 'crash', 'hand', [0.2, 1.65, 5.9], [0.05, 1.6, 1.2], 42, {push: 0.08}),                          // 25
+  s(127, 'crash', 'note', [0.5, 1.34, 3.7], [0.62, 1.3, 1.9], 42, {push: 0.08, close: true}),             // 26  an insert: the officer's pad fills the frame
+  s(130, 'crash', 'wide', [-0.7, 1.9, 9.6], [0, 1.8, 0.3], 42, {push: 0.05}),                             // 27
+  // 7  "Seven men were charged. One was stopped at an airport in Panama."
+  s(136, 'seven', 'charged', [0.35, 1.6, 8.4], [0, 1.75, -0.3], 42, {push: 0.06}),                        // 28
+  s(140, 'airport', 'stop', [0.2, 1.6, 7.2], [-0.15, 1.5, 0.4], 42, {push: 0.06}),                        // 29
+  // 8  "This month he agreed to plead guilty to robbing a different truck, one carrying AirTags. In the same deal, he admits the
+  //     jewel heist."
+  s(148, 'deal', 'page', [0.3, 1.66, 4.9], [0, 1.66, -0.4], 42, {push: 0.08}),                            // 30
+  s(155, 'tags', 'truck', [0.9, 1.7, 8.6], [0.2, 1.25, 0], 42, {push: 0.05}),                             // 31
+  s(160, 'tags', 'tags', [0.15, 1.2, 4.0], [-0.25, 0.6, 1.7], 42, {push: 0.08, close: true}),             // 32
+  s(163, 'deal', 'same', [-0.3, 1.66, 4.9], [0, 1.66, -0.4], 42, {push: 0.08}),                           // 33
+  s(169, 'loot', 'back', [-0.35, 1.5, 4.6], [0, 0.62, 0], 42, {push: 0.08}),                              // 34
+  // 9  "Three others have pleaded not guilty. Two were never arrested. One was deported before trial; prosecutors say they didn't
+  //     know."
+  // 35-37 are one take: where each of the seven is now
+  s(172, 'seven', 'three', [0.3, 1.6, 8.4], [0, 1.75, -0.3], 42, {to: [-0.15, 1.6, 7.9]}),                // 35
+  s(178, 'seven', 'two', [0.3, 1.6, 8.4], [0, 1.75, -0.3], 42, {join: true}),                             // 36
+  s(182, 'seven', 'gone', [0.3, 1.6, 8.4], [0, 1.75, -0.3], 42, {join: true}),                            // 37
+  s(187, 'court', 'empty', [0.1, 1.6, 7.0], [0, 1.45, -0.3], 42, {push: 0.06}),                           // 38
+  // 10 "Most of the jewels are still missing. The jewelers put them at a hundred million dollars."
+  s(192, 'show', 'empty', [-0.4, 1.7, 8.2], [0, 1.7, -0.6], 42, {push: 0.06}),                            // 39
+  s(199, 'show', 'claim', [0.4, 1.6, 3.3], [0, 1.5, -0.8], 42, {push: 0.07, close: true}),                // 40
+  s(204, 'scale', 'left', [-0.6, 1.7, 4.4], [-1.0, 1.75, 0], 42, {push: 0.07}),                           // 41
+  // 11 "Brink's says they declared eight point seven million."
+  s(208, 'deal', 'form', [0.3, 1.66, 4.9], [0, 1.66, -0.4], 42, {push: 0.08}),                            // 42
+  s(212, 'scale', 'right', [0.6, 1.7, 4.4], [1.0, 1.75, 0], 42, {push: 0.07}),                            // 43
+  // 12 "So which number counts: what the jewelers lost, or what they declared?"
+  // 44-45 are one take: the question, then a light on each side
+  s(216, 'scale', 'what', [0.15, 1.7, 7.9], [0, 1.95, 0], 42, {to: [0, 1.7, 7.5]}),                       // 44
+  s(220, 'scale', 'choice', [0.15, 1.7, 7.9], [0, 1.95, 0], 42, {join: true}),                            // 45
 ];
 /** shot on screen at frame f */
 export const shotAt = (f: number) => { let i = 0; while (i + 1 < SHOTS.length && SHOTS[i + 1].at <= f) i++; return i; };

@@ -1,4 +1,4 @@
-// "The hackers who said sorry": a 74-second vertical news short.
+// "The $100 million truck stop": a 71-second vertical news short.
 // Picture: three.js sets with flat cartoon characters, ink outlines, lens blur, bloom and a grade.
 // Timing: every cut, pose and caption is keyed to the narration words (story.ts).
 import React, {useMemo} from 'react';

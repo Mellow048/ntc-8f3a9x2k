@@ -1,8 +1,8 @@
-// The cast of the sorry hackers short. Everyone is built on the shared flat cartoon construction (pendulum/toon.ts):
-// same big head, same deadpan face. A person is told apart by costume only: scrubs, a crew uniform, a cardigan.
-// Staff, patients, the ambulance crew and the students are invented: nobody is a likeness of anybody.
-// The group has not been identified by anyone, so it has no faces at all: three raised hoods, and in each a face made
-// of green dots, the way a terminal would draw one. The sad one is the ":<" of the group's own note, stood upright.
+// The cast of the truck-stop heist short. Everyone is built on the shared flat cartoon construction (pendulum/toon.ts):
+// same big head, same deadpan face. A person is told apart by costume only: a work shirt, a uniform, a cardigan.
+// The drivers, the jewelers, the police officers and the prosecutor are invented: nobody is a likeness of anybody.
+// The seven men who were charged are not drawn at all: a blank head with a question mark, a number and a colour.
+// (The hood code below is inherited from the film before this one and is not used here.)
 import * as THREE from 'three';
 import {Pen, bodyFront, INK, type Outfit, type Expr, type FrontGeo, type HeadGeo} from '../pendulum/toon';
 import {NOINK} from '../pendulum/ink';
@@ -10,7 +10,7 @@ import {pool, rrect, type G2, type Node} from './kit';
 
 type P2 = [number, number];
 export type Pose = 'hang' | 'hold' | 'shrug' | 'panic' | 'point' | 'hips' | 'cross' | 'desk' | 'both' | 'phone' | 'think' | 'type' | 'wave' | 'push' | 'swing' | 'hush' | 'mask' | 'side';
-export type Prop = 'paper' | 'phone' | 'key' | 'card' | 'flowers' | 'cash' | 'heart' | 'megaphone' | 'clip' | null;
+export type Prop = 'paper' | 'phone' | 'key' | 'card' | 'flowers' | 'cash' | 'heart' | 'megaphone' | 'clip' | 'burger' | null;
 /** the face in a hood */
 export type Emo = 'sad' | 'flat' | 'evil' | 'happy' | 'cash' | 'oh';
 export type Look = {
@@ -104,6 +104,10 @@ function drawProp(p: Pen, d: Draw, hands: P2[], u: number, look: Look) {
   } else if (prop === 'megaphone') {
     const [x, y] = [R[0], R[1] - 4 * u];
     p.poly([[x - 4 * u, y - 5 * u], [x + 30 * u, y - 21 * u], [x + 30 * u, y + 17 * u], [x - 4 * u, y + 5 * u]], '#f2c230', 2.4 * u); p.poly(rect(x + 30 * u, y - 24 * u, 5.5 * u, 44 * u), '#e3342f', 2 * u); fist();
+  } else if (prop === 'burger') {                                                                   // a burger, half eaten
+    const [x, y] = [R[0] + 2 * u, R[1] - 13 * u];
+    p.ell(x, y + 8 * u, 17 * u, 7 * u, '#d9a45a', 2 * u); p.poly(rect(x - 17 * u, y - 1 * u, 34 * u, 7 * u), '#6a3d24', 1.6 * u); p.poly(rect(x - 18.5 * u, y - 4.5 * u, 37 * u, 4 * u), '#6fbf5a', 1.2 * u);
+    p.ell(x, y - 9 * u, 17.5 * u, 10 * u, '#e0b06a', 2 * u); fist();
   } else if (prop === 'clip') {                                                                     // a clipboard: paper forms
     const [x, y] = [R[0] + 2 * u, R[1] - 18 * u];
     p.rot = [0.12, x, y]; p.poly(rounded(x - 15 * u, y - 21 * u, 30 * u, 42 * u, 3 * u), '#8a6a3a', 2.2 * u); p.poly(rect(x - 12 * u, y - 16 * u, 24 * u, 34 * u), '#fffdf4', 1.2 * u);
@@ -295,28 +299,27 @@ export function drawActor(g: G2, look: Look, d: Draw, res = 1) {
 // ---------- the people ----------
 const SKIN = ['#ffe2c2', '#c99067', '#f5c9a0', '#8a5a3c', '#ecd0b6'], HAIR = ['#3b271c', '#241c18', '#5c3c24', '#a8643a'];
 const NOBODY = '#cfcadb';
-/** the colour of everything the group says or shows */
-export const GREEN = GLOW;
-const HOODS = ['#6b4fc4', '#d9652b', '#3f8f3a'];
-/** The group. Nobody knows who they are or how many: three raised hoods, told apart by colour, are a picture of "a group". */
-export const HOOD = (v = 0): Look => ({id: 'hood' + v, seed: 7 + v * 3, front: 'hoodie', shirt: '#101418', hood: true,
-  outfit: {jacket: HOODS[v], pants: ['#23252e', '#2b2630', '#22282a'][v], boots: '#15161b', hat: null, skin: '#1a1c24', build: 'adult', noButtons: true}});
-const SCRUB = '#27b3ad';
-/** Hospital staff in turquoise (reporters saw "turquoise staff shirts"): invented, nobody in particular. */
-export const NURSE = (v = 0): Look => ({id: 'nurse' + v, seed: 61 + v * 5, front: 'scrubs', shirt: '#f3f1ea', lanyard: ['#e8590c', '#3f6fb5', '#7a4fd0', '#e8590c'][v],
-  eyewear: v === 1 ? 'round' : undefined, hairdo: (['bob', 'swept', 'long', undefined] as const)[v], hairColor: ['#3b271c', '#2a2226', '#a8643a', '#241c18'][v],
-  outfit: {jacket: SCRUB, pants: SCRUB, boots: '#f3efe6', hat: v === 3 ? 'hair' : null, hair: HAIR[1], skin: SKIN[[0, 3, 2, 1][v]], build: 'adult', noButtons: true}});
-/** an ambulance crew member */
-export const MEDIC: Look = {id: 'medic', seed: 88, front: 'uniform', chest: 'EMS', shirt: '#d7ff4a', hairdo: 'swept', hairColor: '#3b271c',
-  outfit: {jacket: '#22335a', pants: '#22335a', boots: '#15161b', hat: null, skin: SKIN[2], build: 'adult', noButtons: true}};
-/** Patients, and somebody at home with a phone: invented. */
-export const PATIENT = (v = 0): Look => ({id: 'patient' + v, seed: 101 + v * 7, front: v === 1 ? 'tee' : 'hoodie', shirt: ['#f3f1ea', '#ffd43b', '#e8f0ff'][v],
-  eyewear: v === 0 ? 'rect' : undefined, hairdo: (['swept', 'long', 'bob'] as const)[v], hairColor: ['#c9ccd6', '#3b271c', '#5c3c24'][v],
-  outfit: {jacket: ['#8a5a44', '#c0486a', '#4f7a9a'][v], pants: ['#3b3f4d', '#2b3550', '#3a3340'][v], boots: '#2b2b33', hat: null, skin: SKIN[[4, 1, 0][v]], build: v === 0 ? 'stout' : 'adult', noButtons: true}});
-/** Students at the second university: invented. */
-export const STUDENT = (v = 0): Look => ({id: 'student' + v, seed: 131 + v * 3, front: v % 2 ? 'tee' : 'hoodie', shirt: ['#f3f1ea', '#1f1f24', '#7af0e0'][v % 3],
-  hairdo: (['long', undefined, 'bob'] as const)[v % 3], hairColor: ['#241c18', '#3b271c', '#a8643a'][v % 3],
-  outfit: {jacket: ['#3a3f4a', '#c9a23a', '#7a5c9a'][v % 3], pants: '#2b3550', boots: '#f3efe6', hat: v % 3 === 1 ? 'hair' : null, hair: HAIR[0], skin: SKIN[[1, 0, 3][v % 3]], build: 'adult', noButtons: true}});
+const CREW_COL = ['#4f6fa8', '#9a5a3c', '#4f8a5e', '#7a5c9a', '#b08a3a', '#3f7a86', '#8a4a5e'];
+/** The seven men who were charged. One has signed a plea agreement and three have pleaded not guilty; none of them is
+ *  drawn. A blank head with a question mark, a number and a colour: nobody's likeness. Number 1 is the one with the deal. */
+export const CREW = (v = 0): Look => ({id: 'crew' + v, seed: 11 + v * 5, front: 'tee', chest: String(v + 1), shirt: '#f3f1ea', blank: true,
+  outfit: {jacket: CREW_COL[v], pants: '#2b2f3a', boots: '#15161b', hat: null, skin: NOBODY, build: 'adult', noButtons: true}});
+/** One of them, and the report does not say which: the same blank head, no number. */
+export const SOMEONE: Look = {id: 'someone', seed: 97, front: 'hoodie', shirt: '#d9d6cf', blank: true,
+  outfit: {jacket: '#5b6170', pants: '#2b2f3a', boots: '#15161b', hat: null, skin: NOBODY, build: 'adult', noButtons: true}};
+/** The two drivers of the truck: invented, in a plain work shirt with no company's name on it. */
+export const DRIVER = (v = 0): Look => ({id: 'driver' + v, seed: 43 + v * 8, front: 'polo', shirt: '#dfe6f0', hairdo: v ? 'swept' : undefined, hairColor: '#5c3c24',
+  outfit: {jacket: '#3d5a80', pants: '#2b3550', boots: '#2b2b33', hat: v ? null : 'cap', cap: '#2b3550', hair: HAIR[1], skin: SKIN[v ? 2 : 1], build: v ? 'adult' : 'stout', moustache: v ? undefined : '#3b271c', noButtons: true}});
+/** Police: an officer at a collision in California (0) and two officers at an airport in Panama (1, 2). Invented. */
+export const COP = (v = 0): Look => ({id: 'cop' + v, seed: 71 + v * 6, front: 'uniform', chest: v ? 'POLICIA' : 'POLICE', shirt: v ? '#d9c98a' : '#c9d2e6', hairdo: v === 2 ? 'bob' : undefined, hairColor: '#241c18',
+  outfit: {jacket: v ? '#3d4a36' : '#1f2a44', pants: v ? '#3d4a36' : '#1f2a44', boots: '#15161b', hat: 'cap', cap: v ? '#3d4a36' : '#1f2a44', hair: HAIR[v % 2], skin: SKIN[[0, 3, 2][v]], build: 'adult', noButtons: true}});
+/** Jewelers: invented, and older (their lawyer says most of his clients are senior citizens). */
+export const JEWELER = (v = 0): Look => ({id: 'jeweler' + v, seed: 151 + v * 7, front: v === 1 ? 'hoodie' : 'suit', tie: ['#7a2f3a', undefined, '#2f4a7a'][v], shirt: '#fbfaf5', eyewear: (['rect', 'round', undefined] as const)[v],
+  hairdo: (['swept', 'bob', 'swept'] as const)[v], hairColor: ['#c9ccd6', '#b9b4be', '#8f8a96'][v],
+  outfit: {jacket: ['#4a4f63', '#8a5a6a', '#5a5248'][v], pants: '#3b3f4d', boots: '#2b2b33', hat: null, skin: SKIN[[4, 0, 1][v]], build: v === 0 ? 'stout' : 'adult', moustache: v === 2 ? '#8f8a96' : undefined, noButtons: true}});
+/** A prosecutor: invented, no likeness of anyone who works on the case. */
+export const PROSECUTOR: Look = {id: 'prosecutor', seed: 201, front: 'suit', tie: '#2f4a7a', shirt: '#fbfaf5', hairdo: 'swept', hairColor: '#3b271c', lanyard: '#c9a23a', eyewear: 'rect',
+  outfit: {jacket: '#2b3348', pants: '#2b3348', boots: '#15161b', hat: null, skin: SKIN[0], build: 'adult', noButtons: true}};
 
 // ---------- billboards ----------
 const cache = new Map<string, THREE.CanvasTexture>();

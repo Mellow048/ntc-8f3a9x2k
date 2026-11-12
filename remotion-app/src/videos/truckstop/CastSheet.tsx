@@ -1,18 +1,18 @@
-// Development aid: every character of the sorry hackers short on one page, to check costumes and poses at a glance.
+// Development aid: every character of the truck-stop heist short on one page, to check costumes and poses at a glance.
 //   node scripts/stills.mjs TruckStopCastSheet out/cast --frames=0
 import React, {useEffect, useRef} from 'react';
 import {AbsoluteFill} from 'remotion';
 import {useFonts} from './fonts';
-import {drawActor, HOOD, MEDIC, NURSE, PATIENT, STUDENT, type Look, type Draw} from './cast';
+import {drawActor, COP, CREW, DRIVER, JEWELER, PROSECUTOR, SOMEONE, type Look, type Draw} from './cast';
 
 const CELLS: [Look, Draw][] = [
-  [HOOD(0), {emo: 'flat'}], [HOOD(1), {emo: 'sad', pose: 'both', prop: 'card', text: 'SORRY'}], [HOOD(2), {emo: 'evil', pose: 'hips'}], [HOOD(0), {emo: 'sad', pose: 'hold', prop: 'flowers'}],
-  [HOOD(2), {emo: 'cash', pose: 'hold', prop: 'cash'}], [HOOD(1), {emo: 'happy', pose: 'hold', prop: 'key'}], [HOOD(0), {emo: 'happy', halo: 'on', pose: 'hold', prop: 'heart'}], [HOOD(1), {emo: 'happy', halo: 'askew', pose: 'shrug'}],
-  [HOOD(2), {emo: 'oh', pose: 'panic'}], [HOOD(1), {emo: 'evil', pose: 'hold', prop: 'megaphone'}], [HOOD(0), {emo: 'flat', pose: 'cross'}], [HOOD(2), {emo: 'sad', pose: 'shrug'}],
-  [NURSE(0), {expr: 'neutral'}], [NURSE(1), {expr: 'shock', pose: 'panic'}], [NURSE(2), {expr: 'neutral', pose: 'hold', prop: 'clip'}], [NURSE(3), {expr: 'stern', pose: 'push'}],
-  [NURSE(0), {expr: 'neutral', pose: 'type', mode: 'sit'}], [NURSE(1), {expr: 'neutral', pose: 'think', mode: 'sit'}], [MEDIC, {expr: 'neutral'}], [MEDIC, {expr: 'stern', pose: 'point'}],
-  [PATIENT(0), {expr: 'neutral', mode: 'sit'}], [PATIENT(0), {expr: 'stern', pose: 'cross', mode: 'sit'}], [PATIENT(1), {expr: 'neutral', pose: 'phone', prop: 'phone'}], [PATIENT(2), {expr: 'neutral', mode: 'sit'}],
-  [STUDENT(0), {expr: 'neutral', pose: 'type', mode: 'sit'}], [STUDENT(1), {expr: 'shock', pose: 'panic', mode: 'sit'}], [STUDENT(2), {expr: 'shock', pose: 'shrug'}], [PATIENT(0), {expr: 'neutral', pose: 'hold', prop: 'phone'}],
+  [CREW(0), {pose: 'hang'}], [CREW(1), {pose: 'both', prop: 'card', text: 'NOT GUILTY'}], [CREW(2), {pose: 'hang'}], [CREW(3), {pose: 'shrug'}],
+  [CREW(4), {pose: 'hang'}], [CREW(5), {pose: 'hang'}], [CREW(6), {pose: 'shrug'}], [CREW(0), {pose: 'both', prop: 'card', text: 'PLEA DEAL'}],
+  [SOMEONE, {pose: 'phone', prop: 'phone'}], [CREW(0), {mode: 'march'}], [DRIVER(0), {expr: 'neutral'}], [DRIVER(0), {expr: 'lick', pose: 'hold', prop: 'burger', mode: 'sit'}],
+  [DRIVER(0), {expr: 'smile', mode: 'march'}], [DRIVER(1), {expr: 'neutral'}], [DRIVER(1), {expr: 'neutral', blink: true}], [COP(0), {expr: 'neutral', pose: 'hold', prop: 'clip'}],
+  [COP(1), {expr: 'stern', pose: 'push'}], [COP(2), {expr: 'stern', pose: 'push'}], [JEWELER(0), {expr: 'smile'}], [JEWELER(1), {expr: 'smile', pose: 'wave'}],
+  [JEWELER(2), {expr: 'smile'}], [JEWELER(0), {expr: 'stern', pose: 'shrug'}], [JEWELER(1), {expr: 'stern', pose: 'hold', prop: 'paper'}], [JEWELER(2), {expr: 'stern'}],
+  [PROSECUTOR, {expr: 'neutral', pose: 'hold', prop: 'paper'}], [PROSECUTOR, {expr: 'shock', pose: 'hold', prop: 'paper', look: -1}], [PROSECUTOR, {expr: 'nervous', pose: 'shrug', look: -1}], [COP(0), {expr: 'smile', pose: 'hold', prop: 'clip'}],
 ];
 
 export const CastSheet: React.FC = () => {

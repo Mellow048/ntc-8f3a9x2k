@@ -1,4 +1,4 @@
-// Furniture and set dressing shared by several sets of the sorry hackers short (taken over from the fake boss short).
+// Furniture and set dressing shared by several sets of the truck-stop heist short (taken over from the fake boss short).
 import * as THREE from 'three';
 import {NOINK} from '../pendulum/ink';
 import {ball, box, cone, cyl, grp, lamp, lerp, lit, mesh, panel, rod, rng, rrect, slab, smat, soft, tex, text, tiled, torus, vgrad, type G2, type Node, type V} from './kit';
