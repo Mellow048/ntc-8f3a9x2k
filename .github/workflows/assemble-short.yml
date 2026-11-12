@@ -1,0 +1,119 @@
+name: Assemble short
+
+# Joins the frame chunks produced by "Render short" into the delivered file, muxes the mix, and
+# publishes it back to the branch. Standalone on purpose: it can be pointed at any earlier run's
+# chunk artifacts (run_id) without re-rendering a single frame, and it writes join.log into the repo
+# whichever way the join goes, so a failure is readable from the branch instead of only from logs.
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Run id that holds the chunk-* artifacts"
+        required: true
+      mix:
+        description: "Mix WAV path in repo (empty = no audio)"
+        required: false
+        default: "shoots/pig-war/audio/mix.wav"
+      out:
+        description: "Path to publish the MP4 at"
+        required: false
+        default: "shoots/pig-war/PIG_WAR.mp4"
+
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -y
+            sudo apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -1
+
+      - name: Fetch chunks
+        uses: actions/download-artifact@v4
+        with:
+          pattern: chunk-*
+          path: chunks
+          run-id: ${{ github.event.inputs.run_id }}
+          github-token: ${{ github.token }}
+
+      - name: Join chunks and mux the mix
+        run: |
+          set -x
+          ls -lhR chunks | head -40
+          : > list.txt
+          for d in $(ls -d chunks/chunk-* | sort -V); do
+            f="$(find "$d" -name '*.mp4' | head -1)"
+            echo "file '$PWD/$f'" >> list.txt
+          done
+          cat list.txt
+          ffmpeg -y -f concat -safe 0 -i list.txt -c copy video.mp4
+          if [ ! -s video.mp4 ]; then
+            echo "stream copy failed; re-encoding the join"
+            ffmpeg -y -f concat -safe 0 -i list.txt -c:v libx264 -crf 16 -pix_fmt yuv420p -r 30 video.mp4
+          fi
+          if [ -n "${{ github.event.inputs.mix }}" ]; then
+            ffmpeg -y -i video.mp4 -i "${{ github.event.inputs.mix }}" \
+              -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest final.mp4
+          else
+            cp video.mp4 final.mp4
+          fi
+          ffprobe -v error -show_entries format=duration,size,bit_rate \
+            -show_entries stream=codec_type,codec_name,width,height,r_frame_rate,nb_frames,sample_rate,channels \
+            -of default=nw=1 final.mp4
+
+      - name: Publish MP4 to the branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          O="${{ github.event.inputs.out }}"
+          mkdir -p "$(dirname "$O")"
+          cp final.mp4 "$O"
+          git config user.name "Arena CI"
+          git config user.email "ci@arena.ai"
+          git add -f "$O"
+          git commit -m "Render: pig-war short (run ${{ github.event.inputs.run_id }})" || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          for i in 1 2 3; do
+            git fetch origin "$GITHUB_REF_NAME" || true
+            git rebase "origin/$GITHUB_REF_NAME" || git rebase --abort || true
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then echo "mp4 pushed"; exit 0; fi
+            sleep 5
+          done
+          echo "could not push mp4"; exit 1
+
+      # whatever happened, put the evidence where the build can read it
+      - name: Keep the join log
+        if: always()
+        run: |
+          mkdir -p shoots/pig-war/qa
+          {
+            echo "# join log — chunks run ${{ github.event.inputs.run_id }}"
+            echo
+            echo '```'
+            ls -lR chunks 2>&1 | head -40
+            cat list.txt 2>&1
+            [ -f video.mp4 ] && ffprobe -v error -show_entries format=duration -of default=nw=1 video.mp4 2>&1
+            [ -f final.mp4 ] && ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate,sample_rate,channels -of default=nw=1 final.mp4 2>&1
+            echo '```'
+          } > shoots/pig-war/qa/join.md
+          git add -A shoots/pig-war/qa/join.md
+          git commit -m "QA: join log for run ${{ github.event.inputs.run_id }}" || true
+          git remote set-url origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git push origin "HEAD:${GITHUB_REF_NAME}" || true
+
+      - name: Upload video
+        uses: actions/upload-artifact@v4
+        with:
+          name: pig-war-final
+          path: final.mp4
+          if-no-files-found: error
+          retention-days: 14
