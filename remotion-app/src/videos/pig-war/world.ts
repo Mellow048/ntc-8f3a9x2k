@@ -192,9 +192,9 @@ export class World {
     this.pig.update(pigAt(id, f));
     // Cutlar on his step (shot 18); he is off the set for every other shot for now
     const onStep = id === 18;
-    this.cutlar.set(-6.02, 0.02, 3.6, cam.position, {
+    this.cutlar.set(-6.02, -0.02, 4.0, cam.position, {
       outfit: CUTLAR, view: "front", expr: id === 18 ? "neutral" : "neutral", mode: "stand", phase: 0,
-      look: 0.2, light: 0.5, seed: 3, scale: 1,
+      look: 0.2, light: 0.5, seed: 3, scale: 1.14,
     }, onStep);
 
     this.target.copy(focus);

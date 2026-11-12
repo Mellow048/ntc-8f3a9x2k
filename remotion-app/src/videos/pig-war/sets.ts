@@ -7,7 +7,7 @@ import { ctex, grassHD, planksHD, beamHD, stoneHD, roofHD, waterNear, waterFar, 
 
 /** clodded, dry farm soil, with the furrow shadows baked low so the rows read from a low lens */
 const soil = () => ctex("pigSoil", 512, 512, (g, r) => {
-  g.fillStyle = "#8a6440"; g.fillRect(0, 0, 512, 512);
+  g.fillStyle = "#7d6248"; g.fillRect(0, 0, 512, 512);
   for (let i = 0; i < 380; i++) {
     g.fillStyle = ["#7a5735", "#96704a", "#6d4d30", "#a07a51", "#815c3a"][Math.floor(r() * 5)];
     g.beginPath(); g.ellipse(r() * 512, r() * 512, 3 + r() * 11, 2 + r() * 7, r() * 3, 0, 7); g.fill();
@@ -142,8 +142,10 @@ export const buildPatch = (R: THREE.Object3D) => {
   const push = (g: THREE.BufferGeometry, m: THREE.Matrix4) => b.add(g, dirt, m);
   const rnd = rng(7);
   for (let z = PATCH.z0 + 0.5, k = 0; z < PATCH.z1; z += PATCH.rowGap, k++) {
-    // the ridge itself: a long low mound (box with a rounded top edge), one per row
-    const g = boxGeo(V(PATCH.x0, 0, z - PATCH.rowW / 2), V(PATCH.x1, PATCH.rowTop, z + PATCH.rowW / 2), 1.2);
+    // the ridge: a half-buried cylinder along x, so the furrow walls are rounded like a hoe-drawn ridge
+    const len = PATCH.x1 - PATCH.x0;
+    const g = new THREE.CylinderGeometry(PATCH.rowW * 0.62, PATCH.rowW * 0.62, len, 10, 1, false);
+    g.rotateZ(Math.PI / 2).translate((PATCH.x0 + PATCH.x1) / 2, PATCH.rowTop - PATCH.rowW * 0.34, z);
     push(g, new THREE.Matrix4());
     // plants down the ridge
     for (let x = PATCH.x0 + 0.22; x < PATCH.x1 - 0.16; x += 0.34) {
@@ -209,7 +211,7 @@ export const buildTreeline = (R: THREE.Object3D) => {
     if (i % 3 === 0) b.add(new THREE.SphereGeometry(h * 0.34, 9, 7).translate(x - 9, h * 0.55, z + 16), scr);
   }
   // a hedgerow on the far boundary
-  for (let z = -30; z < 26; z += 3.2) b.add(new THREE.SphereGeometry(1.5, 8, 6).translate(13.6 + Math.sin(z) * 0.6, 0.9, z), scr);
+  for (let z = -30; z < 2; z += 3.2) b.add(new THREE.SphereGeometry(1.5, 8, 6).translate(13.6 + Math.sin(z) * 0.6, 0.9, z), scr);
   b.build(R, false);
 };
 

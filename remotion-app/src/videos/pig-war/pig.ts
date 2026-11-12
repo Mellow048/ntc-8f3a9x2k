@@ -57,11 +57,11 @@ export class Pig {
 
     // eyes: small beads set just above the snout root, each with a wet catchlight
     for (const s of [-1, 1]) {
-      const eye = new THREE.Mesh(sphere(0.045, 10, 8), dark);
-      eye.position.set(0.30, 0.10, s * 0.135);
+      const eye = new THREE.Mesh(sphere(0.037, 10, 8), dark);
+      eye.position.set(0.335, 0.085, s * 0.105);
       this.head.add(eye);
       const glint = new THREE.Mesh(sphere(0.013, 8, 6), horn);
-      glint.position.set(0.328, 0.115, s * 0.14);
+      glint.position.set(0.358, 0.10, s * 0.109);
       this.head.add(glint);
       // nostril in the disc
       const nostril = new THREE.Mesh(sphere(0.021, 8, 6), dark);
@@ -90,11 +90,11 @@ export class Pig {
     for (const [x, z] of [[0.34, 0.2], [0.34, -0.2], [-0.32, 0.2], [-0.32, -0.2]]) {
       const leg = new THREE.Group();
       leg.position.set(x, 0.42, z);
-      const shin = new THREE.Mesh(cyl(0.042, 0.05, 0.4, 8), hide);
+      const shin = new THREE.Mesh(cyl(0.055, 0.065, 0.4, 8), hide);
       shin.position.y = -0.2;
       shin.castShadow = true;
       leg.add(shin);
-      const hoof = new THREE.Mesh(new THREE.BoxGeometry(0.085, 0.075, 0.085), snout);
+      const hoof = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.07, 0.1), snout);
       hoof.position.y = -0.4;
       hoof.castShadow = true;
       leg.add(hoof);
