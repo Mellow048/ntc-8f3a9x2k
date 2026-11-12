@@ -59,6 +59,7 @@ export class World {
   private ship: THREE.Group;
   private place: THREE.Group;
   private built: SetId | null = null;
+  private sets = new Map<SetId, THREE.Group>();
   private target = new THREE.Vector3();
 
   constructor(_kit: Kit) {
@@ -118,18 +119,26 @@ export class World {
   }
 
   /** one location at a time: rebuild only when the shot changes place */
+  /** built sets are kept and toggled, not rebuilt: a cut that returns to the patch reuses its geometry.
+   *  (materials come from lam()'s cache and are shared across sets, so only geometry is per-set) */
   private setFor(set: SetId) {
     if (this.built === set) return;
     if (this.built) {
-      for (const c of [...this.place.children]) {
-        c.traverse((o) => {
-          const m = o as THREE.Mesh;
-          if (m.isMesh) m.geometry.dispose(); // materials come from lam()'s cache and are shared across sets
-        });
-        this.place.remove(c);
-      }
+      const old = this.sets.get(this.built);
+      if (old) old.visible = false;
     }
-    const R = this.place;
+    let g = this.sets.get(set);
+    if (!g) {
+      g = new THREE.Group();
+      this.place.add(g);
+      this.buildInto(set, g);
+      this.sets.set(set, g);
+    }
+    g.visible = true;
+    this.built = set;
+  }
+
+  private buildInto(set: SetId, R: THREE.Group) {
     switch (set) {
       case "patch": case "fence": case "porch": case "claim":
         this.ship = patchWorld(R); break;
@@ -148,7 +157,6 @@ export class World {
       default:
         patchWorld(R);
     }
-    this.built = set;
   }
 
   /** camera-relative sun, frozen per shot (lighting.md 9.4) */
