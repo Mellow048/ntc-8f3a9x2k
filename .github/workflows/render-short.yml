@@ -5,7 +5,11 @@ name: Render short
 # Software WebGL is slow (seconds per frame), so the film is split into frame ranges that render in parallel jobs.
 # A last job stitches the parts, adds the sound mix, checks the result and publishes it.
 #
-#   gh workflow run render-short.yml --ref <branch> -f composition=FridgeHackShort
+#   gh workflow run render-short.yml --ref <branch> -f composition=<Film>Short \
+#     -f mix=shoots/<slug>/audio/mix.wav -f shots=shoots/<slug>/qa-shots.json \
+#     -f publish='shoots/<slug>/final-{size}p.mp4' -f size=720 -f chunks=20
+#
+# Sound only changed? Add -f parts_from=<run id> to reuse the frames an earlier run rendered (kept three days).
 
 on:
   workflow_dispatch:
@@ -13,11 +17,11 @@ on:
       composition:
         description: "Remotion composition id"
         required: false
-        default: "FridgeHackShort"
+        default: "SupermarketShort"
       mix:
         description: "Final sound mix, WAV path in the repo (empty = silent video)"
         required: false
-        default: "shoots/fridge-hack/audio/mix.wav"
+        default: "shoots/supermarket/audio/mix.wav"
       crf:
         description: "x264 CRF (lower is better)"
         required: false
@@ -37,11 +41,11 @@ on:
       shots:
         description: "Shot list for the check (JSON read by templates/scripts/short_qa.py; empty = none)"
         required: false
-        default: "shoots/fridge-hack/qa-shots.json"
+        default: ""
       publish:
         description: "Commit the MP4 and its QA report to this branch at this path ({size} is replaced; empty = artifact only)"
         required: false
-        default: "shoots/fridge-hack/final-{size}p.mp4"
+        default: ""
       parts_from:
         description: "Run id whose rendered parts to reuse instead of rendering (same picture, new sound mix)"
         required: false

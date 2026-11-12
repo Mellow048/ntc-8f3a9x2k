@@ -2,13 +2,14 @@
 //
 //   node scripts/frame.mjs [film] <shot index> "x,y,z" ["x,y,z" ...]
 //
-// `film` is the folder under src/videos whose story.ts holds the shot list (default: fridge).
+// `film` is the folder under src/videos whose story.ts holds the shot list (or set FILM=<folder>).
 // Prints each point as (x%, y%) of the frame, left to right and top to bottom, at the start and end of the shot.
 // Captions sit at about 73-81 % down; anything outside 0-100 is out of frame.
 import fs from 'node:fs';
 import * as THREE from 'three';
 const args = process.argv.slice(2);
-const film = args.length && !/^\d+$/.test(args[0]) ? args.shift() : 'fridge';
+const film = args.length && !/^\d+$/.test(args[0]) ? args.shift() : process.env.FILM;
+if (!film) { console.error('name the film folder: node scripts/frame.mjs <film> <shot index> "x,y,z"'); process.exit(2); }
 const src = fs.readFileSync(new URL(`../src/videos/${film}/story.ts`, import.meta.url), 'utf8');
 const re = /^\s*s\((\d+), '(\w+)', '(\w+)', (\[[^\]]+\]), (\[[^\]]+\]), ([\d.]+)(?:, (\{[^}]*\}))?\)/gm;
 const shots = []; let m;

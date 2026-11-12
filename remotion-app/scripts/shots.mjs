@@ -1,6 +1,9 @@
 // prints the shot table of a film: index, kind/v, first frame, last frame, mid frame
+//
+//   node scripts/shots.mjs <film folder under src/videos> [table]      (or set FILM=<folder>)
 import fs from 'node:fs';
-const film = process.argv[2] ?? 'binance';
+const film = process.argv[2] ?? process.env.FILM;
+if (!film) { console.error('name the film folder: node scripts/shots.mjs <film> [table]'); process.exit(2); }
 const src = fs.readFileSync(`src/videos/${film}/story.ts`, 'utf8');
 const words = JSON.parse(fs.readFileSync(`src/videos/${film}/words.json`, 'utf8'));
 const re = /^\s*s\((\d+), '(\w+)', '(\w+)'/gm; const shots = []; let m;
