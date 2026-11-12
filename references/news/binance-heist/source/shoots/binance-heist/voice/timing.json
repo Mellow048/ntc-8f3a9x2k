@@ -1,0 +1,69 @@
+{
+ "source": "raw-take.mp3",
+ "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
+ "raw_seconds": 97.1,
+ "tight_seconds": 86.87,
+ "pauses_cut": 52,
+ "tempo": 1.2,
+ "eq": {
+  "bass_shelf_db": -1.0,
+  "presence_db": 1.5
+ },
+ "squeezed": [
+  {
+   "line": 11,
+   "word": "F.B.I.",
+   "seconds_removed": 0.185
+  }
+ ],
+ "beats": [
+  {
+   "line": 7,
+   "after": "CEO",
+   "at": 31.782,
+   "seconds": 0.15
+  },
+  {
+   "line": 8,
+   "after": "malware",
+   "at": 37.952,
+   "seconds": 0.15
+  },
+  {
+   "line": 11,
+   "after": "quote",
+   "at": 56.031,
+   "seconds": 0.2
+  },
+  {
+   "line": 11,
+   "after": "rhetoric",
+   "at": 57.339,
+   "seconds": 0.3
+  },
+  {
+   "line": 12,
+   "after": "Quote",
+   "at": 58.77,
+   "seconds": 0.2
+  },
+  {
+   "line": 12,
+   "after": "Korea",
+   "at": 60.553,
+   "seconds": 0.3
+  },
+  {
+   "line": 14,
+   "after": "campaign",
+   "at": 68.512,
+   "seconds": 0.45
+  }
+ ],
+ "seconds": 73.922,
+ "words": 235,
+ "words_per_second": 3.18,
+ "lufs": -16.5,
+ "lra": 2.2,
+ "peak": -1.6
+}

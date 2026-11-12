@@ -111,8 +111,10 @@ news**: real people, companies or events that are in the news, something that
 just happened or is still unfolding. If the user wants a regular explaining or
 entertaining short, **skip this section and ignore `references/news/`**.
 
-For a news short, study both approved films before planning: the MP4, the
-script with its sources, and the film, sound and render source.
+For a news short, study the approved films before planning: the MP4, the
+script with its sources, and the film, sound and render source. Then read
+[`references/news/PLAYBOOK.md`](references/news/PLAYBOOK.md), the checklist
+with every number, command and trap those films produced.
 
 - [`references/news/nvidia-spy/`](references/news/nvidia-spy/README.md): the
   user called it "so well done and not lazy" and "maybe the best one", and
@@ -122,15 +124,22 @@ script with its sources, and the film, sound and render source.
   made by following the first one and approved at the first delivery
   ("another banger"). The user asked for it to be kept "so that other agents
   follow your footsteps without me arguing again".
+- [`references/news/fridge-hack/`](references/news/fridge-hack/README.md):
+  the freezer hack, approved at the first delivery ("awesome sauce, same
+  banger").
+- [`references/news/binance-heist/`](references/news/binance-heist/README.md):
+  the newest ("you are the best at this!") and the one to start a new film
+  from: `python references/news/restore.py binance-heist`.
 
 Match their care; do not copy their stories, sets or scores. **Work in the
 order written in
-[`references/news/README.md`](references/news/README.md#how-to-make-a-news-short-the-order-both-films-followed)**,
+[`references/news/README.md`](references/news/README.md#how-to-make-a-news-short-the-order-every-film-followed)**,
 and do not ask the user to restate or approve what is already decided there
 and in sections 1–5: start, finish the film, and show the script with it.
 
-Sections 1–5 apply in full. Rules 1–9 come from the first approved news film
-and 10–13 from the second; a new one must follow all of them:
+Sections 1–5 apply in full. Rules 1–9 come from the first approved news film,
+10–13 from the second and 14–18 from the third and fourth; a new one must
+follow all of them:
 
 1. **Facts first, with sources.** Search the news before writing. Keep a table
    of fact, source link and date checked in the film's `SCRIPT.md`; every
@@ -163,6 +172,16 @@ and 10–13 from the second; a new one must follow all of them:
 12. **A number on screen is a reported number**, with its source beside it. A
     chart is drawn to scale from zero and says which points are reported.
 13. **Search the news again on the day you deliver.**
+14. **One side's own account is labelled as that for as long as it runs**: said
+    in the narration, and a source tab on screen through all of it.
+15. **Who did it is always somebody's statement**, each in its own shot with
+    the exact words, the speaker and the date. Nobody is blamed for an event
+    that nobody has linked.
+16. **Put a date on what can change** ("nobody charged", a count), on screen.
+17. **Nothing that helps anyone repeat it**: no tool, site, app or method is
+    named, and every screen is made up.
+18. **The closing question judges nobody**: two positions that someone really
+    holds, figures that do not react, no joke on a private person.
 
 No document guarantees a one-shot acceptance. These gates prevent repeating
 known failures; visual/audio judgment and truthful reporting remain required.

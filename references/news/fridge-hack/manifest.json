@@ -1,0 +1,320 @@
+{
+  "title": "The Hack That Melted 700 Supermarkets",
+  "origin_commit": "d167cdfc32037cf67e4f3650a23a61acb8ec7e6a",
+  "origin_video": "shoots/fridge-hack/final-720p.mp4",
+  "origin_branch": "arena/51c9e0f9-ntc-8f3a9x2k",
+  "render_commit": "54598e7763ee31ece65eba75285e58e3c4b3e86a",
+  "render_source_commit": "f5205fd8b9f82e8e71f632bc9f66988caf63c743",
+  "render_run": 42982240824,
+  "category": "news",
+  "approval": "User, 2026-11-11, after watching the delivered MP4: \"awesome sauce, same banger\". On 2026-11-12 the user asked for the source to be put on main.",
+  "film_dir": "fridge",
+  "shoot": "fridge-hack",
+  "register": "FridgeCompositions",
+  "compositions": [
+    "FridgeHackShort",
+    "FridgeReview",
+    "FridgeCastSheet"
+  ],
+  "adaptation": "Standalone entry point added (source/remotion-app/src/reference-entry.tsx); the live Root.tsx and index.ts, which register other films too, are omitted. Every other file under source/ is copied without edits from origin_commit. changed_since_render_source lists the copied files that differ from the tree the picture was rendered from. audio/mix.wav is not stored: build_mix.py regenerates it from the included voice (mix_wav_sha256 is the file that went into the MP4). The shot sheets were cut from final-720p.mp4. The render workflow is included as an inert recipe.",
+  "changed_since_render_source": [
+    ".github/workflows/render-short.yml",
+    "remotion-app/scripts/frame.mjs",
+    "remotion-app/scripts/local-chromium.sh",
+    "remotion-app/scripts/pick.sh",
+    "remotion-app/scripts/shots.mjs",
+    "remotion-app/src/videos/fridge/register.tsx",
+    "shoots/fridge-hack/SCRIPT.md",
+    "shoots/fridge-hack/qa-report.md",
+    "templates/scripts/aac_check.py",
+    "templates/scripts/word_margins.py"
+  ],
+  "mix_wav_sha256": "9998717594d58bc6168d82aa91148d03d55145938ddc68b666b62234d0f5eabf",
+  "files": [
+    {
+      "path": "final-720p.mp4",
+      "sha256": "f3ed32f18edb0711cd3ddecf484075844c89529b70bbeac97692f2759ee4de6d",
+      "bytes": 44682883
+    },
+    {
+      "path": "shots-01-22.jpg",
+      "sha256": "529b4fbbf4b2ef44c3e3d591b669626fc851a6f371fd4a2b8395ab5d92cf554a",
+      "bytes": 552839
+    },
+    {
+      "path": "shots-23-43.jpg",
+      "sha256": "000932b2e9149eb919a56429196b93891658242af86f39afe56073b4e044367d",
+      "bytes": 494933
+    },
+    {
+      "path": "source/.github/workflows/render-short.yml",
+      "sha256": "327ccc1804c1a3d988a6c6878467aba604adc8f927417fb04fa58c9815adbc44",
+      "bytes": 13505
+    },
+    {
+      "path": "source/remotion-app/package-lock.json",
+      "sha256": "9f9fb75fcdfbe2264552bb81d2798d9e2796aa9ca90f322044903c8236431766",
+      "bytes": 161227
+    },
+    {
+      "path": "source/remotion-app/package.json",
+      "sha256": "cb1d27d1eedfccdccc33cb5f890393de7cd592c6b8a4b65aa56cf2a2b2046c4b",
+      "bytes": 813
+    },
+    {
+      "path": "source/remotion-app/public/fonts/README.md",
+      "sha256": "dff0c0df99ef2ba29692af8a5d4c923107867331e7546bda91ee33115cda9689",
+      "bytes": 511
+    },
+    {
+      "path": "source/remotion-app/public/fonts/anton-latin-400-normal.woff2",
+      "sha256": "d0fa07ff63dd60cbc0e2f58e29c802dca2a5ae0276c999f59c6111ab7bbaec3b",
+      "bytes": 18612
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-700-normal.woff2",
+      "sha256": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+      "bytes": 18824
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-900-normal.woff2",
+      "sha256": "5b6958520638bb8609f9eacb17c4d189563efeae96d5da49f7c2043988697205",
+      "bytes": 18020
+    },
+    {
+      "path": "source/remotion-app/remotion.config.ts",
+      "sha256": "f2f70c8410b5bf76fecac310cee020a9ad9902031b8ffedd74a88b0877e3f6c1",
+      "bytes": 443
+    },
+    {
+      "path": "source/remotion-app/scripts/frame.mjs",
+      "sha256": "e3e8feaf5ae569802e64c4977d4aca28a77676aa7c7ee156ae40568a25e03cf1",
+      "bytes": 3444
+    },
+    {
+      "path": "source/remotion-app/scripts/local-chromium.sh",
+      "sha256": "fc9d292d0f216ad73efaa7705ae1e959fa8df2718dbe47c8b142fd44109468c8",
+      "bytes": 1979
+    },
+    {
+      "path": "source/remotion-app/scripts/pick.sh",
+      "sha256": "114c6050fd3fe3c46aa326f3e81df555ce2b5d6cdfa54a5de0b14215062e326e",
+      "bytes": 1076
+    },
+    {
+      "path": "source/remotion-app/scripts/plan.mjs",
+      "sha256": "785953e29eb2f4c486f3bbfc191fce6168f7c3b25ec0b0bc62fa7471a88ebcba",
+      "bytes": 1776
+    },
+    {
+      "path": "source/remotion-app/scripts/sheet.py",
+      "sha256": "44fa80748c25174c6f1ee30530b12fc05f18a501d802deb578bfa929adc42c81",
+      "bytes": 1420
+    },
+    {
+      "path": "source/remotion-app/scripts/shots.mjs",
+      "sha256": "aa4b9e1c18e406766cf63b20b0dccf41efa47903614453c72a6e3ce35369aa70",
+      "bytes": 1532
+    },
+    {
+      "path": "source/remotion-app/scripts/stills.mjs",
+      "sha256": "35c4b7ea7190c6a3e1333c889d46ddfaee411dfc14d29998f24bd5b1f468a154",
+      "bytes": 3301
+    },
+    {
+      "path": "source/remotion-app/src/reference-entry.tsx",
+      "sha256": "4d1194adb598034f13adf809fd2c9e719a448f2bf5e751cb72a94bba59d59784",
+      "bytes": 352
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/Captions.tsx",
+      "sha256": "7ac0ee06948416ab8117da52f36b59665d7a718ac78f366858c7d81f2fcd66c5",
+      "bytes": 3477
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/CastSheet.tsx",
+      "sha256": "cc28009cd72bf0f7406176c4c360f62e7f8c5f137739845957fbc824968726e7",
+      "bytes": 2388
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/Fridge.tsx",
+      "sha256": "1b6b7acef2bdb7ce72f66a98d2084e016e049f965ac3a2b2fcf5c4746d7ef4f7",
+      "bytes": 4027
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/Overlays.tsx",
+      "sha256": "c72334e03126a476a966e6258993e62e57604a6e85b0657c8109515c48843772",
+      "bytes": 15337
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/World.ts",
+      "sha256": "cc1dc9a0aa390aabaec225ba74a246a98d9bb3becd7a24af8c552c63fcae5c31",
+      "bytes": 3174
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/cast.ts",
+      "sha256": "7cb6fd273a2ae8fd39bf0d76195d96882a34f6c2e3ee39cf8d63ea1fd0eb1048",
+      "bytes": 28413
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/fonts.ts",
+      "sha256": "2397bb4a15ec5a3f3c099bd958e620596051f2a039bf844b02cf172b5a2204d7",
+      "bytes": 1203
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/kit.ts",
+      "sha256": "fbfc87aa24afac9eadba5b75eaeeec281c05a93991c8982689366c1a8199c60c",
+      "bytes": 12508
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/props.ts",
+      "sha256": "9aadf8ce7920ab149fb14ba157a9ee125d396214d0a3e8178d40c4c90f7b52c9",
+      "bytes": 19068
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/register.tsx",
+      "sha256": "e26d1376626895dabe7aa4715f971547f8528d808328ac4180dc52f6b7bf447a",
+      "bytes": 1355
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/sets.ts",
+      "sha256": "da445afaeeac711876c28927312e62d0b536c67199a34a011df523f6d12a2b16",
+      "bytes": 36011
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/sets2.ts",
+      "sha256": "cb57db8659f5e1d6b1e2b14f59272ec3ede9aff3fe41884a1488caaa32a7a07d",
+      "bytes": 30065
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/sets3.ts",
+      "sha256": "b94c81e5356492bf73f729ce0a5000f0d4310a76e0bc99f4fa6abe5a567fbbc7",
+      "bytes": 30966
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/story.ts",
+      "sha256": "f8b443ba6caa69d8bfbd773e23f1d78d45e970c139212db675e721f7c19c0f70",
+      "bytes": 9868
+    },
+    {
+      "path": "source/remotion-app/src/videos/fridge/words.json",
+      "sha256": "65818c53e2629bdc113505dc21ddfbf0da8ac19b4e18f957b27986718e566c84",
+      "bytes": 23795
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/toon.ts",
+      "sha256": "e3e5b3f636d04549369d1c842a13e708fa35d32d89176184ad027360a6eee7f4",
+      "bytes": 59851
+    },
+    {
+      "path": "source/remotion-app/tsconfig.json",
+      "sha256": "036ea329ec75a4f26a744b78f41d2dc9353f15f965b6a7f98397a32652ee0073",
+      "bytes": 352
+    },
+    {
+      "path": "source/shoots/fridge-hack/SCRIPT.md",
+      "sha256": "a4346753eb8f37a477ffc09d1a8d8e4d3ef715d7dc4df0de1ee895e74e42bb84",
+      "bytes": 37347
+    },
+    {
+      "path": "source/shoots/fridge-hack/audio/build_mix.py",
+      "sha256": "eef0176a253ccd6630d63e3467c4a2bfea346e32814a66ad7723393e822e9eaa",
+      "bytes": 44172
+    },
+    {
+      "path": "source/shoots/fridge-hack/audio/cues.md",
+      "sha256": "c3428ba5d7ce547dc37e35e6f31c0eea79f002f4429dd8ecd367d72fc3cc479e",
+      "bytes": 10136
+    },
+    {
+      "path": "source/shoots/fridge-hack/build_voice.py",
+      "sha256": "aa1f1cf3ae977ce3087b85832ec14ae066f19127167fce8b73acab4fb8e7559e",
+      "bytes": 12390
+    },
+    {
+      "path": "source/shoots/fridge-hack/narration.txt",
+      "sha256": "d1fb438bbd631d0f80ac383ee7d271a1b1182036db3e9693d8933eae9562546b",
+      "bytes": 1390
+    },
+    {
+      "path": "source/shoots/fridge-hack/qa-report.md",
+      "sha256": "1158af7295047e035356bc29bf42836f400abcdb98a5313bde5b061c7f435b71",
+      "bytes": 2961
+    },
+    {
+      "path": "source/shoots/fridge-hack/qa-shots.json",
+      "sha256": "1ee39dee77bd676883c7fa28ac8d4f64728c806f49fce4ebc8f7c6efe88cf236",
+      "bytes": 4521
+    },
+    {
+      "path": "source/shoots/fridge-hack/voice/raw-take.mp3",
+      "sha256": "4bf92bb732f3ac8ec1aeaaede7a6b50bc9ca8941c48ca2252aa94d9ff07c03e0",
+      "bytes": 762166
+    },
+    {
+      "path": "source/shoots/fridge-hack/voice/timing.json",
+      "sha256": "f70ffe2a57af8431efa939af65f0eb21a96bfb52799e46118ab12a50e5ecc929",
+      "bytes": 773
+    },
+    {
+      "path": "source/shoots/fridge-hack/voice/voice.wav",
+      "sha256": "34f698644f11ebfda3b7f2aee0e248e045872fc9cbd77bf62aa8ce7b4ea104cc",
+      "bytes": 6991454
+    },
+    {
+      "path": "source/shoots/fridge-hack/voice/words.json",
+      "sha256": "7f50d4ea87255702ecaa9d4460de3fcf6698dc03da0ef2878412d0a70d06c984",
+      "bytes": 27557
+    },
+    {
+      "path": "source/shoots/voice_master.py",
+      "sha256": "eb1c1804cef6658cc49b2fdd98b0bc0948ac0f24398ddde83ad7268c488f2b5e",
+      "bytes": 12949
+    },
+    {
+      "path": "source/templates/audio/dsp.py",
+      "sha256": "3b456f4653fde5f30b8a22aa53903e5d4b2b3ca508908978f210fb6934214355",
+      "bytes": 11468
+    },
+    {
+      "path": "source/templates/audio/instruments.py",
+      "sha256": "8f66ee6134daefc85021aadab1138a3ce480029c91fc4428d04cba6fd5737fee",
+      "bytes": 13122
+    },
+    {
+      "path": "source/templates/audio/sfx_gen.py",
+      "sha256": "656e0d04a8fbd05e1b8c9a8a96e201c6033783cb6961eba788544f05f294a651",
+      "bytes": 25699
+    },
+    {
+      "path": "source/templates/scripts/aac_check.py",
+      "sha256": "8a0509ffab1ceac1bab6220b6c33f79bb45826ed8a5369f98a31fe156e884c6b",
+      "bytes": 2485
+    },
+    {
+      "path": "source/templates/scripts/short_qa.py",
+      "sha256": "9a71fa351b2db50bac669eebdd37c9d9f00ccd2b8b710ab472871e0ce4160550",
+      "bytes": 4727
+    },
+    {
+      "path": "source/templates/scripts/word_margins.py",
+      "sha256": "8dbf82e644727fc5c7239a41ea0204ac60533df5696fc2a1eaa244dc5b873a53",
+      "bytes": 2648
+    }
+  ]
+}

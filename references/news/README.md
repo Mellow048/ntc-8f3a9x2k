@@ -22,12 +22,19 @@ third-party style-study images elsewhere in `references/`.
 |---|---|---|---|
 | Nvidia's CEO and the Suspected Spy (69 s) | [final-720p.mp4](nvidia-spy/final-720p.mp4) | [Study and reproduce](nvidia-spy/README.md) | The benchmark for news shorts. The user: "so well done and not lazy", "maybe the best one". |
 | The GTA 6 Leaker Who Wanted a Disc (74 s) | [final-720p.mp4](gta6-leaker/final-720p.mp4) | [Study and reproduce](gta6-leaker/README.md) | Made by following the first film. Approved at the first delivery, with no questions to the user. The user: "another banger". |
+| The Hack That Melted 700 Supermarkets (74 s) | [final-720p.mp4](fridge-hack/final-720p.mp4) | [Study and reproduce](fridge-hack/README.md) | Made by following the first two, approved at the first delivery: "awesome sauce, same banger". Adds changes of shot that are not cuts, and music that takes part in the story. |
+| The $6.3 Billion Job Interview (75 s) | [final-720p.mp4](binance-heist/final-720p.mp4) | [Study and reproduce](binance-heist/README.md) | **The newest: start a new film from this one.** The user: "you are the best at this!". Adds a source tab for one side's own account, dated claims, and two checks of the sound. |
 
 The user asked for the second film to be kept here "so that other agents
 follow your footsteps without me arguing again". The next section is those
-footsteps.
+footsteps. The third and fourth films followed them without a question to the
+user, who then asked for all of it to be kept on `main` "so that other agents
+follow your skills in making these perfect shorts".
 
-## How to make a news short: the order both films followed
+**[`PLAYBOOK.md`](PLAYBOOK.md) is the same order as a checklist, with every
+number, command and trap the four films produced. Read it before you start.**
+
+## How to make a news short: the order every film followed
 
 **Before you start: do not ask the user what is already decided.** Format
 (720×1280, 30 fps, one or two caption words at a time), Arena narration in the
@@ -50,29 +57,35 @@ and show the script with it.
    If the user asked a question, one line answers it plainly. The other side
    gets its own lines. The last line is a question with two real sides. Map
    every line to rows of the facts table.
-3. **Voice: one take.** Use the voice the user chose; both films use it, and
-   `voice/voice.wav` in either snapshot is the record of how it sounds. Voice
+3. **Voice: one take.** Use the voice the user chose; all four films use it, and
+   `voice/voice.wav` in any snapshot is the record of how it sounds. Voice
    ids do not carry over to a new session. If yours has none, make one
    `add_voice` call (en-US, masculine, conversational) with the film's opening
    lines as the audition text and go on with the voice the user picks. Do not
    run a series of auditions and never hand over several full reads to choose
    from. Keep the raw take, then run a copy of `build_voice.py` to get
    `voice.wav` and `words.json`.
-4. **Copy the machinery, write the film new.** Take the machinery from
-   [`gta6-leaker/source/`](gta6-leaker/README.md#make-a-new-news-short-the-same-way)
-   (the same as in the Nvidia snapshot, with one fix). Write `story.ts` first:
+4. **Copy the machinery, write the film new.** Run
+   `python references/news/restore.py binance-heist`: it puts the newest
+   film's source into your checkout and registers it (the shared machinery
+   and the render workflow are already live on `main`). Check that it renders
+   a still, copy its two folders under your film's names, and write your film
+   in the copies. Write `story.ts` first:
    one staged picture for each phrase, every cut on a spoken word, a new
    picture every 1.5 to 2 seconds. Then the sets and costumes, then the
    graphic cues, then the score and effects. Nothing of another film's story,
    sets or music goes into yours.
 5. **Look at stills before you pay for a render.** The cast sheet first. Then
-   every shot, in the middle and in its first frames after the cut. Fix what
-   you see and look again. The second film took five rounds.
+   every shot, in the middle and in its first frames after the cut, and the
+   frames either side of every change of shot on the same set. Fix what you
+   see and look again. The second film took five rounds, the fourth eight.
 6. **Render on GitHub Actions** with the parallel workflow, and read the check
    report it writes. Whatever it flags gets fixed and rendered again, not
    explained away.
 7. **Check the finished file**: size and frame count, loudness and true peak,
-   the music's level against the voice, and frames of the final file wherever
+   the music's level against the voice, the voice against music and effects
+   word by word (`templates/scripts/word_margins.py`), the encoded sound
+   against its WAV (`templates/scripts/aac_check.py`), and frames of the final file wherever
    it differs from what you already looked at.
 8. **Search the news again on the day you deliver.** If the story moved, the
    film moves with it.
@@ -82,11 +95,12 @@ and show the script with it.
    the sound and looked at stills, say that. Never say you listened or watched.
 10. **Record it** in the film's `SCRIPT.md` and in a short section of
     `VIDEO_HANDOFF.md` on your branch. A film is added to this folder only
-    after the user has approved it and asked for it to be kept.
+    after the user has approved it and asked for it to be kept;
+    `make_reference.py` then writes its folder.
 
-What the two films share, and what they do not:
+What the films share, and what they do not:
 
-| The same in both | New in each |
+| The same in all four | New in each |
 |---|---|
 | The order of work above | The story, its facts and its rules |
 | The look: painted 3D sets, flat cartoon people, ink outlines, word-timed captions | Every set and every costume |
@@ -96,8 +110,8 @@ What the two films share, and what they do not:
 ## What a news short needs on top of the usual gates
 
 Every gate in [IMPORTANT.md](../../IMPORTANT.md) still applies. Rules 1–9 come
-from the first film and 10–13 from the second. A new news short follows all of
-them:
+from the first film, 10–13 from the second and 14–18 from the third and
+fourth. A new news short follows all of them:
 
 1. **Facts first, with sources.** Search the news before writing. Keep a table
    of fact, source link and the date you checked; every line of narration maps
@@ -134,23 +148,42 @@ them:
     arithmetic of your own as such in the facts table.
 13. **Search again before you deliver.** The film has to be right on the day
     the user gets it.
+14. **One side's own account is labelled as that, for as long as it runs.**
+    When a stretch of the story is known only from one party (a company's
+    report on its own breach, a prosecutor's version), say so in the
+    narration and keep a source tab on screen through all of it. A detail
+    from elsewhere takes the tab off and names its own source.
+15. **Who did it is always somebody's statement.** Each party gets a shot of
+    its own with its exact words, the speaker and the date. A statement read
+    out by someone else (a spokesperson, a state news agency) is shown as
+    that: the author is named on the card and not drawn. A later event that
+    nobody has linked is blamed on nobody, in a line of its own.
+16. **Put a date on what can change.** "Nobody has been charged", a count of
+    money or victims, "as of": the date stands on screen beside the claim.
+17. **Nothing that helps anyone repeat it.** No tool, site, app or method is
+    named. Every screen, panel and interface is made up. No address, code or
+    command is shown.
+18. **The closing question judges nobody.** Both answers are positions that
+    someone really holds, each with a source in the script. The figures under
+    them do not react, a party's own line stays on screen if it bears on the
+    answer, and no joke lands on a private person.
 
 ## What agents must study
 
-1. Watch both films through, then again cut by cut. If you cannot play video,
+1. Watch the films through, then again cut by cut. If you cannot play video,
    go through the two shot sheets in each film's folder. Note what is new in
-   every shot: 39 shots in 69 seconds, 46 shots in 74 seconds, each staged for
-   its own line.
+   every shot: 39 shots in 69 seconds, 46 in 74, 43 in 74 and 45 in 75, each
+   staged for its own line.
 2. Read each `SCRIPT.md` (facts table, what could not be confirmed, rules,
    beat map), then `story.ts`.
 3. Read `Overlays.tsx` and `Captions.tsx`: the on-screen graphics carry the
    sources, names, dates and exact quotes.
 4. Read the sets and the cast to see how places and people become recognizable
    from shape, detail and staging, not from labels on boxes.
-5. Read `build_mix.py` in both. Reuse the techniques, **not the music**: the
-   two scores have nothing in common, and every film needs its own.
+5. Read `build_mix.py` in each. Reuse the techniques, **not the music**: the
+   four scores share neither key nor tempo, and every film needs its own.
 6. Read the render workflow and the review scripts.
-7. Compare the two films. What they share is what to reuse. Everything else
+7. Compare the films. What they share is what to reuse. Everything else
    was written for one story and stays with it.
 
 Each film is a snapshot of a developing story on the date given in its guide.
@@ -166,5 +199,8 @@ commit. Run `python references/news/verify.py` to check every file.
 voice. The workflow under `source/.github/` is an inert copy: nothing runs from
 here.
 
-Do not edit these folders or build inside them. Copy what you need to your own
-branch. They stay on `main`, so deleting a branch does not remove them.
+Do not edit these folders or build inside them. `python
+references/news/restore.py <film>` copies a film out into your working
+checkout and registers it; `make_reference.py` writes a new folder here from a
+finished, approved film. They stay on `main`, so deleting a branch does not
+remove them.

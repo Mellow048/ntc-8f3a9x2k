@@ -36,7 +36,7 @@ jobs:
 
       - name: Check standalone approved news sources
         run: |
-          for film in nvidia-spy gta6-leaker; do
+          for film in nvidia-spy gta6-leaker fridge-hack binance-heist; do
             npm ci --no-audit --no-fund --prefix "references/news/$film/source/remotion-app"
             npm run typecheck --prefix "references/news/$film/source/remotion-app"
             node --check "references/news/$film/source/remotion-app/scripts/plan.mjs"
@@ -45,6 +45,28 @@ jobs:
           done
           python3 -m py_compile references/news/*/source/shoots/*/audio/build_mix.py \
             references/news/*/source/shoots/*/build_voice.py references/news/*/source/shoots/voice_master.py
+
+      - name: Check the live app, the news tools, and that every news film can be put back in a checkout
+        run: |
+          # Job logs cannot be downloaded from every agent sandbox, annotations can
+          # (gh api repos/<owner>/<repo>/check-runs/<job id>/annotations): say which command failed, and its last lines.
+          try() {
+            if ! "$@" > /tmp/try.log 2>&1; then
+              cat /tmp/try.log
+              echo "::error title=CI command failed::$* %0A$(tail -n 25 /tmp/try.log | sed -e 's/%/%25/g' | awk '{printf "%s%%0A", $0}')"
+              exit 1
+            fi
+            cat /tmp/try.log
+          }
+          try npm ci --no-audit --no-fund --prefix remotion-app
+          try npm run typecheck --prefix remotion-app
+          for f in remotion-app/scripts/*.mjs; do try node --check "$f"; done
+          for f in remotion-app/scripts/*.sh; do try bash -n "$f"; done
+          try python3 -m py_compile references/news/*.py
+          for film in nvidia-spy gta6-leaker fridge-hack binance-heist; do
+            try python3 references/news/restore.py "$film"
+          done
+          try npm run typecheck --prefix remotion-app
 
       - name: Check audio/QA Python scripts compile
         run: |

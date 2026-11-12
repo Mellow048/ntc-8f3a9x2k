@@ -20,8 +20,12 @@ Script, voice and sound for each short live in `shoots/<slug>/` (see
 ## Rendering in GitHub Actions (never on a laptop)
 
 `.github/workflows/render-short.yml` installs the scaffold, renders the
-composition to 2K, muxes the voice mix and uploads the MP4 as an artifact.
-Inputs: the composition id, the voice/mix path, and CRF.
+composition in parallel parts (720×1280 unless `size` says 1080 or 2K), adds
+the sound mix, checks the finished file and uploads the MP4 as an artifact.
+With `publish` it also commits the file and its check report to the branch.
+Inputs: the composition id, the mix path, CRF, `size`, `chunks`, `shots` (the
+shot list for the check), `publish`, and `parts_from` (reuse the frames of an
+earlier run when only the sound changed).
 
 ```text
 Actions → Render short → Run workflow

@@ -1,0 +1,323 @@
+{
+  "title": "The $6.3 Billion Job Interview",
+  "origin_commit": "d167cdfc32037cf67e4f3650a23a61acb8ec7e6a",
+  "origin_video": "shoots/binance-heist/final-720p.mp4",
+  "origin_branch": "arena/51c9e0f9-ntc-8f3a9x2k",
+  "render_commit": "f81a18e5bc7bcfa57e3457abb52a86ae53ba8bd1",
+  "render_source_commit": "e84695484de9053745ff56bab5364e7b8c007d1d",
+  "render_run": 43131233446,
+  "category": "news",
+  "approval": "User, 2026-11-12, after the delivery of the MP4: \"you are the best at this!\", and asked for the source to be put on main.",
+  "film_dir": "binance",
+  "shoot": "binance-heist",
+  "register": "BinanceCompositions",
+  "compositions": [
+    "BinanceHeistShort",
+    "BinanceReview",
+    "BinanceCastSheet"
+  ],
+  "adaptation": "Standalone entry point added (source/remotion-app/src/reference-entry.tsx); the live Root.tsx and index.ts, which register other films too, are omitted. Every other file under source/ is copied without edits from origin_commit. changed_since_render_source lists the copied files that differ from the tree the picture was rendered from. audio/mix.wav is not stored: build_mix.py regenerates it from the included voice (mix_wav_sha256 is the file that went into the MP4). The shot sheets were cut from final-720p.mp4. The render workflow is included as an inert recipe.",
+  "changed_since_render_source": [
+    ".github/workflows/render-short.yml",
+    "remotion-app/scripts/frame.mjs",
+    "remotion-app/scripts/local-chromium.sh",
+    "remotion-app/scripts/pick.sh",
+    "remotion-app/scripts/shots.mjs",
+    "remotion-app/src/videos/binance/register.tsx",
+    "shoots/binance-heist/SCRIPT.md",
+    "shoots/binance-heist/audio/build_mix.py",
+    "shoots/binance-heist/audio/cues.md",
+    "shoots/binance-heist/qa-report.md",
+    "templates/scripts/word_margins.py"
+  ],
+  "mix_wav_sha256": "5c1175477cd70b616588ca3bbab3ee01ae59eeedd67465b446e3c98a9084b363",
+  "picture_run": "43023243761",
+  "sound_source_commit": "80feea27990af1eccce6403280fad3c834684e54",
+  "files": [
+    {
+      "path": "final-720p.mp4",
+      "sha256": "5923b5b8f461b97a472fe4e33527bb0f48348e209ac73015504eb70af3b88d41",
+      "bytes": 47287847
+    },
+    {
+      "path": "shots-01-23.jpg",
+      "sha256": "6cfb7975e5a13f5d9566445797db36791d91f6ef2bd3f2a233ad43aefa386640",
+      "bytes": 549157
+    },
+    {
+      "path": "shots-24-45.jpg",
+      "sha256": "b3ce496e6aac4e8f62a2d954d03284a3b5fa60d353f4f6d827cdc0a3bd2c9cda",
+      "bytes": 514999
+    },
+    {
+      "path": "source/.github/workflows/render-short.yml",
+      "sha256": "327ccc1804c1a3d988a6c6878467aba604adc8f927417fb04fa58c9815adbc44",
+      "bytes": 13505
+    },
+    {
+      "path": "source/remotion-app/package-lock.json",
+      "sha256": "9f9fb75fcdfbe2264552bb81d2798d9e2796aa9ca90f322044903c8236431766",
+      "bytes": 161227
+    },
+    {
+      "path": "source/remotion-app/package.json",
+      "sha256": "cb1d27d1eedfccdccc33cb5f890393de7cd592c6b8a4b65aa56cf2a2b2046c4b",
+      "bytes": 813
+    },
+    {
+      "path": "source/remotion-app/public/fonts/README.md",
+      "sha256": "dff0c0df99ef2ba29692af8a5d4c923107867331e7546bda91ee33115cda9689",
+      "bytes": 511
+    },
+    {
+      "path": "source/remotion-app/public/fonts/anton-latin-400-normal.woff2",
+      "sha256": "d0fa07ff63dd60cbc0e2f58e29c802dca2a5ae0276c999f59c6111ab7bbaec3b",
+      "bytes": 18612
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-700-normal.woff2",
+      "sha256": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+      "bytes": 18824
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-900-normal.woff2",
+      "sha256": "5b6958520638bb8609f9eacb17c4d189563efeae96d5da49f7c2043988697205",
+      "bytes": 18020
+    },
+    {
+      "path": "source/remotion-app/remotion.config.ts",
+      "sha256": "f2f70c8410b5bf76fecac310cee020a9ad9902031b8ffedd74a88b0877e3f6c1",
+      "bytes": 443
+    },
+    {
+      "path": "source/remotion-app/scripts/frame.mjs",
+      "sha256": "e3e8feaf5ae569802e64c4977d4aca28a77676aa7c7ee156ae40568a25e03cf1",
+      "bytes": 3444
+    },
+    {
+      "path": "source/remotion-app/scripts/local-chromium.sh",
+      "sha256": "fc9d292d0f216ad73efaa7705ae1e959fa8df2718dbe47c8b142fd44109468c8",
+      "bytes": 1979
+    },
+    {
+      "path": "source/remotion-app/scripts/pick.sh",
+      "sha256": "114c6050fd3fe3c46aa326f3e81df555ce2b5d6cdfa54a5de0b14215062e326e",
+      "bytes": 1076
+    },
+    {
+      "path": "source/remotion-app/scripts/plan.mjs",
+      "sha256": "785953e29eb2f4c486f3bbfc191fce6168f7c3b25ec0b0bc62fa7471a88ebcba",
+      "bytes": 1776
+    },
+    {
+      "path": "source/remotion-app/scripts/sheet.py",
+      "sha256": "44fa80748c25174c6f1ee30530b12fc05f18a501d802deb578bfa929adc42c81",
+      "bytes": 1420
+    },
+    {
+      "path": "source/remotion-app/scripts/shots.mjs",
+      "sha256": "aa4b9e1c18e406766cf63b20b0dccf41efa47903614453c72a6e3ce35369aa70",
+      "bytes": 1532
+    },
+    {
+      "path": "source/remotion-app/scripts/stills.mjs",
+      "sha256": "35c4b7ea7190c6a3e1333c889d46ddfaee411dfc14d29998f24bd5b1f468a154",
+      "bytes": 3301
+    },
+    {
+      "path": "source/remotion-app/src/reference-entry.tsx",
+      "sha256": "1e68602e400d6b39e1976b68730d1cd0ab95732214e38e2dc96b126976525ffc",
+      "bytes": 356
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/Binance.tsx",
+      "sha256": "52ed59a24e89b7122fba7ca5a7e73257567af2a997757cf285e34a08ad7bad2f",
+      "bytes": 4024
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/Captions.tsx",
+      "sha256": "4c0ba04f8407d4db0870c47d61824270440feee5dbb7a6cea2dd867f050aed16",
+      "bytes": 3616
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/CastSheet.tsx",
+      "sha256": "f77818dd0fc36a1619902734986ba2f47f9f4f4bf64d6ffed2bba3d00944f3ac",
+      "bytes": 2295
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/Overlays.tsx",
+      "sha256": "a33abc8b917d07b2da17bb8da13e188d32be9c93c315ad1c16db61104bb1457a",
+      "bytes": 20946
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/World.ts",
+      "sha256": "353d85490a2751474988e5e8dc48eb2490f0a6794132b2f33726262c63faceea",
+      "bytes": 3139
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/cast.ts",
+      "sha256": "bf9fc9093d781fb69a942b907e6465eeca5458e7fc1fb1290dc8d73b0e525d98",
+      "bytes": 33822
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/fonts.ts",
+      "sha256": "2397bb4a15ec5a3f3c099bd958e620596051f2a039bf844b02cf172b5a2204d7",
+      "bytes": 1203
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/kit.ts",
+      "sha256": "fbfc87aa24afac9eadba5b75eaeeec281c05a93991c8982689366c1a8199c60c",
+      "bytes": 12508
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/props.ts",
+      "sha256": "bd64df4dcb6c46e6d06ccc337de8947089bca01d7267bf076905fc5eb894330c",
+      "bytes": 27297
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/register.tsx",
+      "sha256": "186107e0eae00941f377a9188544987071daf0302b3fc883a0d4707385a2eb98",
+      "bytes": 1367
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/sets.ts",
+      "sha256": "46649a88235781ed7cc58d5fad4fd3314d8d96ae10fcb878772b2b6ea5fe5854",
+      "bytes": 15124
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/sets2.ts",
+      "sha256": "26662347d608ac68adc26e76fc26fdd55b573aa68ea32adaa31abcf541e138ba",
+      "bytes": 32853
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/sets3.ts",
+      "sha256": "9b8f45800a45fd5e9c226018d03893c6f64974782cdc45a79272910a36962944",
+      "bytes": 18508
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/story.ts",
+      "sha256": "08fa18dbff6fbe2d28e145abb984f172038f34983f3183e6b3054df9157a4098",
+      "bytes": 9795
+    },
+    {
+      "path": "source/remotion-app/src/videos/binance/words.json",
+      "sha256": "bf702cf679818072ec2af6badc6002f643d9c90eff3878f67700b9a09c6c88d7",
+      "bytes": 23781
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/toon.ts",
+      "sha256": "e3e5b3f636d04549369d1c842a13e708fa35d32d89176184ad027360a6eee7f4",
+      "bytes": 59851
+    },
+    {
+      "path": "source/remotion-app/tsconfig.json",
+      "sha256": "036ea329ec75a4f26a744b78f41d2dc9353f15f965b6a7f98397a32652ee0073",
+      "bytes": 352
+    },
+    {
+      "path": "source/shoots/binance-heist/SCRIPT.md",
+      "sha256": "669ae13eea117150742a987f195c264630f3ab4bce9de1657e31e5b5e12116a0",
+      "bytes": 46557
+    },
+    {
+      "path": "source/shoots/binance-heist/audio/build_mix.py",
+      "sha256": "34eef5e9a1967d2a3816dfc38f00b66286d152f7feb2397dc064de6762615d7d",
+      "bytes": 47259
+    },
+    {
+      "path": "source/shoots/binance-heist/audio/cues.md",
+      "sha256": "1a09f311a377f29fe1a4f41aa20b1a3806611b24fd32320d2b9dde1f2b0d9164",
+      "bytes": 10526
+    },
+    {
+      "path": "source/shoots/binance-heist/build_voice.py",
+      "sha256": "727e61472a095c8f2b8efcdd24a42cd60b58dccad6189f7dd6cc498af6065152",
+      "bytes": 14804
+    },
+    {
+      "path": "source/shoots/binance-heist/narration.txt",
+      "sha256": "99845e600ea6b54a860078f3c4bdcdaddeaf9534cfaf93b47939d01d6ee86926",
+      "bytes": 1356
+    },
+    {
+      "path": "source/shoots/binance-heist/qa-report.md",
+      "sha256": "75a556d42ac119d3a760fe7128cd948e88ca00ab1af632b6b13a90611179e3e9",
+      "bytes": 3081
+    },
+    {
+      "path": "source/shoots/binance-heist/qa-shots.json",
+      "sha256": "0b177bf7a7a7d3cc6f67dfb1f72a06afc5abf28a041304ba8a44f422056890ec",
+      "bytes": 4652
+    },
+    {
+      "path": "source/shoots/binance-heist/voice/raw-take.mp3",
+      "sha256": "85e1185c38f21a01178ca767a7b91d4a55048333e944560696ddd1a67450bee8",
+      "bytes": 777213
+    },
+    {
+      "path": "source/shoots/binance-heist/voice/timing.json",
+      "sha256": "4b93d60cf57b47014057d54677d620e7247159399ab15dd661c750c7da99b3ea",
+      "bytes": 1015
+    },
+    {
+      "path": "source/shoots/binance-heist/voice/voice.wav",
+      "sha256": "62989e9970c7874f169b027c22b99776ff5f9dc1998d3ffc9ed77af5c8c8b896",
+      "bytes": 7096560
+    },
+    {
+      "path": "source/shoots/binance-heist/voice/words.json",
+      "sha256": "1e5166c0f8ad9b0f026fdea0dd04890eb1e85b8ac37ddff057232e25f72b9916",
+      "bytes": 27543
+    },
+    {
+      "path": "source/shoots/voice_master.py",
+      "sha256": "eb1c1804cef6658cc49b2fdd98b0bc0948ac0f24398ddde83ad7268c488f2b5e",
+      "bytes": 12949
+    },
+    {
+      "path": "source/templates/audio/dsp.py",
+      "sha256": "3b456f4653fde5f30b8a22aa53903e5d4b2b3ca508908978f210fb6934214355",
+      "bytes": 11468
+    },
+    {
+      "path": "source/templates/audio/instruments.py",
+      "sha256": "8f66ee6134daefc85021aadab1138a3ce480029c91fc4428d04cba6fd5737fee",
+      "bytes": 13122
+    },
+    {
+      "path": "source/templates/audio/sfx_gen.py",
+      "sha256": "656e0d04a8fbd05e1b8c9a8a96e201c6033783cb6961eba788544f05f294a651",
+      "bytes": 25699
+    },
+    {
+      "path": "source/templates/scripts/aac_check.py",
+      "sha256": "8a0509ffab1ceac1bab6220b6c33f79bb45826ed8a5369f98a31fe156e884c6b",
+      "bytes": 2485
+    },
+    {
+      "path": "source/templates/scripts/short_qa.py",
+      "sha256": "9a71fa351b2db50bac669eebdd37c9d9f00ccd2b8b710ab472871e0ce4160550",
+      "bytes": 4727
+    },
+    {
+      "path": "source/templates/scripts/word_margins.py",
+      "sha256": "8dbf82e644727fc5c7239a41ea0204ac60533df5696fc2a1eaa244dc5b873a53",
+      "bytes": 2648
+    }
+  ]
+}

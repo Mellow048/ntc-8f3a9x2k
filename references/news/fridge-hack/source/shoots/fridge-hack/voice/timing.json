@@ -1,0 +1,50 @@
+{
+ "source": "raw-take.mp3",
+ "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
+ "raw_seconds": 95.21,
+ "tight_seconds": 85.75,
+ "pauses_cut": 52,
+ "tempo": 1.2,
+ "eq": {
+  "bass_shelf_db": -1.0,
+  "presence_db": 1.5
+ },
+ "beats": [
+  {
+   "line": 5,
+   "after": "Quote",
+   "at": 24.486,
+   "seconds": 0.2
+  },
+  {
+   "line": 11,
+   "after": "exactly",
+   "at": 54.088,
+   "seconds": 0.25
+  },
+  {
+   "line": 12,
+   "after": "Quote",
+   "at": 58.756,
+   "seconds": 0.2
+  },
+  {
+   "line": 12,
+   "after": "refrigerators",
+   "at": 62.488,
+   "seconds": 0.3
+  },
+  {
+   "line": 14,
+   "after": "internet",
+   "at": 68.143,
+   "seconds": 0.45
+  }
+ ],
+ "seconds": 72.827,
+ "words": 235,
+ "words_per_second": 3.23,
+ "lufs": -16.4,
+ "lra": 2.0,
+ "peak": -1.5
+}
