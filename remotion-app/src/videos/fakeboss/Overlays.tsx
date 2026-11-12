@@ -171,18 +171,18 @@ export const Overlays: React.FC = () => {
       {during(12, W(61)) ? <Pill f={f} at={W(61)} text="ONE EMAIL, OCT 8, 2024 · INDICTMENT" /> : null}
       {during(13, W(63) - 2) ? <Quote f={f} at={W(63) - 2} text={<>We need to <Hot>loop you into a deal</Hot> we’ve been working on.</>} by="EMAIL QUOTED IN THE INDICTMENT" size={5} /> : null}
       {during(14, W(76)) ? <Pill f={f} at={W(76)} text="“A PHONE OR VIDEO CALL” · INDICTMENT" /> : null}
-      {during(15, W(80)) ? <Pill f={f} at={W(80)} text="“MIMIC THE VOICE” · INDICTMENT" /> : null}
+      {during(15, W(80)) || (during(16) && f < W(82)) ? <Pill f={f} at={W(80)} text="“MIMIC THE VOICE” · INDICTMENT" /> : null}{/* 15-16 are one take: it stays until the next line takes its place */}
       {during(16, W(82)) ? <Pill f={f} at={W(82)} text="“AND AT TIMES THE IMAGE” · INDICTMENT" /> : null}
       {during(17, W(85) + 3) ? <Pill f={f} at={W(85) + 3} text="“TO CONVINCE THE VICTIM EMPLOYEE” · INDICTMENT" size={3.2} /> : null}
       {during(18, W(91)) ? <NameTag f={f} at={W(91)} name="THE LAWYER" role="“OUR LEGAL REPRESENTATIVE” · THE EMAIL" /> : null}
       {during(19, W(92)) ? <Pill f={f} at={W(92)} text="“IMPERSONATED ATTORNEYS” · INDICTMENT" /> : null}
       {during(20, W(96)) ? <Pill f={f} at={W(96)} text="OFTEN FROM A TOP-50 LAW FIRM · INDICTMENT" /> : null}
       {during(21, W(101)) ? <Pill f={f} at={W(101)} text="U.S. ATTORNEY'S OFFICE, NOV 5" /> : null}
-      {during(22, W(105)) ? <Pill f={f} at={W(105)} text="“A HANDWRITTEN SCRIPT” · INDICTMENT" /> : null}
+      {during(22, W(105)) || (during(23) && f < W(109)) ? <Pill f={f} at={W(105)} text="“A HANDWRITTEN SCRIPT” · INDICTMENT" /> : null}{/* 22-23 are one take */}
       {during(23, W(109)) ? <Pill f={f} at={W(109)} text="THE TITLE IS FROM THE INDICTMENT" /> : null}
       {during(23, W(110) + 2) ? <Pill f={f} at={W(110) + 2} text="THE REST OF THIS PAGE IS OUR SCRIBBLE" top="15.6%" tone="yellow" size={3.2} /> : null}
       {during(24, W(115)) ? <Pill f={f} at={W(115)} text="“OFTEN … MILLIONS OF DOLLARS” · INDICTMENT" size={3.3} /> : null}
-      {during(25, W(119)) ? <Pill f={f} at={W(119)} text="NOVEMBER 2024 · INDICTMENT" /> : null}
+      {during(25, W(119)) || (during(26) && f < W(122)) ? <Pill f={f} at={W(119)} text="NOVEMBER 2024 · INDICTMENT" /> : null}{/* 25-26 are one take */}
       {during(26, W(122)) ? <Stamp f={f} at={W(122)} text="$4,829,580" tone="yellow" top="9.5%" size={14} /> : null}
       {during(26, W(125)) ? <Pill f={f} at={W(125)} text="NOVEMBER 2024 · INDICTMENT" top="21%" /> : null}
       {during(27, W(129)) ? <Pill f={f} at={W(129)} text="JUNE 2025 · INDICTMENT" /> : null}

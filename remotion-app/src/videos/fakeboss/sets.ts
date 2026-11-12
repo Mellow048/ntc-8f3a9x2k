@@ -241,7 +241,7 @@ export const room: Builder = (root) => {
       let on: keyof typeof T | null = null, at = shot.at, y = 0;
       if (v === 'ai') { gen.show('wear'); on = 'out'; }
       else if (v === 'voice') { gen.show('off'); at = W(79) - 2; on = f >= at ? 'voice' : null; }
-      else if (v === 'face') { const up = f >= W(84) - 3; gen.show(up ? 'wear' : 'off'); y = hop(f, W(84) - 3, 0.08, 8); at = W(82) - 2; on = f >= at ? 'face' : null; }
+      else if (v === 'face') { const up = f >= W(84) - 3, next = f >= W(82) - 2; gen.show(up ? 'wear' : 'off'); y = hop(f, W(84) - 3, 0.08, 8); at = next ? W(82) - 2 : W(79) - 2; on = next ? 'face' : 'voice'; }   // one take with 'voice': its card stays until this one takes its place
       else if (v === 'swap') { law.show('wear'); on = 'law'; y = hop(f, shot.at + 2, 0.07, 8); }
       else if (v === 'name') law.show('wear');
       else if (v === 'script') { law.show('script'); y = hop(f, W(103) - 14, 0.05, 8); }

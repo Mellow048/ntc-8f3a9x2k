@@ -73,14 +73,21 @@ Everything from IND and DOJ is an allegation. The release says so itself (fact 1
 
 ## Rules for this film
 
-- **The three defendants** are drawn as plain figures in different clothes, nobody's likeness: no photograph of any
-  of them was looked for. Their names appear once, in the case title on screen, so that a viewer can look the case
-  up. Two aliases belong to one man: the tags say so.
+- **The three defendants** have no faces: three figures with a blank head and a question mark, told apart by the
+  colour of their jackets. No photograph of any of them was looked for. Their names appear once, in the case title
+  on the indictment's first page, so that a viewer can look the case up. Two aliases belong to one man: the line on
+  screen says so ("same man, another alias"). The "partners" are the same figures in grey.
 - **Hazan's 2008 conviction** (in the release) is left out. It is not needed to tell this story.
 - **The prosecutor** is a figure at a lectern with his office on the tag, not a caricature: no likeness is known.
 - **The boss, the employee and the lawyer** are invented. No company, bank, hospital or law firm has a name or a logo.
-- **The fake** is shown as a mask held in front of a figure: a picture of the idea, not of any software. No tool,
-  service, app or screen that exists is shown or named. The e-signature service the indictment mentions is not named.
+- **One side's account.** A tab on the left edge reads PROSECUTORS' ACCOUNT from the first allegation (shot 6) to
+  the last (shot 40). It is off for the opening, which is addressed to the viewer, for the prosecutor at his
+  lectern, for the arrests (the Justice Department's dated statement, on screen) and for the closing question.
+- **The handwritten page** shows the title the indictment gives, "Lawyer Call", and scribble. The line on screen
+  says which is which: nothing of the script's wording is known beyond what fact 15 says.
+- **The fake** is somebody's face on a glowing plate on a stick, held in front of a figure with no face: a picture
+  of the idea, not of any software. Everything the film calls made by A.I. is that one cyan. No tool, service, app
+  or screen that exists is shown or named. The e-signature service the indictment mentions is not named.
 - **The press release says "super intelligence"** where the indictment says "artificial intelligence". The film says
   A.I., the indictment's word, and does not go into the difference.
 - **The joke** is on the aliases, the script with a title, and a pet food company caught up in a fake merger. Not on
