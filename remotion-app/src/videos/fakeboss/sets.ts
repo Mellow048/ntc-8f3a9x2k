@@ -200,8 +200,8 @@ export const room: Builder = (root) => {
   box(root, 9, 5.6, 0.3, tmat(tiled(grainTex('room-wall', '#333b4a', 0.1), 4, 3)), 0, 2.8, -2.1);
   rod(root, [-4, 3.1, -1.9], [4, 3.1, -1.9], 0.05, '#4a5262'); rod(root, [1.55, 0, -1.9], [1.55, 3.1, -1.9], 0.04, '#4a5262');
   // a rail with the face that is not in use on it
-  box(root, 1.2, 0.05, 0.05, '#5b6170', -0.85, 2.66, -1.9);
-  const spare = (face: Face) => { const p = soft(panel(root, 0.42, 0.5, smat(plateTex(face), 1.05, true), -0.85, 2.36, -1.88)); rod(root, [-0.85, 2.62, -1.89], [-0.85, 2.66, -1.89], 0.012, '#c9ced6'); return p; };
+  box(root, 1.2, 0.05, 0.05, '#5b6170', -0.85, 2.78, -1.9);
+  const spare = (face: Face) => { const p = soft(panel(root, 0.42, 0.5, smat(plateTex(face), 1.05, true), -0.85, 2.48, -1.88)); rod(root, [-0.85, 2.74, -1.89], [-0.85, 2.78, -1.89], 0.012, '#c9ced6'); return p; };
   const spareBoss = spare('boss'), spareLaw = spare('lawyer');
   table(root, 0, 0.3, 1.9, 0.72, {top: '#3a4254', leg: '#232834', skirt: '#2c3342'});
   laptop(root, 0.12, 0.74, 0.36, {ry: Math.PI, w: 0.52, body: '#2b303c', back: lit('#0d3b44', 1)});

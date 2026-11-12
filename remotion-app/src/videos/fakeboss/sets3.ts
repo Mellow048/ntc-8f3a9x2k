@@ -73,9 +73,9 @@ export const petfood: Builder = (root) => {
     g.beginPath(); g.moveTo(40, 30); g.lineTo(w - 40, 30); g.lineTo(w - 22, h - 14); g.lineTo(22, h - 14); g.closePath(); g.fill(); g.stroke();
     g.fillStyle = '#ffd43b'; g.fillRect(36, 30, w - 72, 44); g.strokeRect(36, 30, w - 72, 44);
     paw(g, w / 2, 168, 110, '#fff6dc'); text(g, 'PET FOOD', w / 2, 316, 74, '#ffffff', {stroke: INK, sw: 12, maxWidth: w - 60});
-  }), 1, true), -0.6, 2.5, -1.5));
-  for (const s of [-1, 1]) rod(root, [-0.6 + s * 0.3, 1.9, -1.52], [-0.6 + s * 0.3, 2.1, -1.52], 0.03, '#8a94a3');
-  palm(root, 1.5, -0.9, 3.0, -0.3, 0.9);
+  }), 1, true), 0.72, 2.5, -1.5));
+  for (const s of [-1, 1]) rod(root, [0.72 + s * 0.3, 1.9, -1.52], [0.72 + s * 0.3, 2.1, -1.52], 0.03, '#8a94a3');
+  palm(root, -1.45, -0.9, 3.0, 0.3, 0.9);
   const road = grp(root); roadSign(road, 'FLORIDA', -0.74, 0.3);
   // the dog, and the bowl
   const sit = new THREE.MeshBasicMaterial({map: dogTex(false), transparent: true, alphaTest: 0.4}), upM = new THREE.MeshBasicMaterial({map: dogTex(true), transparent: true, alphaTest: 0.4});

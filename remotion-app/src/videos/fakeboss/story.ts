@@ -66,7 +66,7 @@ export const SHOTS: Shot[] = [
   // 5  "Then, the call: the CEO's voice, and sometimes his face, made by A.I."
   s(75, 'desk', 'answer', [0.42, 1.37, 4.3], [0.17, 1.27, 0], 42, {push: 0.07}),                          // 14
   s(78, 'room', 'voice', [0.2, 1.4, 5.1], [-0.1, 1.35, 0], 42, {push: 0.07}),                             // 15
-  s(81, 'room', 'face', [-0.35, 1.4, 5.1], [-0.1, 1.35, 0], 42, {push: 0.07}),                            // 16
+  s(81, 'room', 'face', [0.2, 1.4, 5.1], [-0.1, 1.35, 0], 42, {join: true}),                              // 16
   s(85, 'desk', 'believe', [-0.3, 1.4, 4.0], [0.17, 1.36, 0], 42, {push: 0.05, close: true}),             // 17
   // 6  "Next came a lawyer: also fake, under a real attorney's name."
   s(88, 'call', 'lawyer', [-0.3, 1.7, 4.7], [0, 1.76, -0.3], 42, {push: 0.08}),                            // 18
@@ -99,7 +99,7 @@ export const SHOTS: Shot[] = [
   // 37-38 are one take: the skyline, then down to the bank's door
   s(178, 'bank', 'ny', [0.6, 1.7, 8.4], [0, 2.1, -1.5], 42, {to: [0.2, 1.5, 6.5], targetTo: [0, 1.6, -1.5]}),   // 37
   s(183, 'bank', 'door', [0.6, 1.7, 8.4], [0, 2.1, -1.5], 42, {join: true}),                              // 38
-  s(189, 'gate', 'approve', [-0.15, 1.45, 6.0], [0.16, 1.25, -0.2], 42, {push: 0.08}),                         // 39
+  s(189, 'gate', 'approve', [-0.15, 1.45, 6.3], [0.12, 1.25, -0.2], 42, {push: 0.04}),                         // 39
   s(194, 'gate', 'stop', [0.92, 1.4, 4.5], [0.7, 1.2, -0.4], 42, {push: 0.07}),                           // 40
   // 13 "All three were arrested this year. These are accusations: they are presumed innocent."
   s(199, 'three', 'arrest', [0.3, 1.7, 6.6], [0, 1.74, -0.2], 42, {push: 0.08}),                          // 41
