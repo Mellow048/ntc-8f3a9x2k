@@ -159,18 +159,62 @@ const CAMS: Record<number, Key[]> = {
 
 /** Wide establishing frame of the patch, used by any patch shot without its own keys. */
 const PATCH_WIDE: Cam = { pos: [5.2, 2.5, 10.5], look: [-3.0, 1.2, 0.5], fov: 42, roll: 0 };
-const SETCAM: Partial<Record<SetId, Cam>> = { patch: PATCH_WIDE };
+const SETCAM: Record<SetId, Cam> = {
+  patch: PATCH_WIDE, fence: PATCH_WIDE, porch: PATCH_WIDE, claim: PATCH_WIDE,
+  prairie: { pos: [26, 3.2, 26], look: [-10, 1.4, -22], fov: 40, roll: 0 },
+  pasture: { pos: [22, 2.6, 20], look: [-6, 1.2, -18], fov: 38, roll: 0 },
+  bellevue: { pos: [30, 5.5, 34], look: [-16, 2, -18], fov: 40, roll: 0 },
+  landing: { pos: [-58, 3.2, 44], look: [-96, 0.6, 30], fov: 38, roll: 0 },
+  farm: { pos: [24, 4.6, 22], look: [-12, 1.6, -22], fov: 42, roll: 0 },
+  yard: { pos: [30, 2.4, 4], look: [10, 1.4, -22], fov: 40, roll: 0 },
+  village: { pos: [22, 2.2, 10], look: [6, 1.4, -20], fov: 38, roll: 0 },
+  strait: { pos: [4, 3.2, 34], look: [70, -1, -150], fov: 40, roll: 0 },
+  island: { pos: [-20, 6, 30], look: [-120, 2, -170], fov: 36, roll: 0 },
+  bay: { pos: [10, 4, 30], look: [60, -2, -120], fov: 42, roll: 0 },
+  camp: { pos: [6, 3.6, 32], look: [-2, 2.2, -24], fov: 44, roll: 0 },
+  redoubt: { pos: [0, 2.2, 20], look: [-4, 1.4, -6], fov: 40, roll: 0 },
+  between: { pos: [0, 1.7, 16], look: [0, 1.5, -14], fov: 42, roll: 0 },
+  hill: { pos: [26, 2.6, -40], look: [30, 1.0, -54], fov: 34, roll: 0 },
+  garden: { pos: [22, 1.8, 8], look: [26, 0.8, -3], fov: 32, roll: 0 },
+  park: { pos: [20, 2.2, 14], look: [26, 1.2, -6], fov: 34, roll: 0 },
+  grave: { pos: [30, 1.5, -44], look: [28, 0.6, -56], fov: 30, roll: 0 },
+  chart: { pos: [0.6, 2.3, 4.6], look: [-0.2, 1.0, -0.4], fov: 42, roll: 0 },
+  office: { pos: [0, 2.2, 4.4], look: [0, 1.2, -0.2], fov: 44, roll: 0 },
+  harney: { pos: [0, 2.1, 4.6], look: [0.2, 1.25, -0.6], fov: 42, roll: 0 },
+  washington: { pos: [0, 2.0, 4.2], look: [0, 1.15, -0.4], fov: 44, roll: 0 },
+  scott: { pos: [1.2, 2.2, 4.0], look: [0, 1.1, -0.6], fov: 44, roll: 0 },
+  geneva: { pos: [0, 2.3, 5.2], look: [0, 1.2, -0.8], fov: 40, roll: 0 },
+  map: { pos: [0, 2.4, 4.2], look: [0.2, 1.0, -0.6], fov: 40, roll: 0 },
+  griffin: { pos: [1.4, 2.0, 4.0], look: [0, 1.2, -0.8], fov: 44, roll: 0 },
+  deck: { pos: [0, 1.75, 9], look: [0, 1.5, -14], fov: 44, roll: 0 },
+  gettysburg: { pos: [0, 7, 26], look: [24, 2, -130], fov: 32, roll: 0 },
+};
 
 export const camAt = (id: number, f: number): Cam => {
   const keys = CAMS[id];
   if (keys) return run(keys, f);
-  return SETCAM[SHOTS[id - 1].set] ?? PATCH_WIDE;
+  // default: each set has one base framing; every shot creeps in on it and shifts a little so two
+  // consecutive shots in the same place never cut to the same picture
+  const s = SHOTS[id - 1], base = SETCAM[s.set] ?? PATCH_WIDE;
+  const u = clamp01((f - s.a) / Math.max(1, s.b - s.a));
+  const k = 0.02 + 0.05 * u;
+  const o = ((id * 53) % 9) - 4;
+  return {
+    pos: [base.pos[0] + (base.look[0] - base.pos[0]) * k + o * 0.9,
+      base.pos[1] + (base.look[1] - base.pos[1]) * k * 0.4,
+      base.pos[2] + (base.look[2] - base.pos[2]) * k + o * 0.55],
+    look: base.look,
+    fov: base.fov - 1.2 * u,
+    roll: o * 0.004,
+  };
 };
 
 export function dofAt(f: number): { cInf: number; focus?: (f: number) => V3 } {
   const id = shotAt(f).id;
   // macro shots: very shallow. Wides: deep.
-  const cInf = id === 1 || id === 19 ? 3 : id === 2 || id === 17 || id === 18 ? 6 : 14;
+  const set = SHOTS[id - 1].set;
+  const room = set === "chart" || set === "office" || set === "harney" || set === "washington" || set === "scott" || set === "geneva" || set === "map" || set === "griffin";
+  const cInf = id === 1 || id === 19 ? 3 : id === 2 || id === 17 || id === 18 ? 6 : room ? 5 : 14;
   return { cInf };
 }
 

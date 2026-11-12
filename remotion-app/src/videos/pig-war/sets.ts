@@ -215,6 +215,8 @@ export const buildTreeline = (R: THREE.Object3D) => {
   b.build(R, false);
 };
 
+export const SHIP_AT: [number, number, number] = [74, -6, 6.4];
+
 /** the warship on the strait: a sloop's bow, masts and furled sails, riding at anchor off the bluff */
 export const buildShip = (parent: THREE.Object3D) => {
   const g = new THREE.Group();
@@ -268,4 +270,17 @@ export const buildShip = (parent: THREE.Object3D) => {
   }
   parent.add(g);
   return { group: g, sails };
+};
+
+/** the whole patch location: land, cabin, rows, fence, treeline */
+export const patchWorld = (R: THREE.Object3D) => {
+  buildLand(R);
+  buildCabin(R);
+  buildPatch(R);
+  buildFence(R);
+  buildTreeline(R);
+  const ship = buildShip(R);
+  ship.group.position.set(...SHIP_AT);
+  ship.group.rotation.y = Math.PI + 0.34;
+  return ship.group;
 };

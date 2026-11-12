@@ -17,8 +17,9 @@ import { TONE, CHAR, untone } from "./shade";
 import { NOINK } from "./ink";
 import { Pig } from "./pig";
 import { Figure, CUTLAR } from "./cast";
-import { buildLand, buildCabin, buildPatch, buildFence, buildTreeline, buildShip, FENCE_X } from "./sets";
-import { FPS, SHOTS, camAt, pigAt, type ShotDef, type V3 } from "./story";
+import { patchWorld, SHIP_AT } from "./sets";
+import { buildBellevue, buildSea, buildCamp, buildRoom, buildDeck, buildField } from "./sets2";
+import { FPS, SHOTS, camAt, pigAt, type ShotDef, type SetId } from "./story";
 
 export const loadKit = async (): Promise<Kit> => ({});
 
@@ -37,7 +38,6 @@ const haloTex = () => ctex("sunHalo", 256, 256, (g) => {
   g.putImageData(im, 0, 0);
 });
 
-export const SHIP_AT: V3 = [74, -6, 6.4];
 /** per-shot sun override (deg from the camera's forward axis, elevation); the presets are a starting point only */
 const SUN_SHOT: Record<number, { az?: number; el?: number }> = {
   1: { az: 95, el: 18 }, 2: { az: 150, el: 10 }, 17: { az: 120, el: 20 },
@@ -56,6 +56,8 @@ export class World {
   private cloudMaps: Record<"day" | "golden", THREE.Texture[]>;
   private clouds: THREE.Mesh[] = [];
   private ship: THREE.Group;
+  private place: THREE.Group;
+  private built: SetId | null = null;
   private target = new THREE.Vector3();
 
   constructor(_kit: Kit) {
@@ -104,19 +106,47 @@ export class World {
       this.clouds.push(m); R.add(m);
     }
 
-    // ---- the place ----
-    buildLand(R);
-    buildCabin(R);
-    buildPatch(R);
-    buildFence(R);
-    buildTreeline(R);
-    const ship = buildShip(R);
-    this.ship = ship.group;
-    this.ship.position.set(...SHIP_AT);
-    this.ship.rotation.y = Math.PI + 0.34; // bow toward the lens, three-quarter on
+    // ---- the place is built per set, in setFor() ----
+    this.place = new THREE.Group();
+    R.add(this.place);
+    this.ship = new THREE.Group();
 
     this.pig = new Pig(R);
     this.cutlar = new Figure(R);
+  }
+
+  /** one location at a time: rebuild only when the shot changes place */
+  private setFor(set: SetId) {
+    if (this.built === set) return;
+    if (this.built) {
+      for (const c of [...this.place.children]) {
+        c.traverse((o) => {
+          const m = o as THREE.Mesh;
+          if (m.isMesh) m.geometry.dispose(); // materials come from lam()'s cache and are shared across sets
+        });
+        this.place.remove(c);
+      }
+    }
+    const R = this.place;
+    switch (set) {
+      case "patch": case "fence": case "porch": case "claim":
+        this.ship = patchWorld(R); break;
+      case "bellevue": case "landing": case "farm": case "yard": case "village":
+        buildBellevue(R); break;
+      case "strait": case "island": case "bay":
+        buildSea(R); break;
+      case "camp": case "redoubt": case "between": case "hill": case "garden": case "park": case "grave":
+        buildCamp(R); break;
+      case "chart": case "office": case "harney": case "washington": case "scott": case "geneva": case "map": case "griffin":
+        buildRoom(R); break;
+      case "deck":
+        buildDeck(R); break;
+      case "gettysburg":
+        buildField(R); break;
+      default:
+        patchWorld(R);
+    }
+    this.built = set;
   }
 
   /** camera-relative sun, frozen per shot (lighting.md 9.4) */
@@ -143,6 +173,7 @@ export class World {
     cam.fov = c.fov; cam.near = 0.1; cam.far = 2000; cam.updateProjectionMatrix(); cam.updateMatrixWorld();
     cam.layers.enable(NOINK);
     const focus = new THREE.Vector3(...c.look), dist = cam.position.distanceTo(focus);
+    this.setFor(s.set);
 
     // ---- light rig ----
     const sunDir = this.shotSun(id, s, L);
@@ -184,13 +215,15 @@ export class World {
       mat.map = this.cloudMaps[s.light][i % 4];
     }
 
-    // ---- ship: riding at anchor, bow to the lens ----
-    this.ship.position.y = SHIP_AT[1] + 0.14 * Math.sin(t * 0.62);
+    // ---- ship: riding at anchor, bow to the lens (patch only for now) ----
+    if (s.set === "patch" || s.set === "fence") this.ship.position.y = SHIP_AT[1] + 0.14 * Math.sin(t * 0.62);
     this.ship.rotation.z = 0.014 * Math.sin(t * 0.55 + 0.7);
     this.ship.rotation.x = 0.008 * Math.sin(t * 0.41);
 
     // ---- cast ----
-    this.pig.update(pigAt(id, f));
+    const atPatch = s.set === "patch" || s.set === "fence" || s.set === "porch" || s.set === "claim";
+    this.pig.group.visible = atPatch;
+    if (atPatch) this.pig.update(pigAt(id, f));
     // Cutlar on his step (shot 18); he is off the set for every other shot for now
     const onStep = id === 18;
     this.cutlar.set(-6.02, 0.18, 4.0, cam.position, {
