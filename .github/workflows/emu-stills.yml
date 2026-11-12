@@ -1,0 +1,71 @@
+name: Emu stills
+
+# Diagnostic stills for the Emu War short: renders a handful of frames at half
+# size so the set, framing and character cards can be inspected before spending
+# a full 20-part render. Artifact-only; it never publishes or commits a film.
+on:
+  workflow_dispatch:
+    inputs:
+      frames:
+        description: "Comma-separated frame numbers"
+        required: false
+        default: "40,240,420,520"
+      scale:
+        description: "Render scale (0.5 = 540x960)"
+        required: false
+        default: "0.5"
+      composition:
+        description: "Composition id"
+        required: false
+        default: "EmuWarShort"
+
+permissions:
+  contents: read
+
+jobs:
+  stills:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: remotion-app/package-lock.json
+
+      - name: Install Playwright Chromium (SwiftShader WebGL)
+        working-directory: remotion-app
+        run: |
+          npx playwright@1.49.1 install --with-deps chromium
+          CHROME="$(find ~/.cache/ms-playwright -maxdepth 4 -type f \( -name chrome -o -name headless_shell \) | head -1)"
+          echo "CHROME_PATH=$CHROME" >> "$GITHUB_ENV"
+
+      - name: Install
+        working-directory: remotion-app
+        run: npm ci --no-audit --no-fund
+
+      - name: Typecheck
+        working-directory: remotion-app
+        run: npx tsc --noEmit
+
+      - name: Render stills
+        working-directory: remotion-app
+        run: |
+          mkdir -p out/stills
+          for f in $(echo "${{ github.event.inputs.frames }}" | tr ',' ' '); do
+            echo "::group::frame $f"
+            npx remotion still src/index.ts "${{ github.event.inputs.composition }}" "out/stills/f$f.png" \
+              --frame=$f --scale=${{ github.event.inputs.scale }} --gl=swiftshader \
+              --timeout=300000 --browser-executable="$CHROME_PATH" || echo "::warning::frame $f failed"
+            echo "::endgroup::"
+          done
+          ls -lh out/stills
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: emu-stills
+          path: remotion-app/out/stills
+          if-no-files-found: error
+          retention-days: 7
