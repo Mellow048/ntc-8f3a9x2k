@@ -67,7 +67,9 @@ const run = (keys: Key[], f: number) => {
   if (f <= keys[0].f) return keys[0].s;
   for (let i = 1; i < keys.length; i++) {
     const a = keys[i - 1], b = keys[i];
-    if (f <= b.f) return mixCam(a.s, b.s, glide((f - a.f) / Math.max(1, b.f - a.f)));
+    const k = (f - a.f) / Math.max(1, b.f - a.f);
+    // strictly linear: an eased move flattens at both ends, which reads as a frozen frame at 30 fps
+    if (f <= b.f) return mixCam(a.s, b.s, k);
   }
   return keys[keys.length - 1].s;
 };
@@ -136,7 +138,21 @@ const CAMS: Record<number, Key[]> = {
     { f: 2100, s: look(SUBJ.water, 4.4, 1.15, 32, 0.6) },
   ],
 };
-export const camAt = (id: number, f: number): Cam => run(CAMS[id] ?? CAMS[1], f);
+/** the last key of every shot is pulled onto the shot's last frame, so a shot never sits still at the end */
+const anchored = (id: number): Key[] => {
+  const keys = (CAMS[id] ?? CAMS[1]).map((k) => ({ f: k.f, s: k.s }));
+  const shot = SHOTS[id - 1];
+  if (shot && keys.length > 1) {
+    const last = keys[keys.length - 1];
+    const p = last.s;
+    // a settle: the last stretch keeps pushing in 5 % and closes the lens a little, so the shot is always moving
+    const pos: V3 = [p.look[0] + (p.pos[0] - p.look[0]) * 0.95, p.pos[1], p.look[2] + (p.pos[2] - p.look[2]) * 0.95];
+    last.s = { ...p, pos, fov: p.fov - 0.9 };
+    last.f = Math.max(keys[keys.length - 2].f + 1, shot.b - 1);
+  }
+  return keys;
+};
+export const camAt = (id: number, f: number): Cam => run(anchored(id), f);
 
 // ---------------------------------------------------------------- the world
 /** Fixed anchors, shared by world.ts and the camera keys above. */

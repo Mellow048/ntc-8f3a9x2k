@@ -32,6 +32,14 @@ const cv = (w: number, h: number) => {
   c.width = w; c.height = h;
   return c;
 };
+/** true when a billboard of world height `h` at (x, z) would cover more than half the frame's height.
+ *  A flat card that close reads as a wall of neck across the lens, so it simply is not in that shot. */
+const blocksLens = (cam: THREE.PerspectiveCamera, x: number, z: number, h: number) => {
+  const d = Math.hypot(cam.position.x - x, cam.position.z - z);
+  const halfV = Math.tan((cam.fov * Math.PI) / 360);
+  return h / (2 * Math.max(0.4, d) * halfV) > 0.52;
+};
+
 const texOf = (c: HTMLCanvasElement, repeat?: [number, number]) => {
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
@@ -668,8 +676,7 @@ export class World {
         : id === 9 ? i < 4
         : false;
       e.mesh.visible = !!show;
-      // a billboard inside the lens fills the whole frame with a neck: keep the cast out of the camera's lap
-      if (show && Math.hypot(cam.position.x - b.x, cam.position.z - b.z) < 3.4) e.mesh.visible = false;
+      if (show && blocksLens(cam, b.x, b.z, 2.16)) e.mesh.visible = false;
       if (e.mesh.visible) {
         const running = id === 4 || (id === 3 && f > 700);
         e.update(b.x, b.z, Math.atan2(cam.position.x - b.x, cam.position.z - b.z), Math.cos(b.rot) < 0,
@@ -682,6 +689,7 @@ export class World {
     this.solo.mesh.visible = soloShow;
     if (soloShow) {
       const s0 = id === 10 ? SOLO_WATER : SOLO;
+      if (blocksLens(cam, s0.x, s0.z, 2.16)) this.solo.mesh.visible = false;
       this.solo.update(s0.x, s0.z, Math.atan2(cam.position.x - s0.x, cam.position.z - s0.z), s0.rot > 0.5,
         { gait: Math.sin(t * 0.6) * 0.25 + 0.5, head: id === 7 ? 0.75 : 0.45 });
     }
@@ -738,7 +746,7 @@ export class World {
     if (this.runner.mesh.visible) shade(this.runner.mesh.position.x, this.runner.mesh.position.z, 1.2, 0.75);
     for (const m of this.men) if (m.mesh.visible) shade(m.mesh.position.x, m.mesh.position.z, 1.0, 0.7);
     this.men.forEach((m) => {
-      if (m.mesh.visible && Math.hypot(cam.position.x - m.mesh.position.x, cam.position.z - m.mesh.position.z) < 3.0) m.mesh.visible = false;
+      if (m.mesh.visible && blocksLens(cam, m.mesh.position.x, m.mesh.position.z, 2.0)) m.mesh.visible = false;
     });
     if (this.farmer.mesh.visible) shade(this.farmer.mesh.position.x, this.farmer.mesh.position.z, 1.0, 0.7);
     if (this.truck.visible) shade(this.truck.position.x, this.truck.position.z, 2.8, 1.5);
