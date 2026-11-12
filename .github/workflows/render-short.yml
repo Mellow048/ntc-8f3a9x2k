@@ -291,7 +291,7 @@ jobs:
           retention-days: 14
 
       - name: Publish to the branch
-        if: github.event.inputs.publish != ''
+        if: always() && github.event.inputs.publish != ''
         run: |
           DEST="$(echo "${{ github.event.inputs.publish }}" | sed "s/{size}/$SIZE/")"
           BRANCH="${{ github.ref_name }}"
@@ -303,7 +303,11 @@ jobs:
             mkdir -p "$(dirname "$DEST")"
             cp out/final.mp4 "$DEST"
             cp out/qa/report.md "$(dirname "$DEST")/qa-report.md"
+            mkdir -p "$(dirname "$DEST")/qa"
+            cp out/qa/sheet_*.jpg "$(dirname "$DEST")/qa/" 2>/dev/null || true
+            cp out/still.png "$(dirname "$DEST")/qa/still.png" 2>/dev/null || true
             git add -f "$DEST" "$(dirname "$DEST")/qa-report.md"
+            git add -f "$(dirname "$DEST")/qa" 2>/dev/null || true
             if git diff --cached --quiet; then echo "already published"; exit 0; fi
             git commit --quiet -m "Render $COMPOSITION at ${SIZE}p (run ${{ github.run_number }})"
             if git push --quiet origin "HEAD:$BRANCH"; then
