@@ -733,7 +733,7 @@ def build_sfx(voice_lufs):
     # 2: the diner
     eat = cut_t(2)
     fx(eat + 0.03, clink(R, 1900, 0.1), -16, 0.3)
-    for k in range(1, 4):
+    for k in range(1, 5):
         fx(eat + f_(9 * k), click(), -17, 0.1, "munch", "the driver takes a bite, then chews")
     # 3: the bunk
     fx(cut_t(3) + 0.12, snore(0.55), -15, -0.2, "snore", "the other driver, asleep"); fx(cut_t(3) + 0.8, snore(0.5), -16, -0.2)
@@ -754,7 +754,7 @@ def build_sfx(voice_lufs):
     fx(cut_t(10) + 0.1, engine(1.2, 118, 126), -19, -0.4); fx(cut_t(10) + 0.25, engine(1.1, 104, 110), -19, 0.4)
     # 11: the route
     fx(cut_t(11) + f_(2), slide(380, 760, F(59, 4) - cut_t(11) - f_(2)), -19, 0, "line", "the route is drawn down the valley")
-    fx(cut_t(11) + f_(26), pop(520, 1040), -13, -0.2, "pop", "pin: Buttonwillow")
+    fx(cut_t(11) + f_(18), pop(520, 1040), -13, -0.2, "pop", "pin: Buttonwillow")
     fx(F(59), knock(), -12.5, 0.2, "clunk", "pin: Lebec")
     # 12, 13: 2:05 a.m.; the truck pulls in
     fx(cut_t(12) + 0.02, crickets(cut_t(14) - cut_t(12) - 0.1, R), -20, 0, "crickets", "2:05 a.m. at the truck stop")

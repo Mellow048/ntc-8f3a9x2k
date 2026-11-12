@@ -90,7 +90,7 @@ export const map: Builder = (root) => {
       const k = v === 'start' ? 0 : v === 'route' ? smooth(f, shot.at + 2, W(59) + 4) : smooth(f, shot.at - 8, shot.at + 26);
       beads.forEach((b, i) => { b.visible = i / (N - 1) <= k && k > 0; });
       const [lo, la] = at(k); truck.position.set(bx(lo), by(la), Z + 0.03); truck.visible = v !== 'start';
-      start.visible = v !== 'pings'; start.scale.setScalar(v === 'start' ? pop(f, shot.at + 3, 8) : 1); end.visible = v !== 'start' && k > 0.93; end.scale.setScalar(pop(f, v === 'route' ? W(59) : shot.at + 22, 8)); mid.visible = v === 'route' && k > 0.74; mid.scale.setScalar(pop(f, shot.at + 26, 7));
+      start.visible = v !== 'pings'; start.scale.setScalar(v === 'start' ? pop(f, shot.at + 3, 8) : 1); end.visible = v !== 'start' && k > 0.93; end.scale.setScalar(pop(f, v === 'route' ? W(59) : shot.at + 22, 8)); mid.visible = v === 'route' && k > 0.7; mid.scale.setScalar(pop(f, shot.at + 18, 7));
       towers.forEach(({t, ring, u}) => {
         t.visible = v === 'pings'; const hit = k >= u, age = hit ? ((f + u * 40) % 22) / 22 : 0;
         ring.visible = v === 'pings' && hit; ring.scale.setScalar(0.05 + 0.2 * age); (ring.material as THREE.MeshBasicMaterial).opacity = 0.9 * (1 - age);

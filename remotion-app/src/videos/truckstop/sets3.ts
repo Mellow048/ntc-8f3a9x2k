@@ -49,7 +49,7 @@ export const seven: Builder = (root) => {
         (spots[i].material as THREE.MeshBasicMaterial).opacity = 0.3 * k * (vis ? 1 : 0);
       });
       (key.material as THREE.MeshBasicMaterial).opacity = v === 'one' ? 0.07 * smooth(f, shot.at + 2, shot.at + 9) : 0;
-      const u = (f - T1) / 34; plane.visible = take && u > 0 && u < 1; plane.position.set(SEVEN[6][0] + 0.2 + 1.6 * u, 2.2 + 1.5 * u, -0.6); plane.rotation.z = 0.5; plane.scale.setScalar(0.8 + 0.5 * u);
+      const u = (f - T1) / 34; plane.visible = take && u > 0 && u < 1; plane.position.set(SEVEN[6][0] + 0.1 - 0.55 * u, 2.45 + 0.95 * u, -0.6); plane.rotation.z = 2.3; plane.scale.setScalar((0.5 + 0.5 * Math.min(1, u * 5)) * (0.95 - 0.35 * u) * Math.min(1, (1 - u) / 0.2));
     },
   };
 };
@@ -209,12 +209,12 @@ export const scale: Builder = (root) => {
       // the jewels land on the left pan on "a hundred million"; the form on the right pan on "eight point seven"
       const a = v === 'left' ? smooth(f, A, A + 10) : 1, b = v === 'left' ? 0 : v === 'right' ? smooth(f, B, B + 12) : 1;
       // the beam: down on the left with the jewels alone, then it comes level and rocks, undecided
-      const rock = v === 'what' || v === 'choice' ? 0.075 * Math.sin((f - shot.at) * 0.085) : 0;
+      const rock = v === 'what' || v === 'choice' ? 0.075 * Math.sin((f - (W(216) - 2)) * 0.085) : 0;
       const tilt = 0.2 * a * (1 - b) + shake(f, A + 8, 0.05, 16) * (v === 'left' ? 1 : 0) + shake(f, B + 10, 0.06, 18) * (v === 'right' ? 1 : 0) + rock;
       arm.rotation.z = tilt;
       pans.forEach((p, i) => { const s = i ? 1 : -1; p.position.set(s * PAN_X * Math.cos(tilt), BEAM_Y + s * PAN_X * Math.sin(tilt) - DROP, 0); });
-      jewels.g.visible = a > 0.01; jewels.g.position.y = 0.03 + 1.6 * (1 - a) ** 2; jewels.tw(f, a > 0.9);
-      form.visible = b > 0.01; form.position.y = 0.4 + 1.5 * (1 - b) ** 1.6; form.position.x = 0.25 * Math.sin((1 - b) * 9) * (1 - b); form.rotation.z = 0.06 + 0.5 * Math.sin((1 - b) * 7) * (1 - b);
+      jewels.g.visible = a > 0.01; jewels.g.position.y = 0.03 + 2.7 * (1 - a) ** 2; jewels.tw(f, a > 0.9);
+      form.visible = b > 0.01; form.position.y = 0.4 + 2.5 * (1 - b) ** 1.6; form.position.x = 0.25 * Math.sin((1 - b) * 9) * (1 - b); form.rotation.z = 0.06 + 0.5 * Math.sin((1 - b) * 7) * (1 - b);
       tagA.visible = a > 0.6; tagA.scale.setScalar(pop(f, v === 'left' ? A + 8 : -99, 8)); tagA.position.set(pans[0].position.x, pans[0].position.y + 1.02, 0.3);
       tagB.visible = b > 0.6; tagB.scale.setScalar(pop(f, v === 'right' ? B + 10 : -99, 8)); tagB.position.set(pans[1].position.x, pans[1].position.y + 1.02, 0.3);
       const ka = v === 'choice' ? smooth(f, QA, QA + 8) : 0, kb = v === 'choice' ? smooth(f, QB, QB + 8) : 0;

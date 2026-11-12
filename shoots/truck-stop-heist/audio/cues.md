@@ -3,7 +3,7 @@
 Written by `build_mix.py`. All music and effects are synthesized in that script; nothing is sampled.
 
 - length 70.767 s (2123 frames at 30 fps), 48 kHz stereo, 16-bit
-- integrated loudness -14.5 LUFS, true peak -2.8 dBTP, limiter at most 2.7 dB
+- integrated loudness -14.5 LUFS, true peak -2.7 dBTP, limiter at most 2.7 dB
 - stems at mix gain: voice -15.6 LUFS, music -21.1 LUFS, effects -26.6 LUFS
 - music after ducking: 5.7 LU under the voice while someone speaks, 5.5 LU under it over the whole film
 - the same above 300 Hz (what a phone speaker plays): 6.4 LU under the voice; loudest 200 ms under a spoken word 3.7 LU under it
@@ -39,6 +39,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |   5.10 |  153 | pop | one went in 'to get a meal', L.A. Times |
 |   5.40 |  162 | munch | the driver takes a bite, then chews |
 |   5.70 |  171 | munch | the driver takes a bite, then chews |
+|   6.00 |  180 | munch | the driver takes a bite, then chews |
 |   6.15 |  185 | snore | the other driver, asleep |
 |   6.27 |  188 | pop | the other was asleep in the cab, L.A. Times |
 |   7.39 |  222 | music cut dead | one snare stroke on the cut to the seven: 'Now one of the accused has a plea deal' |
@@ -66,9 +67,9 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  15.97 |  479 | pop | alleged in the indictment, June 2025 |
 |  17.27 |  518 | line | the route is drawn down the valley |
 |  17.40 |  522 | stamp thud | ABOUT 300 MILES stamp |
+|  17.80 |  534 | pop | pin: Buttonwillow |
 |  17.90 |  537 | clunk | pin: Lebec |
 |  17.90 |  537 | pop | 'approximately 300 miles', U.S. Attorney's Office |
-|  18.07 |  542 | pop | pin: Buttonwillow |
 |  18.67 |  560 | a clock and a bass | 2:05 a.m.: one tick on every beat, the bass on one and four |
 |  18.69 |  561 | crickets | 2:05 a.m. at the truck stop |
 |  18.72 |  562 | neon hum | the sign |
