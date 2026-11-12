@@ -20,9 +20,13 @@ on:
         required: false
         default: "720"
       still_frame:
-        description: "Frame number for the still preview"
+        description: "Frame number(s) for the still preview, comma separated"
         required: false
         default: "100"
+      stills_only:
+        description: "true = render the stills and stop (build loop, no video)"
+        required: false
+        default: "false"
 
 jobs:
   render:
@@ -68,29 +72,46 @@ jobs:
       - name: Still preview
         working-directory: remotion-app
         run: |
+          mkdir -p out/stills
           npx remotion browser ensure
-          npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
-            out/still.png --frame="${{ github.event.inputs.still_frame }}" --scale=1 --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH" --log=verbose
+          IFS=',' read -ra FS <<< "${{ github.event.inputs.still_frame }}"
+          SCALE=$([ "${{ github.event.inputs.stills_only }}" = "true" ] && echo 0.5 || echo 1)
+          for FR in "${FS[@]}"; do
+            FR="$(echo "$FR" | tr -d ' ')"
+            echo "--- still, frame $FR"
+            npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
+              "out/stills/f$(printf '%05d' "$FR").png" --frame="$FR" --scale=$SCALE \
+              --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH"
+          done
+          cp out/stills/f*.png out/still.png 2>/dev/null || true
 
       - name: Render video
+        if: inputs.stills_only != 'true'
         working-directory: remotion-app
         run: |
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
             out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH"
 
       - name: Mux voice mix
-        if: inputs.mix != ''
+        if: inputs.stills_only != 'true' && inputs.mix != ''
         run: |
           ffmpeg -y -i remotion-app/out/final.mp4 -i "${{ github.event.inputs.mix }}" \
             -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -shortest remotion-app/out/final-muxed.mp4
           mv remotion-app/out/final-muxed.mp4 remotion-app/out/final.mp4
 
-      - name: Upload MP4
+      - name: Upload video
+        if: inputs.stills_only != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: cartoon-3d-short
-          path: |
-            remotion-app/out/final.mp4
-            remotion-app/out/still.png
+          path: remotion-app/out/final.mp4
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Upload stills
+        uses: actions/upload-artifact@v4
+        with:
+          name: stills
+          path: remotion-app/out/stills
           if-no-files-found: error
           retention-days: 14
