@@ -3,7 +3,7 @@
 News short, fifth in the series (`references/news/`). Made on branch `arena/5974d22c-ntc-8f3a9x2k` from 2026-11-12,
 following `references/news/PLAYBOOK.md`. Film folder `remotion-app/src/videos/fakeboss/`, composition `FakeBossShort`.
 
-**Status: delivered on 2026-11-12, waiting for the user's word.** The file is [`shoots/fake-boss/final-720p.mp4` at commit `69d592d`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/69d592d5a1a2032da2bdb127655b683e419602c2/shoots/fake-boss/final-720p.mp4), render run `43151658637`. Not yet a reference: that happens when the user approves it and asks for it to be kept (PLAYBOOK §11).
+**Status: delivered on 2026-11-12 and approved by the user at the first delivery: "another fricking banger. nice job! you are so good at this ngl".** The file is [`shoots/fake-boss/final-720p.mp4` at commit `69d592d`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/69d592d5a1a2032da2bdb127655b683e419602c2/shoots/fake-boss/final-720p.mp4), render run `43151658637`. Kept as a reference in `references/news/fake-boss/` (the agent had said it would do so on approval).
 
 ## The story in one line
 
