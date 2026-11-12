@@ -70,7 +70,7 @@ DUR = TOTAL / FPS
 N = ns(DUR)
 CUTS = [max(0, Wf(int(m)) - 2) for m in re.findall(r"^\s*s\((\d+), '", STORY, re.M)]   # first frame of every shot
 assert len(CUTS) == 45 and CUTS[0] == 0, CUTS
-JOINS = {6, 15, 21, 38, 44}                                    # shots that carry on the take before them: not cuts
+JOINS = {6, 15, 21, 28, 38, 44}                                  # shots that carry on the take before them: not cuts
 cut_t = lambda i: CUTS[i] / FPS
 shot_end = lambda i: (CUTS[i + 1] if i + 1 < len(CUTS) else TOTAL) / FPS
 smoothstep = lambda f, a, b: (lambda u: u * u * (3 - 2 * u))(min(1.0, max(0.0, (f - a) / (b - a))))   # kit.ts smooth()
@@ -593,15 +593,15 @@ def build_sfx(voice_lufs):
             EVENTS.append((t, name, why))
 
     f_ = lambda n: n / FPS
-    # Every cut gets a small swish, alternating sides. None where the camera carries straight on (the five joins) and none on
-    # the four cuts in to somebody's exact words (19, 25, 28 and 40: each starts on the word "Quote").
-    quiet = JOINS | {19, 25, 28, 40}
+    # Every cut gets a small swish, alternating sides. None where the camera carries straight on (the six joins) and none on
+    # the three cuts in to somebody's exact words (19, 25 and 40: each starts on the word "Quote"; the fourth quotation, 28, is a join).
+    quiet = JOINS | {19, 25, 40}
     for i in range(1, len(CUTS)):
         if i in quiet:
             continue
         w = cached(("whoosh", i % 3), lambda: whoosh(0.26, R, peak=0.11, f_lo=500, f_hi=2600 + 300 * (i % 3), tail=0.07))
         fx(cut_t(i) - 0.1, w, -17, 0.35 if i % 2 else -0.35)
-    EVENTS.append((cut_t(1), "swish", f"on {len(CUTS) - 1 - len(quiet)} cuts, alternating left and right; none on the {len(JOINS)} joins inside a take, none on the four cuts in to a quotation"))
+    EVENTS.append((cut_t(1), "swish", f"on {len(CUTS) - 1 - len(quiet)} cuts, alternating left and right; none on the {len(JOINS)} joins inside a take, none on the three cuts in to a quotation"))
 
     stamps = [(F(19, -2), "UP TO $2,500 EACH"), (F(38, 2), "A CLAIM"), (F(75), "UNCONFIRMED"), (F(108), "FREE KEY"), (F(155), "DO NOT RESPOND"), (cut_t(35) + f_(2), "ITS VERSION")]
     for t, why in stamps:

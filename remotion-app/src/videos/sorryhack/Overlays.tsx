@@ -133,7 +133,7 @@ export const Overlays: React.FC = () => {
       {during(2, W(9)) ? <NameTag f={f} at={W(9)} name="UNM HOSPITAL" role="“THE STATE'S ONLY LEVEL 1 TRAUMA CENTER” · AP" size={9.4} /> : null}
       {during(3, W(14)) ? <Pill f={f} at={W(14)} text="THE NEXT DAY, ON ITS OWN SITE · OCT. 27" /> : null}
       {during(4, W(19) - 2) ? <Stamp f={f} at={W(19) - 2} text="UP TO $2,500 EACH" tone="yellow" top="9.5%" size={11} /> : null}
-      {during(5, W(21) + 1) ? <Day f={f} at={W(21) + 1} day="OCT 2026"><Big>26</Big></Day> : null}
+      {over(5, 6, W(21) + 1) && f < W(24) ? <Day f={f} at={W(21) + 1} day="OCT 2026"><Big>26</Big></Day> : null}
       {during(6, W(24)) ? <NameTag f={f} at={W(24)} name="UNM HEALTH" role="THE UNIVERSITY OF NEW MEXICO · ALBUQUERQUE" /> : null}
       {during(7, W(31)) ? <Pill f={f} at={W(31)} text="WHAT EMPLOYEES TOLD THE ASSOCIATED PRESS" /> : null}
       {during(8, W(38) + 2) ? <Stamp f={f} at={W(38) + 2} text="A CLAIM" tone="yellow" top="9.5%" size={13} /> : null}
@@ -166,7 +166,7 @@ export const Overlays: React.FC = () => {
       {during(34, W(168)) ? <Pill f={f} at={W(168)} text="ITS EMAIL TO DATABREACHES.NET, PUBLISHED NOV. 2" size={3.3} /> : null}
       {during(35) && f < W(175) - 2 ? <Stamp f={f} at={S(35)[0] + 2} text="ITS VERSION" tone="yellow" top="9.5%" size={12} /> : null}
       {over(35, 36, W(175) - 2) ? <Quote f={f} at={W(175) - 2} text={<>… UNM had a <Hot>full panic attack</Hot> and decided to blast everyone into <Hot>turning their machines off.</Hot></>} by="THE GROUP, TO DATABREACHES.NET" size={4.6} /> : null}
-      {during(37, W(186) + 1) ? <Day f={f} at={W(186) + 1} day="NOV 2026"><Big>9</Big></Day> : null}
+      {over(37, 38, W(186) + 1) && f < W(192) + 2 ? <Day f={f} at={W(186) + 1} day="NOV 2026"><Big>9</Big></Day> : null}
       {during(38, W(192) + 2) ? <Pill f={f} at={W(192) + 2} text="VANDERBILT HAS NOT SAID WHO DID IT" /> : null}
       {during(39, W(196)) ? <Pill f={f} at={W(196)} text="AS THE REGISTER REPORTED · NOV. 10, 2026" /> : null}
       {over(40, 41, W(199) - 2) ? <Quote f={f} at={W(199) - 2} text={<>Failure to communicate will result in <Hot>this estate being brought to the ground completely.</Hot></>} by="THE RECORDING, AS THE REGISTER REPORTS IT" size={4.6} /> : null}

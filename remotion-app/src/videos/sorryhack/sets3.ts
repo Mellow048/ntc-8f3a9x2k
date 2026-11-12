@@ -61,8 +61,8 @@ export const den: Builder = (root) => {
   const screens = [-1.0, 0, 1.0].map((x, i) => new THREE.MeshBasicMaterial({map: codeTex(11 + i * 7)})); [-1.0, 0, 1.0].forEach((x, i) => monitor(root, x, 0.8, -1.4, 0.74, 0.5, screens[i], 0));
   const wash = halo(root, 3.0, GREEN, 0.1, 0, 1.3, -1.9);
   // the name the group gave itself, letter by letter
-  // (it is taken down for the five shots that have a quotation where it hangs: a card over half a sign is two things to read at once)
-  const sign = grp(root, 0, 0, 0), CARDS = new Set(['quote', 'morals', 'villains', 'keep', 'hug']);
+  // (it is taken down for the takes that have a quotation where it hangs: a card over half a sign is two things to read at once)
+  const sign = grp(root, 0, 0, 0), CARDS = new Set(['quote', 'morals', 'villains', 'catch', 'keep', 'hug']);
   const LX = [-0.84, -0.28, 0.28, 0.84], LY = 2.52, letters = ['B', 'Y', 'O', 'D'].map((ch, i) => { const m = new THREE.MeshBasicMaterial({map: letterTex(ch), transparent: true}); box(sign, 0.5, 0.6, 0.05, '#12141c', LX[i], LY, -2.0); soft(panel(sign, 0.46, 0.55, m, LX[i], LY, -1.97)); return m; });
   const XS = [-0.78, 0, 0.78], Z = 0.1, crew = hoods(root, XS, Z, Object.keys(DRAW));
   const spots = XS.map((x) => pool(root, 0.9, '#b8ffb0', 0.2, x, Z));
@@ -96,7 +96,7 @@ export const den: Builder = (root) => {
       else if (v === 'morals') { heaven = smooth(f, W(125) - 4, W(125) + 6); XS.forEach((_, i) => up(i, W(125) - 2 + i * 2, 'halo', 0.06)); up(0, W(130) - 2, 'heart'); }
       else if (v === 'villains') { heaven = 1; st.fill('heart'); up(1, W(134) + 3, 'askew', 0.05); }
       else if (v === 'catch') { st.fill('b'); crateIn = smooth(f, W(136) - 3, W(136) + 5); }
-      else if (v === 'keep') { st.fill('guard'); crateIn = 1; XS.forEach((_, i) => { y[i] += hop(f, t0 + 2 + i * 2, 0.04, 7); }); }
+      else if (v === 'keep') { st.fill('b'); crateIn = 1; XS.forEach((_, i) => up(i, t0 + 2 + i * 2, 'guard', 0.05)); }      // the same take as 'catch': they close ranks one after the other
       else if (v === 'hug') { st.fill('hug'); crateIn = 1; crateX = 0.39; crateY = 0.35; x[0] = -1.5; lockAt = W(143) + 1; XS.forEach((_, i) => { y[i] += hop(f, lockAt + 2 + i, 0.03, 6); }); }   // lid on, held to the chest; the third is out of this close shot
       else if (v === 'hit') { st.fill('evil'); x[2] = 2.6; y[1] += hop(f, t0 + 2, 0.08, 8); shout = f >= t0 + 3; }                 // a close shot of the one with the megaphone
       crew.forEach((a, i) => { a.show(st[i]); a.node.position.set(x[i], y[i], z[i]); a.tint(tints[i]); a.tick(f, cam); });

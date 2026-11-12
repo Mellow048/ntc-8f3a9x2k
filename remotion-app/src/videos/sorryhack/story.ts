@@ -78,15 +78,15 @@ export const SHOTS: Shot[] = [
   s(110, 'home', 'offer', [0.35, 1.4, 5.3], [0, 1.25, -0.2], 42, {push: 0.09}),                           // 23
   s(119, 'den', 'inconv', [-0.3, 1.35, 5.8], [0, 1.15, 0], 42, {push: 0.08}),                             // 24
   // 7  "Quote: we have morals and we have a heart, we are not villains."
-  s(122, 'den', 'morals', [0.3, 1.5, 6.3], [0, 1.4, -0.2], 42, {push: 0.1}),                              // 25
+  s(122, 'den', 'morals', [0.3, 1.46, 7.7], [0, 1.46, 0.1], 42, {push: 0.2}),                             // 25  far wider than the banner before it: three small figures under a great light
   s(131, 'den', 'villains', [-0.2, 1.6, 3.5], [0, 1.6, 0.1], 42, {push: 0.07, close: true}),              // 26
   // 8  "One catch. Quote: we are still going to keep the data."
-  s(135, 'den', 'catch', [0.5, 1.35, 6.4], [0.15, 1.1, -0.2], 42, {push: 0.08}),                          // 27
-  s(137, 'den', 'keep', [-0.3, 1.35, 6.0], [0.1, 1.2, 0], 42, {push: 0.06}),                              // 28
+  s(135, 'den', 'catch', [0.5, 1.35, 6.4], [0.15, 1.14, -0.2], 42, {push: 0.09}),                         // 27
+  s(137, 'den', 'keep', [0.5, 1.35, 6.4], [0.15, 1.14, -0.2], 42, {join: true}),                          // 28  one take: a second wide camera beside the first made the picture hop
   s(143, 'den', 'hug', [0.55, 1.55, 4.8], [0.4, 1.25, 0.4], 42, {push: 0.07, close: true}),               // 29
   // 9  "The university says it made no concessions, and warns: do not answer. An offer of money can be one more scam."
   s(146, 'notice', 'noconc', [-0.3, 1.66, 4.9], [0, 1.66, -0.4], 42, {push: 0.08}),                       // 30
-  s(153, 'home', 'warn', [-0.35, 1.4, 5.1], [0, 1.25, -0.2], 42, {push: 0.08}),                           // 31
+  s(153, 'home', 'warn', [-0.4, 1.4, 5.8], [0, 1.25, -0.2], 42, {push: 0.08}),                            // 31
   s(158, 'home', 'hook', [0.2, 1.5, 4.0], [0.12, 1.45, 0], 42, {push: 0.07, close: true}),                // 32
   s(164, 'notice', 'report', [0.2, 1.66, 4.7], [0, 1.66, -0.4], 42, {push: 0.07}),                        // 33
   // 10 "The group hit back: the university, it wrote, had a full panic attack and switched its own machines off."

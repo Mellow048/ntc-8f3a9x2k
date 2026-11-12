@@ -18,7 +18,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |   0.23 |    7 | zap | the sign over the door breaks up on 'cyberattack' |
 |   0.67 |   20 | buzz | and reads AMBULANCES DIVERTED |
 |   0.77 |   23 | step | the nurse steps out with a hand up |
-|   1.33 |   40 | swish | on 35 cuts, alternating left and right; none on the 5 joins inside a take, none on the four cuts in to a quotation |
+|   1.33 |   40 | swish | on 35 cuts, alternating left and right; none on the 6 joins inside a take, none on the three cuts in to a quotation |
 |   1.35 |   41 | engine | it has turned round, and goes |
 |   1.40 |   42 | pop | 'diverted ambulance traffic', UNM Health |
 |   2.30 |   69 | clunk | a pin lands on Albuquerque |
