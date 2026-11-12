@@ -1,4 +1,4 @@
-# The $129 Million Fake Boss — news reference 5 of 5 (start here for a new film)
+# The $129 Million Fake Boss — news reference 5 of 7
 
 A 76-second news short about an indictment unsealed in Manhattan on 5 November 2026. It accuses three men of using
 A.I. to copy the voices, and sometimes the faces, of chief executives and of real lawyers, and of talking employees
@@ -10,8 +10,9 @@ It is a snapshot of a developing story as it stood on **2026-11-12**. Reuse how 
 sets or score. The category rules and the order of work are in [`../README.md`](../README.md); every number, command
 and trap is in [`../PLAYBOOK.md`](../PLAYBOOK.md).
 
-**This is the newest snapshot, and the one to start a new film from.** It is also the first film that was made from
-`main` by following the playbook, starting from `restore.py binance-heist`: two full renders, no question to the user.
+It is the first film that was made from `main` by following the playbook, starting from `restore.py binance-heist`:
+two full renders, no question to the user. To start a new film, restore the newest snapshot,
+[`../truck-stop-heist/`](../truck-stop-heist/README.md).
 
 ## The film in numbers
 

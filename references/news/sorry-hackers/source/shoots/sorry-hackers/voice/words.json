@@ -1,0 +1,1818 @@
+[
+ {
+  "word": "A",
+  "start": 0.008,
+  "end": 0.083,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "cyberattack",
+  "start": 0.083,
+  "end": 0.7,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "sent",
+  "start": 0.7,
+  "end": 0.908,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "ambulances",
+  "start": 0.908,
+  "end": 1.391,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "away",
+  "start": 1.391,
+  "end": 1.591,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "from",
+  "start": 1.591,
+  "end": 1.716,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "New",
+  "start": 1.716,
+  "end": 1.8,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Mexico's",
+  "start": 1.8,
+  "end": 2.258,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "only",
+  "start": 2.258,
+  "end": 2.499,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "top-level",
+  "start": 2.499,
+  "end": 2.941,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "trauma",
+  "start": 2.941,
+  "end": 3.208,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "center",
+  "start": 3.208,
+  "end": 3.541,
+  "line": 1,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Then",
+  "start": 3.947,
+  "end": 4.147,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 4.147,
+  "end": 4.206,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hackers",
+  "start": 4.206,
+  "end": 4.539,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "said",
+  "start": 4.539,
+  "end": 4.689,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "sorry",
+  "start": 4.689,
+  "end": 5.139,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 5.285,
+  "end": 5.41,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "offered",
+  "start": 5.41,
+  "end": 5.659,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "patients",
+  "start": 5.659,
+  "end": 6.034,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "money",
+  "start": 6.034,
+  "end": 6.384,
+  "line": 1,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "October",
+  "start": 6.75,
+  "end": 7.2,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "twenty-sixth",
+  "start": 7.2,
+  "end": 7.959,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "the",
+  "start": 8.096,
+  "end": 8.188,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "University",
+  "start": 8.188,
+  "end": 8.687,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "of",
+  "start": 8.687,
+  "end": 8.762,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "New",
+  "start": 8.762,
+  "end": 8.879,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Mexico's",
+  "start": 8.879,
+  "end": 9.446,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "health",
+  "start": 9.446,
+  "end": 9.679,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "system",
+  "start": 9.679,
+  "end": 10.162,
+  "line": 2,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Staff",
+  "start": 10.352,
+  "end": 10.635,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "say",
+  "start": 10.635,
+  "end": 10.952,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 10.952,
+  "end": 11.077,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "voice",
+  "start": 11.077,
+  "end": 11.452,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "came",
+  "start": 11.452,
+  "end": 11.668,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "from",
+  "start": 11.668,
+  "end": 11.802,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "their",
+  "start": 11.802,
+  "end": 11.902,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "computers",
+  "start": 11.902,
+  "end": 12.51,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "claiming",
+  "start": 12.691,
+  "end": 13.0,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "their",
+  "start": 13.0,
+  "end": 13.125,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "data",
+  "start": 13.125,
+  "end": 13.425,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "was",
+  "start": 13.425,
+  "end": 13.566,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "stolen",
+  "start": 13.566,
+  "end": 14.058,
+  "line": 2,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "For",
+  "start": 14.224,
+  "end": 14.399,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "two",
+  "start": 14.399,
+  "end": 14.658,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hours",
+  "start": 14.658,
+  "end": 15.091,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "ambulances",
+  "start": 15.254,
+  "end": 15.92,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "went",
+  "start": 15.92,
+  "end": 16.22,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "elsewhere",
+  "start": 16.22,
+  "end": 16.712,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Outpatient",
+  "start": 16.903,
+  "end": 17.286,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "surgeries",
+  "start": 17.286,
+  "end": 17.644,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "stopped",
+  "start": 17.644,
+  "end": 17.911,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "for",
+  "start": 17.911,
+  "end": 18.036,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 18.036,
+  "end": 18.111,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "day",
+  "start": 18.111,
+  "end": 18.461,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "By",
+  "start": 18.659,
+  "end": 18.784,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 18.784,
+  "end": 18.859,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "next",
+  "start": 18.859,
+  "end": 19.084,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "afternoon",
+  "start": 19.084,
+  "end": 19.459,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "the",
+  "start": 19.459,
+  "end": 19.525,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "university",
+  "start": 19.525,
+  "end": 19.95,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "said",
+  "start": 19.95,
+  "end": 20.267,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "systems",
+  "start": 20.393,
+  "end": 20.777,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "were",
+  "start": 20.777,
+  "end": 20.885,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "back",
+  "start": 20.885,
+  "end": 21.276,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "A",
+  "start": 21.425,
+  "end": 21.483,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "new",
+  "start": 21.483,
+  "end": 21.675,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "group",
+  "start": 21.675,
+  "end": 22.008,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "calling",
+  "start": 22.152,
+  "end": 22.394,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "itself",
+  "start": 22.394,
+  "end": 22.786,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "B.Y.O.D.",
+  "start": 22.927,
+  "end": 24.715,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "claimed",
+  "start": 24.715,
+  "end": 24.998,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 24.998,
+  "end": 25.106,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "attack",
+  "start": 25.106,
+  "end": 25.514,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 25.618,
+  "end": 25.884,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 25.884,
+  "end": 25.951,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "personal",
+  "start": 25.951,
+  "end": 26.351,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "data",
+  "start": 26.351,
+  "end": 26.551,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "of",
+  "start": 26.551,
+  "end": 26.784,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "every",
+  "start": 26.784,
+  "end": 27.034,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "student",
+  "start": 27.034,
+  "end": 27.417,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "and",
+  "start": 27.417,
+  "end": 27.492,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "employee",
+  "start": 27.492,
+  "end": 28.017,
+  "line": 4,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Then",
+  "start": 28.017,
+  "end": 28.313,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 28.313,
+  "end": 28.388,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "apologized",
+  "start": 28.388,
+  "end": 29.154,
+  "line": 5,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Quote",
+  "start": 29.298,
+  "end": 29.598,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "we",
+  "start": 29.908,
+  "end": 30.025,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "did",
+  "start": 30.025,
+  "end": 30.142,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "not",
+  "start": 30.142,
+  "end": 30.308,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "know",
+  "start": 30.308,
+  "end": 30.508,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "that",
+  "start": 30.508,
+  "end": 30.608,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 30.608,
+  "end": 30.675,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "was",
+  "start": 30.675,
+  "end": 30.808,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "running",
+  "start": 30.808,
+  "end": 31.041,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "machines",
+  "start": 31.041,
+  "end": 31.433,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "related",
+  "start": 31.433,
+  "end": 31.791,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 31.791,
+  "end": 31.908,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "assisting",
+  "start": 31.908,
+  "end": 32.308,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "patients",
+  "start": 32.308,
+  "end": 32.733,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 32.733,
+  "end": 32.808,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "real",
+  "start": 32.808,
+  "end": 33.058,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "time",
+  "start": 33.058,
+  "end": 33.441,
+  "line": 5,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "It",
+  "start": 33.914,
+  "end": 34.039,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "offered",
+  "start": 34.039,
+  "end": 34.272,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 34.272,
+  "end": 34.339,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hospital",
+  "start": 34.339,
+  "end": 34.772,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 34.772,
+  "end": 34.797,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "free",
+  "start": 34.797,
+  "end": 35.097,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "key",
+  "start": 35.097,
+  "end": 35.505,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 35.575,
+  "end": 35.725,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "any",
+  "start": 35.725,
+  "end": 35.941,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "patient",
+  "start": 35.941,
+  "end": 36.275,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "affected",
+  "start": 36.275,
+  "end": 36.591,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "up",
+  "start": 36.591,
+  "end": 36.675,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 36.675,
+  "end": 36.75,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "twenty-five",
+  "start": 36.75,
+  "end": 37.241,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hundred",
+  "start": 37.241,
+  "end": 37.474,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "dollars",
+  "start": 37.474,
+  "end": 37.941,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "for",
+  "start": 38.048,
+  "end": 38.182,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 38.182,
+  "end": 38.323,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "inconvenience",
+  "start": 38.323,
+  "end": 39.023,
+  "line": 6,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Quote",
+  "start": 39.192,
+  "end": 39.517,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "we",
+  "start": 39.832,
+  "end": 39.99,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "have",
+  "start": 39.99,
+  "end": 40.198,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "morals",
+  "start": 40.198,
+  "end": 40.74,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "and",
+  "start": 40.82,
+  "end": 40.937,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "we",
+  "start": 40.937,
+  "end": 41.086,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "have",
+  "start": 41.086,
+  "end": 41.228,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 41.228,
+  "end": 41.261,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "heart",
+  "start": 41.261,
+  "end": 41.628,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "we",
+  "start": 41.72,
+  "end": 41.903,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "are",
+  "start": 41.903,
+  "end": 41.962,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "not",
+  "start": 41.962,
+  "end": 42.162,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "villains",
+  "start": 42.162,
+  "end": 42.645,
+  "line": 7,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "One",
+  "start": 43.104,
+  "end": 43.296,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "catch",
+  "start": 43.296,
+  "end": 43.72,
+  "line": 8,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Quote",
+  "start": 43.886,
+  "end": 44.277,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "we",
+  "start": 44.598,
+  "end": 44.79,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "are",
+  "start": 44.79,
+  "end": 44.856,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "still",
+  "start": 44.856,
+  "end": 45.123,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "going",
+  "start": 45.123,
+  "end": 45.348,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 45.348,
+  "end": 45.431,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "keep",
+  "start": 45.431,
+  "end": 45.615,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 45.615,
+  "end": 45.698,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "data",
+  "start": 45.698,
+  "end": 46.048,
+  "line": 8,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 46.604,
+  "end": 46.679,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "university",
+  "start": 46.679,
+  "end": 47.129,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "says",
+  "start": 47.129,
+  "end": 47.379,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 47.379,
+  "end": 47.446,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "made",
+  "start": 47.446,
+  "end": 47.654,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "no",
+  "start": 47.654,
+  "end": 47.821,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "concessions",
+  "start": 47.821,
+  "end": 48.62,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 48.62,
+  "end": 48.762,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "warns",
+  "start": 48.762,
+  "end": 49.287,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "do",
+  "start": 49.37,
+  "end": 49.504,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "not",
+  "start": 49.504,
+  "end": 49.67,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "answer",
+  "start": 49.67,
+  "end": 50.045,
+  "line": 9,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "An",
+  "start": 50.232,
+  "end": 50.349,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "offer",
+  "start": 50.349,
+  "end": 50.716,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "of",
+  "start": 50.716,
+  "end": 50.807,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "money",
+  "start": 50.807,
+  "end": 51.157,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "can",
+  "start": 51.261,
+  "end": 51.403,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "be",
+  "start": 51.403,
+  "end": 51.519,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "one",
+  "start": 51.519,
+  "end": 51.778,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "more",
+  "start": 51.778,
+  "end": 52.019,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "scam",
+  "start": 52.019,
+  "end": 52.428,
+  "line": 9,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 52.757,
+  "end": 52.823,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "group",
+  "start": 52.823,
+  "end": 53.234,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hit",
+  "start": 53.234,
+  "end": 53.376,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "back",
+  "start": 53.376,
+  "end": 53.742,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "the",
+  "start": 53.961,
+  "end": 54.052,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "university",
+  "start": 54.052,
+  "end": 54.735,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "it",
+  "start": 54.851,
+  "end": 54.976,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "wrote",
+  "start": 54.976,
+  "end": 55.276,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "had",
+  "start": 55.475,
+  "end": 55.6,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 55.6,
+  "end": 55.633,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "full",
+  "start": 55.633,
+  "end": 55.975,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "panic",
+  "start": 55.975,
+  "end": 56.241,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "attack",
+  "start": 56.241,
+  "end": 56.608,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "and",
+  "start": 56.787,
+  "end": 56.936,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "switched",
+  "start": 56.936,
+  "end": 57.32,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "its",
+  "start": 57.32,
+  "end": 57.511,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "own",
+  "start": 57.511,
+  "end": 57.761,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "machines",
+  "start": 57.761,
+  "end": 58.186,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "off",
+  "start": 58.186,
+  "end": 58.469,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Two",
+  "start": 58.65,
+  "end": 58.809,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "weeks",
+  "start": 58.809,
+  "end": 59.042,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "later",
+  "start": 59.042,
+  "end": 59.308,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 59.308,
+  "end": 59.383,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "group",
+  "start": 59.383,
+  "end": 59.6,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "claimed",
+  "start": 59.6,
+  "end": 60.058,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Vanderbilt",
+  "start": 60.058,
+  "end": 60.508,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "University",
+  "start": 60.508,
+  "end": 61.125,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "where",
+  "start": 61.278,
+  "end": 61.378,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "computers",
+  "start": 61.378,
+  "end": 61.82,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "reportedly",
+  "start": 61.82,
+  "end": 62.303,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "said",
+  "start": 62.303,
+  "end": 62.603,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "quote",
+  "start": 62.721,
+  "end": 63.038,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "failure",
+  "start": 63.417,
+  "end": 63.809,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 63.809,
+  "end": 63.908,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "communicate",
+  "start": 63.908,
+  "end": 64.433,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "will",
+  "start": 64.433,
+  "end": 64.583,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "result",
+  "start": 64.583,
+  "end": 64.975,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 64.975,
+  "end": 65.067,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "this",
+  "start": 65.067,
+  "end": 65.208,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "estate",
+  "start": 65.208,
+  "end": 65.516,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "being",
+  "start": 65.516,
+  "end": 65.766,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "brought",
+  "start": 65.766,
+  "end": 66.0,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 66.0,
+  "end": 66.075,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 66.075,
+  "end": 66.15,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "ground",
+  "start": 66.15,
+  "end": 66.441,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "completely",
+  "start": 66.441,
+  "end": 66.999,
+  "line": 11,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "No",
+  "start": 67.578,
+  "end": 67.719,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "one",
+  "start": 67.719,
+  "end": 67.903,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "has",
+  "start": 67.903,
+  "end": 68.069,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "been",
+  "start": 68.069,
+  "end": 68.203,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "charged",
+  "start": 68.203,
+  "end": 68.686,
+  "line": 12,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "So",
+  "start": 69.317,
+  "end": 69.516,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "what",
+  "start": 69.516,
+  "end": 69.75,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "was",
+  "start": 69.75,
+  "end": 69.991,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "that",
+  "start": 69.991,
+  "end": 70.125,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "apology",
+  "start": 70.125,
+  "end": 70.65,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "a",
+  "start": 70.867,
+  "end": 70.925,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "conscience",
+  "start": 70.925,
+  "end": 71.483,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "or",
+  "start": 71.681,
+  "end": 71.798,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "marketing",
+  "start": 71.798,
+  "end": 72.231,
+  "line": 13,
+  "ends_sentence": true,
+  "comma": false
+ }
+]

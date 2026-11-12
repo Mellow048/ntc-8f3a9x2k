@@ -1,0 +1,93 @@
+{
+ "source": "raw-take.mp3",
+ "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
+ "raw_seconds": 94.37,
+ "tight_seconds": 83.84,
+ "pauses_cut": 53,
+ "tempo": 1.2,
+ "eq": {
+  "bass_shelf_db": -1.0,
+  "presence_db": 1.5
+ },
+ "squeezed": [
+  {
+   "line": 4,
+   "word": "B.Y.O.D.",
+   "seconds_removed": 0.39
+  }
+ ],
+ "beats": [
+  {
+   "line": 1,
+   "after": "center",
+   "at": 3.646,
+   "seconds": 0.2
+  },
+  {
+   "line": 1,
+   "after": "money",
+   "at": 6.264,
+   "seconds": 0.2
+  },
+  {
+   "line": 5,
+   "after": "Quote",
+   "at": 29.278,
+   "seconds": 0.2
+  },
+  {
+   "line": 5,
+   "after": "time",
+   "at": 32.956,
+   "seconds": 0.3
+  },
+  {
+   "line": 7,
+   "after": "Quote",
+   "at": 38.712,
+   "seconds": 0.2
+  },
+  {
+   "line": 7,
+   "after": "villains",
+   "at": 41.635,
+   "seconds": 0.3
+  },
+  {
+   "line": 8,
+   "after": "Quote",
+   "at": 42.982,
+   "seconds": 0.2
+  },
+  {
+   "line": 8,
+   "after": "data",
+   "at": 44.623,
+   "seconds": 0.35
+  },
+  {
+   "line": 11,
+   "after": "quote",
+   "at": 61.213,
+   "seconds": 0.2
+  },
+  {
+   "line": 11,
+   "after": "completely",
+   "at": 64.979,
+   "seconds": 0.35
+  },
+  {
+   "line": 12,
+   "after": "charged",
+   "at": 66.306,
+   "seconds": 0.45
+  }
+ ],
+ "seconds": 72.407,
+ "words": 227,
+ "words_per_second": 3.14,
+ "lufs": -16.3,
+ "lra": 2.4,
+ "peak": -1.5
+}

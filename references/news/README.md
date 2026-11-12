@@ -24,17 +24,19 @@ third-party style-study images elsewhere in `references/`.
 | The GTA 6 Leaker Who Wanted a Disc (74 s) | [final-720p.mp4](gta6-leaker/final-720p.mp4) | [Study and reproduce](gta6-leaker/README.md) | Made by following the first film. Approved at the first delivery, with no questions to the user. The user: "another banger". |
 | The Hack That Melted 700 Supermarkets (74 s) | [final-720p.mp4](fridge-hack/final-720p.mp4) | [Study and reproduce](fridge-hack/README.md) | Made by following the first two, approved at the first delivery: "awesome sauce, same banger". Adds changes of shot that are not cuts, and music that takes part in the story. |
 | The $6.3 Billion Job Interview (75 s) | [final-720p.mp4](binance-heist/final-720p.mp4) | [Study and reproduce](binance-heist/README.md) | The user: "you are the best at this!". Adds a source tab for one side's own account, dated claims, and two checks of the sound. |
-| The $129 Million Fake Boss (76 s) | [final-720p.mp4](fake-boss/final-720p.mp4) | [Study and reproduce](fake-boss/README.md) | **The newest: start a new film from this one.** The first made from `main` by following the playbook. The user: "another fricking banger". Adds a whole film told as one side's untested account, defendants without faces, and one tune for two players. |
+| The $129 Million Fake Boss (76 s) | [final-720p.mp4](fake-boss/final-720p.mp4) | [Study and reproduce](fake-boss/README.md) | The first made from `main` by following the playbook. The user: "another fricking banger". Adds a whole film told as one side's untested account, defendants without faces, and one tune for two players. |
+| The Hackers Who Said Sorry (74 s) | [final-720p.mp4](sorry-hackers/final-720p.mp4) | [Study and reproduce](sorry-hackers/README.md) | Delivered with the next one; the user on both: "another banger after banger". Adds a story half told in a criminal group's own words, an offer that is never shown without the warning against it, and the check of every change of shot from the numbers. |
+| The $100 Million Truck Stop (71 s) | [final-720p.mp4](truck-stop-heist/final-720p.mp4) | [Study and reproduce](truck-stop-heist/README.md) | **The newest: start a new film from this one.** Adds a plea that is agreed and not entered, what is pleaded kept apart from what is admitted, a disputed number as the ending, and a reading of the picture for things that jump before the render. |
 
 The user asked for the second film to be kept here "so that other agents
 follow your footsteps without me arguing again". The next section is those
 footsteps. The third and fourth films followed them without a question to the
 user, who then asked for all of it to be kept on `main` "so that other agents
 follow your skills in making these perfect shorts". The fifth film was made from `main` by
-following this page and the playbook, again without a question.
+following this page and the playbook, again without a question, and so were the sixth and the seventh.
 
 **[`PLAYBOOK.md`](PLAYBOOK.md) is the same order as a checklist, with every
-number, command and trap the five films produced. Read it before you start.**
+number, command and trap the seven films produced. Read it before you start.**
 
 ## How to make a news short: the order every film followed
 
@@ -59,7 +61,7 @@ and show the script with it.
    If the user asked a question, one line answers it plainly. The other side
    gets its own lines. The last line is a question with two real sides. Map
    every line to rows of the facts table.
-3. **Voice: one take.** Use the voice the user chose; all five films use it, and
+3. **Voice: one take.** Use the voice the user chose; all seven films use it, and
    `voice/voice.wav` in any snapshot is the record of how it sounds. Voice
    ids do not carry over to a new session. If yours has none, make one
    `add_voice` call (en-US, masculine, conversational) with the film's opening
@@ -68,7 +70,7 @@ and show the script with it.
    from. Keep the raw take, then run a copy of `build_voice.py` to get
    `voice.wav` and `words.json`.
 4. **Copy the machinery, write the film new.** Run
-   `python references/news/restore.py fake-boss`: it puts the newest
+   `python references/news/restore.py truck-stop-heist`: it puts the newest
    film's source into your checkout and registers it (the shared machinery
    and the render workflow are already live on `main`). Check that it renders
    a still, copy its two folders under your film's names, and write your film
@@ -80,7 +82,7 @@ and show the script with it.
 5. **Look at stills before you pay for a render.** The cast sheet first. Then
    every shot, in the middle and in its first frames after the cut, and the
    frames either side of every change of shot on the same set. Fix what you
-   see and look again. The second film took five rounds, the fourth eight, the fifth seven.
+   see and look again. The second film took five rounds, the fourth eight, the fifth and sixth seven.
 6. **Render on GitHub Actions** with the parallel workflow, and read the check
    report it writes. Whatever it flags gets fixed and rendered again, not
    explained away.
@@ -102,7 +104,7 @@ and show the script with it.
 
 What the films share, and what they do not:
 
-| The same in all five | New in each |
+| The same in all seven | New in each |
 |---|---|
 | The order of work above | The story, its facts and its rules |
 | The look: painted 3D sets, flat cartoon people, ink outlines, word-timed captions | Every set and every costume |
@@ -183,7 +185,7 @@ fourth. A new news short follows all of them:
 4. Read the sets and the cast to see how places and people become recognizable
    from shape, detail and staging, not from labels on boxes.
 5. Read `build_mix.py` in each. Reuse the techniques, **not the music**: the
-   five scores share neither key, tempo nor, in the fifth, metre, and every film needs its own.
+   seven scores share neither key nor tempo, and the last three have a metre of their own; every film needs its own.
 6. Read the render workflow and the review scripts.
 7. Compare the films. What they share is what to reuse. Everything else
    was written for one story and stays with it.

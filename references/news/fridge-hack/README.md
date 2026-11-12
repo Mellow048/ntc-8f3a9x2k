@@ -1,4 +1,4 @@
-# The Hack That Melted 700 Supermarkets — news reference 3 of 5
+# The Hack That Melted 700 Supermarkets — news reference 3 of 7
 
 A 74-second news short about the cyberattack that heated the freezers of about 700 French supermarkets overnight on
 11–12 October 2026, and France's statement of 9 November that a hacking unit of Iran's Revolutionary Guard did it,

@@ -1,0 +1,313 @@
+{
+  "title": "The Hackers Who Said Sorry",
+  "origin_commit": "1f30eb30d623ff6765899f1e30d5c12aa0935b54",
+  "origin_video": "shoots/sorry-hackers/final-720p.mp4",
+  "origin_branch": "arena/be67280b-ntc-8f3a9x2k",
+  "render_commit": "6b3c1490200481bdda66b70169cd70839bb7263c",
+  "render_source_commit": "eb0abc8478fcda2d688ad1e31f35da4b2f65ad34",
+  "render_run": 43180281971,
+  "category": "news",
+  "approval": "User, 2026-11-12, after the delivery of the sixth and seventh films together: \"another banger after banger. great job lad.\" The agent had said at delivery that it would put both films on main on approval.",
+  "film_dir": "sorryhack",
+  "shoot": "sorry-hackers",
+  "register": "SorryHackCompositions",
+  "compositions": [
+    "SorryHackShort",
+    "SorryHackReview",
+    "SorryHackCastSheet"
+  ],
+  "adaptation": "Standalone entry point added (source/remotion-app/src/reference-entry.tsx); the live Root.tsx and index.ts, which register other films too, are omitted. Every other file under source/ is copied without edits from origin_commit. changed_since_render_source lists the copied files that differ from the tree the picture was rendered from. audio/mix.wav is not stored: build_mix.py regenerates it from the included voice (mix_wav_sha256 is the file that went into the MP4). The shot sheets were cut from final-720p.mp4. The render workflow is included as an inert recipe.",
+  "changed_since_render_source": [
+    "remotion-app/src/videos/sorryhack/props.ts",
+    "shoots/sorry-hackers/SCRIPT.md",
+    "shoots/sorry-hackers/qa-report.md"
+  ],
+  "mix_wav_sha256": "ef7803664e70898b74a22d7cbcdcb949e014c8e273ea39279a23c43a39dc1ae5",
+  "files": [
+    {
+      "path": "final-720p.mp4",
+      "sha256": "411943b8e72cb053c5ba139c863bad0a786da64f890f96436a3f21753273baef",
+      "bytes": 46394026
+    },
+    {
+      "path": "shots-01-23.jpg",
+      "sha256": "eada2405ff1d1100c4ddbb561d4a44fb5ae27b32e549b5dec2327cedd391ea5b",
+      "bytes": 585626
+    },
+    {
+      "path": "shots-24-45.jpg",
+      "sha256": "56f930b9ad1b51ddc2b8ff88455a26135f8d47859b4a06be13cfb4ca212915c0",
+      "bytes": 516801
+    },
+    {
+      "path": "source/.github/workflows/render-short.yml",
+      "sha256": "327ccc1804c1a3d988a6c6878467aba604adc8f927417fb04fa58c9815adbc44",
+      "bytes": 13505
+    },
+    {
+      "path": "source/remotion-app/package-lock.json",
+      "sha256": "9f9fb75fcdfbe2264552bb81d2798d9e2796aa9ca90f322044903c8236431766",
+      "bytes": 161227
+    },
+    {
+      "path": "source/remotion-app/package.json",
+      "sha256": "cb1d27d1eedfccdccc33cb5f890393de7cd592c6b8a4b65aa56cf2a2b2046c4b",
+      "bytes": 813
+    },
+    {
+      "path": "source/remotion-app/public/fonts/README.md",
+      "sha256": "dff0c0df99ef2ba29692af8a5d4c923107867331e7546bda91ee33115cda9689",
+      "bytes": 511
+    },
+    {
+      "path": "source/remotion-app/public/fonts/anton-latin-400-normal.woff2",
+      "sha256": "d0fa07ff63dd60cbc0e2f58e29c802dca2a5ae0276c999f59c6111ab7bbaec3b",
+      "bytes": 18612
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-700-normal.woff2",
+      "sha256": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+      "bytes": 18824
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-900-normal.woff2",
+      "sha256": "5b6958520638bb8609f9eacb17c4d189563efeae96d5da49f7c2043988697205",
+      "bytes": 18020
+    },
+    {
+      "path": "source/remotion-app/remotion.config.ts",
+      "sha256": "f2f70c8410b5bf76fecac310cee020a9ad9902031b8ffedd74a88b0877e3f6c1",
+      "bytes": 443
+    },
+    {
+      "path": "source/remotion-app/scripts/frame.mjs",
+      "sha256": "e3e8feaf5ae569802e64c4977d4aca28a77676aa7c7ee156ae40568a25e03cf1",
+      "bytes": 3444
+    },
+    {
+      "path": "source/remotion-app/scripts/local-chromium.sh",
+      "sha256": "fc9d292d0f216ad73efaa7705ae1e959fa8df2718dbe47c8b142fd44109468c8",
+      "bytes": 1979
+    },
+    {
+      "path": "source/remotion-app/scripts/pick.sh",
+      "sha256": "114c6050fd3fe3c46aa326f3e81df555ce2b5d6cdfa54a5de0b14215062e326e",
+      "bytes": 1076
+    },
+    {
+      "path": "source/remotion-app/scripts/plan.mjs",
+      "sha256": "785953e29eb2f4c486f3bbfc191fce6168f7c3b25ec0b0bc62fa7471a88ebcba",
+      "bytes": 1776
+    },
+    {
+      "path": "source/remotion-app/scripts/sheet.py",
+      "sha256": "44fa80748c25174c6f1ee30530b12fc05f18a501d802deb578bfa929adc42c81",
+      "bytes": 1420
+    },
+    {
+      "path": "source/remotion-app/scripts/shots.mjs",
+      "sha256": "aa4b9e1c18e406766cf63b20b0dccf41efa47903614453c72a6e3ce35369aa70",
+      "bytes": 1532
+    },
+    {
+      "path": "source/remotion-app/scripts/stills.mjs",
+      "sha256": "35c4b7ea7190c6a3e1333c889d46ddfaee411dfc14d29998f24bd5b1f468a154",
+      "bytes": 3301
+    },
+    {
+      "path": "source/remotion-app/src/reference-entry.tsx",
+      "sha256": "56ba8efbc8a0a8abc0f29fe35ac6e9d3c0a33c92970fea3040d2fa586fa9b693",
+      "bytes": 364
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/toon.ts",
+      "sha256": "e3e5b3f636d04549369d1c842a13e708fa35d32d89176184ad027360a6eee7f4",
+      "bytes": 59851
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/Captions.tsx",
+      "sha256": "8230da966f0a0ad7fd4cb03ba414f5cc1c232cc00135f5165727c9ac33749d88",
+      "bytes": 3501
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/CastSheet.tsx",
+      "sha256": "f3634a207092f1c690ea297b3b232ecd32af70568b6a48e9f04bbbd077e79d6d",
+      "bytes": 2420
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/Overlays.tsx",
+      "sha256": "fb24f0bed8639f58ad6231866d30563ea6e0599844f62525889b04d8c5225545",
+      "bytes": 16736
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/SorryHack.tsx",
+      "sha256": "7dc7be196e6d33855dbcffd6e728c05159a934bdae0ba65d501092cc3b989533",
+      "bytes": 4021
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/World.ts",
+      "sha256": "888a0e31e1098a5f053c05ca85ab8dfd46ffa8b343b59d8694c4c08fad5fcce6",
+      "bytes": 3143
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/cast.ts",
+      "sha256": "307ae9d1d58331423a533b1fb9e957754513198e4303b46420c2ed5caee607b7",
+      "bytes": 28359
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/fonts.ts",
+      "sha256": "2397bb4a15ec5a3f3c099bd958e620596051f2a039bf844b02cf172b5a2204d7",
+      "bytes": 1203
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/kit.ts",
+      "sha256": "fbfc87aa24afac9eadba5b75eaeeec281c05a93991c8982689366c1a8199c60c",
+      "bytes": 12508
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/props.ts",
+      "sha256": "ca3b1feb6a8f32e17b95195dd769cdd1eae7897ff62f0896f620327f47eb6bb7",
+      "bytes": 20946
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/register.tsx",
+      "sha256": "339bae912e9b6fb42c58f132b1cc5ef36d1ac4f8ad42576eff8bb01c5706a333",
+      "bytes": 1363
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/sets.ts",
+      "sha256": "d8a08f4a5867b64f1f84ec7192cbf114bc817fca9e37494664bc1850df29901f",
+      "bytes": 22408
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/sets2.ts",
+      "sha256": "41d2a47e5c63738b3dae961b00dfd82d44cd8943d09cc13cd360afc820b0c5c4",
+      "bytes": 18387
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/sets3.ts",
+      "sha256": "492e6df1a033fb87c18a13caa4f66e530fe176704227f976b7d70405e3bcb5d5",
+      "bytes": 25619
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/story.ts",
+      "sha256": "37712c98ce056276ff4915d00d17822f726eaff4ec966b4a5810f969041c8410",
+      "bytes": 9972
+    },
+    {
+      "path": "source/remotion-app/src/videos/sorryhack/words.json",
+      "sha256": "0d00dd128ee3ea28b31c4a419ef1ff58dde2f22e425544a82acd446e0423384f",
+      "bytes": 23021
+    },
+    {
+      "path": "source/remotion-app/tsconfig.json",
+      "sha256": "036ea329ec75a4f26a744b78f41d2dc9353f15f965b6a7f98397a32652ee0073",
+      "bytes": 352
+    },
+    {
+      "path": "source/shoots/sorry-hackers/SCRIPT.md",
+      "sha256": "d794ddaba8723cf5f9ba9889869cdca9919a86d7314b0c314e9c5dfb206e4d69",
+      "bytes": 36576
+    },
+    {
+      "path": "source/shoots/sorry-hackers/audio/build_mix.py",
+      "sha256": "f5d5ed513f74454e80353cf71f54a7277effbb8d43314f1adc2b3da670afa1d9",
+      "bytes": 55593
+    },
+    {
+      "path": "source/shoots/sorry-hackers/audio/cues.md",
+      "sha256": "ebbb84b50e82a5c7e9dbe1e0cde5ca8c09ca9d90bd59eec78c1b6d6259d1173c",
+      "bytes": 13048
+    },
+    {
+      "path": "source/shoots/sorry-hackers/build_voice.py",
+      "sha256": "00959bf2a02849505ad2b75d63c429150085f2c74046f60d5f240d3f55596d51",
+      "bytes": 14672
+    },
+    {
+      "path": "source/shoots/sorry-hackers/narration.txt",
+      "sha256": "b9dcd3962b1bd93c97b56b108c5786b1eef6b4fe6590a2c6e26c00af21201689",
+      "bytes": 1376
+    },
+    {
+      "path": "source/shoots/sorry-hackers/qa-report.md",
+      "sha256": "c5b717bc7b0a6a1f6ee27b27d47aaa61e4a7a305c5af1c0aaa595e99a0a217ae",
+      "bytes": 3077
+    },
+    {
+      "path": "source/shoots/sorry-hackers/qa-shots.json",
+      "sha256": "0d8f2a00d3acd442d603e7a2a8c60d351538857bc3fd004153597a7689fcdfc1",
+      "bytes": 4911
+    },
+    {
+      "path": "source/shoots/sorry-hackers/voice/raw-take.mp3",
+      "sha256": "91c870fa7f8172f62ddfe49d38db96b23f890504e1fd4ac36e3e1ba324292768",
+      "bytes": 755479
+    },
+    {
+      "path": "source/shoots/sorry-hackers/voice/timing.json",
+      "sha256": "f6241153bfa4ea4b7d9d6705a3259ce0af8a62ce2f6209e5b7368dbaa1b4c8f0",
+      "bytes": 1332
+    },
+    {
+      "path": "source/shoots/sorry-hackers/voice/voice.wav",
+      "sha256": "c375a6bbd6afb5d0dbb73cd2fff84270986fddccfbad6a9622557c9747af86dc",
+      "bytes": 6951124
+    },
+    {
+      "path": "source/shoots/sorry-hackers/voice/words.json",
+      "sha256": "d88b3a009f874f688adcef945837770aa6ff3bcd9e87341ccadb83f4f00a5b0e",
+      "bytes": 26655
+    },
+    {
+      "path": "source/shoots/voice_master.py",
+      "sha256": "eb1c1804cef6658cc49b2fdd98b0bc0948ac0f24398ddde83ad7268c488f2b5e",
+      "bytes": 12949
+    },
+    {
+      "path": "source/templates/audio/dsp.py",
+      "sha256": "3b456f4653fde5f30b8a22aa53903e5d4b2b3ca508908978f210fb6934214355",
+      "bytes": 11468
+    },
+    {
+      "path": "source/templates/audio/instruments.py",
+      "sha256": "8f66ee6134daefc85021aadab1138a3ce480029c91fc4428d04cba6fd5737fee",
+      "bytes": 13122
+    },
+    {
+      "path": "source/templates/audio/sfx_gen.py",
+      "sha256": "656e0d04a8fbd05e1b8c9a8a96e201c6033783cb6961eba788544f05f294a651",
+      "bytes": 25699
+    },
+    {
+      "path": "source/templates/scripts/aac_check.py",
+      "sha256": "8a0509ffab1ceac1bab6220b6c33f79bb45826ed8a5369f98a31fe156e884c6b",
+      "bytes": 2485
+    },
+    {
+      "path": "source/templates/scripts/short_qa.py",
+      "sha256": "9a71fa351b2db50bac669eebdd37c9d9f00ccd2b8b710ab472871e0ce4160550",
+      "bytes": 4727
+    },
+    {
+      "path": "source/templates/scripts/word_margins.py",
+      "sha256": "8a6ccb65343d5bb2a4f7b60232540adf7ff8260053231747e2b3c208b4fd3134",
+      "bytes": 2805
+    }
+  ]
+}

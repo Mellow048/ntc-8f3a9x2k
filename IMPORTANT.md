@@ -130,9 +130,13 @@ with every number, command and trap those films produced.
 - [`references/news/binance-heist/`](references/news/binance-heist/README.md):
   the Binance heist ("you are the best at this!").
 - [`references/news/fake-boss/`](references/news/fake-boss/README.md):
-  the newest ("another fricking banger"), the first made from `main` by
-  following the playbook, and the one to start a new film from:
-  `python references/news/restore.py fake-boss`.
+  "another fricking banger"; the first made from `main` by following the
+  playbook.
+- [`references/news/sorry-hackers/`](references/news/sorry-hackers/README.md)
+  and [`references/news/truck-stop-heist/`](references/news/truck-stop-heist/README.md):
+  delivered together ("another banger after banger"). The truck-stop film is
+  the newest and the one to start a new film from:
+  `python references/news/restore.py truck-stop-heist`.
 
 Match their care; do not copy their stories, sets or scores. **Work in the
 order written in
