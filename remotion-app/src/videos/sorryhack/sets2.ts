@@ -51,32 +51,28 @@ export const bedside: Builder = (root) => {
   backdrop(root, ['#24384a', '#3a5a70']);
   floor(root, 14, 12, tmat(tiled(tileTex('bed-floor', '#dfe6ea', '#bccad2', 4), 6, 5)));
   box(root, 9, 5.6, 0.3, '#cfe0ea', 0, 2.8, -2.2); box(root, 9, 0.16, 0.32, '#8fb0c4', 0, 1.1, -2.19);
-  // a curtain rail and a curtain, half drawn
-  box(root, 3.2, 0.05, 0.05, '#c9ced6', 0.6, 2.75, -1.2); box(root, 0.7, 2.3, 0.08, '#8fc4c0', 1.75, 1.6, -1.2);
   // the bed, foot toward us
-  const BX = 0.72; box(root, 1.05, 0.34, 2.0, '#c9ced6', BX, 0.36, -0.75); box(root, 1.0, 0.16, 1.96, '#fbfaf5', BX, 0.6, -0.75); box(root, 1.02, 0.2, 1.3, '#8fc4e0', BX, 0.68, -0.4);
-  box(root, 1.1, 0.7, 0.07, '#b9c2cc', BX, 0.62, 0.27); box(root, 1.1, 1.0, 0.07, '#b9c2cc', BX, 0.9, -1.76); box(root, 0.7, 0.14, 0.36, '#ffffff', BX, 0.76, -1.5);
+  const BX = 0.88; box(root, 1.05, 0.34, 2.0, '#c9ced6', BX, 0.36, -0.75); box(root, 1.0, 0.16, 1.96, '#fbfaf5', BX, 0.6, -0.75);
+  box(root, 1.1, 0.5, 0.07, '#b9c2cc', BX, 0.5, 0.27); box(root, 1.1, 1.0, 0.07, '#b9c2cc', BX, 0.9, -1.76); box(root, 0.7, 0.14, 0.36, '#ffffff', BX, 0.76, -1.5);
   for (const s of [-1, 1]) for (const z of [0.2, -1.7]) cyl(root, 0.04, 0.2, '#6b7280', BX + s * 0.46, 0.1, z);
-  const pat = actor(root, PATIENT(1), {a: {expr: 'neutral', mode: 'sit', pose: 'both'}}, BX, 0.52, -1.3, {scale: 0.98, res: 1.1, shadow: 0});
-  box(root, 1.02, 0.34, 0.9, '#8fc4e0', BX, 0.76, -0.85);                                                // the blanket over the knees
+  const pat = actor(root, PATIENT(1), {a: {expr: 'neutral', mode: 'sit', pose: 'both'}}, BX - 0.04, 0.5, -1.3, {scale: 0.98, res: 1.1, shadow: 0});
+  box(root, 1.02, 0.3, 1.25, '#9fd0e6', BX, 0.74, -0.45);                                                // the blanket over the knees
   // a monitor that keeps going: nothing in this picture says that care stopped
   const beat = ecg().clone(); beat.wrapS = THREE.RepeatWrapping; beat.repeat.set(0.5, 1); beat.needsUpdate = true;
-  rod(root, [1.52, 0, -1.5], [1.52, 1.5, -1.5], 0.03, '#8a94a3'); cyl(root, 0.2, 0.04, '#6b7280', 1.52, 0.02, -1.5); box(root, 0.6, 0.44, 0.08, '#23252e', 1.5, 1.72, -1.5); panel(root, 0.52, 0.36, new THREE.MeshBasicMaterial({map: beat}), 1.5, 1.72, -1.455);
-  // a drip stand
-  rod(root, [0.02, 0, -1.6], [0.02, 2.2, -1.6], 0.02, '#c9ced6'); box(root, 0.3, 0.02, 0.02, '#c9ced6', 0.02, 2.2, -1.6); box(root, 0.16, 0.26, 0.05, lit('#d6f0ff', 1), 0.12, 2.02, -1.6);
+  box(root, 0.1, 0.1, 0.3, '#8a94a3', BX, 2.08, -1.9); box(root, 0.6, 0.44, 0.08, '#23252e', BX, 2.08, -1.72); panel(root, 0.52, 0.36, new THREE.MeshBasicMaterial({map: beat}), BX, 2.08, -1.675);
   // the computer on wheels
-  const CX = -0.72, cart = grp(root, CX, 0, 0.1);
+  const CX = -0.78, cart = grp(root, CX, 0, 0.1);
   cyl(cart, 0.26, 0.05, '#6b7280', 0, 0.03, 0); cyl(cart, 0.035, 1.05, '#c9ced6', 0, 0.55, 0); box(cart, 0.62, 0.04, 0.4, '#e8eef5', 0, 1.06, 0.04); box(cart, 0.4, 0.02, 0.14, '#3a3f4a', 0, 1.09, 0.12);
   const lockT = screenTex('bed-lock', (g, w, h) => { padlock(g, w / 2, h / 2 - 34, 96); text(g, 'LOCKED', w / 2, h - 58, 82, '#f2c230'); }, 512, 368, '#1a1410');
   const ok = screenTex('bed-ok', (g, w) => { g.fillStyle = '#2f6fd0'; g.fillRect(0, 0, w, 60); const q = rng(4); for (let r = 0; r < 6; r++) { g.fillStyle = '#8fa3bf'; g.fillRect(30, 96 + r * 42, 200 + q() * 220, 18); } }, 512, 368, '#f4f7fb');
   const scrM = new THREE.MeshBasicMaterial({map: ok}); monitor(cart, 0, 1.08, -0.06, 0.6, 0.43, scrM, 0);
-  const nurse = actor(root, NURSE(3), {a: {expr: 'neutral', pose: 'type'}, b: {expr: 'shock', pose: 'shrug'}, c: {expr: 'neutral', pose: 'hold', prop: 'clip'}}, -0.05, 0, -0.5, {scale: 1.0, res: 1.1});
+  const NX = -0.22, nurse = actor(root, NURSE(3), {a: {expr: 'neutral', pose: 'type'}, b: {expr: 'shock', pose: 'shrug'}, c: {expr: 'neutral', pose: 'hold', prop: 'clip'}}, NX, 0, -0.45, {scale: 1.0, res: 1.1});
   return {
     light: () => ({...LIGHT.cold, amb: 1.45}),
     tick: ({f, cam, shot}) => {
       const at = W(95) + 3, locked = f >= at, paper = shot.v === 'paper' && f >= W(99) + 2;                 // it locks on "machines"; by "patients" she is writing by hand
       scrM.map = locked ? lockT : ok; scrM.color.setScalar(locked ? 1.1 + 0.12 * Math.sin(f * 0.5) : 1); cart.rotation.z = shake(f, at, 0.03, 9);
-      nurse.show(paper ? 'c' : locked ? 'b' : 'a'); nurse.node.position.x = -0.05 + 0.35 * (paper ? smooth(f, W(99) + 2, W(99) + 12) : 0); nurse.node.position.y = hop(f, at + 1, 0.07, 8); nurse.tick(f, cam);
+      nurse.show(paper ? 'c' : locked ? 'b' : 'a'); nurse.node.position.x = NX + 0.3 * (paper ? smooth(f, W(99) + 2, W(99) + 12) : 0); nurse.node.position.y = hop(f, at + 1, 0.07, 8); nurse.tick(f, cam);
       beat.offset.x = -f * 0.012; pat.tick(f, cam);
     },
   };
@@ -87,7 +83,7 @@ type Page = {date: string; lines: string[]; hot: [number, number]; after: number
 const PAGES: Record<'back' | 'noconc' | 'report', Page> = {
   back: {date: 'UPDATE · OCT. 27, 2026 · 2:02 P.M.', lines: ['Critical electronic systems at', 'The University of New Mexico', 'Health Sciences Center (HSC)', 'are back online following', "Monday's cybersecurity event."], hot: [3, 3], after: 3},
   noconc: {date: 'UPDATE · OCT. 28, 2026 · 12:39 P.M.', lines: ['UNM did not make', 'concessions with any', 'group behind the threat.'], hot: [0, 1], after: 5},
-  report: {date: 'UPDATE · OCT. 28, 2026 · 12:39 P.M.', lines: ['… do not respond.', 'Preserve the message and', 'report the contact to the', "FBI's Internet Crime", 'Complaint Center at IC3.gov'], hot: [0, 0], after: 3},
+  report: {date: 'UPDATE · OCT. 28, 2026 · 12:39 P.M.', lines: ['… do not respond.', 'Preserve the message and', 'report the contact to the', "FBI's Internet Crime", 'Complaint Center at IC3.gov'], hot: [3, 4], after: 3},
 };
 const PW = 1000, PH = 1300, LH = 92, TOP = 430;
 const pageTex = (key: keyof typeof PAGES) => tex('notice-' + key, PW, PH, (g, w, h) => {
@@ -105,12 +101,12 @@ export const notice: Builder = (root) => {
   soft(panel(page, W_ + 0.07, H_ + 0.07, lit(INK, 1), 0, 0, -0.01));
   const T = {back: pageTex('back'), noconc: pageTex('noconc'), report: pageTex('report')}, pm = new THREE.MeshBasicMaterial({map: T.back}); soft(panel(page, W_, H_, pm, 0, 0, 0));
   // a highlighter over the line that matters
-  const hl = new THREE.MeshBasicMaterial({color: '#ffe14a', transparent: true, opacity: 0.5, depthWrite: false}), mark = soft(panel(page, 1, 1, hl, 0, 0, 0.004)); mark.renderOrder = 4;
+  const hl = new THREE.MeshBasicMaterial({color: '#ffe14a', transparent: true, blending: THREE.MultiplyBlending, depthWrite: false}), mark = soft(panel(page, 1, 1, hl, 0, 0, 0.004)); mark.renderOrder = 4;
   const glow = halo(root, 2.6, '#fff0c8', 0.12, 0, 1.5, -1.2);
   return {
     light: () => LIGHT.show,
     tick: ({f, shot}) => {
-      const key = shot.v as keyof typeof PAGES, P = PAGES[key], cue = key === 'back' ? W(62) - 8 : key === 'noconc' ? W(150) : W(164) + 2;
+      const key = shot.v as keyof typeof PAGES, P = PAGES[key], cue = key === 'back' ? W(59) : key === 'noconc' ? W(150) : W(164) + 2;
       pm.map = T[key]; page.position.y = 1.48 + 0.01 * Math.sin(f * 0.06); page.scale.setScalar(pop(f, shot.at - 2, 8));
       const [a, b] = P.hot, k = smooth(f, cue, cue + 9), y0 = TOP + a * LH - LH / 2, y1 = TOP + b * LH + LH / 2, full = 0.86 * W_;
       mark.visible = k > 0.01; mark.scale.set(full * k, ((y1 - y0) / PH) * H_ * 0.9, 1); mark.position.set(-W_ / 2 + 0.07 * W_ + full * k / 2, H_ / 2 - ((y0 + y1) / 2 / PH) * H_, 0.004);
@@ -162,7 +158,7 @@ export const home: Builder = (root) => {
   const sofa = '#4f7f8a'; box(root, 2.3, 0.42, 0.9, sofa, 0, 0.3, -0.75); box(root, 2.3, 0.75, 0.26, sofa, 0, 0.78, -1.1); for (const s of [-1, 1]) box(root, 0.24, 0.62, 0.9, '#44707a', s * 1.2, 0.42, -0.75);
   box(root, 0.5, 0.3, 0.16, '#f2c230', -0.75, 0.68, -0.9).rotation.z = 0.2;
   plant(root, -1.75, -1.3, 0.95, '#c9c2b4');
-  const who = actor(root, PATIENT(2), {read: {expr: 'neutral', pose: 'hold', prop: 'phone', mode: 'sit'}, hm: {expr: 'nervous', pose: 'hold', prop: 'phone', mode: 'sit'}, no: {expr: 'stern', pose: 'cross', mode: 'sit'}}, -0.18, 0.44, -0.6, {scale: 1.05, res: 1.2});
+  const who = actor(root, PATIENT(2), {read: {expr: 'neutral', pose: 'hold', prop: 'phone', mode: 'sit'}, hm: {expr: 'nervous', pose: 'hold', prop: 'phone', mode: 'sit'}, no: {expr: 'stern', pose: 'cross', mode: 'sit'}}, -0.4, 0.44, -0.6, {scale: 1.05, res: 1.2});
   const cardT = (key: string, draw: (g: G2, w: number, h: number) => void, bg = '#f4f6fa') => screenTex('home-' + key, draw, 512, 368, bg);
   const T = {
     offer: cardT('offer', (g, w, h) => {                                                               // the offer, as a headline: it was posted, not sent to anyone
@@ -175,13 +171,17 @@ export const home: Builder = (root) => {
       text(g, 'DO NOT', w / 2, 152, 110, '#b3211d'); text(g, 'RESPOND', w / 2, 262, 110, '#b3211d'); text(g, 'UNM · OCT. 28, 2026', w / 2, h - 30, 30, INK, {font: 'Montserrat'});
     }, '#fffdf6'),
     hook: cardT('hook', (g, w, h) => {                                                                 // money on a hook
-      g.strokeStyle = INK; g.lineWidth = 7; g.lineCap = 'round'; g.beginPath(); g.moveTo(w / 2 + 6, 0); g.lineTo(w / 2 + 6, 120); g.stroke();
-      g.strokeStyle = '#8a94a3'; g.lineWidth = 16; g.beginPath(); g.moveTo(w / 2 + 6, 116); g.lineTo(w / 2 + 6, 214); g.arc(w / 2 - 34, 214, 40, 0, Math.PI * 0.95); g.stroke();
-      g.strokeStyle = INK; g.lineWidth = 5; g.beginPath(); g.moveTo(w / 2 + 6, 116); g.lineTo(w / 2 + 6, 214); g.stroke();
-      note(g, w / 2 - 6, 212, 108, -0.12); text(g, 'ONE MORE SCAM?', w / 2, h - 40, 52, '#b3211d', {maxWidth: w - 50});
+      const cx = w / 2 + 70;
+      g.strokeStyle = INK; g.lineWidth = 6; g.lineCap = 'round'; g.beginPath(); g.moveTo(cx, 0); g.lineTo(cx, 92); g.stroke();
+      note(g, cx - 96, 196, 104, -0.16);
+      // the hook goes through the note and comes out under it
+      const J = (lw: number, c: string) => { g.strokeStyle = c; g.lineWidth = lw; g.lineCap = 'round'; g.beginPath(); g.moveTo(cx, 90); g.lineTo(cx, 214); g.arc(cx - 44, 214, 44, 0, Math.PI * 0.8); g.stroke(); };
+      J(26, INK); J(14, '#d5dbe4');
+      g.fillStyle = INK; g.beginPath(); g.arc(cx, 90, 11, 0, 7); g.fill();
+      text(g, 'ONE MORE SCAM?', w / 2, h - 40, 52, '#b3211d', {maxWidth: w - 50});
     }, '#dfeaf4'),
   };
-  const scr = new THREE.MeshBasicMaterial({map: T.offer}), bub = bubble(root, 0.42, 1.6, 0.2, 0.9, 0.65, scr, [-0.42, -0.3]);
+  const scr = new THREE.MeshBasicMaterial({map: T.offer}), BY = 1.5, bub = bubble(root, 0.44, BY, 0.2, 0.9, 0.65, scr, [-0.5, -0.24]);
   return {
     light: () => ({...LIGHT.warm, amb: 1.3, keyI: 1.0}),
     tick: ({f, cam, shot}) => {
@@ -190,7 +190,7 @@ export const home: Builder = (root) => {
       if (v === 'offer') { at = W(112) - 2; st = f >= W(116) ? 'hm' : 'read'; }                         // the headline comes up on "patient"
       else if (v === 'warn') { on = 'warn'; at = W(154) - 2; st = f >= W(155) + 2 ? 'no' : 'hm'; }       // the notice on "warns"; the phone goes down on "do not answer"
       else { on = 'hook'; at = shot.at - 30; st = 'no'; }
-      scr.map = T[on]; bub.g.visible = f >= at; bub.g.scale.setScalar(0.95 * pop(f, at, 7)); bub.g.position.y = 1.6 + 0.012 * Math.sin(f * 0.08); bub.g.rotation.z = v === 'hook' ? 0.03 * Math.sin(f * 0.11) : shake(f, at, 0.04, 9);
+      scr.map = T[on]; bub.g.visible = f >= at; bub.g.scale.setScalar(0.95 * pop(f, at, 7)); bub.g.position.y = BY + 0.012 * Math.sin(f * 0.08); bub.g.rotation.z = v === 'hook' ? 0.03 * Math.sin(f * 0.11) : shake(f, at, 0.04, 9);
       who.show(st); who.node.position.y = 0.44 + (v === 'warn' ? hop(f, W(155) + 2, 0.05, 8) : 0); who.tick(f, cam);
     },
   };

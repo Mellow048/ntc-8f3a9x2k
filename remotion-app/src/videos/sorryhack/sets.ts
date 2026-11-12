@@ -54,6 +54,13 @@ export function rings(p: Node, n = 3, color: string = GREEN) {
     const u = (f * speed + i / n) % 1; o.visible = on; o.position.set(...at); o.rotation.y = ry; o.scale.setScalar(r * (0.2 + 0.8 * u)); (o.material as THREE.MeshBasicMaterial).opacity = 0.9 * (1 - u) ** 1.4;
   });
 }
+/** Arcs of sound that leave a megaphone toward +x. Call the returned function every frame. */
+export function arcs(p: Node, n = 3, color: string = '#ffe14a') {
+  const os = Array.from({length: n}, () => { const o = soft(mesh(p, new THREE.RingGeometry(0.86, 1, 28, 1, -0.62, 1.24), new THREE.MeshBasicMaterial({color, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide}))); o.renderOrder = 6; return o; });
+  return (f: number, on: boolean, at: V, r = 0.5, speed = 0.05) => os.forEach((o, i) => {
+    const u = (f * speed + i / n) % 1; o.visible = on; o.position.set(...at); o.scale.setScalar(r * (0.3 + 0.7 * u)); (o.material as THREE.MeshBasicMaterial).opacity = 0.95 * Math.min(1, u * 6) * (1 - u) ** 1.1;
+  });
+}
 
 // ------------------------------------------------------------------ an ambulance
 const ambSide = () => tex('amb-side', 640, 400, (g, w, h) => {
@@ -105,20 +112,17 @@ export const er: Builder = (root) => {
   // the porch: glass doors under a canopy with a sign that can change
   box(root, 3.3, 2.75, 0.3, '#f3ead8', 0, 1.375, -1.85); box(root, 2.1, 2.2, 0.06, '#2b3a55', 0, 1.1, -1.68); box(root, 0.05, 2.2, 0.08, '#c9ced6', 0, 1.1, -1.66);
   for (const s of [-1, 1]) { box(root, 0.08, 2.2, 0.08, '#c9ced6', s * 1.06, 1.1, -1.66); panel(root, 0.86, 1.9, lit('#9fd0ee', 0.95), s * 0.52, 1.15, -1.645); }
-  box(root, 3.6, 0.2, 2.3, '#f6f2e8', 0, 2.86, -0.75); for (const s of [-1, 1]) cyl(root, 0.07, 2.76, '#c9ced6', s * 1.62, 1.38, 0.2);
+  box(root, 3.0, 0.2, 2.3, '#f6f2e8', 0, 2.86, -0.75); for (const s of [-1, 1]) cyl(root, 0.07, 2.76, '#c9ced6', s * 1.36, 1.38, 0.2);
   const SIGNS = {
-    er: signTex('er-on', 760, 150, '#d62f2f', '#ffffff', [['EMERGENCY', 124, 0.56]], {border: '#ffffff'}),
-    div: signTex('er-div', 760, 150, '#f2a51f', INK, [['AMBULANCES DIVERTED', 104, 0.56]], {border: INK}),
-    open: signTex('er-open', 760, 150, '#2fbf71', '#ffffff', [['EMERGENCY · OPEN', 112, 0.56]], {border: '#ffffff'}),
-    off: tex('er-glitch', 760, 150, (g, w, h) => { const q = rng(5); g.fillStyle = '#16181f'; g.fillRect(0, 0, w, h); for (let i = 0; i < 90; i++) { g.fillStyle = ['#d62f2f', '#8dff7a', '#f3f1ea', '#2f6fd0'][i % 4]; g.fillRect(q() * w, q() * h, 30 + q() * 150, 5 + q() * 12); } }),
+    er: signTex('er-on', 760, 160, '#d62f2f', '#ffffff', [['EMERGENCY', 128, 0.56]], {border: '#ffffff'}),
+    div: signTex('er-div', 760, 160, '#f2a51f', INK, [['AMBULANCES DIVERTED', 96, 0.56]], {border: INK}),
+    open: signTex('er-open', 760, 160, '#2fbf71', '#ffffff', [['EMERGENCY · OPEN', 104, 0.56]], {border: '#ffffff'}),
+    off: tex('er-glitch', 760, 160, (g, w, h) => { const q = rng(5); g.fillStyle = '#16181f'; g.fillRect(0, 0, w, h); for (let i = 0; i < 90; i++) { g.fillStyle = ['#d62f2f', '#8dff7a', '#f3f1ea', '#2f6fd0'][i % 4]; g.fillRect(q() * w, q() * h, 30 + q() * 150, 5 + q() * 12); } }),
   };
-  const signM = new THREE.MeshBasicMaterial({map: SIGNS.er}); box(root, 3.2, 0.74, 0.1, '#2a2d36', 0, 2.5, 0.36); panel(root, 3.04, 0.6, signM, 0, 2.5, 0.415);
-  box(root, 0.86, 0.86, 0.08, '#f6f2e8', 0, 3.75, -1.86); panel(root, 0.74, 0.74, smat(hSign(), 1.05), 0, 3.75, -1.81);
-  // a low sign on the kerb: what this place is
-  box(root, 1.5, 0.62, 0.2, '#c9b08a', -1.75, 0.31, 3.3); panel(root, 1.38, 0.5, smat(signTex('er-low', 560, 200, '#2b3550', '#ffffff', [['UNIVERSITY HOSPITAL', 74, 0.36], ['LEVEL I TRAUMA CENTER', 50, 0.76]]), 1), -1.75, 0.33, 3.405);
+  const signM = new THREE.MeshBasicMaterial({map: SIGNS.er}); box(root, 2.5, 0.62, 0.1, '#2a2d36', 0, 2.52, 0.36); panel(root, 2.38, 0.5, signM, 0, 2.52, 0.415);
   palms(root, -2.7, 0.1, 1.2); palms(root, 2.9, -0.2, 1.0); palms(root, 3.6, 3.4, 0.9); plant(root, -1.95, -0.9, 1.2, '#b9623a'); plant(root, 1.95, -0.9, 1.2, '#b9623a');
   const amb = ambulance(root);
-  const nurse = actor(root, NURSE(3), {idle: {expr: 'neutral'}, stop: {expr: 'stern', pose: 'push'}, way: {expr: 'stern', pose: 'point'}, hi: {expr: 'smile', pose: 'wave'}}, -0.95, 0, 0.3, {scale: 1.0, res: 1.1, wide: true});
+  const nurse = actor(root, NURSE(3), {idle: {expr: 'neutral'}, stop: {expr: 'stern', pose: 'push'}, way: {expr: 'stern', pose: 'point'}, hi: {expr: 'smile', pose: 'wave'}}, -1.12, 0, 0.45, {scale: 1.0, res: 1.1, wide: true});
   const two = [actor(root, NURSE(0), {a: {expr: 'smile'}}, -0.55, 0, -0.9, {scale: 0.95, res: 0.9}), actor(root, NURSE(1), {a: {expr: 'smile', pose: 'wave'}}, 0.5, 0, -1.0, {scale: 0.95, res: 0.9})];
   return {
     light: (v) => v === 'date' || v === 'name' ? {...LIGHT.day, key: '#fff6e0'} : LIGHT.day,
@@ -126,10 +130,10 @@ export const er: Builder = (root) => {
       const v = shot.v, t0 = shot.at;
       let x = 9, dir = Math.PI, sign: keyof typeof SIGNS = 'er', st = 'idle', flash = true;
       if (v === 'hit') {                                                                                // it pulls in; the sign over the door breaks up on "cyberattack" and reads DIVERTED by "sent"
-        x = 4.2 - 3.3 * smooth(f, t0, t0 + 26); const g0 = W(1) + 5, g1 = W(2) - 1;
+        x = 4.56 - 4.0 * smooth(f, t0 - 4, t0 + 24); const g0 = W(1) + 5, g1 = W(2) - 1;
         sign = f < g0 ? 'er' : f < g1 ? (Math.floor(f / 2) % 2 ? 'off' : 'er') : 'div'; st = f >= g1 + 3 ? 'stop' : 'idle';
-      } else if (v === 'away') { dir = 0; x = 0.55 + 6.5 * ((f - t0) / 26) ** 2; sign = 'div'; st = 'way'; }      // it has turned round, and goes
-      else if (v === 'back') { x = 4.4 - 3.5 * smooth(f, t0, t0 + 20); sign = 'open'; st = 'hi'; }
+      } else if (v === 'away') { dir = 0; x = 0.3 + 3.4 * ((f - t0) / 26) ** 2.2; sign = 'div'; st = 'way'; }      // it has turned round, and goes
+      else if (v === 'back') { x = 4.45 - 4.0 * smooth(f, t0 - 2, t0 + 20); sign = 'open'; st = 'hi'; }
       else flash = false;
       amb.g.visible = v === 'hit' || v === 'away' || v === 'back'; amb.g.position.x = x; amb.g.position.z = 1.35; amb.g.rotation.y = dir; amb.tick(f, flash);
       signM.map = SIGNS[sign];
@@ -192,16 +196,16 @@ export const road: Builder = (root) => {
   palms(root, -3.2, -1.5, 1.2); palms(root, 2.6, -1.9, 1.0); palms(root, -0.9, -2.6, 0.8);
   // the sign over the road
   for (const s of [-1, 1]) cyl(root, 0.06, 2.7, '#8a94a3', 0.25 + s * 1.0, 1.35, -0.9); box(root, 2.44, 1.44, 0.07, '#e8e2d4', 0.25, 2.05, -0.86); panel(root, 2.3, 1.3, smat(arrowSign(), 1), 0.25, 2.05, -0.82);
-  // a street clock, to the left of it
-  const CX = -2.35; cyl(root, 0.07, 1.6, '#3d4450', CX, 0.8, -0.7); box(root, 1.5, 0.76, 0.2, '#23252e', CX, 1.95, -0.7);
-  const TIMES = ['12:30', '1:00', '1:30', '2:00', '2:30'], clockM = new THREE.MeshBasicMaterial({map: clockTex(TIMES[0])}), faces = TIMES.map(clockTex); panel(root, 1.36, 0.6, clockM, CX, 1.95, -0.595);
+  // a clock on top of it (a portrait frame cannot hold the two side by side)
+  const CX = 0.25, CY = 3.22; cyl(root, 0.05, 0.12, '#3d4450', CX, 2.8, -0.86); box(root, 1.5, 0.76, 0.2, '#23252e', CX, CY, -0.86);
+  const TIMES = ['12:30', '1:00', '1:30', '2:00', '2:30'], clockM = new THREE.MeshBasicMaterial({map: clockTex(TIMES[0])}), faces = TIMES.map(clockTex); panel(root, 1.36, 0.6, clockM, CX, CY, -0.755);
   const ambs = [ambulance(root), ambulance(root)];
   return {
     light: () => LIGHT.day,
     tick: ({f, shot}) => {
       // the clock runs from 12:30 to 2:30 while the narrator says "for two hours"
       const k = shot.v === 'two' ? Math.min(4, Math.floor(5 * smooth(f, W(43) + 2, W(45) + 14) * 0.999)) : 4; clockM.map = faces[k];
-      ambs.forEach((a, i) => { const t = f - (shot.v === 'else' ? shot.at : W(46) - 2) - i * 30; a.g.visible = shot.v === 'else' && t > -40; a.g.position.set(-5.2 + 0.2 * t, 0, 1.25); a.tick(f); });
+      ambs.forEach((a, i) => { const t = f - (shot.v === 'else' ? shot.at : W(46) - 2) - i * 30; a.g.visible = shot.v === 'else' && t > -40; a.g.position.set(-4.6 + 0.17 * t, 0, 1.0); a.tick(f); });
     },
   };
 };
@@ -211,7 +215,7 @@ export const ward: Builder = (root) => {
   backdrop(root, ['#20404a', '#356470']);
   floor(root, 14, 12, tmat(tiled(tileTex('ward-floor', '#dfe9e6', '#b9cbc6', 4), 6, 5)));
   box(root, 9, 5.6, 0.3, '#cfe5df', 0, 2.8, -2.0); box(root, 9, 0.5, 0.32, '#27b3ad', 0, 1.25, -1.99); box(root, 9, 0.22, 0.34, '#f1ebe0', 0, 0.11, -1.98);
-  panel(root, 1.5, 0.36, smat(signTex('ward-sign', 620, 150, '#2b3550', '#ffffff', [["NURSES' STATION", 96, 0.56]]), 1), 0.15, 2.3, -1.84);
+  panel(root, 1.5, 0.36, smat(signTex('ward-sign', 620, 150, '#2b3550', '#ffffff', [["NURSES' STATION", 96, 0.56]]), 1), 0.45, 2.22, -1.84);
   // a whiteboard of beds, as wards keep
   box(root, 1.3, 0.8, 0.05, '#c9ced6', -1.05, 1.9, -1.84); panel(root, 1.2, 0.7, smat(tex('ward-board', 480, 280, (g, w, h) => {
     g.fillStyle = '#fbfbf6'; g.fillRect(0, 0, w, h); const q = rng(3); for (let r = 0; r < 5; r++) { g.fillStyle = ['#2f6fd0', '#2fbf71', '#f2a51f'][r % 3]; g.fillRect(24, 30 + r * 48, 44, 26); g.fillStyle = '#8f97a6'; g.fillRect(84, 36 + r * 48, 120 + q() * 220, 12); }

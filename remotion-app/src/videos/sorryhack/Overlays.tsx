@@ -150,24 +150,24 @@ export const Overlays: React.FC = () => {
       {during(18, W(85) + 6) ? <Pill f={f} at={W(85) + 6} text="ITS POST OF OCT. 27 · QUOTED BY GIZMODO" /> : null}
       {over(19, 21, W(87) - 2) ? <Quote f={f} at={W(87) - 2} text={<>… we <Hot>did not know</Hot> that it was running machines related to <Hot>assisting patients in real-time</Hot> …</>} by={POST} size={4.6} /> : null}
       {during(22, W(108)) ? <Stamp f={f} at={W(108)} text="FREE KEY" tone="yellow" top="9.5%" size={13} /> : null}
-      {during(22, W(109) + 4) ? <Pill f={f} at={W(109) + 4} text="“(ONLY FOR THE HOSPITAL SECTOR)” · ITS POST" top="20.5%" size={3.3} /> : null}
+      {during(22, W(106)) ? <Pill f={f} at={W(106)} text="“(ONLY FOR THE HOSPITAL SECTOR)” · ITS POST" top="20.5%" size={3.3} /> : null}
       {during(23, W(111)) ? <Pill f={f} at={W(111)} text="“PLEASE PROVIDE US PROOF” · ITS POST" /> : null}
       {/* the warning comes with the offer: the university's line is on screen before the offer has finished */}
       {over(23, 24, W(118)) ? <Pill f={f} at={W(118)} text="THE UNIVERSITY: “DO NOT RESPOND”" top="15.4%" tone="red" /> : null}
-      {during(24, W(119) + 2) ? <Pill f={f} at={W(119) + 2} text="UNCLEAR IF THE OFFER IS REAL · GIZMODO" /> : null}
+      {during(24, W(119) + 2) ? <Pill f={f} at={W(119) + 2} text="NOT KNOWN IF ANYONE HAS BEEN PAID" /> : null}
       {over(25, 26, W(123) - 2) ? <Quote f={f} at={W(123) - 2} text={<>We have <Hot>morals</Hot> and we have a <Hot>heart</Hot>, we are <Hot>not villains</Hot> …</>} by={POST} size={5} /> : null}
       {over(28, 29, W(138) - 2) ? <Quote f={f} at={W(138) - 2} text={<>… we are <Hot>still going to keep the data</Hot> …</>} by="THE SAME POST" size={5.4} /> : null}
       {during(30, W(148)) ? <Pill f={f} at={W(148)} text="ONE DAY AFTER THE OFFER" /> : null}
       {during(31, W(155)) ? <Stamp f={f} at={W(155)} text="DO NOT RESPOND" top="9.5%" size={11.5} /> : null}
-      {during(31, W(157)) ? <Pill f={f} at={W(157)} text="UNM NOTICE · OCT. 28, 2026" top="20%" /> : null}
+      {during(31, W(154)) ? <Pill f={f} at={W(154)} text="UNM NOTICE · OCT. 28, 2026" top="20%" /> : null}
       {during(32, W(159)) ? <Pill f={f} at={W(159)} text="“FALSE OFFERS OF PAYMENTS” · UNM" /> : null}
       {during(33, W(165)) ? <Pill f={f} at={W(165)} text="IC3.GOV · THE FBI'S COMPLAINT CENTER" tone="yellow" /> : null}
-      {during(34, W(168)) ? <Pill f={f} at={W(168)} text="ITS EMAIL TO DATABREACHES.NET · NOV. 2" /> : null}
+      {during(34, W(168)) ? <Pill f={f} at={W(168)} text="ITS EMAIL TO DATABREACHES.NET, PUBLISHED NOV. 2" size={3.3} /> : null}
       {during(35) && f < W(175) - 2 ? <Stamp f={f} at={S(35)[0] + 2} text="ITS VERSION" tone="yellow" top="9.5%" size={12} /> : null}
-      {over(35, 36, W(175) - 2) ? <Quote f={f} at={W(175) - 2} text={<>UNM had a <Hot>full panic attack</Hot> and decided to blast everyone into <Hot>turning their machines off.</Hot></>} by="THE GROUP, TO DATABREACHES.NET" size={4.6} /> : null}
+      {over(35, 36, W(175) - 2) ? <Quote f={f} at={W(175) - 2} text={<>… UNM had a <Hot>full panic attack</Hot> and decided to blast everyone into <Hot>turning their machines off.</Hot></>} by="THE GROUP, TO DATABREACHES.NET" size={4.6} /> : null}
       {during(37, W(186) + 1) ? <Day f={f} at={W(186) + 1} day="NOV 2026"><Big>9</Big></Day> : null}
       {during(38, W(192) + 2) ? <Pill f={f} at={W(192) + 2} text="VANDERBILT HAS NOT SAID WHO DID IT" /> : null}
-      {during(39, W(196)) ? <Pill f={f} at={W(196)} text="A VIDEO STUDENTS POSTED · THE REGISTER" /> : null}
+      {during(39, W(196)) ? <Pill f={f} at={W(196)} text="AS THE REGISTER REPORTED · NOV. 10, 2026" /> : null}
       {over(40, 41, W(199) - 2) ? <Quote f={f} at={W(199) - 2} text={<>Failure to communicate will result in <Hot>this estate being brought to the ground completely.</Hot></>} by="THE RECORDING, AS THE REGISTER REPORTS IT" size={4.6} /> : null}
       {during(42, W(214)) ? <Pill f={f} at={W(214)} text="NO ARREST REPORTED · AS OF NOV. 12, 2026" /> : null}
       {during(42, W(216)) ? <Pill f={f} at={W(216)} text="UNM: “UNDER CRIMINAL INVESTIGATION”" top="15.4%" tone="yellow" /> : null}
@@ -175,7 +175,7 @@ export const Overlays: React.FC = () => {
         <>
           <div style={row('8%')}><div style={{...anton, fontSize: '8.6cqw', color: '#fff', WebkitTextStroke: `1.4cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, transform: `scale(${pop(f, W(219), 8)})`}}>WHAT WAS THAT APOLOGY?</div></div>
           {f >= W(221) ? <Pill f={f} at={W(221)} text="“NEVER SEEN” IN 20 YEARS · DATABREACHES.NET" top="15.6%" size={3.4} /> : null}
-          {f >= W(224) - 2 ? <Choice f={f} at={W(224) - 2} letter="A" text="A CONSCIENCE" top="20.4%" tone="yellow" size={6.6} /> : null}
+          {f >= W(224) - 2 ? <Choice f={f} at={W(224) - 2} letter="A" text="CONSCIENCE" top="20.4%" tone="yellow" size={6.6} /> : null}
           {f >= W(226) - 2 ? <Choice f={f} at={W(226) - 2} letter="B" text="MARKETING" top="25.4%" tone="red" size={6.6} /> : null}
         </>
       ) : null}

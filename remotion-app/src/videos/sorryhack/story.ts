@@ -44,8 +44,8 @@ const s = (word: number, kind: Kind, v: string, cam: V, target: V, fov: number, 
 
 export const SHOTS: Shot[] = [
   // 1  "A cyberattack sent ambulances away from New Mexico's only top-level trauma center. Then the hackers said sorry, and offered patients money!"
-  s(0, 'er', 'hit', [0.7, 1.55, 8.6], [0.1, 1.5, -0.6], 42, {push: 0.1}),                                 // 0
-  s(4, 'er', 'away', [-0.9, 1.5, 6.6], [-0.2, 1.35, 0.2], 42, {push: 0.07}),                              // 1
+  s(0, 'er', 'hit', [0.5, 1.55, 9.2], [0.15, 1.5, -0.6], 42, {push: 0.08}),                               // 0
+  s(4, 'er', 'away', [-0.5, 1.5, 7.0], [0, 1.35, 0.2], 42, {push: 0.05}),                                 // 1
   s(8, 'map', 'only', [0.3, 1.6, 5.4], [0, 1.55, -0.4], 42, {push: 0.1}),                                 // 2
   s(12, 'den', 'sorry', [0.4, 1.4, 6.3], [0, 1.2, -0.2], 42, {push: 0.1}),                                // 3
   s(17, 'den', 'money', [0.45, 1.4, 3.6], [0.78, 1.3, 0.1], 42, {push: 0.08, close: true}),               // 4
@@ -56,11 +56,11 @@ export const SHOTS: Shot[] = [
   s(30, 'ward', 'voice', [0.3, 1.45, 5.6], [0, 1.25, -0.3], 42, {push: 0.09}),                            // 7
   s(38, 'ward', 'claim', [-0.2, 1.4, 3.4], [0.3, 1.3, 0.1], 42, {push: 0.07, close: true}),               // 8
   // 3  "For two hours, ambulances went elsewhere. Outpatient surgeries stopped for the day. By the next afternoon, the university said, systems were back."
-  s(43, 'road', 'two', [-0.3, 1.7, 5.4], [-0.35, 1.85, -0.6], 42, {push: 0.08}),                          // 9
-  s(46, 'road', 'else', [0.6, 1.6, 8.4], [0.1, 1.3, 0], 42, {push: 0.08}),                                // 10
+  s(43, 'road', 'two', [0.1, 1.9, 5.8], [0.25, 2.35, -0.8], 42, {push: 0.07}),                            // 9
+  s(46, 'road', 'else', [0.6, 1.6, 8.4], [0.1, 1.55, 0], 42, {push: 0.08}),                               // 10
   s(49, 'waiting', 'stop', [0.35, 1.45, 6.2], [0, 1.3, -0.4], 42, {push: 0.09}),                          // 11
   s(55, 'notice', 'back', [0.3, 1.66, 4.9], [0, 1.66, -0.4], 42, {push: 0.08}),                           // 12
-  s(62, 'er', 'back', [0.8, 1.5, 7.6], [0.1, 1.4, -0.3], 42, {push: 0.09}),                               // 13
+  s(62, 'er', 'back', [0.6, 1.5, 8.2], [0.1, 1.4, -0.3], 42, {push: 0.07}),                               // 13
   // 4  "A new group calling itself B.Y.O.D. claimed the attack, and the personal data of every student and employee."
   // 14-15 are one take: they come out of the dark, then the name they gave themselves lights up over them
   s(65, 'den', 'new', [-0.35, 1.3, 6.2], [0, 1.25, -0.2], 42, {to: [-0.1, 1.5, 6.9], targetTo: [0, 1.6, -0.2]}),   // 14
@@ -70,9 +70,9 @@ export const SHOTS: Shot[] = [
   // 5  "Then it apologized. Quote: we did not know that it was running machines related to assisting patients in real time."
   s(83, 'den', 'apol', [0.3, 1.4, 6.0], [0, 1.2, -0.2], 42, {push: 0.09}),                                // 18
   s(86, 'den', 'quote', [-0.45, 1.4, 4.2], [-0.3, 1.3, 0], 42, {push: 0.07}),                             // 19
-  // 20-21 are one take along the bed: the locked computer, then the nurse who carries on by hand
-  s(95, 'bedside', 'lock', [-0.7, 1.4, 5.0], [-0.45, 1.25, -0.2], 42, {to: [0.35, 1.4, 4.6], targetTo: [0.2, 1.25, -0.2]}),   // 20
-  s(99, 'bedside', 'paper', [-0.7, 1.4, 5.0], [-0.45, 1.25, -0.2], 42, {join: true}),                     // 21
+  // 20-21 are one take at the bed: the computer locks, and the nurse carries on by hand
+  s(95, 'bedside', 'lock', [-0.25, 1.4, 5.4], [-0.1, 1.25, -0.2], 42, {to: [0, 1.4, 5.2], targetTo: [0, 1.25, -0.2]}),        // 20
+  s(99, 'bedside', 'paper', [-0.25, 1.4, 5.4], [-0.1, 1.25, -0.2], 42, {join: true}),                     // 21
   // 6  "It offered the hospital a free key, and any patient affected up to twenty-five hundred dollars, for the inconvenience."
   s(103, 'den', 'key', [0.25, 1.42, 3.5], [0, 1.36, 0.1], 42, {push: 0.08, close: true}),                 // 22
   s(110, 'home', 'offer', [0.35, 1.4, 5.3], [0, 1.25, -0.2], 42, {push: 0.09}),                           // 23
@@ -82,22 +82,22 @@ export const SHOTS: Shot[] = [
   s(131, 'den', 'villains', [-0.2, 1.6, 3.5], [0, 1.6, 0.1], 42, {push: 0.07, close: true}),              // 26
   // 8  "One catch. Quote: we are still going to keep the data."
   s(135, 'den', 'catch', [0.5, 1.35, 6.4], [0.15, 1.1, -0.2], 42, {push: 0.08}),                          // 27
-  s(137, 'den', 'keep', [-0.4, 1.3, 5.2], [0.1, 1.05, 0], 42, {push: 0.08}),                              // 28
-  s(143, 'den', 'hug', [0.75, 1.1, 3.2], [0.45, 0.8, 0.3], 42, {push: 0.08, close: true}),                // 29
+  s(137, 'den', 'keep', [-0.3, 1.35, 6.0], [0.1, 1.2, 0], 42, {push: 0.06}),                              // 28
+  s(143, 'den', 'hug', [0.55, 1.55, 4.8], [0.4, 1.25, 0.4], 42, {push: 0.07, close: true}),               // 29
   // 9  "The university says it made no concessions, and warns: do not answer. An offer of money can be one more scam."
   s(146, 'notice', 'noconc', [-0.3, 1.66, 4.9], [0, 1.66, -0.4], 42, {push: 0.08}),                       // 30
   s(153, 'home', 'warn', [-0.35, 1.4, 5.1], [0, 1.25, -0.2], 42, {push: 0.08}),                           // 31
-  s(158, 'home', 'hook', [0.5, 1.6, 3.3], [0.42, 1.6, 0.2], 42, {push: 0.07, close: true}),               // 32
+  s(158, 'home', 'hook', [0.2, 1.5, 4.0], [0.12, 1.45, 0], 42, {push: 0.07, close: true}),                // 32
   s(164, 'notice', 'report', [0.2, 1.66, 4.7], [0, 1.66, -0.4], 42, {push: 0.07}),                        // 33
   // 10 "The group hit back: the university, it wrote, had a full panic attack and switched its own machines off."
-  s(167, 'den', 'hit', [0.35, 1.4, 5.4], [0, 1.25, 0], 42, {push: 0.09}),                                 // 34
-  s(171, 'their', 'panic', [0.4, 1.5, 6.2], [0, 1.4, -0.4], 42, {push: 0.09}),                            // 35
-  s(180, 'their', 'off', [-0.6, 1.4, 3.6], [-0.75, 1.3, -0.3], 42, {to: [0.2, 1.5, 5.4], targetTo: [0.1, 1.4, -0.4]}),   // 36
+  s(167, 'den', 'hit', [0.5, 1.45, 4.1], [0.36, 1.4, 0.1], 42, {push: 0.08, close: true}),                // 34
+  s(171, 'their', 'panic', [0.4, 1.5, 6.2], [0, 1.4, -0.4], 42, {push: 0.06}),                            // 35
+  s(180, 'their', 'off', [-0.75, 1.35, 3.6], [-0.9, 1.25, -0.3], 42, {to: [0.2, 1.5, 5.4], targetTo: [0.1, 1.4, -0.4]}),   // 36
   // 11 "Two weeks later the group claimed Vanderbilt University, where computers reportedly said, quote: failure to communicate will
   //     result in this estate being brought to the ground completely."
-  // 37-38 are one take: the campus, then down to its sign
-  s(186, 'campus', 'later', [0.7, 2.1, 9.4], [0, 2.3, -1.6], 42, {to: [0.2, 1.3, 6.4], targetTo: [0, 1.2, -0.4]}),   // 37
-  s(192, 'campus', 'name', [0.7, 2.1, 9.4], [0, 2.3, -1.6], 42, {join: true}),                            // 38
+  // 37-38 are one take: the campus, then in on its sign
+  s(186, 'campus', 'later', [0.5, 1.5, 8.6], [0, 1.45, -0.4], 42, {to: [0.2, 1.3, 7.2], targetTo: [0, 1.2, -0.4]}),  // 37
+  s(192, 'campus', 'name', [0.5, 1.5, 8.6], [0, 1.45, -0.4], 42, {join: true}),                           // 38
   s(194, 'lab', 'said', [0.35, 1.5, 6.0], [0, 1.25, -0.3], 42, {push: 0.09}),                             // 39
   s(198, 'lab', 'quote', [-0.3, 1.35, 3.5], [-0.42, 1.25, 0.1], 42, {push: 0.07, close: true}),           // 40
   s(206, 'lab', 'ground', [0.2, 0.9, 5.6], [0, 1.3, -0.3], 42, {push: 0.1}),                              // 41
@@ -105,8 +105,8 @@ export const SHOTS: Shot[] = [
   s(213, 'lineup', 'none', [0.3, 1.5, 6.4], [0, 1.4, -0.4], 42, {push: 0.08}),                            // 42
   // 13 "So what was that apology: a conscience, or marketing?"
   // 43-44 are one take: the question, then a light on each answer
-  s(218, 'final', 'what', [0.25, 1.35, 6.5], [0, 1.2, -0.2], 42, {to: [0, 1.35, 6.0]}),                   // 43
-  s(223, 'final', 'choice', [0.25, 1.35, 6.5], [0, 1.2, -0.2], 42, {join: true}),                         // 44
+  s(218, 'final', 'what', [0.1, 1.35, 6.6], [-0.1, 1.2, -0.2], 42, {to: [-0.02, 1.35, 6.3]}),             // 43
+  s(223, 'final', 'choice', [0.1, 1.35, 6.6], [-0.1, 1.2, -0.2], 42, {join: true}),                       // 44
 ];
 /** shot on screen at frame f */
 export const shotAt = (f: number) => { let i = 0; while (i + 1 < SHOTS.length && SHOTS[i + 1].at <= f) i++; return i; };
