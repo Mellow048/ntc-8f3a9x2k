@@ -167,7 +167,7 @@ jobs:
 
   assemble:
     needs: render
-    if: always() && inputs.stills_only != 'true'
+    if: always() && inputs.stills_only != 'true' && inputs.qa_only != 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
