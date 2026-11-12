@@ -114,8 +114,8 @@ export const road: Builder = (root) => {
   const dashes = Array.from({length: 22}, () => floor(root, 0.14, 1.5, lit('#f3ead0', 1), 0.018, 0, 0)), posts = Array.from({length: 24}, (_, i) => box(root, 0.06, 0.7, 0.06, lit(i % 2 ? '#ffb347' : '#f3f1ea', 1.1), (i % 2 ? 1 : -1) * 2.5, 0.35, 0));
   ball(root, 1.3, lit('#f6f1d8', 1.25), -9, 17, -68);
   // the sign by the show's exit
-  const sign = grp(root, 0, 0, -3); for (const s of [-1, 1]) cyl(sign, 0.07, 3.7, '#8a94a3', s * 2.7, 1.85, 0); box(sign, 5.5, 0.12, 0.12, '#8a94a3', 0, 3.66, 0); box(sign, 2.1, 0.86, 0.07, '#e8e2d4', 0.35, 3.2, 0.06);
-  soft(panel(sign, 2.0, 0.76, smat(signTex('road-exit', 840, 320, '#1f6a44', '#ffffff', [['SAN MATEO COUNTY', 80, 0.3], ['EVENT CENTER', 110, 0.68]], {border: '#ffffff'}), 1.05), 0.35, 3.2, 0.1));
+  const sign = grp(root, 0, 0, -3); for (const s of [-1, 1]) cyl(sign, 0.07, 3.7, '#8a94a3', s * 2.7, 1.85, 0); box(sign, 5.5, 0.12, 0.12, '#8a94a3', 0, 3.52, 0); box(sign, 2.1, 0.86, 0.07, '#e8e2d4', 0.35, 3.05, 0.06);
+  soft(panel(sign, 2.0, 0.76, smat(signTex('road-exit', 840, 320, '#1f6a44', '#ffffff', [['SAN MATEO COUNTY', 80, 0.3], ['EVENT CENTER', 110, 0.68]], {border: '#ffffff'}), 1.05), 0.35, 3.05, 0.1));
   const truck = rig(root); truck.g.rotation.y = Math.PI / 2;
   const cars = [car(root, '#3d4450'), car(root, '#5a3f44')]; cars.forEach((c) => { c.g.rotation.y = Math.PI / 2; });
   const beams = cars.map(() => pool(root, 1.5, '#fff3c0', 0.26, 0, 0)); beams.forEach((b) => b.scale.set(0.8, 1, 2.2));
@@ -129,7 +129,7 @@ export const road: Builder = (root) => {
       const v = shot.v, speed = 0.3, t = f - shot.at;
       dashes.forEach((d, i) => { d.position.z = -56 + ((i * 3 + f * speed) % 66); }); posts.forEach((p, i) => { p.position.z = -60 + ((Math.floor(i / 2) * 6 + f * speed) % 72); });
       sign.visible = v === 'leave'; sign.position.z = -3 + t * 0.05;
-      const tz = v === 'leave' ? -3.5 - 6.5 * smooth(f, shot.at - 4, shot.at + 60) : -14 + 0.2 * Math.sin(f * 0.05);
+      const tz = v === 'leave' ? -10.1 - 6.4 * smooth(f, shot.at - 4, shot.at + 60) : -14 + 0.2 * Math.sin(f * 0.05);
       truck.g.position.set(0.95, 0, tz + 2.2); truck.tick(f, true);
       const follow = v !== 'leave';
       cars.forEach((c, i) => {
@@ -184,7 +184,7 @@ const padTex = () => tex('crash-pad', 500, 650, (g, w, h) => {
   g.fillStyle = '#fffdf4'; g.fillRect(0, 0, w, h); g.fillStyle = '#3d4450'; g.fillRect(0, 0, w, 70); g.fillStyle = '#c9ced6'; for (let i = 0; i < 9; i++) { g.beginPath(); g.arc(40 + i * 52, 35, 13, 0, 7); g.fill(); }
   g.strokeStyle = '#b9c4dc'; g.lineWidth = 4; for (let i = 0; i < 6; i++) { g.beginPath(); g.moveTo(34, 190 + i * 84); g.lineTo(w - 34, 190 + i * 84); g.stroke(); }
   const hand = (s: string, y: number, size: number, col = '#1f3a8a') => { g.save(); g.translate(w / 2, y); g.rotate(-0.035); text(g, s, 0, 0, size, col, {font: 'Montserrat', weight: 700, maxWidth: w - 70}); g.restore(); };
-  hand('WITNESS', 150, 76, INK); hand('saw the collision', 236, 48); hand('PHONE:', 330, 56, INK); hand('555-0142', 420, 96); hand('(number invented', 520, 36, '#8f8a96'); hand('for this film)', 572, 36, '#8f8a96');
+  hand('WITNESS', 150, 76, INK); hand('saw the collision', 230, 48); hand('PHONE', 316, 56, INK); hand('(invented for this film)', 366, 32, '#8f8a96'); hand('555-0142', 446, 96);
 });
 const digitTex = (d: string) => tex('crash-digit-' + d, 90, 110, (g, w, h) => { g.fillStyle = INK; rrect(g, 3, 3, w - 6, h - 6, 16); g.fill(); g.fillStyle = '#7af0e0'; rrect(g, 11, 11, w - 22, h - 22, 10); g.fill(); text(g, d, w / 2, h / 2 + 5, 78, INK); });
 export const crash: Builder = (root) => {

@@ -68,7 +68,7 @@ const PAGES: Record<'sign' | 'page' | 'same' | 'news' | 'form', Page> = {
   sign: {draw: (g) => { courtHead(g, 'PLEA AGREEMENT'); M(g, 'FILED NOV. 9, 2026', PW / 2, 410, 38, 900, 'center', '#b3211d'); grey(g, 480, 5, 3); g.fillStyle = '#1a1c24'; g.fillRect(430, 800, 440, 5); M(g, 'DEFENDANT', 650, 842, 30, 700, 'center', '#6b6f7a'); grey(g, 930, 6, 4); }},
   page: {draw: (g) => { courtHead(g, 'PLEA AGREEMENT'); M(g, 'FILED NOV. 9, 2026', PW / 2, 410, 38, 900, 'center', '#b3211d'); grey(g, 470, 3, 5); M(g, 'ONE COUNT:', 86, 680, 54, 900); M(g, 'INTERFERENCE WITH', 86, 772, 66, 900); M(g, 'COMMERCE BY ROBBERY', 86, 864, 66, 900); grey(g, 960, 6, 6); }, hot: [726, 910, 70, 930]},
   same: {draw: (g) => { courtHead(g, 'PLEA AGREEMENT'); M(g, 'WHAT HE ADMITS IN IT', PW / 2, 410, 40, 900, 'center', '#b3211d');
-    ['FOLLOWED THE TRUCK', 'ABOUT 300 MILES', "BROKE THE TRUCK'S LOCKS", 'STOLE 24 BAGS'].forEach((s, i) => M(g, s, i === 1 ? 170 : 170, 540 + i * 110 - (i > 1 ? 20 : 0) + (i === 1 ? -26 : 0), i === 1 ? 50 : 60, 900));
+    ['FOLLOWED THE TRUCK', 'ABOUT 300 MILES', "BROKE THE TRUCK'S LOCKS", 'STOLE 24 BAGS'].forEach((s, i) => M(g, s, 170, 540 + i * 110 - (i > 1 ? 20 : 0) + (i === 1 ? -26 : 0), i === 1 ? 50 : 60, 900, 'left', '#1a1c24', 740));
     g.strokeStyle = '#2fbf71'; g.lineWidth = 16; g.lineCap = 'round'; g.lineJoin = 'round'; for (const y of [540, 740, 850]) { g.beginPath(); g.moveTo(86, y); g.lineTo(108, y + 24); g.lineTo(146, y - 28); g.stroke(); }
     M(g, 'AS SUMMARISED BY THE L.A. TIMES', PW / 2, 1000, 34, 900, 'center', '#6b6f7a'); M(g, 'AND CITY NEWS SERVICE, NOV. 9-10, 2026', PW / 2, 1048, 34, 900, 'center', '#6b6f7a'); grey(g, 1110, 2, 8); }, hot: [800, 900, 150, 700]},
   news: {draw: (g) => { g.fillStyle = '#f4f0e4'; g.fillRect(0, 0, PW, PH); M(g, 'LOS ANGELES TIMES', PW / 2, 118, 84, 900, 'center'); g.fillStyle = '#1a1c24'; g.fillRect(60, 184, PW - 120, 8); g.fillRect(60, 200, PW - 120, 3);
@@ -199,7 +199,7 @@ export const scale: Builder = (root) => {
   });
   const jewels = jewelBag(pans[0], 0, 0.02, 0.15, 1.05); jewels.g.position.y = 0.03;
   const form = soft(panel(pans[1], 0.54, 0.7, smat(formTex(), 1.05), 0, 0.4, 0.05)); form.rotation.z = 0.06;
-  const tagA = soft(panel(root, 1.0, 0.45, smat(priceTex('$100 MILLION', 'THE JEWELERS', '#ffe14a', INK), 1.1, true), 0, 0, 0.3)), tagB = soft(panel(root, 1.0, 0.45, smat(priceTex('$8.7 MILLION', "BRINK'S: DECLARED", '#fffdf4', INK), 1.1, true), 0, 0, 0.3));
+  const tagA = soft(panel(root, 0.92, 0.41, smat(priceTex('$100 MILLION', 'THE JEWELERS', '#ffe14a', INK), 1.1, true), 0, 0, 0.3)), tagB = soft(panel(root, 0.92, 0.41, smat(priceTex('$8.7 MILLION', "BRINK'S: DECLARED", '#fffdf4', INK), 1.1, true), 0, 0, 0.3));
   const spots = [-1, 1].map((s) => ({cone: beam(root, 0.14, 0.8, 5.4, s < 0 ? '#ffe9a8' : '#dfe9ff', 0, s * PAN_X, 5.4, 0), floor: pool(root, 1.0, s < 0 ? '#ffe9a8' : '#dfe9ff', 0, s * PAN_X, 0)}));
   halo(root, 3.2, '#ffe9b0', 0.1, 0, 2.0, -1.6);
   return {

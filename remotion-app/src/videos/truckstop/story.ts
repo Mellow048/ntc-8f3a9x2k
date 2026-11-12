@@ -106,8 +106,8 @@ export const SHOTS: Shot[] = [
   s(212, 'scale', 'right', [0.6, 1.8, 4.4], [1.0, 1.9, 0], 42, {push: 0.07}),                             // 43
   // 12 "So which number counts: what the jewelers lost, or what they declared?"
   // 44-45 are one take: the question, then a light on each side
-  s(216, 'scale', 'what', [0.15, 1.7, 7.9], [0, 1.95, 0], 42, {to: [0, 1.7, 7.5]}),                       // 44
-  s(220, 'scale', 'choice', [0.15, 1.7, 7.9], [0, 1.95, 0], 42, {join: true}),                            // 45
+  s(216, 'scale', 'what', [0.15, 1.7, 8.1], [0, 1.95, 0], 42, {to: [0, 1.7, 8.3]}),                       // 44  it backs away a little: both price tags stay in the frame
+  s(220, 'scale', 'choice', [0.15, 1.7, 8.1], [0, 1.95, 0], 42, {join: true}),                            // 45
 ];
 /** shot on screen at frame f */
 export const shotAt = (f: number) => { let i = 0; while (i + 1 < SHOTS.length && SHOTS[i + 1].at <= f) i++; return i; };
