@@ -88,10 +88,10 @@ export const buildCabin = (R: THREE.Object3D) => {
   b.add(boxGeo(V(cx - W / 2, y0, cz - D / 2), V(cx + W / 2, y0 + H, cz + D / 2), 2.0), logs);
   // gable ends: the ridge runs front-to-back, so the triangle faces the patch (+x wall) and the door side reads as a cabin
   const gableH = 1.9, x0 = cx - W / 2, x1 = cx + W / 2, z0 = cz - D / 2, z1 = cz + D / 2, yt = y0 + H;
-  for (const x of [x0, x1]) {
-    const out = x === x1 ? 1 : -1;
-    // outward-wound triangle at each end so the ink pass sees a clean silhouette (tri() builds its own normal)
-    const A = V(x, yt, out > 0 ? z1 : z0), B = V(x, yt, out > 0 ? z0 : z1), C = V(x, yt + gableH, cz);
+  for (const z of [z0, z1]) {
+    const out = z === z1 ? 1 : -1;
+    // gable wall: the ridge runs along z, so the triangles are the +-z end walls
+    const A = V(out > 0 ? x0 : x1, yt, z), B = V(out > 0 ? x1 : x0, yt, z), C = V(cx, yt + gableH, z);
     b.add(tri(A, B, C), logs);
   }
   // roof: two slopes from the ridge down to the eaves on the +-z sides, top and underside
