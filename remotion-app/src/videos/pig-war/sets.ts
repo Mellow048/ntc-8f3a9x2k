@@ -145,11 +145,11 @@ export const buildPatch = (R: THREE.Object3D) => {
       const jx = (rnd() - 0.5) * 0.14, jz = (rnd() - 0.5) * 0.22, s = 0.7 + rnd() * 0.55;
       // a low clump of leaves, three lobes, sitting on the crown of the ridge
       for (let k2 = 0; k2 < 3; k2++) {
-        const a = rnd() * Math.PI * 2, r = 0.09 * s;
+        const a = rnd() * Math.PI * 2, r = 0.06 * s;
         const t = new THREE.Matrix4().compose(
           V(x + jx + Math.cos(a) * r, PATCH.rowTop + (0.05 + rnd() * 0.05) * s, z + jz + Math.sin(a) * r),
           new THREE.Quaternion().setFromEuler(new THREE.Euler(rnd() * 0.5, rnd() * 3, rnd() * 0.5)),
-          V(0.15 * s, 0.1 * s, 0.14 * s));
+          V(0.095 * s, 0.065 * s, 0.09 * s));
         b.add(new THREE.IcosahedronGeometry(1, 1), rnd() > 0.5 ? leaf : leaf2, t);
       }
       const t2 = new THREE.Matrix4().compose(V(x + jx, PATCH.rowTop + 0.03, z + jz),
@@ -197,14 +197,14 @@ export const buildTreeline = (R: THREE.Object3D) => {
   const trunk = lam("scrubTrunk", () => ({ color: "#4b3a28" }));
   const rnd = rng(19);
   for (let i = 0; i < 26; i++) {
-    const x = 16 + rnd() * 60, z = 24 + rnd() * 90, h = 5 + rnd() * 7;
+    const x = -70 + rnd() * 78, z = 26 + rnd() * 90, h = 5 + rnd() * 7;
     b.add(new THREE.CylinderGeometry(0.22, 0.34, h * 0.5, 6).translate(x, h * 0.25, z), trunk);
     b.add(new THREE.ConeGeometry(h * 0.34, h, 7).translate(x, h * 0.62, z), scr);
     if (i % 3 === 0) b.add(new THREE.CylinderGeometry(0.2, 0.3, h * 0.35, 6).translate(x - 9, h * 0.18, z + 16), trunk);
     if (i % 3 === 0) b.add(new THREE.SphereGeometry(h * 0.34, 9, 7).translate(x - 9, h * 0.55, z + 16), scr);
   }
   // a hedgerow on the far boundary
-  for (let z = -6; z < 40; z += 3.2) b.add(new THREE.SphereGeometry(1.5, 8, 6).translate(14 + Math.sin(z) * 0.6, 0.9, z), scr);
+  for (let z = -30; z < 26; z += 3.2) b.add(new THREE.SphereGeometry(1.5, 8, 6).translate(13.6 + Math.sin(z) * 0.6, 0.9, z), scr);
   b.build(R, false);
 };
 

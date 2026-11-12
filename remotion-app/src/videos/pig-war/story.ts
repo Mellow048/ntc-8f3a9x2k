@@ -132,13 +132,13 @@ const run = (keys: Key[], f: number) => {
 const CAMS: Record<number, Key[]> = {
   // 1 — macro on the boar's snout in the furrow; rows run away from the lens, low sun behind the pig.
   1: [
-    { f: 2, s: { pos: [2.42, 0.68, 7.62], look: [1.06, 0.44, 6.62], fov: 28, roll: -0.012 } },
-    { f: 70, s: { pos: [2.12, 0.63, 7.34], look: [1.08, 0.45, 6.60], fov: 25, roll: -0.006 } },
+    { f: 2, s: { pos: [2.92, 0.52, 6.58], look: [1.10, 0.40, 6.55], fov: 30, roll: -0.012 } },
+    { f: 70, s: { pos: [2.58, 0.48, 6.57], look: [1.12, 0.41, 6.55], fov: 27, roll: -0.006 } },
   ],
   // 2 — pull back one step: the pig, the fence, and a sloop's bow hanging in the haze beyond the bluff.
   2: [
-    { f: 88, s: { pos: [-2.85, 1.02, 7.15], look: [1.5, 1.05, 6.05], fov: 34, roll: 0 } },
-    { f: 118, s: { pos: [-2.15, 1.06, 7.2], look: [1.5, 1.1, 6.05], fov: 31, roll: 0 } },
+    { f: 88, s: { pos: [-4.2, 0.78, 7.4], look: [3.0, 1.15, 6.7], fov: 32, roll: 0 } },
+    { f: 118, s: { pos: [-3.4, 0.84, 7.45], look: [3.0, 1.2, 6.7], fov: 29, roll: 0 } },
   ],
   // 17 — the boar squeezing under the sprung bottom rail, from outside the patch looking in
   17: [

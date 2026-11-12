@@ -5,6 +5,13 @@ import * as THREE from "three";
 import { lam, Kit } from "./build";
 import { cloudHD, ctex } from "./paint";
 import { LIGHTS, LOOK, LightPreset } from "./lights";
+
+/** this film's own light tweak: the stock golden preset throws navy shadows, which turns a green field navy.
+ *  Warmer shadow, slightly deeper lit side — a sunset you can still read a farm by. */
+const MYLIGHTS: Record<"day" | "golden", LightPreset> = {
+  day: LIGHTS.day,
+  golden: { ...LIGHTS.golden, shade: [0.26, 0.21, 0.26], lit: [1.5, 0.74, 0.31], sky: "#e8c3a8" },
+};
 import { TONE, CHAR, untone } from "./shade";
 import { NOINK } from "./ink";
 import { Pig } from "./pig";
@@ -29,10 +36,10 @@ const haloTex = () => ctex("sunHalo", 256, 256, (g) => {
   g.putImageData(im, 0, 0);
 });
 
-export const SHIP_AT: V3 = [78, -6, 14];
+export const SHIP_AT: V3 = [74, -6, 6.4];
 /** per-shot sun override (deg from the camera's forward axis, elevation); the presets are a starting point only */
 const SUN_SHOT: Record<number, { az?: number; el?: number }> = {
-  1: { az: -38, el: 17 }, 2: { az: -34, el: 15 }, 17: { az: -28, el: 20 },
+  1: { az: 95, el: 18 }, 2: { az: 150, el: 10 }, 17: { az: 120, el: 20 },
   18: { az: 22, el: 24 }, 19: { az: -12, el: 34 },
 };
 
@@ -129,7 +136,7 @@ export class World {
   }
 
   update(id: number, f: number, cam: THREE.PerspectiveCamera, scene: THREE.Scene) {
-    const t = f / FPS, s = SHOTS[id - 1], L = LIGHTS[s.light], K = LOOK[s.light];
+    const t = f / FPS, s = SHOTS[id - 1], L = MYLIGHTS[s.light], K = LOOK[s.light];
     const c = camAt(id, f);
     cam.position.set(...c.pos); cam.up.set(0, 1, 0); cam.lookAt(...c.look); cam.rotateZ(c.roll);
     cam.fov = c.fov; cam.near = 0.1; cam.far = 2000; cam.updateProjectionMatrix(); cam.updateMatrixWorld();
