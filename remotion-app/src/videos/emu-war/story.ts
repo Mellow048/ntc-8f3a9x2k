@@ -49,8 +49,9 @@ type Key = { f: number; s: Cam };
 
 /** a camera placed `dist` metres from `subject`, `camY` high, looking straight at it.
  *  yaw is the compass of the subject->camera direction (0 = camera on +z). */
-const look = (subject: V3, dist: number, camY: number, fov: number, yaw: number, roll = 0): Cam => ({
-  pos: [subject[0] + Math.sin(yaw) * dist, camY, subject[2] + Math.cos(yaw) * dist],
+const PULL = 1.45;   // standing back from the subject: cards breathe and nothing looms into the lens
+const look = (subject: V3, dist0: number, camY: number, fov: number, yaw: number, roll = 0): Cam => ({
+  pos: [subject[0] + Math.sin(yaw) * dist0 * PULL, camY, subject[2] + Math.cos(yaw) * dist0 * PULL],
   look: subject, fov, roll,
 });
 
@@ -116,8 +117,8 @@ const CAMS: Record<number, Key[]> = {
   ],
   7: [
     { f: 1363, s: look(SUBJ.solo, 4.4, 1.2, 35, 0.2) },
-    { f: 1440, s: look(SUBJ.hose, 2.1, 0.75, 42, 0.1) },
-    { f: 1540, s: look(SUBJ.hose, 1.6, 0.6, 36, 0.08, 0.03) },
+    { f: 1440, s: look(SUBJ.hose, 2.4, 1.0, 40, 0.1) },
+    { f: 1540, s: look(SUBJ.hose, 1.9, 0.85, 34, 0.08, 0.03) },
   ],
   8: [
     { f: 1601, s: look(SUBJ.rank, 9.2, 1.45, 38, -0.85) },
@@ -179,10 +180,10 @@ const FLED: Emu[] = MASSED.map((e, i) => ({
 
 /** the wire-fence beat: birds spread along the fence line and stepping through it */
 export const FENCE_FLOCK: Emu[] = Array.from({ length: 10 }, (_, i) => {
-  const x = -2.6 + i * 0.62 + (rnd(i, 31) - 0.5) * 0.28;
+  const x = -3.6 + i * 0.95 + (rnd(i, 31) - 0.5) * 0.4;
   return {
     x,
-    z: A.fenceZ - 0.5 + (i % 3) * 0.45 + (rnd(i, 32) - 0.5) * 0.35,
+    z: A.fenceZ - 1.2 + (i % 4) * 0.85 + (rnd(i, 32) - 0.5) * 0.5,
     rot: 1.35 + (rnd(i, 33) - 0.5) * 0.5,
     gait: rnd(i, 34),
     head: 0.15 + rnd(i, 35) * 0.4,

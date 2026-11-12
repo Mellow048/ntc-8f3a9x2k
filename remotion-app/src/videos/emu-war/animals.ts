@@ -71,12 +71,12 @@ const legPoly = (
   const tx2 = toes[0], ty2 = toes[1] - lift;
   const f: [number, number][] = [
     [ankle[0] - 10, ay - 10],
-    [tx2 - 54, ty2 - 4],
-    [tx2 - 30, ty2 + 2],
+    [tx2 - 46, ty2 - 8],
+    [tx2 - 22, ty2 + 3],
     [tx2 - 6, ty2 + 4],
     [tx2 + 20, ty2 + 3],
-    [tx2 + 46, ty2 - 2],
-    [tx2 + 62, ty2 - 10],
+    [tx2 + 38, ty2 - 3],
+    [tx2 + 52, ty2 - 10],
     [ankle[0] + 10, ay - 12],
   ];
   p.poly(f, col, p.ol * 0.8);
@@ -84,7 +84,7 @@ const legPoly = (
   p.stroke([[ankle[0] - 2, ay + 2], [tx2 - 26, ty2 + 1]], 3, coverInk(col));
   p.stroke([[ankle[0] + 4, ay + 2], [tx2 + 24, ty2]], 3, coverInk(col));
   // rear toe
-  p.line([[ankle[0] - 6, ay], [ankle[0] - 42, ay + 4]], col, w * 0.26);
+  p.line([[ankle[0] - 6, ay], [ankle[0] - 30, ay + 3]], col, w * 0.24);
   // scale ticks on the shank
   if (lift < 12) {
     p.stroke([[knee[0] - 4, knee[1] + 30], [knee[0] + 1, knee[1] + 58]], 3, LEG_DARK);
@@ -138,26 +138,26 @@ export const emu = (p: Pen, o: EmuLook) => {
 
   // ---- far leg: feathered thigh above the hock, bare scaly shank below
   const farLift = Math.max(0, Math.sin(g + Math.PI)) * (run ? 40 : 22);
-  const farAnkleX = 296 + Math.sin(g + Math.PI) * swing;
+  const farAnkleX = 278 + Math.sin(g + Math.PI) * swing;
   const farAnkleY = 936 - farLift * 0.5;
-  const farKnee: [number, number] = [292 + Math.sin(g + Math.PI) * swing * 0.45, 682 - farLift * 0.35];
-  legPoly(p, [292, 486], farKnee, [farAnkleX, farAnkleY], [farAnkleX + 6, 972 - farLift * 0.2], 26, LEG_DARK, farLift);
+  const farKnee: [number, number] = [272 + Math.sin(g + Math.PI) * swing * 0.45, 690 - farLift * 0.35];
+  legPoly(p, [276, 500], farKnee, [farAnkleX, farAnkleY], [farAnkleX + 6, 972 - farLift * 0.2], 24, LEG_DARK, farLift);
   // far thigh feathers, tucked against the body
   p.poly(smoothPath([[268, 470], [252, 530], [268, 590], [300, 600], [316, 540], [312, 480]]), shade(BODY, 0.82), p.ol * 0.8);
 
   // ---- near leg
   const lift = Math.max(0, Math.sin(g)) * (run ? 44 : 26);
-  const nearAnkleX = 336 + Math.sin(g) * swing;
+  const nearAnkleX = 350 + Math.sin(g) * swing;
   const nearAnkleY = 940 - lift * 0.5;
-  const nearKnee: [number, number] = [336 + Math.sin(g) * swing * 0.45, 688 - lift * 0.35];
-  legPoly(p, [330, 486], nearKnee, [nearAnkleX, nearAnkleY], [nearAnkleX + 8, 974 - lift * 0.2], 30, LEG, lift);
+  const nearKnee: [number, number] = [356 + Math.sin(g) * swing * 0.45, 696 - lift * 0.35];
+  legPoly(p, [352, 500], nearKnee, [nearAnkleX, nearAnkleY], [nearAnkleX + 8, 974 - lift * 0.2], 28, LEG, lift);
   p.poly(smoothPath([[306, 468], [292, 534], [306, 596], [342, 606], [358, 540], [352, 474]]), BODY, p.ol * 0.85);
 
   // ---- body: a round feathered mass; the belly tucks up between the thighs
   p.rot = [-pitch, 300, 470];
   const body: [number, number][] = smoothPath([
-    [196, 500], [176, 452], [164, 396], [176, 336], [214, 292], [268, 268], [330, 268], [382, 288],
-    [414, 336], [424, 390], [412, 440], [386, 482], [348, 506], [300, 498], [258, 508], [222, 508],
+    [188, 512], [166, 470], [158, 418], [170, 364], [204, 322], [256, 300], [324, 298], [376, 314],
+    [412, 352], [424, 404], [414, 458], [388, 498], [346, 518], [300, 510], [256, 520], [214, 520],
   ], 10);
   // feather clumps: short arcs just inside the back edge, never part of the outline
   const clump = (x: number, y: number, r: number) => {
@@ -180,16 +180,34 @@ export const emu = (p: Pen, o: EmuLook) => {
     p.stroke([[190, 408], [256, 396]], 3.6, shade(BODY, 0.72));
     p.stroke([[210, 452], [268, 442]], 3.6, shade(BODY, 0.74));
     p.stroke([[352, 300], [396, 330]], 3.2, mix(BODY_LIGHT, "#ffffff", 0.25));
+    // folded wing: a soft fan of three strokes on the flank, the shape an emu actually shows
+    for (let i = 0; i < 3; i++) {
+      p.stroke([[336 - i * 6, 356 + i * 18], [392 - i * 4, 372 + i * 20], [420 - i * 6, 408 + i * 12]], 3.4, shade(BODY, 0.74));
+    }
+  });
+
+  // ---- feather skirt: the shaggy hem that hangs over the top of the thighs
+  p.clip(body, () => {
+    const skirt: [number, number][] = [[180, 440]];
+    const hem = [[206, 534], [252, 548], [300, 542], [348, 550], [396, 534]];
+    for (const [x, y] of hem) skirt.push([x, y]);
+    skirt.push([416, 440]);
+    const soft = smoothPath(skirt, 8);
+    p.shadedFill(soft, shade(BODY, 0.97), mix(BODY, "#2f2a24", 0.55), -2.2, 120, 0.2);
+    p.poly(soft, null, p.ol * 0.9);
   });
 
   // ---- tail plume: three clumps off the rump
-  p.poly(smoothPath([[198, 452], [150, 438], [122, 406], [116, 370], [128, 342], [158, 350], [186, 380], [200, 412]], 8), shade(BODY, 0.9), p.ol * 0.9);
-  p.stroke([[150, 414], [176, 402]], 3.6, shade(BODY, 0.68));
+  for (let i = 0; i < 2; i++) {
+    const b = [190 - i * 6, 436 - i * 20];
+    p.poly(smoothPath([[b[0], b[1]], [b[0] - 34, b[1] - 18 + i * 6], [b[0] - 52, b[1] - 30 + i * 8],
+      [b[0] - 20, b[1] - 4 + i * 4], [b[0] + 4, b[1] + 10]], 6), shade(BODY, 0.88 - i * 0.04), p.ol * 0.5);
+  }
 
   // ---- neck: short, thick at the shoulder, an S up to the head
-  const headX = 462 + (o.head - 0.5) * 26 + lean;
-  const headY = 214 - o.head * 78 + bob * 0.35;
-  const nb: [number, number] = [382, 316];
+  const headX = 468 + (o.head - 0.5) * 26 + lean;
+  const headY = 168 - o.head * 66 + bob * 0.35;
+  const nb: [number, number] = [386, 344];
   const nt: [number, number] = [headX - 2, headY + 32];
   const c1: [number, number] = [nb[0] + 40, nb[1] - 40];
   const c2: [number, number] = [nt[0] - 40, nt[1] + 44];
@@ -201,7 +219,7 @@ export const emu = (p: Pen, o: EmuLook) => {
       s * s * s * nb[1] + 3 * s * s * t * c1[1] + 3 * s * t * t * c2[1] + t * t * t * nt[1],
     ]);
   }
-  const neckW = (t: number) => 62 - 28 * Math.pow(t, 0.7);
+  const neckW = (t: number) => 74 - 38 * Math.pow(t, 0.65);
   const left = neck.map((q, i) => [q[0] - neckW(i / 12) * 0.5, q[1]] as [number, number]);
   const right = neck.map((q, i) => [q[0] + neckW(i / 12) * 0.5, q[1]] as [number, number]).reverse();
   p.shadedFill([...left, ...right], mix(BODY, HEAD, 0.62), mix(HEAD, "#23211e", 0.25), -2.4, 74, 0.24);
@@ -214,13 +232,13 @@ export const emu = (p: Pen, o: EmuLook) => {
   });
 
   // ---- head + bill
-  p.ell(headX + 10, headY, 32, 28, HEAD, p.ol * 0.9);
+  p.ell(headX + 8, headY, 37, 32, HEAD, p.ol * 0.9);
   p.ell(headX + 4, headY - 8, 20, 14, HEAD_LIGHT, 0);
   p.ell(headX + 14, headY + 11, 15, 8, mix(HEAD, "#b6a48c", 0.5), 0);
   const by = headY + 6;
-  p.poly([[headX + 34, by - 9], [headX + 118, by + 2], [headX + 116, by + 10], [headX + 32, by + 12]], BILL, p.ol * 0.75);
-  p.stroke([[headX + 40, by - 4], [headX + 110, by + 3]], 2.6, "#5f5a52");
-  p.ell(headX + 16, headY - 7, 8.5, 7.5, "#f8f2e3", 0);
+  p.poly([[headX + 30, by - 11], [headX + 92, by + 1], [headX + 90, by + 9], [headX + 28, by + 13]], BILL, p.ol * 0.75);
+  p.stroke([[headX + 36, by - 5], [headX + 84, by + 2]], 2.6, "#5f5a52");
+  p.ell(headX + 15, headY - 7, 9.5, 8.5, "#f8f2e3", 0);
   p.dot(headX + 17, headY - 7, 3.8, INK);
   p.dot(headX + 18.4, headY - 8.4, 1.4, "#ffffff");
   p.stroke([[headX + 4, headY - 15], [headX + 23, headY - 12]], 3.6, INK);

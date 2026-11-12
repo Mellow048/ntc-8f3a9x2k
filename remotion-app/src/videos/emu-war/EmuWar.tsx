@@ -37,11 +37,21 @@ const makeBloom = () => {
 
 const fwd = new THREE.Vector3(), fpt = new THREE.Vector3();
 
+const EMPTY_KIT: Kit = {};
+/** The world is built from canvases with no external assets, so there is nothing to load -- but Remotion still
+ *  screenshots too early: the first frames of a render came out blank (a pale empty frame at the head of every
+ *  parallel part, which read as a flash at every chunk join). So hold the capture until the canvas has actually
+ *  drawn a few frames. */
 const useKit = () => {
-  const [kit, setKit] = useState<Kit | null>(null);
-  const [handle] = useState(() => delayRender("supermarket kit"));
-  useEffect(() => { loadKit().then((k) => { setKit(k); continueRender(handle); }); }, [handle]);
-  return kit;
+  const [handle] = useState(() => delayRender("emu first draw"));
+  useEffect(() => {
+    let n = 0, id = 0;
+    const tick = () => { if (++n >= 5) continueRender(handle); else id = requestAnimationFrame(tick); };
+    id = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(id);
+  }, [handle]);
+  void loadKit;
+  return EMPTY_KIT;
 };
 
 const Inner: React.FC<{ id: number; kit: Kit }> = ({ id, kit }) => {
@@ -104,7 +114,6 @@ const ShotView: React.FC<{ id: number; kit: Kit; alpha: number }> = ({ id, kit, 
 export const EmuWarShort: React.FC = () => {
   const f = useCurrentFrame();
   const kit = useKit();
-  if (!kit) return null;
   const flash = f >= FLASH_AT && f < FLASH_AT + 4 ? [1, 0.75, 0.45, 0.2][f - FLASH_AT] : 0;
   return (
     <AbsoluteFill style={{ background: "#cfe3f2" }}>

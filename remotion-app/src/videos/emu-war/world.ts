@@ -10,6 +10,18 @@ import * as THREE from "three";
 import { NOINK } from "./ink";
 import { EmuCard, ManCard, DIGGER, OFFICER_OUT, FARMER_OUT } from "./cast";
 import { FPS, A, camAt, crewAt, dustAt, flockAt, gunAt, truckAt, dofAt, SOLO, SOLO_WATER, RUNNER, type Light } from "./story";
+
+/** Deterministic noise for every procedural texture and prop jitter.
+ *  The film is rendered in parallel chunks on separate machines: an unseeded Math.random() makes each chunk's
+ *  gravel, planks and grass a different pattern, which shows up as a hard pop on the first frame of every part. */
+let _seed = 0x9e3779b9;
+const RND = () => {
+  _seed = (_seed + 0x6d2b79f5) | 0;
+  let t = Math.imul(_seed ^ (_seed >>> 15), 1 | _seed);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+export const resetNoise = (seed = 0x9e3779b9) => { _seed = seed | 0; };
 import type { Kit } from "./build";
 
 export const loadKit = async (): Promise<Kit> => ({});
@@ -20,20 +32,24 @@ const cv = (w: number, h: number) => {
   c.width = w; c.height = h;
   return c;
 };
-const texOf = (c: HTMLCanvasElement) => {
+const texOf = (c: HTMLCanvasElement, repeat?: [number, number]) => {
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
   t.anisotropy = 8;
+  if (repeat) {
+    t.wrapS = t.wrapT = THREE.RepeatWrapping;
+    t.repeat.set(repeat[0], repeat[1]);
+  }
   return t;
 };
 const noise = (g: CanvasRenderingContext2D, w: number, h: number, n: number, col: string, alpha: number, rMin = 1, rMax = 5) => {
   g.save();
   g.fillStyle = col;
   for (let i = 0; i < n; i++) {
-    const x = Math.random() * w, y = Math.random() * h, r = rMin + Math.random() * (rMax - rMin);
-    g.globalAlpha = alpha * (0.4 + Math.random() * 0.6);
+    const x = RND() * w, y = RND() * h, r = rMin + RND() * (rMax - rMin);
+    g.globalAlpha = alpha * (0.4 + RND() * 0.6);
     g.beginPath();
-    g.ellipse(x, y, r, r * (0.6 + Math.random() * 0.8), 0, 0, Math.PI * 2);
+    g.ellipse(x, y, r, r * (0.6 + RND() * 0.8), 0, 0, Math.PI * 2);
     g.fill();
   }
   g.restore();
@@ -49,10 +65,10 @@ const earthTex = () => {
   // stubble: short straws lying every which way
   g.lineCap = "round";
   for (let i = 0; i < 2200; i++) {
-    const x = Math.random() * S, y = Math.random() * S, a = Math.random() * Math.PI, L = 6 + Math.random() * 16;
-    g.strokeStyle = Math.random() < 0.5 ? "#d8b277" : "#a87a44";
-    g.globalAlpha = 0.35 + Math.random() * 0.4;
-    g.lineWidth = 1 + Math.random() * 1.6;
+    const x = RND() * S, y = RND() * S, a = RND() * Math.PI, L = 6 + RND() * 16;
+    g.strokeStyle = RND() < 0.5 ? "#d8b277" : "#a87a44";
+    g.globalAlpha = 0.35 + RND() * 0.4;
+    g.lineWidth = 1 + RND() * 1.6;
     g.beginPath(); g.moveTo(x, y); g.lineTo(x + Math.cos(a) * L, y + Math.sin(a) * L); g.stroke();
   }
   g.globalAlpha = 1;
@@ -82,10 +98,10 @@ const woodTex = (tone = "#a47a4c") => {
   const W = 256, H = 256, c = cv(W, H), g = c.getContext("2d")!;
   g.fillStyle = tone; g.fillRect(0, 0, W, H);
   for (let i = 0; i < 60; i++) {
-    g.strokeStyle = Math.random() < 0.5 ? "#8a6136" : "#c39a68";
-    g.globalAlpha = 0.25 + Math.random() * 0.35;
-    g.lineWidth = 1 + Math.random() * 2;
-    const y = Math.random() * H;
+    g.strokeStyle = RND() < 0.5 ? "#8a6136" : "#c39a68";
+    g.globalAlpha = 0.25 + RND() * 0.35;
+    g.lineWidth = 1 + RND() * 2;
+    const y = RND() * H;
     g.beginPath(); g.moveTo(0, y);
     for (let x = 0; x < W; x += 16) g.lineTo(x, y + Math.sin(x * 0.05 + i) * 3);
     g.stroke();
@@ -103,10 +119,10 @@ const waterTex = () => {
   grad.addColorStop(0, "#4f7a6e"); grad.addColorStop(0.55, "#3d6a63"); grad.addColorStop(1, "#2f5751");
   g.fillStyle = grad; g.fillRect(0, 0, S, S);
   for (let i = 0; i < 260; i++) {
-    const y = Math.random() * S, w = 20 + Math.random() * 90, x = Math.random() * S;
-    g.strokeStyle = Math.random() < 0.5 ? "#7fa79a" : "#2b4e49";
-    g.globalAlpha = 0.25 + Math.random() * 0.4;
-    g.lineWidth = 1 + Math.random() * 2;
+    const y = RND() * S, w = 20 + RND() * 90, x = RND() * S;
+    g.strokeStyle = RND() < 0.5 ? "#7fa79a" : "#2b4e49";
+    g.globalAlpha = 0.25 + RND() * 0.4;
+    g.lineWidth = 1 + RND() * 2;
     g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + w * 0.5, y - 3, x + w, y); g.stroke();
   }
   g.globalAlpha = 1;
@@ -175,7 +191,7 @@ const paperTex = () => {
   g.fillStyle = "#4a4438";
   for (let col = 0; col < 3; col++) {
     for (let row = 0; row < 16; row++) {
-      const w = 130 - Math.random() * 40;
+      const w = 130 - RND() * 40;
       g.fillRect(60 + col * 175, 580 + row * 17, w, 7);
     }
   }
@@ -192,7 +208,7 @@ const permitTex = () => {
   g.font = "700 22px Arial, sans-serif";
   g.fillText("EMU — 2024", W / 2, 136);
   g.fillStyle = "#8a8f88";
-  for (let i = 0; i < 8; i++) g.fillRect(40, 190 + i * 24, W - 80 - Math.random() * 40, 8);
+  for (let i = 0; i < 8; i++) g.fillRect(40, 190 + i * 24, W - 80 - RND() * 40, 8);
   g.fillStyle = "#b33b32"; g.font = "900 28px Arial"; g.fillText("APPROVED", W / 2, 380);
   return texOf(c);
 };
@@ -239,7 +255,12 @@ export class World {
     const R = this.root;
 
     // ---------------- ground
-    const earthMat = new THREE.MeshLambertMaterial({ map: earthTex() });
+    const rep = (t: THREE.Texture, rx: number, ry: number) => {
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.repeat.set(rx, ry);
+  return t;
+};
+    const earthMat = new THREE.MeshLambertMaterial({ map: rep(earthTex(), 30, 30), color: "#e6d3bb" });
     const ground = new THREE.Mesh(new THREE.PlaneGeometry(160, 160, 1, 1), earthMat);
     ground.rotation.x = -Math.PI / 2;
     ground.receiveShadow = true;
@@ -265,7 +286,7 @@ export class World {
     for (let x = -22; x <= 16; x += 2.4) {
       const p = cyl(0.055, 0.07, 1.25, postMat, 7);
       p.position.set(x, 0.62, A.fenceZ + Math.sin(x * 0.7) * 0.06);
-      p.rotation.z = (Math.random() - 0.5) * 0.08;
+      p.rotation.z = (RND() - 0.5) * 0.08;
       R.add(p);
     }
     for (let i = 0; i < 4; i++) {
@@ -346,7 +367,7 @@ export class World {
     R.add(shed);
 
     // ---------------- the track: a dirt strip that reads as a road
-    const trackMat = new THREE.MeshLambertMaterial({ color: "#c19a6c", map: earthTex() });
+    const trackMat = new THREE.MeshLambertMaterial({ color: "#cfae84", map: rep(earthTex(), 2, 26) });
     const track = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 60), trackMat);
     track.rotation.x = -Math.PI / 2;
     track.position.set(A.trackX, 0.008, -6);
@@ -506,8 +527,8 @@ export class World {
     const scrubMat = new THREE.MeshLambertMaterial({ color: "#5d6b49" });
     for (let i = 0; i < 26; i++) {
       const a = (i / 26) * Math.PI * 2;
-      const r = 46 + Math.random() * 14;
-      const s = 1.1 + Math.random() * 1.8;
+      const r = 46 + RND() * 14;
+      const s = 1.1 + RND() * 1.8;
       const bush = new THREE.Mesh(new THREE.SphereGeometry(s, 7, 5), scrubMat);
       bush.position.set(Math.cos(a) * r, s * 0.35, Math.sin(a) * r - 8);
       bush.scale.y = 0.5;
