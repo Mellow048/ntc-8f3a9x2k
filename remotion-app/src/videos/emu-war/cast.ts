@@ -56,9 +56,11 @@ class Card {
 // ---------------------------------------------------------------- the emu
 export class EmuCard extends Card {
   constructor(parent: THREE.Object3D) { super(parent, 600, 1000); }
-  update(x: number, z: number, rot: number, look: EmuLook) {
+  /** camYaw turns the card to face the lens (flat-cartoon billboard); flip mirrors the profile */
+  update(x: number, z: number, camYaw: number, flip: boolean, look: EmuLook) {
     this.mesh.position.set(x, 0, z);
-    this.mesh.rotation.y = rot;
+    this.mesh.rotation.y = camYaw;
+    this.mesh.scale.x = flip ? -1 : 1;
     const key = `${look.gait.toFixed(2)}|${look.head.toFixed(2)}|${look.run ? 1 : 0}|${(look.blaze ?? 0).toFixed(2)}`;
     if (key !== this.lastKey) {
       this.lastKey = key;
@@ -91,9 +93,9 @@ export const FARMER_OUT: Outfit = {
 
 export class ManCard extends Card {
   constructor(parent: THREE.Object3D, private outfit: Outfit) { super(parent, 600, 1000); }
-  update(x: number, z: number, rot: number, pose: "stand" | "walk" | "kneel", expr: string, look: number, phase: number, blink = 0) {
+  update(x: number, z: number, camYaw: number, pose: "stand" | "walk" | "kneel", expr: string, look: number, phase: number, blink = 0) {
     this.mesh.position.set(x, 0, z);
-    this.mesh.rotation.y = rot;
+    this.mesh.rotation.y = camYaw;
     const key = `${pose}|${expr}|${look}|${Math.round(phase * 20)}|${blink}`;
     if (key !== this.lastKey) {
       this.lastKey = key;

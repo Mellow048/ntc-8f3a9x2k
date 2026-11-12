@@ -9,7 +9,7 @@
 import * as THREE from "three";
 import { NOINK } from "./ink";
 import { EmuCard, ManCard, DIGGER, OFFICER_OUT, FARMER_OUT } from "./cast";
-import { FPS, A, camAt, crewAt, dustAt, flockAt, gunAt, truckAt, dofAt, SOLO, RUNNER, type Light } from "./story";
+import { FPS, A, camAt, crewAt, dustAt, flockAt, gunAt, truckAt, dofAt, SOLO, SOLO_WATER, RUNNER, type Light } from "./story";
 import type { Kit } from "./build";
 
 export const loadKit = async (): Promise<Kit> => ({});
@@ -226,7 +226,6 @@ export class World {
   private permit: THREE.Mesh;
   private hose: THREE.Group;
   private gravel: THREE.Mesh;
-  private line: THREE.Group;
   private puffs: THREE.Mesh[] = [];
   private fog = new THREE.Fog("#cfc2a6", 40, 190);
   private sun: THREE.DirectionalLight;
@@ -483,16 +482,6 @@ export class World {
     this.gravel.receiveShadow = true;
     R.add(this.gravel);
 
-    // ---------------- a rank of men, staged for the "line" beat
-    this.line = new THREE.Group();
-    for (let i = 0; i < 5; i++) {
-      const m = new THREE.Mesh(new THREE.BoxGeometry(0.5, 1.7, 0.5), new THREE.MeshLambertMaterial({ color: "#7d8168" }));
-      m.position.set(i * 1.2, 0.85, 0);
-      m.castShadow = true;
-      this.line.add(m);
-    }
-    R.add(this.line);
-
     // ---------------- the permit on its post
     this.permit = new THREE.Mesh(new THREE.PlaneGeometry(0.42, 0.56), new THREE.MeshBasicMaterial({ map: permitTex(), side: THREE.DoubleSide }));
     this.permit.position.set(A.fenceZ * 0 + 4.6, 1.15, 0.6);
@@ -607,28 +596,47 @@ export class World {
     const t = f / FPS;
 
     // the flock
-    const flock = flockAt(f);
+    const fenceBeat = id === 1 || id === 2 || id === 9 || id === 10;
+    const flock = flockAt(f, fenceBeat ? "fence" : "dam");
     this.emus.forEach((e, i) => {
       const b = flock[i % flock.length];
-      const show = id === 3 || id === 4 || id === 10 || (id === 1 && i < 9) || (id === 9 && i < 4);
+      const show = id === 3 || id === 4
+        ? true
+        : id === 1 || id === 2 ? i < 10
+        : id === 10 ? i < 3
+        : id === 9 ? i < 4
+        : false;
       e.mesh.visible = !!show;
-      if (show) e.update(b.x, b.z, b.rot, { gait: b.gait + t * 1.6, head: b.head, run: id === 4 || (id === 3 && f > 700) });
+      if (show) {
+        const running = id === 4 || (id === 3 && f > 700);
+        e.update(b.x, b.z, Math.atan2(cam.position.x - b.x, cam.position.z - b.z), Math.cos(b.rot) < 0,
+          { gait: b.gait + t * 1.6, head: b.head, run: running });
+      }
     });
 
     // the single emu the explanation is built on
     const soloShow = id === 6 || id === 7 || id === 10;
     this.solo.mesh.visible = soloShow;
-    if (soloShow) this.solo.update(SOLO.x, SOLO.z, SOLO.rot, { gait: Math.sin(t * 0.6) * 0.25 + 0.5, head: id === 7 ? 0.75 : 0.45 });
+    if (soloShow) {
+      const s0 = id === 10 ? SOLO_WATER : SOLO;
+      this.solo.update(s0.x, s0.z, Math.atan2(cam.position.x - s0.x, cam.position.z - s0.z), s0.rot > 0.5,
+        { gait: Math.sin(t * 0.6) * 0.25 + 0.5, head: id === 7 ? 0.75 : 0.45 });
+    }
 
     this.runner.mesh.visible = id === 4;
-    if (id === 4) this.runner.update(RUNNER.x + (f - 900) * 0.02, RUNNER.z + (f - 900) * 0.012, RUNNER.rot, { gait: (f - 900) * 0.09, head: 0.1, run: true });
+    if (id === 4) {
+      const rx = RUNNER.x + (f - 900) * 0.02, rz = RUNNER.z + (f - 900) * 0.012;
+      this.runner.update(rx, rz, Math.atan2(cam.position.x - rx, cam.position.z - rz), Math.cos(RUNNER.rot) < 0,
+        { gait: (f - 900) * 0.09, head: 0.1, run: true });
+    }
 
     // men
     const crew = crewAt(id, f);
     this.men.forEach((m, i) => {
       const d = crew[i];
       m.mesh.visible = !!d;
-      if (d) m.update(d.x, d.z, d.rot, d.pose === "carry" ? "walk" : d.pose === "kneel" ? "kneel" : "stand", d.expr, d.look, d.phase, ((t * 1.1) % 2.4) < 0.12 ? 1 : 0);
+      if (d) m.update(d.x, d.z, Math.atan2(cam.position.x - d.x, cam.position.z - d.z),
+        d.pose === "carry" ? "walk" : d.pose === "kneel" ? "kneel" : "stand", d.expr, d.look, d.phase, ((t * 1.1) % 2.4) < 0.12 ? 1 : 0);
     });
     const fm = (() => {
       if (id === 1) return { x: 5.4, z: -2.0, rot: 2.5, visible: true, expr: "nervous" };
@@ -637,7 +645,7 @@ export class World {
       return { x: 5.4, z: -2.0, rot: 2.5, visible: false, expr: "neutral" };
     })();
     this.farmer.mesh.visible = fm.visible;
-    this.farmer.update(fm.x, fm.z, fm.rot, "stand", fm.expr, 0.1, 0);
+    this.farmer.update(fm.x, fm.z, Math.atan2(cam.position.x - fm.x, cam.position.z - fm.z), "stand", fm.expr, 0.1, 0);
 
     // truck, gun, dust
     const tr = truckAt(id, f);
@@ -658,7 +666,7 @@ export class World {
     this.permit.visible = id === 9 || id === 10;
     this.hose.visible = id === 7;
     this.gravel.visible = id === 7;
-    this.line.visible = id === 8;
+
 
     const dust = dustAt(id, f);
     this.puffs.forEach((p, i) => {

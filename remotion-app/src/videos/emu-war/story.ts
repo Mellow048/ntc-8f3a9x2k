@@ -46,6 +46,14 @@ export const layersAt = (f: number): { id: number; alpha: number }[] => [{ id: s
 
 export type Cam = { pos: V3; look: V3; fov: number; roll: number };
 type Key = { f: number; s: Cam };
+
+/** a camera placed `dist` metres from `subject`, `camY` high, looking straight at it.
+ *  yaw is the compass of the subject->camera direction (0 = camera on +z). */
+const look = (subject: V3, dist: number, camY: number, fov: number, yaw: number, roll = 0): Cam => ({
+  pos: [subject[0] + Math.sin(yaw) * dist, camY, subject[2] + Math.cos(yaw) * dist],
+  look: subject, fov, roll,
+});
+
 const mixCam = (a: Cam, b: Cam, k: number): Cam => ({
   pos: a.pos.map((v, i) => v + (b.pos[i] - v) * k) as V3,
   look: a.look.map((v, i) => v + (b.look[i] - v) * k) as V3,
@@ -61,53 +69,69 @@ const run = (keys: Key[], f: number) => {
   }
   return cur;
 };
-/** Every hold pushes in; nothing idles. Camera height stays low: eye level of a
- *  man standing in stubble, never a drone shot. */
+
+/** Subject anchors the cameras are built on. Every hold is a slow push-in on a
+ *  subject that stays in frame; nothing drones, nothing idles. */
+const SUBJ = {
+  fence: [-1.2, 0.95, 1.1] as V3,       // the wire line with the birds stepping through
+  shed: [8.6, 1.45, -4.4] as V3,        // verandah, farmer, the truck coming up the track
+  dam: [-6.2, 0.9, -6.6] as V3,         // the flock at the water
+  scatter: [-3.4, 0.9, -3.0] as V3,     // the flock turning
+  chase: [3.9, 1.2, 4.4] as V3,         // truck bed and the runner
+  tally: [2.2, 0.8, -3.2] as V3,       // crate and tally board
+  solo: [1.35, 1.05, 0.15] as V3,       // the one bird the explanation is built on
+  hose: [-0.5, 0.35, 1.5] as V3,        // the jet on the gravel
+  rank: [4.4, 0.95, -1.5] as V3,        // the line of men
+  leaving: [7.6, 1.2, -1.6] as V3,      // the truck going out, permit on the post
+  water: [-4.6, 0.85, -6.6] as V3,      // the closer: the bird back at the dam
+};
+
 const CAMS: Record<number, Key[]> = {
   1: [
-    { f: 0, s: { pos: [-3.4, 1.15, 4.6], look: [-2.2, 1.05, 1.0], fov: 42, roll: 0 } },
-    { f: 150, s: { pos: [-2.6, 1.05, 3.2], look: [-1.9, 0.95, 0.6], fov: 39, roll: 0 } },
-    { f: 250, s: { pos: [-1.6, 1.0, 2.6], look: [-1.2, 0.9, 0.0], fov: 37, roll: 0 } },
+    { f: 0, s: look(SUBJ.fence, 5.2, 1.25, 44, 0.42) },
+    { f: 150, s: look(SUBJ.fence, 4.2, 1.1, 40, 0.36) },
+    { f: 250, s: look([-0.6, 0.9, 1.0], 3.4, 1.0, 37, 0.30) },
   ],
   2: [
-    { f: 333, s: { pos: [6.4, 1.5, -2.2], look: [9.6, 1.35, -6.4], fov: 40, roll: 0 } },
-    { f: 420, s: { pos: [7.0, 1.45, -3.2], look: [9.8, 1.3, -6.8], fov: 37, roll: 0 } },
-    { f: 500, s: { pos: [4.4, 1.35, 0.4], look: [7.6, 1.1, -3.0], fov: 40, roll: -0.03 } },
+    { f: 333, s: look(SUBJ.shed, 7.4, 1.6, 42, -0.72) },
+    { f: 430, s: look(SUBJ.shed, 6.2, 1.5, 38, -0.66) },
+    { f: 500, s: look(SUBJ.shed, 5.4, 1.45, 40, -0.60, -0.02) },
   ],
   3: [
-    { f: 600, s: { pos: [-1.2, 1.25, -1.4], look: [-7.4, 0.8, -8.2], fov: 40, roll: 0 } },
-    { f: 690, s: { pos: [-0.4, 1.15, -2.2], look: [-6.6, 0.7, -8.6], fov: 34, roll: 0 } },
+    { f: 600, s: look(SUBJ.dam, 9.6, 1.45, 42, 0.92) },
+    { f: 690, s: look(SUBJ.dam, 7.8, 1.3, 34, 0.88) },
   ],
   4: [
-    { f: 789, s: { pos: [-2.0, 1.4, -3.0], look: [-6.4, 0.9, -9.6], fov: 44, roll: 0 } },
-    { f: 860, s: { pos: [5.2, 1.8, 6.2], look: [2.0, 1.2, 2.4], fov: 46, roll: -0.05 } },
-    { f: 930, s: { pos: [5.6, 1.9, 5.4], look: [2.4, 1.25, 2.0], fov: 40, roll: -0.04 } },
+    { f: 789, s: look(SUBJ.scatter, 7.8, 1.55, 46, 0.5) },
+    { f: 880, s: look(SUBJ.chase, 7.0, 1.9, 46, 0.95, -0.04) },
+    { f: 960, s: look(SUBJ.chase, 5.6, 1.85, 40, 0.9, -0.03) },
   ],
   5: [
-    { f: 1002, s: { pos: [1.1, 1.35, -0.9], look: [2.6, 1.05, -2.6], fov: 38, roll: 0 } },
-    { f: 1090, s: { pos: [1.4, 1.3, -1.2], look: [2.7, 1.0, -2.7], fov: 32, roll: 0.02 } },
+    { f: 1002, s: look(SUBJ.tally, 4.4, 1.2, 40, 0.62) },
+    { f: 1090, s: look(SUBJ.tally, 3.4, 1.05, 33, 0.58, 0.02) },
   ],
   6: [
-    { f: 1170, s: { pos: [3.0, 1.05, 1.9], look: [1.4, 0.95, 0.2], fov: 34, roll: 0 } },
-    { f: 1290, s: { pos: [2.4, 1.0, 1.3], look: [1.3, 0.92, 0.1], fov: 30, roll: -0.02 } },
+    { f: 1170, s: look(SUBJ.solo, 4.6, 1.25, 36, 0.22) },
+    { f: 1290, s: look(SUBJ.solo, 3.9, 1.15, 31, 0.2, -0.02) },
   ],
   7: [
-    { f: 1363, s: { pos: [2.9, 1.0, 1.7], look: [1.5, 0.95, 0.15], fov: 33, roll: 0 } },
-    { f: 1440, s: { pos: [-0.2, 0.55, 2.6], look: [-0.5, 0.15, 1.1], fov: 40, roll: 0 } },
-    { f: 1540, s: { pos: [-0.1, 0.42, 2.1], look: [-0.5, 0.1, 1.25], fov: 34, roll: 0.03 } },
+    { f: 1363, s: look(SUBJ.solo, 4.4, 1.2, 35, 0.2) },
+    { f: 1440, s: look(SUBJ.hose, 2.1, 0.75, 42, 0.1) },
+    { f: 1540, s: look(SUBJ.hose, 1.6, 0.6, 36, 0.08, 0.03) },
   ],
   8: [
-    { f: 1601, s: { pos: [6.2, 1.05, 1.2], look: [1.0, 1.0, -1.4], fov: 38, roll: 0 } },
-    { f: 1700, s: { pos: [5.4, 1.0, 0.8], look: [1.0, 0.95, -1.6], fov: 32, roll: 0 } },
+    { f: 1601, s: look(SUBJ.rank, 9.2, 1.45, 38, -0.85) },
+    { f: 1700, s: look(SUBJ.rank, 7.6, 1.35, 32, -0.8) },
   ],
   9: [
-    { f: 1759, s: { pos: [3.2, 1.5, 6.4], look: [7.4, 1.2, -2.0], fov: 42, roll: 0 } },
-    { f: 1860, s: { pos: [3.8, 1.45, 5.2], look: [7.8, 1.15, -2.8], fov: 38, roll: 0.02 } },
-    { f: 1920, s: { pos: [8.2, 1.3, -0.4], look: [8.6, 1.15, -1.2], fov: 34, roll: 0 } },
+    { f: 1759, s: look(SUBJ.leaving, 8.4, 1.7, 44, -0.5) },
+    { f: 1820, s: look([9.8, 1.7, -4.4], 5.0, 1.75, 36, -0.15) },
+    { f: 1900, s: look([9.8, 1.7, -4.4], 3.6, 1.7, 30, -0.1, 0.02) },
+    { f: 1928, s: look([4.6, 1.15, 0.6], 2.4, 1.25, 34, 0.18) },
   ],
   10: [
-    { f: 1984, s: { pos: [-2.6, 0.95, -3.4], look: [-6.0, 0.75, -8.0], fov: 38, roll: 0 } },
-    { f: 2100, s: { pos: [-3.1, 0.9, -4.0], look: [-6.2, 0.72, -8.2], fov: 33, roll: 0 } },
+    { f: 1984, s: look(SUBJ.water, 5.4, 1.25, 38, 0.66) },
+    { f: 2100, s: look(SUBJ.water, 4.4, 1.15, 32, 0.6) },
   ],
 };
 export const camAt = (id: number, f: number): Cam => run(CAMS[id] ?? CAMS[1], f);
@@ -153,11 +177,28 @@ const FLED: Emu[] = MASSED.map((e, i) => ({
   gait: rnd(i, 11),
 }));
 
+/** the wire-fence beat: birds spread along the fence line and stepping through it */
+export const FENCE_FLOCK: Emu[] = Array.from({ length: 10 }, (_, i) => {
+  const x = -2.6 + i * 0.62 + (rnd(i, 31) - 0.5) * 0.28;
+  return {
+    x,
+    z: A.fenceZ - 0.5 + (i % 3) * 0.45 + (rnd(i, 32) - 0.5) * 0.35,
+    rot: 1.35 + (rnd(i, 33) - 0.5) * 0.5,
+    gait: rnd(i, 34),
+    head: 0.15 + rnd(i, 35) * 0.4,
+  };
+});
+
 /** frames the flock breaks: the volley lands at 24.09 s ("a dozen birds go down") */
 export const BREAK_A = 700;
 export const BREAK_B = 800;
 
-export const flockAt = (f: number): Emu[] => {
+export const flockAt = (f: number, where: "dam" | "fence" = "dam"): Emu[] => {
+  if (where === "fence") return FENCE_FLOCK.map((e, i) => ({ ...e, gait: e.gait + f / FPS * 0.5, x: e.x + (f / FPS) * 0.18 }));
+  return damFlockAt(f);
+};
+
+const damFlockAt = (f: number): Emu[] => {
   const u = smooth((f - BREAK_A) / (BREAK_B - BREAK_A)); // 0 = massed, 1 = running
   if (u <= 0) return MASSED;
   if (u >= 1) return FLED;
@@ -168,7 +209,9 @@ export const flockAt = (f: number): Emu[] => {
 };
 
 /** the single bird the explanation is built on: always feeding at the same spot */
-export const SOLO: Emu = { x: 1.35, z: 0.15, rot: 1.62, gait: 0, head: 0.5 };
+export const SOLO: Emu = { x: 1.35, z: 0.15, rot: 0, gait: 0, head: 0.5 };
+/** the closer puts the same bird back at the water */
+export const SOLO_WATER: Emu = { x: -4.6, z: -6.6, rot: 1, gait: 0, head: 0.35 };
 
 /** the bird that outruns the truck in shot 4 */
 export const RUNNER: Emu = { x: 3.1, z: 2.6, rot: 1.75, gait: 0, head: 0.15 };
@@ -232,7 +275,7 @@ export const crewAt = (id: number, f: number): Digger[] => {
     { x: A.board[0] + 0.7, z: A.board[1] + 0.4, rot: 2.8, pose: "stand", expr: "neutral", look: -0.3, phase: 0 },
   ];
   if (id === 8) return Array.from({ length: 5 }, (_, i) => ({
-    x: 2.2 + i * 1.15, z: -1.2 - i * 0.15, rot: 2.05, pose: "stand" as const, expr: "stern", look: 0.05, phase: 0,
+    x: 3.2 + i * 0.56, z: -1.3 - i * 0.05, rot: 2.05, pose: "stand" as const, expr: "stern", look: 0.05, phase: 0,
   }));
   if (id === 9) return [
     { x: A.trackX - 1.2, z: -2.4, rot: 1.2, pose: "stand", expr: "neutral", look: 0.2, phase: 0 },
