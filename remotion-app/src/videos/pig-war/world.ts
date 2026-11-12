@@ -9,7 +9,8 @@ import { LIGHTS, LOOK, LightPreset } from "./lights";
 /** this film's own light tweak: the stock golden preset throws navy shadows, which turns a green field navy.
  *  Warmer shadow, slightly deeper lit side — a sunset you can still read a farm by. */
 const MYLIGHTS: Record<"day" | "golden", LightPreset> = {
-  day: LIGHTS.day,
+  // the stock day preset leaves a purple-grey shade that reads as overcast on a log wall; a touch brighter and warmer
+  day: { ...LIGHTS.day, shade: [0.42, 0.40, 0.46], lit: [1.6, 1.52, 1.36], lift: [0.03, 0.035, 0.07] },
   golden: { ...LIGHTS.golden, shade: [0.40, 0.30, 0.25], lit: [1.52, 0.80, 0.36], lift: [0.02, 0.025, 0.05], sky: "#e8c3a8" },
 };
 import { TONE, CHAR, untone } from "./shade";
@@ -192,7 +193,7 @@ export class World {
     this.pig.update(pigAt(id, f));
     // Cutlar on his step (shot 18); he is off the set for every other shot for now
     const onStep = id === 18;
-    this.cutlar.set(-6.02, -0.02, 4.0, cam.position, {
+    this.cutlar.set(-6.02, 0.18, 4.0, cam.position, {
       outfit: CUTLAR, view: "front", expr: id === 18 ? "neutral" : "neutral", mode: "stand", phase: 0,
       look: 0.2, light: 0.5, seed: 3, scale: 1.02,
     }, onStep);
