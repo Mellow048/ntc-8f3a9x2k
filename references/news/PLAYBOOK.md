@@ -1,11 +1,12 @@
 # News short playbook
 
-The order of work in [`README.md`](README.md) as a checklist, with the numbers, commands and traps that five approved
+The order of work in [`README.md`](README.md) as a checklist, with the numbers, commands and traps that seven approved
 films produced. The README says what a news short is and which rules it obeys. This page says how to get one made in
 a single pass. Each film's own `SCRIPT.md` is the worked example for every step here.
 
 The fourth film went from its first commit to the render whose picture the user approved in under three hours. The
-fifth, made from `main` by following this page, took an hour and forty minutes and two renders.
+fifth, made from `main` by following this page, took an hour and forty minutes and two renders. The sixth and
+seventh were made one after the other in four hours, with one and two renders.
 Nothing below needs the user, except the choice of topic and, once in a session, the choice of voice.
 
 ## 0. Before anything: the working place
@@ -24,11 +25,11 @@ Nothing below needs the user, except the choice of topic and, once in a session,
   remotion-app/scripts/local-chromium.sh                   # a browser for local stills, from the npm registry
   ```
 
-- **Start from the newest film.** `~/.cache/ntc-venv/bin/python references/news/restore.py fake-boss --mix`
+- **Start from the newest film.** `~/.cache/ntc-venv/bin/python references/news/restore.py truck-stop-heist --mix`
   copies its two folders into your checkout, registers it, rebuilds its mix and says whether that mix is the approved
   one, byte for byte. Render one still to prove the place works:
-  `cd remotion-app && REVIEW=FakeBossReview REMOTION_BROWSER="$(scripts/local-chromium.sh)" scripts/pick.sh out/t 1000 540`.
-  Then copy `remotion-app/src/videos/fakeboss/` and `shoots/fake-boss/` under your film's names, rename the four
+  `cd remotion-app && REVIEW=TruckStopReview REMOTION_BROWSER="$(scripts/local-chromium.sh)" scripts/pick.sh out/t 1000 540`.
+  Then copy `remotion-app/src/videos/truckstop/` and `shoots/truck-stop-heist/` under your film's names, rename the four
   ids in the copy's `register.tsx` (`<Film>Short`, `<Film>Review`, `<Film>CastSheet`, `<Film>Compositions`), point
   `PICTURE_WORDS` in `build_voice.py` and `STORY` in `build_mix.py` at the new film folder, add the film's two lines
   to `src/Root.tsx` beside the anchors, and delete the restored folders again. Your film is written
@@ -63,8 +64,9 @@ Do not offer the same list twice. Say when an idea expires (a launch date, a ver
 
 That length reads in 73 to 75 seconds at the pace the films use: the third and fourth films are 235 words each and run 74.2
 and 75.3 seconds. It does not hold for every text: spoken numbers and names run long. The fifth film's first draft,
-242 words, read in 79.5 seconds and was cut to 228 (74.6 s), which cost a second take. Count on about 3.05 words a
-second, read the numbers out as words when you count, and cut the text, not the pauses.
+242 words, read in 79.5 seconds and was cut to 228 (74.6 s), which cost a second take. The pace also varies from
+take to take: the sixth film's 227 words came to 72.4 seconds and the seventh's 228 to 69.4. Count on 3.05 to 3.3
+words a second, read the numbers out as words when you count, and cut the text, not the pauses.
 
 - Line 1 is the whole story and its hook. A viewer who has never heard of it must follow every line.
 - One line says whose account a stretch is ("Binance says it began in June…"). Each party to a dispute gets its own
@@ -84,7 +86,7 @@ second, read the numbers out as words when you count, and cut the text, not the 
 - `python shoots/<slug>/build_voice.py` makes `voice/voice.wav`, `voice/words.json` and the picture's copy of
   `words.json`. It tightens the pauses, lifts the pace 1.2× and puts silence back where the film needs a beat
   (`BEATS` in the script: after "quote:", after a quotation, before the closing question). Rewrite `BEATS` for your
-  text, and give every name the recogniser cannot know its sounds in `LEXICON` (initials go through `SPOKEN`). It
+  text, close the gaps inside spelled initials that the take reads slowly (`SQUEEZE`), and give every name the recogniser cannot know its sounds in `LEXICON` (initials go through `SPOKEN`). It
   needs `pocketsphinx`. Then read `words.json`: one entry for every word of the narration, in order.
 - **`words.json` is the clock.** Picture, captions, graphics and sound all read it. Re-time by running
   `build_voice.py`, then `build_mix.py`, then rendering; never by editing frame numbers.
@@ -105,7 +107,10 @@ Write `story.ts` first, then cast and sets, then `Overlays.tsx`.
 
 - **Changes of shot.** Two shots of the same thing from almost the same place make the picture hop. Every change is
   a cut to another set, a cut to a clearly different size, one take over several entries (`join: true`), or a move
-  that goes on from a camera at rest (`soft: true`). When a cut goes, what used to vanish on it needs a new end: keep
+  that goes on from a camera at rest (`soft: true`). Check it from the numbers in `story.ts` as well: when the
+  subject's size changes by a factor between about 0.8 and 1.25 across a cut on one set, it hops. A graphic that
+  belongs to one entry vanishes at a join unless it is placed over both, and anything timed from `shot.at` starts
+  again there: time it from a word. When a cut goes, what used to vanish on it needs a new end: keep
   the stamp until the next graphic takes its place. A card that is already up must not play its entrance again after
   a cut on the same set (start it before the shot: `at = shot.at − 30`); it is a jump with no sound, and the check
   reports it.
@@ -122,6 +127,12 @@ Write `story.ts` first, then cast and sets, then `Overlays.tsx`.
   aims beside the figure; water from a hose is one tapered tube with spray at its end; fire needs drawn flames; a figure that holds something out to
   the side needs a wider drawing (`WIDE` in the fifth film's `cast.ts`), or the thing is cut off at the edge of the
   figure's canvas; a small animal on the ground sits under the captions, so stand it on something.
+- **Things that jump and that the check does not report:** something that appears inside the frame before it
+  moves (start it outside), something that leaves after a few frames (let it shrink away in the frame), a cue that
+  starts too late to finish before the cut. Read every set's `tick` for these before the render.
+- **A portrait frame is narrow.** Anything wide is cut at both edges: stand a long vehicle at an angle so that it
+  runs into the depth, stack things instead of placing them side by side, and work out where a sign lands with
+  `frame.mjs`. A set's own sign is hidden while a card, stamp or tab is in front of it.
 - `node scripts/shots.mjs <film> table` lists every shot with its frames. `node scripts/frame.mjs <film> <shot>
   "x,y,z"` says where a point of the set lands in the frame, without rendering.
 
@@ -135,7 +146,8 @@ renders the frames you name (four took 23 seconds in the two-core sandbox). Tile
    (`REMOTION_BROWSER=… node scripts/stills.mjs <Film>CastSheet out/cast --frames=0 --width=720`).
 2. The middle frame of every shot. Fix, render the same frames, look again.
 3. The first frames after every cut, and the frame on which each graphic has landed.
-4. **The two frames either side of every change of shot on the same set.** A hop shows only there.
+4. **The two frames either side of every change of shot on the same set.** A hop shows only there. Do this before
+   the render is started, not while it runs: the sixth film lost a queued run to it.
 5. The last second: the closing question, both answers, nothing under the captions.
 
 Expect five to eight rounds and 170 to 350 stills. A full render costs a commit and eleven minutes each time; a
@@ -147,11 +159,13 @@ Copy the newest `build_mix.py`. Keep its mixing half (ducking, the pocket for co
 the report). Write new: the tune, its instruments, and every cue.
 
 - **A score of its own.** Used so far: A minor at 112 bpm, D minor at 104, G major with E minor at 118, C minor swung
-  at 130, a waltz in F sharp minor at 174. Take another key and another tempo, and let the music take part: a second tune for a place or a party,
+  at 130, a waltz in F sharp minor at 174, six-eight in G minor with B flat major at 72, five in a bar in B minor
+  at 100. Take another key and another tempo, and let the music take part: a second tune for a place or a party,
   drums that drop out, a stop before the question, no tune under a quotation (one thin chord: with nothing at all
   there, the check reports silence).
-- **Levels.** The mix is built to −14.5 LUFS under a ceiling of −2.3 dB (`TARGET_LUFS`, `CEIL_DB`), so that the
-  encoded film stays under −1 dBFS. The music **5 to 6 LU under the voice while someone speaks**, measured after
+- **Levels.** The mix is built to −14.5 LUFS under a ceiling of −2.8 dB (`TARGET_LUFS`, `CEIL_DB`), so that the
+  encoded film stays under −1 dBTP. Built to −2.3, the sixth film came out at exactly −1.0: the encode can go a
+  decibel over the mix where several noisy cues start together. The music **5 to 6 LU under the voice while someone speaks**, measured after
   ducking. The user rejected 9 to 11 LU as inaudible.
 - **Every word clear.** `python templates/scripts/word_margins.py shoots/<slug>/audio/build_mix.py` measures the
   voice against music and effects over each word's own span. The last three films read: median 5.6, 5.8 and 5.7 LU, tenth
@@ -174,7 +188,8 @@ gh workflow run render-short.yml --ref <branch> -f composition=<Film>Short \
   -f mix=shoots/<slug>/audio/mix.wav -f shots=shoots/<slug>/qa-shots.json \
   -f publish='shoots/<slug>/final-{size}p.mp4' -f size=720 -f chunks=20
 gh run list --workflow render-short.yml --branch <branch> --limit 1 --json databaseId --jq '.[0].databaseId'
-gh run watch <run id> --exit-status          # about eleven minutes
+gh run view <run id> --json status,conclusion   # poll it (`gh run watch` can outlive the sandbox's command limit);
+                                                # eleven to thirteen minutes with the wait for runners
 git fetch origin <branch> && git merge --ff-only FETCH_HEAD   # the run commits the MP4 and qa-report.md
 ```
 

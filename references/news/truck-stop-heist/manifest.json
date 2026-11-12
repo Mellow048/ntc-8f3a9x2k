@@ -1,0 +1,318 @@
+{
+  "title": "The $100 Million Truck Stop",
+  "origin_commit": "1f30eb30d623ff6765899f1e30d5c12aa0935b54",
+  "origin_video": "shoots/truck-stop-heist/final-720p.mp4",
+  "origin_branch": "arena/be67280b-ntc-8f3a9x2k",
+  "render_commit": "d65998a79b7e22aa0df917c8cc6114937925ac2c",
+  "render_source_commit": "ee5d24269fe20ad66da634fa863af2d7d7cd4193",
+  "render_run": 43196917478,
+  "category": "news",
+  "approval": "User, 2026-11-12, after the delivery of the sixth and seventh films together: \"another banger after banger. great job lad.\" The agent had said at delivery that it would put both films on main on approval.",
+  "film_dir": "truckstop",
+  "shoot": "truck-stop-heist",
+  "register": "TruckStopCompositions",
+  "compositions": [
+    "TruckStopShort",
+    "TruckStopReview",
+    "TruckStopCastSheet"
+  ],
+  "adaptation": "Standalone entry point added (source/remotion-app/src/reference-entry.tsx); the live Root.tsx and index.ts, which register other films too, are omitted. Every other file under source/ is copied without edits from origin_commit. changed_since_render_source lists the copied files that differ from the tree the picture was rendered from. audio/mix.wav is not stored: build_mix.py regenerates it from the included voice (mix_wav_sha256 is the file that went into the MP4). The shot sheets were cut from final-720p.mp4. The render workflow is included as an inert recipe.",
+  "changed_since_render_source": [
+    "shoots/truck-stop-heist/NOTES.md",
+    "shoots/truck-stop-heist/SCRIPT.md",
+    "shoots/truck-stop-heist/qa-report.md"
+  ],
+  "mix_wav_sha256": "88fed841e3bf3ae9e8a16be322f2a203aef419b76126635891d96b5016c11982",
+  "files": [
+    {
+      "path": "final-720p.mp4",
+      "sha256": "8d09de5b979ab34e0fb2cdd01f390681fb8d83e3b97d31ffc2c38976383ef87f",
+      "bytes": 41012667
+    },
+    {
+      "path": "shots-01-23.jpg",
+      "sha256": "94951268e2e6aeb003569c949a14fb7d5258cfe1dbcd436c02a878aeb2778813",
+      "bytes": 500120
+    },
+    {
+      "path": "shots-24-46.jpg",
+      "sha256": "638d39479d6edd2a21133d1af290ce3477cfa729aeeb3f3eebd665f2302329b4",
+      "bytes": 514002
+    },
+    {
+      "path": "source/.github/workflows/render-short.yml",
+      "sha256": "327ccc1804c1a3d988a6c6878467aba604adc8f927417fb04fa58c9815adbc44",
+      "bytes": 13505
+    },
+    {
+      "path": "source/remotion-app/package-lock.json",
+      "sha256": "9f9fb75fcdfbe2264552bb81d2798d9e2796aa9ca90f322044903c8236431766",
+      "bytes": 161227
+    },
+    {
+      "path": "source/remotion-app/package.json",
+      "sha256": "cb1d27d1eedfccdccc33cb5f890393de7cd592c6b8a4b65aa56cf2a2b2046c4b",
+      "bytes": 813
+    },
+    {
+      "path": "source/remotion-app/public/fonts/README.md",
+      "sha256": "dff0c0df99ef2ba29692af8a5d4c923107867331e7546bda91ee33115cda9689",
+      "bytes": 511
+    },
+    {
+      "path": "source/remotion-app/public/fonts/anton-latin-400-normal.woff2",
+      "sha256": "d0fa07ff63dd60cbc0e2f58e29c802dca2a5ae0276c999f59c6111ab7bbaec3b",
+      "bytes": 18612
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-700-normal.woff2",
+      "sha256": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+      "bytes": 18824
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-900-normal.woff2",
+      "sha256": "5b6958520638bb8609f9eacb17c4d189563efeae96d5da49f7c2043988697205",
+      "bytes": 18020
+    },
+    {
+      "path": "source/remotion-app/remotion.config.ts",
+      "sha256": "f2f70c8410b5bf76fecac310cee020a9ad9902031b8ffedd74a88b0877e3f6c1",
+      "bytes": 443
+    },
+    {
+      "path": "source/remotion-app/scripts/frame.mjs",
+      "sha256": "e3e8feaf5ae569802e64c4977d4aca28a77676aa7c7ee156ae40568a25e03cf1",
+      "bytes": 3444
+    },
+    {
+      "path": "source/remotion-app/scripts/local-chromium.sh",
+      "sha256": "fc9d292d0f216ad73efaa7705ae1e959fa8df2718dbe47c8b142fd44109468c8",
+      "bytes": 1979
+    },
+    {
+      "path": "source/remotion-app/scripts/pick.sh",
+      "sha256": "114c6050fd3fe3c46aa326f3e81df555ce2b5d6cdfa54a5de0b14215062e326e",
+      "bytes": 1076
+    },
+    {
+      "path": "source/remotion-app/scripts/plan.mjs",
+      "sha256": "785953e29eb2f4c486f3bbfc191fce6168f7c3b25ec0b0bc62fa7471a88ebcba",
+      "bytes": 1776
+    },
+    {
+      "path": "source/remotion-app/scripts/sheet.py",
+      "sha256": "44fa80748c25174c6f1ee30530b12fc05f18a501d802deb578bfa929adc42c81",
+      "bytes": 1420
+    },
+    {
+      "path": "source/remotion-app/scripts/shots.mjs",
+      "sha256": "aa4b9e1c18e406766cf63b20b0dccf41efa47903614453c72a6e3ce35369aa70",
+      "bytes": 1532
+    },
+    {
+      "path": "source/remotion-app/scripts/stills.mjs",
+      "sha256": "35c4b7ea7190c6a3e1333c889d46ddfaee411dfc14d29998f24bd5b1f468a154",
+      "bytes": 3301
+    },
+    {
+      "path": "source/remotion-app/src/reference-entry.tsx",
+      "sha256": "dffa139907314644e8a03323bd0484e43e1e3d723d065d721128197a119cec1f",
+      "bytes": 364
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/toon.ts",
+      "sha256": "e3e5b3f636d04549369d1c842a13e708fa35d32d89176184ad027360a6eee7f4",
+      "bytes": 59851
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/Captions.tsx",
+      "sha256": "ad07ceaee9900c4ee3900a8c8fd3f5ead56cf096f9ee3551969e7cc72cd27f01",
+      "bytes": 3461
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/CastSheet.tsx",
+      "sha256": "66fe75923e4db274b78b8e67a370559fb5a21e062ace01ef081d8a05b5345d0f",
+      "bytes": 2238
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/Overlays.tsx",
+      "sha256": "8334977deac2154feccb82363473c168144b95b2d89e8c39f89af6294bd3bac3",
+      "bytes": 19098
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/TruckStop.tsx",
+      "sha256": "fe2392400e882e7961c0113d905b8fce9d0d5647d16577fd4b5c614013211f64",
+      "bytes": 4022
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/World.ts",
+      "sha256": "99c8f82e2ecc348f456109042ffc070714aee25a991e8d6c5f1cd5c4c2dd8b71",
+      "bytes": 3160
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/cast.ts",
+      "sha256": "38bbf50e0a4f6dc9180fe054b4cbef1d8024595e79ca414da4c7feb91457361c",
+      "bytes": 29400
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/fonts.ts",
+      "sha256": "2397bb4a15ec5a3f3c099bd958e620596051f2a039bf844b02cf172b5a2204d7",
+      "bytes": 1203
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/kit.ts",
+      "sha256": "fbfc87aa24afac9eadba5b75eaeeec281c05a93991c8982689366c1a8199c60c",
+      "bytes": 12508
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/props.ts",
+      "sha256": "0284838ea23a8b1288a35e688c39ead1de7bb8ecb04a149a95024f8449d3f29b",
+      "bytes": 20949
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/register.tsx",
+      "sha256": "701b21b4c34a04522b82a29b9363f150d9925b980510ebb2895c1d65d23eb4ba",
+      "bytes": 1363
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/sets.ts",
+      "sha256": "c3038e20cd9b879e56b593cca2678c02ef26cbcdd6f8413f42629edf260ce42f",
+      "bytes": 29402
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/sets2.ts",
+      "sha256": "982cc25999fc474beb5463d949efa8cd83b35f604b4e906a396b34efc6f0976f",
+      "bytes": 29288
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/sets3.ts",
+      "sha256": "4fea81c8f249558808bb211185bf835cb30957c43705084dbe8facc3d41845f0",
+      "bytes": 24715
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/story.ts",
+      "sha256": "9c4f14028e3d847dd5f28cceeb6d26ee48bbcb900a5552ef6d0946e014388f45",
+      "bytes": 9706
+    },
+    {
+      "path": "source/remotion-app/src/videos/truckstop/words.json",
+      "sha256": "ca45095b298390f05783b1a5c836dee09a056b8427e2865481a58e25fd373a01",
+      "bytes": 23046
+    },
+    {
+      "path": "source/remotion-app/tsconfig.json",
+      "sha256": "036ea329ec75a4f26a744b78f41d2dc9353f15f965b6a7f98397a32652ee0073",
+      "bytes": 352
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/NOTES.md",
+      "sha256": "dfd831fb0b3fba32558fa942bc8bcdb9b13687e1d1d7a76aef21b9aa1fae7507",
+      "bytes": 30065
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/SCRIPT.md",
+      "sha256": "3ca5b2c5d7fdd8e6dffc1c2109557847b53a2d983f4367c045702d6eba7f157f",
+      "bytes": 36661
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/audio/build_mix.py",
+      "sha256": "629d4df7945156924ce64296a0075feb1e1ed06bb495b531e61a62f3486e2118",
+      "bytes": 61332
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/audio/cues.md",
+      "sha256": "254b14344fa76e3f44480e4fcaf384eb814d4489cd772b3120be78f3832acf9c",
+      "bytes": 15887
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/build_voice.py",
+      "sha256": "158ee1dcb12c333a198bb5e7efff94fc359be1bb3eb8d88ea983e140736f9fb4",
+      "bytes": 14657
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/narration.txt",
+      "sha256": "8bdd453dfccaf0f2d786cf13cf02717a4a7b6e6a4137186ea299cbecbb0a7f43",
+      "bytes": 1304
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/qa-report.md",
+      "sha256": "c0104cb53949e6046469c5e5906931b7d6e8d5469ef0f88bc7ea82dda70cbf04",
+      "bytes": 3137
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/qa-shots.json",
+      "sha256": "72473a9b1dfbd91b7dd2d7eb485a62fdb38f9c70dc5cbe5b66d9c9172f910a58",
+      "bytes": 5286
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/voice/raw-take.mp3",
+      "sha256": "1584f2086f7d58c0be55c9f5e68402407c427b6d1abc62d9f9eaa78413dc549b",
+      "bytes": 719325
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/voice/timing.json",
+      "sha256": "517e69a21b713442d85edabd82d173714d693c07caba385b5b985c720cfb7c36",
+      "bytes": 1231
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/voice/voice.wav",
+      "sha256": "47f4a079accd335278bad9092e2b66d21e318d8ca96cc7b4197594d63098377e",
+      "bytes": 6665120
+    },
+    {
+      "path": "source/shoots/truck-stop-heist/voice/words.json",
+      "sha256": "eae784c16e1ed21d41a453c49815743a9a2f7d93d00d02f83ef1914cb2b67047",
+      "bytes": 26696
+    },
+    {
+      "path": "source/shoots/voice_master.py",
+      "sha256": "eb1c1804cef6658cc49b2fdd98b0bc0948ac0f24398ddde83ad7268c488f2b5e",
+      "bytes": 12949
+    },
+    {
+      "path": "source/templates/audio/dsp.py",
+      "sha256": "3b456f4653fde5f30b8a22aa53903e5d4b2b3ca508908978f210fb6934214355",
+      "bytes": 11468
+    },
+    {
+      "path": "source/templates/audio/instruments.py",
+      "sha256": "8f66ee6134daefc85021aadab1138a3ce480029c91fc4428d04cba6fd5737fee",
+      "bytes": 13122
+    },
+    {
+      "path": "source/templates/audio/sfx_gen.py",
+      "sha256": "656e0d04a8fbd05e1b8c9a8a96e201c6033783cb6961eba788544f05f294a651",
+      "bytes": 25699
+    },
+    {
+      "path": "source/templates/scripts/aac_check.py",
+      "sha256": "8a0509ffab1ceac1bab6220b6c33f79bb45826ed8a5369f98a31fe156e884c6b",
+      "bytes": 2485
+    },
+    {
+      "path": "source/templates/scripts/short_qa.py",
+      "sha256": "9a71fa351b2db50bac669eebdd37c9d9f00ccd2b8b710ab472871e0ce4160550",
+      "bytes": 4727
+    },
+    {
+      "path": "source/templates/scripts/word_margins.py",
+      "sha256": "8a6ccb65343d5bb2a4f7b60232540adf7ff8260053231747e2b3c208b4fd3134",
+      "bytes": 2805
+    }
+  ]
+}

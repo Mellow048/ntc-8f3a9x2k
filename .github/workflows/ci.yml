@@ -36,7 +36,7 @@ jobs:
 
       - name: Check standalone approved news sources
         run: |
-          for film in nvidia-spy gta6-leaker fridge-hack binance-heist fake-boss; do
+          for film in nvidia-spy gta6-leaker fridge-hack binance-heist fake-boss sorry-hackers truck-stop-heist; do
             npm ci --no-audit --no-fund --prefix "references/news/$film/source/remotion-app"
             npm run typecheck --prefix "references/news/$film/source/remotion-app"
             node --check "references/news/$film/source/remotion-app/scripts/plan.mjs"
@@ -63,7 +63,7 @@ jobs:
           for f in remotion-app/scripts/*.mjs; do try node --check "$f"; done
           for f in remotion-app/scripts/*.sh; do try bash -n "$f"; done
           try python3 -m py_compile references/news/*.py
-          for film in nvidia-spy gta6-leaker fridge-hack binance-heist fake-boss; do
+          for film in nvidia-spy gta6-leaker fridge-hack binance-heist fake-boss sorry-hackers truck-stop-heist; do
             try python3 references/news/restore.py "$film"
           done
           try npm run typecheck --prefix remotion-app

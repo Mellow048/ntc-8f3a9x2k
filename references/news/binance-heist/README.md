@@ -1,4 +1,4 @@
-# The $6.3 Billion Job Interview — news reference 4 of 5
+# The $6.3 Billion Job Interview — news reference 4 of 7
 
 A 75-second news short about the theft of about $6.3 billion in crypto from Binance on 29 October 2026, which
 Binance's own report traces to a rigged developer tool and two fake job interviews; the FBI says North Korea did it,
@@ -10,7 +10,7 @@ It is a snapshot of a developing story as it stood on **2026-11-12**. Reuse how 
 sets or score. The category rules and the order of work are in [`../README.md`](../README.md); every number, command
 and trap is in [`../PLAYBOOK.md`](../PLAYBOOK.md).
 
-Start a new film from the newest snapshot, [`../fake-boss/`](../fake-boss/README.md). This one has every fix of the
+Start a new film from the newest snapshot, [`../truck-stop-heist/`](../truck-stop-heist/README.md). This one has every fix of the
 three before it, and its film folder carries its own `register.tsx`.
 
 ## The film in numbers

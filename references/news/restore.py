@@ -15,7 +15,7 @@ The folders in references/news/ are frozen: nothing is edited or built inside th
   4. --mix runs the film's build_mix.py (NumPy and SciPy) and compares the result with the mix that went into the MP4.
 
 Nothing is committed and nothing under references/ changes. To start a NEW film, restore the newest one
-(fake-boss), check that it renders stills, then copy its two folders under new names and write your film in the
+(truck-stop-heist), check that it renders stills, then copy its two folders under new names and write your film in the
 copies: see PLAYBOOK.md.
 """
 import argparse
