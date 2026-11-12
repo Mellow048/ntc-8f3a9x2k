@@ -105,6 +105,8 @@ jobs:
       # stills are also committed to the branch so the frames can be reviewed straight from the repo.
       - name: Archive stills to the branch
         if: inputs.stills_only == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p shoots/pig-war/stills
           rm -f shoots/pig-war/stills/*.png
@@ -112,8 +114,15 @@ jobs:
           git config user.name "Arena CI"
           git config user.email "ci@arena.ai"
           git add -A shoots/pig-war/stills
-          git commit -m "CI: stills from run ${{ github.run_id }}" || echo "nothing to commit"
-          git push origin HEAD:${{ github.ref_name }}
+          git commit -m "CI: stills from run ${{ github.run_id }}" || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          for i in 1 2 3; do
+            git fetch origin "$GITHUB_REF_NAME" || true
+            git rebase "origin/$GITHUB_REF_NAME" || git rebase --abort || true
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then echo "stills pushed"; exit 0; fi
+            sleep 5
+          done
+          echo "could not push stills"; exit 1
 
       - name: Upload video
         if: inputs.stills_only != 'true'
