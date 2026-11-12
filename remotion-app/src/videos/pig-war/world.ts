@@ -30,6 +30,11 @@ const haloTex = () => ctex("sunHalo", 256, 256, (g) => {
 });
 
 export const SHIP_AT: V3 = [78, -6, 14];
+/** per-shot sun override (deg from the camera's forward axis, elevation); the presets are a starting point only */
+const SUN_SHOT: Record<number, { az?: number; el?: number }> = {
+  1: { az: -38, el: 17 }, 2: { az: -34, el: 15 }, 17: { az: -28, el: 20 },
+  18: { az: 22, el: 24 }, 19: { az: -12, el: 34 },
+};
 
 export class World {
   root = new THREE.Group();
@@ -116,7 +121,7 @@ export class World {
       fx += x / n; fz += z / n;
     }
     const n = Math.hypot(fx, fz) || 1; fx /= n; fz /= n;
-    const az = THREE.MathUtils.degToRad(L.az), el = THREE.MathUtils.degToRad(L.el);
+    const az = THREE.MathUtils.degToRad(SUN_SHOT[id]?.az ?? L.az), el = THREE.MathUtils.degToRad(SUN_SHOT[id]?.el ?? L.el);
     const hx = fx * Math.cos(az) - fz * Math.sin(az), hz = fz * Math.cos(az) + fx * Math.sin(az);
     const v = new THREE.Vector3(hx * Math.cos(el), Math.sin(el), hz * Math.cos(el)).normalize();
     this.sunCache.set(id, v);
@@ -180,7 +185,7 @@ export class World {
     this.pig.update(pigAt(id, f));
     // Cutlar on his step (shot 18); he is off the set for every other shot for now
     const onStep = id === 18;
-    this.cutlar.set(-6.28, 0.16, 3.6, cam.position, {
+    this.cutlar.set(-6.02, 0.02, 3.6, cam.position, {
       outfit: CUTLAR, view: "front", expr: id === 18 ? "neutral" : "neutral", mode: "stand", phase: 0,
       look: 0.2, light: 0.5, seed: 3, scale: 1,
     }, onStep);

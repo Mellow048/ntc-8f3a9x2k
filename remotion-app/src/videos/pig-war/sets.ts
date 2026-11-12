@@ -87,7 +87,7 @@ export const buildCabin = (R: THREE.Object3D) => {
   // walls
   b.add(boxGeo(V(cx - W / 2, y0, cz - D / 2), V(cx + W / 2, y0 + H, cz + D / 2), 2.0), logs);
   // gable ends (two triangles), ridge along x
-  const gableH = 1.45, x0 = cx - W / 2, x1 = cx + W / 2, z0 = cz - D / 2, z1 = cz + D / 2, yt = y0 + H;
+  const gableH = 1.9, x0 = cx - W / 2, x1 = cx + W / 2, z0 = cz - D / 2, z1 = cz + D / 2, yt = y0 + H;
   for (const z of [z0, z1]) {
     const up = z === z0 ? 1 : -1;
     b.add(new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(
@@ -127,9 +127,9 @@ export const buildCabin = (R: THREE.Object3D) => {
 export const buildPatch = (R: THREE.Object3D) => {
   const b = new Batch();
   const dirt = lam("pigSoil", () => ({ map: soil() }));
-  const leaf = lam("potatoLeaf", () => ({ color: "#4e7038" }));
-  const leaf2 = lam("potatoLeaf2", () => ({ color: "#5f8442" }));
-  const stem = lam("potatoStem", () => ({ color: "#3d5a2c" }));
+  const leaf = lam("potatoLeaf", () => ({ color: "#6f9c46" }));
+  const leaf2 = lam("potatoLeaf2", () => ({ color: "#82ac52" }));
+  const stem = lam("potatoStem", () => ({ color: "#4e6f34" }));
 
   // the patch floor, sunk 4 cm so the ridges stand proud of it
   b.add(quad(V(PATCH.x0, 0, PATCH.z0), V(PATCH.x1, 0, PATCH.z0), V(PATCH.x1, 0, PATCH.z1), V(PATCH.x0, 0, PATCH.z1), 5.6, 8.4), dirt);
@@ -141,13 +141,19 @@ export const buildPatch = (R: THREE.Object3D) => {
     const g = boxGeo(V(PATCH.x0, 0, z - PATCH.rowW / 2), V(PATCH.x1, PATCH.rowTop, z + PATCH.rowW / 2), 1.2);
     push(g, new THREE.Matrix4());
     // plants down the ridge
-    for (let x = PATCH.x0 + 0.45; x < PATCH.x1 - 0.2; x += 0.62) {
-      const jx = (rnd() - 0.5) * 0.12, jz = (rnd() - 0.5) * 0.16, s = 0.85 + rnd() * 0.35;
-      const t = new THREE.Matrix4().compose(V(x + jx, PATCH.rowTop + 0.12 * s, z + jz), new THREE.Quaternion(),
-        V(0.26 * s, 0.2 * s, 0.24 * s));
-      b.add(new THREE.IcosahedronGeometry(1, 0), rnd() > 0.5 ? leaf : leaf2, t);
-      const t2 = new THREE.Matrix4().compose(V(x + jx + 0.1, PATCH.rowTop + 0.05, z + jz - 0.06), new THREE.Quaternion().setFromEuler(new THREE.Euler(0, 0, 0.4)),
-        V(0.05, 0.09, 0.05));
+    for (let x = PATCH.x0 + 0.22; x < PATCH.x1 - 0.16; x += 0.34) {
+      const jx = (rnd() - 0.5) * 0.14, jz = (rnd() - 0.5) * 0.22, s = 0.7 + rnd() * 0.55;
+      // a low clump of leaves, three lobes, sitting on the crown of the ridge
+      for (let k2 = 0; k2 < 3; k2++) {
+        const a = rnd() * Math.PI * 2, r = 0.09 * s;
+        const t = new THREE.Matrix4().compose(
+          V(x + jx + Math.cos(a) * r, PATCH.rowTop + (0.05 + rnd() * 0.05) * s, z + jz + Math.sin(a) * r),
+          new THREE.Quaternion().setFromEuler(new THREE.Euler(rnd() * 0.5, rnd() * 3, rnd() * 0.5)),
+          V(0.15 * s, 0.1 * s, 0.14 * s));
+        b.add(new THREE.IcosahedronGeometry(1, 1), rnd() > 0.5 ? leaf : leaf2, t);
+      }
+      const t2 = new THREE.Matrix4().compose(V(x + jx, PATCH.rowTop + 0.03, z + jz),
+        new THREE.Quaternion(), V(0.03, 0.06, 0.03));
       b.add(new THREE.CylinderGeometry(0.7, 1, 1, 5), stem, t2);
     }
   }

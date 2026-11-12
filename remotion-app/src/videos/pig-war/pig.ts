@@ -15,9 +15,9 @@ export class Pig {
   private torso: THREE.Mesh;
 
   constructor(parent: THREE.Object3D) {
-    const hide = lam("pigHide", () => ({ color: "#2b2321" }));
-    const hideLit = lam("pigHideHi", () => ({ color: "#3a2f2a" }));
-    const snout = lam("pigSnout", () => ({ color: "#6f4640" }));
+    const hide = lam("pigHide", () => ({ color: "#4b3a2f" }));
+    const hideLit = lam("pigHideHi", () => ({ color: "#5a4638" }));
+    const snout = lam("pigSnout", () => ({ color: "#8a5a50" }));
     const horn = lam("pigTusk", () => ({ color: "#efe4cd" }));
 
     // torso: a boar's slab-sided barrel with a shoulder ridge
