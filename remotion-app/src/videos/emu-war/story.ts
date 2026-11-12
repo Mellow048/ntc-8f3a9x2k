@@ -61,14 +61,15 @@ const mixCam = (a: Cam, b: Cam, k: number): Cam => ({
   fov: a.fov + (b.fov - a.fov) * k,
   roll: a.roll + (b.roll - a.roll) * k,
 });
+/** continuous move: every frame glides between the two keys that bracket it, so a shot never holds still
+ *  (an eased 26-frame push followed by a dead hold read as a freeze in the QA diff). */
 const run = (keys: Key[], f: number) => {
-  let cur = keys[0].s;
+  if (f <= keys[0].f) return keys[0].s;
   for (let i = 1; i < keys.length; i++) {
-    const k = keys[i];
-    if (f < k.f) break;
-    cur = mixCam(cur, k.s, glide((f - k.f) / 26));
+    const a = keys[i - 1], b = keys[i];
+    if (f <= b.f) return mixCam(a.s, b.s, glide((f - a.f) / Math.max(1, b.f - a.f)));
   }
-  return cur;
+  return keys[keys.length - 1].s;
 };
 
 /** Subject anchors the cameras are built on. Every hold is a slow push-in on a
