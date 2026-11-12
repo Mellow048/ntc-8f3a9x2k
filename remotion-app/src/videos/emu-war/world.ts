@@ -58,9 +58,26 @@ const noise = (g: CanvasRenderingContext2D, w: number, h: number, n: number, col
 /** bare paddock: red-brown earth, stubble sticks, dry patches */
 const earthTex = () => {
   const S = 1024, c = cv(S, S), g = c.getContext("2d")!;
-  g.fillStyle = "#b8834f"; g.fillRect(0, 0, S, S);
+  g.fillStyle = "#b07d4a"; g.fillRect(0, 0, S, S);
   noise(g, S, S, 2600, "#a06d3f", 0.5, 2, 9);
   noise(g, S, S, 1500, "#c9975e", 0.4, 2, 12);
+  // broad tonal patches, so the paddock is not one flat orange at any distance
+  for (let i = 0; i < 26; i++) {
+    const x = RND() * S, y = RND() * S, r = 60 + RND() * 190;
+    const pg = g.createRadialGradient(x, y, 0, x, y, r);
+    const warm = RND() < 0.55;
+    pg.addColorStop(0, warm ? "rgba(150,104,58,0.50)" : "rgba(206,166,112,0.45)");
+    pg.addColorStop(1, "rgba(0,0,0,0)");
+    g.fillStyle = pg;
+    g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill();
+  }
+  // dry grass tufts and stones, the litter that tells you the scale of the ground
+  for (let i = 0; i < 900; i++) {
+    const x = RND() * S, y = RND() * S, h = 5 + RND() * 15;
+    g.strokeStyle = RND() < 0.5 ? "rgba(148,140,84,0.55)" : "rgba(124,104,64,0.5)";
+    g.lineWidth = 1 + RND() * 1.4;
+    g.beginPath(); g.moveTo(x, y); g.lineTo(x + (RND() - 0.5) * 9, y - h); g.stroke();
+  }
   noise(g, S, S, 700, "#8c5c33", 0.35, 3, 16);
   // stubble: short straws lying every which way
   g.lineCap = "round";
@@ -248,6 +265,8 @@ export class World {
   private hemi: THREE.HemisphereLight;
   private sky: THREE.Mesh;
   private target = new THREE.Vector3();
+  private shadows: THREE.Mesh[] = [];
+  private nShadow = 0;
   private tmp = new THREE.Vector3();
 
   constructor(_kit: Kit) {
@@ -523,6 +542,27 @@ export class World {
       }
     }
 
+    // ---------------- contact shadows: pools of shade under feet and wheels, so nothing floats
+    const shCv = cv(128, 128);
+    const shg = shCv.getContext("2d")!;
+    const shgrad = shg.createRadialGradient(64, 64, 2, 64, 64, 62);
+    shgrad.addColorStop(0, "rgba(58,40,24,0.62)");
+    shgrad.addColorStop(0.55, "rgba(58,40,24,0.30)");
+    shgrad.addColorStop(1, "rgba(58,40,24,0)");
+    shg.fillStyle = shgrad; shg.fillRect(0, 0, 128, 128);
+    const shTex = texOf(shCv);
+    const shMat = new THREE.MeshBasicMaterial({ map: shTex, transparent: true, depthWrite: false, opacity: 1 });
+    for (let i = 0; i < 48; i++) {
+      const q = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), shMat);
+      q.rotation.x = -Math.PI / 2;
+      q.position.y = 0.015;
+      q.visible = false;
+      q.renderOrder = 1;
+      q.layers.set(NOINK);
+      this.shadows.push(q);
+      R.add(q);
+    }
+
     // ---------------- far scrub and sky
     const scrubMat = new THREE.MeshLambertMaterial({ color: "#5d6b49" });
     for (let i = 0; i < 26; i++) {
@@ -586,9 +626,9 @@ export class World {
 
   private light(kind: Light) {
     const P = {
-      day: { sky: ["#cfe0f2", "#8a6a4a", 0.8], sun: ["#fff0d2", 2.9], pos: [18, 26, 12], fog: ["#d6cbb0", 40, 190] },
-      golden: { sky: ["#ffd9a8", "#7a5a3c", 0.7], sun: ["#ffb268", 3.6], pos: [-22, 9, -16], fog: ["#e7bf92", 26, 150] },
-      dusk: { sky: ["#a89ec4", "#4c4356", 0.55], sun: ["#d98f7a", 1.9], pos: [-20, 7, 14], fog: ["#8d7d8e", 20, 120] },
+      day: { sky: ["#cfe0f2", "#8a6a4a", 0.8], sun: ["#fff0d2", 2.9], pos: [18, 26, 12], fog: ["#e2d3b6", 16, 118] },
+      golden: { sky: ["#ffd9a8", "#7a5a3c", 0.7], sun: ["#ffb268", 3.6], pos: [-22, 9, -16], fog: ["#f0cfa0", 14, 104] },
+      dusk: { sky: ["#a89ec4", "#4c4356", 0.55], sun: ["#d98f7a", 1.9], pos: [-20, 7, 14], fog: ["#9c8b9a", 12, 92] },
     }[kind];
     this.hemi.color.set(P.sky[0] as string);
     this.hemi.groundColor.set(P.sky[1] as string);
@@ -680,6 +720,24 @@ export class World {
     this.gun.rotation.y = gun.yaw;
     this.gunFlash.visible = gun.flash > 0.5;
     if (this.gunFlash.visible) this.gunFlash.scale.setScalar(0.7 + gun.flash * 0.6);
+
+    // ---- contact shadows (after everything has been posed)
+    this.nShadow = 0;
+    for (const q of this.shadows) q.visible = false;
+    const shade = (x: number, z: number, rx: number, rz: number) => {
+      const q = this.shadows[this.nShadow++];
+      if (!q) return;
+      q.visible = true;
+      q.position.set(x, 0.015, z);
+      q.scale.set(rx, rz, 1);
+    };
+    for (const e of this.emus) if (e.mesh.visible) shade(e.mesh.position.x, e.mesh.position.z, 1.5, 0.9);
+    if (this.solo.mesh.visible) shade(this.solo.mesh.position.x, this.solo.mesh.position.z, 1.4, 0.85);
+    if (this.runner.mesh.visible) shade(this.runner.mesh.position.x, this.runner.mesh.position.z, 1.2, 0.75);
+    for (const m of this.men) if (m.mesh.visible) shade(m.mesh.position.x, m.mesh.position.z, 1.0, 0.7);
+    if (this.farmer.mesh.visible) shade(this.farmer.mesh.position.x, this.farmer.mesh.position.z, 1.0, 0.7);
+    if (this.truck.visible) shade(this.truck.position.x, this.truck.position.z, 2.8, 1.5);
+    if (this.crate.visible) shade(A.crate[0], A.crate[1], 1.3, 1.0);
 
     this.crate.visible = id === 5 || id === 3;
     this.board.visible = id === 5;
