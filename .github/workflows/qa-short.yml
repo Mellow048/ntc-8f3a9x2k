@@ -1,0 +1,90 @@
+name: QA short
+
+# Small, fast companion to the render: reads the delivered MP4 back off the branch, measures it with
+# ffprobe and pulls a handful of frames as JPEGs, then commits both so the numbers and the picture can
+# be checked from the repo. No rendering, no WebGL — this runs in about a minute.
+on:
+  workflow_dispatch:
+    inputs:
+      video:
+        description: "Path of the MP4 in the repo"
+        required: false
+        default: "shoots/pig-war/PIG_WAR.mp4"
+      times:
+        description: "Times (s) to grab as QA frames"
+        required: false
+        default: "2,14,29,36,50,62,72,88,99"
+      out:
+        description: "Folder for the QA frames"
+        required: false
+        default: "shoots/pig-war/qa"
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -y
+            sudo apt-get install -y ffmpeg
+          fi
+
+      - name: Measure and grab frames
+        run: |
+          set -e
+          V="${{ github.event.inputs.video }}"
+          O="${{ github.event.inputs.out }}"
+          mkdir -p "$O"
+          rm -f "$O"/*.jpg
+          {
+            echo "# Pig War — delivered file"
+            echo
+            echo "\`$V\`"
+            echo
+            echo '```'
+            ffprobe -v error -show_entries format=duration,size,bit_rate \
+              -show_entries stream=index,codec_type,codec_name,width,height,r_frame_rate,nb_frames,sample_rate,channels,duration \
+              -of default=nw=1 "$V"
+            echo '```'
+            echo
+            echo "## loudness (whole programme, EBU R128)"
+            echo
+            echo '```'
+            ffmpeg -hide_banner -nostats -i "$V" -af ebur128=peak=true -f null - 2>&1 \
+              | sed -n '/Summary:/,$p' | tail -20
+            echo '```'
+            echo
+            echo "## frames"
+            echo
+          } > "$O/QC.md"
+          IFS=',' read -ra TS <<< "${{ github.event.inputs.times }}"
+          for t in "${TS[@]}"; do
+            t="$(echo "$t" | tr -d ' ')"
+            ffmpeg -y -v error -ss "$t" -i "$V" -frames:v 1 -q:v 3 "$O/t$(printf '%03d' "$t").jpg"
+            echo "- t=${t}s → \`t$(printf '%03d' "$t").jpg\`" >> "$O/QC.md"
+          done
+          cat "$O/QC.md"
+
+      - name: Commit QA back to the branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          O="${{ github.event.inputs.out }}"
+          git config user.name "Arena CI"
+          git config user.email "ci@arena.ai"
+          git add -A "$O"
+          git commit -m "QA: measurements and frames for $(basename "${{ github.event.inputs.video }}")" || true
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          for i in 1 2 3; do
+            git fetch origin "$GITHUB_REF_NAME" || true
+            git rebase "origin/$GITHUB_REF_NAME" || git rebase --abort || true
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then echo "qa pushed"; exit 0; fi
+            sleep 5
+          done
+          echo "could not push qa"; exit 1

@@ -1,8 +1,22 @@
 # Pig War — build log
 
-Status: **picture build in progress.** Narration is finished and locked; the renderer is
-scaffolded and one set (Cutlar's patch) is up and looking right. No full render has been
-attempted, and none should be until every set exists.
+Status: **short cut, delivered at 102 s.** The film was cut from 232 s to 102 s on request (the
+audience asked for one to two minutes), the narration re-recorded to 279 words, the shot plan
+re-cut to 23 shots, the captions, score and mix built, and the picture rendered on CI. The old
+60-shot, 232-second plan is kept for reference at `SHOT_PLAN_v2_232s.md`; it is not the film.
+
+## The delivered film
+
+| | |
+|---|---|
+| picture | `PIG_WAR.mp4` (repo root of this shoot), 720×1280, 30 fps, H.264, CRF 16 |
+| script | `SCRIPT_short.md` — 11 beats, ~102 s |
+| narration | `voice/narration.wav`, 279 words, 100.55 s, `voice-00` |
+| score | `audio/score.wav` — original, synthesised in `scripts/make_score.py` (D minor, 84 BPM, Picardy third to land it) |
+| mix | `audio/mix.wav` — voice at −18 dBFS RMS, score ~10 dB under with an envelope follower, peak −2.4 dBFS |
+| captions | 200 one-or-two-word cards from `shots.ts`, lower third, from the narration's own word times |
+| timeline | `shots.ts` — 23 shots, `TOTAL_FRAMES 3070` |
+| render | `.github/workflows/render-short.yml` — three frame chunks in parallel, joined and muxed in a fourth job |
 
 ## Where things stand
 
