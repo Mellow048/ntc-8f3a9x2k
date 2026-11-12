@@ -473,3 +473,33 @@ On 2026-11-12 the user asked for the source of the GTA, freezer and Binance film
 | `templates/scripts/{short_qa,aac_check,word_margins}.py`, `templates/audio/`, `shoots/voice_master.py` | The finished-file check, the encode check, the word-by-word check of voice against bed, the audio kit, the narration mastering |
 
 The live tree holds the shared machinery only. A film's own folders (`remotion-app/src/videos/<film>/`, `shoots/<slug>/`) live on its working branch while it is made and in `references/news/<slug>/source/` afterwards. CI on `main` type-checks every snapshot on its own, puts all four back in a checkout and type-checks the result.
+
+## 14. Fifth news short: the fake boss (delivered 2026-11-12, not yet a reference)
+
+This section is about one film. It changes nothing in sections 1–13. **Status: delivered on 2026-11-12 on branch `arena/5974d22c-ntc-8f3a9x2k`, waiting for the user's word.** It was made from `main` as section 13 leaves it, by following `references/news/PLAYBOOK.md` and starting from `restore.py binance-heist`: the first film made that way. If the user approves it and asks for it to be kept, do PLAYBOOK §11 (`make_reference.py`, the two CI loops, the README table, remove the live folders, `verify.py`, a pull request).
+
+- **Request:** after the three-part request of section 13 was done, the agent offered three topics and the user answered "yes go" to the first.
+- **Story:** on 5 November 2026 the U.S. Attorney's Office in Manhattan unsealed an indictment against three men who, it says, used A.I. to copy the voices and sometimes the faces of chief executives and of real lawyers, and talked employees of "thousands" of companies into wiring about $129 million. All three were arrested in Europe in 2026; extradition is pending; nothing has been tested in court.
+- **Film:** "The $129 Million Fake Boss", 76.0 seconds, 228 words in 14 lines, 46 entries in the shot list on 19 sets, ending on a question with two real sides (what stops a fake boss: sharper employees, or a rule that nobody sends millions alone).
+- **Where:** `shoots/fake-boss/` and `remotion-app/src/videos/fakeboss/` on the branch. `shoots/fake-boss/SCRIPT.md` is the record: 22 sourced facts, what could not be confirmed, the film's rules, narration, characters, beat map, cuts, voice, sound, render, result.
+- **File:** [`shoots/fake-boss/final-720p.mp4` at commit `69d592d`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/69d592d5a1a2032da2bdb127655b683e419602c2/shoots/fake-boss/final-720p.mp4), render run `43151658637`. 720×1280, 30 fps, 2281 frames / 76.033 s, 46,526,268 bytes; H.264 + 48 kHz stereo AAC. Finished-file check: −14.6 LUFS, peak −1.9 dBFS; no silence; no black, unplanned white or frozen frames; no unplanned jumps.
+- **What the agent checked, and what it did not:** the finished file technically; the facts again on the day (12 November, about 04:00 UTC: nothing had changed); the picture on still frames only (169 local stills in seven rounds, one frame in every 24 of the first render, the changed places on frames of the final file). It did not listen to the sound and did not watch the film in motion.
+- **Accuracy decisions:**
+  - Everything in it is one side's account, from an indictment no court has tested. The narration attributes line by line ("prosecutors say", "the indictment says", "allegedly"), a tab PROSECUTORS' ACCOUNT stays on screen for as long as that account runs, every line under a stamp names the indictment, and the film says in words and on a stamp that all three are presumed innocent. That no defence statement had been reported is on screen with AP's date.
+  - The three defendants have no faces. Their names appear once, in the case title on the indictment's page. The aliases are from that title, and the line on screen says which two belong to one man. One defendant's earlier conviction, which the press release mentions, is left out.
+  - "A.I." is a face on a glowing plate on a stick, held in front of a figure with no face: a picture of the idea. No tool, service, firm or company is named and no real interface is shown (rule 17).
+  - The opening is addressed to the viewer and is the scheme as the indictment describes it; the line that says so lands with the stamp, six seconds in.
+  - The handwritten page shows the title the indictment gives and scribble, and says on screen which is which.
+  - The press release says "super intelligence" where the indictment says "artificial intelligence": the film says A.I. One loss figure differs between the two documents and is not used.
+- **Order of work:** the playbook's. Two full renders.
+- **Lessons from this film, on top of sections 9 to 13:**
+  - **A tab that stays up for most of the film sets the framing of every shot under it.** It sits at 31 % of the height on the left and is 47 % of the width: heads, cards and signs have to be below 36 % or to the right of it. Keep its text short (the first draft, with "· NOT PROVEN", ran across the whole frame and over a face), and plan the framing with it from the first still, not after.
+  - **A figure that holds something out to one side needs a wider drawing.** The plate beside the head was cut off at the edge of the figure's canvas until the canvas (and its plane) was made 1.4 times as wide for those figures (`WIDE` in `cast.ts`).
+  - **A small animal on the ground sits under the captions.** Put it on something: the dog went onto a pallet of the product.
+  - **A card that is already up must not arrive again after a cut**: it is a jump with no sound, and the check reports it (frame 770 of the first render).
+  - When one take runs over two entries of the shot list, the line on screen has to stay until the next one takes its place; otherwise the top of the frame is empty for a few frames at the join.
+  - Two shots of the same set from cameras side by side are a hop even when the staging changes: make them one take.
+  - 228 words came to 74.6 s in this voice at tempo 1.2; a 242-word draft came to 79.5 s. Count on about 3.05 words a second and cut the text, not the pauses.
+  - The sandbox was reset twice more during this film, once in the middle of a render. Nothing was lost because every step had been pushed; the tools take forty seconds to put back (PLAYBOOK §0).
+- **Known small things, left as they are:** listed at the end of the script's Result.
+

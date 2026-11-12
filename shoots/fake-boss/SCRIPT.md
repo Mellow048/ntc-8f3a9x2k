@@ -3,7 +3,7 @@
 News short, fifth in the series (`references/news/`). Made on branch `arena/5974d22c-ntc-8f3a9x2k` from 2026-11-12,
 following `references/news/PLAYBOOK.md`. Film folder `remotion-app/src/videos/fakeboss/`, composition `FakeBossShort`.
 
-**Status: delivered on 2026-11-12, waiting for the user's word.** The file is [`shoots/fake-boss/final-720p.mp4` at commit `69d592d`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/69d592d/shoots/fake-boss/final-720p.mp4), render run `43151658637`. Not yet a reference: that happens when the user approves it and asks for it to be kept (PLAYBOOK §11).
+**Status: delivered on 2026-11-12, waiting for the user's word.** The file is [`shoots/fake-boss/final-720p.mp4` at commit `69d592d`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/69d592d5a1a2032da2bdb127655b683e419602c2/shoots/fake-boss/final-720p.mp4), render run `43151658637`. Not yet a reference: that happens when the user approves it and asks for it to be kept (PLAYBOOK §11).
 
 ## The story in one line
 
@@ -169,11 +169,11 @@ The two quote cards carry the indictment's wording, with the words that carry th
 
 Everything from the indictment says so on screen, line by line, and the tab says whose account is running. The
 arrests are the Justice Department's statement, with its date; that nobody has answered for the defence is AP's, with
-its date. The only number that is drawn to scale is nothing: the pile of cash is a picture of "a lot".
+its date. No number is drawn to scale: the pile of cash is a picture of "a lot".
 
 **Cuts.** Every change of shot is a cut to another set, a cut to a clearly different size on the same set, or one
-take (`join` in `story.ts`). The back room's two shots (15, 16) were a cut between two cameras a foot apart in the
-first draft: they are one take now. When a take runs over two entries, the line on screen stays until the next one
+take (`join` in `story.ts`). The back room's two shots (15, 16) were a cut between two cameras side by side in the
+first draft, which would have made the picture hop: they are one take now. When a take runs over two entries, the line on screen stays until the next one
 takes its place. The joins as measured in the finished file are under Result.
 
 What the picture does not show: a likeness of anyone real; the name of a company, bank, hospital, law firm, service
@@ -259,7 +259,7 @@ Stills for review are made locally: `REVIEW=FakeBossReview remotion-app/scripts/
 
 ## Result
 
-- **File:** [`shoots/fake-boss/final-720p.mp4` at commit `69d592d`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/69d592d/shoots/fake-boss/final-720p.mp4).
+- **File:** [`shoots/fake-boss/final-720p.mp4` at commit `69d592d`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/69d592d5a1a2032da2bdb127655b683e419602c2/shoots/fake-boss/final-720p.mp4).
   720x1280, 30 fps, 2281 frames, 76.033 s, 46,526,268 bytes, H.264 with 48 kHz stereo AAC.
   SHA-256 `497bdd1a2a9eeaa92aeac89d1bc6524714148016229960b02aa8392ff1813215`.
 - **Finished-file check** (`qa-report.md`, written by the run): -14.6 LUFS integrated, loudness range 2.1 LU, peak
