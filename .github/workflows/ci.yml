@@ -36,7 +36,7 @@ jobs:
 
       - name: Check standalone approved news sources
         run: |
-          for film in nvidia-spy gta6-leaker; do
+          for film in nvidia-spy gta6-leaker fridge-hack binance-heist; do
             npm ci --no-audit --no-fund --prefix "references/news/$film/source/remotion-app"
             npm run typecheck --prefix "references/news/$film/source/remotion-app"
             node --check "references/news/$film/source/remotion-app/scripts/plan.mjs"
@@ -45,6 +45,18 @@ jobs:
           done
           python3 -m py_compile references/news/*/source/shoots/*/audio/build_mix.py \
             references/news/*/source/shoots/*/build_voice.py references/news/*/source/shoots/voice_master.py
+
+      - name: Check the live app, the news tools, and that every news film can be put back in a checkout
+        run: |
+          npm ci --no-audit --no-fund --prefix remotion-app
+          npm run typecheck --prefix remotion-app
+          for f in remotion-app/scripts/*.mjs; do node --check "$f"; done
+          for f in remotion-app/scripts/*.sh; do bash -n "$f"; done
+          python3 -m py_compile references/news/*.py
+          for film in nvidia-spy gta6-leaker fridge-hack binance-heist; do
+            python3 references/news/restore.py "$film"
+          done
+          npm run typecheck --prefix remotion-app
 
       - name: Check audio/QA Python scripts compile
         run: |

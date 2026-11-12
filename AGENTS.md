@@ -7,7 +7,7 @@
 3. Decide which kind of short the user asked for (next section), then watch
    and study the reference for that kind:
    - Regular short: **[the approved Taipei 101, Beer Flood and Köpenick references](references/approved/README.md)**.
-   - News short: **[the two approved news films and the order they were made in](references/news/README.md)**.
+   - News short: **[the four approved news films and the order they were made in](references/news/README.md)**, then **[the playbook](references/news/PLAYBOOK.md)**.
 
    They contain real MP4s, original renderer/audio source, saved narration,
    timing data, locked dependencies, provenance and standalone study entries.
@@ -22,11 +22,16 @@
 - **News short.** The user asks about **real-life news**: real people,
   companies or events that are in the news, something that just happened or is
   still unfolding. **Study [`references/news/`](references/news/README.md)
-  before planning.** It holds two approved films. The user called the Nvidia
+  before planning.** It holds four approved films, a playbook
+  ([`PLAYBOOK.md`](references/news/PLAYBOOK.md): the order of work as a
+  checklist, with every number, command and trap) and `restore.py`, which puts
+  a film's source back in your checkout. The user called the Nvidia
   film "so well done and not lazy" and "maybe the best one". The GTA 6 leaker
   film was made by following it and was approved at the first delivery
   ("another banger"); the user asked for it to be kept "so that other agents
-  follow your footsteps without me arguing again". News is a separate category
+  follow your footsteps without me arguing again". The freezer-hack and Binance
+  films followed the same order ("awesome sauce, same banger", "you are the
+  best at this!"). News is a separate category
   on a different level, and these films are the standard a news short has to
   match. **Work in the order written in that README** and follow the extra
   news rules in [IMPORTANT.md §6](IMPORTANT.md). Do not ask the user to

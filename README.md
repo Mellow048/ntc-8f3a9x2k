@@ -13,9 +13,9 @@ word-timed physical storytelling, original sound and Arena narration.
 - **[Approved reference library](references/approved/README.md)** — actual
   Taipei 101, Beer Flood and Köpenick MP4s **plus their source**, preserved on
   `main` so deleting a historical branch does not remove these examples.
-- **[News reference](references/news/README.md)** — the two approved news
-  shorts (Nvidia, the GTA 6 leaker), MP4s **plus source**, and the order of
-  work both followed, in a folder of its own because news is a different
+- **[News reference](references/news/README.md)** — the four approved news
+  shorts (Nvidia, the GTA 6 leaker, the freezer hack, the Binance heist), MP4s
+  **plus source**, the order of work all four followed and a playbook, in a folder of its own because news is a different
   category. **Only for requests about real-life news**; see below.
 
 ## Two kinds of short
@@ -30,8 +30,11 @@ word-timed physical storytelling, original sound and Arena narration.
 News films are on a different level and in a different category. The user
 called the Nvidia film "so well done and not lazy" and "maybe the best one".
 The GTA 6 leaker film was made by following it and was approved at the first
-delivery: "another banger". Agents making a news short must study both and
-work in [the order they were made in](references/news/README.md#how-to-make-a-news-short-the-order-both-films-followed).
+delivery: "another banger". The freezer-hack and Binance films followed the
+same order ("awesome sauce, same banger", "you are the best at this!"). Agents
+making a news short must study them, read
+[the playbook](references/news/PLAYBOOK.md) and work in
+[the order they were made in](references/news/README.md#how-to-make-a-news-short-the-order-every-film-followed).
 Agents making a regular short must leave them alone and not borrow their
 structure, graphics, tone or music.
 
@@ -47,7 +50,7 @@ with placeholder props.
 | Path | Purpose |
 |---|---|
 | `references/approved/` | User-approved original films, source snapshots, manifests and reproduction notes |
-| `references/news/` | User-approved **news** shorts (Nvidia, the GTA 6 leaker), source snapshots, manifests, news rules and the order of work. Separate category: only for real-life news requests |
+| `references/news/` | User-approved **news** shorts (Nvidia, the GTA 6 leaker, the freezer hack, the Binance heist), source snapshots, manifests, news rules, the order of work, `PLAYBOOK.md`, and `restore.py` / `make_reference.py` to copy a film out or keep a new one. Separate category: only for real-life news requests |
 | `references/STYLE_BIBLE.md`, `frames/`, `reports/`, `sheets/` | Legacy private style study; not original film deliverables |
 | `templates/bridge/` | Vendored renderer/style implementation; use with current overrides |
 | `templates/audio/` | Audio implementation examples, not a mandatory recurring score |

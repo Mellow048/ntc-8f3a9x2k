@@ -453,3 +453,21 @@ This section is about one film. It changes nothing in sections 1–11. **Status:
   - After a sandbox reset the workspace can come back older than the branch: here, `HEAD` on `main`, a tree from several commits back, and `/tmp`, the caches and `node_modules` gone. GitHub is the record: push after every step; on return, fetch, check that nothing local is newer, and reset to the remote branch. Drafts kept in `/tmp` are lost.
   - `gh run view --log` fails in this sandbox. A run's check lines and warnings are in `gh api repos/<owner>/<repo>/check-runs/<job id>/annotations`.
 - **Known small things, left as they are:** listed at the end of the script's Result.
+
+## 13. News on `main` as of 2026-11-12: what a new session finds
+
+On 2026-11-12 the user asked for the source of the GTA, freezer and Binance films to be on `main` and for the news part of the framework to be improved "so that other agents follow your skills in making these perfect shorts". The user moves to a new session when a chat grows long, so **everything a new session needs has to be on `main`**: when the user approves a news film and asks to keep it, preserve it there in that turn.
+
+| On `main` | What it is |
+|---|---|
+| `references/news/README.md` | The category, the four films, the order of work, the 18 news rules |
+| `references/news/PLAYBOOK.md` | That order as a checklist: setup after a sandbox reset, the numbers for narration, shots, framing and sound, the commands, and every trap the four films hit |
+| `references/news/{nvidia-spy,gta6-leaker,fridge-hack,binance-heist}/` | Each approved film: MP4, two sheets with a frame of every shot, `source/` snapshot, manifest, study guide. Frozen: nothing is edited or built inside |
+| `references/news/restore.py <film>` | Copies a film out into the working checkout and registers it in `remotion-app/src/Root.tsx`. Tested for all four: each renders a still that matches its approved MP4. Start a new film from `binance-heist` |
+| `references/news/make_reference.py` | Writes such a folder from a finished, approved film |
+| `.github/workflows/render-short.yml` | The parallel render workflow (twenty parts, sound padded to the picture, every encode compared with its WAV, the finished file checked and committed). Its defaults name no film |
+| `remotion-app/scripts/` | `local-chromium.sh` (a browser for local stills), `pick.sh` and `stills.mjs` (stills), `sheet.py` (contact sheets), `shots.mjs` and `frame.mjs` (shot table, framing without rendering), `plan.mjs` (used by the workflow) |
+| `remotion-app/src/videos/pendulum/{toon,ink,grade,lensblur}.ts`, `remotion-app/public/fonts/` | The look every news film shares: the flat cartoon construction, outlines, grade, lens blur, the two typefaces |
+| `templates/scripts/{short_qa,aac_check,word_margins}.py`, `templates/audio/`, `shoots/voice_master.py` | The finished-file check, the encode check, the word-by-word check of voice against bed, the audio kit, the narration mastering |
+
+The live tree holds the shared machinery only. A film's own folders (`remotion-app/src/videos/<film>/`, `shoots/<slug>/`) live on its working branch while it is made and in `references/news/<slug>/source/` afterwards. CI on `main` type-checks every snapshot on its own, puts all four back in a checkout and type-checks the result.
