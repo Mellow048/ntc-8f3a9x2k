@@ -28,12 +28,26 @@ on:
         required: false
         default: "false"
 
+# The film is rendered in three frame ranges on three runners at once, then joined here. A single
+# software-WebGL pass over 3000 frames takes ~3 h on one runner and can hit the job timeout; three
+# ~1000-frame chunks finish in about a third of that with identical encoding settings, so the join
+# is a stream copy.
 jobs:
   render:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    timeout-minutes: 180
+    timeout-minutes: 170
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - part: 0
+            frames: "0-1023"
+          - part: 1
+            frames: "1024-2047"
+          - part: 2
+            frames: "2048-3069"
     env:
       REMOTION_TMP: ${{ github.workspace }}/.remotion-tmp
     steps:
@@ -72,39 +86,44 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Still preview
+        if: inputs.stills_only == 'true' && matrix.part == 0
         working-directory: remotion-app
         run: |
           mkdir -p out/stills
           npx remotion browser ensure
           IFS=',' read -ra FS <<< "${{ github.event.inputs.still_frame }}"
-          SCALE=$([ "${{ github.event.inputs.stills_only }}" = "true" ] && echo 0.5 || echo 1)
           for FR in "${FS[@]}"; do
             FR="$(echo "$FR" | tr -d ' ')"
             echo "--- still, frame $FR"
             npx remotion still src/index.ts "${{ github.event.inputs.composition }}" \
-              "out/stills/f$(printf '%05d' "$FR").png" --frame="$FR" --scale=$SCALE \
+              "out/stills/f$(printf '%05d' "$FR").png" --frame="$FR" --scale=0.5 \
               --timeout=300000 --concurrency=2 --gl=swiftshader --browser-executable="$CHROME_PATH"
           done
           cp out/stills/f*.png out/still.png 2>/dev/null || true
 
-      - name: Render video
+      - name: Render chunk
         if: inputs.stills_only != 'true'
         working-directory: remotion-app
         run: |
           npx remotion render src/index.ts "${{ github.event.inputs.composition }}" \
-            out/final.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} --gl=swiftshader --timeout=300000 --concurrency=2 --browser-executable="$CHROME_PATH"
+            out/part.mp4 --codec h264 --crf "${{ github.event.inputs.crf }}" \
+            ${{ github.event.inputs.size == '2K' && '--width=1440 --height=2560' || github.event.inputs.size == '1080' && '--scale=1' || '--width=720 --height=1280' }} \
+            --frames="${{ matrix.frames }}" --gl=swiftshader --timeout=300000 --concurrency=2 \
+            --browser-executable="$CHROME_PATH"
 
-      - name: Mux voice mix
-        if: inputs.stills_only != 'true' && inputs.mix != ''
-        run: |
-          ffmpeg -y -i remotion-app/out/final.mp4 -i "${{ github.event.inputs.mix }}" \
-            -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -shortest remotion-app/out/final-muxed.mp4
-          mv remotion-app/out/final-muxed.mp4 remotion-app/out/final.mp4
+      - name: Upload chunk
+        if: inputs.stills_only != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: chunk-${{ matrix.part }}
+          path: remotion-app/out/part.mp4
+          if-no-files-found: error
+          retention-days: 7
 
       # Artifacts live on blob storage, which the build environment cannot reach; in stills-only mode the
       # stills are also committed to the branch so the frames can be reviewed straight from the repo.
       - name: Archive stills to the branch
-        if: inputs.stills_only == 'true'
+        if: inputs.stills_only == 'true' && matrix.part == 0
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -124,12 +143,52 @@ jobs:
           done
           echo "could not push stills"; exit 1
 
+      - name: Upload stills
+        if: inputs.stills_only == 'true' && matrix.part == 0
+        uses: actions/upload-artifact@v4
+        with:
+          name: stills
+          path: remotion-app/out/stills
+          if-no-files-found: error
+          retention-days: 14
+
+  assemble:
+    needs: render
+    if: inputs.stills_only != 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: chunk-*
+          path: chunks
+
+      - name: Join chunks and mux the mix
+        run: |
+          set -e
+          ls -lh chunks/*
+          : > list.txt
+          for p in 0 1 2; do echo "file '$PWD/chunks/chunk-$p/part.mp4'" >> list.txt; done
+          cat list.txt
+          ffmpeg -y -f concat -safe 0 -i list.txt -c copy video.mp4
+          if [ -n "${{ github.event.inputs.mix }}" ]; then
+            ffmpeg -y -i video.mp4 -i "${{ github.event.inputs.mix }}" \
+              -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -ar 48000 -shortest final.mp4
+          else
+            cp video.mp4 final.mp4
+          fi
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate,sample_rate,channels -of default=nw=1 final.mp4
+
       - name: Publish MP4 to the branch
-        if: inputs.stills_only != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cp remotion-app/out/final.mp4 shoots/pig-war/PIG_WAR.mp4
+          mkdir -p shoots/pig-war
+          cp final.mp4 shoots/pig-war/PIG_WAR.mp4
           git config user.name "Arena CI"
           git config user.email "ci@arena.ai"
           git add -f shoots/pig-war/PIG_WAR.mp4
@@ -144,18 +203,9 @@ jobs:
           echo "could not push mp4"; exit 1
 
       - name: Upload video
-        if: inputs.stills_only != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: cartoon-3d-short
-          path: remotion-app/out/final.mp4
-          if-no-files-found: error
-          retention-days: 14
-
-      - name: Upload stills
-        uses: actions/upload-artifact@v4
-        with:
-          name: stills
-          path: remotion-app/out/stills
+          path: final.mp4
           if-no-files-found: error
           retention-days: 14
