@@ -1,0 +1,312 @@
+{
+  "title": "The $129 Million Fake Boss",
+  "origin_commit": "6d50578113cb58f5b018fb67acb86d53fa42c24f",
+  "origin_video": "shoots/fake-boss/final-720p.mp4",
+  "origin_branch": "arena/5974d22c-ntc-8f3a9x2k",
+  "render_commit": "69d592d5a1a2032da2bdb127655b683e419602c2",
+  "render_source_commit": "116e8bf9408a80bee2dac3f59425b1c364c23f9e",
+  "render_run": 43151658637,
+  "category": "news",
+  "approval": "User, 2026-11-12, after the delivery of the MP4: \"another fricking banger. nice job! you are so good at this ngl\". The agent had said at delivery that it would put the film on main on approval.",
+  "film_dir": "fakeboss",
+  "shoot": "fake-boss",
+  "register": "FakeBossCompositions",
+  "compositions": [
+    "FakeBossShort",
+    "FakeBossReview",
+    "FakeBossCastSheet"
+  ],
+  "adaptation": "Standalone entry point added (source/remotion-app/src/reference-entry.tsx); the live Root.tsx and index.ts, which register other films too, are omitted. Every other file under source/ is copied without edits from origin_commit. changed_since_render_source lists the copied files that differ from the tree the picture was rendered from. audio/mix.wav is not stored: build_mix.py regenerates it from the included voice (mix_wav_sha256 is the file that went into the MP4). The shot sheets were cut from final-720p.mp4. The render workflow is included as an inert recipe.",
+  "changed_since_render_source": [
+    "shoots/fake-boss/SCRIPT.md",
+    "shoots/fake-boss/qa-report.md"
+  ],
+  "mix_wav_sha256": "c9ccb6be22236de286d102037f1d38d236ee48a65ff306758fa809c035d98471",
+  "files": [
+    {
+      "path": "final-720p.mp4",
+      "sha256": "497bdd1a2a9eeaa92aeac89d1bc6524714148016229960b02aa8392ff1813215",
+      "bytes": 46526268
+    },
+    {
+      "path": "shots-01-23.jpg",
+      "sha256": "b6122a9571d4a794c2330551c3d1019e6cb075b1807a4dffd5036131a01cd0b3",
+      "bytes": 519607
+    },
+    {
+      "path": "shots-24-46.jpg",
+      "sha256": "0746ad4ae94e513fabcab1d277a4e2a9fbdda26d0315f35d362d812b66530047",
+      "bytes": 559060
+    },
+    {
+      "path": "source/.github/workflows/render-short.yml",
+      "sha256": "327ccc1804c1a3d988a6c6878467aba604adc8f927417fb04fa58c9815adbc44",
+      "bytes": 13505
+    },
+    {
+      "path": "source/remotion-app/package-lock.json",
+      "sha256": "9f9fb75fcdfbe2264552bb81d2798d9e2796aa9ca90f322044903c8236431766",
+      "bytes": 161227
+    },
+    {
+      "path": "source/remotion-app/package.json",
+      "sha256": "cb1d27d1eedfccdccc33cb5f890393de7cd592c6b8a4b65aa56cf2a2b2046c4b",
+      "bytes": 813
+    },
+    {
+      "path": "source/remotion-app/public/fonts/README.md",
+      "sha256": "dff0c0df99ef2ba29692af8a5d4c923107867331e7546bda91ee33115cda9689",
+      "bytes": 511
+    },
+    {
+      "path": "source/remotion-app/public/fonts/anton-latin-400-normal.woff2",
+      "sha256": "d0fa07ff63dd60cbc0e2f58e29c802dca2a5ae0276c999f59c6111ab7bbaec3b",
+      "bytes": 18612
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-700-normal.woff2",
+      "sha256": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+      "bytes": 18824
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-900-normal.woff2",
+      "sha256": "5b6958520638bb8609f9eacb17c4d189563efeae96d5da49f7c2043988697205",
+      "bytes": 18020
+    },
+    {
+      "path": "source/remotion-app/remotion.config.ts",
+      "sha256": "f2f70c8410b5bf76fecac310cee020a9ad9902031b8ffedd74a88b0877e3f6c1",
+      "bytes": 443
+    },
+    {
+      "path": "source/remotion-app/scripts/frame.mjs",
+      "sha256": "e3e8feaf5ae569802e64c4977d4aca28a77676aa7c7ee156ae40568a25e03cf1",
+      "bytes": 3444
+    },
+    {
+      "path": "source/remotion-app/scripts/local-chromium.sh",
+      "sha256": "fc9d292d0f216ad73efaa7705ae1e959fa8df2718dbe47c8b142fd44109468c8",
+      "bytes": 1979
+    },
+    {
+      "path": "source/remotion-app/scripts/pick.sh",
+      "sha256": "114c6050fd3fe3c46aa326f3e81df555ce2b5d6cdfa54a5de0b14215062e326e",
+      "bytes": 1076
+    },
+    {
+      "path": "source/remotion-app/scripts/plan.mjs",
+      "sha256": "785953e29eb2f4c486f3bbfc191fce6168f7c3b25ec0b0bc62fa7471a88ebcba",
+      "bytes": 1776
+    },
+    {
+      "path": "source/remotion-app/scripts/sheet.py",
+      "sha256": "44fa80748c25174c6f1ee30530b12fc05f18a501d802deb578bfa929adc42c81",
+      "bytes": 1420
+    },
+    {
+      "path": "source/remotion-app/scripts/shots.mjs",
+      "sha256": "aa4b9e1c18e406766cf63b20b0dccf41efa47903614453c72a6e3ce35369aa70",
+      "bytes": 1532
+    },
+    {
+      "path": "source/remotion-app/scripts/stills.mjs",
+      "sha256": "35c4b7ea7190c6a3e1333c889d46ddfaee411dfc14d29998f24bd5b1f468a154",
+      "bytes": 3301
+    },
+    {
+      "path": "source/remotion-app/src/reference-entry.tsx",
+      "sha256": "0f9f7f1c110ecd158c0ed35f0a9fe9b62b6f25584695dbaf4259bae9ba4c3e6b",
+      "bytes": 360
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/Captions.tsx",
+      "sha256": "c46b8958981c3228df261af9d11b804e172d7c89784529b3b576a94d22e4cea9",
+      "bytes": 3483
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/CastSheet.tsx",
+      "sha256": "234eb95e2f0243acc4821563a426a47d85e18863c2d3802ed278dcb15b935f1f",
+      "bytes": 2286
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/FakeBoss.tsx",
+      "sha256": "ea806e2def798ab8aff02368daf742b5628646713df9d681f1e513b2228edde3",
+      "bytes": 4018
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/Overlays.tsx",
+      "sha256": "e1baa331a24faa542781de1a14cf22ddb9b61398219e7cca4bd0fc65cab4e3b6",
+      "bytes": 20561
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/World.ts",
+      "sha256": "fd769abc37b49458f8371d5adbeda5f570b5c326dd40d13f3275dad9e1d491a0",
+      "bytes": 3212
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/cast.ts",
+      "sha256": "b244d8140a64e70ac9d36fc328889e7d3a5fbebdb363f9c84de946f32910763f",
+      "bytes": 27572
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/fonts.ts",
+      "sha256": "2397bb4a15ec5a3f3c099bd958e620596051f2a039bf844b02cf172b5a2204d7",
+      "bytes": 1203
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/kit.ts",
+      "sha256": "fbfc87aa24afac9eadba5b75eaeeec281c05a93991c8982689366c1a8199c60c",
+      "bytes": 12508
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/props.ts",
+      "sha256": "444e255a59e9ed05ce3225877ded191ffd6ce6ff1ab3833de15e53af15a5bea8",
+      "bytes": 20904
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/register.tsx",
+      "sha256": "e6def99e108546ffb27ca368ba12094e8dd5c76675a9058abf830eadb8218270",
+      "bytes": 1355
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/sets.ts",
+      "sha256": "bf0d2b9ea5c2452ec0afc072a2eb10d81cd7b1e67330074a30d00e1448669ad9",
+      "bytes": 31726
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/sets2.ts",
+      "sha256": "7716c223ad27dc38821efefc8a993e0bf806cadf5abc6232304d8e7bf6336a14",
+      "bytes": 17202
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/sets3.ts",
+      "sha256": "bd514ae4c2e3b01acdcb4cc2e3d7445a040f75e4377eda586701c5eafd8a9d53",
+      "bytes": 22072
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/story.ts",
+      "sha256": "fa832a1bc7099b3c5a8c33eeffbe65a1b02d403ebcea5889277ccb44e1bf24a9",
+      "bytes": 10002
+    },
+    {
+      "path": "source/remotion-app/src/videos/fakeboss/words.json",
+      "sha256": "de132406c29994abc62ce698e0151ea158961a11f776bbab4ce9e9affc31b49f",
+      "bytes": 23095
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/toon.ts",
+      "sha256": "e3e5b3f636d04549369d1c842a13e708fa35d32d89176184ad027360a6eee7f4",
+      "bytes": 59851
+    },
+    {
+      "path": "source/remotion-app/tsconfig.json",
+      "sha256": "036ea329ec75a4f26a744b78f41d2dc9353f15f965b6a7f98397a32652ee0073",
+      "bytes": 352
+    },
+    {
+      "path": "source/shoots/fake-boss/SCRIPT.md",
+      "sha256": "7e124af26a00695062c1c7a69da14c91aa8e66285c299ca8276ee7e13826b64c",
+      "bytes": 33481
+    },
+    {
+      "path": "source/shoots/fake-boss/audio/build_mix.py",
+      "sha256": "8ad3c2ff9622563fab8f2fc9ebdbeed3e3b084cc568d3d19a84d92b25bff422d",
+      "bytes": 48859
+    },
+    {
+      "path": "source/shoots/fake-boss/audio/cues.md",
+      "sha256": "18a07653089a874cf48f6b352ac81730cf914fc86db04f56c0d7f1d5c47753f9",
+      "bytes": 13036
+    },
+    {
+      "path": "source/shoots/fake-boss/build_voice.py",
+      "sha256": "1d05506367d8a5ab23f5530ecce833c913d8aed6c70bb2d491f27ab0a7e9074e",
+      "bytes": 14428
+    },
+    {
+      "path": "source/shoots/fake-boss/narration.txt",
+      "sha256": "2d34dd30483a0b44ab9e4c882bd82cb719af642a01eb67f919e6863fd892967f",
+      "bytes": 1333
+    },
+    {
+      "path": "source/shoots/fake-boss/qa-report.md",
+      "sha256": "a9bcc45df6cfa55d07ac24a04107aea61f01fd615f252132ccd1333ae0b2f8d2",
+      "bytes": 3137
+    },
+    {
+      "path": "source/shoots/fake-boss/qa-shots.json",
+      "sha256": "790997daf6ad02fcd74bfd26a6dc3864e16a702d902dd2489d037357f0b28fe1",
+      "bytes": 4846
+    },
+    {
+      "path": "source/shoots/fake-boss/voice/raw-take.mp3",
+      "sha256": "7f8e08d2ed5d8e124a107c7be4f96fb900f0377d8db0f4cc28f8f4cd9ead00a8",
+      "bytes": 775332
+    },
+    {
+      "path": "source/shoots/fake-boss/voice/timing.json",
+      "sha256": "e02876507a218fb157db6436eb2be7558e1c8fecddb672a1755bd2832787819a",
+      "bytes": 1011
+    },
+    {
+      "path": "source/shoots/fake-boss/voice/voice.wav",
+      "sha256": "3358f74383dbcd0f5dbeff207aafde0afb3ddf6ac8636f5fdbccefa4032f563d",
+      "bytes": 7162562
+    },
+    {
+      "path": "source/shoots/fake-boss/voice/words.json",
+      "sha256": "7671753defdbb91e5d1fe7b0fd871e457c36911c781b70dee4181dcdeee13c65",
+      "bytes": 26745
+    },
+    {
+      "path": "source/shoots/voice_master.py",
+      "sha256": "eb1c1804cef6658cc49b2fdd98b0bc0948ac0f24398ddde83ad7268c488f2b5e",
+      "bytes": 12949
+    },
+    {
+      "path": "source/templates/audio/dsp.py",
+      "sha256": "3b456f4653fde5f30b8a22aa53903e5d4b2b3ca508908978f210fb6934214355",
+      "bytes": 11468
+    },
+    {
+      "path": "source/templates/audio/instruments.py",
+      "sha256": "8f66ee6134daefc85021aadab1138a3ce480029c91fc4428d04cba6fd5737fee",
+      "bytes": 13122
+    },
+    {
+      "path": "source/templates/audio/sfx_gen.py",
+      "sha256": "656e0d04a8fbd05e1b8c9a8a96e201c6033783cb6961eba788544f05f294a651",
+      "bytes": 25699
+    },
+    {
+      "path": "source/templates/scripts/aac_check.py",
+      "sha256": "8a0509ffab1ceac1bab6220b6c33f79bb45826ed8a5369f98a31fe156e884c6b",
+      "bytes": 2485
+    },
+    {
+      "path": "source/templates/scripts/short_qa.py",
+      "sha256": "9a71fa351b2db50bac669eebdd37c9d9f00ccd2b8b710ab472871e0ce4160550",
+      "bytes": 4727
+    },
+    {
+      "path": "source/templates/scripts/word_margins.py",
+      "sha256": "8dbf82e644727fc5c7239a41ea0204ac60533df5696fc2a1eaa244dc5b873a53",
+      "bytes": 2648
+    }
+  ]
+}

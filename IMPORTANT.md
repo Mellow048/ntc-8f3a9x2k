@@ -128,8 +128,11 @@ with every number, command and trap those films produced.
   the freezer hack, approved at the first delivery ("awesome sauce, same
   banger").
 - [`references/news/binance-heist/`](references/news/binance-heist/README.md):
-  the newest ("you are the best at this!") and the one to start a new film
-  from: `python references/news/restore.py binance-heist`.
+  the Binance heist ("you are the best at this!").
+- [`references/news/fake-boss/`](references/news/fake-boss/README.md):
+  the newest ("another fricking banger"), the first made from `main` by
+  following the playbook, and the one to start a new film from:
+  `python references/news/restore.py fake-boss`.
 
 Match their care; do not copy their stories, sets or scores. **Work in the
 order written in
