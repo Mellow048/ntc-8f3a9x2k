@@ -10,7 +10,7 @@ import { LIGHTS, LOOK, LightPreset } from "./lights";
  *  Warmer shadow, slightly deeper lit side — a sunset you can still read a farm by. */
 const MYLIGHTS: Record<"day" | "golden", LightPreset> = {
   day: LIGHTS.day,
-  golden: { ...LIGHTS.golden, shade: [0.32, 0.24, 0.22], lit: [1.52, 0.78, 0.34], sky: "#e8c3a8" },
+  golden: { ...LIGHTS.golden, shade: [0.40, 0.30, 0.25], lit: [1.52, 0.80, 0.36], lift: [0.02, 0.025, 0.05], sky: "#e8c3a8" },
 };
 import { TONE, CHAR, untone } from "./shade";
 import { NOINK } from "./ink";

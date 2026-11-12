@@ -86,24 +86,29 @@ export const buildCabin = (R: THREE.Object3D) => {
   const W = 5.6, D = 4.4, H = 2.45, y0 = 0.06;
   // walls
   b.add(boxGeo(V(cx - W / 2, y0, cz - D / 2), V(cx + W / 2, y0 + H, cz + D / 2), 2.0), logs);
-  // gable ends (two triangles), ridge along x
+  // gable ends: the ridge runs front-to-back, so the triangle faces the patch (+x wall) and the door side reads as a cabin
   const gableH = 1.9, x0 = cx - W / 2, x1 = cx + W / 2, z0 = cz - D / 2, z1 = cz + D / 2, yt = y0 + H;
-  for (const z of [z0, z1]) {
-    const up = z === z0 ? 1 : -1;
+  for (const x of [x0, x1]) {
+    const out = x === x1 ? 1 : -1;
     b.add(new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(
-      [x0, yt, z, x1, yt, z, cx, yt + gableH, z], 3)).setAttribute("normal", new THREE.Float32BufferAttribute(
-      [0, 0, up, 0, 0, up, 0, 0, up], 3)).setAttribute("uv", new THREE.Float32BufferAttribute([0, 0, 2.8, 0, 1.4, 0.7], 2)), logs);
+      [x, yt, z0, x, yt, z1, x, yt + gableH, cz], 3)).setAttribute("normal", new THREE.Float32BufferAttribute(
+      [out, 0, 0, out, 0, 0, out, 0, 0], 3)).setAttribute("uv", new THREE.Float32BufferAttribute([0, 0, 2.2, 0, 1.1, 0.95], 2)), logs);
   }
-  // roof: two slabs meeting at the ridge, with a deep eave
-  const run = D / 2 + 0.45, rise = gableH + 0.18, slope = Math.atan2(rise, run), len = Math.hypot(run, rise);
-  for (const s of [-1, 1]) {
-    const slab = new THREE.Mesh(new THREE.BoxGeometry(W + 0.7, 0.12, len), roofM);
-    slab.position.set(cx, yt + rise / 2 + 0.1, cz + s * (run / 2));
-    slab.rotation.x = s * slope;
-    slab.castShadow = true; slab.receiveShadow = true;
-    R.add(slab);
+  // roof: two slopes from the ridge down to the eaves on the +-z sides, top and underside
+  const eaveX = W / 2 + 0.46, eaveZ = D / 2 + 0.55, eaveDrop = (gableH * eaveX) / (W / 2);
+  const roofM2 = lam("cabinRoof", () => ({ map: roofHD("#6b5c48") }));
+  roofM2.side = THREE.DoubleSide;
+  const ridgeA = V(cx, yt + gableH + 0.04, z0 - 0.55), ridgeB = V(cx, yt + gableH + 0.04, z1 + 0.55);
+  for (const sgn of [-1, 1]) {
+    const eaveA = V(cx + sgn * eaveX, yt + gableH - eaveDrop, z0 - 0.55);
+    const eaveB = V(cx + sgn * eaveX, yt + gableH - eaveDrop, z1 + 0.55);
+    const A = sgn > 0 ? ridgeA : ridgeB, B = sgn > 0 ? ridgeB : ridgeA;
+    const C = sgn > 0 ? eaveB : eaveA, D2 = sgn > 0 ? eaveA : eaveB;
+    b.add(quad(A, B, C, D2, 2.4, 3.2), roofM2);
+    const down = V(0, -0.13, 0);
+    b.add(quad(D2.clone().add(down), C.clone().add(down), B.clone().add(down), A.clone().add(down), 2.4, 3.2), roofM2);
   }
-  b.add(boxGeo(V(cx - W / 2 - 0.35, yt + rise, cz - 0.12), V(cx + W / 2 + 0.35, yt + rise + 0.12, cz + 0.12), 1.4), trim);
+  b.add(boxGeo(V(cx - 0.16, yt + gableH - 0.02, z0 - 0.55), V(cx + 0.16, yt + gableH + 0.16, z1 + 0.55), 1.4), trim);
   // door on the patch side (+x wall), window beside it
   b.add(boxGeo(V(cx + W / 2 - 0.02, y0, cz + 0.55), V(cx + W / 2 + 0.06, y0 + 1.95, cz + 1.45), 0.9), trim);
   b.add(boxGeo(V(cx + W / 2 - 0.02, y0, cz - 1.35), V(cx + W / 2 + 0.05, y0 + 1.05, cz - 0.35), 0.7), glass);
@@ -132,7 +137,7 @@ export const buildPatch = (R: THREE.Object3D) => {
   const stem = lam("potatoStem", () => ({ color: "#4e6f34" }));
 
   // the patch floor, sunk 4 cm so the ridges stand proud of it
-  b.add(quad(V(PATCH.x0, 0.03, PATCH.z0), V(PATCH.x1, 0.03, PATCH.z0), V(PATCH.x1, 0.03, PATCH.z1), V(PATCH.x0, 0.03, PATCH.z1), 5.6, 8.4), dirt);
+  b.add(quad(V(PATCH.x0, 0.03, PATCH.z1), V(PATCH.x1, 0.03, PATCH.z1), V(PATCH.x1, 0.03, PATCH.z0), V(PATCH.x0, 0.03, PATCH.z0), 5.6, 8.4), dirt);
 
   const push = (g: THREE.BufferGeometry, m: THREE.Matrix4) => b.add(g, dirt, m);
   const rnd = rng(7);
