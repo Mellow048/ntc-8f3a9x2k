@@ -179,6 +179,8 @@ jobs:
       MIX: ${{ github.event.inputs.mix }}
       SHOTS: ${{ github.event.inputs.shots }}
       STILL_FRAME: ${{ github.event.inputs.still_frame }}
+      SIZE: ${{ github.event.inputs.size }}
+      COMPOSITION: ${{ github.event.inputs.composition }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -293,6 +295,7 @@ jobs:
       - name: Publish to the branch
         if: always() && github.event.inputs.publish != ''
         run: |
+          cat > out/pub.sh <<'EOS'
           DEST="$(echo "${{ github.event.inputs.publish }}" | sed "s/{size}/$SIZE/")"
           BRANCH="${{ github.ref_name }}"
           git config user.name "github-actions[bot]"
@@ -317,3 +320,5 @@ jobs:
             sleep $((attempt * 5))
           done
           exit 1
+          EOS
+          bash out/step.sh "Publish to the branch" out/pub.sh
