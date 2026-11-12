@@ -4,8 +4,8 @@ The order of work in [`README.md`](README.md) as a checklist, with the numbers, 
 films produced. The README says what a news short is and which rules it obeys. This page says how to get one made in
 a single pass. Each film's own `SCRIPT.md` is the worked example for every step here.
 
-The fourth film took about three hours from the first search to the third render. Nothing below needs the user,
-except the choice of topic and, once, the choice of voice.
+The fourth film went from its first commit to the render whose picture the user approved in under three hours.
+Nothing below needs the user, except the choice of topic and, once in a session, the choice of voice.
 
 ## 0. Before anything: the working place
 
@@ -23,19 +23,20 @@ except the choice of topic and, once, the choice of voice.
   remotion-app/scripts/local-chromium.sh                   # a browser for local stills, from the npm registry
   ```
 
-- **Start from the newest film.** `python references/news/restore.py binance-heist --mix` copies its two folders
-  into your checkout, registers it and rebuilds its mix. Render one still to prove the place works:
+- **Start from the newest film.** `~/.cache/ntc-venv/bin/python references/news/restore.py binance-heist --mix`
+  copies its two folders into your checkout, registers it, rebuilds its mix and says whether that mix is the approved
+  one, byte for byte. Render one still to prove the place works:
   `cd remotion-app && REVIEW=BinanceReview REMOTION_BROWSER="$(scripts/local-chromium.sh)" scripts/pick.sh out/t 1000 540`.
   Then copy `remotion-app/src/videos/binance/` and `shoots/binance-heist/` under your film's names, rename the four
-  ids in the copy's `register.tsx` (`<Film>Short`, `<Film>Review`, `<Film>CastSheet`, `<Film>Compositions`) and the
-  paths at the top of `build_voice.py` and `build_mix.py`, add the film's two lines to `src/Root.tsx` beside the
-  anchors, and delete the restored Binance folders again. Your film is written
+  ids in the copy's `register.tsx` (`<Film>Short`, `<Film>Review`, `<Film>CastSheet`, `<Film>Compositions`), point
+  `PICTURE_WORDS` in `build_voice.py` and `STORY` in `build_mix.py` at the new film folder, add the film's two lines
+  to `src/Root.tsx` beside the anchors, and delete the restored Binance folders again. Your film is written
   in the copies: the machinery stays, every set, costume, cue and note is new.
 
 ## 1. Topic
 
-When the user asks for ideas, search what is in the news now and offer a short numbered list, one line each. The user
-answers with a number. An idea is worth offering when:
+Search what is in the news now. When the user asks for ideas, offer a short numbered list, one line each, your
+strongest first: the user answers with a number. An idea is worth offering when:
 
 - it happened or moved in the last days, and several outlets report it;
 - one sentence tells it and makes someone ask "wait, what?" (a CEO and a suspected spy; a leaker who wanted a disc;
@@ -80,7 +81,8 @@ and 75.3 seconds.
 - `python shoots/<slug>/build_voice.py` makes `voice/voice.wav`, `voice/words.json` and the picture's copy of
   `words.json`. It tightens the pauses, lifts the pace 1.2× and puts silence back where the film needs a beat
   (`BEATS` in the script: after "quote:", after a quotation, before the closing question). Rewrite `BEATS` for your
-  text. It needs `pocketsphinx`.
+  text, and give every name the recogniser cannot know its sounds in `LEXICON` (initials go through `SPOKEN`). It
+  needs `pocketsphinx`. Then read `words.json`: one entry for every word of the narration, in order.
 - **`words.json` is the clock.** Picture, captions, graphics and sound all read it. Re-time by running
   `build_voice.py`, then `build_mix.py`, then rendering; never by editing frame numbers.
 
@@ -93,9 +95,9 @@ Write `story.ts` first, then cast and sets, then `Overlays.tsx`.
 | Shots | 40 to 46 on about 15 sets; a new, staged picture every 1.5 to 2 seconds; the shortest in the fourth film is 26 frames |
 | A cut | lands 2 frames ahead of its word (`s(word, …)` in `story.ts`) |
 | Frame | 720×1280 at 30 fps, drawn at 1080×1920 |
-| Camera | at a distance of about 6 with a 42° lens the frame is 2.6 to 2.9 units wide: people stand within 0.8 of the centre from the first frame of their shot |
+| Camera | a 42° lens on almost every shot: the frame is 0.43 × the camera's distance wide (2.6 units from 6 away). `frame.mjs` says whether someone is inside it on the first frame of the shot |
 | Captions | one or two words, centred 76 % down; keep heads, props and signs out of 70–82 % |
-| Graphics | stamps and source lines live in the top band, down to about 26 %; a sign that belongs to the set stays below 31 % |
+| Graphics | stamps and source lines sit in the top band, from 9 % to about 31 % of the height; a sign that belongs to the set stays below it |
 | Close shots | about three, and only they get the lens blur (it was more than half the render cost) |
 
 - **Changes of shot.** Two shots of the same thing from almost the same place make the picture hop. Every change is
@@ -117,8 +119,8 @@ Write `story.ts` first, then cast and sets, then `Overlays.tsx`.
 ## 6. Look at stills before paying for a render
 
 `REVIEW=<Film>Review REMOTION_BROWSER="$(scripts/local-chromium.sh)" scripts/pick.sh out/r1 <frame,frame,…> 540`
-takes ten to fifteen seconds a frame. Tile them (`python scripts/sheet.py out/r1 out/r1.jpg --cols 5 --width
-300`) and read sheets, not single frames.
+renders the frames you name (four took 23 seconds in the two-core sandbox). Tile them
+(`python scripts/sheet.py out/r1 out/r1.jpg --cols 5 --width 300`) and read sheets, not single frames.
 
 1. The cast sheet: everyone side by side, before any set is finished
    (`REMOTION_BROWSER=… node scripts/stills.mjs <Film>CastSheet out/cast --frames=0 --width=720`).
@@ -127,8 +129,8 @@ takes ten to fifteen seconds a frame. Tile them (`python scripts/sheet.py out/r1
 4. **The two frames either side of every change of shot on the same set.** A hop shows only there.
 5. The last second: the closing question, both answers, nothing under the captions.
 
-Expect five to eight rounds and 200 to 350 stills. A full render costs a commit and eleven minutes each time; a round of
-stills costs neither, and you choose the frames.
+Expect five to eight rounds and 200 to 350 stills. A full render costs a commit and eleven minutes each time; a
+round of stills costs neither, and you choose the frames.
 
 ## 7. Sound
 
@@ -139,13 +141,13 @@ the report). Write new: the tune, its instruments, and every cue.
   at 130. Take another key and another tempo, and let the music take part: a second tune for a place or a party,
   drums that drop out, a stop before the question, no tune under a quotation (one thin chord: with nothing at all
   there, the check reports silence).
-- **Levels.** The mix at −14.5 LUFS with a true peak of −2.3 dBTP, so that the encoded film stays under −1 dBFS. The
-  music **5 to 6 LU under the voice while someone speaks**, measured after ducking. The user rejected 9 to 11 LU as
-  inaudible.
+- **Levels.** The mix is built to −14.5 LUFS under a ceiling of −2.3 dB (`TARGET_LUFS`, `CEIL_DB`), so that the
+  encoded film stays under −1 dBFS. The music **5 to 6 LU under the voice while someone speaks**, measured after
+  ducking. The user rejected 9 to 11 LU as inaudible.
 - **Every word clear.** `python templates/scripts/word_margins.py shoots/<slug>/audio/build_mix.py` measures the
   voice against music and effects over each word's own span. The last two films read: median 5.6 and 5.8 LU, tenth
-  percentile 1.5 and 2.4, lowest −3.4 in both, 7 of 235 words under 0 in both. A word far below that is covered: move the
-  accent off it, or lift the word and dip the bed under it (`WEAK_WORDS`). Do this before the first render.
+  percentile 1.5 and 2.4, lowest −3.4 in both, 7 of 235 words under 0 in both. A word far below that is covered:
+  move the accent off it, or lift the word and dip the bed under it (`WEAK_WORDS`). Do this before the first render.
 - **Effects follow the picture**, and each has a reason in `cues.md`. A soft swish on a cut, none on a join and none
   on a cut in to a quotation. A jump in the picture that is meant (a stamp, a drop, a shrug) needs a sound whose name
   is in `GRAPHIC_SOUNDS`, or the check reports the jump.
@@ -181,8 +183,9 @@ git fetch origin <branch> && git merge --ff-only FETCH_HEAD   # the run commits 
 - `qa-report.md`: the right frame count, about −14.6 LUFS, a peak under −1 dBFS, no silence, no black, white or
   frozen frames, no unplanned jumps. Whatever it flags is fixed and rendered again, not explained away.
 - Frames of the file itself (`ffmpeg -v error -i final-720p.mp4 -vf "select='not(mod(n\,24))',scale=270:-1"
-  -fps_mode passthrough -frame_pts 1 -q:v 3 out/f%04d.jpeg`, then `sheet.py`): one in every 24, every place that changed since the last render, the pairs either side of every join, the last second. Every
-  shot must have been seen on a still of the final picture.
+  -fps_mode passthrough -frame_pts 1 -q:v 3 out/f%04d.jpeg`, then `sheet.py`): one in every 24, every place that
+  changed since the last render, the pairs either side of every join, the last second. Every shot must have been
+  seen on a still of the final picture.
 - Against the render before it: only what you changed may differ. Two renders of the same code are not identical bit
   for bit, so compare with a threshold. When a run reused the picture, compare the video streams' checksums
   (`ffmpeg -i f.mp4 -map 0:v -c copy -f md5 -`).
@@ -206,5 +209,5 @@ Search the story again on the day, note the time, and change the film if the sto
 - A short section in `VIDEO_HANDOFF.md`: request, film, file, checks, accuracy decisions, lessons.
 - When the user approves the film and asks for it to be kept: add `register.tsx` if the film has none, write
   `references/news/<slug>/README.md`, run `python references/news/make_reference.py …` (its docstring has the
-  arguments), add the folder to the loop in `.github/workflows/ci.yml` and to the table in `README.md`, remove the
-  film's live folders, run `python references/news/verify.py`, and open a pull request to `main`.
+  arguments), add the folder to the two loops in `.github/workflows/ci.yml` and to the table in `README.md`, remove
+  the film's live folders, run `python references/news/verify.py`, and open a pull request to `main`.

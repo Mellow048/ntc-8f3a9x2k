@@ -199,6 +199,8 @@ Latest complete production snapshot including the delivered entertainment-first 
 
 A new agent should inspect the current checkout and remote before claiming production files are present. If needed, fetch the production snapshot and selectively restore only the source/assets needed for the requested short **onto the platform-assigned working branch**, not by switching to a historical branch or importing all old renders into `main`. Do not assume the user wants large binaries added back to `main`.
 
+**News shorts are the exception, by the user's own request:** each approved news film is on `main` as a frozen reference with its MP4 and source (`references/news/`, §9–§13), and so is the machinery they share.
+
 
 | Location | Purpose |
 | --- | --- |
