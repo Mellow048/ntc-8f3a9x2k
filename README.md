@@ -13,9 +13,9 @@ word-timed physical storytelling, original sound and Arena narration.
 - **[Approved reference library](references/approved/README.md)** — actual
   Taipei 101, Beer Flood and Köpenick MP4s **plus their source**, preserved on
   `main` so deleting a historical branch does not remove these examples.
-- **[News reference](references/news/README.md)** — the four approved news
-  shorts (Nvidia, the GTA 6 leaker, the freezer hack, the Binance heist), MP4s
-  **plus source**, the order of work all four followed and a playbook, in a folder of its own because news is a different
+- **[News reference](references/news/README.md)** — the five approved news
+  shorts (Nvidia, the GTA 6 leaker, the freezer hack, the Binance heist, the fake boss), MP4s
+  **plus source**, the order of work all five followed and a playbook, in a folder of its own because news is a different
   category. **Only for requests about real-life news**; see below.
 
 ## Two kinds of short

@@ -327,7 +327,7 @@ A news short covers real-life news: real people, companies or events that are in
 
 **When this section applies:** only when the user asks for a short about the news. For a regular explaining or entertaining short, ignore this section and `references/news/` and use `references/approved/`.
 
-- **Four approved films.** The first is described in this section; "The GTA 6 Leaker Who Wanted a Disc" in section 10, "The Hack That Melted 700 Supermarkets" in section 11 and "The $6.3 Billion Job Interview" in section 12. `references/news/README.md` lists them and gives the order of work all four followed. `references/news/PLAYBOOK.md` is the checklist for that order, with every number, command and trap, and `python references/news/restore.py binance-heist` puts the newest film's source back in a working checkout to start from.
+- **Five approved films.** The first is described in this section; "The GTA 6 Leaker Who Wanted a Disc" in section 10, "The Hack That Melted 700 Supermarkets" in section 11, "The $6.3 Billion Job Interview" in section 12 and "The $129 Million Fake Boss" in section 14. `references/news/README.md` lists them and gives the order of work all five followed. `references/news/PLAYBOOK.md` is the checklist for that order, with every number, command and trap, and `python references/news/restore.py fake-boss` puts the newest film's source back in a working checkout to start from.
 - **First approved film:** "Nvidia's CEO and the Suspected Spy", 69 seconds. The user watched the delivered MP4 and said: "so well done and not lazy", "maybe the best one". The user then asked for the MP4 and the source to be put on `main` as a reference in a folder of its own, because it is "on a different level and category", and for `AGENTS.md`, `README.md` and `IMPORTANT.md` to describe this type of film. This authorizes this one film on `main`, as the Taipei and Beer references were authorized; it is not a policy for every export.
 - **Where:** `references/news/README.md` (category rules, when to study and when to ignore) and `references/news/nvidia-spy/` (MP4, one frame of every shot, source snapshot, manifest, study guide, rebuild recipe). Check the files with `python references/news/verify.py`.
 - **File:** `references/news/nvidia-spy/final-720p.mp4`. 720×1280, 30 fps, 2075 frames / 69.167 s, 51,611,759 bytes; H.264 + 48 kHz stereo AAC. Finished-file QA: −14.6 LUFS, −1.8 dBFS true peak; no silence, black, unplanned white or frozen frames; every frame jump is a cut, a caption change or an arriving graphic. Produced on branch `arena/44d045b4-ntc-8f3a9x2k`, render run `42918009608`. The branch is provenance, not a dependency.
@@ -462,10 +462,10 @@ On 2026-11-12 the user asked for the source of the GTA, freezer and Binance film
 
 | On `main` | What it is |
 |---|---|
-| `references/news/README.md` | The category, the four films, the order of work, the 18 news rules |
-| `references/news/PLAYBOOK.md` | That order as a checklist: setup after a sandbox reset, the numbers for narration, shots, framing and sound, the commands, and every trap the four films hit |
-| `references/news/{nvidia-spy,gta6-leaker,fridge-hack,binance-heist}/` | Each approved film: MP4, two sheets with a frame of every shot, `source/` snapshot, manifest, study guide. Frozen: nothing is edited or built inside |
-| `references/news/restore.py <film>` | Copies a film out into the working checkout and registers it in `remotion-app/src/Root.tsx`. Tested for all four: each renders a still that matches its approved MP4. Start a new film from `binance-heist` |
+| `references/news/README.md` | The category, the five films, the order of work, the 18 news rules |
+| `references/news/PLAYBOOK.md` | That order as a checklist: setup after a sandbox reset, the numbers for narration, shots, framing and sound, the commands, and every trap the five films hit |
+| `references/news/{nvidia-spy,gta6-leaker,fridge-hack,binance-heist,fake-boss}/` | Each approved film: MP4, two sheets with a frame of every shot, `source/` snapshot, manifest, study guide. Frozen: nothing is edited or built inside |
+| `references/news/restore.py <film>` | Copies a film out into the working checkout and registers it in `remotion-app/src/Root.tsx`. Tested for all five: each renders a still that matches its approved MP4. Start a new film from `fake-boss` |
 | `references/news/make_reference.py` | Writes such a folder from a finished, approved film |
 | `.github/workflows/render-short.yml` | The parallel render workflow (twenty parts, sound padded to the picture, every encode compared with its WAV, the finished file checked and committed). Its defaults name no film |
 | `remotion-app/scripts/` | `local-chromium.sh` (a browser for local stills), `pick.sh` and `stills.mjs` (stills), `sheet.py` (contact sheets), `shots.mjs` and `frame.mjs` (shot table, framing without rendering), `plan.mjs` (used by the workflow) |
@@ -473,3 +473,33 @@ On 2026-11-12 the user asked for the source of the GTA, freezer and Binance film
 | `templates/scripts/{short_qa,aac_check,word_margins}.py`, `templates/audio/`, `shoots/voice_master.py` | The finished-file check, the encode check, the word-by-word check of voice against bed, the audio kit, the narration mastering |
 
 The live tree holds the shared machinery only. A film's own folders (`remotion-app/src/videos/<film>/`, `shoots/<slug>/`) live on its working branch while it is made and in `references/news/<slug>/source/` afterwards. CI on `main` type-checks every snapshot on its own, puts all four back in a checkout and type-checks the result.
+
+## 14. Fifth approved news short: the fake boss (a reference on `main`)
+
+This section is about one film. It changes nothing in sections 1–13. **Status: delivered on 2026-11-12 on branch `arena/5974d22c-ntc-8f3a9x2k` and approved at the first delivery: "another fricking banger. nice job! you are so good at this ngl". The agent had said it would put the film on `main` on approval. It is kept in `references/news/fake-boss/` (MP4, shot sheets, source, manifest, study guide), and the paths below are inside that folder's `source/`.** It was made from `main` as section 13 leaves it, by following `references/news/PLAYBOOK.md` and starting from `restore.py binance-heist`: the first film made that way. It is now the film to start the next one from.
+
+- **Request:** after the three-part request of section 13 was done, the agent offered three topics and the user answered "yes go" to the first.
+- **Story:** on 5 November 2026 the U.S. Attorney's Office in Manhattan unsealed an indictment against three men who, it says, used A.I. to copy the voices and sometimes the faces of chief executives and of real lawyers, and talked employees of "thousands" of companies into wiring about $129 million. All three were arrested in Europe in 2026; extradition is pending; nothing has been tested in court.
+- **Film:** "The $129 Million Fake Boss", 76.0 seconds, 228 words in 14 lines, 46 entries in the shot list on 19 sets, ending on a question with two real sides (what stops a fake boss: sharper employees, or a rule that nobody sends millions alone).
+- **Where:** `shoots/fake-boss/` and `remotion-app/src/videos/fakeboss/`. `shoots/fake-boss/SCRIPT.md` is the record: 22 sourced facts, what could not be confirmed, the film's rules, narration, characters, beat map, cuts, voice, sound, render, result.
+- **File:** [`shoots/fake-boss/final-720p.mp4` at commit `69d592d`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/69d592d5a1a2032da2bdb127655b683e419602c2/shoots/fake-boss/final-720p.mp4), render run `43151658637`. 720×1280, 30 fps, 2281 frames / 76.033 s, 46,526,268 bytes; H.264 + 48 kHz stereo AAC. Finished-file check: −14.6 LUFS, peak −1.9 dBFS; no silence; no black, unplanned white or frozen frames; no unplanned jumps.
+- **What the agent checked, and what it did not:** the finished file technically; the facts again on the day (12 November, about 04:00 UTC: nothing had changed); the picture on still frames only (169 local stills in seven rounds, one frame in every 24 of the first render, the changed places on frames of the final file). It did not listen to the sound and did not watch the film in motion.
+- **Accuracy decisions:**
+  - Everything in it is one side's account, from an indictment no court has tested. The narration attributes line by line ("prosecutors say", "the indictment says", "allegedly"), a tab PROSECUTORS' ACCOUNT stays on screen for as long as that account runs, every line under a stamp names the indictment, and the film says in words and on a stamp that all three are presumed innocent. That no defence statement had been reported is on screen with AP's date.
+  - The three defendants have no faces. Their names appear once, in the case title on the indictment's page. The aliases are from that title, and the line on screen says which two belong to one man. One defendant's earlier conviction, which the press release mentions, is left out.
+  - "A.I." is a face on a glowing plate on a stick, held in front of a figure with no face: a picture of the idea. No tool, service, firm or company is named and no real interface is shown (rule 17).
+  - The opening is addressed to the viewer and is the scheme as the indictment describes it; the line that says so lands with the stamp, six seconds in.
+  - The handwritten page shows the title the indictment gives and scribble, and says on screen which is which.
+  - The press release says "super intelligence" where the indictment says "artificial intelligence": the film says A.I. One loss figure differs between the two documents and is not used.
+- **Order of work:** the playbook's. Two full renders.
+- **Lessons from this film, on top of sections 9 to 13:**
+  - **A tab that stays up for most of the film sets the framing of every shot under it.** It sits at 31 % of the height on the left and is 47 % of the width: heads, cards and signs have to be below 36 % or to the right of it. Keep its text short (the first draft, with "· NOT PROVEN", ran across the whole frame and over a face), and plan the framing with it from the first still, not after.
+  - **A figure that holds something out to one side needs a wider drawing.** The plate beside the head was cut off at the edge of the figure's canvas until the canvas (and its plane) was made 1.4 times as wide for those figures (`WIDE` in `cast.ts`).
+  - **A small animal on the ground sits under the captions.** Put it on something: the dog went onto a pallet of the product.
+  - **A card that is already up must not arrive again after a cut**: it is a jump with no sound, and the check reports it (frame 770 of the first render).
+  - When one take runs over two entries of the shot list, the line on screen has to stay until the next one takes its place; otherwise the top of the frame is empty for a few frames at the join.
+  - Two shots of the same set from cameras side by side are a hop even when the staging changes: make them one take.
+  - 228 words came to 74.6 s in this voice at tempo 1.2; a 242-word draft came to 79.5 s. Count on about 3.05 words a second and cut the text, not the pauses.
+  - The sandbox was reset twice more during this film, once in the middle of a render. Nothing was lost because every step had been pushed; the tools take forty seconds to put back (PLAYBOOK §0).
+- **Known small things, left as they are:** listed at the end of the script's Result.
+

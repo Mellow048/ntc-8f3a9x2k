@@ -7,7 +7,7 @@
 3. Decide which kind of short the user asked for (next section), then watch
    and study the reference for that kind:
    - Regular short: **[the approved Taipei 101, Beer Flood and Köpenick references](references/approved/README.md)**.
-   - News short: **[the four approved news films and the order they were made in](references/news/README.md)**, then **[the playbook](references/news/PLAYBOOK.md)**.
+   - News short: **[the five approved news films and the order they were made in](references/news/README.md)**, then **[the playbook](references/news/PLAYBOOK.md)**.
 
    They contain real MP4s, original renderer/audio source, saved narration,
    timing data, locked dependencies, provenance and standalone study entries.
@@ -22,7 +22,7 @@
 - **News short.** The user asks about **real-life news**: real people,
   companies or events that are in the news, something that just happened or is
   still unfolding. **Study [`references/news/`](references/news/README.md)
-  before planning.** It holds four approved films, a playbook
+  before planning.** It holds five approved films, a playbook
   ([`PLAYBOOK.md`](references/news/PLAYBOOK.md): the order of work as a
   checklist, with every number, command and trap) and `restore.py`, which puts
   a film's source back in your checkout. The user called the Nvidia

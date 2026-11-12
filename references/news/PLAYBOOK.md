@@ -1,10 +1,11 @@
 # News short playbook
 
-The order of work in [`README.md`](README.md) as a checklist, with the numbers, commands and traps that four approved
+The order of work in [`README.md`](README.md) as a checklist, with the numbers, commands and traps that five approved
 films produced. The README says what a news short is and which rules it obeys. This page says how to get one made in
 a single pass. Each film's own `SCRIPT.md` is the worked example for every step here.
 
-The fourth film went from its first commit to the render whose picture the user approved in under three hours.
+The fourth film went from its first commit to the render whose picture the user approved in under three hours. The
+fifth, made from `main` by following this page, took an hour and forty minutes and two renders.
 Nothing below needs the user, except the choice of topic and, once in a session, the choice of voice.
 
 ## 0. Before anything: the working place
@@ -23,14 +24,14 @@ Nothing below needs the user, except the choice of topic and, once in a session,
   remotion-app/scripts/local-chromium.sh                   # a browser for local stills, from the npm registry
   ```
 
-- **Start from the newest film.** `~/.cache/ntc-venv/bin/python references/news/restore.py binance-heist --mix`
+- **Start from the newest film.** `~/.cache/ntc-venv/bin/python references/news/restore.py fake-boss --mix`
   copies its two folders into your checkout, registers it, rebuilds its mix and says whether that mix is the approved
   one, byte for byte. Render one still to prove the place works:
-  `cd remotion-app && REVIEW=BinanceReview REMOTION_BROWSER="$(scripts/local-chromium.sh)" scripts/pick.sh out/t 1000 540`.
-  Then copy `remotion-app/src/videos/binance/` and `shoots/binance-heist/` under your film's names, rename the four
+  `cd remotion-app && REVIEW=FakeBossReview REMOTION_BROWSER="$(scripts/local-chromium.sh)" scripts/pick.sh out/t 1000 540`.
+  Then copy `remotion-app/src/videos/fakeboss/` and `shoots/fake-boss/` under your film's names, rename the four
   ids in the copy's `register.tsx` (`<Film>Short`, `<Film>Review`, `<Film>CastSheet`, `<Film>Compositions`), point
   `PICTURE_WORDS` in `build_voice.py` and `STORY` in `build_mix.py` at the new film folder, add the film's two lines
-  to `src/Root.tsx` beside the anchors, and delete the restored Binance folders again. Your film is written
+  to `src/Root.tsx` beside the anchors, and delete the restored folders again. Your film is written
   in the copies: the machinery stays, every set, costume, cue and note is new.
 
 ## 1. Topic
@@ -60,8 +61,10 @@ Do not offer the same list twice. Say when an idea expires (a launch date, a ver
 
 ## 3. Narration: 235 words in 15 lines
 
-That length reads in 73 to 75 seconds at the pace the films use: the last two films are 235 words each and run 74.2
-and 75.3 seconds.
+That length reads in 73 to 75 seconds at the pace the films use: the third and fourth films are 235 words each and run 74.2
+and 75.3 seconds. It does not hold for every text: spoken numbers and names run long. The fifth film's first draft,
+242 words, read in 79.5 seconds and was cut to 228 (74.6 s), which cost a second take. Count on about 3.05 words a
+second, read the numbers out as words when you count, and cut the text, not the pauses.
 
 - Line 1 is the whole story and its hook. A viewer who has never heard of it must follow every line.
 - One line says whose account a stretch is ("Binance says it began in June…"). Each party to a dispute gets its own
@@ -92,7 +95,7 @@ Write `story.ts` first, then cast and sets, then `Overlays.tsx`.
 
 | Number | Value |
 |---|---|
-| Shots | 40 to 46 on about 15 sets; a new, staged picture every 1.5 to 2 seconds; the shortest in the fourth film is 26 frames |
+| Shots | 40 to 46 on about 15 sets; a new, staged picture every 1.5 to 2 seconds; the shortest in the last two films is 26 frames |
 | A cut | lands 2 frames ahead of its word (`s(word, …)` in `story.ts`) |
 | Frame | 720×1280 at 30 fps, drawn at 1080×1920 |
 | Camera | a 42° lens on almost every shot: the frame is 0.43 × the camera's distance wide (2.6 units from 6 away). `frame.mjs` says whether someone is inside it on the first frame of the shot |
@@ -103,16 +106,22 @@ Write `story.ts` first, then cast and sets, then `Overlays.tsx`.
 - **Changes of shot.** Two shots of the same thing from almost the same place make the picture hop. Every change is
   a cut to another set, a cut to a clearly different size, one take over several entries (`join: true`), or a move
   that goes on from a camera at rest (`soft: true`). When a cut goes, what used to vanish on it needs a new end: keep
-  the stamp until the next graphic takes its place.
+  the stamp until the next graphic takes its place. A card that is already up must not play its entrance again after
+  a cut on the same set (start it before the shot: `at = shot.at − 30`); it is a jump with no sound, and the check
+  reports it.
 - **People.** One flat construction for everyone, told apart by costume. A public figure is a simple caricature with
   a name tag. A private person is nobody's likeness. Someone nobody has identified has no face.
 - **Words on screen** (`Overlays.tsx`, every cue keyed to a word): a stamp for the claim, a source line under it, a
   name tag, a quote card with the spoken words marked, a calendar leaf, a counter, a tab that says whose account is
   running, two answers at the end. Every number has its source beside it and every status its date. Long source
-  lines fit themselves to 84 % of the width. Write "X", not "×": the stamp font draws it tiny.
+  lines fit themselves to 84 % of the width. Write "X", not "×": the stamp font draws it tiny. A tab that
+  stays up for most of a film sits on the left at 31 % of the height and is up to 47 % of the width: keep its text
+  short, and frame heads, cards and signs below 36 % or to the right of it from the first still.
 - **Small things that cost a render each:** white props need an unlit material or they turn grey; a glow behind
   someone is `halo()`, not a `pool()` stood on end; a card beside a seated figure covers the face unless the camera
-  aims beside the figure; water from a hose is one tapered tube with spray at its end; fire needs drawn flames.
+  aims beside the figure; water from a hose is one tapered tube with spray at its end; fire needs drawn flames; a figure that holds something out to
+  the side needs a wider drawing (`WIDE` in the fifth film's `cast.ts`), or the thing is cut off at the edge of the
+  figure's canvas; a small animal on the ground sits under the captions, so stand it on something.
 - `node scripts/shots.mjs <film> table` lists every shot with its frames. `node scripts/frame.mjs <film> <shot>
   "x,y,z"` says where a point of the set lands in the frame, without rendering.
 
@@ -129,7 +138,7 @@ renders the frames you name (four took 23 seconds in the two-core sandbox). Tile
 4. **The two frames either side of every change of shot on the same set.** A hop shows only there.
 5. The last second: the closing question, both answers, nothing under the captions.
 
-Expect five to eight rounds and 200 to 350 stills. A full render costs a commit and eleven minutes each time; a
+Expect five to eight rounds and 170 to 350 stills. A full render costs a commit and eleven minutes each time; a
 round of stills costs neither, and you choose the frames.
 
 ## 7. Sound
@@ -138,15 +147,15 @@ Copy the newest `build_mix.py`. Keep its mixing half (ducking, the pocket for co
 the report). Write new: the tune, its instruments, and every cue.
 
 - **A score of its own.** Used so far: A minor at 112 bpm, D minor at 104, G major with E minor at 118, C minor swung
-  at 130. Take another key and another tempo, and let the music take part: a second tune for a place or a party,
+  at 130, a waltz in F sharp minor at 174. Take another key and another tempo, and let the music take part: a second tune for a place or a party,
   drums that drop out, a stop before the question, no tune under a quotation (one thin chord: with nothing at all
   there, the check reports silence).
 - **Levels.** The mix is built to −14.5 LUFS under a ceiling of −2.3 dB (`TARGET_LUFS`, `CEIL_DB`), so that the
   encoded film stays under −1 dBFS. The music **5 to 6 LU under the voice while someone speaks**, measured after
   ducking. The user rejected 9 to 11 LU as inaudible.
 - **Every word clear.** `python templates/scripts/word_margins.py shoots/<slug>/audio/build_mix.py` measures the
-  voice against music and effects over each word's own span. The last two films read: median 5.6 and 5.8 LU, tenth
-  percentile 1.5 and 2.4, lowest −3.4 in both, 7 of 235 words under 0 in both. A word far below that is covered:
+  voice against music and effects over each word's own span. The last three films read: median 5.6, 5.8 and 5.7 LU, tenth
+  percentile 1.5, 2.4 and 2.4, lowest −3.4, −3.4 and −1.9, with 7, 7 and 3 words under 0. A word far below that is covered:
   move the accent off it, or lift the word and dip the bed under it (`WEAK_WORDS`). Do this before the first render.
 - **Effects follow the picture**, and each has a reason in `cues.md`. A soft swish on a cut, none on a join and none
   on a cut in to a quotation. A jump in the picture that is meant (a stamp, a drop, a shrug) needs a sound whose name

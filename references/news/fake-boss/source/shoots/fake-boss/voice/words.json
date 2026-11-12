@@ -1,0 +1,1826 @@
+[
+ {
+  "word": "Your",
+  "start": 0.012,
+  "end": 0.162,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "boss",
+  "start": 0.162,
+  "end": 0.629,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "calls",
+  "start": 0.629,
+  "end": 0.929,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "you",
+  "start": 0.929,
+  "end": 1.037,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "on",
+  "start": 1.037,
+  "end": 1.179,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "video",
+  "start": 1.179,
+  "end": 1.628,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "wire",
+  "start": 1.813,
+  "end": 2.146,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "five",
+  "start": 2.146,
+  "end": 2.63,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "million",
+  "start": 2.63,
+  "end": 3.029,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "dollars",
+  "start": 3.029,
+  "end": 3.546,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 3.721,
+  "end": 3.879,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "tell",
+  "start": 3.879,
+  "end": 4.129,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "no",
+  "start": 4.129,
+  "end": 4.262,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "one",
+  "start": 4.262,
+  "end": 4.529,
+  "line": 1,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "His",
+  "start": 4.725,
+  "end": 4.866,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "voice",
+  "start": 4.866,
+  "end": 5.274,
+  "line": 1,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "His",
+  "start": 5.448,
+  "end": 5.606,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "face",
+  "start": 5.606,
+  "end": 6.031,
+  "line": 1,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "It",
+  "start": 6.201,
+  "end": 6.284,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "isn't",
+  "start": 6.284,
+  "end": 6.468,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "him",
+  "start": 6.468,
+  "end": 6.817,
+  "line": 1,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Prosecutors",
+  "start": 7.161,
+  "end": 7.711,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 7.711,
+  "end": 7.769,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "New",
+  "start": 7.769,
+  "end": 7.894,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "York",
+  "start": 7.894,
+  "end": 8.119,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "say",
+  "start": 8.119,
+  "end": 8.285,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "three",
+  "start": 8.285,
+  "end": 8.51,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "men",
+  "start": 8.51,
+  "end": 8.694,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "and",
+  "start": 8.694,
+  "end": 8.769,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "their",
+  "start": 8.769,
+  "end": 8.868,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "partners",
+  "start": 8.868,
+  "end": 9.285,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "tried",
+  "start": 9.285,
+  "end": 9.518,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "that",
+  "start": 9.518,
+  "end": 9.66,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "on",
+  "start": 9.66,
+  "end": 9.776,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "thousands",
+  "start": 9.776,
+  "end": 10.209,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "of",
+  "start": 10.209,
+  "end": 10.276,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "companies",
+  "start": 10.276,
+  "end": 10.768,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "using",
+  "start": 10.858,
+  "end": 11.15,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "A.I.",
+  "start": 11.15,
+  "end": 11.558,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 11.727,
+  "end": 12.418,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "took",
+  "start": 12.418,
+  "end": 12.584,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "about",
+  "start": 12.584,
+  "end": 12.767,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 12.767,
+  "end": 12.817,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hundred",
+  "start": 12.817,
+  "end": 13.084,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "and",
+  "start": 13.084,
+  "end": 13.175,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "twenty-nine",
+  "start": 13.175,
+  "end": 13.592,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "million",
+  "start": 13.592,
+  "end": 13.833,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "dollars",
+  "start": 13.833,
+  "end": 14.267,
+  "line": 2,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 14.39,
+  "end": 14.549,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "indictment",
+  "start": 14.549,
+  "end": 14.973,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "says",
+  "start": 14.973,
+  "end": 15.265,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 15.265,
+  "end": 15.34,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "began",
+  "start": 15.34,
+  "end": 15.648,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "with",
+  "start": 15.648,
+  "end": 15.773,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "an",
+  "start": 15.773,
+  "end": 15.848,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "email",
+  "start": 15.848,
+  "end": 16.281,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 16.281,
+  "end": 16.364,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 16.364,
+  "end": 16.431,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "CEO's",
+  "start": 16.431,
+  "end": 17.022,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "name",
+  "start": 17.022,
+  "end": 17.372,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "One",
+  "start": 17.557,
+  "end": 17.724,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "read",
+  "start": 17.724,
+  "end": 18.057,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "quote",
+  "start": 18.165,
+  "end": 18.564,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "we",
+  "start": 19.006,
+  "end": 19.164,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "need",
+  "start": 19.164,
+  "end": 19.331,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 19.331,
+  "end": 19.431,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "loop",
+  "start": 19.431,
+  "end": 19.672,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "you",
+  "start": 19.672,
+  "end": 19.822,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "into",
+  "start": 19.822,
+  "end": 20.055,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 20.055,
+  "end": 20.097,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "deal",
+  "start": 20.097,
+  "end": 20.414,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "we've",
+  "start": 20.414,
+  "end": 20.622,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "been",
+  "start": 20.622,
+  "end": 20.763,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "working",
+  "start": 20.763,
+  "end": 21.088,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "on",
+  "start": 21.088,
+  "end": 21.338,
+  "line": 4,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Then",
+  "start": 21.838,
+  "end": 22.187,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "the",
+  "start": 22.379,
+  "end": 22.479,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "call",
+  "start": 22.479,
+  "end": 22.937,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "the",
+  "start": 23.071,
+  "end": 23.171,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "CEO's",
+  "start": 23.171,
+  "end": 23.796,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "voice",
+  "start": 23.796,
+  "end": 24.246,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 24.366,
+  "end": 24.499,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "sometimes",
+  "start": 24.499,
+  "end": 24.974,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "his",
+  "start": 24.974,
+  "end": 25.132,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "face",
+  "start": 25.132,
+  "end": 25.49,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "made",
+  "start": 25.631,
+  "end": 25.898,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "by",
+  "start": 25.898,
+  "end": 26.09,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "A.I.",
+  "start": 26.09,
+  "end": 26.881,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Next",
+  "start": 27.062,
+  "end": 27.436,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "came",
+  "start": 27.436,
+  "end": 27.636,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 27.636,
+  "end": 27.661,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "lawyer",
+  "start": 27.661,
+  "end": 28.161,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "also",
+  "start": 28.328,
+  "end": 28.653,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "fake",
+  "start": 28.653,
+  "end": 29.061,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "under",
+  "start": 29.262,
+  "end": 29.545,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 29.545,
+  "end": 29.57,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "real",
+  "start": 29.57,
+  "end": 29.895,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "attorney's",
+  "start": 29.895,
+  "end": 30.328,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "name",
+  "start": 30.328,
+  "end": 30.653,
+  "line": 6,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "One",
+  "start": 30.88,
+  "end": 31.038,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "defendant",
+  "start": 31.038,
+  "end": 31.604,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "prosecutors",
+  "start": 31.604,
+  "end": 32.186,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "say",
+  "start": 32.186,
+  "end": 32.51,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "kept",
+  "start": 32.65,
+  "end": 32.842,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 32.842,
+  "end": 32.875,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "handwritten",
+  "start": 32.875,
+  "end": 33.333,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "script",
+  "start": 33.333,
+  "end": 33.766,
+  "line": 7,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Its",
+  "start": 33.938,
+  "end": 34.113,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "title",
+  "start": 34.113,
+  "end": 34.479,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "Lawyer",
+  "start": 34.669,
+  "end": 35.003,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Call",
+  "start": 35.003,
+  "end": 35.327,
+  "line": 7,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "And",
+  "start": 35.71,
+  "end": 36.018,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 36.018,
+  "end": 36.143,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "worked",
+  "start": 36.143,
+  "end": 36.584,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "the",
+  "start": 36.699,
+  "end": 36.849,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "indictment",
+  "start": 36.849,
+  "end": 37.265,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "says",
+  "start": 37.265,
+  "end": 37.615,
+  "line": 8,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "A",
+  "start": 37.751,
+  "end": 37.809,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Missouri",
+  "start": 37.809,
+  "end": 38.184,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hospital",
+  "start": 38.184,
+  "end": 38.575,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "system",
+  "start": 38.575,
+  "end": 38.917,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "sent",
+  "start": 38.917,
+  "end": 39.167,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "four",
+  "start": 39.167,
+  "end": 39.458,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "point",
+  "start": 39.458,
+  "end": 39.8,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "eight",
+  "start": 39.8,
+  "end": 39.991,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "million",
+  "start": 39.991,
+  "end": 40.383,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "dollars",
+  "start": 40.383,
+  "end": 40.849,
+  "line": 8,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "A",
+  "start": 41.006,
+  "end": 41.064,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Florida",
+  "start": 41.064,
+  "end": 41.464,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "pet",
+  "start": 41.464,
+  "end": 41.697,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "food",
+  "start": 41.697,
+  "end": 41.897,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "company",
+  "start": 41.897,
+  "end": 42.347,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "five",
+  "start": 42.443,
+  "end": 42.752,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "point",
+  "start": 42.752,
+  "end": 43.068,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "two",
+  "start": 43.068,
+  "end": 43.301,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "million",
+  "start": 43.301,
+  "end": 43.718,
+  "line": 8,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 43.908,
+  "end": 43.991,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "money",
+  "start": 43.991,
+  "end": 44.224,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "went",
+  "start": 44.224,
+  "end": 44.399,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 44.399,
+  "end": 44.516,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "accounts",
+  "start": 44.516,
+  "end": 44.932,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 44.932,
+  "end": 45.057,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "at",
+  "start": 45.057,
+  "end": 45.132,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "least",
+  "start": 45.132,
+  "end": 45.374,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "nine",
+  "start": 45.374,
+  "end": 45.673,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "countries",
+  "start": 45.673,
+  "end": 46.311,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "then",
+  "start": 46.311,
+  "end": 46.62,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "into",
+  "start": 46.62,
+  "end": 46.845,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "crypto",
+  "start": 46.845,
+  "end": 47.378,
+  "line": 9,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Two",
+  "start": 47.498,
+  "end": 47.64,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "defendants",
+  "start": 47.64,
+  "end": 48.048,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "have",
+  "start": 48.048,
+  "end": 48.215,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "aliases",
+  "start": 48.215,
+  "end": 48.748,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 48.748,
+  "end": 48.839,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 48.839,
+  "end": 48.914,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "indictment",
+  "start": 48.914,
+  "end": 49.472,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Rocky",
+  "start": 49.629,
+  "end": 49.895,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Balboa",
+  "start": 49.895,
+  "end": 50.47,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Superman",
+  "start": 50.603,
+  "end": 51.061,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Cash",
+  "start": 51.061,
+  "end": 51.469,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Impossible",
+  "start": 51.601,
+  "end": 52.117,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Mission",
+  "start": 52.117,
+  "end": 52.492,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "One",
+  "start": 52.848,
+  "end": 52.981,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "allegedly",
+  "start": 52.981,
+  "end": 53.381,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "boasted",
+  "start": 53.381,
+  "end": 53.739,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "that",
+  "start": 53.739,
+  "end": 53.856,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "at",
+  "start": 53.856,
+  "end": 53.972,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "laundering",
+  "start": 53.972,
+  "end": 54.372,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "money",
+  "start": 54.372,
+  "end": 54.68,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "he",
+  "start": 54.68,
+  "end": 54.813,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "was",
+  "start": 54.813,
+  "end": 55.197,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "quote",
+  "start": 55.197,
+  "end": 55.613,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "number",
+  "start": 55.935,
+  "end": 56.226,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "one",
+  "start": 56.226,
+  "end": 56.501,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "all",
+  "start": 56.501,
+  "end": 56.776,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "over",
+  "start": 56.776,
+  "end": 56.934,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 56.934,
+  "end": 57.001,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "world",
+  "start": 57.001,
+  "end": 57.467,
+  "line": 11,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "But",
+  "start": 57.922,
+  "end": 58.038,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 58.038,
+  "end": 58.147,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "didn't",
+  "start": 58.147,
+  "end": 58.38,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "always",
+  "start": 58.38,
+  "end": 58.688,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "work",
+  "start": 58.688,
+  "end": 59.096,
+  "line": 12,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "At",
+  "start": 59.288,
+  "end": 59.421,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "one",
+  "start": 59.421,
+  "end": 59.671,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "New",
+  "start": 59.671,
+  "end": 59.821,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "York",
+  "start": 59.821,
+  "end": 60.037,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "investment",
+  "start": 60.037,
+  "end": 60.462,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bank",
+  "start": 60.462,
+  "end": 60.779,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "an",
+  "start": 60.912,
+  "end": 61.029,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "employee",
+  "start": 61.029,
+  "end": 61.587,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "approved",
+  "start": 61.587,
+  "end": 61.886,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 61.886,
+  "end": 61.945,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "wire",
+  "start": 61.945,
+  "end": 62.386,
+  "line": 12,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 62.537,
+  "end": 62.611,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "back",
+  "start": 62.611,
+  "end": 62.853,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "office",
+  "start": 62.853,
+  "end": 63.178,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "stopped",
+  "start": 63.178,
+  "end": 63.469,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 63.469,
+  "end": 63.636,
+  "line": 12,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "All",
+  "start": 63.757,
+  "end": 64.015,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "three",
+  "start": 64.015,
+  "end": 64.34,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "were",
+  "start": 64.34,
+  "end": 64.548,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "arrested",
+  "start": 64.548,
+  "end": 64.948,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "this",
+  "start": 64.948,
+  "end": 65.106,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "year",
+  "start": 65.106,
+  "end": 65.456,
+  "line": 13,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "These",
+  "start": 65.711,
+  "end": 66.152,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "are",
+  "start": 66.152,
+  "end": 66.277,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "accusations",
+  "start": 66.277,
+  "end": 67.185,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "they",
+  "start": 67.394,
+  "end": 67.569,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "are",
+  "start": 67.569,
+  "end": 67.677,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "presumed",
+  "start": 67.677,
+  "end": 68.26,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "innocent",
+  "start": 68.26,
+  "end": 68.81,
+  "line": 13,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "So",
+  "start": 69.463,
+  "end": 69.688,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "what",
+  "start": 69.688,
+  "end": 69.888,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "stops",
+  "start": 69.888,
+  "end": 70.229,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 70.229,
+  "end": 70.271,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "fake",
+  "start": 70.271,
+  "end": 70.529,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "boss",
+  "start": 70.529,
+  "end": 70.979,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "sharper",
+  "start": 71.142,
+  "end": 71.534,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "employees",
+  "start": 71.534,
+  "end": 72.167,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "or",
+  "start": 72.33,
+  "end": 72.622,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 72.622,
+  "end": 72.672,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "rule",
+  "start": 72.672,
+  "end": 72.938,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "that",
+  "start": 72.938,
+  "end": 73.063,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "nobody",
+  "start": 73.063,
+  "end": 73.488,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "sends",
+  "start": 73.488,
+  "end": 73.754,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "millions",
+  "start": 73.754,
+  "end": 74.088,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "alone",
+  "start": 74.088,
+  "end": 74.496,
+  "line": 14,
+  "ends_sentence": true,
+  "comma": false
+ }
+]

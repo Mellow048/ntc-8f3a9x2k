@@ -1,0 +1,69 @@
+{
+ "source": "raw-take.mp3",
+ "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
+ "raw_seconds": 96.85,
+ "tight_seconds": 87.18,
+ "pauses_cut": 50,
+ "tempo": 1.2,
+ "eq": {
+  "bass_shelf_db": -1.0,
+  "presence_db": 1.5
+ },
+ "squeezed": [],
+ "beats": [
+  {
+   "line": 1,
+   "after": "him",
+   "at": 6.892,
+   "seconds": 0.2
+  },
+  {
+   "line": 4,
+   "after": "quote",
+   "at": 18.489,
+   "seconds": 0.2
+  },
+  {
+   "line": 4,
+   "after": "on",
+   "at": 21.068,
+   "seconds": 0.3
+  },
+  {
+   "line": 7,
+   "after": "Call",
+   "at": 34.782,
+   "seconds": 0.2
+  },
+  {
+   "line": 10,
+   "after": "Mission",
+   "at": 51.747,
+   "seconds": 0.15
+  },
+  {
+   "line": 11,
+   "after": "quote",
+   "at": 54.663,
+   "seconds": 0.2
+  },
+  {
+   "line": 11,
+   "after": "world",
+   "at": 56.317,
+   "seconds": 0.3
+  },
+  {
+   "line": 13,
+   "after": "innocent",
+   "at": 67.405,
+   "seconds": 0.45
+  }
+ ],
+ "seconds": 74.61,
+ "words": 228,
+ "words_per_second": 3.06,
+ "lufs": -16.5,
+ "lra": 2.4,
+ "peak": -1.6
+}
