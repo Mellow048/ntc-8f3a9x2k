@@ -2,7 +2,7 @@
 // down to the strait, Griffin's split-rail fence on the boundary, the bluff, the water, and — for shot 2 — a
 // warship's bow hanging in the haze behind the pig. All geometry; nothing here is a painted flat except the sky.
 import * as THREE from "three";
-import { Batch, boxGeo, quad, lam, V } from "./build";
+import { Batch, boxGeo, quad, tri, lam, V } from "./build";
 import { ctex, grassHD, planksHD, beamHD, stoneHD, roofHD, waterNear, waterFar, rng } from "./paint";
 
 /** clodded, dry farm soil, with the furrow shadows baked low so the rows read from a low lens */
@@ -90,9 +90,9 @@ export const buildCabin = (R: THREE.Object3D) => {
   const gableH = 1.9, x0 = cx - W / 2, x1 = cx + W / 2, z0 = cz - D / 2, z1 = cz + D / 2, yt = y0 + H;
   for (const x of [x0, x1]) {
     const out = x === x1 ? 1 : -1;
-    b.add(new THREE.BufferGeometry().setAttribute("position", new THREE.Float32BufferAttribute(
-      [x, yt, z0, x, yt, z1, x, yt + gableH, cz], 3)).setAttribute("normal", new THREE.Float32BufferAttribute(
-      [out, 0, 0, out, 0, 0, out, 0, 0], 3)).setAttribute("uv", new THREE.Float32BufferAttribute([0, 0, 2.2, 0, 1.1, 0.95], 2)), logs);
+    // outward-wound triangle at each end so the ink pass sees a clean silhouette (tri() builds its own normal)
+    const A = V(x, yt, out > 0 ? z1 : z0), B = V(x, yt, out > 0 ? z0 : z1), C = V(x, yt + gableH, cz);
+    b.add(tri(A, B, C), logs);
   }
   // roof: two slopes from the ridge down to the eaves on the +-z sides, top and underside
   const eaveX = W / 2 + 0.46, eaveZ = D / 2 + 0.55, eaveDrop = (gableH * eaveX) / (W / 2);
