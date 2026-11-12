@@ -1,9 +1,9 @@
 // Sets of the sorry hackers short, part 2: the waiting room, the bedside, the university's notice, the wall of ID
 // cards, somebody at home with a phone.
 import * as THREE from 'three';
-import {backdrop, ball, box, cyl, floor, grainTex, grp, hop, lit, panel, pop, rng, rod, rrect, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, woodTex, type G2} from './kit';
+import {backdrop, box, cyl, floor, grainTex, grp, hop, lit, panel, pop, rng, rod, rrect, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, woodTex, type G2} from './kit';
 import {actor, NURSE, PATIENT} from './cast';
-import {bubble, halo, monitor, person, plant, screenTex, signTex} from './props';
+import {bubble, halo, monitor, person, plant, screenTex} from './props';
 import {INK, LIGHT, padlock, type Builder} from './sets';
 import {W} from './story';
 
@@ -72,7 +72,7 @@ export const bedside: Builder = (root) => {
     tick: ({f, cam, shot}) => {
       const at = W(95) + 3, locked = f >= at, paper = shot.v === 'paper' && f >= W(99) + 2;                 // it locks on "machines"; by "patients" she is writing by hand
       scrM.map = locked ? lockT : ok; scrM.color.setScalar(locked ? 1.1 + 0.12 * Math.sin(f * 0.5) : 1); cart.rotation.z = shake(f, at, 0.03, 9);
-      nurse.show(paper ? 'c' : locked ? 'b' : 'a'); nurse.node.position.x = NX + 0.3 * (paper ? smooth(f, W(99) + 2, W(99) + 12) : 0); nurse.node.position.y = hop(f, at + 1, 0.07, 8); nurse.tick(f, cam);
+      nurse.show(paper ? 'c' : locked ? 'b' : 'a'); nurse.node.position.x = NX + 0.18 * (paper ? smooth(f, W(99) + 2, W(99) + 12) : 0); nurse.node.position.y = hop(f, at + 1, 0.07, 8); nurse.tick(f, cam);
       beat.offset.x = -f * 0.012; pat.tick(f, cam);
     },
   };
@@ -195,4 +195,3 @@ export const home: Builder = (root) => {
     },
   };
 };
-export {ball};

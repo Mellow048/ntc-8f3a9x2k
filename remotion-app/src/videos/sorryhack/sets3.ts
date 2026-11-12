@@ -1,7 +1,7 @@
 // Sets of the sorry hackers short, part 3: the group's den, the outage as the group tells it, the second campus, its
 // computer room, the empty line-up, the closing question.
 import * as THREE from 'three';
-import {backdrop, ball, beam, box, cone, cyl, floor, grainTex, grp, hop, lamp, lit, mesh, panel, pool, pop, rng, rod, rrect, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, woodTex, torus} from './kit';
+import {backdrop, ball, beam, box, cone, cyl, floor, grainTex, grp, hop, lamp, lit, panel, pool, pop, rng, rod, rrect, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, woodTex} from './kit';
 import {actor, GREEN, HOOD, STUDENT, type Actor, type Draw} from './cast';
 import {folder, halo, monitor, officeChair, screenTex, signTex, streetLamp, table} from './props';
 import {arcs, INK, LIGHT, padlock, rings, talkTex, type Builder} from './sets';
@@ -126,7 +126,7 @@ export const their: Builder = (root) => {
   // one big switch, with the name of whose it is (in this telling)
   const SX = -0.98, sw = grp(root, SX, 1.18, -1.2); box(sw, 0.7, 1.3, 0.1, '#1f6b3a', 0, 0.06, 0);
   panel(sw, 0.6, 0.2, smat(signTex('their-unm', 300, 100, GREEN, '#06140c', [['UNM', 84, 0.56]]), 1.05), 0, 0.56, 0.055);
-  panel(sw, 0.46, 0.17, smat(signTex('their-on', 270, 100, '#0a1f12', GREEN, [['ON', 80, 0.56]]), 1.1), 0, 0.33, 0.055); panel(sw, 0.46, 0.17, smat(signTex('their-off', 270, 100, '#0a1f12', '#ffffff', [['OFF', 80, 0.56]]), 1.0), 0, -0.38, 0.055);
+  panel(sw, 0.46, 0.17, smat(signTex('their-on', 270, 100, '#0a1f12', GREEN, [['ON', 80, 0.56]]), 1.1), 0, 0.33, 0.055); panel(sw, 0.46, 0.17, smat(signTex('their-off', 270, 100, '#0a1f12', '#ffffff', [['OFF', 80, 0.56]]), 1.0), 0, -0.47, 0.055);
   box(sw, 0.12, 0.44, 0.04, '#06140c', 0, -0.02, 0.06);
   const lever = grp(sw, 0, -0.02, 0.1); rod(lever, [0, 0, 0], [0, 0.2, 0.2], 0.035, '#2f9a52'); ball(lever, 0.085, lit(GREEN, 1.2), 0, 0.22, 0.22);
   // an alarm lamp on top of it, low enough to stay under the quotation
@@ -250,4 +250,3 @@ export const final: Builder = (root) => {
     },
   };
 };
-export {mesh, torus};

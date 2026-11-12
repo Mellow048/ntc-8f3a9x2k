@@ -2,8 +2,7 @@
 // fills a group once and returns a tick that poses it for a frame (motion is a pure function of the frame number, so
 // any frame can be rendered on its own).
 import * as THREE from 'three';
-import {backdrop, ball, box, cyl, floor, grainTex, grp, hop, lamp, lit, mesh, panel, pool, pop, rng, rrect, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat,
-  type G2, type Node, type V} from './kit';
+import {backdrop, ball, box, cyl, floor, grainTex, grp, hop, lamp, lit, mesh, panel, pool, pop, rng, rrect, shake, smat, smooth, soft, tex, text, tileTex, tiled, tmat, type G2, type Node, type V} from './kit';
 import {actor, GREEN, NURSE} from './cast';
 import {monitor, officeChair, plant, screenTex, signTex, table} from './props';
 import {W, type Shot} from './story';
@@ -24,10 +23,6 @@ export const LIGHT: Record<'day' | 'room' | 'cold' | 'dark' | 'warm' | 'show' | 
 };
 
 export const INK = '#15121c';
-/** letters with a dark edge on nothing: labels that stand in the set */
-export const label = (key: string, w: number, h: number, lines: [string, number, number, string?, ('Anton' | 'Montserrat')?][]) => tex('label-' + key, w, h, (g) => {
-  for (const [s, size, y, col, font] of lines) text(g, s, w / 2, y * h, size, col ?? '#ffffff', {font: font ?? 'Anton', stroke: INK, sw: size * 0.22, maxWidth: w * 0.94});
-});
 /** a loudspeaker with three waves: a computer that talks */
 export const speaker = (g: G2, x: number, y: number, s: number, c: string) => {
   g.save(); g.fillStyle = c; g.strokeStyle = c; g.lineCap = 'round'; g.lineJoin = 'round';
@@ -43,8 +38,6 @@ export const padlock = (g: G2, x: number, y: number, s: number, body = '#f2c230'
   g.fillStyle = INK; g.beginPath(); g.arc(x, y + s * 0.32, s * 0.13, 0, 7); g.fill(); g.fillRect(x - s * 0.055, y + s * 0.32, s * 0.11, s * 0.3);
   g.restore();
 };
-/** a white H on blue: a hospital (not a red cross: that sign is protected) */
-export const hSign = () => signTex('h', 128, 128, '#2f6fd0', '#ffffff', [['H', 112, 0.56]]);
 /** what a screen shows while the computer talks: a loudspeaker, nothing else */
 export const talkTex = (key: string, bg: string, fg: string) => screenTex('talk-' + key, (g, w, h) => { speaker(g, w / 2 - 20, h / 2, 110, fg); }, 512, 368, bg);
 /** Rings of sound that leave a point, facing the camera side of the set. Call the returned function every frame. */
@@ -133,7 +126,7 @@ export const er: Builder = (root) => {
         x = 4.56 - 4.0 * smooth(f, t0 - 4, t0 + 24); const g0 = W(1) + 5, g1 = W(2) - 1;
         sign = f < g0 ? 'er' : f < g1 ? (Math.floor(f / 2) % 2 ? 'off' : 'er') : 'div'; st = f >= g1 + 3 ? 'stop' : 'idle';
       } else if (v === 'away') { dir = 0; x = 0.3 + 3.4 * ((f - t0) / 26) ** 2.2; sign = 'div'; st = 'way'; }      // it has turned round, and goes
-      else if (v === 'back') { x = 4.45 - 4.0 * smooth(f, t0 - 2, t0 + 20); sign = 'open'; st = 'hi'; }
+      else if (v === 'back') { x = 4.38 - 4.0 * smooth(f, t0 - 2, t0 + 20); sign = 'open'; st = 'hi'; }
       else flash = false;
       amb.g.visible = v === 'hit' || v === 'away' || v === 'back'; amb.g.position.x = x; amb.g.position.z = 1.35; amb.g.rotation.y = dir; amb.tick(f, flash);
       signM.map = SIGNS[sign];
