@@ -134,9 +134,12 @@ with every number, command and trap those films produced.
   playbook.
 - [`references/news/sorry-hackers/`](references/news/sorry-hackers/README.md)
   and [`references/news/truck-stop-heist/`](references/news/truck-stop-heist/README.md):
-  delivered together ("another banger after banger"). The truck-stop film is
-  the newest and the one to start a new film from:
-  `python references/news/restore.py truck-stop-heist`.
+  delivered together ("another banger after banger").
+- [`references/news/bitcoin-flex/`](references/news/bitcoin-flex/README.md):
+  a story the user remembered from a TikTok and did not name; found, checked
+  and made without a question, approved at the first delivery ("yes go ahead
+  lad"). It is the newest and the one to start a new film from:
+  `python references/news/restore.py bitcoin-flex`.
 
 Match their care; do not copy their stories, sets or scores. **Work in the
 order written in

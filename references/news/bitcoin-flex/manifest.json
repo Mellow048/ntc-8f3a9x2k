@@ -1,0 +1,330 @@
+{
+  "title": "One Month of Being Rich",
+  "origin_commit": "84585764d5f3915d15049aca2c86335bf928e459",
+  "origin_video": "shoots/bitcoin-flex/final-720p.mp4",
+  "origin_branch": "arena/becd20b7-ntc-8f3a9x2k",
+  "render_commit": "cf828d13c1b5d541a1c3200bcd525692d6786b3f",
+  "render_source_commit": "284ca3a2cdc589aa0cc309af98a67d1e42dcfc54",
+  "render_run": 43347793839,
+  "category": "news",
+  "approval": "User, 2026-11-13, at the first delivery. The agent had written: \"Tell me what to change, or approve it and I will file it with the other seven.\" The user: \"yes go ahead lad\".",
+  "film_dir": "btcflex",
+  "shoot": "bitcoin-flex",
+  "register": "BtcFlexCompositions",
+  "compositions": [
+    "BtcFlexShort",
+    "BtcFlexReview",
+    "BtcFlexCastSheet"
+  ],
+  "adaptation": "Standalone entry point added (source/remotion-app/src/reference-entry.tsx); the live Root.tsx and index.ts, which register other films too, are omitted. Every other file under source/ is copied without edits from origin_commit. changed_since_render_source lists the copied files that differ from the tree the picture was rendered from. audio/mix.wav is not stored: build_mix.py regenerates it from the included voice (mix_wav_sha256 is the file that went into the MP4). The shot sheets were cut from final-720p.mp4. The render workflow is included as an inert recipe.",
+  "changed_since_render_source": [
+    "shoots/bitcoin-flex/SCRIPT.md",
+    "shoots/bitcoin-flex/audio/build_mix.py",
+    "shoots/bitcoin-flex/audio/cues.md",
+    "shoots/bitcoin-flex/qa-report.md",
+    "templates/scripts/short_qa.py"
+  ],
+  "mix_wav_sha256": "624a2a4f5bf72a88a33c0e837281d77a30e078ae6c858ee74a104239adfa2b7a",
+  "files": [
+    {
+      "path": "final-720p.mp4",
+      "sha256": "651d88988e053d226ddbed57ce8259c876e735bf3d60ada0647cacbd12c30195",
+      "bytes": 42450851
+    },
+    {
+      "path": "shots-01-23.jpg",
+      "sha256": "dba9f13222ec29156fb85055cb8eb51ad79b5ddad558b77ae384804310848126",
+      "bytes": 503492
+    },
+    {
+      "path": "shots-24-45.jpg",
+      "sha256": "aa44c7df40f2efe09437e5368b84c4112bb90cfb3106c4e6bf611e6dcb4bbce0",
+      "bytes": 508829
+    },
+    {
+      "path": "source/.github/workflows/render-short.yml",
+      "sha256": "327ccc1804c1a3d988a6c6878467aba604adc8f927417fb04fa58c9815adbc44",
+      "bytes": 13505
+    },
+    {
+      "path": "source/remotion-app/package-lock.json",
+      "sha256": "9f9fb75fcdfbe2264552bb81d2798d9e2796aa9ca90f322044903c8236431766",
+      "bytes": 161227
+    },
+    {
+      "path": "source/remotion-app/package.json",
+      "sha256": "cb1d27d1eedfccdccc33cb5f890393de7cd592c6b8a4b65aa56cf2a2b2046c4b",
+      "bytes": 813
+    },
+    {
+      "path": "source/remotion-app/public/fonts/README.md",
+      "sha256": "dff0c0df99ef2ba29692af8a5d4c923107867331e7546bda91ee33115cda9689",
+      "bytes": 511
+    },
+    {
+      "path": "source/remotion-app/public/fonts/anton-latin-400-normal.woff2",
+      "sha256": "d0fa07ff63dd60cbc0e2f58e29c802dca2a5ae0276c999f59c6111ab7bbaec3b",
+      "bytes": 18612
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-700-normal.woff2",
+      "sha256": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+      "bytes": 18824
+    },
+    {
+      "path": "source/remotion-app/public/fonts/montserrat-latin-900-normal.woff2",
+      "sha256": "5b6958520638bb8609f9eacb17c4d189563efeae96d5da49f7c2043988697205",
+      "bytes": 18020
+    },
+    {
+      "path": "source/remotion-app/remotion.config.ts",
+      "sha256": "f2f70c8410b5bf76fecac310cee020a9ad9902031b8ffedd74a88b0877e3f6c1",
+      "bytes": 443
+    },
+    {
+      "path": "source/remotion-app/scripts/frame.mjs",
+      "sha256": "e3e8feaf5ae569802e64c4977d4aca28a77676aa7c7ee156ae40568a25e03cf1",
+      "bytes": 3444
+    },
+    {
+      "path": "source/remotion-app/scripts/local-chromium.sh",
+      "sha256": "fc9d292d0f216ad73efaa7705ae1e959fa8df2718dbe47c8b142fd44109468c8",
+      "bytes": 1979
+    },
+    {
+      "path": "source/remotion-app/scripts/pick.sh",
+      "sha256": "114c6050fd3fe3c46aa326f3e81df555ce2b5d6cdfa54a5de0b14215062e326e",
+      "bytes": 1076
+    },
+    {
+      "path": "source/remotion-app/scripts/plan.mjs",
+      "sha256": "785953e29eb2f4c486f3bbfc191fce6168f7c3b25ec0b0bc62fa7471a88ebcba",
+      "bytes": 1776
+    },
+    {
+      "path": "source/remotion-app/scripts/project.py",
+      "sha256": "cff0f8be5e926d619a6ac36a11a78f97367686fc5df7cb3f1290c046e915095f",
+      "bytes": 1877
+    },
+    {
+      "path": "source/remotion-app/scripts/sheet.py",
+      "sha256": "44fa80748c25174c6f1ee30530b12fc05f18a501d802deb578bfa929adc42c81",
+      "bytes": 1420
+    },
+    {
+      "path": "source/remotion-app/scripts/sheets.sh",
+      "sha256": "6f6e19ff934905efe6e412df20049dbf6e0acdb3d4f1a5cd15828920bc3f1be1",
+      "bytes": 877
+    },
+    {
+      "path": "source/remotion-app/scripts/shots.mjs",
+      "sha256": "aa4b9e1c18e406766cf63b20b0dccf41efa47903614453c72a6e3ce35369aa70",
+      "bytes": 1532
+    },
+    {
+      "path": "source/remotion-app/scripts/stills.mjs",
+      "sha256": "35c4b7ea7190c6a3e1333c889d46ddfaee411dfc14d29998f24bd5b1f468a154",
+      "bytes": 3301
+    },
+    {
+      "path": "source/remotion-app/src/reference-entry.tsx",
+      "sha256": "c831dedbd42758ca6c0bcfe83c41b8fb6e4599a5d6a7b0d312e3e21d1b4fa801",
+      "bytes": 356
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/BtcFlex.tsx",
+      "sha256": "d60938ec4babae25d2616d00a858c7396431e9fdb26b38f78f66b5426e44f9bd",
+      "bytes": 4070
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/Captions.tsx",
+      "sha256": "a0ba1df1b40c06ee6203d03bfd539e21c91afca9c1bc5d4a72eba67023035802",
+      "bytes": 3511
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/CastSheet.tsx",
+      "sha256": "abeaa2924fe0d2ae03a1a0fedc320fec06a00518757a435beb801de4e93f12db",
+      "bytes": 2519
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/Overlays.tsx",
+      "sha256": "7638789d111e02c269830cfca7ca53e432dfff2721d2f7aee5d5a291bd0255d0",
+      "bytes": 19179
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/World.ts",
+      "sha256": "0e5ad183b24ed5fc507c61e438fb97463c5ed3349bc9e379a6a2446c22032c76",
+      "bytes": 3180
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/cast.ts",
+      "sha256": "4ae3012e5bbe3cf8b862c09fb26e58629f5c7b3a2050c28a0c52befe462d9042",
+      "bytes": 36319
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/fonts.ts",
+      "sha256": "2397bb4a15ec5a3f3c099bd958e620596051f2a039bf844b02cf172b5a2204d7",
+      "bytes": 1203
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/kit.ts",
+      "sha256": "fbfc87aa24afac9eadba5b75eaeeec281c05a93991c8982689366c1a8199c60c",
+      "bytes": 12508
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/props.ts",
+      "sha256": "4f50502e46b9e33ec45ee0663a1615e5cbed39852111026d8c8422f931faf47f",
+      "bytes": 20897
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/register.tsx",
+      "sha256": "876d7af8852cbf2d864c703bc1128352b311b67c9d73b711d5dcde7039e4e8a9",
+      "bytes": 1347
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/sets.ts",
+      "sha256": "ac13b08d55f755a04ee323a47bee5ed33eadb24f206cfcbb54e70e47b4ff8dc8",
+      "bytes": 39140
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/sets2.ts",
+      "sha256": "25623386edaf471e064c7371a42ae5e863ccb746a2ffb431d8fee46854bc6428",
+      "bytes": 28324
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/sets3.ts",
+      "sha256": "6b4da3114a19b2b548ebd250fe0bdf53c7c19c41362ae7437c4e50009d75cebb",
+      "bytes": 24427
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/story.ts",
+      "sha256": "eacd12d143e5922744c0e5e5dc3dcc163240d332e3705ce1926b73918fc3fda1",
+      "bytes": 9813
+    },
+    {
+      "path": "source/remotion-app/src/videos/btcflex/words.json",
+      "sha256": "acd687accee434821a355cd9ed6a986599ce40b80f1272482211bf9b2fc343b1",
+      "bytes": 23579
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/grade.ts",
+      "sha256": "460b6deb3d08c9e5d0cbff1dd368ede3e59d05d841fbf6dcb0d582f30d70c13d",
+      "bytes": 10019
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/ink.ts",
+      "sha256": "6dadbd41a11501d10d008eeaf9497ae74c267dc90cd073899813e40cfbfc31e1",
+      "bytes": 20875
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/lensblur.ts",
+      "sha256": "74cd4ed67eb123fa3b482731e9539ca51af0158f386fa369f831cd7b82459af5",
+      "bytes": 7962
+    },
+    {
+      "path": "source/remotion-app/src/videos/pendulum/toon.ts",
+      "sha256": "e3e5b3f636d04549369d1c842a13e708fa35d32d89176184ad027360a6eee7f4",
+      "bytes": 59851
+    },
+    {
+      "path": "source/remotion-app/tsconfig.json",
+      "sha256": "036ea329ec75a4f26a744b78f41d2dc9353f15f965b6a7f98397a32652ee0073",
+      "bytes": 352
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/NOTES.md",
+      "sha256": "ad780f48cd8daa462d5c58214efeb2e1e959597f0f997680cfcd18496a5d97f5",
+      "bytes": 25742
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/SCRIPT.md",
+      "sha256": "83e2821dae33448c34e158c346ceebd2cb882408150ab13e1276457c3fcd61bd",
+      "bytes": 41569
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/audio/build_mix.py",
+      "sha256": "6286b018aeabd65d49706a3264c8ba075ce4becc416b09a9b8d60217cd44a6c3",
+      "bytes": 59319
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/audio/cues.md",
+      "sha256": "67674aea8084b75b94345283ee3eab6fe2d3138755176bf51a56af924361f992",
+      "bytes": 14775
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/build_voice.py",
+      "sha256": "e03ee5a83b408b2c0a7cd773185b4a0eefa99144a34160cb3e9fb0442cdefd06",
+      "bytes": 14956
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/narration.txt",
+      "sha256": "e5ad2c4067b5d84e531a4f9ed7baaf2932179332a8c03055d154a4e9198768c3",
+      "bytes": 1350
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/qa-report.md",
+      "sha256": "cd95e054416af78db01023054f98f356d1404f6a5523883a61035c99c4efd668",
+      "bytes": 3073
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/qa-shots.json",
+      "sha256": "04b7fcc31fb5db48b6f2aa1b86d685c2664d312c1ecc2bb1e1a297482745ce20",
+      "bytes": 5070
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/voice/raw-take.mp3",
+      "sha256": "efb2e9f61b7ca31a155125f50d06dce55e8defeed8c6aedb1d1e1c74dabb3b7e",
+      "bytes": 752135
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/voice/timing.json",
+      "sha256": "846a6c7b35b4e4b13aa392c0ff063847e9319e09da184b803cfefa633ff46c40",
+      "bytes": 1727
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/voice/voice.wav",
+      "sha256": "871a18c98037460b072f8d83476db5a7ebd3e4cc302e2e8c8ff6d822340e200a",
+      "bytes": 7005488
+    },
+    {
+      "path": "source/shoots/bitcoin-flex/voice/words.json",
+      "sha256": "8f5a92fc0b7adf2885ad188558a8d61eec57467e5c00319df45453b3fca0c6bf",
+      "bytes": 27309
+    },
+    {
+      "path": "source/shoots/voice_master.py",
+      "sha256": "eb1c1804cef6658cc49b2fdd98b0bc0948ac0f24398ddde83ad7268c488f2b5e",
+      "bytes": 12949
+    },
+    {
+      "path": "source/templates/audio/dsp.py",
+      "sha256": "3b456f4653fde5f30b8a22aa53903e5d4b2b3ca508908978f210fb6934214355",
+      "bytes": 11468
+    },
+    {
+      "path": "source/templates/audio/instruments.py",
+      "sha256": "8f66ee6134daefc85021aadab1138a3ce480029c91fc4428d04cba6fd5737fee",
+      "bytes": 13122
+    },
+    {
+      "path": "source/templates/audio/sfx_gen.py",
+      "sha256": "656e0d04a8fbd05e1b8c9a8a96e201c6033783cb6961eba788544f05f294a651",
+      "bytes": 25699
+    },
+    {
+      "path": "source/templates/scripts/aac_check.py",
+      "sha256": "8a0509ffab1ceac1bab6220b6c33f79bb45826ed8a5369f98a31fe156e884c6b",
+      "bytes": 2485
+    },
+    {
+      "path": "source/templates/scripts/short_qa.py",
+      "sha256": "0cd8d4bba39f817290248c2396761efa4beb116486672cef28d833a051f884ce",
+      "bytes": 5451
+    },
+    {
+      "path": "source/templates/scripts/word_margins.py",
+      "sha256": "8a6ccb65343d5bb2a4f7b60232540adf7ff8260053231747e2b3c208b4fd3134",
+      "bytes": 2805
+    }
+  ]
+}

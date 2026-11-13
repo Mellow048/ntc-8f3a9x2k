@@ -1,4 +1,4 @@
-# The Hackers Who Said Sorry — news reference 6 of 7
+# The Hackers Who Said Sorry — news reference 6 of 8
 
 A 74-second news short about a cyberattack on the University of New Mexico's health system on 26 October 2026, which
 made the state's only top-level trauma centre send ambulances elsewhere for two hours, and about the group that
@@ -10,7 +10,7 @@ both: **"another banger after banger. great job lad."**
 It is a snapshot of a developing story as it stood on **2026-11-12**. Reuse how it was made, never its facts, script,
 sets or score. The category rules and the order of work are in [`../README.md`](../README.md); every number, command
 and trap is in [`../PLAYBOOK.md`](../PLAYBOOK.md). To start a new film, restore the newest snapshot,
-[`../truck-stop-heist/`](../truck-stop-heist/README.md).
+[`../bitcoin-flex/`](../bitcoin-flex/README.md).
 
 It was made from `main` by following the playbook, starting from `restore.py fake-boss`: one full render, no question
 to the user.
