@@ -8,7 +8,7 @@ The fourth film went from its first commit to the render whose picture the user 
 fifth, made from `main` by following this page, took an hour and forty minutes and two renders. The sixth and
 seventh were made one after the other in four hours, with one and two renders. The eighth was built twice (section
 0); its second build went from its first commit to the final file in an hour and forty minutes, with three renders,
-two of which stills would have saved (section 6).
+two of them for faults that were on stills it had already looked at (section 6).
 Nothing below needs the user, except the choice of topic and, once in a session, the choice of voice.
 
 ## 0. Before anything: the working place
@@ -204,11 +204,13 @@ renders the frames you name (four took 23 seconds in the two-core sandbox). Tile
 4. **The two frames either side of every change of shot on the same set.** A hop shows only there. Do this before
    the render is started, not while it runs: the sixth film lost a queued run to it.
 5. The last second: the closing question, both answers, nothing under the captions.
-6. **One frame in every 24 of the whole film**, in order, as the last round before the render
-   (`scripts/pick.sh out/all "$(seq -s, 0 24 <last frame>)" 400` through the process tool: 93 stills, about six
-   minutes). The eighth film made this pass on its first render instead and found six faults that the middles of
-   its shots had not shown; every one of them was visible on a local still. Every entrance and every exit is looked
-   at frame by frame as well.
+6. Every entrance and every exit, frame by frame.
+7. **A last pass in film order, tile by tile, with the same questions for every tile:** one frame in every 24 of
+   the whole film (`scripts/pick.sh out/all "$(seq -s, 0 24 <last frame>)" 400` through the process tool: 93 stills,
+   about six minutes). Is every figure whole inside the frame? Is anything that matters under the caption band,
+   behind the tab or behind the top lines? Is a prop cut by an edge? Does the action land inside the frame and above
+   the caption? Do two neighbouring shots show the same thing at the same size from the same side? Do not start the
+   render while a tile fails one of them.
 
 `PYTHON=~/.cache/ntc-venv/bin/python scripts/sheets.sh out/r1 r1 12 6 250` tiles a folder of stills into sheets of
 twelve. Give every round a new name. Before a still is rendered, `python scripts/project.py "<cam>" "<target>" 42
@@ -217,8 +219,15 @@ found the camera for the eighth film's dock (a splash that must be above the cap
 figures that must fit) in two tries instead of five rounds of stills.
 
 Expect five to eight rounds and 170 to 350 stills. A full render costs a commit and ten minutes each time; a
-round of stills costs neither, and you choose the frames. The eighth film was rendered three times: once to find
-what the six steps above would have found, and once more for an entrance and a prop at the end of a push.
+round of stills costs neither, and you choose the frames.
+
+**A fault can be on a sheet you have already looked at.** The eighth film's first render was started one minute
+after its fifth round of stills. Six faults were on the sheets of rounds 3 to 5 (the first and last frame of
+every shot, then the fixes) and had been passed: two agents half outside the frame for a whole shot, a splash under
+the caption, a plane on top of its tag, a car cropped at both ends, a tab across a heading, toy cars cut by the
+edge. They were recognised a quarter of an hour later on one frame in every 24 of the render, read tile by tile:
+step 7 is that reading, made before the render. Its second render went on an entrance that took four frames
+(step 6; the check reported it) and on a prop cut by the edge at the end of a push.
 
 ## 7. Sound
 
@@ -327,7 +336,8 @@ Search the story again on the day, note the time, and change the film if the sto
 - The new film is now the newest. Move that word to it wherever it stands: section 0 here, the table and step 4 of
   `README.md`, the first lines of the older films' guides (`N of M`, "start a new film from"), `restore.py`'s
   docstring, `IMPORTANT.md` section 6, `AGENTS.md`, the repository's `README.md` and `VIDEO_HANDOFF.md` (the list
-  in section 9, the table under it, the film's own section). `git grep -n <the old newest slug>` finds them.
+  in section 9, the table under it, the film's own section). `git grep -n -e newest -e <the old newest slug>` finds
+  them: two guides named the fourth film as the newest until the eighth was filed.
 - **Merge the session's pull request last.** Merging it closes the branch (section 0). When the user approves two
   films and asks for a third in the same message, make, render and deliver the third first, or tell the user that
   keeping the approved ones comes after it.

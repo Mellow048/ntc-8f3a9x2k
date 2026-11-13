@@ -67,13 +67,14 @@ necessary: read "What went wrong" below before you start.
   merged branch accepts no pushes, and the session then continues on a fresh checkout of `main`: the voice take, the
   sets and the mix were gone and were made again. Push after every step, never start a film on a merged branch, and
   merge the session's pull request last (playbook, sections 0 and 11).
-- **Two of the three renders paid for faults that stills would have shown.** The first render went out with the
-  middle of every shot looked at and little else. One frame in every 24 of it, with the first and last frame of
-  every shot, showed six faults, among them a group half outside the frame at the end of a push, two shots of one
-  figure at one size, and a car cropped at both ends. The second render had two agents who crossed into the frame in four frames,
-  which the check reported, and a prop at the edge at the end of a push. Look at the first and last frame of every
-  shot, at one frame in 24 of the whole film and at every entrance frame by frame **on local stills**, before the
-  first render.
+- **Two of the three renders were not needed.** The first was started one minute after the fifth round of stills.
+  Six faults were on the sheets of rounds 3 to 5 (the first and last frame of every shot, then the fixes) and had
+  been passed: two agents half outside the frame for a whole shot; a dock shot that repeated the shot before it and
+  put its splash under the caption; a plane that ended on top of its tag; a car cropped at both ends; a tab across
+  a heading; toy cars cut by the edge. They were recognised a quarter of an hour later on one frame in every 24 of
+  the render, read tile by tile. The second render had two agents who crossed into the frame in four frames, which
+  the check reported, and a prop cut by the edge at the end of a push. Before a render, make the playbook's last
+  pass (section 6, step 7): every tile, the same questions. And look at every entrance frame by frame.
 - **Three places of the final file were looked at only after the user had approved it:** the frames either side of
   the three joins, and a shot whose props had moved for the last render. They added one line to the known small
   things and changed nothing in the file. Look before you deliver.

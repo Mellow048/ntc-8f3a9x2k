@@ -1,4 +1,4 @@
-# The $100 Million Truck Stop — news reference 7 of 7 (start here for a new film)
+# The $100 Million Truck Stop — news reference 7 of 8
 
 A 71-second news short about what prosecutors call the largest jewelry heist in U.S. history: 24 of 73 bags taken
 from a Brink's big rig at a California truck stop in July 2022, in the 27 minutes one driver spent getting a meal
@@ -9,10 +9,11 @@ delivered together with the sixth film; the user's reply to both: **"another ban
 It is a snapshot of a developing story as it stood on **2026-11-12**: the plea had been agreed and not yet entered,
 and the hearing was set for 19 November 2026. Reuse how it was made, never its facts, script, sets or score. The
 category rules and the order of work are in [`../README.md`](../README.md); every number, command and trap is in
-[`../PLAYBOOK.md`](../PLAYBOOK.md).
+[`../PLAYBOOK.md`](../PLAYBOOK.md). To start a new film, restore the newest snapshot,
+[`../bitcoin-flex/`](../bitcoin-flex/README.md).
 
-**This is the newest snapshot, and the one to start a new film from.** It was made by following the playbook,
-starting from the sixth film's folders: two full renders, no question to the user.
+It was made by following the playbook, starting from the sixth film's folders: two full renders, no question to the
+user. The eighth film was started from this one.
 
 ## The film in numbers
 

@@ -1,4 +1,4 @@
-# The $129 Million Fake Boss — news reference 5 of 7
+# The $129 Million Fake Boss — news reference 5 of 8
 
 A 76-second news short about an indictment unsealed in Manhattan on 5 November 2026. It accuses three men of using
 A.I. to copy the voices, and sometimes the faces, of chief executives and of real lawyers, and of talking employees
@@ -12,7 +12,7 @@ and trap is in [`../PLAYBOOK.md`](../PLAYBOOK.md).
 
 It is the first film that was made from `main` by following the playbook, starting from `restore.py binance-heist`:
 two full renders, no question to the user. To start a new film, restore the newest snapshot,
-[`../truck-stop-heist/`](../truck-stop-heist/README.md).
+[`../bitcoin-flex/`](../bitcoin-flex/README.md).
 
 ## The film in numbers
 

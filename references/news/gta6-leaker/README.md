@@ -147,7 +147,7 @@ ffmpeg -i final-720p.mp4 -vf "select='not(mod(n,15))',scale=270:-1,tile=7x3" \
 ## Make a new news short the same way
 
 > **Since 2026-11-12:** `python references/news/restore.py gta6-leaker` does the copying described below in one step, and the
-> newest film to start from is `binance-heist`. The order of work with every number and command is in
+> newest film to start from is `bitcoin-flex`. The order of work with every number and command is in
 > [`../PLAYBOOK.md`](../PLAYBOOK.md). What follows is how this film's source was first reused.
 
 Do this on your own branch, never inside this folder. The steps are in
