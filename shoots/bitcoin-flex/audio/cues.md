@@ -3,12 +3,12 @@
 Written by `build_mix.py`. All music and effects are synthesized in that script; nothing is sampled.
 
 - length 74.367 s (2231 frames at 30 fps), 48 kHz stereo, 16-bit
-- integrated loudness -14.5 LUFS, true peak -2.7 dBTP, limiter at most 4.8 dB
+- integrated loudness -14.5 LUFS, true peak -2.7 dBTP, limiter at most 3.6 dB
 - stems at mix gain: voice -15.6 LUFS, music -21.1 LUFS, effects -27.0 LUFS
-- music after ducking: 5.6 LU under the voice while someone speaks, 5.5 LU under it over the whole film
+- music after ducking: 5.7 LU under the voice while someone speaks, 5.5 LU under it over the whole film
 - the same above 300 Hz (what a phone speaker plays): 6.5 LU under the voice; loudest 200 ms under a spoken word 3.3 LU under it
-- voice over the bed while speaking: median 5.0 LU, 10th percentile 1.5 LU
-- word by word, the voice over music and effects across each word's own span: median 5.5 LU, 10th percentile 1.8 LU, lowest -1.1 LU ('the', word 132); 5 of 233 words under 0; 'vanished' (word 75) is lifted 2 dB with the bed 2 dB down under it
+- voice over the bed while speaking: median 5.1 LU, 10th percentile 1.6 LU
+- word by word, the voice over music and effects across each word's own span: median 5.4 LU, 10th percentile 1.9 LU, lowest -1.2 LU ('the', word 132); 5 of 233 words under 0; 'vanished' (word 75) is lifted 2 dB with the bed 2 dB down under it
 
 | time s | frame | sound | why |
 |---|---|---|---|
@@ -171,9 +171,9 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  51.05 | 1532 | water | the bay under the dock |
 |  51.17 | 1535 | pop | 'off a dock ... into Biscayne Bay', USA Today |
 |  51.28 | 1539 | harp, tiptoe | the dock: four notes down over D flat |
-|  51.80 | 1554 | throw | the phone leaves his hands |
+|  51.77 | 1553 | throw | the phone leaves his hands |
 |  51.87 | 1556 | pop | tipped off by an off-duty officer, it says, AP |
-|  52.27 | 1568 | splash | the phone goes into the bay |
+|  52.10 | 1563 | splash | the phone goes into the bay |
 |  52.52 | 1576 | bubbles | under water: the phone sinks, NO SERVICE |
 |  52.57 | 1577 | the hook, under water | the phone sinks: the hook's four notes, two octaves down and muffled |
 |  52.70 | 1581 | pop | the indictment, as reported by USA Today |

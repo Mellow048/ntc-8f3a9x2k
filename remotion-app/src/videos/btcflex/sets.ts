@@ -179,8 +179,8 @@ export const desk: Builder = (root) => {
   const phone = grp(root, 0.8, 0.76, 0.36); box(phone, 0.2, 0.36, 0.03, '#15161b', 0, 0.2, 0).rotation.x = -0.2; const scr = soft(panel(phone, 0.165, 0.31, lamp('#1c2433', 1), 0, 0.2, 0.02)); scr.rotation.x = -0.2;
   const ring = rings(root, 3, '#2fd07a');
   const ghost = soft(panel(root, 0.78, 1.3, smat(ghostTex(), 1.2, true), -0.35, 1.5, -0.42));
-  const one = bubble(root, 0.52, 2.0, 0.36, 0.95, 0.66, smat(walletCard(), 1.05), [-0.5, -0.36]);
-  const call = bubble(root, 0.8, 1.98, 0.36, 0.72, 0.66, smat(callCard(), 1.05), [0.02, -0.45]);
+  const one = bubble(root, 0.52, 1.9, 0.36, 0.95, 0.66, smat(walletCard(), 1.05), [-0.5, -0.36]);
+  const call = bubble(root, 0.74, 1.98, 0.36, 0.66, 0.6, smat(callCard(), 1.05), [0.06, -0.45]);
   const tool = bubble(root, 0.36, 1.84, 0.3, 1.1, 0.95, smat(toolCard(), 1.05), [-0.5, -0.45]), toolM = tool.screen.material as THREE.MeshBasicMaterial, maps = [toolCard(), remoteCard()];
   const cursor = soft(panel(root, 0.15, 0.2, smat(cursorTex(), 1.15, true), 0, 0, 0.36)); cursor.renderOrder = 8;
   const BX = (px: number) => 0.36 + (px / 520 - 0.5) * 1.1, BY = (py: number) => 1.84 + (0.5 - py / 450) * 0.95;
@@ -267,28 +267,28 @@ export const villa: Builder = (root) => {
   const agents = [actor(root, AGENT(0), {a: {expr: 'stern', pose: 'point'}}, -0.4, 0, 2.8, {scale: 1.02, res: 1.2, wide: true}), actor(root, AGENT(1), {a: {expr: 'stern', pose: 'push'}}, 2.2, 0, 2.8, {scale: 1.0, res: 1.2, wide: true})];
   const runner = actor(root, LAM(1), {look: {expr: 'nervous', pose: 'wave', prop: 'selfie', look: -1}, thrown: {expr: 'nervous', pose: 'push', look: -1}, gone: {expr: 'whistle', pose: 'hang'}}, 2.1, 0.25, 6.0, {scale: 1.0, res: 1.2, wide: true});
   const phone = box(root, 0.11, 0.2, 0.025, '#15161b', 0, 0, 0); phone.castShadow = false;
-  const HIT: V = [0.75, -0.34, 7.2];
+  const HIT: V = [0.95, -0.34, 4.6];                                                             // in the water beside the dock, and inside the frame
   const splash = [0, 1, 2].map(() => { const o = soft(mesh(root, new THREE.RingGeometry(0.8, 1, 40), new THREE.MeshBasicMaterial({color: '#ffffff', transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide}), HIT[0], -0.33, HIT[2])); o.rotation.x = -Math.PI / 2; return o; });
   const drops = Array.from({length: 7}, () => { const o = ball(root, 0.05, lit('#ffffff', 1.1)); o.castShadow = false; return o; });
   return {
     light: (v) => v === 'dock' ? {...LIGHT.dusk, amb: 1.3} : v === 'raid' ? {...LIGHT.dusk, amb: 1.45, keyI: 1.1} : LIGHT.day,
     tick: ({f, cam, shot}) => {
       const v = shot.v, a = shot.at, late = v === 'dock' || v === 'raid';
-      day.visible = !late; dusk.visible = late; dock.visible = v !== 'raid';                  // from where the arrest is seen, its posts would stand in front of the lens
+      day.visible = !late; dusk.visible = late; dock.visible = v !== 'raid' && v !== 'pool';                  // from where the arrest is seen, its posts would stand in front of the lens
       glassM.color.set(late ? '#ffd98a' : '#7fd6e8').multiplyScalar(late ? 1.25 : 1.0);
       (water.material as THREE.MeshBasicMaterial).color.set(late ? '#2a8fc0' : '#35c3e8');
       ripples.position.x = -0.4 + 0.05 * Math.sin(f * 0.07); waves.position.x = 0.4 * Math.sin(f * 0.03);
       floats.forEach((t, i) => { t.position.y = 0.13 + 0.012 * Math.sin(f * 0.13 + i * 2); t.rotation.z = f * 0.01 * (i ? -1 : 1); });
       // the arrest: he is alone for a moment, then they are on both sides of him
-      me.node.visible = v === 'raid'; me.show(f < a + 14 ? 'shock' : 'caught'); me.node.position.y = hop(f, a + 2, 0.1, 8); me.tick(f, cam);
+      me.node.visible = v === 'raid'; me.show(f < W(157) ? 'shock' : 'caught'); me.node.position.y = hop(f, a + 2, 0.1, 8); me.tick(f, cam);
       agents.forEach((g, i) => { const k = smooth(f, a + 6 + i * 3, a + 20 + i * 3); g.node.visible = v === 'raid'; g.node.position.x = lerp(i ? 4.2 : -3.2, i ? 1.55 : -0.55, k); g.node.position.y = Math.abs(0.05 * Math.sin(f * 0.5 + i)) * (1 - k); g.tick(f, cam); });
       // the dock: he looks round, and on "dropped" the phone leaves his hand
-      const go = W(165) - 2, u = (f - go) / 13, flying = v === 'dock' && u >= 0 && u < 1;
-      runner.node.visible = v === 'dock'; runner.show(f < go ? 'look' : f < go + 16 ? 'thrown' : 'gone'); runner.node.position.y = 0.25 + hop(f, go - 1, 0.12, 8); runner.tick(f, cam);
+      const go = W(165) - 3, FLY = 9, u = (f - go) / FLY, flying = v === 'dock' && u >= 0 && u < 1;        // it lands with ten frames of the shot left for the splash
+      runner.node.visible = v === 'dock'; runner.show(f < go ? 'look' : f < go + FLY + 3 ? 'thrown' : 'gone'); runner.node.position.y = 0.25 + hop(f, go - 1, 0.12, 8); runner.tick(f, cam);
       const from: V = [1.55, 1.75, 6.2];
       phone.visible = flying; if (flying) { phone.position.set(lerp(from[0], HIT[0], u), lerp(from[1], HIT[1], u) + 1.5 * 4 * u * (1 - u) * 0.5, lerp(from[2], HIT[2], u)); phone.rotation.set(f * 0.9, 0.4, f * 0.6); }
-      splash.forEach((o, i) => { const w = (f - go - 13 - i * 4) / 16; o.visible = v === 'dock' && w > 0 && w < 1; o.scale.setScalar(0.15 + 0.75 * w); op(o, 0.9 * (1 - w)); });
-      drops.forEach((o, i) => { const w = (f - go - 13) / 12, ang = i * 0.9; o.visible = v === 'dock' && w > 0 && w < 1; o.position.set(HIT[0] + 0.45 * w * Math.cos(ang), -0.3 + 1.1 * 4 * w * (1 - w) * (0.5 + 0.08 * i), HIT[2] + 0.3 * w * Math.sin(ang)); });
+      splash.forEach((o, i) => { const w = (f - go - FLY - i * 3) / 14; o.visible = v === 'dock' && w > 0 && w < 1; o.scale.setScalar(0.15 + 0.75 * w); op(o, 0.9 * (1 - w)); });
+      drops.forEach((o, i) => { const w = (f - go - FLY) / 11, ang = i * 0.9; o.visible = v === 'dock' && w > 0 && w < 1; o.position.set(HIT[0] + 0.45 * w * Math.cos(ang), -0.3 + 1.1 * 4 * w * (1 - w) * (0.5 + 0.08 * i), HIT[2] + 0.3 * w * Math.sin(ang)); });
     },
   };
 };
@@ -318,10 +318,10 @@ export const deep: Builder = (root) => {
     tick: ({f, t}) => {
       const k = smooth(t, -2, 26);
       ph.position.set(0.15 + 0.05 * Math.sin(f * 0.07), lerp(4.4, 1.5, k) - 0.004 * Math.max(0, t - 26), 0); ph.rotation.set(0.1 * Math.sin(f * 0.06), 0.35 * Math.sin(f * 0.045) + 0.25, lerp(0.5, -0.12, k));
-      fish[0].position.set(lerp(1.5, -1.5, (t / 80 + 0.2) % 1), 2.5 + 0.05 * Math.sin(f * 0.1), -0.6); fish[0].scale.x = -1;
-      fish[1].position.set(lerp(-1.5, 1.5, (t / 100 + 0.45) % 1), 0.95, -1.0);
-      fish[2].position.set(lerp(-1.6, 1.6, (t / 110 + 0.3) % 1), 0.5 + 0.03 * Math.sin(f * 0.08), 0.9);
-      bub.forEach((b, i) => { const u = (f * 0.012 + i * 0.143) % 1; b.position.set(ph.position.x + 0.3 * Math.sin(i * 2.4) + 0.05 * Math.sin(f * 0.1 + i), ph.position.y + 0.5 + u * 2.6, 0.1); b.scale.setScalar(0.7 + 1.3 * u); op(b, 0.9 * (1 - u)); b.visible = t > 6; });
+      fish[0].position.set(lerp(1.5, -1.5, (t / 80 + 0.2) % 1), 3.25 + 0.05 * Math.sin(f * 0.1), -0.6); fish[0].scale.x = -1;
+      fish[1].position.set(lerp(-1.5, 1.5, (t / 100 + 0.45) % 1), 0.85, -1.0);
+      fish[2].position.set(lerp(-1.7, 1.7, (t / 120 + 0.12) % 1), 0.36 + 0.03 * Math.sin(f * 0.08), 0.9);
+      bub.forEach((b, i) => { const u = (f * 0.012 + i * 0.143) % 1; b.position.set(ph.position.x + 0.3 * Math.sin(i * 2.4) + 0.05 * Math.sin(f * 0.1 + i), ph.position.y + 0.5 + u * 2.6, 0.1); b.scale.setScalar(0.7 + 1.3 * u); op(b, 0.9 * (1 - u) * smooth(t, 3, 14)); });
     },
   };
 };

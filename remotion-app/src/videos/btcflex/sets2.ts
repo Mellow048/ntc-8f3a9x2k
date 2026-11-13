@@ -123,7 +123,7 @@ export const globe: Builder = (root) => {
       pulse(f, f < go + 6, [wp.x, wp.y, wp.z + 0.06], 0.3, 0, 0.06);
       tagSG.scale.setScalar(pop(f, a + 4, 7)); tagSG.position.set(Math.max(-0.26, wp.x + 0.1), wp.y - 0.34, Math.max(1.12, wp.z + 0.3));
       dots.forEach((d, i) => { d.visible = f >= go + 2 + i * 2; });
-      const u = smooth(f, go, go + 18); plane.visible = f >= go - 2; plane.position.set(lerp(wp.x + 0.1, 1.0, u), lerp(wp.y + 0.12, GY + 0.98, u) + 0.25 * Math.sin(Math.PI * u), 1.2); plane.rotation.z = lerp(0.5, 0.3, u); plane.scale.setScalar(pop(f, go - 2, 5) * lerp(1, 0.75, u));
+      const u = smooth(f, go, go + 18); plane.visible = f >= go - 2; plane.position.set(lerp(wp.x + 0.1, -0.2, u), lerp(wp.y + 0.12, GY + 1.0, u) + 0.25 * Math.sin(Math.PI * u), lerp(1.2, 0.8, u)); plane.rotation.z = lerp(0.5, 0.3, u); plane.scale.setScalar(pop(f, go - 2, 5) * lerp(1, 0.75, u) * (1 - smooth(f, go + 15, go + 20)));   // it lands at the tag's edge and is gone: it must not sit on the words
       tagUS.scale.setScalar(pop(f, go + 10, 7));
     },
   };
@@ -134,15 +134,15 @@ const SW = 2.3, SH = 3.3, SCY = 2.4, SCZ = -0.33, TW = 800, TH = 1148;
 const sx = (px: number) => (px / TW - 0.5) * SW, sy = (py: number) => SCY + (0.5 - py / TH) * SH, su = (px: number) => px / TW * SW;
 const lobbyTex = () => tex('screen-lobby', TW, TH, (g, w, h) => {
   blocks(g, w, h, 820, 41);
-  g.fillStyle = '#16223c'; rrect(g, 120, 150, w - 240, 84, 24); g.fill(); text(g, 'LOBBY', 216, 196, 68, '#ffffff'); text(g, '5 PLAYERS', 524, 197, 44, '#b6f03a', {font: 'Montserrat'});
+  g.fillStyle = '#16223c'; rrect(g, 120, 190, w - 240, 84, 24); g.fill(); text(g, 'LOBBY', 216, 236, 68, '#ffffff'); text(g, '5 PLAYERS', 524, 237, 44, '#b6f03a', {font: 'Montserrat'});
 });
 const shareTex = () => tex('screen-share', TW, TH, (g, w, h) => {
   vgrad(g, w, h, ['#0d2a52', '#0a1f40']);
   g.fillStyle = '#e3342f'; rrect(g, 60, 34, w - 120, 84, 22); g.fill(); g.fillStyle = '#ffffff'; g.beginPath(); g.arc(124, 76, 20, 0, 7); g.fill(); text(g, 'SHARING THIS SCREEN', 440, 78, 54, '#ffffff', {maxWidth: 520});
-  g.strokeStyle = '#2f6fc0'; g.lineWidth = 6; rrect(g, 56, 148, w - 112, 470, 26); g.stroke(); text(g, 'ONE MAN’S WALLET', w / 2, 192, 42, '#8fc0ff', {font: 'Montserrat'});
-  btcSign(g, 190, 350, 74); text(g, 'BITCOIN', 520, 448, 56, '#f7931a');
-  g.fillStyle = '#16365f'; rrect(g, 110, 538, w - 220, 30, 15); g.fill();
-  text(g, 'WATCHING', w / 2, 730, 46, '#9fb4d8', {font: 'Montserrat'});
+  g.strokeStyle = '#2f6fc0'; g.lineWidth = 6; rrect(g, 56, 148, w - 112, 486, 26); g.stroke(); text(g, 'ONE MAN’S WALLET', w / 2, 306, 42, '#8fc0ff', {font: 'Montserrat'});
+  btcSign(g, 190, 440, 74); text(g, 'BITCOIN', 520, 528, 52, '#f7931a');
+  g.fillStyle = '#16365f'; rrect(g, 110, 580, w - 220, 30, 15); g.fill();
+  text(g, 'WATCHING', w / 2, 684, 46, '#9fb4d8', {font: 'Montserrat'});
 });
 const playerTex = (me: boolean, i: number) => tex('screen-player-' + i, 230, 300, (g, w, h) => {
   g.fillStyle = me ? '#1c4a7a' : '#2a5a8a'; rrect(g, 5, 5, w - 10, h - 10, 22); g.fill(); g.strokeStyle = me ? '#ffe14a' : '#7ad0f0'; g.lineWidth = 9; g.stroke();
@@ -165,8 +165,8 @@ export const screen: Builder = (root) => {
   const face = soft(panel(root, SW, SH, smat(lobbyTex(), 1.08), 0, SCY, SCZ)), faceM = face.material as THREE.MeshBasicMaterial, bg = {lobby: lobbyTex(), share: shareTex()};
   const players = PLAYERS.map(([px, py], i) => soft(panel(root, su(i ? 150 : 230), su(i ? 196 : 300), smat(playerTex(i === 0, i), 1.08, true), sx(px), sy(py), SCZ + (i === 0 ? 0.024 : 0.012))));
   const viewers = VIEW.map((px) => soft(panel(root, su(112), su(112), smat(viewerTex(), 1.05, true), sx(px), sy(850), SCZ + 0.012)));
-  const nums = DRAIN.map((n) => soft(panel(root, su(440), su(170), smat(numTex(n), 1.1, true), sx(520), sy(340), SCZ + 0.012)));
-  const bar = soft(mesh(root, new THREE.PlaneGeometry(su(TW - 220), su(30)), lit('#ffb52e', 1.1), 0, sy(553), SCZ + 0.012));
+  const nums = DRAIN.map((n) => soft(panel(root, su(440), su(170), smat(numTex(n), 1.1, true), sx(520), sy(424), SCZ + 0.012)));
+  const bar = soft(mesh(root, new THREE.PlaneGeometry(su(TW - 220), su(30)), lit('#ffb52e', 1.1), 0, sy(595), SCZ + 0.012));
   const fly = Array.from({length: 6}, () => soft(panel(root, su(56), su(56), smat(tex('screen-coin', 96, 96, (g) => btcSign(g, 48, 48, 44)), 1.1, true), 0, 0, SCZ + 0.03)));
   const mark = soft(mesh(root, new THREE.RingGeometry(0.25, 0.295, 40), lit('#e3342f', 1.4), sx(VIEW[2]), sy(850), SCZ + 0.02));
   const rec = soft(panel(root, 0.36, 0.156, smat(recTex(), 1.2, true), sx(VIEW[2]) + 0.36, sy(850) - 0.33, SCZ + 0.03));
@@ -180,7 +180,7 @@ export const screen: Builder = (root) => {
       nums.forEach((n, i) => { n.visible = !lobby && v !== 'rec' && i === step; });
       bar.visible = !lobby; bar.scale.x = Math.max(0.001, DRAIN[v === 'rec' ? 25 : step] / 4100); bar.position.x = -su(TW - 220) / 2 * (1 - bar.scale.x);
       viewers.forEach((p, i) => { p.visible = !lobby; p.scale.setScalar(v === 'rec' ? 1 : pop(f, a + 5 + i * 4, 6)); });
-      fly.forEach((c, i) => { const u = ((t - 12) * 0.03 + i / 6) % 1, on = v === 'share' && t > 12 && step < 25; c.visible = on; c.position.set(sx(712) + u * 0.5, sy(330) + 0.3 * Math.sin(Math.PI * u) + 0.12 * Math.sin(i * 2.1), SCZ + 0.03); c.scale.setScalar(0.8 * Math.sin(Math.PI * u)); });
+      fly.forEach((c, i) => { const u = ((t - 12) * 0.03 + i / 6) % 1, on = v === 'share' && t > 12 && step < 25; c.visible = on; c.position.set(sx(712) + u * 0.5, sy(414) + 0.3 * Math.sin(Math.PI * u) + 0.12 * Math.sin(i * 2.1), SCZ + 0.03); c.scale.setScalar(0.8 * Math.sin(Math.PI * u)); });
       mark.visible = v === 'rec' && f >= W(147); mark.scale.setScalar(2.2 - 1.2 * smooth(f, W(147), W(147) + 7));
       rec.visible = v === 'rec' && f >= W(148); rec.scale.setScalar(pop(f, W(148), 6)); op(rec, 1); rec.position.y = sy(850) - 0.33 + 0.004 * Math.sin(f * 0.5);
     },

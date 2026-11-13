@@ -276,7 +276,7 @@ def build_music():
     put("drums", clap(), cut_t(6), 0.4); put("bass", subn(41, 1.2), cut_t(6), 0.9)
     EVENTS.append((cut_t(6), "music cut dead", "'It lasted one month': one clap and a low F, then two ticks of a clock on 'one month'"))
     # his room (7, 8): the beat, emptied
-    flex(cut_t(7), cut_t(9), "bare", False); thin(cut_t(7), cut_t(9), (53, 56, 60, 63), 0.12)
+    flex(cut_t(7), cut_t(9), "bare", False, 0.7); thin(cut_t(7), cut_t(9), (53, 56, 60, 63), 0.12)
     EVENTS.append((cut_t(7), "the beat, emptied", "August 2024, his room: only the sub-bass and the hats, and F minor with a seventh held over them"))
     # the globe (9): D flat major, the brightest chord so far; a harp goes up as the line leaves Singapore
     thin(cut_t(9), cut_t(10), (49, 53, 56, 61), 0.16, att=0.1); put("bass", subn(37, 1.5), cut_t(9), 0.7)
@@ -776,10 +776,10 @@ def build_sfx(voice_lufs):
     fx(cut_t(33) + 0.02, siren(1.3, 3.3, 660.0, 1180.0), -13, -0.3, "siren", "the F.B.I. at the villa"); fx(cut_t(33) + f_(2), step(), -13, 0, "step", "his hands go up")
     fx(F(159, 6), ratchet(5), -13, 0.2, "ratchet", "handcuffs")
     # 34, 35: the dock, the bay
-    go = F(165, -2)
+    go = F(165, -3)
     fx(cut_t(34) + 0.02, lapping(1.2), -16, -0.2, "water", "the bay under the dock")
     fx(go - f_(1), whoosh(0.3, R, peak=0.6, f_lo=400, f_hi=2400, tail=0.08), -13, 0.2, "throw", "the phone leaves his hands")
-    fx(go + f_(13), splash(), -9.5, -0.3, "splash", "the phone goes into the bay")
+    fx(go + f_(9), splash(), -9.5, -0.3, "splash", "the phone goes into the bay")
     fx(cut_t(35) + 0.05, bubbles(1.2), -13, 0, "bubbles", "under water: the phone sinks, NO SERVICE")
     # 36-39: the court
     fx(F(176, -2), step(), -13, -0.3, "step", "a card: GUILTY"); fx(F(176, 8), gavel(), -11, 0.2, "gavel", "the plea is taken")

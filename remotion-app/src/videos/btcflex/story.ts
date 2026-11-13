@@ -84,7 +84,7 @@ export const SHOTS: Shot[] = [
   s(131, 'sleuth', 'posts', [0.7, 1.35, 2.6], [0.75, 1.25, -1.2], 42, {push: 0.06}),                       // 29
   // 8  "He says the crew shared a screen with friends during the theft, and somebody recorded it."
   s(134, 'screen', 'share', [0.1, 2.3, 7.4], [0, 2.35, -0.4], 42, {push: 0.06}),                           // 30
-  s(146, 'screen', 'rec', [0.3, 1.33, 3.17], [0.22, 1.25, -0.43], 42, {push: 0.04}),                       // 31
+  s(146, 'screen', 'rec', [0.3, 1.58, 3.17], [0.22, 1.5, -0.43], 42, {push: 0.04}),                        // 31
   // 9  "One month after the theft, the F.B.I. arrested him in Miami. The indictment says he dropped his phone into the bay first."
   s(150, 'cal', 'month', [0, 1.9, 4.0], [0, 1.95, 0], 42, {push: 0.05}),                                   // 32
   s(155, 'villa', 'raid', [0.5, 1.6, 7.8], [0.5, 1.35, 2.7], 42, {push: 0.07}),                            // 33
@@ -97,7 +97,7 @@ export const SHOTS: Shot[] = [
   s(186, 'court', 'judge', [0.25, 2.1, 1.3], [0, 2.05, -2.85], 42, {push: 0.06}),                          // 38
   s(194, 'court', 'time', [-1.05, 1.6, 2.5], [-0.8, 1.55, -0.45], 42, {push: 0.06, close: true}),          // 39
   // 12 "Prosecutors call it a cybercrime empire. His lawyer: quote, a very sad case of a bunch of kids."
-  s(200, 'steps', 'pros', [-1.25, 1.85, 5.4], [-1.4, 1.85, 0.6], 42, {push: 0.05}),                          // 40
+  s(200, 'steps', 'pros', [-1.25, 1.6, 5.4], [-1.4, 1.55, 0.6], 42, {push: 0.05}),                           // 40
   s(206, 'steps', 'def', [1.8, 1.5, 4.9], [1.6, 1.5, 1.0], 42, {push: 0.06}),                              // 41
   s(213, 'screen', 'kids', [0, 2.5, 4.6], [0, 2.5, -0.33], 42, {push: 0.05}),                              // 42
   // 13 "So who gets sentenced: a crime boss, or a kid in way over his head?"
