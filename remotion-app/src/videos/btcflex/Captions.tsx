@@ -5,7 +5,7 @@ import {WORDS, type Word} from './story';
 
 type Caption = {start: number; end: number; text: string; hot: boolean};
 /** words that carry the story get the accent colour */
-const HOT = /^(hundred|million|jewels|vanished|twenty-seven|ate|slept|plea|deal|brink's|seventy-three|followed|three|a\.m\.|eat|asleep|lock|cut|twenty-four|gone|nobody|charged|break|phones|pinged|towers|burner|number|police|crash|seven|panama|guilty|different|airtags|admits|heist|not|never|arrested|deported|didn't|missing|eight|point|declared|lost|counts)$/i;
+const HOT = /^(quarter|billion|bitcoin|supercars|mansions|nightclubs|month|august|dropout|singapore|games|google|security|crypto|exchange|computer|forty-one|hundred|vanished|thirty|million|flex|miami|private|jets|half|clubs|exotic|cars|eight|pagani|online|watching|zachxbt|coins|posts|screen|recorded|f\.b\.i\.|arrested|dropped|phone|bay|guilty|racketeering|twenty|years|time|empire|kids|sentenced|boss|kid)$/i;
 /** words that stand alone so the pairs after them fall on phrases */
 const SOLO = new Set<number>([]);
 function groups(words: Word[]): Caption[] {

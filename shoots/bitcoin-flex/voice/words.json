@@ -169,1696 +169,1696 @@
  },
  {
   "word": "mansions",
-  "start": 5.796,
-  "end": 6.379,
+  "start": 5.896,
+  "end": 6.479,
   "line": 1,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "nightclubs",
-  "start": 6.495,
-  "end": 7.128,
+  "start": 6.715,
+  "end": 7.348,
   "line": 1,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "It",
-  "start": 7.23,
-  "end": 7.338,
+  "start": 7.57,
+  "end": 7.678,
   "line": 1,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "lasted",
-  "start": 7.338,
-  "end": 7.688,
+  "start": 7.678,
+  "end": 8.028,
   "line": 1,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "one",
-  "start": 7.688,
-  "end": 8.005,
+  "start": 8.028,
+  "end": 8.345,
   "line": 1,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "month",
-  "start": 8.005,
-  "end": 8.405,
+  "start": 8.345,
+  "end": 8.745,
   "line": 1,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "August",
-  "start": 8.819,
-  "end": 9.086,
+  "start": 9.159,
+  "end": 9.426,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "twenty",
-  "start": 9.086,
-  "end": 9.261,
+  "start": 9.426,
+  "end": 9.601,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "twenty-four",
-  "start": 9.261,
-  "end": 9.81,
+  "start": 9.601,
+  "end": 10.15,
   "line": 2,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Malone",
-  "start": 9.957,
-  "end": 10.265,
+  "start": 10.297,
+  "end": 10.605,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "Lam",
-  "start": 10.265,
-  "end": 10.507,
+  "start": 10.605,
+  "end": 10.847,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "is",
-  "start": 10.507,
-  "end": 10.657,
+  "start": 10.847,
+  "end": 10.997,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "twenty",
-  "start": 10.657,
-  "end": 11.032,
+  "start": 10.997,
+  "end": 11.372,
   "line": 2,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "a",
-  "start": 11.185,
-  "end": 11.235,
+  "start": 11.525,
+  "end": 11.575,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "school",
-  "start": 11.235,
-  "end": 11.493,
+  "start": 11.575,
+  "end": 11.833,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "dropout",
-  "start": 11.493,
-  "end": 11.868,
+  "start": 11.833,
+  "end": 12.208,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "from",
-  "start": 11.868,
-  "end": 12.001,
+  "start": 12.208,
+  "end": 12.341,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "Singapore",
-  "start": 12.001,
-  "end": 12.476,
+  "start": 12.341,
+  "end": 12.816,
   "line": 2,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "leading",
-  "start": 12.679,
-  "end": 12.921,
+  "start": 13.019,
+  "end": 13.261,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 12.921,
-  "end": 12.979,
+  "start": 13.261,
+  "end": 13.319,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "crew",
-  "start": 12.979,
-  "end": 13.254,
+  "start": 13.319,
+  "end": 13.594,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "that",
-  "start": 13.254,
-  "end": 13.395,
+  "start": 13.594,
+  "end": 13.735,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "met",
-  "start": 13.395,
-  "end": 13.579,
+  "start": 13.735,
+  "end": 13.919,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "through",
-  "start": 13.579,
-  "end": 13.787,
+  "start": 13.919,
+  "end": 14.127,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "online",
-  "start": 13.787,
-  "end": 14.162,
+  "start": 14.127,
+  "end": 14.502,
   "line": 2,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "games",
-  "start": 14.162,
-  "end": 14.545,
+  "start": 14.502,
+  "end": 14.885,
   "line": 2,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Prosecutors",
-  "start": 14.664,
-  "end": 15.238,
+  "start": 15.004,
+  "end": 15.578,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "say",
-  "start": 15.238,
-  "end": 15.38,
+  "start": 15.578,
+  "end": 15.72,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "they",
-  "start": 15.38,
-  "end": 15.48,
+  "start": 15.72,
+  "end": 15.82,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "phoned",
-  "start": 15.48,
-  "end": 15.747,
+  "start": 15.82,
+  "end": 16.087,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 15.747,
-  "end": 15.772,
+  "start": 16.087,
+  "end": 16.112,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "man",
-  "start": 15.772,
-  "end": 15.996,
+  "start": 16.112,
+  "end": 16.336,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "in",
-  "start": 15.996,
-  "end": 16.08,
+  "start": 16.336,
+  "end": 16.42,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "Washington",
-  "start": 16.08,
-  "end": 16.605,
+  "start": 16.42,
+  "end": 16.945,
   "line": 3,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "posing",
-  "start": 16.687,
-  "end": 17.011,
+  "start": 17.027,
+  "end": 17.351,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "as",
-  "start": 17.011,
-  "end": 17.111,
+  "start": 17.351,
+  "end": 17.451,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "Google",
-  "start": 17.111,
-  "end": 17.378,
+  "start": 17.451,
+  "end": 17.718,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "security",
-  "start": 17.378,
-  "end": 17.861,
+  "start": 17.718,
+  "end": 18.201,
   "line": 3,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "then",
-  "start": 17.981,
-  "end": 18.172,
+  "start": 18.321,
+  "end": 18.512,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "as",
-  "start": 18.172,
-  "end": 18.289,
+  "start": 18.512,
+  "end": 18.629,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "his",
-  "start": 18.289,
-  "end": 18.422,
+  "start": 18.629,
+  "end": 18.762,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "crypto",
-  "start": 18.422,
-  "end": 18.78,
+  "start": 18.762,
+  "end": 19.12,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "exchange",
-  "start": 18.78,
-  "end": 19.272,
+  "start": 19.12,
+  "end": 19.612,
   "line": 3,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "until",
-  "start": 19.393,
-  "end": 19.635,
+  "start": 19.733,
+  "end": 19.975,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "he",
-  "start": 19.635,
-  "end": 19.693,
+  "start": 19.975,
+  "end": 20.033,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "let",
-  "start": 19.693,
-  "end": 19.885,
+  "start": 20.033,
+  "end": 20.225,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "them",
-  "start": 19.885,
-  "end": 20.027,
+  "start": 20.225,
+  "end": 20.367,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "into",
-  "start": 20.027,
-  "end": 20.202,
+  "start": 20.367,
+  "end": 20.542,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "his",
-  "start": 20.202,
-  "end": 20.318,
+  "start": 20.542,
+  "end": 20.658,
   "line": 3,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "computer",
-  "start": 20.318,
-  "end": 20.785,
+  "start": 20.658,
+  "end": 21.125,
   "line": 3,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Over",
-  "start": 20.902,
-  "end": 21.111,
+  "start": 21.242,
+  "end": 21.451,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "forty-one",
-  "start": 21.111,
-  "end": 21.611,
+  "start": 21.451,
+  "end": 21.951,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "hundred",
-  "start": 21.611,
-  "end": 21.977,
+  "start": 21.951,
+  "end": 22.317,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "bitcoin",
-  "start": 21.977,
-  "end": 22.41,
+  "start": 22.317,
+  "end": 22.75,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "vanished",
-  "start": 22.41,
-  "end": 22.91,
+  "start": 22.75,
+  "end": 23.25,
   "line": 4,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "more",
-  "start": 22.996,
-  "end": 23.179,
+  "start": 23.336,
+  "end": 23.519,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "than",
-  "start": 23.179,
-  "end": 23.329,
+  "start": 23.519,
+  "end": 23.669,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "two",
-  "start": 23.329,
-  "end": 23.546,
+  "start": 23.669,
+  "end": 23.886,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "hundred",
-  "start": 23.546,
-  "end": 23.854,
+  "start": 23.886,
+  "end": 24.194,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "thirty",
-  "start": 23.854,
-  "end": 24.062,
+  "start": 24.194,
+  "end": 24.402,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "million",
-  "start": 24.062,
-  "end": 24.42,
+  "start": 24.402,
+  "end": 24.76,
   "line": 4,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "dollars",
-  "start": 24.42,
-  "end": 24.87,
+  "start": 24.76,
+  "end": 25.21,
   "line": 4,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Then",
-  "start": 25.211,
-  "end": 25.477,
+  "start": 25.551,
+  "end": 25.817,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "came",
-  "start": 25.477,
-  "end": 25.644,
+  "start": 25.817,
+  "end": 25.984,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 25.644,
-  "end": 25.702,
+  "start": 25.984,
+  "end": 26.042,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "flex",
-  "start": 25.702,
-  "end": 26.169,
+  "start": 26.042,
+  "end": 26.509,
   "line": 5,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Miami",
-  "start": 26.497,
-  "end": 26.822,
+  "start": 26.837,
+  "end": 27.162,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "mansions",
-  "start": 26.822,
-  "end": 27.397,
+  "start": 27.162,
+  "end": 27.737,
   "line": 5,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Private",
-  "start": 27.522,
-  "end": 27.813,
+  "start": 27.862,
+  "end": 28.153,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "jets",
-  "start": 27.813,
-  "end": 28.221,
+  "start": 28.153,
+  "end": 28.561,
   "line": 5,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Up",
-  "start": 28.4,
-  "end": 28.508,
+  "start": 28.74,
+  "end": 28.848,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "to",
-  "start": 28.508,
-  "end": 28.608,
+  "start": 28.848,
+  "end": 28.948,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "half",
-  "start": 28.608,
-  "end": 28.892,
+  "start": 28.948,
+  "end": 29.232,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 28.892,
-  "end": 28.925,
+  "start": 29.232,
+  "end": 29.265,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "million",
-  "start": 28.925,
-  "end": 29.217,
+  "start": 29.265,
+  "end": 29.557,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "dollars",
-  "start": 29.217,
-  "end": 29.5,
+  "start": 29.557,
+  "end": 29.84,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 29.5,
-  "end": 29.533,
+  "start": 29.84,
+  "end": 29.873,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "night",
-  "start": 29.533,
-  "end": 29.775,
+  "start": 29.873,
+  "end": 30.115,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "in",
-  "start": 29.775,
-  "end": 29.908,
+  "start": 30.115,
+  "end": 30.248,
   "line": 5,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "clubs",
-  "start": 29.908,
-  "end": 30.399,
+  "start": 30.248,
+  "end": 30.739,
   "line": 5,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "And",
-  "start": 30.575,
-  "end": 30.816,
+  "start": 30.915,
+  "end": 31.156,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "some",
-  "start": 30.816,
-  "end": 31.025,
+  "start": 31.156,
+  "end": 31.365,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "thirty",
-  "start": 31.025,
-  "end": 31.416,
+  "start": 31.365,
+  "end": 31.756,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "exotic",
-  "start": 31.416,
-  "end": 31.816,
+  "start": 31.756,
+  "end": 32.156,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "cars",
-  "start": 31.816,
-  "end": 32.307,
+  "start": 32.156,
+  "end": 32.647,
   "line": 6,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "one",
-  "start": 32.52,
-  "end": 32.803,
+  "start": 32.86,
+  "end": 33.143,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 32.803,
-  "end": 32.92,
+  "start": 33.143,
+  "end": 33.26,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "three",
-  "start": 32.92,
-  "end": 33.203,
+  "start": 33.26,
+  "end": 33.543,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "point",
-  "start": 33.203,
-  "end": 33.478,
+  "start": 33.543,
+  "end": 33.818,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "eight",
-  "start": 33.478,
-  "end": 33.669,
+  "start": 33.818,
+  "end": 34.009,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "million",
-  "start": 33.669,
-  "end": 34.044,
+  "start": 34.009,
+  "end": 34.384,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "dollar",
-  "start": 34.044,
-  "end": 34.302,
+  "start": 34.384,
+  "end": 34.642,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "Pagani",
-  "start": 34.302,
-  "end": 34.894,
+  "start": 34.642,
+  "end": 35.234,
   "line": 6,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "He",
-  "start": 35.032,
-  "end": 35.115,
+  "start": 35.372,
+  "end": 35.455,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "was",
-  "start": 35.115,
-  "end": 35.29,
+  "start": 35.455,
+  "end": 35.63,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "posting",
-  "start": 35.29,
-  "end": 35.64,
+  "start": 35.63,
+  "end": 35.98,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "it",
-  "start": 35.64,
-  "end": 35.748,
+  "start": 35.98,
+  "end": 36.088,
   "line": 6,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "online",
-  "start": 35.748,
-  "end": 36.306,
+  "start": 36.088,
+  "end": 36.646,
   "line": 6,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Someone",
-  "start": 36.791,
-  "end": 37.108,
+  "start": 37.131,
+  "end": 37.448,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "was",
-  "start": 37.108,
-  "end": 37.274,
+  "start": 37.448,
+  "end": 37.614,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "watching",
-  "start": 37.274,
-  "end": 37.708,
+  "start": 37.614,
+  "end": 38.048,
   "line": 7,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "An",
-  "start": 38.09,
-  "end": 38.19,
+  "start": 38.43,
+  "end": 38.53,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "investigator",
-  "start": 38.19,
-  "end": 38.814,
+  "start": 38.53,
+  "end": 39.154,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "known",
-  "start": 38.814,
-  "end": 39.023,
+  "start": 39.154,
+  "end": 39.363,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "only",
-  "start": 39.023,
-  "end": 39.347,
+  "start": 39.363,
+  "end": 39.687,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "as",
-  "start": 39.347,
-  "end": 39.514,
+  "start": 39.687,
+  "end": 39.854,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "ZachXBT",
-  "start": 39.514,
-  "end": 40.647,
+  "start": 39.854,
+  "end": 40.987,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "followed",
-  "start": 40.647,
-  "end": 41.047,
+  "start": 40.987,
+  "end": 41.387,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 41.047,
-  "end": 41.113,
+  "start": 41.387,
+  "end": 41.453,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "coins",
-  "start": 41.113,
-  "end": 41.58,
+  "start": 41.453,
+  "end": 41.92,
   "line": 7,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "and",
-  "start": 41.662,
-  "end": 41.912,
+  "start": 42.002,
+  "end": 42.252,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 41.912,
-  "end": 41.987,
+  "start": 42.252,
+  "end": 42.327,
   "line": 7,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "posts",
-  "start": 41.987,
-  "end": 42.512,
+  "start": 42.327,
+  "end": 42.852,
   "line": 7,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "He",
-  "start": 42.703,
-  "end": 42.786,
+  "start": 43.043,
+  "end": 43.126,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "says",
-  "start": 42.786,
-  "end": 42.995,
+  "start": 43.126,
+  "end": 43.335,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 42.995,
-  "end": 43.061,
+  "start": 43.335,
+  "end": 43.401,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "crew",
-  "start": 43.061,
-  "end": 43.32,
+  "start": 43.401,
+  "end": 43.66,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "shared",
-  "start": 43.32,
-  "end": 43.561,
+  "start": 43.66,
+  "end": 43.901,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 43.561,
-  "end": 43.586,
+  "start": 43.901,
+  "end": 43.926,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "screen",
-  "start": 43.586,
-  "end": 43.903,
+  "start": 43.926,
+  "end": 44.243,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "with",
-  "start": 43.903,
-  "end": 44.011,
+  "start": 44.243,
+  "end": 44.351,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "friends",
-  "start": 44.011,
-  "end": 44.411,
+  "start": 44.351,
+  "end": 44.751,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "during",
-  "start": 44.411,
-  "end": 44.602,
+  "start": 44.751,
+  "end": 44.942,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 44.602,
-  "end": 44.661,
+  "start": 44.942,
+  "end": 45.001,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "theft",
-  "start": 44.661,
-  "end": 45.069,
+  "start": 45.001,
+  "end": 45.409,
   "line": 8,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "and",
-  "start": 45.196,
-  "end": 45.33,
+  "start": 45.536,
+  "end": 45.67,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "somebody",
-  "start": 45.33,
-  "end": 45.705,
+  "start": 45.67,
+  "end": 46.045,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "recorded",
-  "start": 45.705,
-  "end": 46.096,
+  "start": 46.045,
+  "end": 46.436,
   "line": 8,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "it",
-  "start": 46.096,
-  "end": 46.213,
+  "start": 46.436,
+  "end": 46.553,
   "line": 8,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "One",
-  "start": 46.582,
-  "end": 46.782,
+  "start": 46.922,
+  "end": 47.122,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "month",
-  "start": 46.782,
-  "end": 46.999,
+  "start": 47.122,
+  "end": 47.339,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "after",
-  "start": 46.999,
-  "end": 47.299,
+  "start": 47.339,
+  "end": 47.639,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 47.299,
-  "end": 47.39,
+  "start": 47.639,
+  "end": 47.73,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "theft",
-  "start": 47.39,
-  "end": 47.873,
+  "start": 47.73,
+  "end": 48.213,
   "line": 9,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "the",
-  "start": 48.005,
-  "end": 48.155,
+  "start": 48.345,
+  "end": 48.495,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "F.B.I.",
-  "start": 48.155,
-  "end": 49.47,
+  "start": 48.495,
+  "end": 49.81,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "arrested",
-  "start": 49.47,
-  "end": 49.862,
+  "start": 49.81,
+  "end": 50.202,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "him",
-  "start": 49.862,
-  "end": 50.012,
+  "start": 50.202,
+  "end": 50.352,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "in",
-  "start": 50.012,
-  "end": 50.07,
+  "start": 50.352,
+  "end": 50.41,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "Miami",
-  "start": 50.07,
-  "end": 50.603,
+  "start": 50.41,
+  "end": 50.943,
   "line": 9,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "The",
-  "start": 50.758,
-  "end": 50.841,
+  "start": 51.098,
+  "end": 51.181,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "indictment",
-  "start": 50.841,
-  "end": 51.216,
+  "start": 51.181,
+  "end": 51.556,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "says",
-  "start": 51.216,
-  "end": 51.457,
+  "start": 51.556,
+  "end": 51.797,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "he",
-  "start": 51.457,
-  "end": 51.549,
+  "start": 51.797,
+  "end": 51.889,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "dropped",
-  "start": 51.549,
-  "end": 51.824,
+  "start": 51.889,
+  "end": 52.164,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "his",
-  "start": 51.824,
-  "end": 51.965,
+  "start": 52.164,
+  "end": 52.305,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "phone",
-  "start": 51.965,
-  "end": 52.182,
+  "start": 52.305,
+  "end": 52.522,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "into",
-  "start": 52.182,
-  "end": 52.365,
+  "start": 52.522,
+  "end": 52.705,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "the",
-  "start": 52.365,
-  "end": 52.449,
+  "start": 52.705,
+  "end": 52.789,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "bay",
-  "start": 52.449,
-  "end": 52.648,
+  "start": 52.789,
+  "end": 52.988,
   "line": 9,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "first",
-  "start": 52.648,
-  "end": 53.165,
+  "start": 52.988,
+  "end": 53.505,
   "line": 9,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "This",
-  "start": 53.554,
-  "end": 53.779,
+  "start": 53.894,
+  "end": 54.119,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "September",
-  "start": 53.779,
-  "end": 54.263,
+  "start": 54.119,
+  "end": 54.603,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "he",
-  "start": 54.263,
-  "end": 54.396,
+  "start": 54.603,
+  "end": 54.736,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "pleaded",
-  "start": 54.396,
-  "end": 54.721,
+  "start": 54.736,
+  "end": 55.061,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "guilty",
-  "start": 54.721,
-  "end": 55.087,
+  "start": 55.061,
+  "end": 55.427,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "to",
-  "start": 55.087,
-  "end": 55.196,
+  "start": 55.427,
+  "end": 55.536,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "racketeering",
-  "start": 55.196,
-  "end": 55.762,
+  "start": 55.536,
+  "end": 56.102,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "conspiracy",
-  "start": 55.762,
-  "end": 56.462,
+  "start": 56.102,
+  "end": 56.802,
   "line": 10,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "He",
-  "start": 56.545,
-  "end": 56.645,
+  "start": 56.885,
+  "end": 56.985,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "faces",
-  "start": 56.645,
-  "end": 57.186,
+  "start": 56.985,
+  "end": 57.526,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "up",
-  "start": 57.261,
-  "end": 57.361,
+  "start": 57.601,
+  "end": 57.701,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "to",
-  "start": 57.361,
-  "end": 57.461,
+  "start": 57.701,
+  "end": 57.801,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "twenty",
-  "start": 57.461,
-  "end": 57.786,
+  "start": 57.801,
+  "end": 58.126,
   "line": 10,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "years",
-  "start": 57.786,
-  "end": 58.219,
+  "start": 58.126,
+  "end": 58.559,
   "line": 10,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "The",
-  "start": 58.622,
-  "end": 58.706,
+  "start": 58.962,
+  "end": 59.046,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "judge",
-  "start": 58.706,
-  "end": 58.98,
+  "start": 59.046,
+  "end": 59.32,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "asked",
-  "start": 58.98,
-  "end": 59.247,
+  "start": 59.32,
+  "end": 59.587,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "which",
-  "start": 59.247,
-  "end": 59.455,
+  "start": 59.587,
+  "end": 59.795,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "cars",
-  "start": 59.455,
-  "end": 59.788,
+  "start": 59.795,
+  "end": 60.128,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "he",
-  "start": 59.788,
-  "end": 59.872,
+  "start": 60.128,
+  "end": 60.212,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "bought",
-  "start": 59.872,
-  "end": 60.08,
+  "start": 60.212,
+  "end": 60.42,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "himself",
-  "start": 60.08,
-  "end": 60.563,
+  "start": 60.42,
+  "end": 60.903,
   "line": 11,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Quote",
-  "start": 60.686,
-  "end": 60.994,
+  "start": 61.026,
+  "end": 61.334,
   "line": 11,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "I",
-  "start": 61.347,
-  "end": 61.414,
+  "start": 61.687,
+  "end": 61.754,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "would",
-  "start": 61.414,
-  "end": 61.564,
+  "start": 61.754,
+  "end": 61.904,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "need",
-  "start": 61.564,
-  "end": 61.739,
+  "start": 61.904,
+  "end": 62.079,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "some",
-  "start": 61.739,
-  "end": 61.906,
+  "start": 62.079,
+  "end": 62.246,
   "line": 11,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "time",
-  "start": 61.906,
-  "end": 62.297,
+  "start": 62.246,
+  "end": 62.637,
   "line": 11,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "Prosecutors",
-  "start": 62.805,
-  "end": 63.33,
+  "start": 63.145,
+  "end": 63.67,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "call",
-  "start": 63.33,
-  "end": 63.522,
+  "start": 63.67,
+  "end": 63.862,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "it",
-  "start": 63.522,
-  "end": 63.572,
+  "start": 63.862,
+  "end": 63.912,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 63.572,
-  "end": 63.613,
+  "start": 63.912,
+  "end": 63.953,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "cybercrime",
-  "start": 63.613,
-  "end": 64.28,
+  "start": 63.953,
+  "end": 64.62,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "empire",
-  "start": 64.28,
-  "end": 64.813,
+  "start": 64.62,
+  "end": 65.153,
   "line": 12,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "His",
-  "start": 65.096,
-  "end": 65.205,
+  "start": 65.436,
+  "end": 65.545,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "lawyer",
-  "start": 65.205,
-  "end": 65.563,
+  "start": 65.545,
+  "end": 65.903,
   "line": 12,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "quote",
-  "start": 65.731,
-  "end": 65.998,
+  "start": 66.071,
+  "end": 66.338,
   "line": 12,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "a",
-  "start": 66.15,
-  "end": 66.225,
+  "start": 66.49,
+  "end": 66.565,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "very",
-  "start": 66.225,
-  "end": 66.466,
+  "start": 66.565,
+  "end": 66.806,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "sad",
-  "start": 66.466,
-  "end": 66.749,
+  "start": 66.806,
+  "end": 67.089,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "case",
-  "start": 66.749,
-  "end": 67.149,
+  "start": 67.089,
+  "end": 67.489,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "of",
-  "start": 67.284,
-  "end": 67.359,
+  "start": 67.624,
+  "end": 67.699,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 67.359,
-  "end": 67.4,
+  "start": 67.699,
+  "end": 67.74,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "bunch",
-  "start": 67.4,
-  "end": 67.609,
+  "start": 67.74,
+  "end": 67.949,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "of",
-  "start": 67.609,
-  "end": 67.692,
+  "start": 67.949,
+  "end": 68.032,
   "line": 12,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "kids",
-  "start": 67.692,
-  "end": 68.083,
+  "start": 68.032,
+  "end": 68.423,
   "line": 12,
   "ends_sentence": true,
   "comma": false
  },
  {
   "word": "So",
-  "start": 68.603,
-  "end": 68.795,
+  "start": 68.943,
+  "end": 69.135,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "who",
-  "start": 68.795,
-  "end": 68.994,
+  "start": 69.135,
+  "end": 69.334,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "gets",
-  "start": 68.994,
-  "end": 69.244,
+  "start": 69.334,
+  "end": 69.584,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "sentenced",
-  "start": 69.244,
-  "end": 69.752,
+  "start": 69.584,
+  "end": 70.092,
   "line": 13,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "a",
-  "start": 69.93,
-  "end": 69.979,
+  "start": 70.27,
+  "end": 70.319,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "crime",
-  "start": 69.979,
-  "end": 70.279,
+  "start": 70.319,
+  "end": 70.619,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "boss",
-  "start": 70.279,
-  "end": 70.679,
+  "start": 70.619,
+  "end": 71.019,
   "line": 13,
   "ends_sentence": false,
   "comma": true
  },
  {
   "word": "or",
-  "start": 70.87,
-  "end": 71.019,
+  "start": 71.21,
+  "end": 71.359,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "a",
-  "start": 71.019,
-  "end": 71.044,
+  "start": 71.359,
+  "end": 71.384,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "kid",
-  "start": 71.044,
-  "end": 71.386,
+  "start": 71.384,
+  "end": 71.726,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "in",
-  "start": 71.386,
-  "end": 71.553,
+  "start": 71.726,
+  "end": 71.893,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "way",
-  "start": 71.553,
-  "end": 71.853,
+  "start": 71.893,
+  "end": 72.193,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "over",
-  "start": 71.853,
-  "end": 72.044,
+  "start": 72.193,
+  "end": 72.384,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "his",
-  "start": 72.044,
-  "end": 72.194,
+  "start": 72.384,
+  "end": 72.534,
   "line": 13,
   "ends_sentence": false,
   "comma": false
  },
  {
   "word": "head",
-  "start": 72.194,
-  "end": 72.461,
+  "start": 72.534,
+  "end": 72.801,
   "line": 13,
   "ends_sentence": true,
   "comma": false

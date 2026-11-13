@@ -1,4 +1,4 @@
-// "The $100 million truck stop": a 71-second vertical news short.
+// "One Month of Being Rich": a 74-second vertical news short about Malone Lam and the theft of more than 4,100 bitcoin.
 // Picture: three.js sets with flat cartoon characters, ink outlines, lens blur, bloom and a grade.
 // Timing: every cut, pose and caption is keyed to the narration words (story.ts).
 import React, {useMemo} from 'react';

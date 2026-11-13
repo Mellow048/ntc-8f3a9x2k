@@ -119,87 +119,81 @@ export const Overlays: React.FC = () => {
   const during = (i: number, from = S(i)[0]) => f >= from && f < S(i)[1];
   /** from a frame in shot a to the end of shot b: something that stays up over a cut or a join */
   const over = (a: number, b: number, from = S(a)[0]) => f >= from && f < S(b)[1];
-  const closing = S(44)[0];
-  const YEARS: [number, string][] = [[S(19)[0] + 1, '2022'], [W(96) + 2, '2023'], [W(97) + 3, '2024'], [W(98) + 3, '2025']];
-  const year = YEARS.filter(([at]) => f >= at).pop();
+  const closing = S(43)[0], swap = S(14)[0], gone = S(17)[0];
   return (
     <AbsoluteFill style={{pointerEvents: 'none'}}>
-      {/* What cracked the case is one newspaper's account, from people it does not name: say whose it is for as long as it runs.
-          The newspaper's own page (shot 22) carries its name itself. */}
-      {over(23, 27) ? <Tab f={f} at={S(23)[0]} text="AS THE L.A. TIMES REPORTS" /> : null}
+      {/* The call is the prosecutors' account, and what the shared screen showed is the investigator's, by way of Wired:
+          a tab says whose account is running for as long as it runs. */}
+      {over(11, 15) ? <Tab f={f} at={S(11)[0]} text="AS PROSECUTORS TELL IT" /> : null}
+      {over(30, 31) ? <Tab f={f} at={S(30)[0]} text="AS ZACHXBT TOLD WIRED" /> : null}
 
-      {during(0, W(3)) ? <Stamp f={f} at={W(3)} text="$100 MILLION" tone="yellow" top="9.5%" size={12.5} /> : null}
-      {during(0, W(6)) ? <Pill f={f} at={W(6)} text="“APPROXIMATELY $100 MILLION” · U.S. ATTORNEY'S OFFICE" top="20.5%" size={3.2} /> : null}
-      {during(1, W(13)) ? <Stamp f={f} at={W(13)} text="27 MINUTES" top="9.5%" size={13} /> : null}
-      {during(1, W(10)) ? <Pill f={f} at={W(10)} text="“THE LARGEST JEWELRY HEIST IN U.S. HISTORY”" top="20.5%" size={3.2} /> : null}
-      {during(1, W(11) + 3) ? <Pill f={f} at={W(11) + 3} text="U.S. ATTORNEY'S OFFICE, LOS ANGELES" top="25%" tone="yellow" size={3.0} /> : null}
-      {during(2, W(16)) ? <Pill f={f} at={W(16)} text="ONE WENT IN “TO GET A MEAL” · L.A. TIMES" /> : null}
-      {during(3, W(20)) ? <Pill f={f} at={W(20)} text="THE OTHER WAS ASLEEP IN THE CAB · L.A. TIMES" /> : null}
-      {during(4, W(24)) ? <Pill f={f} at={W(24)} text="SEVEN MEN WERE CHARGED IN JUNE 2025" /> : null}
-      {during(5, W(30)) ? <Stamp f={f} at={W(30)} text="PLEA DEAL" tone="yellow" top="9.5%" size={13} /> : null}
-      {during(5, W(31) + 5) ? <Pill f={f} at={W(31) + 5} text="NOT ENTERED YET · PLEA HEARING NOV. 19, 2026" top="20.5%" size={3.3} /> : null}
-      {during(6, W(32) + 1) ? <Day f={f} at={W(32) + 1} day="JULY 2022"><Big>10</Big></Day> : null}
-      {during(7, W(36)) ? <NameTag f={f} at={W(36)} name="A BRINK'S BIG RIG" role="LEFT ABOUT 8:25 P.M. · L.A. TIMES" size={9.4} /> : null}
-      {during(8, W(44)) ? <Pill f={f} at={W(44)} text="SAN MATEO, CALIFORNIA · JULY 10, 2022" /> : null}
-      {during(9, W(47)) ? <Stamp f={f} at={W(47)} text="73 BAGS" tone="yellow" top="9.5%" size={13} /> : null}
-      {during(9, W(48)) ? <Pill f={f} at={W(48)} text="THE INDICTMENT" top="20.5%" /> : null}
-      {during(10, W(50)) ? <Pill f={f} at={W(50)} text="ALLEGED IN THE INDICTMENT · JUNE 2025" /> : null}
-      {during(11, W(57)) ? <Stamp f={f} at={W(57)} text="ABOUT 300 MILES" tone="yellow" top="9.5%" size={11} /> : null}
-      {during(11, W(59)) ? <Pill f={f} at={W(59)} text="“APPROXIMATELY 300 MILES” · U.S. ATTORNEY'S OFFICE" top="20.5%" size={3.2} /> : null}
-      {during(12, W(62)) ? <Pill f={f} at={W(62)} text="2:05 A.M., JULY 11, 2022 · L.A. TIMES" /> : null}
-      {during(13, W(66)) ? <Pill f={f} at={W(66)} text="LEBEC · 70 MILES NORTH OF LOS ANGELES" /> : null}
-      {during(14, W(71)) ? <Pill f={f} at={W(71)} text="BOTH DRIVERS ARE DRAWN AS NOBODY IN PARTICULAR" size={3.2} /> : null}
-      {during(15, W(77)) ? <Pill f={f} at={W(77)} text="THE INDICTMENT MENTIONS NO WEAPON HERE · L.A. TIMES" size={3.2} /> : null}
-      {during(16, W(83) + 2) ? <Stamp f={f} at={W(83) + 2} text="27 MINUTES" top="9.5%" size={13} /> : null}
-      {during(16, W(84) + 4) ? <Pill f={f} at={W(84) + 4} text="2:05 TO 2:32 A.M. · L.A. TIMES" top="20.5%" /> : null}
-      {during(17, W(87)) ? <Pill f={f} at={W(87)} text="“ITS REAR LOCK HAD BEEN CUT AWAY” · L.A. TIMES" size={3.3} /> : null}
-      {during(18, W(91)) ? <Stamp f={f} at={W(91)} text="24 OF 73 BAGS" top="9.5%" size={11.5} /> : null}
-      {during(18, W(93)) ? <Pill f={f} at={W(93)} text="THE INDICTMENT AND THE PLEA AGREEMENT" top="20.5%" /> : null}
-      {during(19) && year ? <Day f={f} at={year[0]} day="YEAR" size={6}><Big size={8.4}>{year[1]}</Big></Day> : null}
-      {during(20, W(99) + 2) ? <Stamp f={f} at={W(99) + 2} text="NOBODY CHARGED" top="9.5%" size={11.5} /> : null}
-      {during(20, W(100) + 4) ? <Pill f={f} at={W(100) + 4} text="JULY 2022 TO JUNE 2025" top="20.5%" /> : null}
-      {during(21, W(103)) ? <Pill f={f} at={W(103)} text="A BREAK IN THE CASE" /> : null}
-      {during(22, W(106)) ? <Pill f={f} at={W(106)} text="“ACCORDING TO TWO PEOPLE INVOLVED WITH THE CASE”" size={3.2} /> : null}
-      {during(23, W(109)) ? <Pill f={f} at={W(109)} text="PHONES CONNECTING TO TOWERS" /> : null}
-      {during(24, W(113)) ? <Pill f={f} at={W(113)} text="ALONG THE TRUCK'S ROUTE, SAN MATEO TO LEBEC" size={3.3} /> : null}
-      {during(25, W(122)) ? <Pill f={f} at={W(122)} text="“THE NUMBER OF HIS BURNER PHONE”" /> : null}
-      {during(26, W(128)) ? <Pill f={f} at={W(128)} text="THE NIGHT BEFORE THE HEIST" /> : null}
-      {during(27, W(131)) ? <Pill f={f} at={W(131)} text="“HE WITNESSED A TRAFFIC COLLISION”" /> : null}
-      {during(27, W(133)) ? <Pill f={f} at={W(133)} text="THE TIMES DOES NOT SAY WHICH OF THEM" top="15.4%" tone="yellow" /> : null}
-      {during(28, W(136) + 2) ? <Stamp f={f} at={W(136) + 2} text="7 CHARGED" top="9.5%" size={13} /> : null}
-      {during(28, W(138)) ? <Pill f={f} at={W(138)} text="INDICTMENT UNSEALED JUNE 17, 2025" top="20.5%" /> : null}
-      {during(28, W(139)) ? <Pill f={f} at={W(139)} text="“PRESUMED TO BE INNOCENT” UNTIL PROVEN GUILTY" top="25%" tone="yellow" size={3.2} /> : null}
-      {during(29, W(143)) ? <Pill f={f} at={W(143)} text="PANAMA CITY · JULY 1, 2025" /> : null}
-      {during(29, W(145)) ? <Pill f={f} at={W(145)} text="ON A LAYOVER TO ECUADOR · THE PLEA AGREEMENT" top="15.4%" tone="yellow" size={3.3} /> : null}
-      {during(30, W(148) + 1) ? <Day f={f} at={W(148) + 1} day="NOV 2026"><Big>9</Big></Day> : null}
-      {during(30, W(150)) ? <Pill f={f} at={W(150)} text="CARLOS VICTOR MESTANZA CERCADO, 32" dx={17} size={2.25} /> : null}
-      {during(30, W(152)) ? <Pill f={f} at={W(152)} text="HIS LAWYER DECLINED TO COMMENT · L.A. TIMES" top="15.4%" tone="yellow" dx={17} size={2.0} /> : null}
-      {during(31, W(158)) ? <Stamp f={f} at={W(158)} text="A DIFFERENT TRUCK" tone="yellow" top="9.5%" size={10.5} /> : null}
-      {during(31, W(159) + 2) ? <Pill f={f} at={W(159) + 2} text="FONTANA, CALIF. · MARCH 11, 2022" top="20.5%" /> : null}
-      {during(32, W(162) - 2) ? <Stamp f={f} at={W(162) - 2} text="$57,377 OF AIRTAGS" tone="yellow" top="9.5%" size={10} /> : null}
-      {during(32, W(162) + 8) ? <Pill f={f} at={W(162) + 8} text="TAKEN “BY FORCE AND THREAT OF FORCE”" top="20.5%" /> : null}
-      {during(32, W(162) + 16) ? <Pill f={f} at={W(162) + 16} text="ONE COUNT OF ROBBERY · UP TO 20 YEARS" top="25%" tone="red" size={3.3} /> : null}
-      {during(33, W(164)) ? <Pill f={f} at={W(164)} text="THE SAME AGREEMENT" /> : null}
-      {during(34, W(170)) ? <Stamp f={f} at={W(170)} text="ADMITS THE HEIST" tone="yellow" top="9.5%" size={11} /> : null}
-      {during(34, W(171) + 3) ? <Pill f={f} at={W(171) + 3} text="THE OTHER COUNTS ARE TO BE DROPPED · CNS" top="20.5%" size={3.3} /> : null}
-      {over(35, 37, W(173)) && f < W(179) ? <Pill f={f} at={W(173)} text="THEIR TRIAL IS SET FOR MARCH 2027" /> : null}
-      {over(35, 37, W(179)) && f < W(183) ? <Pill f={f} at={W(179)} text="AS OF NOV. 2026 · L.A. TIMES" /> : null}
-      {over(35, 37, W(183)) ? <Pill f={f} at={W(183)} text="TO ECUADOR, LATE DEC. 2025 · L.A. TIMES" /> : null}
-      {during(38, W(188)) ? <Pill f={f} at={W(188)} text="A PROSECUTOR'S FILING: “GENUINE SURPRISE”" /> : null}
-      {during(38, W(190)) ? <Pill f={f} at={W(190)} text="THEY STILL HOPE TO TRY HIM · L.A. TIMES" top="15.4%" tone="yellow" /> : null}
-      {during(39, W(193)) ? <Pill f={f} at={W(193)} text="“STILL UNRECOVERED” · L.A. TIMES, JAN. 2026" /> : null}
-      {during(39, W(196)) ? <Pill f={f} at={W(196)} text="14 JEWELERS · SOME HAVE LEFT THE TRADE" top="15.4%" tone="yellow" /> : null}
-      {during(40, W(200)) ? <Pill f={f} at={W(200)} text="THE JEWELERS' LAWSUIT AGAINST BRINK'S" /> : null}
-      {during(41, W(206)) ? <Pill f={f} at={W(206)} text="PROSECUTORS: “AT LEAST $100,312,031.54” · CNS" size={3.3} /> : null}
-      {during(42, W(208)) ? <NameTag f={f} at={W(208)} name="BRINK'S" role="ITS OWN LAWSUIT, FILED IN 2022 · L.A. TIMES" /> : null}
-      {during(43, W(213)) ? <Pill f={f} at={W(213)} text="“DECLARED TOTAL VALUE OF $8.7 MILLION” · L.A. TIMES" size={3.2} /> : null}
-      {during(43, W(215)) ? <Pill f={f} at={W(215)} text="THE MAN WITH THE DEAL: UNDER $10 MILLION · CNS" top="15.4%" tone="yellow" size={3.2} /> : null}
+      {during(0, W(5)) ? <Stamp f={f} at={W(5)} text="OVER $230 MILLION" tone="yellow" top="9.5%" size={11.5} /> : null}
+      {during(0, W(10)) ? <Pill f={f} at={W(10)} text="IN BITCOIN, AT THE TIME · U.S. ATTORNEY'S OFFICE, D.C." top="20.5%" size={3.2} /> : null}
+      {during(1, W(13)) ? <Pill f={f} at={W(13)} text="THE MAN WHO WAS ROBBED IS NOT DRAWN" /> : null}
+      {during(2, W(17)) ? <Pill f={f} at={W(17)} text="“NOTORIOUS” IN L.A. AND MIAMI CLUBS, A COURT HEARD · BBC" size={3.2} /> : null}
+      {during(3, W(20) + 3) ? <Pill f={f} at={W(20) + 3} text="31 CARS, BY HIS OWN ACCOUNT · COURT FILING" /> : null}
+      {during(4, W(21) + 3) ? <Pill f={f} at={W(21) + 3} text="RENTED: LOS ANGELES, THE HAMPTONS, MIAMI" /> : null}
+      {during(5, W(22) + 3) ? <Pill f={f} at={W(22) + 3} text="“UP TO $500,000 PER EVENING” · U.S. ATTORNEY'S OFFICE" size={3.2} /> : null}
+      {during(6, W(25)) ? <Stamp f={f} at={W(25)} text="31 DAYS" top="8%" size={12} /> : null}
+      {during(7, W(27) + 1) ? <Day f={f} at={W(27) + 1} day="AUG 2024"><Big>18</Big></Day> : null}
+      {during(8, W(30)) ? <NameTag f={f} at={W(30)} name="MALONE LAM" role="20 THEN · PLEADED GUILTY IN SEPT. 2026" /> : null}
+      {during(8, W(32) + 4) ? <Pill f={f} at={W(32) + 4} text="A STOCK CARTOON FIGURE, NOT A LIKENESS" top="22.5%" tone="yellow" size={3.2} /> : null}
+      {during(9, W(35)) ? <Pill f={f} at={W(35)} text="LEFT SCHOOL AT 14, HE TOLD INVESTIGATORS · BBC" size={3.3} /> : null}
+      {during(9, W(38) + 8) ? <Pill f={f} at={W(38) + 8} text="STAYED AFTER HIS VISA EXPIRED · BBC" top="15.4%" tone="yellow" /> : null}
+      {during(10, W(40)) ? <Pill f={f} at={W(40)} text="“RINGLEADER” · U.S. ATTORNEY'S OFFICE, D.C." /> : null}
+      {during(10, W(43)) ? <Pill f={f} at={W(43)} text="“CONNECTIONS MADE ON ONLINE GAMING PLATFORMS”" top="15.4%" tone="yellow" size={3.3} /> : null}
+      {during(10, W(45) + 4) ? <Pill f={f} at={W(45) + 4} text="18 CHARGED · HIS WAS THE 11TH GUILTY PLEA · AP" top="20.8%" /> : null}
+      {during(11, W(49)) ? <Pill f={f} at={W(49)} text="THE CREW HAS NO FACES HERE: NOT ALL HAVE BEEN TRIED" size={3.2} /> : null}
+      {during(12, W(52)) ? <Pill f={f} at={W(52)} text="WASHINGTON, D.C. · AUG. 18, 2024" /> : null}
+      {over(13, 14, W(56)) && f < swap ? <Pill f={f} at={W(56)} text="“CLAIMING THEY WERE FROM GOOGLE'S SECURITY TEAM”" size={3.2} /> : null}
+      {over(13, 14, swap + 2) ? <Pill f={f} at={swap + 2} text="THEN AS THE “SUPPORT TEAM” OF HIS EXCHANGE" /> : null}
+      {over(13, 14, W(58)) ? <Pill f={f} at={W(58)} text="COURT FILING, AS REPORTED BY CNBC" top="15.4%" tone="yellow" /> : null}
+      {during(15, W(65)) ? <Pill f={f} at={W(65)} text="“DUPED INTO DOWNLOADING A PROGRAM” · USA TODAY" size={3.3} /> : null}
+      {over(16, 17, W(72)) && f < gone ? <Stamp f={f} at={W(72)} text="4,100+ BITCOIN" tone="yellow" top="9.5%" size={12} /> : null}
+      {over(16, 17, W(75)) && f < gone ? <Pill f={f} at={W(75)} text="“OVER 4,100 BITCOIN” · U.S. ATTORNEY'S OFFICE" top="20.5%" /> : null}
+      {over(16, 17, gone) ? <Count f={f} from={gone} to={W(81)} total={230} prefix="$" suffix=" MILLION+" label="“WORTH OVER $230 MILLION AT THE TIME”" digits={0} /> : null}
+      {during(18, W(84)) ? <Pill f={f} at={W(84)} text="“A WILD SPENDING SPREE” · ASSOCIATED PRESS" /> : null}
+      {during(19, W(87) + 2) ? <Pill f={f} at={W(87) + 2} text="RENTED · ONE AT $68,000 A MONTH · COURT FILING" size={3.3} /> : null}
+      {during(20, W(89) + 2) ? <Pill f={f} at={W(89) + 2} text="“PRIVATE JET RENTALS” · U.S. ATTORNEY'S OFFICE" size={3.3} /> : null}
+      {during(21, W(93)) ? <Stamp f={f} at={W(93)} text="UP TO $500,000 A NIGHT" tone="yellow" top="9.5%" size={8.9} /> : null}
+      {during(21, W(95) + 3) ? <Pill f={f} at={W(95) + 3} text="“UP TO $500,000 PER EVENING” · U.S. ATTORNEY'S OFFICE" top="20.5%" size={3.2} /> : null}
+      {during(22, W(97) + 2) ? <Pill f={f} at={W(97) + 2} text="ONE RECEIPT, A LOS ANGELES CLUB · COURT FILING" size={3.3} /> : null}
+      {during(23) ? <Count f={f} from={S(23)[0] + 2} to={W(105)} total={31} suffix=" CARS" label="“31 LUXURY AUTOMOBILES” · COURT FILING, 2024" digits={0} /> : null}
+      {during(24, W(107)) ? <Pill f={f} at={W(107)} text="A PAGANI HUAYRA · “PURCHASED FOR $3,800,000”" size={3.3} /> : null}
+      {during(24, W(111)) ? <Pill f={f} at={W(111)} text="COURT FILING, OCT. 2024: IT HAD NOT BEEN FOUND" top="15.4%" tone="yellow" size={3.3} /> : null}
+      {during(25, W(115)) ? <Pill f={f} at={W(115)} text="“POSTING AND APPEARING IN PHOTOS” · WIRED" /> : null}
+      {during(26, W(120)) ? <Pill f={f} at={W(120)} text="AUG. 19, 2024: THE DAY AFTER · WIRED" /> : null}
+      {during(27, W(126)) ? <NameTag f={f} at={W(126)} name="ZACHXBT" role="A PSEUDONYM · REAL NAME NOT PUBLIC · WIRED" /> : null}
+      {during(28, W(129)) ? <Pill f={f} at={W(129)} text="“THREE MAIN THREADS” · WIRED" /> : null}
+      {during(29, W(132)) ? <Pill f={f} at={W(132)} text="“ON INSTAGRAM AND TIKTOK” · WIRED" /> : null}
+      {during(29, W(133) + 2) ? <Pill f={f} at={W(133) + 2} text="HE “APPEARED TO BE IN MIAMI”" top="15.4%" tone="yellow" /> : null}
+      {during(30, W(138)) ? <Pill f={f} at={W(138)} text="ONE OF THEM “RE-SHARED HIS SCREEN”" top="8%" /> : null}
+      {during(30, W(141) + 2) ? <Pill f={f} at={W(141) + 2} text="WITH “ANOTHER GROUP OF FRIENDS”" top="13.7%" tone="yellow" /> : null}
+      {during(31, W(147)) ? <Pill f={f} at={W(147)} text="A 90-MINUTE VIDEO · FIRST NAMES ARE SPOKEN IN IT" top="15.4%" size={3.3} /> : null}
+      {during(32, W(151)) ? <Pill f={f} at={W(151)} text="HE SHARED HIS FINDINGS WITH LAW ENFORCEMENT · WIRED" top="8%" size={3.2} /> : null}
+      {during(33, W(157)) ? <Stamp f={f} at={W(157)} text="ARRESTED" top="9.5%" size={13} /> : null}
+      {during(33, W(159)) ? <Pill f={f} at={W(159)} text="SEPT. 18, 2024 · AT HIS RENTAL HOME IN MIAMI" top="20.5%" size={3.3} /> : null}
+      {during(34, W(162)) ? <Pill f={f} at={W(162)} text="“OFF A DOCK ... INTO BISCAYNE BAY” · USA TODAY" size={3.3} /> : null}
+      {during(34, W(164) + 2) ? <Pill f={f} at={W(164) + 2} text="TIPPED OFF BY AN OFF-DUTY OFFICER, IT SAYS · AP" top="15.4%" tone="yellow" size={3.3} /> : null}
+      {during(35, W(169)) ? <Pill f={f} at={W(169)} text="THE INDICTMENT, AS REPORTED BY USA TODAY" /> : null}
+      {during(36, W(172) + 1) ? <Day f={f} at={W(172) + 1} day="SEPT 2026"><Big>8</Big></Day> : null}
+      {during(36, W(176)) ? <Pill f={f} at={W(176)} text="ONE COUNT OF RICO CONSPIRACY" dx={17} size={2.7} /> : null}
+      {during(36, W(178) + 2) ? <Pill f={f} at={W(178) + 2} text="U.S. DISTRICT COURT, WASHINGTON" top="15.4%" tone="yellow" dx={17} size={2.6} /> : null}
+      {during(37, W(184) - 1) ? <Stamp f={f} at={W(184) - 1} text="UP TO 20 YEARS" top="9.5%" size={12} /> : null}
+      {during(37, W(185) + 3) ? <Pill f={f} at={W(185) + 3} text="NOT SENTENCED YET · NEXT HEARING DEC. 8, 2026" top="20.5%" size={3.3} /> : null}
+      {during(38, W(187)) ? <Pill f={f} at={W(187)} text="AT THE PLEA HEARING · ASSOCIATED PRESS" /> : null}
+      {during(38, W(190)) ? <Pill f={f} at={W(190)} text="HE HAD BOUGHT MOST OF THEM, NOT ALL, HE INDICATED" top="15.4%" tone="yellow" size={3.2} /> : null}
+      {during(39, W(195) - 2) ? <Quote f={f} at={W(195) - 2} text={<>“I would need <Hot>some time</Hot>.”</>} by="MALONE LAM TO THE JUDGE · AP" size={6.2} /> : null}
+      {during(40, W(202)) ? <Quote f={f} at={W(202)} text={<>“If you build a <Hot>cybercrime empire</Hot>, we will find you ...”</>} by="THE U.S. ATTORNEY FOR D.C. · SEPT. 8, 2026" /> : null}
+      {during(41, W(208)) ? <Quote f={f} at={W(208)} text={<>“It’s a <Hot>very sad case</Hot> of a bunch of kids ...”</>} by="HIS LAWYER, TO USA TODAY" /> : null}
+      {during(42, W(214) + 2) ? <Pill f={f} at={W(214) + 2} text="“ONLINE GAMES ... THROUGH WHICH THEY MET”" /> : null}
+      {during(42, W(216)) ? <Pill f={f} at={W(216)} text="THE SAME STATEMENT, TO USA TODAY" top="15.4%" tone="yellow" /> : null}
       {f >= closing ? (
         <>
-          <div style={row('8%')}><div style={{...anton, fontSize: '8.8cqw', color: '#fff', WebkitTextStroke: `1.4cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, transform: `scale(${pop(f, W(217), 8)})`}}>WHICH NUMBER COUNTS?</div></div>
-          {f >= W(219) + 4 ? <Pill f={f} at={W(219) + 4} text="A LEGAL BATTLE SINCE 2022 · L.A. TIMES" top="15.6%" size={3.4} /> : null}
-          {f >= W(222) - 2 ? <Choice f={f} at={W(222) - 2} letter="A" text="WHAT THEY LOST" top="20.4%" tone="yellow" size={6.6} /> : null}
-          {f >= W(227) - 2 ? <Choice f={f} at={W(227) - 2} letter="B" text="WHAT THEY DECLARED" top="25.4%" tone="white" size={6.6} /> : null}
+          <div style={row('8%')}><div style={{...anton, fontSize: '9.2cqw', color: '#fff', WebkitTextStroke: `1.4cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, transform: `scale(${pop(f, W(219), 8)})`}}>WHO GETS SENTENCED?</div></div>
+          {f >= W(221) + 2 ? <Pill f={f} at={W(221) + 2} text="NO DATE YET · HE FACES UP TO 20 YEARS" top="15.6%" size={3.4} /> : null}
+          {f >= W(223) - 2 ? <Choice f={f} at={W(223) - 2} letter="A" text="A CRIME BOSS" top="20.4%" tone="yellow" size={6.6} /> : null}
+          {f >= W(227) - 2 ? <Choice f={f} at={W(227) - 2} letter="B" text="A KID IN OVER HIS HEAD" top="25.4%" tone="white" size={6.6} /> : null}
         </>
       ) : null}
     </AbsoluteFill>

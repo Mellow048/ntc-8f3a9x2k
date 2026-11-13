@@ -1,224 +1,219 @@
-// Sets of the bitcoin flex short, part 3: the seven who were charged, the papers, the other truck, the courtroom,
-// the scale.
+// Sets of the bitcoin flex short, part 3: the feed, the investigator's board, the courtroom, the courthouse steps and
+// the closing stage with its two halves.
 import * as THREE from 'three';
-import {backdrop, ball, beam, box, cyl, floor, foldTex, grainTex, grp, hop, lit, mesh, panel, pool, pop, rng, rrect, shake, smat, smooth, soft, tex, text, tiled, tmat, woodTex, type G2} from './kit';
-import {actor, CREW, PROSECUTOR, type Actor} from './cast';
-import {flagPole, flagUS, glints, halo, signTex, table} from './props';
+import {backdrop, ball, beam, box, card, cone, cyl, floor, foldTex, grainTex, grp, hop, lerp, lit, mesh, panel, pool, pop, rod, rrect, smat, smooth, soft, tex, text, tiled, tmat, torus, vgrad, woodTex, type G2} from './kit';
+import {actor, JUDGE, LAM, LAWYER, PROSECUTOR, SLEUTH} from './cast';
+import {bubble, bundle, coin, flagPole, flagUS, glints, halo, laptop, lectern, mug, signTex, table} from './props';
 import {W} from './story';
-import {gapTex, INK, jewelBag, LIGHT, rings, type Builder} from './sets';
+import {INK, LIGHT, supercar, type Builder} from './sets';
+import {blocks} from './sets2';
 
-// ------------------------------------------------------------------ the seven: nobody's face, a number each
-/** where each of the seven stands: three in front, four on a step behind */
-export const SEVEN: [number, number, number][] = [[-0.7, 0, 0.1], [0, 0, 0.1], [0.7, 0, 0.1], [-1.05, 0.5, -0.9], [-0.35, 0.5, -0.9], [0.35, 0.5, -0.9], [1.05, 0.5, -0.9]];
-const outline = () => tex('seven-gone', 300, 500, (g, w, h) => {
-  g.strokeStyle = '#ffffff'; g.lineWidth = 9; g.setLineDash([22, 16]); g.lineCap = 'round';
-  g.beginPath(); g.arc(w / 2, 104, 78, 0, 7); g.stroke(); rrect(g, w / 2 - 86, 196, 172, 200, 44); g.stroke(); g.beginPath(); g.moveTo(w / 2 - 40, 396); g.lineTo(w / 2 - 40, 486); g.moveTo(w / 2 + 40, 396); g.lineTo(w / 2 + 40, 486); g.stroke();
+const op = (o: THREE.Mesh, k: number) => { (o.material as THREE.MeshBasicMaterial).opacity = k; };
+
+// ------------------------------------------------------------------ little pictures: what he posted
+type Icon = (g: G2, x: number, y: number, s: number) => void;
+const carIcon = (g: G2, x: number, y: number, s: number, c = '#ffd21f') => {
+  g.save(); g.translate(x, y); g.scale(s, s); g.fillStyle = c; g.strokeStyle = INK; g.lineWidth = 8; g.lineJoin = 'round';
+  g.beginPath(); g.moveTo(-92, 20); g.lineTo(-92, -4); g.lineTo(-52, -12); g.lineTo(-28, -46); g.lineTo(34, -46); g.lineTo(60, -12); g.lineTo(94, -2); g.lineTo(94, 20); g.closePath(); g.fill(); g.stroke();
+  g.fillStyle = '#eaf6ff'; g.beginPath(); g.moveTo(-36, -14); g.lineTo(-20, -36); g.lineTo(28, -36); g.lineTo(44, -14); g.closePath(); g.fill(); g.stroke();
+  for (const wx of [-54, 54]) { g.fillStyle = '#1a1c24'; g.beginPath(); g.arc(wx, 22, 21, 0, 7); g.fill(); g.fillStyle = '#c9ced6'; g.beginPath(); g.arc(wx, 22, 8, 0, 7); g.fill(); }
+  g.restore();
+};
+const jetIcon: Icon = (g, x, y, s) => {
+  g.save(); g.translate(x, y); g.scale(s, s); g.rotate(-0.28); g.fillStyle = '#ffffff'; g.strokeStyle = INK; g.lineWidth = 8; g.lineJoin = 'round';
+  g.beginPath(); g.moveTo(104, 0); g.quadraticCurveTo(96, -20, 60, -20); g.lineTo(-64, -20); g.lineTo(-92, -58); g.lineTo(-110, -58); g.lineTo(-98, -10); g.quadraticCurveTo(-104, 16, -70, 18); g.lineTo(-8, 18); g.lineTo(-44, 62); g.lineTo(-20, 62); g.lineTo(34, 18); g.lineTo(70, 18); g.quadraticCurveTo(100, 16, 104, 0); g.closePath(); g.fill(); g.stroke();
+  g.fillStyle = INK; for (const wx of [0, 26, 52]) { g.beginPath(); g.arc(wx, -4, 6, 0, 7); g.fill(); } g.restore();
+};
+const bagIcon: Icon = (g, x, y, s) => {
+  g.save(); g.translate(x, y); g.scale(s, s); g.strokeStyle = INK; g.lineWidth = 8; g.lineJoin = 'round';
+  g.beginPath(); g.arc(0, -22, 34, Math.PI, 0); g.stroke(); g.fillStyle = '#e8762c'; g.beginPath(); g.moveTo(-62, -22); g.lineTo(62, -22); g.lineTo(74, 46); g.lineTo(-74, 46); g.closePath(); g.fill(); g.stroke();
+  g.fillStyle = '#ffd21f'; g.fillRect(-12, -4, 24, 18); g.strokeRect(-12, -4, 24, 18); g.restore();
+};
+const villaIcon: Icon = (g, x, y, s) => {
+  g.save(); g.translate(x, y); g.scale(s, s); g.strokeStyle = INK; g.lineWidth = 8; g.lineJoin = 'round';
+  g.fillStyle = '#fffdf4'; g.fillRect(-84, -8, 122, 56); g.strokeRect(-84, -8, 122, 56); g.fillRect(-64, -44, 82, 36); g.strokeRect(-64, -44, 82, 36);
+  g.fillStyle = '#3fc8d8'; for (const wx of [-70, -32, 6]) g.fillRect(wx, 6, 26, 26); g.fillRect(-50, -34, 54, 18);
+  g.beginPath(); g.moveTo(72, 48); g.quadraticCurveTo(64, 6, 76, -26); g.stroke(); g.fillStyle = '#2f9e5a'; for (const a of [-2.5, -1.9, -1.2, -0.6]) { g.beginPath(); g.ellipse(76 + 26 * Math.cos(a), -26 + 26 * Math.sin(a), 30, 9, a, 0, 7); g.fill(); g.stroke(); }
+  g.restore();
+};
+const cashIcon: Icon = (g, x, y, s) => {
+  g.save(); g.translate(x, y); g.scale(s, s); g.strokeStyle = INK; g.lineWidth = 8; g.lineJoin = 'round';
+  for (const a of [-0.5, -0.17, 0.17, 0.5]) { g.save(); g.rotate(a); g.fillStyle = '#4fbf78'; g.fillRect(-34, -84, 68, 120); g.strokeRect(-34, -84, 68, 120); g.fillStyle = '#dff3e2'; g.beginPath(); g.ellipse(0, -26, 16, 24, 0, 0, 7); g.fill(); g.stroke(); g.restore(); }
+  g.restore();
+};
+const heart = (g: G2, x: number, y: number, s: number, c = '#ff4f7a') => { g.fillStyle = c; g.beginPath(); for (let i = 0; i <= 40; i++) { const t = (i / 40) * Math.PI * 2; g.lineTo(x + s * Math.sin(t) ** 3, y - s * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t)) / 16); } g.closePath(); g.fill(); };
+
+// ------------------------------------------------------------------ feed: "posting and appearing in photos"
+const POSTS: [string[], Icon][] = [[['#19c2c2', '#8fe6e6'], (g, x, y, s) => carIcon(g, x, y, s)], [['#ff9a6a', '#ffe0b0'], jetIcon], [['#5a1fb0', '#8a4fd0'], cashIcon], [['#19a8c8', '#9fe8f0'], villaIcon]];
+const feedTex = () => tex('feed-roll', 600, 1900, (g, w) => {
+  g.fillStyle = '#fbfaf5'; g.fillRect(0, 0, w, 1900);
+  POSTS.forEach(([cols, icon], i) => {
+    const y0 = i * 475; const gr = g.createLinearGradient(0, y0, 0, y0 + 340); gr.addColorStop(0, cols[0]); gr.addColorStop(1, cols[1]); g.fillStyle = gr; g.fillRect(0, y0, w, 340);
+    icon(g, w / 2, y0 + 178, 1.6); heart(g, 64, y0 + 392, 26); g.fillStyle = '#1a1c24'; rrect(g, 116, y0 + 374, 150, 34, 17); g.fill(); g.fillStyle = '#c3c7d1'; rrect(g, 40, y0 + 430, 360, 16, 8); g.fill();
+  });
 });
-const planeTex = () => tex('seven-plane', 200, 200, (g) => { g.fillStyle = '#ffffff'; g.strokeStyle = INK; g.lineWidth = 9; g.lineJoin = 'round'; g.beginPath(); g.moveTo(178, 100); g.lineTo(120, 86); g.lineTo(74, 22); g.lineTo(56, 26); g.lineTo(82, 86); g.lineTo(40, 84); g.lineTo(24, 62); g.lineTo(12, 66); g.lineTo(22, 100); g.lineTo(12, 134); g.lineTo(24, 138); g.lineTo(40, 116); g.lineTo(82, 114); g.lineTo(56, 174); g.lineTo(74, 178); g.lineTo(120, 114); g.closePath(); g.fill(); g.stroke(); });
-export const seven: Builder = (root) => {
-  backdrop(root, ['#0b0e1a', '#1a2038']);
-  floor(root, 14, 12, tmat(tiled(woodTex('seven-floor', '#4a3b34', '#2a201c'), 4, 4)));
-  panel(root, 9, 5.4, tmat(tiled(foldTex('seven-curtain', '#2b3a66', '#18203c', 12), 2, 1)), 0, 2.7, -1.9);
-  box(root, 3.4, 0.5, 1.0, '#3a2f2a', 0, 0.25, -0.9); box(root, 3.44, 0.04, 1.04, '#5a463c', 0, 0.5, -0.9);
-  const crew: Actor[] = SEVEN.map(([x, y, z], i) => actor(root, CREW(i), {idle: {pose: 'hang'}, deal: {pose: 'both', prop: 'card', text: 'PLEA DEAL', big: true}, not: {pose: 'both', prop: 'card', text: 'NOT GUILTY', big: true}, up: {pose: 'shrug'}}, x, y, z, {scale: 0.92, res: 1.0, wide: true}));
-  const gone = SEVEN.map(([x, y, z]) => soft(panel(root, 0.66, 1.1, smat(outline(), 1.1, true), x, y + 1.0, z)));
-  const spots = SEVEN.map(([x, y, z]) => pool(root, 0.62, '#fff0c8', 0, x, z, y + 0.016));
-  const key = beam(root, 0.14, 0.7, 5.4, '#fff0c8', 0, SEVEN[0][0], 5.4, SEVEN[0][2]);
-  const plane = soft(panel(root, 0.5, 0.5, smat(planeTex(), 1.15, true), 0, 0, 0));
-  const shade = (k: number, lo = '#3f455c') => '#' + new THREE.Color(lo).lerp(new THREE.Color('#ffffff'), k).getHexString();
-  return {
-    light: () => ({...LIGHT.dark, sky: '#c6d0ff', amb: 1.2, keyI: 0.85}),
-    tick: ({f, cam, shot}) => {
-      const v = shot.v, take = v === 'three' || v === 'two' || v === 'gone';
-      // one take for "three ... two ... one": the cues are words, not the entries of the shot list
-      const T3 = W(175) - 2, T2 = W(180) - 2, T1 = W(184) - 2;
-      crew.forEach((c, i) => {
-        let k = 1, st = 'idle', y = 0, dz = 0, vis = true, x = SEVEN[i][0];
-        if (v === 'one') { k = i === 0 ? smooth(f, shot.at + 2, shot.at + 9) : 0.12; if (i === 0) { dz = 0.45 * smooth(f, shot.at + 2, shot.at + 12); y = hop(f, shot.at + 3, 0.08, 9); } }
-        else if (v === 'none') k = 0;
-        else if (v === 'charged') { const at = shot.at + 2 + i * 3; k = smooth(f, at, at + 5); y = hop(f, at, 0.07, 8); }
-        else if (take) {
-          if (i === 0) st = 'deal';
-          if (i >= 1 && i <= 3) { const at = T3 + (i - 1) * 4; st = f >= at ? 'not' : 'idle'; y = hop(f, at, 0.09, 8); }
-          if (i === 4 || i === 5) { const at = T2 + (i - 4) * 4; vis = f < at; }
-          if (i === 6) { const u = smooth(f, T1, T1 + 12); x += 2.6 * u; vis = u < 0.98; st = f >= T1 ? 'up' : 'idle'; }
-          if (f >= T2 && i < 4) k = 0.6; if (f >= T1 && i < 6) k = 0.45;
-        }
-        c.node.visible = vis; c.node.position.set(x, SEVEN[i][1] + y, SEVEN[i][2] + dz); c.show(st); c.tint(shade(k, v === 'none' ? '#1c2136' : '#3f455c')); c.tick(f, cam);
-        const at = i === 6 ? T1 + 6 : T2 + (i - 4) * 4; gone[i].visible = take && i >= 4 && f >= at; gone[i].scale.setScalar(pop(f, at, 7));
-        (spots[i].material as THREE.MeshBasicMaterial).opacity = 0.3 * k * (vis ? 1 : 0);
-      });
-      (key.material as THREE.MeshBasicMaterial).opacity = v === 'one' ? 0.07 * smooth(f, shot.at + 2, shot.at + 9) : 0;
-      const u = (f - T1) / 34; plane.visible = take && u > 0 && u < 1; plane.position.set(SEVEN[6][0] + 0.1 - 0.55 * u, 2.45 + 0.95 * u, -0.6); plane.rotation.z = 2.3; plane.scale.setScalar((0.5 + 0.5 * Math.min(1, u * 5)) * (0.95 - 0.35 * u) * Math.min(1, (1 - u) / 0.2));
-    },
-  };
-};
-
-// ------------------------------------------------------------------ papers: the plea agreement, the newspaper, the form
-type Page = {draw: (g: G2, w: number, h: number) => void; /** the band the highlighter marks, in page pixels: top, bottom, left, right */ hot?: [number, number, number, number]};
-const PW = 1000, PH = 1300;
-const M = (g: G2, s: string, x: number, y: number, size: number, weight: 700 | 900 = 700, align: CanvasTextAlign = 'left', col = '#1a1c24', maxWidth = PW - 150) => text(g, s, x, y, size, col, {font: 'Montserrat', weight, align, maxWidth});
-const grey = (g: G2, y0: number, n: number, seed: number) => { const q = rng(seed); g.fillStyle = '#c3c7d1'; for (let i = 0; i < n; i++) g.fillRect(86, y0 + i * 46, (PW - 172) * (i % 4 === 3 ? 0.4 + q() * 0.3 : 1), 16); };
-const courtHead = (g: G2, title: string) => {
-  g.fillStyle = '#fffdf6'; g.fillRect(0, 0, PW, PH); g.strokeStyle = '#1a1c24'; g.lineWidth = 5; g.strokeRect(40, 40, PW - 80, PH - 80);
-  M(g, 'UNITED STATES DISTRICT COURT', PW / 2, 116, 46, 900, 'center'); M(g, 'CENTRAL DISTRICT OF CALIFORNIA', PW / 2, 172, 36, 700, 'center'); g.fillStyle = '#1a1c24'; g.fillRect(86, 214, PW - 172, 5);
-  text(g, title, PW / 2, 312, 124, '#1a1c24', {maxWidth: PW - 200});
-};
-const PAGES: Record<'sign' | 'page' | 'same' | 'news' | 'form', Page> = {
-  sign: {draw: (g) => { courtHead(g, 'PLEA AGREEMENT'); M(g, 'FILED NOV. 9, 2026', PW / 2, 410, 38, 900, 'center', '#b3211d'); grey(g, 480, 5, 3); g.fillStyle = '#1a1c24'; g.fillRect(430, 800, 440, 5); M(g, 'DEFENDANT', 650, 842, 30, 700, 'center', '#6b6f7a'); grey(g, 930, 6, 4); }},
-  page: {draw: (g) => { courtHead(g, 'PLEA AGREEMENT'); M(g, 'FILED NOV. 9, 2026', PW / 2, 410, 38, 900, 'center', '#b3211d'); grey(g, 470, 3, 5); M(g, 'ONE COUNT:', 86, 680, 54, 900); M(g, 'INTERFERENCE WITH', 86, 772, 66, 900); M(g, 'COMMERCE BY ROBBERY', 86, 864, 66, 900); grey(g, 960, 6, 6); }, hot: [726, 910, 70, 930]},
-  same: {draw: (g) => { courtHead(g, 'PLEA AGREEMENT'); M(g, 'WHAT HE ADMITS IN IT', PW / 2, 410, 40, 900, 'center', '#b3211d');
-    ['FOLLOWED THE TRUCK', 'ABOUT 300 MILES', "BROKE THE TRUCK'S LOCKS", 'STOLE 24 BAGS'].forEach((s, i) => M(g, s, 170, 540 + i * 110 - (i > 1 ? 20 : 0) + (i === 1 ? -26 : 0), i === 1 ? 50 : 60, 900, 'left', '#1a1c24', 740));
-    g.strokeStyle = '#2fbf71'; g.lineWidth = 16; g.lineCap = 'round'; g.lineJoin = 'round'; for (const y of [540, 740, 850]) { g.beginPath(); g.moveTo(86, y); g.lineTo(108, y + 24); g.lineTo(146, y - 28); g.stroke(); }
-    M(g, 'AS SUMMARISED BY THE L.A. TIMES', PW / 2, 1000, 34, 900, 'center', '#6b6f7a'); M(g, 'AND CITY NEWS SERVICE, NOV. 9-10, 2026', PW / 2, 1048, 34, 900, 'center', '#6b6f7a'); grey(g, 1110, 2, 8); }, hot: [800, 900, 150, 700]},
-  news: {draw: (g) => { g.fillStyle = '#f4f0e4'; g.fillRect(0, 0, PW, PH); M(g, 'LOS ANGELES TIMES', PW / 2, 118, 84, 900, 'center'); g.fillStyle = '#1a1c24'; g.fillRect(60, 184, PW - 120, 8); g.fillRect(60, 200, PW - 120, 3);
-    M(g, 'OCT. 16, 2025', PW / 2, 248, 36, 900, 'center', '#b3211d');
-    ["Inside the Brink's", 'heist probe: how', 'alleged burglars', 'behind $100-million', 'theft were caught'].forEach((s, i) => M(g, s, 76, 372 + i * 98, 80, 900));
-    grey(g, 900, 8, 12); }, hot: [520, 810, 60, 940]},
-  form: {draw: (g) => { g.fillStyle = '#eef4fb'; g.fillRect(0, 0, PW, PH); g.fillStyle = '#27408b'; g.fillRect(0, 0, PW, 170); text(g, 'SHIPPING FORM', PW / 2, 72, 92, '#ffffff'); M(g, 'A DRAWING, NOT THE REAL DOCUMENT', PW / 2, 136, 32, 900, 'center', '#ffffff');
-    g.strokeStyle = '#27408b'; g.lineWidth = 5; for (let i = 0; i < 3; i++) { g.strokeRect(76, 230 + i * 130, PW - 152, 100); M(g, ['SHIPPER', 'CONTENTS', 'DESTINATION'][i], 96, 260 + i * 130, 26, 900, 'left', '#27408b'); g.fillStyle = '#c3c7d1'; g.fillRect(96, 290 + i * 130, 420 + i * 70, 16); }
-    g.fillStyle = '#fffdf4'; g.fillRect(76, 650, PW - 152, 260); g.lineWidth = 10; g.strokeRect(76, 650, PW - 152, 260); M(g, 'DECLARED VALUE', 110, 716, 58, 900, 'left', '#27408b'); M(g, '$', 110, 826, 120, 900, 'left'); g.fillStyle = '#1a1c24'; g.fillRect(210, 868, PW - 330, 6);
-    grey(g, 980, 5, 14); }, hot: [660, 900, 86, 914]},
-};
-const pageTex = (key: keyof typeof PAGES) => tex('paper-' + key, PW, PH, (g, w, h) => PAGES[key].draw(g, w, h));
-export const deal: Builder = (root) => {
-  backdrop(root, ['#10131c', '#232a3c']);
-  const page = grp(root, 0, 1.48, -0.4), W_ = 1.6, H_ = 2.08; page.rotation.z = -0.02;
-  soft(panel(page, W_ + 0.07, H_ + 0.07, lit(INK, 1), 0, 0, -0.01));
-  const keys = Object.keys(PAGES) as (keyof typeof PAGES)[], T = Object.fromEntries(keys.map((k) => [k, pageTex(k)])) as unknown as Record<keyof typeof PAGES, THREE.Texture>;
-  const pm = new THREE.MeshBasicMaterial({map: T.sign}); soft(panel(page, W_, H_, pm, 0, 0, 0));
-  const hl = new THREE.MeshBasicMaterial({color: '#ffe14a', transparent: true, blending: THREE.MultiplyBlending, depthWrite: false}), mark = soft(panel(page, 1, 1, hl, 0, 0, 0.004)); mark.renderOrder = 4;
-  // a pen that signs, and the line it leaves
-  const pen = grp(page, 0, 0, 0.05); const body = cyl(pen, 0.022, 0.5, '#2f4f9a', 0.1, 0.22, 0.06); body.rotation.z = -0.45; body.rotation.x = 0.5; const nib = cyl(pen, 0.006, 0.07, '#c9ced6', 0.0, 0.0, 0.0, 0.02); nib.rotation.z = -0.45; nib.rotation.x = 0.5;
-  const ink = soft(panel(page, 1, 0.09, smat(tex('paper-signature', 400, 90, (g, w, h) => { g.strokeStyle = '#1f3a8a'; g.lineWidth = 9; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(8, 60); for (let i = 1; i <= 26; i++) g.lineTo(8 + i * 14.5, 46 + 30 * Math.sin(i * 1.7) * (i % 5 ? 1 : 0.3)); g.stroke(); }), 1, true), 0, 0, 0.003));
-  halo(root, 2.6, '#fff0c8', 0.12, 0, 1.5, -1.2);
+const feedHead = () => tex('feed-head', 600, 150, (g, w, h) => {
+  g.fillStyle = '#fbfaf5'; g.fillRect(0, 0, w, h); g.fillStyle = '#ff4fa3'; g.beginPath(); g.arc(84, 76, 46, 0, 7); g.fill(); g.strokeStyle = INK; g.lineWidth = 7; g.stroke(); text(g, '$', 84, 80, 62, '#ffe14a', {stroke: INK, sw: 9});
+  text(g, '$$$', 216, 78, 72, '#1a1c24'); g.fillStyle = '#3f8cff'; rrect(g, 430, 46, 130, 58, 18); g.fill(); g.fillStyle = '#d9dce4'; g.fillRect(0, h - 6, w, 6);
+});
+const heartTex = () => tex('feed-heart', 96, 96, (g) => heart(g, 48, 50, 42));
+export const feed: Builder = (root) => {
+  backdrop(root, ['#3a0f8a', '#7a2fd0', '#b060f0']);
+  floor(root, 16, 12, '#3a148a');
+  const ph = grp(root, 0, 2.2, 0); ph.rotation.set(0, 0.14, -0.035);
+  box(ph, 2.02, 3.92, 0.14, '#15121c'); soft(panel(ph, 1.8, 0.45, smat(feedHead(), 1.05), 0, 1.575, 0.075));
+  const roll = soft(panel(ph, 1.8, 3.15, smat(feedTex(), 1.05), 0, -0.225, 0.075)), map = (roll.material as THREE.MeshBasicMaterial).map!, K = 1050 / 1900; map.repeat.y = K;
+  const hearts = Array.from({length: 8}, () => card(root, 0.26, 0.26, heartTex(), 0, 0, 0.5, 1.15));
   return {
     light: () => LIGHT.show,
-    tick: ({f, shot}) => {
-      const key = shot.v as keyof typeof PAGES, P = PAGES[key];
-      pm.map = T[key]; page.position.y = 1.48 + 0.01 * Math.sin(f * 0.06); page.scale.setScalar(pop(f, shot.at - 2, 8));
-      const cue = key === 'page' ? W(153) : key === 'same' ? W(166) : key === 'news' ? W(107) : key === 'form' ? W(211) : 1e9;
-      const k = P.hot ? smooth(f, cue, cue + 9) : 0;
-      if (P.hot) { const [y0, y1, x0, x1] = P.hot, full = (x1 - x0) / PW * W_; mark.scale.set(Math.max(0.001, full * k), (y1 - y0) / PH * H_, 1); mark.position.set(-W_ / 2 + x0 / PW * W_ + full * k / 2, H_ / 2 - (y0 + y1) / 2 / PH * H_, 0.004); }
-      mark.visible = k > 0.01;
-      // the signature on the first page, written while the narrator says "has a plea deal"
-      const s = key === 'sign' ? smooth(f, W(29), W(31) + 8) : 0, sx = (430 + 440 * s) / PW * W_ - W_ / 2, sy = H_ / 2 - 778 / PH * H_;
-      pen.visible = key === 'sign'; pen.position.set(sx, sy + 0.012 * Math.sin(f * 1.3) * (s > 0 && s < 1 ? 1 : 0), 0.05);
-      ink.visible = key === 'sign' && s > 0.02; const iw = 440 / PW * W_ * s; ink.scale.set(Math.max(0.001, iw), 1, 1); ink.position.set(430 / PW * W_ - W_ / 2 + iw / 2, sy + 0.01, 0.003);
-      (ink.material as THREE.MeshBasicMaterial).map!.repeat.set(Math.max(0.001, s), 1);
+    tick: ({f, t}) => {
+      map.offset.y = (1 - K) * (1 - 0.92 * smooth(t, 5, 44));
+      ph.position.y = 2.2 + 0.02 * Math.sin(f * 0.1);
+      hearts.forEach((h, i) => { const u = (f * 0.016 + i * 0.125) % 1; h.position.set(0.62 + 0.22 * Math.sin(f * 0.07 + i * 2.2) + 0.1 * (i % 3), 0.9 + u * 2.7, 0.45 + 0.02 * i); h.scale.setScalar(Math.sin(Math.PI * Math.min(1, u * 1.6)) * (0.6 + 0.5 * ((i * 7) % 5) / 5)); h.visible = t > 3; });
     },
   };
 };
 
-// ------------------------------------------------------------------ the other truck: a box truck and its cargo
-const tagTex = () => tex('tag-top', 96, 96, (g) => { g.fillStyle = '#fffdf8'; g.beginPath(); g.arc(48, 48, 46, 0, 7); g.fill(); g.strokeStyle = '#c9ced6'; g.lineWidth = 5; g.stroke(); g.fillStyle = '#dfe3ea'; g.beginPath(); g.arc(48, 48, 22, 0, 7); g.fill(); });
-export const CARTON: [number, number, number] = [-0.25, 0, 1.7];
-export const tags: Builder = (root) => {
-  backdrop(root, ['#6fb0e8', '#f6e3c0']);
-  floor(root, 40, 30, tmat(tiled(grainTex('tags-lot', '#8a8f9c', 0.1), 12, 9)));
-  for (let i = -4; i <= 4; i++) floor(root, 0.1, 4.6, lit('#f3ead0', 1), 0.014, i * 2.3, -0.4);
-  box(root, 16, 4.6, 0.5, '#c9b99a', 0, 2.3, -6.2); for (let i = -3; i <= 3; i++) box(root, 1.5, 2.6, 0.1, '#8a94a3', i * 2.2, 1.3, -5.92);
-  // the box truck, three quarters from behind: its nose points away to the right
-  const t = grp(root, 0.55, 0, -0.9); t.rotation.y = 1.0;
-  const W2 = 0.66, BX = -0.6; box(t, 2.5, 1.6, 2 * W2, '#f6f3ea', BX, 1.32, 0); box(t, 2.5, 0.14, 2 * W2 - 0.2, '#3a3f4a', BX, 0.46, 0);
-  box(t, 0.95, 1.15, 2 * W2 - 0.08, '#2f8f86', 1.2, 1.0, 0); box(t, 0.4, 0.5, 2 * W2 - 0.12, '#2f8f86', 1.8, 0.68, 0); soft(panel(t, 2 * W2 - 0.24, 0.5, lit('#1c2433', 1), 1.682, 1.22, 0, Math.PI / 2));
-  for (const s of [-1, 1]) { soft(panel(t, 0.5, 0.44, lit('#1c2433', 1), 1.24, 1.22, s * (W2 - 0.038), s > 0 ? 0 : Math.PI)); for (const x of [-1.25, 1.35]) { const w = cyl(t, 0.3, 0.24, '#1b1d24', x, 0.3, s * (W2 - 0.14)); w.rotation.x = Math.PI / 2; const hb = cyl(t, 0.13, 0.25, '#c9ced6', x, 0.3, s * (W2 - 0.135)); hb.rotation.x = Math.PI / 2; } box(t, 0.04, 0.1, 0.18, lit('#ff3b30', 1.3), BX - 1.26, 0.62, s * (W2 - 0.12)); }
-  soft(panel(t, 2 * W2 - 0.12, 1.44, lit('#1b1e28', 1), BX - 1.252, 1.34, 0, -Math.PI / 2)); box(t, 0.06, 0.14, 2 * W2, '#c9ced6', BX - 1.26, 2.1, 0); box(t, 0.1, 0.1, 2 * W2, '#8a94a3', BX - 1.3, 0.5, 0);
-  const cartonTex = tex('tags-carton', 256, 200, (g, w, h) => { g.fillStyle = '#c99a62'; g.fillRect(0, 0, w, h); g.fillStyle = '#b08350'; g.fillRect(0, h / 2 - 10, w, 20); g.fillStyle = '#fffdf4'; g.fillRect(58, 30, 140, 56); g.fillStyle = INK; for (let i = 0; i < 11; i++) g.fillRect(70 + i * 11, 42, i % 3 ? 4 : 7, 32); });
-  for (const [x, y, z] of [[-1.0, 0.53, -0.3], [-1.0, 0.53, 0.3], [-1.0, 1.0, 0], [-0.3, 0.53, -0.3], [-0.3, 0.53, 0.28], [-0.35, 1.0, 0.1]] as const) box(t, 0.62, 0.45, 0.54, tmat(cartonTex), BX + x, y + 0.23, z);
-  // one carton on the ground, open: small white tags
-  const c = grp(root, ...CARTON); c.rotation.y = 0.3; box(c, 0.9, 0.5, 0.66, tmat(cartonTex), 0, 0.25, 0); box(c, 0.84, 0.03, 0.6, '#8a6a3a', 0, 0.44, 0);
-  for (const [s, rz] of [[-1, 0.9], [1, -0.9]] as const) { const fl = box(c, 0.44, 0.03, 0.66, '#c99a62', s * 0.62, 0.6, 0); fl.rotation.z = rz; }
-  const disc = tmat(tagTex()), q = rng(21), pts: [number, number, number][] = [];
-  for (let i = 0; i < 26; i++) { const x = (q() - 0.5) * 0.7, z = (q() - 0.5) * 0.46, y = 0.47 + q() * 0.08; const d = cyl(c, 0.075, 0.022, '#fffdf8', x, y, z); d.rotation.set((q() - 0.5) * 0.6, 0, (q() - 0.5) * 0.6); const top = soft(mesh(d, new THREE.CircleGeometry(0.074, 20), disc, 0, 0.0115, 0)); top.rotation.x = -Math.PI / 2; if (i % 6 === 0) pts.push([x, y + 0.08, z + 0.05]); }
-  const fly = [0, 1, 2].map(() => { const d = cyl(c, 0.085, 0.024, '#fffdf8', 0, 0, 0); d.rotation.x = Math.PI / 2; const top = soft(mesh(d, new THREE.CircleGeometry(0.084, 20), disc, 0, 0.0125, 0)); top.rotation.x = -Math.PI / 2; return d; });
-  const tw = glints(c, pts), ping = fly.map(() => rings(root, 2, '#2f6fd0'));
+// ------------------------------------------------------------------ sleuth: someone was watching
+const BX = 0.75, BY = 2.25, BZ = -1.2, BW = 2.5, BH = 3.27;
+const bx = (px: number) => BX + (px / 800 - 0.5) * BW, by = (py: number) => BY + (0.5 - py / 1046) * BH;
+const PHOTOS: [number, number, number, Icon][] = [[205, 745, -0.06, (g, x, y, s) => carIcon(g, x, y, s)], [595, 735, 0.05, jetIcon], [205, 965, 0.04, bagIcon], [595, 975, -0.05, villaIcon]];
+const boardTex = () => tex('sleuth-board', 800, 1046, (g, w, h) => {
+  g.fillStyle = '#d9b46a'; g.fillRect(0, 0, w, h); for (let i = 0; i < 900; i++) { g.fillStyle = `rgba(90,60,20,${0.05 + 0.1 * ((i * 37) % 10) / 10})`; g.fillRect((i * 193) % w, (i * 389) % h, 3, 3); }
+  const boxAt = (s: string, x: number, y: number, bw: number, fill: string) => { g.fillStyle = fill; rrect(g, x - bw / 2, y - 30, bw, 60, 12); g.fill(); g.strokeStyle = INK; g.lineWidth = 6; g.stroke(); text(g, s, x, y + 3, 40, INK, {maxWidth: bw - 22}); };
+  const arrow = (x0: number, y0: number, x1: number, y1: number) => { g.strokeStyle = INK; g.lineWidth = 6; g.lineCap = 'round'; g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke(); const a = Math.atan2(y1 - y0, x1 - x0); g.beginPath(); g.moveTo(x1, y1); g.lineTo(x1 - 16 * Math.cos(a - 0.5), y1 - 16 * Math.sin(a - 0.5)); g.moveTo(x1, y1); g.lineTo(x1 - 16 * Math.cos(a + 0.5), y1 - 16 * Math.sin(a + 0.5)); g.stroke(); };
+  arrow(400, 152, 400, 228); for (const x of [200, 400, 600]) { arrow(400, 294, x, 334); arrow(x, 400, x, 458); }
+  boxAt('4,100 BTC', 400, 120, 210, '#ffb52e'); boxAt('MIXERS', 400, 262, 180, '#fffdf4'); for (const x of [200, 400, 600]) { boxAt('EXCHANGE', x, 368, 172, '#fffdf4'); g.fillStyle = '#e8ecf6'; g.beginPath(); g.arc(x, 500, 38, 0, 7); g.fill(); g.strokeStyle = INK; g.lineWidth = 6; g.stroke(); text(g, '?', x, 504, 56, '#4a4560'); }
+  g.strokeStyle = INK; g.lineWidth = 5; g.beginPath(); g.moveTo(40, 590); g.lineTo(w - 40, 590); g.stroke();
+  g.strokeStyle = '#e3342f'; g.lineWidth = 5; g.beginPath(); g.moveTo(PHOTOS[0][0], PHOTOS[0][1]); g.lineTo(PHOTOS[3][0], PHOTOS[3][1]); g.moveTo(PHOTOS[1][0], PHOTOS[1][1]); g.lineTo(PHOTOS[2][0], PHOTOS[2][1]); g.stroke();
+  for (const [x, y, a, icon] of PHOTOS) { g.save(); g.translate(x, y); g.rotate(a); g.fillStyle = '#fffdf4'; g.strokeStyle = INK; g.lineWidth = 7; g.fillRect(-118, -96, 236, 196); g.strokeRect(-118, -96, 236, 196); g.fillStyle = '#bfe6ff'; g.fillRect(-104, -82, 208, 138); icon(g, 0, -8, 0.72); heart(g, -84, 78, 13); g.fillStyle = '#b9bcc6'; g.fillRect(-60, 70, 120, 14); g.fillStyle = '#e3342f'; g.beginPath(); g.arc(0, -90, 11, 0, 7); g.fill(); g.restore(); }
+});
+const miniPost = () => tex('sleuth-post', 300, 300, (g, w, h) => { vgrad(g, w, h, ['#19c2c2', '#8fe6e6']); carIcon(g, 150, 124, 1.0); g.fillStyle = '#fffdf4'; g.fillRect(0, 222, w, 78); heart(g, 44, 258, 20); g.fillStyle = '#1a1c24'; rrect(g, 82, 246, 100, 24, 10); g.fill(); });
+export const sleuth: Builder = (root) => {
+  backdrop(root, ['#0a1418', '#14282e']);
+  floor(root, 14, 12, tmat(tiled(woodTex('sleuth-floor', '#4a3a2c', '#2a1e14'), 4, 4)));
+  panel(root, 12, 6, tmat(tiled(grainTex('sleuth-wall', '#1f4a4a', 0.08), 5, 3)), 0, 3, BZ - 0.12);
+  box(root, BW + 0.14, BH + 0.14, 0.08, '#5a3e28', BX, BY, BZ - 0.05); soft(panel(root, BW, BH, smat(boardTex(), 1.0), BX, BY, BZ));
+  const dim = soft(panel(root, 12, 6, new THREE.MeshBasicMaterial({color: '#02060a', transparent: true, opacity: 0.8, depthWrite: false}), 0, 3, BZ + 0.05)); dim.renderOrder = 3;
+  const tagM = soft(panel(root, 0.8, 0.3, smat(signTex('sleuth-miami', 400, 150, '#e3342f', '#ffffff', [['MIAMI', 120, 0.55]], {border: INK}), 1.1), bx(400), by(855), BZ + 0.03));
+  const coinsB = [200, 400, 600].map(() => coin(root, 0.11)), lens = grp(root); torus(lens, 0.3, 0.035, '#23252e'); soft(mesh(lens, new THREE.CircleGeometry(0.28, 28), new THREE.MeshBasicMaterial({color: '#bfe6ff', transparent: true, opacity: 0.22, depthWrite: false}))); rod(lens, [0.22, -0.22, 0], [0.5, -0.52, 0], 0.04, '#5a3e28');
+  // the desk
+  table(root, -1.2, 0.5, 1.5, 0.7, {h: 0.76, top: '#6a4c36', leg: '#2a1e14', skirt: '#4a3424'});
+  laptop(root, -1.2, 0.76, 0.45, {ry: Math.PI, w: 0.6, body: '#3a3f4a', back: lit('#7af0e0', 1.3)}); mug(root, -0.62, 0.76, 0.6, '#f3f1ea');
+  cyl(root, 0.1, 0.03, '#2b2f3a', -1.82, 0.775, 0.4); cyl(root, 0.014, 0.46, '#2b2f3a', -1.82, 1.02, 0.4); const sh = cyl(root, 0.17, 0.2, lit('#ffe2a0', 1.5), -1.82, 1.32, 0.4, 0.09); sh.castShadow = false;
+  const lampGlow = halo(root, 1.2, '#ffd98a', 0.2, -1.8, 1.3, 0.5), scrGlow = halo(root, 1.0, '#7af0e0', 0.3, -1.2, 1.25, 0.2);
+  const bub = bubble(root, -0.56, 1.95, 0.35, 0.44, 0.44, smat(miniPost(), 1.1), [-0.26, -0.22]);
+  const sit = actor(root, SLEUTH, {a: {pose: 'type', mode: 'sit'}}, -1.2, 0.6, -0.05, {scale: 1.0, res: 1.2, shadow: 0});
+  const stand = actor(root, SLEUTH, {a: {pose: 'hold', prop: 'lens'}}, 0.15, 0, 0.6, {scale: 1.05, res: 1.2, wide: true});
   return {
-    light: () => LIGHT.day,
-    tick: ({f, shot}) => {
-      const close = shot.v === 'tags';
-      fly.forEach((d, i) => { const at = shot.at + 4 + i * 7, u = smooth(f, at, at + 12); d.visible = close && f >= at; d.position.set((i - 1) * 0.3, 0.5 + (0.3 + 0.1 * (i % 2)) * u + 0.02 * Math.sin(f * 0.2 + i), 0.12); d.rotation.z = 0.2 * Math.sin(f * 0.1 + i);
-        const wp = new THREE.Vector3(); d.getWorldPosition(wp); ping[i](f + i * 11, close && u > 0.9, [wp.x, wp.y, wp.z + 0.02], 0.2, 0, 0.05); });
-      tw(f, true);
+    light: (v) => v === 'watch' ? {...LIGHT.dark, amb: 0.6, keyI: 0.35} : {...LIGHT.room, amb: 1.4},
+    tick: ({f, t, cam, shot}) => {
+      const v = shot.v, a = shot.at, watch = v === 'watch';
+      dim.visible = watch || v === 'who'; op(dim, watch ? 0.8 : 0.72); op(lampGlow, watch ? 0 : 0.2); op(scrGlow, watch ? 0.34 + 0.06 * Math.sin(f * 0.5) : 0.14);
+      sit.node.visible = watch; sit.tick(f, cam); stand.node.visible = v === 'who'; stand.node.position.y = hop(f, a + 2, 0.1, 8); stand.tick(f, cam);
+      bub.g.visible = watch; bub.g.scale.setScalar(pop(f, a + 3, 8));
+      // one coin leaves the wallet and comes out of the mixers as three, one down each thread; the glass goes after one of them,
+      // and then from picture to picture
+      const run = v === 'coins', u1 = smooth(t, 0, 10), u2 = smooth(t, 10, 20), u3 = smooth(t, 20, 30), xs = [200, 400, 600];
+      const pyAt = t < 10 ? lerp(120, 262, u1) : t < 20 ? lerp(262, 368, u2) : lerp(368, 500, u3), arc = 0.1 * Math.sin(Math.PI * (t < 10 ? u1 : t < 20 ? u2 : u3));
+      coinsB.forEach((c, i) => { const px = t < 10 ? 400 : t < 20 ? lerp(400, xs[i], u2) : xs[i]; c.visible = run && (t >= 10 || i === 1); c.position.set(bx(px), by(pyAt) + arc, BZ + 0.2); c.rotation.y = f * 0.4 + i; });
+      const posts = v === 'posts', stops: [number, number][] = [[bx(PHOTOS[0][0]), by(PHOTOS[0][1])], [bx(PHOTOS[1][0]), by(PHOTOS[1][1])], [bx(PHOTOS[3][0]), by(PHOTOS[3][1])], [bx(400) + 0.5, by(855) - 0.42]];
+      const leg = Math.min(2, Math.floor(t / 8)), w = smooth(t, leg * 8, leg * 8 + 7);
+      lens.visible = run || posts;
+      if (run) lens.position.set(bx(t < 10 ? 400 : t < 20 ? lerp(400, 600, u2) : 600) + 0.03, by(pyAt) + arc + 0.02, BZ + 0.32);
+      if (posts) lens.position.set(lerp(stops[leg][0], stops[leg + 1][0], w), lerp(stops[leg][1], stops[leg + 1][1], w), BZ + 0.32);
+      tagM.visible = posts && f >= W(133); tagM.scale.setScalar(pop(f, W(133), 6));
     },
   };
 };
 
-// ------------------------------------------------------------------ the courtroom: one chair is empty
+// ------------------------------------------------------------------ court: the plea, and the judge's question about the cars
 const sealTex = () => tex('court-seal', 300, 300, (g, w) => {
   g.fillStyle = '#c9a23a'; g.beginPath(); g.arc(w / 2, w / 2, 144, 0, 7); g.fill(); g.strokeStyle = '#6b4a12'; g.lineWidth = 10; g.stroke(); g.beginPath(); g.arc(w / 2, w / 2, 112, 0, 7); g.lineWidth = 5; g.stroke();
   g.strokeStyle = '#3a2c08'; g.lineWidth = 12; g.lineCap = 'round'; g.beginPath(); g.moveTo(w / 2, 82); g.lineTo(w / 2, 220); g.moveTo(88, 110); g.lineTo(212, 110); g.moveTo(110, 220); g.lineTo(190, 220); g.stroke();
   g.lineWidth = 7; for (const x of [88, 212]) { g.beginPath(); g.moveTo(x, 110); g.lineTo(x - 28, 168); g.moveTo(x, 110); g.lineTo(x + 28, 168); g.stroke(); g.beginPath(); g.arc(x, 168, 30, 0, Math.PI); g.stroke(); }
 });
+const TOYS = ['#d81f3a', '#a6e22e', '#2f7fe0', '#ffd21f', '#e8762c'];
 export const court: Builder = (root) => {
   backdrop(root, ['#2a2018', '#4a382a']);
   floor(root, 14, 12, tmat(tiled(woodTex('court-floor', '#7a5a3c', '#4a3220'), 4, 4)));
-  panel(root, 12, 5.2, tmat(tiled(woodTex('court-wall', '#8a6444', '#5a3e28'), 3, 2)), 0, 2.6, -3.2);
-  box(root, 4.6, 1.5, 0.9, '#5a3e28', 0, 0.75, -2.5); box(root, 4.8, 0.1, 1.0, '#3a2818', 0, 1.52, -2.5); box(root, 1.2, 1.7, 0.2, '#3a2818', 0, 2.4, -3.0);
-  soft(panel(root, 0.9, 0.9, smat(sealTex(), 1.05, true), 0, 2.6, -2.88)); flagPole(root, -2.6, -2.6, flagUS(), {h: 3.6, w: 1.1});
+  panel(root, 12, 5.6, tmat(tiled(woodTex('court-wall', '#8a6444', '#5a3e28'), 3, 2)), 0, 2.8, -3.4);
+  box(root, 4.6, 1.5, 0.9, '#5a3e28', 0, 0.75, -2.5); box(root, 4.8, 0.1, 1.0, '#3a2818', 0, 1.52, -2.5); box(root, 1.3, 2.0, 0.2, '#3a2818', 0, 2.5, -3.2);
+  soft(panel(root, 0.9, 0.9, smat(sealTex(), 1.05, true), 0, 3.95, -3.38)); flagPole(root, -2.7, -2.7, flagUS(), {h: 3.9, w: 1.1});
+  cyl(root, 0.13, 0.05, '#3a2818', 0.8, 1.6, -2.3); box(root, 0.05, 0.05, 0.3, '#5a3e28', 0.8, 1.7, -2.3); cyl(root, 0.045, 0.14, '#5a3e28', 0.8, 1.7, -2.14).rotation.x = Math.PI / 2;      // a gavel on its block
   box(root, 9, 0.9, 0.08, '#5a3e28', 0, 0.45, -1.3); box(root, 9, 0.06, 0.16, '#3a2818', 0, 0.92, -1.3);
-  // two tables: the defence on the left with an empty chair, the prosecution on the right
   table(root, -0.82, 0.3, 1.3, 0.8, {top: '#8a6444', leg: '#3a2818', skirt: '#6b4a30'}); table(root, 0.82, 0.3, 1.3, 0.8, {top: '#8a6444', leg: '#3a2818', skirt: '#6b4a30'});
-  const ch = grp(root, -0.82, 0, -0.5); box(ch, 0.6, 0.08, 0.55, '#3a2818', 0, 0.5, 0); box(ch, 0.6, 0.8, 0.08, '#3a2818', 0, 0.95, -0.25); for (const s of [-1, 1]) for (const t of [-1, 1]) box(ch, 0.06, 0.5, 0.06, '#3a2818', s * 0.26, 0.25, t * 0.22);
-  const empty = soft(panel(root, 0.7, 1.16, smat(tex('court-gone', 300, 500, (g, w) => { g.strokeStyle = '#ffe14a'; g.lineWidth = 10; g.setLineDash([22, 16]); g.lineCap = 'round'; g.beginPath(); g.arc(w / 2, 104, 78, 0, 7); g.stroke(); rrect(g, w / 2 - 86, 196, 172, 220, 44); g.stroke(); }), 1.15, true), -0.82, 1.42, -0.42));
-  soft(panel(root, 0.7, 0.2, smat(signTex('court-card', 420, 120, '#fffdf4', INK, [['DEFENDANT', 76, 0.56]], {border: INK}), 1), -0.82, 0.86, 0.72));
-  const spot = pool(root, 1.0, '#fff0c8', 0.36, -0.82, -0.3), cone = beam(root, 0.12, 0.9, 5.0, '#fff0c8', 0.06, -0.82, 5.0, -0.4);
-  const pros = actor(root, PROSECUTOR, {read: {expr: 'neutral', pose: 'hold', prop: 'paper'}, what: {expr: 'shock', pose: 'hold', prop: 'paper', look: -1}, shrug: {expr: 'nervous', pose: 'shrug', look: -1}}, 0.82, 0, -0.5, {scale: 1.0, res: 1.1, wide: true});
+  const judge = actor(root, JUDGE, {sit: {expr: 'stern', pose: 'desk'}, ask: {expr: 'neutral', pose: 'point'}, wait: {expr: 'stern', pose: 'cross'}}, 0, 0.8, -2.9, {scale: 1.0, res: 1.3, wide: true, shadow: 0});
+  const me = actor(root, LAM(3), {idle: {expr: 'nervous'}, guilty: {expr: 'nervous', pose: 'both', prop: 'card', text: 'GUILTY', big: true}, shock: {expr: 'shock'}, think: {expr: 'nervous', pose: 'think'}, lost: {expr: 'dazed', pose: 'shrug'}}, -0.82, 0, -0.45, {scale: 1.0, res: 1.3, wide: true});
+  const pros = actor(root, PROSECUTOR, {a: {expr: 'stern', pose: 'hold', prop: 'paper'}}, 0.82, 0, -0.5, {scale: 1.0, res: 1.1, wide: true});
+  const toys = TOYS.slice(0, 3).map((c) => supercar(root, c, 0.2, true)), orbit = TOYS.map((c) => supercar(root, c, 0.12, true));
   return {
     light: () => LIGHT.warm,
     tick: ({f, cam, shot}) => {
-      const cue = W(190) - 2;
-      pros.show(f < shot.at + 10 ? 'read' : f < cue ? 'what' : 'shrug'); pros.node.position.y = hop(f, shot.at + 10, 0.08, 8); pros.tick(f, cam);
-      empty.scale.setScalar(pop(f, shot.at + 3, 8)); empty.position.y = 1.42 + 0.02 * Math.sin(f * 0.12);
-      const k = 0.8 + 0.2 * Math.sin(f * 0.14); (spot.material as THREE.MeshBasicMaterial).opacity = 0.36 * k; (cone.material as THREE.MeshBasicMaterial).opacity = 0.06 * k;
+      const v = shot.v;
+      judge.show(v === 'judge' ? (f >= W(188) ? 'ask' : 'sit') : v === 'time' ? 'wait' : 'sit'); judge.tick(f, cam);
+      me.show(v === 'plea' ? (f >= W(176) - 2 ? 'guilty' : 'idle') : v === 'years' ? (f >= W(184) - 1 ? 'shock' : 'idle') : v === 'time' ? (f >= W(195) - 2 ? 'lost' : 'think') : 'idle');
+      me.node.position.y = hop(f, W(176) - 2, 0.08, 8) + hop(f, W(184) - 1, 0.1, 8) + hop(f, W(197), 0.08, 8); me.tick(f, cam); pros.tick(f, cam);
+      // three toy cars roll onto the bench as the judge asks; later a ring of them goes round his head
+      toys.forEach((c, i) => { const k = smooth(f, W(189) - 2 + i * 3, W(189) + 10 + i * 3); c.visible = v === 'judge' || v === 'time'; c.position.set(lerp(2.6, -0.5 + i * 0.5, v === 'judge' ? k : 1), 1.575, -2.18); c.rotation.y = Math.PI + 0.2; });
+      orbit.forEach((c, i) => { const ang = f * 0.11 + i * 1.2566, on = v === 'time' && f >= W(195) - 2; c.visible = on; c.position.set(-0.82 + 0.62 * Math.cos(ang), 2.02 + 0.07 * Math.sin(ang * 2 + i), -0.45 + 0.5 * Math.sin(ang)); c.rotation.y = -ang - Math.PI / 2; c.scale.setScalar(0.12 * pop(f, W(195) - 2 + i * 2, 6)); });
     },
   };
 };
 
-// ------------------------------------------------------------------ the scale: one number on each side
-const priceTex = (s: string, sub: string, bg: string, fg: string) => tex('scale-tag-' + s, 560, 250, (g, w, h) => {
-  g.fillStyle = INK; rrect(g, 3, 3, w - 6, h - 6, 34); g.fill(); g.fillStyle = bg; rrect(g, 15, 15, w - 30, h - 30, 24); g.fill(); text(g, s, w / 2, 100, 118, fg, {maxWidth: w - 60}); text(g, sub, w / 2, 196, 42, fg, {font: 'Montserrat', maxWidth: w - 60});
-});
-const formTex = () => tex('scale-form', 300, 390, (g, w, h) => {
-  g.fillStyle = '#eef4fb'; g.fillRect(0, 0, w, h); g.strokeStyle = INK; g.lineWidth = 8; g.strokeRect(4, 4, w - 8, h - 8); g.fillStyle = '#27408b'; g.fillRect(8, 8, w - 16, 58); text(g, 'FORM', w / 2, 40, 50, '#ffffff');
-  g.fillStyle = '#c3c7d1'; for (let i = 0; i < 3; i++) g.fillRect(28, 96 + i * 34, w - 56 - i * 30, 14); g.fillStyle = '#fffdf4'; g.fillRect(24, 214, w - 48, 130); g.strokeStyle = '#27408b'; g.lineWidth = 6; g.strokeRect(24, 214, w - 48, 130);
-  text(g, 'DECLARED', w / 2, 250, 38, '#27408b'); text(g, 'VALUE', w / 2, 304, 52, INK);
-});
-export const PAN_X = 1.05, BEAM_Y = 2.34, DROP = 0.92;
-export const scale: Builder = (root) => {
-  backdrop(root, ['#07090f', '#161c30']);
-  floor(root, 14, 12, tmat(tiled(grainTex('scale-floor', '#1b2236', 0.1), 5, 4)));
-  const BRASS = '#d9a441';
-  cyl(root, 0.52, 0.12, BRASS, 0, 0.06, 0); cyl(root, 0.36, 0.1, '#b9842f', 0, 0.17, 0); cyl(root, 0.06, 2.2, BRASS, 0, 1.3, 0); ball(root, 0.1, BRASS, 0, 2.46, 0);
-  const arm = grp(root, 0, BEAM_Y, 0); box(arm, 2 * PAN_X + 0.2, 0.07, 0.07, BRASS, 0, 0, 0); for (const s of [-1, 1]) ball(arm, 0.06, BRASS, s * PAN_X, 0, 0);
-  const pans = [-1, 1].map((s) => {
-    const p = grp(root, s * PAN_X, BEAM_Y - DROP, 0);
-    cyl(p, 0.56, 0.04, BRASS, 0, 0, 0); cyl(p, 0.5, 0.05, '#b9842f', 0, -0.04, 0, 0.3);
-    for (const a of [0.5, 2.6, 4.7]) { const r = mesh(p, new THREE.CylinderGeometry(0.008, 0.008, 1, 6), '#c9ced6', 0, 0, 0); const ax = 0.5 * Math.cos(a), az = 0.5 * Math.sin(a), d = new THREE.Vector3(-ax, DROP, -az); r.scale.y = d.length(); r.position.set(ax / 2, DROP / 2, az / 2); r.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.normalize()); }
-    return p;
-  });
-  const jewels = jewelBag(pans[0], 0, 0.02, 0.15, 1.05); jewels.g.position.y = 0.03;
-  const form = soft(panel(pans[1], 0.54, 0.7, smat(formTex(), 1.05), 0, 0.4, 0.05)); form.rotation.z = 0.06;
-  const tagA = soft(panel(root, 0.92, 0.41, smat(priceTex('$100 MILLION', 'THE JEWELERS', '#ffe14a', INK), 1.1, true), 0, 0, 0.3)), tagB = soft(panel(root, 0.92, 0.41, smat(priceTex('$8.7 MILLION', "BRINK'S: DECLARED", '#fffdf4', INK), 1.1, true), 0, 0, 0.3));
-  const spots = [-1, 1].map((s) => ({cone: beam(root, 0.14, 0.8, 5.4, s < 0 ? '#ffe9a8' : '#dfe9ff', 0, s * PAN_X, 5.4, 0), floor: pool(root, 1.0, s < 0 ? '#ffe9a8' : '#dfe9ff', 0, s * PAN_X, 0)}));
-  halo(root, 3.2, '#ffe9b0', 0.1, 0, 2.0, -1.6);
+// ------------------------------------------------------------------ steps: two statements outside the courthouse
+export const steps: Builder = (root) => {
+  backdrop(root, ['#6fb4e8', '#cfe8f8']);
+  floor(root, 30, 24, tmat(tiled(grainTex('steps-plaza', '#e3ddcd', 0.06), 8, 6)));
+  for (let i = 0; i < 6; i++) box(root, 14, 0.2, 0.5, '#efe9da', 0, 0.1 + i * 0.2, -1.2 - i * 0.5);
+  box(root, 14, 1.2, 5, '#efe9da', 0, 0.6, -6.4); box(root, 14, 6, 0.4, '#f1ede2', 0, 4.2, -6.2); box(root, 2.2, 3.6, 0.2, '#5a3a22', 0, 3.0, -5.95); box(root, 14, 0.7, 1.6, '#e3ddcd', 0, 7.0, -4.6);
+  for (const x of [-4.2, -2.1, 2.1, 4.2]) { cyl(root, 0.36, 5.4, '#f6f3ea', x, 3.9, -4.4, 0.32, 20); box(root, 0.9, 0.2, 0.9, '#e3ddcd', x, 1.3, -4.4); }
+  // on the left: the prosecutor's lectern and a flag; on the right: three microphones for the defence
+  lectern(root, -1.4, 1.0, '#6b4a30', signTex('steps-plaque', 580, 210, '#16223c', '#ffffff', [['U.S. ATTORNEY’S', 78, 0.32], ['OFFICE', 78, 0.72]], {border: '#c9a23a'})); flagPole(root, -2.75, 0.3, flagUS(), {h: 3.3, w: 1.0, left: true});
+  const pros = actor(root, PROSECUTOR, {a: {expr: 'stern', pose: 'desk'}, b: {expr: 'stern', pose: 'point'}}, -1.4, 0, 0.45, {scale: 1.0, res: 1.2, wide: true});
+  for (const [dx, c] of [[-0.55, '#e3342f'], [0, '#2f7fe0'], [0.55, '#ffd21f']] as const) { cyl(root, 0.12, 0.03, '#15161b', 1.6 + dx, 0.015, 1.75); cyl(root, 0.016, 1.3, '#15161b', 1.6 + dx, 0.65, 1.75); ball(root, 0.07, '#15161b', 1.6 + dx, 1.36, 1.75).scale.y = 1.4; box(root, 0.13, 0.1, 0.1, c, 1.6 + dx, 1.2, 1.75); }
+  const def = actor(root, LAWYER, {a: {expr: 'neutral', pose: 'hold', prop: 'paper'}, b: {expr: 'nervous', pose: 'shrug'}}, 1.6, 0, 1.0, {scale: 1.0, res: 1.3, wide: true});
   return {
-    light: () => ({...LIGHT.dark, sky: '#c6d0ff', amb: 1.25, keyI: 0.9}),
-    tick: ({f, shot}) => {
-      const v = shot.v, A = W(205) - 2, B = W(212) - 2, QA = W(222) - 2, QB = W(227) - 2;
-      // the jewels land on the left pan on "a hundred million"; the form on the right pan on "eight point seven"
-      const a = v === 'left' ? smooth(f, A, A + 10) : 1, b = v === 'left' ? 0 : v === 'right' ? smooth(f, B, B + 12) : 1;
-      // the beam: down on the left with the jewels alone, then it comes level and rocks, undecided
-      const rock = v === 'what' || v === 'choice' ? 0.075 * Math.sin((f - (W(216) - 2)) * 0.085) : 0;
-      const tilt = 0.2 * a * (1 - b) + shake(f, A + 8, 0.05, 16) * (v === 'left' ? 1 : 0) + shake(f, B + 10, 0.06, 18) * (v === 'right' ? 1 : 0) + rock;
-      arm.rotation.z = tilt;
-      pans.forEach((p, i) => { const s = i ? 1 : -1; p.position.set(s * PAN_X * Math.cos(tilt), BEAM_Y + s * PAN_X * Math.sin(tilt) - DROP, 0); });
-      jewels.g.visible = a > 0.01; jewels.g.position.y = 0.03 + 2.7 * (1 - a) ** 2; jewels.tw(f, a > 0.9);
-      form.visible = b > 0.01; form.position.y = 0.4 + 2.5 * (1 - b) ** 1.6; form.position.x = 0.25 * Math.sin((1 - b) * 9) * (1 - b); form.rotation.z = 0.06 + 0.5 * Math.sin((1 - b) * 7) * (1 - b);
-      tagA.visible = a > 0.6; tagA.scale.setScalar(pop(f, v === 'left' ? A + 8 : -99, 8)); tagA.position.set(pans[0].position.x, pans[0].position.y + 1.02, 0.3);
-      tagB.visible = b > 0.6; tagB.scale.setScalar(pop(f, v === 'right' ? B + 10 : -99, 8)); tagB.position.set(pans[1].position.x, pans[1].position.y + 1.02, 0.3);
-      const ka = v === 'choice' ? smooth(f, QA, QA + 8) : 0, kb = v === 'choice' ? smooth(f, QB, QB + 8) : 0;
-      spots.forEach((s, i) => { const k = i ? kb : ka; (s.cone.material as THREE.MeshBasicMaterial).opacity = 0.02 + 0.06 * k; (s.floor.material as THREE.MeshBasicMaterial).opacity = 0.08 + 0.3 * k; });
+    light: () => LIGHT.day,
+    tick: ({f, cam}) => {
+      pros.show(f >= W(204) ? 'b' : 'a'); pros.node.position.y = hop(f, W(204), 0.07, 8); pros.tick(f, cam);
+      def.show(f >= W(209) ? 'b' : 'a'); def.node.position.y = hop(f, W(209), 0.07, 8); def.tick(f, cam);
+    },
+  };
+};
+
+// ------------------------------------------------------------------ split: a crime boss, or a kid in over his head
+export const split: Builder = (root) => {
+  backdrop(root, ['#0a0612', '#160a24']);
+  floor(root, 12, 14, '#4a0a16', 0, -6, 0); floor(root, 12, 14, '#0a1c5a', 0, 6, 0);
+  panel(root, 7, 8, tmat(tiled(foldTex('split-red', '#b0142c', '#5a0612', 8), 1.4, 1)), -3.5, 4, -2.3); panel(root, 7, 8, tmat(tiled(grainTex('split-blue', '#1a3aa8', 0.08), 4, 4)), 3.5, 4, -2.3);
+  const line = box(root, 0.035, 0.012, 6.2, lit('#ffffff', 1.1), 0, 0.01, 0); line.castShadow = false;
+  // the left half: a throne, a crown, money
+  const gold = '#d9a514'; box(root, 1.0, 0.5, 0.85, gold, -1.75, 0.25, -0.9); box(root, 1.0, 2.3, 0.16, gold, -1.75, 1.15, -1.3); for (const s of [-1, 1]) box(root, 0.14, 0.9, 0.85, gold, -1.75 + s * 0.5, 0.45, -0.9); for (const dx of [-0.36, 0, 0.36]) cone(root, 0.13, 0.4, gold, -1.75 + dx, 2.5, -1.3, 4);
+  box(root, 0.74, 0.1, 0.6, '#8a1024', -1.75, 0.55, -0.88);
+  const crown = grp(root, -1.0, 2.5, -0.2); const band = cyl(crown, 0.3, 0.17, gold, 0, 0, 0, 0.33, 24); band.castShadow = false; for (let i = 0; i < 5; i++) { const a = i * 1.2566 + 0.3; cone(crown, 0.085, 0.3, gold, 0.3 * Math.cos(a), 0.22, 0.3 * Math.sin(a), 4); ball(crown, 0.05, lit('#ff3b4c', 1.3), 0.3 * Math.cos(a), 0.4, 0.3 * Math.sin(a)); }
+  const twinkle = glints(root, [[-0.78, 2.78, 0.1], [-1.24, 2.62, 0.1]]);
+  for (let i = 0; i < 6; i++) { const b = bundle(root, 1.1); b.position.set(-2.2 + (i % 3) * 0.36, 0.045 + Math.floor(i / 3) * 0.085, 0.9 + (i % 2) * 0.05); b.rotation.y = 0.2 * (i % 2 ? 1 : -1); }
+  // the right half: a controller, the game, a beanbag, a school bag
+  const pad = grp(root, 1.0, 2.5, -0.2), grey = '#7f8aa8'; box(pad, 0.7, 0.26, 0.14, grey, 0, 0, 0); for (const s of [-1, 1]) { const gr = ball(pad, 0.2, grey, s * 0.38, -0.06, 0); gr.scale.set(1, 1.25, 0.6); }
+  box(pad, 0.14, 0.045, 0.03, '#15161b', -0.22, 0.03, 0.08); box(pad, 0.045, 0.14, 0.03, '#15161b', -0.22, 0.03, 0.08);
+  const dotsM = [0, 1, 2, 3].map(() => new THREE.MeshBasicMaterial({color: '#3a4260'})); ([[0.16, 0.03], [0.28, 0.03], [0.22, 0.09], [0.22, -0.03]] as const).forEach(([x, y], i) => { const o = ball(pad, 0.033, dotsM[i], x, y, 0.08); o.castShadow = false; });
+  box(root, 0.08, 1.2, 0.08, '#15161b', 1.75, 0.6, -0.8); box(root, 1.2, 0.8, 0.06, '#0a0c14', 1.75, 1.6, -0.8); soft(panel(root, 1.1, 0.7, smat(tex('split-game', 440, 280, (g, w, h) => blocks(g, w, h, 170, 28)), 1.1), 1.75, 1.6, -0.765));
+  const bag = ball(root, 0.6, '#2f5fe0', 1.55, 0.34, 0.15); bag.scale.set(1.15, 0.6, 1); box(root, 0.5, 0.6, 0.26, '#c81e3c', 2.15, 0.3, 1.0); const hd = torus(root, 0.13, 0.03, '#8a1024', 2.15, 0.62, 1.0); void hd; box(root, 0.3, 0.22, 0.03, '#8a1024', 2.15, 0.26, 1.14);
+  const spot = pool(root, 1.3, '#fff0c8', 0.36, 0, 0.3); beam(root, 0.12, 1.2, 7, '#fff0c8', 0.03, 0, 7, -0.4);
+  const glowA = halo(root, 1.5, '#ffd21f', 0, -1.0, 2.5, -0.5), glowB = halo(root, 1.5, '#7ad0ff', 0, 1.0, 2.5, -0.5);
+  const me = actor(root, LAM(0), {mid: {expr: 'nervous', pose: 'shrug'}, left: {expr: 'nervous', pose: 'shrug', look: -1}, right: {expr: 'nervous', pose: 'shrug', look: 1}}, 0, 0, 0.3, {scale: 1.0, res: 1.2, wide: true});
+  return {
+    light: () => ({...LIGHT.dark, amb: 1.25, keyI: 0.9}),
+    tick: ({f, cam}) => {
+      const a0 = W(218) - 2, A = W(223) - 2, B = W(227) - 2;                                 // 43 and 44 are one take: everything is timed from words
+      const k = smooth(f, a0 + 2, a0 + 20); line.scale.z = Math.max(0.001, k); line.position.z = 3.4 - 3.1 * k;
+      me.show(f >= B ? 'right' : f >= A ? 'left' : 'mid'); me.node.position.y = hop(f, A, 0.06, 8) + hop(f, B, 0.06, 8); me.tick(f, cam);
+      crown.position.y = 2.5 + 0.04 * Math.sin(f * 0.09) + hop(f, A, 0.12, 9); crown.rotation.y = f * 0.02; crown.rotation.z = 0.12;
+      pad.position.y = 2.5 + 0.04 * Math.sin(f * 0.09 + 1.5) + hop(f, B, 0.12, 9); pad.rotation.z = -0.14 + 0.03 * Math.sin(f * 0.07);
+      twinkle(f, f >= A); op(glowA, 0.34 * smooth(f, A, A + 6)); op(glowB, 0.34 * smooth(f, B, B + 6));
+      dotsM.forEach((m, i) => m.color.set(f >= B ? ['#ff3b4c', '#3fbf5a', '#ffd21f', '#3f8cff'][i] : '#3a4260').multiplyScalar(f >= B ? 1.5 : 1));
+      op(spot, 0.36 + 0.03 * Math.sin(f * 0.2));
     },
   };
 };

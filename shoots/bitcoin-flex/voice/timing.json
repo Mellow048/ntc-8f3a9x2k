@@ -24,6 +24,24 @@
  "beats": [
   {
    "line": 1,
+   "after": "supercars",
+   "at": 5.772,
+   "seconds": 0.1
+  },
+  {
+   "line": 1,
+   "after": "mansions",
+   "at": 6.449,
+   "seconds": 0.12
+  },
+  {
+   "line": 1,
+   "after": "nightclubs",
+   "at": 7.193,
+   "seconds": 0.12
+  },
+  {
+   "line": 1,
    "after": "month",
    "at": 8.495,
    "seconds": 0.25
@@ -95,9 +113,9 @@
    "seconds": 0.35
   }
  ],
- "seconds": 72.633,
+ "seconds": 72.973,
  "words": 233,
- "words_per_second": 3.21,
+ "words_per_second": 3.19,
  "lufs": -16.6,
  "lra": 2.4,
  "peak": -1.6

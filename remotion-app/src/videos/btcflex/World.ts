@@ -2,12 +2,12 @@
 // re-coloured for each set (no shader recompiles between shots). Cuts are hard; each shot pushes in or travels.
 import * as THREE from 'three';
 import {SHOTS, shotAt, shotEnd, type Kind} from './story';
-import {cab, diner, loot, stop, trailer, type Builder, type SetDef} from './sets';
-import {airport, cold, crash, map, road, show} from './sets2';
-import {court, deal, scale, seven, tags} from './sets3';
+import {club, coins, deep, desk, drive, villa, type Builder, type SetDef} from './sets';
+import {cal, fleet, globe, jet, mask, room, screen} from './sets2';
+import {court, feed, sleuth, split, steps} from './sets3';
 import {clamp01} from './kit';
 
-const BUILDERS: Record<Kind, Builder> = {loot, stop, diner, cab, seven, deal, show, road, map, trailer, cold, crash, airport, tags, court, scale};
+const BUILDERS: Record<Kind, Builder> = {coins, desk, drive, villa, deep, club, cal, room, globe, screen, mask, jet, fleet, feed, sleuth, court, steps, split};
 
 export class BtcFlexWorld {
   root = new THREE.Group();

@@ -1,10 +1,10 @@
-// Sets of the bitcoin flex short, part 1: what every set shares, the vehicles, the loot, the truck stop, the diner,
-// the sleeper cab and the inside of the trailer. Each builder fills a group once and returns a tick that poses it for a
-// frame (motion is a pure function of the frame number, so any frame can be rendered on its own).
+// Sets of the bitcoin flex short, part 1: what every set shares, the supercar, and the sets coins, desk, drive, villa,
+// deep and club. Each builder fills a group once and returns a tick that poses it for a frame (motion is a pure function of
+// the frame number, so any frame can be rendered on its own).
 import * as THREE from 'three';
-import {backdrop, ball, beam, box, cyl, floor, foldTex, grainTex, grp, hop, lamp, lit, mesh, panel, pool, pop, rng, rrect, smat, smooth, soft, tex, text, tiled, tmat, torus, woodTex, type G2, type Node, type V} from './kit';
-import {actor, DRIVER} from './cast';
-import {glints, halo, mug, signTex, streetLamp} from './props';
+import {backdrop, ball, beam, box, card, cone, cyl, floor, foldTex, grainTex, grp, hop, lamp, lerp, lit, mat, mesh, panel, pool, pop, rng, rod, rrect, smat, smooth, soft, tex, text, tiled, tileTex, tmat, torus, vgrad, woodTex, type G2, type Node, type V} from './kit';
+import {actor, AGENT, LAM, STAFF} from './cast';
+import {bubble, bundle, coinStack, coinStream, glints, halo, laptop, level, mug, palm, table} from './props';
 import {W, type Shot} from './story';
 
 export type Ctx = {f: number; /** frames since the shot began */ t: number; cam: THREE.PerspectiveCamera; shot: Shot};
@@ -24,296 +24,360 @@ export const LIGHT: Record<'day' | 'room' | 'cold' | 'dark' | 'warm' | 'show' | 
 };
 
 export const INK = '#15121c';
-export const GEMS = ['#ff3b5c', '#2fd07a', '#3f8cff', '#eaf6ff', '#ffd84a', '#c56bff'];
-const NIGHT_SKY = ['#070b1c', '#141c3a', '#2b2c4e'];
+const op = (o: THREE.Mesh, k: number) => { (o.material as THREE.MeshBasicMaterial).opacity = k; };
 
-/** a dashed outline where something used to be */
-export const gapTex = (key: string, w: number, h: number, color = '#ffffff', r = 26) => tex('gap-' + key + color, w, h, (g) => {
-  g.strokeStyle = color; g.lineWidth = 10; g.setLineDash([26, 18]); g.lineCap = 'round'; rrect(g, 9, 9, w - 18, h - 18, r); g.stroke();
-});
 /** Rings that leave a point, facing the camera side of the set. Call the returned function every frame. */
 export function rings(p: Node, n = 3, color = '#7af0e0') {
   const os = Array.from({length: n}, () => { const o = soft(mesh(p, new THREE.RingGeometry(0.86, 1, 44), new THREE.MeshBasicMaterial({color, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide}))); o.renderOrder = 6; return o; });
   return (f: number, on: boolean, at: V, r = 0.5, ry = 0, speed = 0.05) => os.forEach((o, i) => {
-    const u = (f * speed + i / n) % 1; o.visible = on; o.position.set(...at); o.rotation.y = ry; o.scale.setScalar(r * (0.2 + 0.8 * u)); (o.material as THREE.MeshBasicMaterial).opacity = 0.9 * (1 - u) ** 1.4;
+    const u = (f * speed + i / n) % 1; o.visible = on; o.position.set(...at); o.rotation.y = ry; o.scale.setScalar(r * (0.2 + 0.8 * u)); op(o, 0.9 * (1 - u) ** 1.4);
   });
 }
-/** stars and a far ridge for the night exteriors */
-export function nightSky(root: THREE.Group, ridgeZ = -24, top = NIGHT_SKY) {
-  backdrop(root, top);
-  soft(panel(root, 70, 26, smat(tex('stars', 1024, 512, (g, w, h) => { const r = rng(31); for (let i = 0; i < 260; i++) { g.fillStyle = `rgba(255,255,255,${0.25 + r() * 0.7})`; const s = 1 + r() * 2.2; g.fillRect(r() * w, r() * h * 0.8, s, s); } }), 1, true), 0, 14, ridgeZ - 6));
-  soft(panel(root, 60, 6, smat(tex('ridge-night', 1024, 128, (g, w, h) => {
-    const r = rng(17); g.fillStyle = '#10142a'; g.beginPath(); g.moveTo(0, h); let y = h * 0.5;
-    for (let x = 0; x <= w; x += 16) { y = Math.max(h * 0.12, Math.min(h * 0.8, y + (r() - 0.5) * 26)); g.lineTo(x, y); } g.lineTo(w, h); g.closePath(); g.fill();
-  }), 1, true), 0, 2.6, ridgeZ));
-}
-
-// ------------------------------------------------------------------ vehicles
-export type Rig = {g: THREE.Group; doors: THREE.Group[]; L: number; FY: number; TH: number; TW: number; tick: (f: number, moving?: boolean) => void};
-/** A tractor and a trailer: plain white, no name on it (the real one carried none that the reports describe). The nose
- *  points to +x, the trailer's rear doors are at x = -L, and the origin is on the ground under the trailer's front. */
-export function rig(p: Node, o: {len?: number; cab?: string} = {}): Rig {
-  const g = grp(p), L = o.len ?? 4.4, TH = 2.0, TW = 1.5, FY = 0.72, CAB = o.cab ?? '#2f4f9a', DARK = '#23252e';
-  const side = tmat(tiled(foldTex('rig-side', '#f3f0e8', '#dcd8cc', 16), 3, 1));
-  box(g, L + 0.4, TH, TW, side, -L / 2 + 0.2, FY + TH / 2, 0);
-  box(g, L + 0.44, 0.08, TW + 0.04, '#c9c5ba', -L / 2 + 0.2, FY + TH + 0.04, 0); box(g, L + 0.44, 0.08, TW + 0.04, '#c9c5ba', -L / 2 + 0.2, FY + 0.02, 0);
-  box(g, L, 0.16, TW - 0.3, '#3a3f4a', -L / 2, FY - 0.1, 0);
-  const doors = [-1, 1].map((s) => {
-    const d = grp(g, -L, FY, s * TW / 2);
-    box(d, 0.05, TH - 0.06, TW / 2 - 0.02, '#ece8dd', -0.03, TH / 2, -s * TW / 4);
-    box(d, 0.035, TH - 0.2, 0.04, '#8a94a3', -0.07, TH / 2, -s * (TW / 2 - 0.2)); box(d, 0.035, 0.04, 0.2, '#8a94a3', -0.075, TH * 0.4, -s * (TW / 2 - 0.27));
-    for (const y of [0.25, 1.0, 1.75]) box(d, 0.05, 0.1, 0.07, '#8a94a3', -0.04, y, -s * 0.03);
-    return d;
-  });
-  box(g, 0.1, 0.12, TW, '#8a94a3', -L - 0.03, 0.46, 0); for (const s of [-1, 1]) { box(g, 0.05, 0.3, 0.05, '#8a94a3', -L - 0.03, 0.58, s * 0.5); box(g, 0.05, 0.12, 0.2, lit('#ff3b30', 1.5), -L - 0.02, FY - 0.1, s * (TW / 2 - 0.14)); }
-  for (const x of [-L + 0.62, -L + 1.3]) for (const s of [-1, 1]) { const w = cyl(g, 0.36, 0.3, DARK, x, 0.36, s * (TW / 2 - 0.17)); w.rotation.x = Math.PI / 2; const h = cyl(g, 0.15, 0.32, '#c9ced6', x, 0.36, s * (TW / 2 - 0.165)); h.rotation.x = Math.PI / 2; }
-  for (const s of [-1, 1]) { box(g, 0.07, 0.5, 0.07, '#5b6170', -0.7, 0.4, s * 0.45); for (let i = 0; i < 5; i++) box(g, 0.1, 0.05, 0.02, lit('#ffb347', 1.7), -L + 0.35 + i * (L - 0.5) / 4, FY + TH - 0.1, s * (TW / 2 + 0.012)); }
-  // the tractor: sleeper, cab, hood
-  box(g, 2.5, 0.22, 1.0, DARK, 1.55, 0.6, 0);
-  box(g, 0.95, 1.8, TW - 0.06, CAB, 0.98, FY + 0.9, 0); box(g, 0.8, 1.45, TW - 0.1, CAB, 1.8, FY + 0.725, 0); box(g, 0.78, 0.82, TW - 0.3, CAB, 2.5, FY + 0.41, 0);
-  box(g, 0.9, 0.3, TW - 0.2, CAB, 1.5, FY + 1.87, 0).rotation.z = -0.2;                             // the fairing over the cab
-  soft(panel(g, TW - 0.3, 0.6, lit('#1c2433', 1), 2.205, FY + 1.02, 0, Math.PI / 2));                // windscreen
-  for (const s of [-1, 1]) {
-    soft(panel(g, 0.5, 0.5, lit('#1c2433', 1), 1.86, FY + 1.02, s * (TW / 2 - 0.045), s > 0 ? 0 : Math.PI));
-    cyl(g, 0.05, 1.9, '#c9ced6', 1.48, FY + 1.35, s * (TW / 2 + 0.02)); box(g, 0.05, 0.14, 0.24, lit('#fff3c0', 1.8), 2.9, FY + 0.22, s * 0.42);
-    const tank = cyl(g, 0.2, 0.7, '#c9ced6', 1.6, 0.52, s * (TW / 2 - 0.16)); tank.rotation.z = Math.PI / 2;
-    for (const [x, r] of [[2.5, 0.34], [0.72, 0.36], [1.34, 0.36]] as const) { const w = cyl(g, r, 0.28, DARK, x, r, s * (TW / 2 - 0.16)); w.rotation.x = Math.PI / 2; const h = cyl(g, 0.14, 0.3, '#c9ced6', x, r, s * (TW / 2 - 0.155)); h.rotation.x = Math.PI / 2; }
-  }
-  box(g, 0.05, 0.6, TW - 0.5, '#c9ced6', 2.9, FY + 0.5, 0); box(g, 0.12, 0.16, TW - 0.1, '#8a94a3', 2.92, 0.5, 0);
-  return {g, doors, L, FY, TH, TW, tick: (f, moving = false) => { g.position.y = moving ? 0.014 * Math.sin(f * 0.7) : 0; }};
-}
-export type Car = {g: THREE.Group; head: THREE.MeshBasicMaterial; tail: THREE.MeshBasicMaterial};
-/** a plain saloon car, nose to +x */
-export function car(p: Node, color: string): Car {
-  const g = grp(p), glass = lit('#1c2433', 1), head = lamp('#fff3c0', 1.8), tail = lamp('#ff3b30', 1.4);
-  box(g, 2.0, 0.42, 0.9, color, 0, 0.47, 0); box(g, 1.05, 0.38, 0.82, color, -0.1, 0.86, 0);
-  for (const s of [-1, 1]) {
-    soft(panel(g, 0.95, 0.27, glass, -0.1, 0.87, s * 0.413, s > 0 ? 0 : Math.PI));
-    for (const x of [-0.62, 0.64]) { const w = cyl(g, 0.22, 0.16, '#1b1d24', x, 0.22, s * 0.4); w.rotation.x = Math.PI / 2; const h = cyl(g, 0.1, 0.17, '#c9ced6', x, 0.22, s * 0.41); h.rotation.x = Math.PI / 2; }
-    box(g, 0.04, 0.1, 0.2, head, 1.01, 0.5, s * 0.3); box(g, 0.04, 0.09, 0.22, tail, -1.01, 0.52, s * 0.3);
-  }
-  soft(panel(g, 0.76, 0.28, glass, 0.428, 0.87, 0, Math.PI / 2)); soft(panel(g, 0.76, 0.28, glass, -0.628, 0.87, 0, -Math.PI / 2));
-  box(g, 0.06, 0.1, 0.92, '#8a94a3', 1.0, 0.3, 0); box(g, 0.06, 0.1, 0.92, '#8a94a3', -1.0, 0.3, 0);
-  return {g, head, tail};
-}
-
-// ------------------------------------------------------------------ a bag of jewels
-const tagTex = (n: number) => tex('bag-tag-' + n, 150, 100, (g, w, h) => {
-  g.fillStyle = '#fffdf4'; g.strokeStyle = INK; g.lineWidth = 7; rrect(g, 4, 4, w - 8, h - 8, 10); g.fill(); g.stroke();
-  text(g, String(n).padStart(2, '0'), w / 2, 38, 52, INK); g.fillStyle = INK; for (let i = 0; i < 10; i++) g.fillRect(22 + i * 11, 70, i % 3 ? 4 : 7, 16);
+/** a dashed outline of head and shoulders: somebody who is in the story and is not drawn */
+export const ghostTex = () => tex('ghost', 300, 500, (g, w) => {
+  g.strokeStyle = '#ffe14a'; g.lineWidth = 11; g.setLineDash([24, 17]); g.lineCap = 'round'; g.beginPath(); g.arc(w / 2, 104, 78, 0, 7); g.stroke(); rrect(g, w / 2 - 96, 200, 192, 280, 60); g.stroke();
 });
-const CANVAS = '#7d8798';
-/** one sealed bag with a numbered tag and a red seal on its neck, facing +z; its origin is under its middle */
-export function bag(p: Node, x: number, y: number, z: number, n = 1, s = 1) {
-  const g = grp(p, x, y, z); g.scale.setScalar(s);
-  ball(g, 0.2, CANVAS, 0, 0.145, 0).scale.set(1.08, 0.74, 0.8); cyl(g, 0.045, 0.07, '#6b7586', 0, 0.3, 0, 0.06); const seal = torus(g, 0.05, 0.016, '#d62f2f', 0, 0.285, 0); seal.rotation.x = Math.PI / 2;
-  soft(panel(g, 0.17, 0.115, smat(tagTex(n), 1), 0, 0.14, 0.162));
+/** a padlock, shut or open */
+export function lock(g: G2, x: number, y: number, s: number, open: boolean, body: string, line = INK) {
+  g.save(); g.lineWidth = s * 0.16; g.strokeStyle = body; g.lineCap = 'round';
+  g.beginPath(); if (open) { g.arc(x - s * 0.34, y - s * 0.36, s * 0.3, Math.PI, 0); g.lineTo(x - s * 0.04, y - s * 0.1); } else { g.moveTo(x - s * 0.3, y - s * 0.1); g.lineTo(x - s * 0.3, y - s * 0.36); g.arc(x, y - s * 0.36, s * 0.3, Math.PI, 0); g.lineTo(x + s * 0.3, y - s * 0.1); } g.stroke();
+  g.fillStyle = body; rrect(g, x - s * 0.5, y - s * 0.12, s, s * 0.74, s * 0.12); g.fill();
+  g.fillStyle = line; g.beginPath(); g.arc(x, y + s * 0.18, s * 0.1, 0, 7); g.fill(); g.fillRect(x - s * 0.04, y + s * 0.2, s * 0.08, s * 0.22); g.restore();
+}
+/** the bitcoin sign on an orange disc */
+export function btcSign(g: G2, x: number, y: number, r: number) {
+  g.save(); g.fillStyle = '#f7931a'; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); g.strokeStyle = '#c56f08'; g.lineWidth = r * 0.12; g.stroke();
+  g.fillStyle = '#ffffff'; for (const dx of [-0.16, 0.1]) { g.fillRect(x + dx * r, y - r * 0.7, r * 0.1, r * 0.22); g.fillRect(x + dx * r, y + r * 0.48, r * 0.1, r * 0.22); }
+  text(g, 'B', x, y + r * 0.04, r * 1.18, '#ffffff'); g.restore();
+}
+
+// ------------------------------------------------------------------ the supercar
+/** A skin over cross-sections. Each section is a closed ring of [y, z] points at a station x; all rings have the same count. */
+function loftGeo(secs: {x: number; ring: [number, number][]}[]) {
+  const n = secs[0].ring.length, pos: number[] = [];
+  const P = (i: number, j: number): V => { const s = secs[i], [y, z] = s.ring[j % n]; return [s.x, y, z]; };
+  const tri = (a: V, b: V, c: V) => { pos.push(...a, ...b, ...c); };
+  for (let i = 0; i + 1 < secs.length; i++) for (let j = 0; j < n; j++) { const a = P(i, j), b = P(i + 1, j), c = P(i + 1, j + 1), d = P(i, j + 1); tri(a, b, c); tri(a, c, d); }
+  for (const i of [0, secs.length - 1]) {                                    // close both ends with a fan
+    const s = secs[i], c: V = [s.x, s.ring.reduce((t, q) => t + q[0], 0) / n, s.ring.reduce((t, q) => t + q[1], 0) / n];
+    for (let j = 0; j < n; j++) tri(c, P(i, j), P(i, j + 1));
+  }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals(); return g;
+}
+// station, half-width, floor, sill, shoulder, top, half-width of the top
+const BODY: number[][] = [[-1.15, 0.45, 0.17, 0.21, 0.42, 0.45, 0.36], [-0.95, 0.5, 0.1, 0.16, 0.45, 0.5, 0.4], [-0.45, 0.5, 0.1, 0.16, 0.44, 0.535, 0.36], [-0.1, 0.5, 0.1, 0.16, 0.42, 0.6, 0.31],
+  [0.25, 0.5, 0.1, 0.16, 0.4, 0.58, 0.31], [0.62, 0.49, 0.1, 0.15, 0.35, 0.375, 0.35], [1.0, 0.46, 0.1, 0.14, 0.25, 0.265, 0.37], [1.15, 0.42, 0.12, 0.14, 0.185, 0.195, 0.34]];
+const GLASS: number[][] = [[-0.52, 0.31, 0.5, 0.55], [-0.1, 0.32, 0.5, 0.618], [0.25, 0.32, 0.48, 0.598], [0.66, 0.36, 0.35, 0.385]];
+let carGeo: {body: THREE.BufferGeometry; glass: THREE.BufferGeometry; wheel: THREE.BufferGeometry; hub: THREE.BufferGeometry} | null = null;
+const paint = new Map<string, THREE.Material>();
+/** A low wedge of a car, nose to +x, 2.3 long: nobody's model. Built from cross-sections, not from a side outline (which reads as a box). */
+export function supercar(p: Node, color: string, s = 1, plain = false) {
+  if (!carGeo) {
+    const wheel = new THREE.CylinderGeometry(0.2, 0.2, 0.15, 18); wheel.rotateX(Math.PI / 2);
+    const hub = new THREE.CylinderGeometry(0.11, 0.11, 0.16, 5); hub.rotateX(Math.PI / 2);
+    carGeo = {
+      body: loftGeo(BODY.map(([x, w, yb, ys, yh, yr, wr]) => ({x, ring: [[yb, -w * 0.9], [yb, w * 0.9], [ys, w], [yh, w * 0.97], [yr, wr], [yr, -wr], [yh, -w * 0.97], [ys, -w]] as [number, number][]}))),
+      glass: loftGeo(GLASS.map(([x, w, y0, y1]) => ({x, ring: [[y0, -w], [y0, w], [y1, w * 0.78], [y1, -w * 0.78]] as [number, number][]}))),
+      wheel, hub,
+    };
+  }
+  let m = paint.get(color); if (!m) paint.set(color, (m = new THREE.MeshLambertMaterial({color, side: THREE.DoubleSide})));
+  const g = grp(p); g.scale.setScalar(s);
+  mesh(g, carGeo.body, m); const gl = mesh(g, carGeo.glass, lit('#11141b', 1)); gl.castShadow = false;
+  for (const x of [-0.72, 0.72]) for (const z of [-0.43, 0.43]) { mesh(g, carGeo.wheel, '#16171d', x, 0.2, z); if (!plain) mesh(g, carGeo.hub, '#c9ced6', x, 0.2, z); }
+  for (const z of [-0.25, 0.25]) box(g, 0.03, 0.035, 0.2, lit('#fff3c0', 2), 1.145, 0.215, z).rotation.y = z > 0 ? -0.25 : 0.25;      // thin lit blades, not bricks
+  box(g, 0.03, 0.04, 0.78, lit('#ff3b30', 1.5), -1.158, 0.385, 0);
+  if (!plain) {
+    for (const z of [-0.3, 0.3]) box(g, 0.05, 0.16, 0.04, '#16171d', -1.0, 0.56, z);
+    box(g, 0.27, 0.03, 0.98, m, -1.04, 0.655, 0); box(g, 0.12, 0.03, 0.9, '#16171d', 1.1, 0.105, 0);
+    for (const z of [-0.502, 0.502]) box(g, 0.3, 0.12, 0.02, lit('#11141b', 1), -0.42, 0.3, z);
+  }
   return g;
 }
-/** an open bag heaped with jewels */
-export function jewelBag(p: Node, x: number, z: number, ry = 0, s = 1) {
-  const g = grp(p, x, 0, z); g.rotation.y = ry; g.scale.setScalar(s); const r = rng(Math.round(x * 97 + z * 31) + 301);
-  ball(g, 0.38, CANVAS, 0, 0.25, 0).scale.set(1.0, 0.66, 0.78); const rim = torus(g, 0.27, 0.035, '#5b6576', 0, 0.44, 0); rim.rotation.x = Math.PI / 2; rim.scale.set(1, 0.72, 1);
-  soft(panel(g, 0.2, 0.135, smat(tagTex(1 + Math.round(r() * 60)), 1), 0, 0.2, 0.3));
-  const heap = ball(g, 0.27, lit('#f2c230', 1.05), 0, 0.44, 0); heap.scale.set(1.0, 0.42, 0.72);
-  const pts: V[] = [];
-  for (let i = 0; i < 16; i++) {
-    const a = r() * 6.28, d = Math.sqrt(r()) * 0.23, gx = Math.cos(a) * d, gz = Math.sin(a) * d * 0.66, gy = 0.52 + 0.09 * (1 - d / 0.23) + r() * 0.03, c = GEMS[i % GEMS.length];
-    if (i % 5 === 4) { const t = torus(g, 0.055, 0.016, lit('#ffd84a', 1.3), gx, gy, gz); t.rotation.set(r() * 3, r() * 3, 0); }
-    else { const m = mesh(g, new THREE.OctahedronGeometry(0.05 + r() * 0.035), lit(c, 1.5), gx, gy, gz); m.rotation.set(r() * 3, r() * 3, r() * 3); if (i % 3 === 0) pts.push([gx, gy + 0.05, gz + 0.05]); }
-  }
-  return {g, tw: glints(g, pts)};
-}
 
-// ------------------------------------------------------------------ the loot: what vanished
-export const loot: Builder = (root) => {
-  backdrop(root, ['#07090f', '#161c30']);
-  floor(root, 14, 12, tmat(tiled(grainTex('loot-floor', '#1b2236', 0.1), 5, 4)));
-  halo(root, 3.0, '#ffe9b0', 0.14, 0, 1.0, -1.6);
-  const cone = beam(root, 0.16, 1.5, 5.6, '#fff0c8', 0.04, 0, 5.6, 0), spot = pool(root, 1.9, '#fff0c8', 0.4, 0, 0);
-  const SPOTS: [number, number, number][] = [[-0.78, 0.25, 0.3], [0.02, -0.3, -0.12], [0.8, 0.2, -0.32]];
-  const bags = SPOTS.map(([x, z, ry]) => jewelBag(root, x, z, ry, 1.15));
-  const gaps = SPOTS.map(([x, z, ry]) => { const m = soft(panel(root, 0.95, 0.66, smat(gapTex('loot', 380, 264), 1, true), x, 0.02, z)); m.rotation.set(-Math.PI / 2, 0, ry); return m; });
-  return {
-    light: () => ({...LIGHT.dark, sky: '#c6d0ff', amb: 1.2, keyI: 0.9}),
-    tick: ({f, shot}) => {
-      // on "vanished" they are gone, one after another, and only the marks on the floor are left
-      const gone = shot.v === 'pile' ? W(8) : 1e9;
-      bags.forEach((b, i) => { const at = gone + i * 3, k = f < at ? 1 + 0.03 * Math.sin(f * 0.2 + i) : Math.max(0, 1 - (f - at) / 3); b.g.visible = k > 0.02; b.g.scale.setScalar(1.15 * k); b.g.position.y = f < at ? hop(f, shot.at + 4 + i * 5, 0.05, 8) : 0.3 * (1 - k); b.tw(f + i * 17, k > 0.9); });
-      gaps.forEach((m, i) => { const at = gone + i * 3 + 2; m.visible = f >= at; m.scale.setScalar(pop(f, at, 7)); });
-      const k = f < gone ? 1 : 0.55; (cone.material as THREE.MeshBasicMaterial).opacity = 0.04 * k; (spot.material as THREE.MeshBasicMaterial).opacity = 0.4 * k;
-    },
-  };
-};
-
-// ------------------------------------------------------------------ the truck stop (no likeness of the real one; the place name is real)
-const clockFace = (t: string) => tex('stop-clock-' + t, 520, 200, (g, w, h) => {
-  g.fillStyle = '#0d0f14'; g.fillRect(0, 0, w, h); g.shadowColor = '#ffb020'; g.shadowBlur = 20; text(g, t, w / 2 - 54, h / 2 + 8, 150, '#ffc94a'); text(g, 'A.M.', w - 84, h / 2 + 38, 54, '#ffc94a'); g.shadowBlur = 0;
+// ------------------------------------------------------------------ coins: what was taken, as a stage full of gold
+const walletTex = () => tex('coins-wallet', 400, 260, (g, w, h) => {
+  g.fillStyle = '#10141c'; rrect(g, 7, 7, w - 14, h - 14, 38); g.fill(); g.strokeStyle = '#7af0e0'; g.lineWidth = 11; g.stroke();
+  text(g, '?', 132, h / 2 + 8, 190, '#7af0e0'); g.lineWidth = 10; rrect(g, 238, 78, 112, 104, 24); g.stroke();
 });
-export const RIG_AT: V = [1.0, 0, -3.4];
-export const RIG_RY = 1.05;
-const TIMES = ['2:05', '2:08', '2:11', '2:14', '2:17', '2:20', '2:23', '2:26', '2:29', '2:32'];
-export const stop: Builder = (root) => {
-  nightSky(root);
-  floor(root, 60, 50, tmat(tiled(grainTex('stop-tar', '#2b2f3c', 0.12), 16, 14)));
-  for (let i = -5; i <= 5; i++) { const m = floor(root, 0.1, 7, lit('#8a8f9c', 1), 0.014, i * 2.4 + 0.4, 1.5); m.rotation.z = -0.5; }
-  // the travel center: a low building with a lit diner and a canopy
-  box(root, 13, 2.7, 2.4, '#3a4058', 0.5, 1.35, -11.7); box(root, 13.4, 0.3, 3.2, '#c9372c', 0.5, 2.85, -11.4); box(root, 13.2, 0.06, 3.0, lit('#fff0c8', 1.25), 0.5, 2.68, -11.4);
-  soft(panel(root, 11.4, 1.25, smat(tex('stop-windows', 1024, 140, (g, w, h) => {
-    g.fillStyle = '#ffd98a'; g.fillRect(0, 0, w, h); g.fillStyle = '#3a4058'; for (let i = 0; i <= 8; i++) g.fillRect(i * w / 8 - 7, 0, 14, h); g.fillRect(0, h * 0.62, w, 9);
-    g.fillStyle = '#b9742f'; for (let i = 0; i < 8; i++) { g.fillRect(i * w / 8 + 26, h * 0.7, 74, h * 0.3); }
-  }), 1.2), 0.5, 1.45, -10.48));
-  soft(panel(root, 2.4, 0.5, smat(signTex('stop-diner', 480, 100, '#16181f', '#ff7a59', [['DINER · OPEN 24 HRS', 64, 0.56]], {glow: '#ff7a59'}), 1.5), 3.6, 3.3, -10.5));
-  // the tall sign: a name, and a clock under it
-  const SX = -2.4, SZ = -8;
-  cyl(root, 0.1, 4.9, '#5b6170', SX, 2.45, SZ); box(root, 2.56, 1.0, 0.22, '#23252e', SX, 4.35, SZ); box(root, 1.86, 0.74, 0.2, '#23252e', SX, 3.44, SZ);
-  soft(panel(root, 2.42, 0.86, smat(signTex('stop-sign', 720, 256, '#d62f2f', '#ffe14a', [['TRAVEL CENTER', 104, 0.38], ['LEBEC · CALIFORNIA', 46, 0.78]], {border: '#ffe14a'}), 1.3), SX, 4.35, SZ + 0.115));
-  const clockM = new THREE.MeshBasicMaterial({map: clockFace(TIMES[0])}), faces = TIMES.map(clockFace); soft(panel(root, 1.72, 0.6, clockM, SX, 3.44, SZ + 0.105));
-  streetLamp(root, 3.4, -1.4, 3.6, '#ffe9b0', 2.2); pool(root, 2.6, '#ffe9b0', 0.3, 3.4, -1.4); streetLamp(root, -3.9, -4.6, 3.6, '#ffe9b0', 2.2); pool(root, 2.6, '#ffe9b0', 0.26, -3.9, -4.6);
-  // other rigs asleep in the lot: dark shapes with a few marker lights
-  for (const [x, z, ry] of [[-5.8, -6.6, 1.05], [6.6, -7.8, 1.05], [-8.2, -1.8, 1.05]] as const) {
-    const o = grp(root, x, 0, z); o.rotation.y = ry; box(o, 4.6, 2.0, 1.5, '#262a3a', -2.1, 1.72, 0); box(o, 1.7, 1.9, 1.4, '#1f2233', 1.2, 1.3, 0);
-    for (let i = 0; i < 4; i++) box(o, 0.1, 0.05, 0.02, lit('#ffb347', 1.4), -4.0 + i * 1.3, 2.62, 0.76);
-  }
-  const truck = rig(root); truck.g.rotation.y = RIG_RY;
-  const nose = new THREE.Vector3(Math.cos(RIG_RY), 0, -Math.sin(RIG_RY)), rear = new THREE.Vector3(...RIG_AT).addScaledVector(nose, -truck.L);
-  pool(root, 2.2, '#dfe6ff', 0.2, rear.x - 0.3, rear.z + 0.7);
-  // the lock, cut, on the ground behind the doors
-  const lock = grp(root, rear.x - 0.42, 0, rear.z + 0.62); lock.rotation.y = 0.5;
-  const lb = grp(lock, 0, 0.07, 0); lb.rotation.set(-1.05, 0, 0.35); box(lb, 0.34, 0.26, 0.09, '#f2c230', 0, 0, 0); box(lb, 0.27, 0.19, 0.02, '#d9a520', 0, 0, 0.046); cyl(lb, 0.035, 0.03, INK, 0, 0.02, 0.055).rotation.x = Math.PI / 2; box(lb, 0.03, 0.08, 0.02, INK, 0, -0.04, 0.058);
-  for (const [x, y, rz] of [[-0.3, 0.04, 1.2], [0.27, 0.035, -0.3]] as const) { const t = mesh(lock, new THREE.TorusGeometry(0.1, 0.03, 8, 20, Math.PI * 0.8), '#c9ced6', x, y, 0.06); t.rotation.set(-1.3, 0, rz); }
-  const spark = glints(lock, [[0.02, 0.3, 0.1], [-0.2, 0.16, 0.12], [0.22, 0.14, 0.1]]);
+export const coins: Builder = (root) => {
+  backdrop(root, ['#05061a', '#10143c', '#1c1f55']);
+  floor(root, 30, 30, tmat(tiled(tileTex('coins-floor', '#0b0e2c', '#1a2060', 4), 10, 10)));
+  cyl(root, 1.62, 0.06, '#0d1136', 0, 0.03, 0, 1.62, 44); cyl(root, 1.34, 0.16, '#161c52', 0, 0.08, 0, 1.34, 44);
+  const rim = torus(root, 1.34, 0.035, lit('#f2c230', 1.25), 0, 0.165, 0); rim.rotation.x = Math.PI / 2;
+  const r = rng(5), at: [number, number][] = [];
+  for (let i = 0; i < 16; i++) { const a = i * 2.39996, d = 0.2 * Math.sqrt(i); at.push([d * Math.cos(a), d * Math.sin(a)]); }
+  const stacks = at.map(([x, z]) => coinStack(root, x, 0.16, z, Math.round(22 - 13 * Math.hypot(x, z) + 3 * r()), 0.12));
+  const tops: V[] = at.map(([x, z], i) => [x, 0.16 + (stacks[i].userData.h as number) + 0.02, z]);
+  const glint = glints(root, [tops[0], tops[3], tops[5], tops[8], tops[11], tops[14]].map(([x, y, z]) => [x + 0.05, y + 0.06, z + 0.14] as V));
+  beam(root, 0.3, 2.3, 7.5, '#ffd98a', 0.035, 0, 7.5, -0.7); const spot = pool(root, 1.5, '#ffe2a0', 0.3, 0, 0, 0.17);
+  const me = actor(root, LAM(0), {grin: {expr: 'grin', pose: 'panic'}, laugh: {expr: 'laugh', pose: 'panic'}}, 0, 0.36, -1.0, {scale: 1.05, res: 1.1, shadow: 0});
+  const wallet = soft(panel(root, 0.86, 0.56, smat(walletTex(), 1.1, true), 1.02, 2.42, -0.2));
+  const stream = coinStream(root, 18, 0.085);
+  const gone = soft(mesh(root, new THREE.PlaneGeometry(3.2, 3.2), smat(tex('coins-gone', 512, 512, (g) => { g.strokeStyle = '#ffe14a'; g.lineWidth = 5; g.setLineDash([13, 9]); for (const [x, z] of at) { g.beginPath(); g.arc(256 + x * 160, 256 + z * 160, 20, 0, 7); g.stroke(); } }), 1.2, true), 0, 0.172, 0)); gone.rotation.x = -Math.PI / 2;
   return {
-    light: () => ({...LIGHT.night, amb: 1.2, keyI: 0.9}),
+    light: () => ({...LIGHT.dark, amb: 1.05, key: '#ffe6b0', keyI: 1.1}),
+    tick: ({f, cam, shot}) => {
+      const pile = shot.v === 'pile', a = W(71) - 2, end = W(76) - 2;                    // the drain and the empty stage are one take: timed from words
+      me.node.visible = pile; me.show(Math.floor(f / 12) % 2 ? 'laugh' : 'grin'); me.node.position.y = lerp(-1.5, 0.36, smooth(f, 4, 22)) + hop(f, W(8), 0.12, 9); me.tick(f, cam);
+      stacks.forEach((s, i) => level(s, pile ? 1 : 1 - smooth(f, a + 8 + i * 1.6, a + 28 + i * 1.6)));
+      glint(f, pile || f < a + 16); op(spot, 0.3 + 0.05 * Math.sin(f * 0.2));
+      wallet.visible = !pile; wallet.scale.setScalar(pop(f, a + 3, 8) * (1 + 0.05 * Math.sin(f * 0.6) * (f < end ? 1 : 0))); wallet.position.y = 2.42 + 0.03 * Math.sin(f * 0.13);
+      if (pile) stream.hide(); else stream.set(f, a + 8, end - 6, (i) => [at[i % 16][0], 0.7, at[i % 16][1]], [0.3, 3.0, 0.2], () => [1.02, 2.42, -0.15], 0.05);
+      gone.visible = !pile && f >= end - 4; op(gone, smooth(f, end - 4, end + 8));
+    },
+  };
+};
+
+// ------------------------------------------------------------------ desk: a study in Washington; the man who was robbed is a dashed outline
+const duskTex = () => tex('desk-window', 400, 460, (g, w, h) => {
+  vgrad(g, w, h, ['#3b2a6e', '#a04c8c', '#ff9a6a', '#ffd9a0']);
+  g.fillStyle = '#241a3c'; g.fillRect(0, h - 84, w, 84); g.fillRect(116, h - 112, 168, 30);
+  g.beginPath(); g.arc(200, h - 150, 48, Math.PI, 0); g.fill(); g.fillRect(152, h - 152, 96, 44); g.fillRect(189, h - 224, 22, 30); g.fillRect(197, h - 250, 6, 30);      // a dome with a lantern: the Capitol, far off
+  g.strokeStyle = '#efe6d2'; g.lineWidth = 16; g.strokeRect(8, 8, w - 16, h - 16); g.lineWidth = 9; g.beginPath(); g.moveTo(w / 2, 0); g.lineTo(w / 2, h); g.moveTo(0, h / 2); g.lineTo(w, h / 2); g.stroke();
+});
+const cardBg = (g: G2, w: number, h: number, c = '#10141c') => { g.fillStyle = c; g.fillRect(0, 0, w, h); };
+const walletCard = () => tex('desk-wallet', 520, 360, (g, w, h) => {
+  cardBg(g, w, h); text(g, 'HIS WALLET', w / 2, 62, 46, '#9fd0ff', {font: 'Montserrat'});
+  btcSign(g, 108, 176, 58); text(g, '4,100+', 334, 150, 104, '#ffffff'); text(g, 'BITCOIN', 334, 232, 50, '#f7931a');
+  g.fillStyle = '#2fbf71'; rrect(g, 200, 276, 120, 60, 12); g.fill(); lock(g, 260, 304, 34, false, '#ffffff', '#2fbf71');
+});
+const callCard = () => tex('desk-call', 460, 420, (g, w, h) => {
+  cardBg(g, w, h); text(g, 'INCOMING CALL', w / 2, 60, 46, '#9fd0ff', {font: 'Montserrat'});
+  g.fillStyle = '#cfcadb'; g.beginPath(); g.arc(w / 2, 172, 62, 0, 7); g.fill(); text(g, '?', w / 2, 178, 96, '#4a4560');
+  text(g, '“SECURITY TEAM”', w / 2, 282, 50, '#ffffff');
+  for (const [x, c] of [[150, '#ff3b30'], [310, '#2fd07a']] as const) { g.fillStyle = c; g.beginPath(); g.arc(x, 360, 36, 0, 7); g.fill(); }
+});
+const toolCard = () => tex('desk-tool', 520, 450, (g, w, h) => {
+  cardBg(g, w, h, '#fbfaf5'); g.fillStyle = '#3f8cff'; g.fillRect(0, 0, w, 84); text(g, '“SECURITY” TOOL', w / 2, 44, 44, '#ffffff', {font: 'Montserrat'});
+  g.fillStyle = '#3f8cff'; g.beginPath(); g.moveTo(204, 120); g.lineTo(316, 120); g.lineTo(316, 186); g.lineTo(260, 232); g.lineTo(204, 186); g.closePath(); g.fill();
+  text(g, 'INSTALL TO PROTECT YOUR COINS?', w / 2, 284, 27, '#1a1c24', {font: 'Montserrat', maxWidth: w - 50});
+  g.fillStyle = '#c9ced6'; rrect(g, 50, 330, 180, 78, 16); g.fill(); text(g, 'NO', 140, 372, 50, '#5a6072');
+  g.fillStyle = '#2fd07a'; rrect(g, 290, 330, 190, 78, 16); g.fill(); text(g, 'INSTALL', 385, 372, 50, '#ffffff');
+});
+const remoteCard = () => tex('desk-remote', 520, 450, (g, w, h) => {
+  cardBg(g, w, h, '#d81f3a'); text(g, 'REMOTE ACCESS: ON', w / 2, 62, 46, '#ffffff', {font: 'Montserrat', maxWidth: w - 50});
+  lock(g, w / 2 + 22, 232, 150, true, '#ffffff', '#d81f3a');
+  text(g, 'SOMEBODY ELSE HAS THE DESKTOP', w / 2, 398, 27, '#ffffff', {font: 'Montserrat', maxWidth: w - 50});
+});
+const cursorTex = () => tex('cursor', 96, 128, (g) => {
+  g.beginPath(); g.moveTo(10, 8); g.lineTo(10, 100); g.lineTo(34, 78); g.lineTo(52, 118); g.lineTo(70, 110); g.lineTo(52, 72); g.lineTo(84, 70); g.closePath();
+  g.fillStyle = '#ffffff'; g.fill(); g.lineWidth = 9; g.lineJoin = 'round'; g.strokeStyle = INK; g.stroke();
+});
+const booksTex = () => tex('desk-books', 300, 110, (g, w, h) => { const cs = ['#d81f3a', '#2f7fe0', '#f2c230', '#2f9e5a', '#8a4fd0', '#d81f3a', '#e8762c']; cs.forEach((c, i) => { g.fillStyle = c; g.fillRect(8 + i * 41, 8 + (i % 3) * 6, 35, h - 8 - (i % 3) * 6); g.strokeStyle = INK; g.lineWidth = 4; g.strokeRect(8 + i * 41, 8 + (i % 3) * 6, 35, h - 8 - (i % 3) * 6); }); });
+export const desk: Builder = (root) => {
+  backdrop(root, ['#12142e', '#1c2046']);
+  floor(root, 14, 12, tmat(tiled(woodTex('desk-floor', '#6a4426', '#3e2614'), 4, 4)));
+  panel(root, 12, 6, tmat(tiled(grainTex('desk-wall', '#262b58', 0.1), 5, 3)), 0, 3, -1.6);
+  soft(panel(root, 1.3, 1.5, smat(duskTex(), 1.05), -1.25, 2.2, -1.58));
+  box(root, 1.5, 0.05, 0.26, '#3e2614', 1.05, 2.45, -1.46); soft(panel(root, 1.2, 0.44, smat(booksTex(), 1, true), 1.05, 2.7, -1.42));
+  table(root, 0.2, 0.2, 2.6, 0.9, {h: 0.76, top: '#8a5a34', leg: '#3e2614', skirt: '#6a4426'});
+  laptop(root, -0.35, 0.76, 0.2, {ry: Math.PI, w: 0.62, body: '#8f96a3', back: lit('#dfe6f0', 1)});
+  cyl(root, 0.11, 0.03, '#2b2f3a', -1.0, 0.775, 0.1); cyl(root, 0.014, 0.42, '#2b2f3a', -1.0, 1.0, 0.1); const shade = cyl(root, 0.17, 0.2, lit('#ffe2a0', 1.4), -1.0, 1.28, 0.1, 0.09); shade.castShadow = false;
+  halo(root, 1.0, '#ffd98a', 0.16, -1.0, 1.25, 0.2); mug(root, 1.15, 0.76, 0.3, '#d81f3a');
+  // the phone, propped up, its screen to us
+  const phone = grp(root, 0.8, 0.76, 0.36); box(phone, 0.2, 0.36, 0.03, '#15161b', 0, 0.2, 0).rotation.x = -0.2; const scr = soft(panel(phone, 0.165, 0.31, lamp('#1c2433', 1), 0, 0.2, 0.02)); scr.rotation.x = -0.2;
+  const ring = rings(root, 3, '#2fd07a');
+  const ghost = soft(panel(root, 0.78, 1.3, smat(ghostTex(), 1.2, true), -0.35, 1.5, -0.42));
+  const one = bubble(root, 0.52, 2.0, 0.36, 0.95, 0.66, smat(walletCard(), 1.05), [-0.5, -0.36]);
+  const call = bubble(root, 0.42, 2.02, 0.36, 0.8, 0.73, smat(callCard(), 1.05), [0.3, -0.5]);
+  const tool = bubble(root, 0.36, 1.93, 0.3, 1.1, 0.95, smat(toolCard(), 1.05), [-0.5, -0.45]), toolM = tool.screen.material as THREE.MeshBasicMaterial, maps = [toolCard(), remoteCard()];
+  const cursor = soft(panel(root, 0.15, 0.2, smat(cursorTex(), 1.15, true), 0, 0, 0.36)); cursor.renderOrder = 8;
+  const BX = (px: number) => 0.36 + (px / 520 - 0.5) * 1.1, BY = (py: number) => 1.93 + (0.5 - py / 450) * 0.95;
+  return {
+    light: () => ({...LIGHT.warm, amb: 1.15}),
     tick: ({f, shot}) => {
+      const v = shot.v, a = shot.at, click = W(68) + 1;
+      ghost.position.y = 1.5 + 0.015 * Math.sin(f * 0.1);
+      one.g.visible = v === 'one'; one.g.scale.setScalar(pop(f, a + 3, 8));
+      call.g.visible = v === 'ring'; call.g.scale.setScalar(pop(f, a + 2, 8) * (1 + 0.025 * Math.sin(f * 0.9)));
+      ring(f, v === 'ring', [0.8, 0.98, 0.42], 0.55, 0, 0.07); (scr.material as THREE.MeshBasicMaterial).color.set(v === 'ring' ? '#2fd07a' : '#1c2433').multiplyScalar(v === 'ring' ? 1.3 + 0.3 * Math.sin(f * 0.9) : 1);
+      phone.rotation.z = v === 'ring' ? 0.05 * Math.sin(f * 1.7) : 0;
+      tool.g.visible = v === 'allow'; tool.g.scale.setScalar(pop(f, a + 2, 8) * (1 + 0.06 * Math.max(0, 1 - Math.abs(f - click - 3) / 4)));
+      toolM.map = maps[f >= click + 2 ? 1 : 0];
+      // the cursor comes down to INSTALL and presses it; after that it moves by itself: somebody else has the desktop
+      const k = smooth(f, a + 10, click - 1), away = smooth(f, click + 3, click + 12), d = Math.max(0, f - click - 12);
+      cursor.visible = v === 'allow' && f >= a + 6;
+      cursor.position.set(lerp(lerp(BX(520) + 0.02, BX(400), k), BX(520) + 0.12 + 0.04 * Math.sin(d * 0.35), away) + 0.05, lerp(lerp(BY(120), BY(380), k), BY(250) + 0.04 * Math.sin(d * 0.5), away) - 0.08, 0.37);
+      cursor.scale.setScalar((f >= click && f < click + 3 ? 0.8 : 1) * pop(f, a + 6, 6));
+    },
+  };
+};
+
+// ------------------------------------------------------------------ drive: the cars in front of a rented house
+const facadeTex = () => tex('drive-facade', 1024, 512, (g, w, h) => {
+  g.fillStyle = '#f4f1e8'; g.fillRect(0, 0, w, h); g.fillStyle = '#e3ded0'; g.fillRect(0, 0, w, 44);
+  for (const x of [50, 240, 650, 840]) { g.fillStyle = '#5fd0e6'; g.fillRect(x, 96, 140, 250); g.strokeStyle = INK; g.lineWidth = 6; g.strokeRect(x, 96, 140, 250); }
+  g.fillStyle = '#5a3a22'; g.fillRect(450, 150, 130, 362); g.strokeRect(450, 150, 130, 362); g.fillStyle = '#e7c56a'; g.fillRect(558, 330, 8, 44);
+});
+export const drive: Builder = (root) => {
+  backdrop(root, ['#3f9be0', '#a8dcf5', '#e8f6ff']);
+  floor(root, 22, 20, tmat(tiled(tileTex('drive-floor', '#efe9da', '#cfc7b4', 2), 9, 9)));
+  panel(root, 12, 6, tmat(facadeTex()), 0, 3, -3.6);
+  palm(root, -3.3, -2.6, 4.4, 0.5, 1.1); palm(root, 3.5, -2.8, 4.0, -0.4, 1.1);
+  const cars: [string, number, number, number][] = [['#ffd21f', 0.3, 1.4, -2.094], ['#8a2be2', 1.2, -0.35, -0.72], ['#a6e22e', -1.05, -0.9, -2.5], ['#f5f5f0', 0.4, -2.1, -1.27]];
+  for (const [c, x, z, ry] of cars) { const g = supercar(root, c); g.position.set(x, 0, z); g.rotation.y = ry; }
+  const selfie = actor(root, LAM(1), {a: {expr: 'grin', pose: 'wave', prop: 'selfie'}, b: {expr: 'laugh', pose: 'wave', prop: 'selfie'}}, 0, 0, 3.4, {scale: 1.0, res: 1.2, wide: true});
+  const flex = actor(root, LAM(2), {a: {expr: 'laugh', pose: 'shrug'}, b: {expr: 'grin', pose: 'shrug'}}, 0, 0, 3.4, {scale: 1.0, res: 1.2, wide: true});
+  const flash = halo(root, 0.7, '#ffffff', 0, 0.42, 1.62, 3.55);
+  const notes = Array.from({length: 16}, () => bundle(root, 0.75, true)), q = rng(9), nx = notes.map(() => [(q() - 0.5) * 2.6, 2.4 + q() * 1.6, q()] as V);
+  return {
+    light: () => LIGHT.day,
+    tick: ({f, cam, shot}) => {
       const v = shot.v;
-      // the clock on the sign: 2:05 when the truck pulls in; it runs to 2:32 while the narrator says "twenty-seven minutes"
-      let k = 0; if (v === 'wide') k = Math.min(9, Math.floor(10 * smooth(f, W(13) - 2, W(14) + 14) * 0.999)); if (v === 'lock') k = 9;
-      clockM.map = faces[k];
-      const s = v === 'arrive' ? 7.5 * (1 - smooth(f, shot.at - 6, shot.at + 30)) : 0;
-      truck.g.position.set(RIG_AT[0] - nose.x * s, 0, RIG_AT[2] - nose.z * s); truck.tick(f, s > 0.05);
-      const open = v === 'lock' ? 0.55 + 0.03 * Math.sin(f * 0.2) : 0; truck.doors[1].rotation.y = -open;
-      lock.visible = v === 'lock'; lock.position.y = hop(f, shot.at, 0.12, 9) + hop(f, shot.at + 9, 0.04, 6); spark(f, v === 'lock');
+      selfie.node.visible = v === 'selfie'; selfie.show(f >= W(17) ? 'b' : 'a'); selfie.node.position.y = hop(f, W(17), 0.1, 9); selfie.tick(f, cam);
+      op(flash, v === 'selfie' ? 0.9 * Math.max(0, 1 - Math.abs(f - W(17) - 1) / 3) : 0);
+      flex.node.visible = v === 'flex'; flex.show(Math.floor(f / 10) % 2 ? 'b' : 'a'); flex.node.position.y = Math.abs(0.06 * Math.sin(f * 0.42)); flex.tick(f, cam);
+      notes.forEach((n, i) => {
+        const u = (f * 0.022 + nx[i][2]) % 1; n.visible = v === 'flex';
+        n.position.set(nx[i][0] + 0.15 * Math.sin(f * 0.11 + i), 3.6 - u * 3.9, nx[i][1] + 0.4); n.rotation.set(f * 0.13 + i, f * 0.09 + i * 2, 0.6 * Math.sin(f * 0.1 + i));
+      });
     },
   };
 };
 
-// ------------------------------------------------------------------ the diner, seen from behind the counter
-export const CLOCK: V = [1.0, 2.42, -2.36];
-export const diner: Builder = (root) => {
-  backdrop(root, ['#3a2a22', '#5a4030']);
-  floor(root, 12, 10, tmat(tiled(tex('diner-floor', 128, 128, (g) => { g.fillStyle = '#e9e2d0'; g.fillRect(0, 0, 128, 128); g.fillStyle = '#2f3a4a'; g.fillRect(0, 0, 64, 64); g.fillRect(64, 64, 64, 64); }, true), 8, 7)));
-  box(root, 12, 4.2, 0.2, '#b9543a', 0, 2.1, -2.5); box(root, 12, 1.1, 0.24, '#7a3a2a', 0, 0.55, -2.46);
-  // the window on the lot: the truck is out there
-  box(root, 2.5, 1.5, 0.1, '#f3ead8', -0.75, 1.95, -2.42);
-  soft(panel(root, 2.3, 1.3, smat(tex('diner-window', 640, 360, (g, w, h) => {
-    const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, '#0a1030'); gr.addColorStop(1, '#27304f'); g.fillStyle = gr; g.fillRect(0, 0, w, h);
-    g.fillStyle = '#1c2033'; g.fillRect(0, h * 0.74, w, h * 0.26);
-    g.fillStyle = '#f1eee6'; g.fillRect(150, h * 0.34, 330, h * 0.3); g.fillStyle = '#2f4f9a'; g.fillRect(480, h * 0.4, 96, h * 0.24); g.fillStyle = '#15121c'; for (const x of [200, 250, 420, 530]) { g.beginPath(); g.arc(x, h * 0.68, 22, 0, 7); g.fill(); }
-    g.fillStyle = '#ffe9b0'; g.beginPath(); g.arc(70, 70, 16, 0, 7); g.fill(); g.fillStyle = 'rgba(255,233,176,0.18)'; g.beginPath(); g.moveTo(70, 70); g.lineTo(0, h * 0.8); g.lineTo(200, h * 0.8); g.closePath(); g.fill();
-    g.fillStyle = '#f3ead8'; g.fillRect(w / 2 - 6, 0, 12, h);
-  }), 1), -0.75, 1.95, -2.36));
-  // the wall clock
-  const cg = grp(root, ...CLOCK); const rim = cyl(cg, 0.4, 0.06, '#23252e', 0, 0, 0); rim.rotation.x = Math.PI / 2;
-  soft(panel(cg, 0.72, 0.72, smat(tex('diner-clock', 360, 360, (g, w) => {
-    g.fillStyle = '#fffdf4'; g.beginPath(); g.arc(w / 2, w / 2, w / 2 - 4, 0, 7); g.fill();
-    for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6, r0 = i % 3 ? 150 : 138; g.strokeStyle = INK; g.lineWidth = i % 3 ? 6 : 12; g.beginPath(); g.moveTo(w / 2 + r0 * Math.sin(a), w / 2 - r0 * Math.cos(a)); g.lineTo(w / 2 + 168 * Math.sin(a), w / 2 - 168 * Math.cos(a)); g.stroke(); }
-    for (const [n, a] of [['12', 0], ['3', 90], ['6', 180], ['9', 270]] as const) text(g, n, w / 2 + 112 * Math.sin(a * Math.PI / 180), w / 2 - 112 * Math.cos(a * Math.PI / 180) + 4, 54, INK);
-  }), 1.05, true), 0, 0, 0.04));
-  const hour = grp(cg, 0, 0, 0.05), minute = grp(cg, 0, 0, 0.06);
-  soft(box(hour, 0.05, 0.2, 0.01, lit(INK, 1), 0, 0.09, 0)); soft(box(minute, 0.035, 0.3, 0.01, lit('#e3342f', 1), 0, 0.14, 0)); soft(cyl(cg, 0.03, 0.02, lit(INK, 1), 0, 0, 0.07)).rotation.x = Math.PI / 2;
-  soft(panel(root, 1.5, 0.5, smat(signTex('diner-menu', 450, 150, '#1f2a24', '#f3f1ea', [['BURGER · FRIES · COFFEE', 50, 0.36], ['OPEN ALL NIGHT', 40, 0.74]], {font: 'Montserrat'}), 1), -2.9, 3.0, -2.38));
-  // a booth behind him, and the counter in front of us
-  box(root, 1.5, 1.0, 0.5, '#b9302a', -2.4, 0.5, -1.7); box(root, 1.1, 0.06, 0.7, '#e9e2d0', -2.4, 0.78, -0.9);
-  box(root, 6, 0.08, 0.9, '#f3ead8', 0, 1.02, 1.25); box(root, 6, 0.06, 0.94, '#c9372c', 0, 0.96, 1.25); box(root, 6, 0.96, 0.7, '#8fa3b8', 0, 0.48, 1.3);
-  for (const x of [-1.5, 0, 1.5]) { cyl(root, 0.05, 0.7, '#c9ced6', x, 0.35, 0.35); cyl(root, 0.24, 0.1, '#c9372c', x, 0.72, 0.35); }
-  // his plate: a burger and fries; a coffee; ketchup
-  const plate = grp(root, 0.05, 1.06, 1.05);
-  cyl(plate, 0.26, 0.025, '#fffdf4', 0, 0.012, 0); const fries = grp(plate, 0.13, 0.03, 0.02); const q = rng(9); for (let i = 0; i < 9; i++) { const fr = box(fries, 0.025, 0.14, 0.025, '#f2c230', (q() - 0.5) * 0.12, 0.06, (q() - 0.5) * 0.1); fr.rotation.set((q() - 0.5) * 0.9, 0, (q() - 0.5) * 0.9); }
-  const burger = grp(plate, -0.1, 0.03, 0); ball(burger, 0.11, '#d9a45a', 0, 0.02, 0).scale.y = 0.4; cyl(burger, 0.115, 0.035, '#6a3d24', 0, 0.06, 0); cyl(burger, 0.125, 0.012, '#6fbf5a', 0, 0.085, 0); ball(burger, 0.115, '#e0b06a', 0, 0.1, 0).scale.y = 0.62;
-  mug(root, 0.62, 1.06, 1.1, '#fffdf4'); cyl(root, 0.035, 0.16, '#d62f2f', -0.5, 1.14, 1.2, 0.02); box(root, 0.16, 0.12, 0.1, '#c9ced6', -0.8, 1.12, 1.15);
-  halo(root, 2.4, '#ffd9a0', 0.1, 0, 2.6, -2.0);
-  const man = actor(root, DRIVER(0), {idle: {expr: 'neutral', mode: 'sit'}, bite: {expr: 'lick', pose: 'hold', prop: 'burger', mode: 'sit'}, chew: {expr: 'smile_closed', pose: 'hold', prop: 'burger', mode: 'sit'}, walk: {expr: 'smile', mode: 'march'}, sit: {expr: 'grin', mode: 'sit'}}, 0, 0, 0.3, {scale: 1.0, res: 1.1, wide: true});
+// ------------------------------------------------------------------ villa: a rented glass house on the bay (the pool, the arrest, the dock)
+export const villa: Builder = (root) => {
+  const day = backdrop(root, ['#3f9be0', '#a8dcf5', '#e8f6ff']), dusk = backdrop(root, ['#3a2a6e', '#b0508a', '#ff9a6a', '#ffd0a0']);
+  floor(root, 60, 60, lit('#2a9fd0', 1), -0.36);                                                   // the bay
+  const waves = soft(mesh(root, new THREE.PlaneGeometry(40, 30), smat(tiled(tex('villa-waves', 256, 128, (g, w, h) => { g.strokeStyle = 'rgba(255,255,255,.5)'; g.lineWidth = 4; g.lineCap = 'round'; for (let i = 0; i < 7; i++) { const x = (i * 97) % w, y = 10 + i * 17; g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + 18, y - 8, x + 36, y); g.stroke(); } }, true), 10, 12), 1, true), 0, -0.35, 14)); waves.rotation.x = -Math.PI / 2;
+  box(root, 12, 0.5, 9.4, '#efe9da', 0, -0.25, -1.5);                                              // the terrace, 0 high, from z = -6.2 to 3.2
+  soft(mesh(root, new THREE.PlaneGeometry(12, 9.4), tmat(tiled(tileTex('villa-stone', '#efe9da', '#d3cbb8', 2), 6, 5)), 0, 0.004, -1.5)).rotation.x = -Math.PI / 2;
+  // the house: two floors of glass between white slabs
+  const glassM = lamp('#7fd6e8', 1.0), frame = '#f6f3ea';
+  box(root, 6.8, 0.22, 3.2, frame, -0.2, 2.25, -4.2); box(root, 7.2, 0.24, 3.6, frame, -0.2, 4.3, -4.2);
+  for (const x of [-3.4, -1.8, -0.2, 1.4, 3.0]) box(root, 0.16, 4.2, 0.16, frame, x, 2.1, -2.7);
+  soft(panel(root, 6.4, 2.05, glassM, -0.2, 1.1, -2.78)); soft(panel(root, 6.4, 1.85, glassM, -0.2, 3.26, -2.78));
+  for (const x of [-2.6, -1.0, 0.6, 2.2]) for (const y of [1.1, 3.26]) box(root, 0.05, 1.9, 0.05, frame, x, y, -2.74);
+  for (let i = 0; i < 9; i++) box(root, 0.03, 0.5, 0.03, '#3a3f4a', -3.3 + i * 0.775, 2.6, -2.62); box(root, 6.4, 0.04, 0.04, '#3a3f4a', -0.2, 2.86, -2.62);
+  box(root, 12, 5.2, 0.3, '#f1ede2', 0, 2.6, -6.0);
+  // the pool, sunk in the terrace: x -1.9 .. 1.1, z 0.1 .. 2.4
+  box(root, 3.3, 0.06, 2.6, '#fbf8f0', -0.4, 0.03, 1.25); const water = soft(mesh(root, new THREE.PlaneGeometry(3.0, 2.3), lamp('#35c3e8', 1.05), -0.4, 0.07, 1.25)); water.rotation.x = -Math.PI / 2;
+  const ripples = soft(mesh(root, new THREE.PlaneGeometry(3.0, 2.3), smat(tiled(tex('villa-ripple', 128, 128, (g) => { g.strokeStyle = 'rgba(255,255,255,.55)'; g.lineWidth = 4; g.lineCap = 'round'; for (const [x, y] of [[14, 30], [70, 62], [30, 100]]) { g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + 14, y - 7, x + 28, y); g.stroke(); } }, true), 5, 4), 1, true), -0.4, 0.075, 1.25)); ripples.rotation.x = -Math.PI / 2;
+  const floats = [torus(root, 0.27, 0.085, '#ff4fa3', -1.0, 0.13, 1.5), torus(root, 0.22, 0.07, '#ffd21f', 0.2, 0.13, 0.75)]; floats.forEach((t) => { t.rotation.x = Math.PI / 2; });
+  // loungers, a parasol, palms
+  for (const x of [1.9, 2.6]) { box(root, 0.5, 0.1, 1.2, '#fbf8f0', x, 0.22, 0.9); box(root, 0.5, 0.42, 0.1, '#fbf8f0', x, 0.42, 0.34).rotation.x = -0.5; }
+  cyl(root, 0.03, 2.0, '#8a8f9a', 2.25, 1.0, 0.1); cone(root, 0.95, 0.4, '#ff4fa3', 2.25, 2.1, 0.1, 12);
+  palm(root, -3.6, 0.3, 4.2, 0.5, 1.0); palm(root, 3.9, -1.2, 4.6, -0.4, 1.0); palm(root, -2.9, 2.7, 3.2, 0.35, 0.85);
+  // the dock: from the terrace's edge out into the bay
+  const dock = grp(root, 2.1, 0, 5.4); box(dock, 1.3, 0.1, 4.6, '#8a5a34', 0, 0.2, 0); for (let i = 0; i < 9; i++) box(dock, 1.3, 0.012, 0.03, '#5a3a22', 0, 0.256, -2.1 + i * 0.52);
+  for (const z of [-1.9, -0.3, 1.3, 2.25]) for (const s of [-1, 1]) cyl(dock, 0.085, 1.5, '#5a3a22', s * 0.66, 0.1, z);
+  // people
+  const me = actor(root, LAM(1), {shock: {expr: 'shock', pose: 'panic'}, caught: {expr: 'nervous', pose: 'panic'}}, 0.9, 0, 3.0 - 0.3, {scale: 1.0, res: 1.2});
+  const agents = [actor(root, AGENT(0), {a: {expr: 'stern', pose: 'point'}}, -0.4, 0, 2.8, {scale: 1.02, res: 1.2, wide: true}), actor(root, AGENT(1), {a: {expr: 'stern', pose: 'push'}}, 2.2, 0, 2.8, {scale: 1.0, res: 1.2, wide: true})];
+  const runner = actor(root, LAM(1), {look: {expr: 'nervous', pose: 'wave', prop: 'selfie', look: -1}, thrown: {expr: 'nervous', pose: 'push', look: -1}, gone: {expr: 'whistle', pose: 'hang'}}, 2.1, 0.25, 6.0, {scale: 1.0, res: 1.2, wide: true});
+  const phone = box(root, 0.11, 0.2, 0.025, '#15161b', 0, 0, 0); phone.castShadow = false;
+  const HIT: V = [0.75, -0.34, 7.2];
+  const splash = [0, 1, 2].map(() => { const o = soft(mesh(root, new THREE.RingGeometry(0.8, 1, 40), new THREE.MeshBasicMaterial({color: '#ffffff', transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide}), HIT[0], -0.33, HIT[2])); o.rotation.x = -Math.PI / 2; return o; });
+  const drops = Array.from({length: 7}, () => { const o = ball(root, 0.05, lit('#ffffff', 1.1)); o.castShadow = false; return o; });
   return {
-    light: () => LIGHT.warm,
+    light: (v) => v === 'dock' ? {...LIGHT.dusk, amb: 1.3} : v === 'raid' ? {...LIGHT.dusk, amb: 1.45, keyI: 1.1} : LIGHT.day,
     tick: ({f, cam, shot}) => {
-      const v = shot.v, t = f - shot.at;
-      // 2:05 on the wall clock; in the close shot it runs to 2:32
-      const m = v === 'clock' ? 5 + 27 * smooth(f, shot.at + 2, shot.at + 24) : v === 'eat' ? 12 : 5;
-      minute.rotation.z = -m / 60 * Math.PI * 2; hour.rotation.z = -(2 + m / 60) / 12 * Math.PI * 2;
-      let x = 0, z = 0.3, st = 'idle', own = false;
-      if (v === 'eat') { st = Math.floor(t / 9) % 2 ? 'chew' : 'bite'; own = true; }
-      else if (v === 'in') { const k = smooth(f, shot.at - 4, shot.at + 22); x = -2.3 + 2.3 * k; z = -1.0 + 1.3 * k; st = k < 0.98 ? 'walk' : 'sit'; }
-      else { st = Math.floor(f / 9) % 2 ? 'chew' : 'bite'; own = true; }
-      man.node.position.set(x, st === 'walk' ? 0.25 : 0.62, z); man.show(st); man.tick(f, cam);   // the counter hides the floor: he stands and sits higher than a floor would let him
-      burger.visible = !own; plate.visible = v !== 'in' || t > 24; plate.position.x = 0.05 + (v === 'in' ? 2.2 * (1 - smooth(f, shot.at + 24, shot.at + 34)) : 0);
+      const v = shot.v, a = shot.at, late = v === 'dock' || v === 'raid';
+      day.visible = !late; dusk.visible = late; glassM.color.set(late ? '#ffd98a' : '#7fd6e8').multiplyScalar(late ? 1.25 : 1.0);
+      (water.material as THREE.MeshBasicMaterial).color.set(late ? '#2a8fc0' : '#35c3e8');
+      ripples.position.x = -0.4 + 0.05 * Math.sin(f * 0.07); waves.position.x = 0.4 * Math.sin(f * 0.03);
+      floats.forEach((t, i) => { t.position.y = 0.13 + 0.012 * Math.sin(f * 0.13 + i * 2); t.rotation.z = f * 0.01 * (i ? -1 : 1); });
+      // the arrest: he is alone for a moment, then they are on both sides of him
+      me.node.visible = v === 'raid'; me.show(f < a + 14 ? 'shock' : 'caught'); me.node.position.y = hop(f, a + 2, 0.1, 8); me.tick(f, cam);
+      agents.forEach((g, i) => { const k = smooth(f, a + 6 + i * 3, a + 20 + i * 3); g.node.visible = v === 'raid'; g.node.position.x = lerp(i ? 4.6 : -2.8, i ? 2.05 : -0.25, k); g.node.position.y = Math.abs(0.05 * Math.sin(f * 0.5 + i)) * (1 - k); g.tick(f, cam); });
+      // the dock: he looks round, and on "dropped" the phone leaves his hand
+      const go = W(165) - 2, u = (f - go) / 13, flying = v === 'dock' && u >= 0 && u < 1;
+      runner.node.visible = v === 'dock'; runner.show(f < go ? 'look' : f < go + 16 ? 'thrown' : 'gone'); runner.node.position.y = 0.25 + hop(f, go - 1, 0.12, 8); runner.tick(f, cam);
+      const from: V = [1.55, 1.75, 6.2];
+      phone.visible = flying; if (flying) { phone.position.set(lerp(from[0], HIT[0], u), lerp(from[1], HIT[1], u) + 1.5 * 4 * u * (1 - u) * 0.5, lerp(from[2], HIT[2], u)); phone.rotation.set(f * 0.9, 0.4, f * 0.6); }
+      splash.forEach((o, i) => { const w = (f - go - 13 - i * 4) / 16; o.visible = v === 'dock' && w > 0 && w < 1; o.scale.setScalar(0.15 + 0.75 * w); op(o, 0.9 * (1 - w)); });
+      drops.forEach((o, i) => { const w = (f - go - 13) / 12, ang = i * 0.9; o.visible = v === 'dock' && w > 0 && w < 1; o.position.set(HIT[0] + 0.45 * w * Math.cos(ang), -0.3 + 1.1 * 4 * w * (1 - w) * (0.5 + 0.08 * i), HIT[2] + 0.3 * w * Math.sin(ang)); });
     },
   };
 };
 
-// ------------------------------------------------------------------ the sleeper: a cab with its side cut away
-const zTex = () => tex('zzz', 120, 120, (g) => text(g, 'Z', 60, 64, 110, '#ffffff', {stroke: INK, sw: 16}));
-export const cab: Builder = (root) => {
-  nightSky(root, -20);
-  floor(root, 40, 30, tmat(tiled(grainTex('cab-tar', '#2b2f3c', 0.12), 14, 10)));
-  pool(root, 3.2, '#ffe9b0', 0.2, 1.2, 1.4);
-  const BLUE = '#4a72c9', IN = lit('#7a6052', 1), Y0 = 0.95;
-  // wheels, frame, tank, the front of the trailer behind
-  box(root, 5.4, 0.24, 1.0, '#23252e', 0.4, 0.74, -0.5);
-  for (const [x, r] of [[-1.25, 0.46], [-0.2, 0.46], [2.45, 0.44]] as const) { const w = cyl(root, r, 0.34, '#1b1d24', x, r, 0.02); w.rotation.x = Math.PI / 2; const h = cyl(root, 0.18, 0.36, '#c9ced6', x, r, 0.03); h.rotation.x = Math.PI / 2; }
-  const tank = cyl(root, 0.24, 0.9, '#c9ced6', 1.2, 0.62, 0.06); tank.rotation.z = Math.PI / 2;
-  box(root, 1.6, 2.9, 1.5, tmat(tiled(foldTex('cab-trailer', '#f3f0e8', '#dcd8cc', 8), 1, 1)), -2.75, 2.4, -0.55); cyl(root, 0.06, 2.6, '#c9ced6', -1.82, 2.2, 0.16);
-  // the sleeper box with no near wall: back wall, floor, roof, ends
-  box(root, 1.9, 2.1, 0.08, IN, -0.72, Y0 + 1.05, -1.0); box(root, 2.0, 0.1, 1.2, BLUE, -0.72, Y0 - 0.02, -0.42); box(root, 2.0, 0.12, 1.2, BLUE, -0.72, Y0 + 2.14, -0.42);
-  box(root, 0.1, 2.2, 1.2, BLUE, -1.72, Y0 + 1.05, -0.42); box(root, 0.08, 0.9, 1.2, BLUE, 0.26, Y0 + 1.72, -0.42);
-  soft(panel(root, 0.5, 1.25, tmat(tiled(foldTex('cab-curtain', '#8a5a6a', '#5a3442', 6), 1, 1)), 0.2, Y0 + 0.66, 0.12));   // the curtain, pushed back
-  box(root, 1.72, 0.2, 0.8, '#e9e2d0', -0.76, Y0 + 0.25, -0.5); box(root, 1.76, 0.12, 0.84, '#6b4628', -0.76, Y0 + 0.1, -0.5);
-  const pillow = ball(root, 0.2, '#fffdf4', -1.12, Y0 + 0.42, -0.5); pillow.scale.set(2.2, 0.5, 1.5);
-  const blanket = box(root, 0.98, 0.3, 0.86, tmat(tiled(tex('cab-plaid', 64, 64, (g) => { g.fillStyle = '#3f6fb5'; g.fillRect(0, 0, 64, 64); g.fillStyle = 'rgba(255,255,255,0.35)'; g.fillRect(0, 26, 64, 10); g.fillRect(26, 0, 10, 64); g.fillStyle = 'rgba(0,0,0,0.25)'; g.fillRect(0, 54, 64, 6); g.fillRect(54, 0, 6, 64); }, true), 6, 2)), -0.13, Y0 + 0.5, -0.36);
-  soft(panel(root, 0.5, 0.36, lit('#ffd98a', 1.15), -1.2, Y0 + 1.5, -0.955)); box(root, 0.56, 0.42, 0.04, '#3a2c22', -1.2, Y0 + 1.5, -0.97);   // a little window with the lot's light in it
-  // the cab in front: seat, wheel, windscreen, hood
-  box(root, 1.1, 0.1, 1.2, BLUE, 0.85, Y0 - 0.02, -0.42); box(root, 1.1, 0.12, 1.2, BLUE, 0.85, Y0 + 1.68, -0.42); box(root, 1.1, 1.6, 0.08, IN, 0.85, Y0 + 0.8, -1.0);
-  box(root, 0.5, 0.14, 0.5, '#8a94a8', 0.72, Y0 + 0.42, -0.45); box(root, 0.14, 0.7, 0.5, '#8a94a8', 0.5, Y0 + 0.8, -0.45); box(root, 0.1, 0.3, 0.1, '#5b6170', 0.72, Y0 + 0.2, -0.45);
-  const wheel = torus(root, 0.2, 0.035, '#c9ced6', 1.22, Y0 + 0.86, -0.45); wheel.rotation.y = Math.PI / 2; wheel.rotation.x = 0.5; box(root, 0.3, 0.5, 0.9, '#3d4450', 1.36, Y0 + 0.36, -0.45);
-  box(root, 0.06, 1.0, 1.2, lit('#27304f', 1), 1.42, Y0 + 1.1, -0.42).rotation.z = -0.22; box(root, 1.1, 1.0, 1.1, BLUE, 2.05, Y0 + 0.4, -0.47); box(root, 0.08, 0.7, 0.9, '#c9ced6', 2.62, Y0 + 0.45, -0.47);
-  box(root, 0.08, 0.16, 0.3, lit('#fff3c0', 1.6), 2.63, Y0 + 0.16, -0.1);
-  halo(root, 1.3, '#ffd98a', 0.16, -0.8, Y0 + 1.1, -0.9);
-  const man = actor(root, DRIVER(1), {a: {expr: 'neutral', blink: true}}, 0.3, Y0 + 0.56, -0.2, {scale: 0.86, res: 1.1, still: true, shadow: 0}); man.mesh.rotation.z = Math.PI / 2;
-  const zs = [0, 1, 2].map(() => soft(panel(root, 0.3, 0.3, smat(zTex(), 1.1, true), 0, 0, 0)));
-  const seat = soft(panel(root, 0.62, 0.95, smat(gapTex('seat', 250, 380, '#ffe14a'), 1.1, true), 0.74, Y0 + 0.9, -0.1));
+// ------------------------------------------------------------------ deep: where the phone went
+const fishTex = (c: string) => tex('fish-' + c, 220, 120, (g) => {
+  g.fillStyle = c; g.strokeStyle = INK; g.lineWidth = 7; g.lineJoin = 'round';
+  g.beginPath(); g.moveTo(14, 20); g.lineTo(60, 60); g.lineTo(14, 100); g.closePath(); g.fill(); g.stroke();
+  g.beginPath(); g.ellipse(124, 60, 78, 40, 0, 0, 7); g.fill(); g.stroke(); g.fillStyle = '#ffffff'; g.beginPath(); g.arc(166, 50, 12, 0, 7); g.fill(); g.fillStyle = INK; g.beginPath(); g.arc(169, 50, 6, 0, 7); g.fill();
+});
+const sunkTex = () => tex('deep-phone', 240, 440, (g, w, h) => {
+  g.fillStyle = '#0d1118'; g.fillRect(0, 0, w, h); text(g, 'NO SERVICE', w / 2, 70, 34, '#ffffff', {font: 'Montserrat'});
+  lock(g, w / 2, 210, 96, false, '#ffffff', '#0d1118');
+  g.strokeStyle = '#ff3b30'; g.lineWidth = 8; rrect(g, 76, 342, 76, 40, 8); g.stroke(); g.fillStyle = '#ff3b30'; g.fillRect(156, 352, 8, 20); g.fillRect(84, 350, 14, 24);
+});
+export const deep: Builder = (root) => {
+  backdrop(root, ['#7fe0e8', '#2a9fc8', '#0f5a8a', '#0a3a66']);
+  floor(root, 30, 20, tmat(tiled(grainTex('deep-sand', '#6fb0a8', 0.1), 6, 4)), 0, 0, -2);
+  for (const [x, rr, z] of [[-2.2, 0.5, -1.6], [2.0, 0.6, -1.2], [1.2, 0.3, 0.6], [-1.3, 0.28, 0.9]]) { const o = ball(root, rr, '#4a7f8a', x, rr * 0.3, z); o.scale.y = 0.6; }
+  for (const [x, z, h] of [[-1.7, -0.6, 1.3], [-1.45, -0.4, 0.9], [1.6, -0.3, 1.1], [1.85, -0.5, 1.5], [0.6, -1.4, 0.9]]) cone(root, 0.12, h, '#7fd0c0', x, h / 2, z, 5);
+  for (const [x, o] of [[-0.8, 0.07], [0.6, 0.05], [1.9, 0.04]] as const) beam(root, 0.4, 1.3, 9, '#e8ffff', o, x, 8, -1.2 - x * 0.2);
+  const fish = [card(root, 0.62, 0.34, fishTex('#ff8fa8'), 0, 0, -0.6, 1.05), card(root, 0.4, 0.22, fishTex('#7fe8e0'), 0, 0, -1.2, 1.0), card(root, 1.0, 0.55, fishTex('#ffb52e'), 0, 0, 1.0, 1.05)];
+  const ph = grp(root); box(ph, 0.62, 1.16, 0.07, '#15161b'); soft(panel(ph, 0.55, 1.05, smat(sunkTex(), 1.1), 0, 0, 0.04));
+  const bub = Array.from({length: 7}, () => soft(mesh(root, new THREE.RingGeometry(0.05, 0.068, 20), new THREE.MeshBasicMaterial({color: '#e8ffff', transparent: true, opacity: 0.9, depthWrite: false}))));
   return {
-    light: () => ({...LIGHT.night, amb: 1.7, keyI: 1.1}),
+    light: () => ({...LIGHT.cold, sky: '#bff4ff', ground: '#2a7f9a', amb: 1.5}),
+    tick: ({f, t}) => {
+      const k = smooth(t, -2, 26);
+      ph.position.set(0.15 + 0.05 * Math.sin(f * 0.07), lerp(4.4, 1.5, k) - 0.004 * Math.max(0, t - 26), 0); ph.rotation.set(0.1 * Math.sin(f * 0.06), 0.35 * Math.sin(f * 0.045) + 0.25, lerp(0.5, -0.12, k));
+      fish[0].position.set(lerp(1.9, -1.9, ((f * 0.006 + 0.35) % 1)), 2.35 + 0.05 * Math.sin(f * 0.1), -0.6); fish[0].scale.x = -1;
+      fish[1].position.set(lerp(-1.9, 1.9, ((f * 0.005 + 0.6) % 1)), 1.9, -1.2);
+      fish[2].position.set(lerp(-2.3, 2.3, ((f * 0.004 + 0.72) % 1)), 0.62 + 0.03 * Math.sin(f * 0.08), 1.0);
+      bub.forEach((b, i) => { const u = (f * 0.012 + i * 0.143) % 1; b.position.set(ph.position.x + 0.3 * Math.sin(i * 2.4) + 0.05 * Math.sin(f * 0.1 + i), ph.position.y + 0.5 + u * 2.6, 0.1); b.scale.setScalar(0.7 + 1.3 * u); op(b, 0.9 * (1 - u)); b.visible = t > 6; });
+    },
+  };
+};
+
+// ------------------------------------------------------------------ club: up to half a million dollars a night
+const billTex = () => tex('club-bill', 420, 950, (g, w, h) => {
+  g.fillStyle = '#fbfaf5'; g.fillRect(0, 0, w, h); text(g, 'ONE NIGHT', w / 2, 70, 74, '#1a1c24'); g.fillStyle = '#1a1c24'; g.fillRect(40, 124, w - 80, 6);
+  g.fillStyle = '#c3c7d1'; for (let i = 0; i < 7; i++) { g.fillRect(44, 160 + i * 40, 150 + ((i * 53) % 110), 16); g.fillRect(w - 44 - 90, 160 + i * 40, 90, 16); }
+  g.fillStyle = '#1a1c24'; g.fillRect(40, 452, w - 80, 6); text(g, 'TOTAL', w / 2, 508, 62, '#1a1c24');
+  g.fillStyle = '#ffe14a'; g.fillRect(26, 552, w - 52, 96); text(g, '$569,528.39', w / 2, 602, 78, '#1a1c24', {maxWidth: w - 70}); g.fillStyle = '#1a1c24'; g.fillRect(40, 682, w - 80, 6);
+  for (let x = 60; x < w - 60;) { const bw = 3 + ((x * 7) % 9); g.fillRect(x, 722, bw, 86); x += bw + 4 + ((x * 3) % 5); }
+  g.fillStyle = '#c3c7d1'; for (let i = 0; i < 3; i++) g.fillRect(96, 846 + i * 32, w - 192, 14);
+});
+const crowdTex = () => tex('club-crowd', 512, 256, (g, w, h) => {
+  g.fillStyle = '#2a3460'; for (let i = 0; i < 9; i++) { const x = 30 + i * 56, y = 120 + ((i * 37) % 50); g.beginPath(); g.arc(x, y, 30, 0, 7); g.fill(); g.fillRect(x - 34, y + 20, 68, h); if (i % 3 === 0) g.fillRect(x + 18, y - 70, 14, 90); }
+});
+const sparkTex = () => tex('club-spark', 128, 128, (g) => { g.strokeStyle = '#ffffff'; g.lineCap = 'round'; for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6, r = i % 2 ? 36 : 60; g.lineWidth = i % 2 ? 3 : 5; g.beginPath(); g.moveTo(64 + 8 * Math.cos(a), 64 + 8 * Math.sin(a)); g.lineTo(64 + r * Math.cos(a), 64 + r * Math.sin(a)); g.stroke(); } });
+export const club: Builder = (root) => {
+  backdrop(root, ['#12041c', '#2a0a3a']);
+  floor(root, 16, 14, '#1a0a2a'); panel(root, 14, 7, mat('#2a0a3a'), 0, 3.5, -2.9);
+  const neon = torus(root, 0.78, 0.035, lamp('#ff4fd8', 1.8), 0.25, 2.8, -2.82); neon.castShadow = false;
+  for (const [x, c] of [[-2.0, '#4fd8ff'], [-0.95, '#ff4fd8'], [1.25, '#ff4fd8'], [2.15, '#4fd8ff']] as const) box(root, 0.045, 4.6, 0.045, lit(c, 1.6), x, 2.3, -2.84).castShadow = false;
+  // the booth and its table
+  box(root, 5.4, 0.44, 1.0, '#5a0a3a', 0, 0.22, -1.4); box(root, 5.4, 1.1, 0.26, '#6a1046', 0, 0.75, -1.9);
+  box(root, 2.5, 0.5, 0.95, '#120818', -0.1, 0.25, 0.35); box(root, 2.5, 0.03, 0.03, lit('#ff4fd8', 1.6), -0.1, 0.5, 0.83).castShadow = false;
+  cyl(root, 0.2, 0.3, '#8a4fd0', -0.1, 0.66, 0.3, 0.27); for (const [dx, tz] of [[-0.1, -0.3], [0.02, 0.05], [0.13, 0.3]]) { const b = cyl(root, 0.045, 0.5, '#1f4a30', -0.1 + dx, 0.95, 0.3, 0.03); b.rotation.z = -tz; cyl(root, 0.032, 0.07, '#e8762c', -0.1 + dx - tz * 0.24, 1.2, 0.3).rotation.z = -tz; }
+  for (const x of [-0.75, 0.5]) { cyl(root, 0.035, 0.02, '#c9ced6', x, 0.51, 0.35); cyl(root, 0.012, 0.12, '#c9ced6', x, 0.57, 0.35); cyl(root, 0.05, 0.1, lit('#ffe9a0', 1.2), x, 0.68, 0.35, 0.03); }
+  // the till: a stand, a printer, a long strip of paper
+  const till = [box(root, 0.5, 0.95, 0.4, '#23252e', 1.1, 0.48, 1.4), box(root, 0.36, 0.14, 0.3, '#3a3f4a', 1.1, 1.02, 1.4)];
+  const bill = soft(panel(root, 0.42, 0.95, smat(billTex(), 1.02), 1.1, 1.57, 1.44)); bill.rotation.x = -0.06;
+  // the room: a crowd, beams, moving light
+  const crowd = [card(root, 3.0, 1.5, crowdTex(), -2.6, 1.0, -2.5, 1), card(root, 3.0, 1.5, crowdTex(), 2.7, 1.0, -2.6, 1)];
+  const beams = ['#ff4fd8', '#4fd8ff', '#b6f03a', '#ffb52e'].map((c, i) => beam(root, 0.03, 0.55, 7, c, 0.15, -2.1 + i * 1.4, 6.2, -2.7));
+  const spots = ['#ff4fd8', '#4fd8ff', '#ffb52e'].map((c) => pool(root, 1.1, c, 0.3, 0, 0));
+  const me = actor(root, LAM(2), {cash: {expr: 'laugh', pose: 'hold', prop: 'cash'}, grin: {expr: 'grin', pose: 'hold', prop: 'cash'}}, 0.2, 0.44, -1.3, {scale: 1.18, res: 1.2, wide: true, shadow: 0});
+  const staff = [actor(root, STAFF(0), {a: {expr: 'smile', pose: 'hold', prop: 'bottle'}}, -1.5, 0, 0.5, {scale: 0.98, res: 1.1, wide: true}), actor(root, STAFF(1), {a: {expr: 'smile', pose: 'hold', prop: 'bottle'}}, -0.95, 0, 1.1, {scale: 0.98, res: 1.1, wide: true})];
+  const sparks = staff.map(() => ({star: soft(panel(root, 0.5, 0.5, new THREE.MeshBasicMaterial({map: sparkTex(), transparent: true, depthWrite: false, color: new THREE.Color('#fff3c0').multiplyScalar(2.2)}), 0, 0, 0)), glow: halo(root, 0.7, '#ffd98a', 0.5, 0, 0, 0)}));
+  return {
+    light: () => ({...LIGHT.dark, sky: '#c8a0ff', ground: '#4a2a7a', amb: 1.15, key: '#ff9ad8', keyI: 0.8}),
     tick: ({f, cam, shot}) => {
-      man.tick(f, cam); man.node.rotation.y = 0; blanket.scale.y = 1 + 0.05 * Math.sin(f * 0.11);
-      zs.forEach((z, i) => { const u = (f * 0.022 + i / 3) % 1; z.position.set(-1.2 + 0.5 * u + 0.06 * Math.sin(u * 9 + i), Y0 + 0.85 + 0.7 * u, 0.1); z.scale.setScalar(0.5 + 0.9 * u); (z.material as THREE.MeshBasicMaterial).opacity = Math.min(1, u * 5) * (1 - u) ** 0.7; (z.material as THREE.MeshBasicMaterial).transparent = true; z.rotation.z = -0.25; });
-      seat.visible = shot.v === 'alone' && f >= shot.at + 8; seat.scale.setScalar(pop(f, shot.at + 8, 8));
-    },
-  };
-};
-
-// ------------------------------------------------------------------ inside the trailer: seventy-three bags, then the marks of twenty-four
-export const COLS = 4, ROWS = 6;
-export const trailer: Builder = (root) => {
-  backdrop(root, ['#0b0d14', '#161a24']);
-  const wall = tmat(tiled(foldTex('trailer-wall', '#d9d5ca', '#aaa59a', 10), 2, 1), '#c9c9d6');
-  floor(root, 2.6, 9, tmat(tiled(woodTex('trailer-floor', '#8a6a48', '#4a3622'), 2, 6)), 0, 0, -1.6);
-  for (const s of [-1, 1]) { const w = panel(root, 9, 3.2, wall, s * 1.3, 1.6, -1.6, -s * Math.PI / 2); w.receiveShadow = true; }
-  panel(root, 2.6, 3.2, wall, 0, 1.6, -5.4); const roof = floor(root, 2.6, 9, lit('#3a3f4a', 1), 3.2, 0, -1.6); roof.rotation.x = Math.PI / 2;
-  for (const z of [-0.4, -2.6]) box(root, 0.9, 0.04, 0.16, lit('#f3f6ff', 1.5), 0, 3.17, z);
-  // three layers of bags, four across and six high; the front layer is the twenty-four
-  const DX = 0.47, DY = 0.335, X0 = -DX * (COLS - 1) / 2, front: THREE.Group[] = [], marks: THREE.Mesh[] = [];
-  for (let layer = 0; layer < 3; layer++) for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
-    const x = X0 + c * DX, y = 0.04 + r * DY, z = -1.3 - layer * 0.42, b = bag(root, x, y, z, 1 + ((r * COLS + c + layer * 24) % 73), 1.08);
-    if (layer === 0) { front.push(b); const m = soft(panel(root, 0.44, 0.3, smat(gapTex('bag', 220, 150, '#ffe14a', 18), 1.15, true), x, y + 0.15, z + 0.17)); marks.push(m); }
-  }
-  const moon = pool(root, 1.5, '#dfe6ff', 0.3, 0.3, 0.2); moon.scale.set(0.7, 1, 1.6);
-  return {
-    light: (v) => v === 'gone' ? {...LIGHT.dark, sky: '#c6d0ff', amb: 1.25, keyI: 0.7} : {...LIGHT.cold, amb: 1.45},
-    tick: ({f, shot}) => {
-      const gone = shot.v === 'gone';
-      front.forEach((b) => { b.visible = !gone; });
-      marks.forEach((m, i) => { const at = shot.at - 2 + Math.floor(i / COLS) * 2; m.visible = gone; m.scale.setScalar(gone ? pop(f, at, 6) : 1); });
-      moon.visible = gone;
+      const v = shot.v;
+      me.show(Math.floor(f / 10) % 2 ? 'cash' : 'grin'); me.node.position.y = 0.44 + Math.abs(0.05 * Math.sin(f * 0.42)); me.tick(f, cam);
+      staff.forEach((s, i) => {
+        const k = v === 'bill' ? smooth(f, shot.at - 6 + i * 4, shot.at + 14 + i * 4) : 1, x = lerp(-2.8 - i * 0.5, i ? -0.85 : -1.3, k);
+        s.node.position.set(x, Math.abs(0.045 * Math.sin(f * 0.5 + i)), i ? 0.0 : -0.7); s.tick(f, cam); s.node.visible = v !== 'receipt';
+        const sp = sparks[i], fl = 0.75 + 0.25 * Math.sin(f * 2.3 + i * 1.7);
+        sp.star.position.set(x + 0.36, s.node.position.y + 2.02, s.node.position.z + 0.05); sp.star.scale.setScalar(0.7 + 0.5 * fl); sp.glow.position.copy(sp.star.position); op(sp.glow, 0.5 * fl);
+        sp.star.visible = sp.glow.visible = v !== 'receipt'; sp.star.lookAt(cam.position); sp.star.rotateZ(f * 0.7 + i);
+      });
+      crowd.forEach((c, i) => { c.position.y = 1.0 + 0.06 * Math.abs(Math.sin(f * 0.42 + i * 1.3)); });
+      beams.forEach((b, i) => { b.rotation.z = 0.5 * Math.sin(f * 0.07 + i * 1.7); b.rotation.x = -0.06 + 0.05 * Math.sin(f * 0.05 + i); });
+      spots.forEach((s, i) => { s.position.set(1.8 * Math.sin(f * 0.06 + i * 2.1), 0.012, 0.4 + 1.0 * Math.cos(f * 0.05 + i * 1.3)); });
+      (neon.material as THREE.MeshBasicMaterial).color.set('#ff4fd8').multiplyScalar(1.7 + 0.5 * Math.sin(f * 0.42));
+      // the receipt feeds up out of the printer, top first: the panel shows the top `k` of the paper, its foot at the slot
+      const k = v === 'receipt' ? lerp(0.4, 1, smooth(f, shot.at - 1, shot.at + 15)) : 1, paper = (bill.material as THREE.MeshBasicMaterial).map!;
+      bill.scale.y = k; bill.position.y = 1.09 + 0.475 * k; paper.repeat.y = k; paper.offset.y = 1 - k;
+      bill.visible = v !== 'party'; till.forEach((m) => { m.visible = v !== 'party'; });   // in the hook the till would stand at the right edge of the first frames
     },
   };
 };

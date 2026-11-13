@@ -3,16 +3,15 @@
 import React, {useEffect, useRef} from 'react';
 import {AbsoluteFill} from 'remotion';
 import {useFonts} from './fonts';
-import {drawActor, COP, CREW, DRIVER, JEWELER, PROSECUTOR, SOMEONE, type Look, type Draw} from './cast';
+import {drawActor, AGENT, CREW, JUDGE, LAM, LAWYER, PROSECUTOR, SLEUTH, STAFF, type Look, type Draw} from './cast';
 
 const CELLS: [Look, Draw][] = [
-  [CREW(0), {pose: 'hang'}], [CREW(1), {pose: 'both', prop: 'card', text: 'NOT GUILTY'}], [CREW(2), {pose: 'hang'}], [CREW(3), {pose: 'shrug'}],
-  [CREW(4), {pose: 'hang'}], [CREW(5), {pose: 'hang'}], [CREW(6), {pose: 'shrug'}], [CREW(0), {pose: 'both', prop: 'card', text: 'PLEA DEAL'}],
-  [SOMEONE, {pose: 'phone', prop: 'phone'}], [CREW(0), {mode: 'march'}], [DRIVER(0), {expr: 'neutral'}], [DRIVER(0), {expr: 'lick', pose: 'hold', prop: 'burger', mode: 'sit'}],
-  [DRIVER(0), {expr: 'smile', mode: 'march'}], [DRIVER(1), {expr: 'neutral'}], [DRIVER(1), {expr: 'neutral', blink: true}], [COP(0), {expr: 'neutral', pose: 'hold', prop: 'clip'}],
-  [COP(1), {expr: 'stern', pose: 'push'}], [COP(2), {expr: 'stern', pose: 'push'}], [JEWELER(0), {expr: 'smile'}], [JEWELER(1), {expr: 'smile', pose: 'wave'}],
-  [JEWELER(2), {expr: 'smile'}], [JEWELER(0), {expr: 'stern', pose: 'shrug'}], [JEWELER(1), {expr: 'stern', pose: 'hold', prop: 'paper'}], [JEWELER(2), {expr: 'stern'}],
-  [PROSECUTOR, {expr: 'neutral', pose: 'hold', prop: 'paper'}], [PROSECUTOR, {expr: 'shock', pose: 'hold', prop: 'paper', look: -1}], [PROSECUTOR, {expr: 'nervous', pose: 'shrug', look: -1}], [COP(0), {expr: 'smile', pose: 'hold', prop: 'clip'}],
+  [LAM(0), {expr: 'grin', pose: 'type', mode: 'sit'}], [LAM(0), {expr: 'grin', pose: 'panic'}], [LAM(1), {expr: 'grin', pose: 'wave', prop: 'selfie'}], [LAM(2), {expr: 'laugh', pose: 'shrug'}], [LAM(2), {expr: 'laugh', pose: 'hold', prop: 'cash'}],
+  [LAM(2), {expr: 'grin', pose: 'wave'}], [LAM(1), {expr: 'shock', pose: 'panic'}], [LAM(1), {expr: 'nervous', pose: 'push', look: -1}], [LAM(3), {expr: 'nervous'}], [LAM(3), {expr: 'nervous', pose: 'both', prop: 'card', text: 'GUILTY', big: true}],
+  [LAM(3), {expr: 'dazed', pose: 'shrug'}], [LAM(0), {expr: 'nervous', pose: 'shrug', look: -1}], [CREW(1, true), {pose: 'phone', prop: 'phone'}], [CREW(1, true), {pose: 'side', prop: 'mask', text: 'SECURITY TEAM', badge: 'shield'}], [CREW(1, true), {pose: 'side', prop: 'mask', text: 'EXCHANGE SUPPORT', badge: 'coin'}],
+  [CREW(0), {pose: 'type', mode: 'sit'}], [SLEUTH, {pose: 'hold', prop: 'lens'}], [SLEUTH, {pose: 'type', mode: 'sit'}], [AGENT(0), {expr: 'stern', pose: 'point'}], [AGENT(1), {expr: 'stern', pose: 'push'}],
+  [JUDGE, {expr: 'stern', pose: 'desk'}], [JUDGE, {expr: 'neutral', pose: 'point'}], [PROSECUTOR, {expr: 'stern', pose: 'point'}], [PROSECUTOR, {expr: 'stern', pose: 'hold', prop: 'paper'}], [LAWYER, {expr: 'neutral', pose: 'hold', prop: 'paper'}],
+  [LAWYER, {expr: 'nervous', pose: 'shrug'}], [STAFF(0), {expr: 'smile', pose: 'hold', prop: 'bottle'}], [STAFF(1), {expr: 'smile', pose: 'hold', prop: 'bottle'}],
 ];
 
 export const CastSheet: React.FC = () => {
@@ -20,7 +19,7 @@ export const CastSheet: React.FC = () => {
   useEffect(() => {
     if (!ok || !ref.current) return;
     const g = ref.current.getContext('2d')!; g.fillStyle = '#8fa6b8'; g.fillRect(0, 0, 1080, 1920);
-    CELLS.forEach(([look, draw], i) => { g.save(); g.translate((i % 4) * 270, Math.floor(i / 4) * 272 + 8); drawActor(g, look, draw, 0.45); g.restore(); });
+    CELLS.forEach(([look, draw], i) => { g.save(); g.translate((i % 5) * 216 + 12, Math.floor(i / 5) * 318 + 6); drawActor(g, look, draw, 0.31); g.restore(); });   // five across, six rows: nobody stands on anybody
   }, [ok]);
   return <AbsoluteFill><canvas ref={ref} width={1080} height={1920} style={{width: '100%', height: '100%'}} /></AbsoluteFill>;
 };

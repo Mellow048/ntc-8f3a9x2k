@@ -85,7 +85,8 @@ const coinSide = () => tex('coin-side', 64, 32, (g, w, h) => {
 const coinFace = () => tex('coin-face', 128, 128, (g, w) => {
   g.fillStyle = '#ffd94f'; g.fillRect(0, 0, w, w);
   g.strokeStyle = '#b07f0a'; g.lineWidth = 9; g.beginPath(); g.arc(64, 64, 47, 0, 7); g.stroke();
-  g.fillStyle = '#b07f0a'; g.beginPath(); for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4 - Math.PI / 2, r = i % 2 ? 11 : 31; g.lineTo(64 + r * Math.cos(a), 64 + r * Math.sin(a)); } g.closePath(); g.fill();   // a four-point star: nobody's emblem
+  g.fillStyle = '#8a6208'; for (const x of [56, 70]) { g.fillRect(x, 26, 6, 14); g.fillRect(x, 88, 6, 14); }                     // the two strokes of the bitcoin sign
+  text(g, 'B', 64, 66, 62, '#8a6208');
 });
 const stackMats = new Map<number, THREE.Material[]>();
 /** a pile of n coins standing on (x, y, z). Lower it into the floor to take coins away: the ridges keep their size. */

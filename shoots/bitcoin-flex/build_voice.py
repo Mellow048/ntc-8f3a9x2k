@@ -111,7 +111,7 @@ def align(x48: np.ndarray, tokens: list[str]) -> list[tuple[float, float]]:
 
 
 # Deliberate beats: (narration line, word, seconds of silence added after that word in the finished read).
-BEATS = [(1, "month", 0.25), (4, "dollars", 0.2), (5, "flex", 0.15), (6, "online", 0.25), (7, "watching", 0.2), (8, "it", 0.25), (9, "first", 0.25), (10, "years", 0.25),
+BEATS = [(1, "supercars", 0.1), (1, "mansions", 0.12), (1, "nightclubs", 0.12), (1, "month", 0.25), (4, "dollars", 0.2), (5, "flex", 0.15), (6, "online", 0.25), (7, "watching", 0.2), (8, "it", 0.25), (9, "first", 0.25), (10, "years", 0.25),
          (11, "Quote", 0.15), (11, "time", 0.4), (12, "empire", 0.15), (12, "kids", 0.35)]
 # Spelled-out initials come with a pause after every letter. (narration line, word, seconds of silence left between its letters)
 SQUEEZE: list = [(7, "ZachXBT", 0.05), (9, "F.B.I.", 0.04)]
