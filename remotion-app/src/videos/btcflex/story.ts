@@ -45,10 +45,10 @@ const s = (word: number, kind: Kind, v: string, cam: V, target: V, fov: number, 
 export const SHOTS: Shot[] = [
   // 1  "He helped steal nearly a quarter of a billion dollars in bitcoin from one man. Then he showed it off: supercars, mansions,
   //     nightclubs. It lasted one month!"
-  s(0, 'coins', 'pile', [0.3, 1.75, 6.0], [0, 1.15, 0], 42, {push: 0.08}),                                 // 0
-  s(12, 'desk', 'one', [0.45, 1.75, 4.7], [0.15, 1.6, 0], 42, {push: 0.07}),                               // 1
+  s(0, 'coins', 'pile', [0.3, 1.5, 6.0], [0, 0.8, 0], 42, {push: 0.08}),                                    // 0
+  s(12, 'desk', 'one', [0.45, 1.45, 4.7], [0.15, 1.25, 0], 42, {push: 0.07}),                               // 1
   s(15, 'drive', 'selfie', [0.3, 1.5, 7.2], [0, 1.35, 3.4], 42, {push: 0.07, close: true}),                // 2
-  s(20, 'drive', 'row', [0.4, 3.6, 6.4], [0.2, 0.5, -0.2], 42, {push: 0.06}),                              // 3
+  s(20, 'drive', 'row', [0.4, 4.2, 7.4], [0.2, 0.4, -0.2], 42, {push: 0.06}),                              // 3
   s(21, 'villa', 'wide', [2.4, 2.0, 13.0], [0.2, 2.0, 0], 42, {push: 0.05}),                               // 4
   s(22, 'club', 'party', [0.3, 1.7, 5.2], [0.05, 1.65, -1.0], 42, {push: 0.07}),                           // 5
   s(23, 'cal', 'hook', [0, 1.9, 4.0], [0, 1.95, 0], 42, {push: 0.05}),                                     // 6
@@ -65,17 +65,17 @@ export const SHOTS: Shot[] = [
   s(59, 'mask', 'exchange', [0.35, 1.62, 3.9], [0.2, 1.58, 0], 42, {join: true, close: true}),             // 14  one take with 13: only the paper face changes
   s(64, 'desk', 'allow', [0.45, 1.98, 4.0], [0.36, 1.93, 0.3], 42, {push: 0.09}),                          // 15
   // 4  "Over forty-one hundred bitcoin vanished: more than two hundred thirty million dollars."
-  s(71, 'coins', 'drain', [0.25, 2.2, 6.4], [0.15, 1.45, 0], 42, {push: 0.06}),                            // 16
-  s(76, 'coins', 'gone', [0.25, 2.2, 6.4], [0.15, 1.45, 0], 42, {join: true}),                             // 17  one take with 16
+  s(71, 'coins', 'drain', [0.25, 1.9, 6.4], [0.15, 1.0, 0], 42, {push: 0.06}),                             // 16
+  s(76, 'coins', 'gone', [0.25, 1.9, 6.4], [0.15, 1.0, 0], 42, {join: true}),                              // 17  one take with 16
   // 5  "Then came the flex. Miami mansions. Private jets. Up to half a million dollars a night in clubs."
   s(83, 'drive', 'flex', [-0.3, 1.45, 7.4], [0, 1.3, 3.4], 42, {push: 0.08, close: true}),                 // 18
   s(87, 'villa', 'pool', [1.4, 5.4, 6.2], [0.0, 0.2, 1.2], 42, {push: 0.06}),                              // 19
-  s(89, 'jet', 'board', [-1.25, 1.9, 15.0], [-1.05, 2.1, 0.5], 42, {push: 0.04}),                          // 20
+  s(89, 'jet', 'board', [0.2, 2.0, 12.0], [-0.3, 1.8, -0.5], 42, {push: 0.03}),                             // 20
   s(91, 'club', 'bill', [-0.5, 1.6, 4.3], [-0.2, 1.6, -0.9], 42, {push: 0.08}),                            // 21
   s(97, 'club', 'receipt', [1.0, 1.5, 3.3], [1.1, 1.42, 1.5], 42, {push: 0.1, close: true}),               // 22
   // 6  "And some thirty exotic cars, one a three point eight million dollar Pagani. He was posting it online."
-  s(101, 'fleet', 'tower', [0, 3.6, 10.5], [0, 3.7, -2.0], 42, {push: 0.04}),                              // 23
-  s(106, 'fleet', 'hero', [0.9, 1.35, 5.4], [0, 0.72, 1.6], 42, {push: 0.07}),                             // 24
+  s(101, 'fleet', 'tower', [0, 3.3, 10.5], [0, 3.45, -2.0], 42, {push: 0.04}),                              // 23
+  s(106, 'fleet', 'hero', [1.5, 1.7, 6.8], [0, 0.8, 1.6], 42, {push: 0.07}),                               // 24
   s(114, 'feed', 'post', [0.2, 2.2, 6.4], [0, 2.2, 0], 42, {push: 0.05}),                                  // 25
   // 7  "Someone was watching. An investigator known only as ZachXBT followed the coins, and the posts."
   s(119, 'sleuth', 'watch', [-0.8, 1.62, 4.3], [-0.95, 1.6, 0], 42, {push: 0.07, close: true}),            // 26
@@ -87,19 +87,19 @@ export const SHOTS: Shot[] = [
   s(146, 'screen', 'rec', [0.3, 1.33, 3.17], [0.22, 1.25, -0.43], 42, {push: 0.04}),                       // 31
   // 9  "One month after the theft, the F.B.I. arrested him in Miami. The indictment says he dropped his phone into the bay first."
   s(150, 'cal', 'month', [0, 1.9, 4.0], [0, 1.95, 0], 42, {push: 0.05}),                                   // 32
-  s(155, 'villa', 'raid', [0.9, 1.6, 7.8], [0.9, 1.35, 3.0], 42, {push: 0.07}),                            // 33
+  s(155, 'villa', 'raid', [0.5, 1.6, 7.8], [0.5, 1.35, 2.7], 42, {push: 0.07}),                            // 33
   s(161, 'villa', 'dock', [0.2, 1.9, 10.4], [1.7, 1.45, 5.6], 42, {push: 0.05}),                           // 34
   s(168, 'deep', 'sink', [0, 1.7, 5.4], [0, 1.7, 0], 42, {push: 0.05}),                                    // 35
   // 10 "This September he pleaded guilty to racketeering conspiracy. He faces up to twenty years."
   s(172, 'court', 'plea', [0.2, 1.75, 6.6], [0, 1.6, -1.0], 42, {push: 0.05}),                             // 36
   s(180, 'court', 'years', [-0.5, 1.55, 2.9], [-0.8, 1.5, -0.45], 42, {push: 0.07, close: true}),          // 37
   // 11 "The judge asked which cars he bought himself. Quote: I would need some time."
-  s(186, 'court', 'judge', [0.25, 2.25, 1.3], [0, 2.2, -2.85], 42, {push: 0.06}),                          // 38
+  s(186, 'court', 'judge', [0.25, 2.1, 1.3], [0, 2.05, -2.85], 42, {push: 0.06}),                          // 38
   s(194, 'court', 'time', [-1.05, 1.6, 2.5], [-0.8, 1.55, -0.45], 42, {push: 0.06, close: true}),          // 39
   // 12 "Prosecutors call it a cybercrime empire. His lawyer: quote, a very sad case of a bunch of kids."
-  s(200, 'steps', 'pros', [-1.2, 1.7, 6.0], [-1.4, 1.75, 0.6], 42, {push: 0.05}),                          // 40
+  s(200, 'steps', 'pros', [-1.25, 1.85, 5.4], [-1.4, 1.85, 0.6], 42, {push: 0.05}),                          // 40
   s(206, 'steps', 'def', [1.8, 1.5, 4.9], [1.6, 1.5, 1.0], 42, {push: 0.06}),                              // 41
-  s(213, 'screen', 'kids', [0, 2.7, 4.6], [0, 2.75, -0.33], 42, {push: 0.05}),                             // 42
+  s(213, 'screen', 'kids', [0, 2.5, 4.6], [0, 2.5, -0.33], 42, {push: 0.05}),                              // 42
   // 13 "So who gets sentenced: a crime boss, or a kid in way over his head?"
   s(218, 'split', 'what', [0.15, 1.7, 8.1], [0, 1.95, 0], 42, {to: [0, 1.7, 8.3]}),                        // 43  it backs away a little
   s(222, 'split', 'choice', [0.15, 1.7, 8.1], [0, 1.95, 0], 42, {join: true}),                             // 44  one take with 43: the question, then a light on each side

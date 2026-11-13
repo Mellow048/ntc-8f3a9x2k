@@ -169,14 +169,14 @@ export const steps: Builder = (root) => {
   box(root, 14, 1.2, 5, '#efe9da', 0, 0.6, -6.4); box(root, 14, 6, 0.4, '#f1ede2', 0, 4.2, -6.2); box(root, 2.2, 3.6, 0.2, '#5a3a22', 0, 3.0, -5.95); box(root, 14, 0.7, 1.6, '#e3ddcd', 0, 7.0, -4.6);
   for (const x of [-4.2, -2.1, 2.1, 4.2]) { cyl(root, 0.36, 5.4, '#f6f3ea', x, 3.9, -4.4, 0.32, 20); box(root, 0.9, 0.2, 0.9, '#e3ddcd', x, 1.3, -4.4); }
   // on the left: the prosecutor's lectern and a flag; on the right: three microphones for the defence
-  lectern(root, -1.4, 1.0, '#6b4a30', signTex('steps-plaque', 580, 210, '#16223c', '#ffffff', [['U.S. ATTORNEY’S', 78, 0.32], ['OFFICE', 78, 0.72]], {border: '#c9a23a'})); flagPole(root, -2.75, 0.3, flagUS(), {h: 3.3, w: 1.0, left: true});
-  const pros = actor(root, PROSECUTOR, {a: {expr: 'stern', pose: 'desk'}, b: {expr: 'stern', pose: 'point'}}, -1.4, 0, 0.45, {scale: 1.0, res: 1.2, wide: true});
-  for (const [dx, c] of [[-0.55, '#e3342f'], [0, '#2f7fe0'], [0.55, '#ffd21f']] as const) { cyl(root, 0.12, 0.03, '#15161b', 1.6 + dx, 0.015, 1.75); cyl(root, 0.016, 1.3, '#15161b', 1.6 + dx, 0.65, 1.75); ball(root, 0.07, '#15161b', 1.6 + dx, 1.36, 1.75).scale.y = 1.4; box(root, 0.13, 0.1, 0.1, c, 1.6 + dx, 1.2, 1.75); }
+  lectern(root, -1.4, 1.0, '#6b4a30', signTex('steps-plaque', 580, 210, '#16223c', '#ffffff', [['U.S. ATTORNEY’S', 78, 0.32], ['OFFICE', 78, 0.72]], {border: '#c9a23a'})); flagPole(root, -2.3, 0.2, flagUS(), {h: 3.3, w: 1.0, left: true}); box(root, 1.0, 0.3, 0.7, '#e3ddcd', -1.4, 0.15, 0.4);
+  const pros = actor(root, PROSECUTOR, {a: {expr: 'stern', pose: 'desk'}, b: {expr: 'stern', pose: 'point'}}, -1.4, 0.3, 0.45, {scale: 1.0, res: 1.2, wide: true});
+  for (const [dx, c] of [[-0.62, '#e3342f'], [0, '#2f7fe0'], [0.62, '#ffd21f']] as const) { const top = dx ? 1.0 : 0.86; cyl(root, 0.12, 0.03, '#15161b', 1.6 + dx, 0.015, 1.75); cyl(root, 0.016, top, '#15161b', 1.6 + dx, top / 2, 1.75); ball(root, 0.07, '#15161b', 1.6 + dx, top + 0.06, 1.75).scale.y = 1.4; box(root, 0.13, 0.1, 0.1, c, 1.6 + dx, top - 0.1, 1.75); }   // chest high: a microphone at mouth height hides the mouth
   const def = actor(root, LAWYER, {a: {expr: 'neutral', pose: 'hold', prop: 'paper'}, b: {expr: 'nervous', pose: 'shrug'}}, 1.6, 0, 1.0, {scale: 1.0, res: 1.3, wide: true});
   return {
     light: () => LIGHT.day,
     tick: ({f, cam}) => {
-      pros.show(f >= W(204) ? 'b' : 'a'); pros.node.position.y = hop(f, W(204), 0.07, 8); pros.tick(f, cam);
+      pros.show(f >= W(204) ? 'b' : 'a'); pros.node.position.y = 0.3 + hop(f, W(204), 0.07, 8); pros.tick(f, cam);
       def.show(f >= W(209) ? 'b' : 'a'); def.node.position.y = hop(f, W(209), 0.07, 8); def.tick(f, cam);
     },
   };
@@ -189,17 +189,17 @@ export const split: Builder = (root) => {
   panel(root, 7, 8, tmat(tiled(foldTex('split-red', '#b0142c', '#5a0612', 8), 1.4, 1)), -3.5, 4, -2.3); panel(root, 7, 8, tmat(tiled(grainTex('split-blue', '#1a3aa8', 0.08), 4, 4)), 3.5, 4, -2.3);
   const line = box(root, 0.035, 0.012, 6.2, lit('#ffffff', 1.1), 0, 0.01, 0); line.castShadow = false;
   // the left half: a throne, a crown, money
-  const gold = '#d9a514'; box(root, 1.0, 0.5, 0.85, gold, -1.75, 0.25, -0.9); box(root, 1.0, 2.3, 0.16, gold, -1.75, 1.15, -1.3); for (const s of [-1, 1]) box(root, 0.14, 0.9, 0.85, gold, -1.75 + s * 0.5, 0.45, -0.9); for (const dx of [-0.36, 0, 0.36]) cone(root, 0.13, 0.4, gold, -1.75 + dx, 2.5, -1.3, 4);
-  box(root, 0.74, 0.1, 0.6, '#8a1024', -1.75, 0.55, -0.88);
-  const crown = grp(root, -1.0, 2.5, -0.2); const band = cyl(crown, 0.3, 0.17, gold, 0, 0, 0, 0.33, 24); band.castShadow = false; for (let i = 0; i < 5; i++) { const a = i * 1.2566 + 0.3; cone(crown, 0.085, 0.3, gold, 0.3 * Math.cos(a), 0.22, 0.3 * Math.sin(a), 4); ball(crown, 0.05, lit('#ff3b4c', 1.3), 0.3 * Math.cos(a), 0.4, 0.3 * Math.sin(a)); }
+  const gold = '#d9a514'; box(root, 1.0, 0.5, 0.85, gold, -1.5, 0.25, -0.9); box(root, 1.0, 2.3, 0.16, gold, -1.5, 1.15, -1.3); for (const s of [-1, 1]) box(root, 0.14, 0.9, 0.85, gold, -1.5 + s * 0.5, 0.45, -0.9); for (const dx of [-0.36, 0, 0.36]) cone(root, 0.13, 0.4, gold, -1.5 + dx, 2.5, -1.3, 4);
+  box(root, 0.74, 0.1, 0.6, '#8a1024', -1.5, 0.55, -0.88);
+  const crown = grp(root, -0.95, 2.5, -0.2); crown.scale.setScalar(1.3); const band = cyl(crown, 0.3, 0.17, gold, 0, 0, 0, 0.33, 24); band.castShadow = false; for (let i = 0; i < 5; i++) { const a = i * 1.2566 + 0.3; cone(crown, 0.085, 0.3, gold, 0.3 * Math.cos(a), 0.22, 0.3 * Math.sin(a), 4); ball(crown, 0.05, lit('#ff3b4c', 1.3), 0.3 * Math.cos(a), 0.4, 0.3 * Math.sin(a)); }
   const twinkle = glints(root, [[-0.78, 2.78, 0.1], [-1.24, 2.62, 0.1]]);
-  for (let i = 0; i < 6; i++) { const b = bundle(root, 1.1); b.position.set(-2.2 + (i % 3) * 0.36, 0.045 + Math.floor(i / 3) * 0.085, 0.9 + (i % 2) * 0.05); b.rotation.y = 0.2 * (i % 2 ? 1 : -1); }
+  for (let i = 0; i < 6; i++) { const b = bundle(root, 1.1); b.position.set(-1.85 + (i % 3) * 0.36, 0.045 + Math.floor(i / 3) * 0.085, 0.9 + (i % 2) * 0.05); b.rotation.y = 0.2 * (i % 2 ? 1 : -1); }
   // the right half: a controller, the game, a beanbag, a school bag
   const pad = grp(root, 1.0, 2.5, -0.2), grey = '#7f8aa8'; box(pad, 0.7, 0.26, 0.14, grey, 0, 0, 0); for (const s of [-1, 1]) { const gr = ball(pad, 0.2, grey, s * 0.38, -0.06, 0); gr.scale.set(1, 1.25, 0.6); }
   box(pad, 0.14, 0.045, 0.03, '#15161b', -0.22, 0.03, 0.08); box(pad, 0.045, 0.14, 0.03, '#15161b', -0.22, 0.03, 0.08);
   const dotsM = [0, 1, 2, 3].map(() => new THREE.MeshBasicMaterial({color: '#3a4260'})); ([[0.16, 0.03], [0.28, 0.03], [0.22, 0.09], [0.22, -0.03]] as const).forEach(([x, y], i) => { const o = ball(pad, 0.033, dotsM[i], x, y, 0.08); o.castShadow = false; });
-  box(root, 0.08, 1.2, 0.08, '#15161b', 1.75, 0.6, -0.8); box(root, 1.2, 0.8, 0.06, '#0a0c14', 1.75, 1.6, -0.8); soft(panel(root, 1.1, 0.7, smat(tex('split-game', 440, 280, (g, w, h) => blocks(g, w, h, 170, 28)), 1.1), 1.75, 1.6, -0.765));
-  const bag = ball(root, 0.6, '#2f5fe0', 1.55, 0.34, 0.15); bag.scale.set(1.15, 0.6, 1); box(root, 0.5, 0.6, 0.26, '#c81e3c', 2.15, 0.3, 1.0); const hd = torus(root, 0.13, 0.03, '#8a1024', 2.15, 0.62, 1.0); void hd; box(root, 0.3, 0.22, 0.03, '#8a1024', 2.15, 0.26, 1.14);
+  box(root, 0.08, 1.2, 0.08, '#15161b', 1.55, 0.6, -0.8); box(root, 1.2, 0.8, 0.06, '#0a0c14', 1.55, 1.6, -0.8); soft(panel(root, 1.1, 0.7, smat(tex('split-game', 440, 280, (g, w, h) => blocks(g, w, h, 170, 28)), 1.1), 1.55, 1.6, -0.765));
+  const bag = ball(root, 0.6, '#2f5fe0', 1.4, 0.34, 0.15); bag.scale.set(1.15, 0.6, 1); box(root, 0.5, 0.6, 0.26, '#c81e3c', 1.9, 0.3, 1.0); const hd = torus(root, 0.13, 0.03, '#8a1024', 1.9, 0.62, 1.0); void hd; box(root, 0.3, 0.22, 0.03, '#8a1024', 1.9, 0.26, 1.14);
   const spot = pool(root, 1.3, '#fff0c8', 0.36, 0, 0.3); beam(root, 0.12, 1.2, 7, '#fff0c8', 0.03, 0, 7, -0.4);
   const glowA = halo(root, 1.5, '#ffd21f', 0, -1.0, 2.5, -0.5), glowB = halo(root, 1.5, '#7ad0ff', 0, 1.0, 2.5, -0.5);
   const me = actor(root, LAM(0), {mid: {expr: 'nervous', pose: 'shrug'}, left: {expr: 'nervous', pose: 'shrug', look: -1}, right: {expr: 'nervous', pose: 'shrug', look: 1}}, 0, 0, 0.3, {scale: 1.0, res: 1.2, wide: true});

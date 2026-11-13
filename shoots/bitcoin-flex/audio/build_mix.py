@@ -2,23 +2,23 @@
 
     python shoots/bitcoin-flex/audio/build_mix.py
 
-Reads   ../voice/voice.wav, ../voice/words.json and the shot list in remotion-app/src/videos/truckstop/story.ts
+Reads   ../voice/voice.wav, ../voice/words.json and the shot list in remotion-app/src/videos/btcflex/story.ts
 Writes  mix.wav (48 kHz stereo, the film's whole soundtrack), cues.md (levels and every cue), ../qa-shots.json
 
 Everything but the voice is synthesized here with the kit in templates/audio; nothing is sampled. The mixing half
 (ducking, the 1.2-5 kHz pocket, the ceiling that keeps accents off the words, the limiter) is the one the other news
 films use; the tune, its instruments and every effect cue are this film's own.
 
-The score: a caper in B minor, five in a bar (three and two) at 100 beats a minute: a plucked bass with a riff, brushes,
-finger snaps and a tune on a vibraphone. The music takes part in the story. When the crew follows the truck, a second
-plucked voice plays the bass's riff one beat behind it. At the truck stop the bass is left with a clock that ticks once
-a beat; the driver in the bunk gets four notes of a lullaby on a music box; for the twenty-seven minutes the clock runs
-away and the bass climbs by semitones, and all of it stops on "gone". The cold case is a bare fifth and one ping that
-nobody answers, quieter with every year. When the case breaks, the pings answer each other going up, one for every
-tower on the route. The law's side is in D major, the same notes heard brightly: the show, the plea agreement, the
-investigation. "A different truck" is the caper a third too high on toy instruments. A hundred million is a kettledrum,
-a tuba and a chord; eight point seven is one tick of wood and one high note; the two sounds come back for A and B. The
-film ends on the tune's first four notes, which stop on the dominant.
+The score: F minor at 140 beats a minute, felt at half speed. One tune tells the story. "The flex" is a sub-bass, a kick,
+a clap on three, hats that roll and a four-note hook on bells; it plays under the hook and comes back when the spending
+starts, with a kick on every beat in the club. "It lasted one month" cuts it dead. His room is the same beat with
+everything taken out of it; the game lobby plays the hook as an old computer would. The callers get a low pulse, then
+cheerful hold music on a fife for each paper face, a tone higher for the second, and the jingle comes down a diminished
+chord when he lets them in. The coins leave on bells running down three octaves; the sum is a climb by semitones and a
+kettledrum. "Someone was watching" stops the beat on a low F; the investigator is a walking plucked bass with brushes and
+no drums. The arrest is the beat with nothing on top. In court there is one low chord and a toll for "twenty years", and
+no tune under a quotation. The prosecutors' "empire" is the hook's four notes on a tuba and a horn; the lawyer's "bunch of
+kids" is the same four notes on a music box, three octaves higher; the two sounds come back for A and B.
 """
 from __future__ import annotations
 
@@ -54,9 +54,8 @@ MUSIC_CEIL_FULL = -3.4         # the same for the whole spectrum, relative to th
 DUCK_DB = -4.0                 # how far the music dips under speech (it comes up for the breaths and the ending)
 # Words the read all but swallows, by word number: (lift for the voice, dip for music and effects) in dB, for that word only.
 # Measured with word_margins below (the last line of the cue sheet's header) before the first render, as the playbook asks.
-# Two reads far under what plays with them, both words the story needs: "eat" in "goes in to eat" (the read drops to -24.5 LUFS at
-# the end of the sentence, where a plate arrives: 2.4 LU under the bed before this) and "deal" in "has a plea deal" (0.9 LU under).
-WEAK_WORDS: dict[int, tuple[float, float]] = {75: (4.0, -3.0), 31: (2.5, -2.0)}
+# One content word sat under the bed: "vanished" (0.6 LU under the bells that run down and the coins).
+WEAK_WORDS: dict[int, tuple[float, float]] = {75: (2.0, -2.0)}
 
 WORDS = json.load(open(os.path.join(SHOOT, "voice", "words.json")))
 STORY = open(os.path.join(REPO, "remotion-app", "src", "videos", "btcflex", "story.ts")).read()
@@ -70,8 +69,8 @@ TOTAL = jsround((WORDS[-1]["end"] + 1.55) * FPS)
 DUR = TOTAL / FPS
 N = ns(DUR)
 CUTS = [max(0, Wf(int(m)) - 2) for m in re.findall(r"^\s*s\((\d+), '", STORY, re.M)]   # first frame of every shot
-assert len(CUTS) == 46 and CUTS[0] == 0, CUTS
-JOINS = {36, 37, 45}                                             # shots that carry on the take before them: not cuts
+assert len(CUTS) == 45 and CUTS[0] == 0, CUTS
+JOINS = {14, 17, 44}                                             # shots that carry on the take before them: not cuts
 cut_t = lambda i: CUTS[i] / FPS
 shot_end = lambda i: (CUTS[i + 1] if i + 1 < len(CUTS) else TOTAL) / FPS
 smoothstep = lambda f, a, b: (lambda u: u * u * (3 - 2 * u))(min(1.0, max(0.0, (f - a) / (b - a))))   # kit.ts smooth()
@@ -151,35 +150,26 @@ subn = lambda m, d=0.34: cached(("sub", m, d), lambda: synth_bass(m, d))
 
 
 # ------------------------------------------------------------------------------------------------ music
-# Five in a bar, counted three and two, at 100 beats a minute, in B minor. (The other six news films are in A minor at 112,
-# D minor at 104, G major / E minor at 118, C minor swung at 130, all four in a bar; F sharp minor at 174, three in a bar; and
-# G minor / B flat major at 72, six quavers in a bar. This one shares no key, no tempo and no metre with them.)
-# Bass fundamentals count towards the measured loudness but a phone speaker plays almost nothing under 300 Hz, so they are kept
-# modest and the level is carried by what a phone does play (the vibraphone, the brushes, the plucked follower, the pings).
-BPM = 100.0
+# F minor at 140 beats a minute, felt at half speed: a kick on one, a clap on three. (The other seven news films are in A minor
+# at 112, D minor at 104, G major / E minor at 118, C minor swung at 130, F sharp minor at 174 in three, G minor / B flat major
+# at 72 in six, and B minor at 100 in five. This one shares no key and no tempo with them.)
+# Bass fundamentals count towards the measured loudness but a phone speaker plays almost nothing under 300 Hz, so the sub-bass
+# has harmonics and the level is carried by what a phone does play (the bells, the hats, the clap).
+BPM = 140.0
 BEAT = 60.0 / BPM
 E8 = BEAT / 2
-BAR = 5 * BEAT
-KICK, BASS_MIX = 0.5, 0.7
+BAR = 4 * BEAT
+KICK, BASS_MIX = 0.6, 0.7
 BUS = {k: np.zeros((2, N + SR * 6)) for k in ("drums", "bass", "comp", "lead", "hits")}
-# the caper: B minor, B minor, G, F sharp seven. The bass riff, in ten quavers: (quaver, semitones above the root, weight)
-CHORDS = [(47, "m"), (47, "m"), (43, "M"), (42, "7")]
-RIFF = {"m": [(0, 0, 1.0), (2, 12, 0.5), (3, 3, 0.8), (5, 5, 0.8), (6, 7, 1.0), (8, 10, 0.7), (9, 7, 0.6)],
-        "M": [(0, 0, 1.0), (2, 12, 0.5), (3, 4, 0.8), (5, 5, 0.8), (6, 7, 1.0), (8, 9, 0.7), (9, 7, 0.6)],
-        "7": [(0, 0, 1.0), (2, 12, 0.5), (3, 4, 0.8), (5, 5, 0.8), (6, 7, 1.0), (8, 10, 0.7), (9, 4, 0.6)]}
-# the caper's tune on the vibraphone, bar by bar: (quaver, note, quavers)
-TUNE = [
-    [(0, 78, 3), (3, 74, 1), (4, 76, 1), (5, 78, 3), (8, 83, 2)],
-    [(0, 81, 2), (2, 78, 1), (3, 76, 2), (5, 74, 1), (6, 73, 1), (7, 74, 1), (8, 71, 2)],
-    [(0, 79, 3), (3, 74, 1), (4, 76, 1), (5, 79, 3), (8, 83, 2)],
-    [(0, 82, 2), (2, 78, 1), (3, 76, 2), (5, 73, 1), (6, 70, 1), (7, 73, 1), (8, 78, 2)],
-]
+ROOTS = [41, 37, 44, 39]                                          # F, D flat, A flat, E flat: a bar each
+# the hook on bells, bar by bar: (quaver, note). Its first four notes are C, A flat, F, A flat.
+HOOK = [[(0, 84), (3, 80), (5, 77), (6, 80)], [(0, 80), (3, 77), (5, 73), (6, 77)], [(0, 84), (3, 80), (5, 75), (6, 80)], [(0, 82), (3, 79), (5, 75), (6, 79)]]
 vibe = lambda m, d=1.2: cached(("vibe", m, round(d, 2)), lambda: I.vibes(m2f(m), 0.6, R, d))
 mbox = lambda m, d=1.4: cached(("mbox", m, round(d, 2)), lambda: I.musicbox(m2f(m), 0.6, R, d))
 
 
 def sonar(m, d=1.5):
-    """a ping: one pure note with a soft start and two echoes, each quieter. The sound of a phone finding a tower."""
+    """a ping: one pure note with a soft start and two echoes, each quieter"""
     f, t = m2f(m), tt(d)
     one = (np.sin(TAU * f * t) + 0.18 * np.sin(TAU * 2 * f * t)) * np.exp(-t / 0.22) * np.clip(t / 0.004, 0, 1)
     y = one.copy()
@@ -197,34 +187,55 @@ def put(bus, x, t, gain=1.0, p=0.0):
         place(BUS[bus], pan(x, p) if x.ndim == 1 else x, t, gain)
 
 
-def caper_bar(t0, k, level, tune=None, until=None, tail=False, start=0):
-    """one bar of the caper, bar k of its four. level 1 = the plucked bass, 2 = + brushes, 3 = + a kick on one and four and a
-    snap on three and five. tune = the bar of the tune the vibraphone plays. tail = a second plucked voice plays the bass's
-    riff two octaves up and one beat late: somebody is following. start = first quaver played (to begin in the middle of a bar)."""
+def flex_bar(t0, k, kind="trap", hook=True, until=None, g=1.0):
+    """one bar of the flex, bar k of its four. kind: "trap" = sub-bass, kick on one, clap on three, rolling hats; "four" = a kick
+    on every beat and a clap on two and four (the club); "bare" = the sub-bass and the hats only (his room);
+    "chip" = the hook and a bass on square waves, no drums (the game)."""
     live = lambda t: until is None or t < until - 0.03
-    root, kind = CHORDS[k % 4]
-    for q, iv, g in RIFF[kind]:
-        t = t0 + q * E8
-        if q < start or not live(t):
-            continue
-        put("bass", bassn(root + iv, 0.6 if q in (0, 6) else 0.36), t, g)
-        if tail and live(t + BEAT):
-            put("lead", harp(root + iv + 24, 0.7), t + BEAT, 0.42 * g, 0.4)
-    if level >= 2:
-        for q in range(start, 10):
+    root = ROOTS[k % 4]
+    if kind == "chip":
+        for q in range(8):
             if live(t0 + q * E8):
-                put("drums", I.brush(0.55 if q in (0, 6) else 0.3, R, 0.3, swish=q in (0, 6)), t0 + q * E8, 1.0, 0.25 if q % 2 else -0.25)
-    if level >= 3:
-        for q in (0, 6):
-            if q >= start and live(t0 + q * E8):
-                put("drums", kick(KICK), t0 + q * E8)
-        for q in (4, 8):
-            if q >= start and live(t0 + q * E8):
-                put("drums", clap(), t0 + q * E8, 0.3, 0.15)
-    if tune is not None:
-        for q, m, n in TUNE[tune]:
-            if q >= start and live(t0 + q * E8):
-                put("lead", vibe(m, 0.5 + 0.3 * n), t0 + q * E8, 0.5, -0.15)
+                put("bass", chipn(root + 12 + (7 if q % 4 == 2 else 0), 0.16), t0 + q * E8, 0.34 * g, -0.2)
+    else:
+        for q, d, w in ((0, 1.1, 1.0), (5, 0.4, 0.7)):
+            if live(t0 + q * E8):
+                put("bass", subn(root, d), t0 + q * E8, w * g)
+        for q in range(8):
+            if live(t0 + q * E8):
+                put("drums", hat(0.5 if q % 2 == 0 else 0.34), t0 + q * E8, g, 0.25 if q % 2 else -0.25)
+            if q in (3, 7) and kind != "bare":                    # the roll: two more, twice as fast
+                for r in (1, 2):
+                    if live(t0 + q * E8 + r * E8 / 3):
+                        put("drums", hat(0.26), t0 + q * E8 + r * E8 / 3, g, 0.3)
+        if kind == "trap":
+            for q in (0, 5):
+                if live(t0 + q * E8):
+                    put("drums", kick(KICK), t0 + q * E8, g)
+            if live(t0 + 4 * E8):
+                put("drums", clap(), t0 + 4 * E8, 0.34 * g, 0.1)
+        if kind == "four":
+            for q in (0, 2, 4, 6):
+                if live(t0 + q * E8):
+                    put("drums", kick(KICK), t0 + q * E8, g)
+            for q in (2, 6):
+                if live(t0 + q * E8):
+                    put("drums", clap(), t0 + q * E8, 0.34 * g, 0.1)
+    if hook:
+        for q, m in HOOK[k % 4]:
+            if live(t0 + q * E8):
+                if kind == "chip":
+                    put("lead", chipn(m, 0.2), t0 + q * E8, 0.4 * g, 0.15)
+                else:
+                    put("lead", glock(m, 1.0), t0 + q * E8, 0.5 * g, -0.15)
+                    put("lead", mbox(m - 12, 0.9), t0 + q * E8, 0.3 * g, 0.2)
+
+
+def flex(t0, t1, kind="trap", hook=True, g=1.0, k0=0):
+    k = 0
+    while t0 + k * BAR < t1 - 0.05:
+        flex_bar(t0 + k * BAR, k0 + k, kind, hook, t1, g)
+        k += 1
 
 
 def build_music():
@@ -235,234 +246,164 @@ def build_music():
         for j, m in enumerate(notes):
             put("comp", voice(m, 1.3), t + gap * j, g, -0.3 + 0.6 * j / max(1, len(notes) - 1))
 
-    def sparkle(t0, t1, notes, step=E8, g=0.26):
-        """the show's music: a glockenspiel and a music box go up and down one chord"""
-        n = 0
-        while t0 + n * step < t1 - 0.05:
-            m = notes[n % len(notes)]
-            put("lead", glock(m, 0.9), t0 + n * step, g, -0.3 + 0.6 * ((n * 3) % 5) / 4)
-            put("lead", mbox(m - 12, 1.2), t0 + n * step, g * 0.8, 0.2)
-            n += 1
-
     def heavy(t, g=1.0):
-        """what a hundred million weighs: a kettledrum, a tuba, a chord on the vibraphone, a glint on top"""
-        put("hits", I.timpani(m2f(35), 0.95, R, 1.8), t, 1.0 * g)
-        put("hits", I.brass(m2f(35), 0.9, 0.85, R, "tuba"), t, 0.5 * g)
-        rolled(t, (59, 62, 66, 73), 0.5 * g, 0.018, vibe)
-        put("lead", glock(90, 1.4), t + 0.08, 0.2 * g, 0.3)
+        """what an empire weighs: a kettledrum, a tuba, a low chord"""
+        put("hits", I.timpani(m2f(41), 0.95, R, 1.8), t, 1.0 * g)
+        put("hits", I.brass(m2f(41), 0.9, 0.85, R, "tuba"), t, 0.5 * g)
+        rolled(t, (53, 56, 60, 65), 0.45 * g, 0.018, vibe)
 
     def light(t, g=1.0):
-        """what a form weighs: one tick of wood and one high note of the music box"""
-        put("hits", I.triangle(0.4, R, 0.5, f=2100.0), t, 0.5 * g, 0.3)
-        put("lead", mbox(95, 0.9), t, 0.5 * g, 0.3)
+        """what a kid weighs: two notes of a music box and one blip of a game"""
+        put("lead", mbox(84, 0.9), t, 0.5 * g, 0.3); put("lead", mbox(89, 1.1), t + 0.12, 0.5 * g, 0.3)
+        put("lead", chipn(96, 0.1), t + 0.24, 0.3 * g, 0.4)
 
-    # ---- 1: the hook. The caper at full strength from the first frame: bass, brushes, snaps and the tune.
-    a1 = cut_t(4) - 0.04
-    n = 0
-    while n * BAR < a1 - 0.05:
-        caper_bar(n * BAR, n, 3, tune=n, until=a1)
-        n += 1
-    put("hits", I.cymbal(0.3, R, 1.0), 0.0, 0.25)
-    EVENTS.append((0.0, "music in", f"the caper, in B minor, five in a bar at {BPM:.0f} beats a minute: a plucked bass, brushes, finger snaps, the tune on a vibraphone"))
-    put("drums", I.snare(0.7, R, 0.25, snappy=0.6), a1, 0.6)
-    EVENTS.append((a1, "music cut dead", "one snare stroke on the cut to the seven: 'Now one of the accused has a plea deal'"))
-    #         the deal: one chord that waits, and a bright note for the stamp
-    thin(a1 + 0.05, cut_t(6) - 0.05, (62, 66, 69, 76), 0.36, 2600.0, 0.15, 0.3)
-    put("lead", glock(86, 1.2), F(30), 0.3, 0.2); put("hits", I.triangle(0.45, R, 0.9), F(30), 0.5, 0.3)
-    EVENTS.append((a1 + 0.05, "held chord", "D major with a ninth under the plea agreement: the law's side of the story is in the major"))
+    def walk(t0, t1, g=1.0, answer=True):
+        """the investigator: a plucked bass walking in quavers, brushes, a chord on the vibraphone answering; no drums"""
+        line = [41, 44, 46, 48, 49, 48, 46, 44, 41, 39, 41, 44, 46, 44, 41, 36]
+        q = 0
+        while t0 + q * E8 < t1 - 0.05:
+            t = t0 + q * E8
+            put("bass", bassn(line[q % 16], 0.4), t, 0.9 * g)
+            put("drums", I.brush(0.5 if q % 4 == 0 else 0.3, R, 0.3, swish=q % 4 == 0), t, 0.9 * g, 0.25 if q % 2 else -0.25)
+            if answer and q % 16 == 6 and t < t1 - 0.6:
+                rolled(t, (65, 68, 72, 75), 0.3 * g, 0.02, vibe)
+            q += 1
 
-    # ---- 2: the show. D major, the caper's own notes heard brightly: a glockenspiel and a music box, a pedal D under the truck.
-    b0, b1 = cut_t(6), F(47)
-    sparkle(b0, b1 - 0.02, (74, 78, 81, 86, 81, 78))
-    thin(b0, cut_t(9) + 0.3, (50, 57, 62, 66), 0.3, 1800.0, 0.2, 0.4)
-    for j in range(4):
-        put("bass", bassn(38, 0.8), cut_t(7) + j * BEAT, 0.8)
-    rolled(b1, (74, 78, 81, 86, 90), 0.55); put("hits", I.triangle(0.5, R, 1.2), b1, 0.6, -0.3)
-    EVENTS.append((b0, "the show", "D major: a glockenspiel and a music box up and down one chord, a low D when the truck pulls out"))
-    EVENTS.append((b1, "harp chord", "'seventy-three': the chord, rolled, on the stamp"))
-
-    # ---- 3: the tail. The bass's riff again, and a second voice that plays it one beat behind, two octaves up.
-    c0, c1 = cut_t(10), cut_t(12) - 0.04
-    caper_bar(c0, 0, 2, until=c1, tail=True)
-    EVENTS.append((c0, "the bass, followed", "'a crew followed it': the riff, and the same riff one beat late on a second plucked voice"))
-
-    # ---- 4: two in the morning. The bass alone on one and four, and a clock: one tick a beat.
-    d0, d1 = cut_t(12), cut_t(16)
-    n = 0
-    while d0 + n * BEAT < d1 - 0.05:
-        t = d0 + n * BEAT
-        put("drums", I.triangle(0.3, R, 0.12, f=1700.0), t, 0.55, 0.3 if n % 2 else -0.3)
-        if n % 5 in (0, 3):
-            put("bass", bassn(47 if n % 5 == 0 else 54, 0.9), t, 0.9)
-        n += 1
-    thin(d0, d1, (59, 66), 0.16, 2200.0, 0.4, 0.3)
-    rolled(cut_t(14) + 0.05, (62, 66, 69, 71), 0.42, 0.03, vibe)
-    lull = cut_t(15) + 0.12
-    for j, m in enumerate((78, 81, 78, 74)):
-        put("lead", mbox(m, 1.3), lull + j * BEAT * 0.56, 0.5, 0.25)
-    EVENTS.append((d0, "a clock and a bass", "2:05 a.m.: one tick on every beat, the bass on one and four"))
-    EVENTS.append((cut_t(14) + 0.05, "vibraphone chord", "the diner: D with a sixth, warm"))
-    EVENTS.append((lull, "music box", "four notes of a lullaby for the driver in the bunk"))
-
-    # ---- 5: twenty-seven minutes. The clock runs away, the bass climbs a semitone at a time, and everything stops on "gone".
-    e0, e1, e2 = cut_t(16), F(89), F(94)
-    n = 0
-    while e0 + n * E8 / 2 < e1 - 0.03:
-        t = e0 + n * E8 / 2
-        put("drums", I.triangle(0.3, R, 0.08, f=1700.0 + 25 * n), t, 0.5, 0.3 if n % 2 else -0.3)
-        if n % 2 == 0:
-            put("bass", bassn(47 + n // 2, 0.36), t, 0.85)
-        n += 1
-    put("hits", I.cymbal(0.4, R, 0.5), e1, 0.4)
-    for j, (m, q) in enumerate(((78, 0), (74, 1.5), (76, 2.5), (78, 3.5))):
-        put("lead", vibe(m, 0.8), e1 + 0.12 + q * (e2 - e1 - 0.2) / 4.5, 0.55, -0.15)
-    put("hits", I.timpani(m2f(35), 0.9, R, 1.6), e2, 0.9); put("bass", bassn(35, 1.2), e2, 1.0)
-    EVENTS.append((e0, "the clock runs away", "'twenty-seven minutes later': ticks twice as fast and the bass climbing by semitones"))
-    EVENTS.append((e1, "the tune's first four notes", "under 'twenty-four bags are gone', on the vibraphone alone"))
-    EVENTS.append((e2, "kettledrum, and nothing", "a low B on 'gone'"))
-
-    # ---- 6: the cold case. A bare fifth, held, and one ping that nobody answers: each time a year goes by it is quieter.
-    f0, f1 = F(94) + 0.25, cut_t(21)
-    thin(f0, f1 + 0.2, (47, 54, 59), 0.3, 1500.0, 0.5, 0.4)
-    for j, t in enumerate((cut_t(19) + 1 / FPS, F(96, 2), F(97, 3), F(98, 3))):
-        put("lead", pingn(90), t, 0.5 * 0.72 ** j, 0.3 - 0.2 * j)
-    put("bass", bassn(35, 1.4), F(99), 0.9)
-    EVENTS.append((f0, "a bare fifth", "nearly three years: B and F sharp, neither major nor minor"))
-    EVENTS.append((cut_t(19) + 1 / FPS, "a ping, four times", "one note with two echoes for each year on the calendar, quieter every time"))
-
-    # ---- 7: the break. A major chord when the light comes on; then the pings answer each other, going up, over a new bass.
-    g0, g1 = cut_t(21), cut_t(25) - 0.04
-    rolled(g0 + 2 / FPS, (62, 66, 69, 74, 78), 0.6, 0.03, vibe); put("lead", glock(86, 1.3), g0 + 2 / FPS, 0.25, 0.2)
-    thin(g0 + 0.1, cut_t(23), (50, 57, 62, 66), 0.3, 2000.0, 0.2, 0.4)
-    n = 0
-    while cut_t(22) + n * E8 < g1 - 0.05:
-        t, q = cut_t(22) + n * E8, n % 10
-        if q in (0, 3, 6, 8):
-            put("bass", bassn(38 if q in (0, 6) else 45, 0.5), t, 0.85)
-        put("drums", I.brush(0.5 if q in (0, 6) else 0.28, R, 0.3, swish=q in (0, 6)), t, 0.9, 0.25 if n % 2 else -0.25)
-        n += 1
-    row = [(cut_t(23) + 2 / FPS, 78), (cut_t(23) + 7 / FPS, 81)] + [(cut_t(24) + k / FPS, m) for k, m in ((0, 83), (3, 86), (8, 88), (12, 90), (16, 93), (22, 95))]
-    for j, (t, m) in enumerate(row):
-        put("lead", pingn(m), t, 0.46, -0.4 + 0.8 * j / (len(row) - 1))
-    EVENTS.append((g0 + 2 / FPS, "vibraphone chord", "'The break': D major when the lamp comes on over the box"))
-    EVENTS.append((cut_t(22), "a new bass", "the investigation: D and A, three and two, with brushes"))
-    EVENTS.append((cut_t(23) + 2 / FPS, "pings, going up", "two for the phones, then one for every tower on the route as it lights: B, D, E, F sharp, A, B"))
-
-    # ---- 8: the collision. The bass on tiptoe, coming down; a note for every digit; a horn that droops; a rimshot.
-    h0, h1 = cut_t(25), cut_t(28) - 0.04
-    for j, m in enumerate((59, 57, 55, 54, 52, 50)):
-        if h0 + j * BEAT < F(121):
-            put("bass", bassn(m - 12, 0.5), h0 + j * BEAT, 0.9); put("lead", harp(m + 12, 0.5), h0 + j * BEAT, 0.3, 0.3)
-    for j, m in enumerate((74, 76, 73, 71, 78, 78, 78)):                  # 2, 4, 1, 0, 5, 5, 5: the last digit leaves first
-        put("lead", vibe(m, 0.5), F(122, 4 * j), 0.5, -0.3 + 0.1 * j)
-    thin(F(127), cut_t(27), (59, 62, 66, 69), 0.26, 2400.0, 0.2, 0.3)
-    put("hits", I.brass(m2f(57), 0.5, 0.7, R, "horn", fall=-3.0), F(132), 0.5)
-    put("drums", I.snare(0.6, R, 0.2, snappy=0.5), F(135) + 0.42, 0.55); put("drums", kick(KICK), F(135) + 0.42)
-    EVENTS.append((h0, "the bass on tiptoe", "'one of the crew': one note a beat, coming down, a harp an octave above"))
-    EVENTS.append((F(122), "seven notes", "one for each digit of the number as it crosses to the officer's pad"))
-    EVENTS.append((F(132), "a horn that droops", "'a witness'"))
-    EVENTS.append((F(135) + 0.42, "rimshot", "after 'a crash'"))
-
-    # ---- 9: seven charged: seven notes up the scale, one a man. Then an airport: three steps of the bass and a stop.
-    i0 = cut_t(28)
-    for j, m in enumerate((59, 61, 62, 64, 66, 67, 69)):
-        t = i0 + (2 + 3 * j) / FPS
-        put("lead", vibe(m + 12, 0.6), t, 0.5, -0.45 + 0.15 * j); put("bass", bassn(m - 12, 0.4), t, 0.7); put("drums", I.snare(0.35 + 0.05 * j, R, 0.16, snappy=0.4), t, 0.4)
-    put("hits", I.cymbal(0.4, R, 1.2), i0 + 23 / FPS, 0.4); put("lead", vibe(83, 1.4), i0 + 23 / FPS, 0.6); put("bass", bassn(35, 1.0), i0 + 23 / FPS, 0.9)
-    thin(i0 + 0.8, cut_t(29), (59, 62, 66), 0.2, 2200.0, 0.2, 0.2)
-    j0 = cut_t(29)
-    for j, m in enumerate((47, 50, 52)):
-        if j0 + 0.06 + j * E8 < F(142, -2) - 0.05:
-            put("bass", bassn(m, 0.36), j0 + 0.06 + j * E8, 0.9); put("drums", I.brush(0.4, R, 0.3), j0 + 0.06 + j * E8, 0.9)
-    put("drums", I.snare(0.7, R, 0.22, snappy=0.6), F(142, -2), 0.6); put("drums", kick(KICK), F(142, -2))
-    thin(F(142), cut_t(30), (54, 59, 61, 66), 0.32, 2200.0, 0.15, 0.3)
-    EVENTS.append((i0 + 2 / FPS, "seven notes up the scale", "'Seven men were charged': one note and one snare stroke as each of them is lit, B to A, and the octave on the last"))
-    EVENTS.append((F(142, -2), "snare, and a held chord", "'stopped': the bass had taken three steps"))
-
-    # ---- 10: the deal. A chord under the page; then the caper in the wrong key on toy instruments: a different truck.
-    k0, k1, k2 = cut_t(30), cut_t(31), cut_t(33) - 0.04
-    thin(k0, k1, (62, 66, 69, 76), 0.34, 2600.0, 0.2, 0.3)
-    for q, iv, g in RIFF["m"]:
-        t = k1 + q * E8
-        if t < k2 - 0.03:
-            put("comp", harp(50 + iv + 12, 0.6), t, 0.5 * g, -0.2)
-    for q, m, n in TUNE[0]:
-        if k1 + q * E8 < k2 - 0.03:
-            put("lead", mbox(m + 3, 0.5 + 0.3 * n), k1 + q * E8, 0.55, 0.2)
-    EVENTS.append((k0, "held chord", "the plea agreement: the same D major as in the first seconds"))
-    EVENTS.append((k1, "the caper, a third too high, on toys", "'a different truck': the riff on a harp and the tune on a music box, in D minor"))
-
-    # ---- 11: the same deal. The chord again, and on "the jewel heist" the real tune, in its own key, with everything.
-    l0, l1 = cut_t(33), cut_t(34)
-    thin(l0, l1, (62, 66, 69, 76), 0.3, 2600.0, 0.2, 0.25)
-    caper_bar(l1, 0, 3, tune=0, until=cut_t(35) - 0.04)
-    put("hits", I.cymbal(0.4, R, 1.0), F(170), 0.35)
-    EVENTS.append((l1, "the caper, as it was", "'the jewel heist': bass, brushes, snaps and the tune in B minor, less than half a bar of it"))
-
-    # ---- 12: where the seven are. The bass keeps walking; three notes for three pleas, two for two outlines, one for one man gone.
-    m0, m1 = cut_t(35), cut_t(38) - 0.04
-    n = 0
-    while m0 + n * BAR < m1 - 0.05:
-        caper_bar(m0 + n * BAR, n, 2 if n == 0 else 1, until=m1)
-        n += 1
-    for j, m in enumerate((71, 74, 78)):
-        put("lead", vibe(m, 0.9), F(175, -2 + 4 * j), 0.55, -0.3 + 0.3 * j)
-    for j, m in enumerate((67, 71)):
-        put("lead", harp(m + 12, 0.9), F(180, -2 + 4 * j), 0.5, -0.2 + 0.4 * j)
-    put("lead", mbox(78, 1.6), F(184, -2), 0.6, 0.3)
-    EVENTS.append((m0, "the bass walks on", "one take over the seven: the riff, quieter"))
-    EVENTS.append((F(175, -2), "three notes, two notes, one note", "a vibraphone for each plea of not guilty, a harp for each man never arrested, a music box for the one deported"))
-
-    # ---- 13: the courtroom. One chord, and a horn that says "oh" twice, the second time lower.
-    o0, o1 = cut_t(38), cut_t(39) - 0.04
-    thin(o0, o1, (55, 59, 62, 69), 0.3, 2000.0, 0.2, 0.3)
-    put("hits", I.brass(m2f(64), 0.3, 0.7, R, "horn", fall=-2.0), F(190), 0.5); put("hits", I.brass(m2f(61), 0.55, 0.7, R, "horn", fall=-4.0), F(191), 0.5)
-    put("bass", bassn(43, 1.0), o0, 0.8)
-    EVENTS.append((o0, "held chord", "G with a ninth: the prosecutor reads, then looks up"))
-    EVENTS.append((F(190), "two notes on a horn", "'didn't know': E, then C sharp, each one drooping"))
-
-    # ---- 14: the jewelers. The show's music, in the minor and at half the pace.
-    p0, p1 = cut_t(39), cut_t(41) - 0.04
-    sparkle(p0 + 0.1, p1, (83, 86, 90, 86), BEAT, 0.24)
-    thin(p0, p1 + 0.1, (47, 54, 59, 62), 0.3, 1700.0, 0.3, 0.3)
-    EVENTS.append((p0, "the show, in the minor", "'still missing': the glockenspiel and the music box, one note a beat, B minor"))
-
-    # ---- 15, 16: the two numbers. A hundred million is heavy; eight point seven is one tick of wood.
-    A, B = F(205, 6), F(212, 8)
-    heavy(A)
-    thin(A + 0.1, cut_t(42), (47, 54, 59, 62), 0.22, 1700.0, 0.2, 0.3)
-    q0 = cut_t(42)
-    for j, m in enumerate((59, 57, 54)):
-        put("bass", bassn(m - 12, 0.5), q0 + 0.1 + j * BEAT, 0.9); put("lead", harp(m + 12, 0.5), q0 + 0.1 + j * BEAT, 0.3, 0.3)
-    thin(q0, cut_t(44), (54, 61, 66), 0.2, 2400.0, 0.3, 0.3)
-    light(B)
-    EVENTS.append((A, "kettledrum, tuba, a chord", "'a hundred million dollars': the jewels land on the pan"))
-    EVENTS.append((q0 + 0.1, "the bass on tiptoe", "'Brink's says they declared': three notes"))
-    EVENTS.append((B, "one tick and one high note", "'eight point seven million': the form lands on the other pan"))
-
-    # ---- 17: the question. The dominant hangs; the heavy sound for A, the light one for B; the tune's first notes, unfinished.
-    z0, za, zb = cut_t(44), F(222, -2), F(227, -2)
-    thin(z0, DUR + 0.5, (42, 54, 59, 61, 64), 0.36, 1700.0, 0.35, 0.8)
-    n = 0
-    while z0 + n * E8 < za - 0.05:
-        put("comp", harp((66, 71, 73, 76, 73, 71)[n % 6], 0.9), z0 + n * E8, 0.32, -0.3 + 0.12 * (n % 6))
-        if n % 5 == 0:
-            put("bass", bassn(42, 0.8), z0 + n * E8, 0.85)
-        n += 1
+    # the hook (shots 0-5): the flex
+    flex(0.0, cut_t(6))
+    EVENTS.append((0.0, "music in", "the flex, in F minor at 140 beats a minute felt at half speed: a sub-bass, a kick, a clap on three, hats that roll, a bell hook"))
+    # "It lasted one month!": the music is cut dead; the clock's two ticks are effects
+    put("drums", clap(), cut_t(6), 0.4); put("bass", subn(41, 1.2), cut_t(6), 0.9)
+    EVENTS.append((cut_t(6), "music cut dead", "'It lasted one month': one clap and a low F, then two ticks of a clock on 'one month'"))
+    # his room (7, 8): the beat, emptied
+    flex(cut_t(7), cut_t(9), "bare", False); thin(cut_t(7), cut_t(9), (53, 56, 60, 63), 0.12)
+    EVENTS.append((cut_t(7), "the beat, emptied", "August 2024, his room: only the sub-bass and the hats, and F minor with a seventh held over them"))
+    # the globe (9): D flat major, the brightest chord so far; a harp goes up as the line leaves Singapore
+    thin(cut_t(9), cut_t(10), (49, 53, 56, 61), 0.16, att=0.1); put("bass", subn(37, 1.5), cut_t(9), 0.7)
+    for j, m in enumerate((61, 65, 68, 73, 77, 80, 85)):
+        put("lead", harp(m, 1.2), F(38) + j * 0.07, 0.5, -0.3 + 0.1 * j)
+    EVENTS.append((cut_t(9), "held chord", "the globe: D flat major, the film's brightest chord so far"))
+    EVENTS.append((F(38), "harp, rising", "the line leaves Singapore and goes east: seven notes up, on the word"))
+    # the lobby (10): the hook as a game would play it
+    flex(cut_t(10), cut_t(11), "chip")
+    EVENTS.append((cut_t(10), "the hook, eight-bit", "'a crew that met through online games': the hook on square waves"))
+    # the callers (11, 12): a low pulse, a diminished chord; the telephone is an effect
+    k = 0
+    while cut_t(11) + k * BEAT < cut_t(13) - 0.05:
+        put("bass", subn(41 if k % 8 < 6 else 40, 0.3), cut_t(11) + k * BEAT, 0.8); put("drums", hat(0.3), cut_t(11) + k * BEAT + E8, 0.7, 0.2)
+        k += 1
+    thin(cut_t(11), cut_t(13), (53, 56, 59), 0.1)
+    EVENTS.append((cut_t(11), "a low pulse", "'Prosecutors say they phoned a man': the bass on every beat, one hat between, a diminished chord"))
+    # 13, 14: hold music for each paper face: a cheerful jingle in A flat on a fife and bells, then a tone higher
+    def jingle(t0, t1, up):
+        tune, q, step = [68, 72, 75, 80, 77, 75, 72, 75], 0, 0.165
+        while t0 + q * step < t1 - 0.08:
+            m = tune[q % 8] + up
+            put("lead", fife(m, 0.13), t0 + q * step, 0.5, -0.1); put("lead", glock(m + 12, 0.5), t0 + q * step, 0.22, 0.25)
+            if q % 2 == 0:
+                put("bass", bassn(44 + up + (7 if q % 4 == 2 else 0), 0.3), t0 + q * step, 0.6)
+            q += 1
+    jingle(cut_t(13), cut_t(14), 0); jingle(cut_t(14), cut_t(15), 2)
+    EVENTS.append((cut_t(13), "hold music", "'posing as Google security': a cheerful jingle in A flat major, fife and bells, for the paper face"))
+    EVENTS.append((cut_t(14), "hold music, a tone higher", "'then as his crypto exchange': the same jingle in B flat for the second paper face"))
+    # 15: the jingle goes sour; then a kettledrum and brass when the program is in
+    for j, m in enumerate((82, 79, 76, 73, 70, 67)):
+        put("lead", fife(m, 0.15), cut_t(15) + 0.05 + j * 0.17, 0.5 - 0.05 * j, -0.1)
+    thin(cut_t(15), F(68, 3), (52, 55, 58, 61), 0.14)
+    t = F(68, 3)
+    put("hits", I.timpani(m2f(41), 0.95, R, 1.6), t, 1.0); put("hits", I.brass(m2f(41), 0.8, 0.85, R, "tuba"), t, 0.5); put("hits", I.brass(m2f(53), 0.6, 0.8, R, "horn"), t, 0.35)
+    thin(t, cut_t(16), (53, 56, 59), 0.13, att=0.05)
+    EVENTS.append((cut_t(15) + 0.05, "the jingle goes sour", "'until he let them': the tune comes down a diminished chord"))
+    EVENTS.append((t, "kettledrum and brass", "'into his computer': the program is in, and the screen turns red"))
+    # 16: the coins go: bells running down three octaves as the piles sink
+    for j, m in enumerate((89, 87, 84, 82, 80, 77, 75, 72, 70, 68, 65, 63, 60, 58, 56)):
+        put("lead", glock(m, 0.8), cut_t(16) + 0.3 + j * 0.105, 0.42, -0.4 + 0.8 * j / 14)
+    thin(cut_t(16), cut_t(17), (41, 53, 56, 60), 0.12)
+    EVENTS.append((cut_t(16) + 0.3, "bells, running down", "'forty-one hundred bitcoin': fifteen notes down three octaves as the piles sink"))
+    # 17: the sum: a climb by semitones under the counter, and a kettledrum when it stops
+    t0, t1 = cut_t(17) + 0.1, F(81)
+    for j in range(12):
+        put("lead", chipn(53 + j, 0.14), t0 + (t1 - t0) * j / 12, 0.3 + 0.02 * j, -0.3 + 0.05 * j)
+    heavy(t1); put("lead", glock(89, 1.4), t1 + 0.08, 0.2, 0.3)
+    EVENTS.append((t0, "a climb", "'more than two hundred thirty million': a square wave up by semitones under the counter"))
+    EVENTS.append((t1, "kettledrum, brass, a chord", "'million': the counter stops on $230 MILLION+"))
+    # 18-25: "Then came the flex": the beat and the hook again; a kick on every beat in the club
+    flex(cut_t(18), cut_t(21)); flex(cut_t(21), cut_t(23), "four"); flex(cut_t(23), cut_t(26))
+    put("hits", I.brass(m2f(65), 0.3, 0.9, R, "stab"), F(108), 0.4); put("hits", I.brass(m2f(53), 0.3, 0.9, R, "stab"), F(108), 0.4)
+    EVENTS.append((cut_t(18), "the flex, all of it", "'Then came the flex': the beat and the hook again, over the villa and the jet"))
+    EVENTS.append((cut_t(21), "four on the floor", "the club: a kick on every beat and the clap on two and four, the hook still on top"))
+    EVENTS.append((cut_t(23), "the flex again", "the cars: back to half speed"))
+    EVENTS.append((F(108), "brass stab", "the price tag: $3,800,000"))
+    # 26: "Someone was watching": the beat stops on a low F; one note on the vibraphone
+    put("bass", subn(41, 1.4), cut_t(26), 0.9); put("drums", kick(KICK), cut_t(26))
+    put("lead", vibe(72, 2.0), cut_t(26) + 0.38, 0.6, -0.1); thin(cut_t(26), cut_t(27), (41, 48, 53), 0.1)
+    EVENTS.append((cut_t(26), "music cut dead", "'Someone was watching': the beat stops on a low F"))
+    EVENTS.append((cut_t(26) + 0.38, "one note on the vibraphone", "'Someone was watching': a C over a low chord, and nothing else"))
+    # 27-31: the investigator walks; quieter under the shared screen; it stops when somebody records
+    walk(cut_t(27), cut_t(30)); walk(cut_t(30), cut_t(31), 0.6, False); thin(cut_t(31), cut_t(32), (48, 55, 58), 0.1)
+    for j, m in enumerate((77, 80, 84)):
+        put("lead", pingn(m), cut_t(28) + 0.05 + j * 0.33, 0.4, -0.3 + 0.3 * j)
+    EVENTS.append((cut_t(27), "a walking bass", "the investigator: a plucked bass in quavers, brushes, a vibraphone chord answering; no drums"))
+    EVENTS.append((cut_t(28) + 0.05, "three pings, rising", "'followed the coins': the wallet, the mixers, the three threads"))
+    EVENTS.append((cut_t(30), "the walk, quieter", "the shared screen: the bass and the brushes only"))
+    EVENTS.append((cut_t(31), "the walk stops", "'and somebody recorded it': one thin chord"))
+    # 32: the calendar again: a low C; the clock is an effect
+    put("bass", subn(36, 1.3), cut_t(32), 0.8); thin(cut_t(32), cut_t(33), (48, 55, 60), 0.1)
+    EVENTS.append((cut_t(32), "a low C", "'One month after the theft': the dominant, waiting"))
+    # 33: the arrest: the beat with nothing on top
+    flex(cut_t(33), cut_t(34), "trap", False)
+    EVENTS.append((cut_t(33), "the beat with nothing on top", "the arrest: the kick, the clap and the sub-bass of the flex, and no hook"))
+    # 34: the dock: a harp on tiptoe; 35: the hook under water
+    thin(cut_t(34), cut_t(35), (49, 56, 61), 0.12)
+    for j, m in enumerate((80, 77, 73, 68)):
+        put("lead", harp(m, 0.9), cut_t(34) + 0.25 + j * 0.3, 0.5, -0.2 + 0.13 * j)
+    for j, (q, m) in enumerate(HOOK[0]):
+        put("lead", lp(vibe(m - 24, 1.6), 900), cut_t(35) + 0.1 + j * 0.3, 0.7)
+    thin(cut_t(35), cut_t(36), (41, 48, 53, 56), 0.14, warm=700.0)
+    EVENTS.append((cut_t(34) + 0.25, "harp, tiptoe", "the dock: four notes down over D flat"))
+    EVENTS.append((cut_t(35) + 0.1, "the hook, under water", "the phone sinks: the hook's four notes, two octaves down and muffled"))
+    # 36, 37: the court: one low chord; the bass moves once; a toll on "twenty years"
+    thin(cut_t(36), cut_t(38), (41, 53, 56, 60), 0.13, att=0.2); put("bass", subn(41, 2.0), cut_t(36), 0.8); put("bass", subn(36, 2.0), F(178), 0.8)
+    put("hits", I.timpani(m2f(41), 0.9, R, 2.0), F(184, -1), 0.9); put("lead", vibe(53, 2.2), F(184, -1), 0.6)
+    EVENTS.append((cut_t(36), "one low chord", "the courtroom: F minor, held; the bass moves once, to C, on 'racketeering'"))
+    EVENTS.append((F(184, -1), "a toll", "'twenty years': a kettledrum and one low note of the vibraphone"))
+    # 38: the judge's question on a harp; 39: no tune under his answer
+    thin(cut_t(38), cut_t(39), (44, 51, 56, 60), 0.11)
+    for j, m in enumerate((68, 72, 75, 82)):
+        put("lead", harp(m, 1.2), F(189) + j * 0.16, 0.5, -0.2 + 0.13 * j)
+    thin(cut_t(39), cut_t(40), (48, 55, 58, 63), 0.1)
+    EVENTS.append((F(189), "a question on the harp", "'which cars': four notes up, ending in the air"))
+    # 40: "a cybercrime empire": the hook's first four notes, low, on a tuba and a horn
+    thin(cut_t(40), cut_t(41), (41, 48, 53, 56), 0.1)
+    for j, m in enumerate((48, 44, 41, 44)):
+        put("hits", I.brass(m2f(m), 0.26, 0.85, R, "tuba"), F(203) + j * 0.3, 0.6); put("hits", I.brass(m2f(m + 12), 0.26, 0.8, R, "horn"), F(203) + j * 0.3, 0.4)
+    put("hits", I.timpani(m2f(41), 0.9, R, 1.4), F(203) + 0.6, 0.8)
+    EVENTS.append((F(203), "the hook, as an empire", "'a cybercrime empire': its first four notes on a tuba and a horn, with a kettledrum"))
+    # 41: "a very sad case of a bunch of kids": the same four notes on a music box
+    thin(cut_t(41), cut_t(42), (53, 56, 60, 65), 0.09, warm=4000.0)
+    for j, m in enumerate((84, 80, 77, 80)):
+        put("lead", mbox(m, 1.0), F(209) + j * 0.3, 0.55, 0.2)
+    EVENTS.append((F(209), "the hook, on a music box", "'a very sad case of a bunch of kids': the same four notes, three octaves higher"))
+    # 42: the lobby again
+    flex(cut_t(42), cut_t(43), "chip", True, 0.9)
+    EVENTS.append((cut_t(42), "the hook, eight-bit", "'online games ... through which they met': the lobby's music again"))
+    # 43, 44: the question on the dominant; a sound for each answer; the tune stops short
+    z0, za, zb = cut_t(43) + 0.05, F(223, -2), F(227, -2)
+    rolled(z0, (48, 55, 58, 62, 64, 70), 0.45); thin(z0, za, (48, 52, 55, 58), 0.1)
     heavy(za, 0.8); light(zb, 1.1)
     e = WORDS[-1]["end"] + 0.2
-    for j, (m, d) in enumerate(((78, 0.0), (74, 0.45), (76, 0.75), (78, 1.05))):
-        put("lead", vibe(m, 1.6 if j == 3 else 0.6), e + d * 0.8, 0.55, -0.15)
-    put("bass", bassn(42, 1.2), e + 1.05 * 0.8, 0.85); rolled(e + 1.05 * 0.8, (54, 58, 61, 64), 0.4)
-    EVENTS.append((z0, "harp on the dominant", "F sharp with a fourth and a seventh: the question is coming"))
-    EVENTS.append((za, "the heavy sound", "A, 'what they lost': the kettledrum and the chord of the hundred million"))
-    EVENTS.append((zb, "the light sound", "B, 'what they declared': the tick and the high note of the form"))
-    EVENTS.append((e, "button", "the tune's first four notes on the vibraphone, stopping on F sharp over the dominant: it does not come home"))
+    for j, m in enumerate((84, 80, 77, 79)):
+        put("lead", glock(m, 1.6 if j == 3 else 0.6), e + j * 0.26, 0.5, -0.15)
+    put("bass", subn(36, 1.2), e + 0.78, 0.85); rolled(e + 0.78, (48, 52, 55, 58), 0.4)
+    EVENTS.append((z0, "harp on the dominant", "C with a seventh and a ninth: the question is coming"))
+    EVENTS.append((za, "the heavy sound", "A, 'a crime boss': the kettledrum and the brass of the empire"))
+    EVENTS.append((zb, "the light sound", "B, 'a kid in way over his head': the music box, and one blip of a game"))
+    EVENTS.append((e, "button", "the hook's first notes on bells, stopping on G over the dominant: it does not come home"))
 
     dry = 1.5 * BUS["drums"] + BASS_MIX * BUS["bass"] + 0.9 * BUS["comp"] + 1.0 * BUS["lead"] + 0.5 * BUS["hits"]
     send = 0.1 * BUS["drums"] + 0.6 * BUS["comp"] + 0.6 * BUS["lead"] + 0.28 * BUS["hits"] + 0.1 * BUS["bass"]
     wet = convolve_st(send, make_ir(1.1, 11, hf=1.1))
-    DIAG["buses"] = {k: (integrated(v[:, : ns(cut_t(4))]), integrated(v[:, ns(cut_t(22)): ns(cut_t(28))])) for k, v in BUS.items()}
+    DIAG["buses"] = {k: (integrated(v[:, : ns(cut_t(6))]), integrated(v[:, ns(cut_t(27)): ns(cut_t(30))])) for k, v in BUS.items()}
     return shelf(hp(dry + 0.2 * wet, 38), 3500, 3.0)[:, :N]
 
 
@@ -666,6 +607,51 @@ def keytone(lo, hi, d=0.07):
     return fades(np.sin(TAU * lo * t) + np.sin(TAU * hi * t), 0.003, 0.012)
 
 
+def splash():
+    """something small dropped into water"""
+    t = tt(0.9)
+    y = lp(R.standard_normal(len(t)), 3200) * np.exp(-t / 0.16) + bp(R.standard_normal(len(t)), 900, 5200) * np.exp(-((t - 0.1) / 0.14) ** 2) * 0.8
+    return fades(hp(y, 250), 0.002, 0.2)
+
+
+def ringtone(d=0.7):
+    """a telephone: two notes turn about quickly"""
+    t = tt(d)
+    f = np.where(np.sin(TAU * 22 * t) > 0, 1480.0, 1190.0)
+    return fades(np.sin(phase(f)) * (0.6 + 0.4 * np.sin(TAU * 11 * t) ** 2), 0.004, 0.03)
+
+
+def bubbles(d=1.2, n=9):
+    """air going up through water"""
+    y = np.zeros(ns(d))
+    for k in range(n):
+        dd = 0.05 + 0.03 * R.random(); t = tt(dd); f0 = 380 + 500 * R.random()
+        b = np.sin(phase(f0 * (1 + 1.4 * t / dd))) * np.exp(-t / (dd * 0.5))
+        i = ns((d - 0.1) * k / n + 0.03 * R.random()); y[i:i + len(b)] += b[: len(y) - i] * (0.5 + 0.5 * R.random())
+    return fades(y, 0.002, 0.05)
+
+
+def lapping(d):
+    """water against a wall"""
+    t = tt(d)
+    return fades(lp(R.standard_normal(len(t)), 1400) * (0.35 + 0.65 * np.sin(TAU * 0.9 * t) ** 2), 0.15, 0.2)
+
+
+def gavel():
+    y = np.zeros(ns(0.5)); k = knock()
+    for i, g in ((0, 1.0), (ns(0.17), 0.8)):
+        y[i:i + len(k)] += k[: len(y) - i] * g
+    return y
+
+
+def printer(d=0.5):
+    """a till printing a receipt: a fast row of small teeth"""
+    y = np.zeros(ns(d)); tk = tick(1500.0)
+    for k in range(int(d * 34)):
+        i = ns(k / 34); y[i:i + len(tk)] += tk[: len(y) - i] * (0.6 + 0.4 * R.random())
+    return fades(y, 0.002, 0.03)
+
+
 def build_sfx(voice_lufs):
     buf = np.zeros((2, N + SR * 3))
 
@@ -688,159 +674,129 @@ def build_sfx(voice_lufs):
         fx(cut_t(i) - 0.1, w, -17, 0.35 if i % 2 else -0.35)
     EVENTS.append((cut_t(1), "swish", f"on {len(CUTS) - 1 - len(JOINS)} cuts, alternating left and right; none on the {len(JOINS)} joins inside a take"))
 
-    stamps = [(F(3), "$100 MILLION"), (F(13), "27 MINUTES"), (F(30), "PLEA DEAL"), (F(47), "73 BAGS"), (F(57), "ABOUT 300 MILES"), (F(83, 2), "27 MINUTES"), (F(91), "24 OF 73 BAGS"),
-              (F(99, 2), "NOBODY CHARGED"), (F(136, 2), "7 CHARGED"), (F(158), "A DIFFERENT TRUCK"), (F(162, -2), "$57,377 OF AIRTAGS"), (F(170), "ADMITS THE HEIST")]
+    stamps = [(F(5), "OVER $230 MILLION"), (F(25), "31 DAYS"), (F(72), "4,100+ BITCOIN"), (F(93), "UP TO $500,000 A NIGHT"), (F(157), "ARRESTED"), (F(184, -1), "UP TO 20 YEARS")]
     for t, why in stamps:
         fx(t, thud(), -8.5, 0, "stamp thud", why + " stamp")
-    pops = [(F(6), "'approximately $100 million', U.S. Attorney's Office"), (F(10), "'the largest jewelry heist in U.S. history'"), (F(11, 3), "U.S. Attorney's Office, Los Angeles"),
-            (F(16), "one went in 'to get a meal', L.A. Times"), (F(20), "the other was asleep in the cab, L.A. Times"), (F(24), "seven men were charged in June 2025"),
-            (F(31, 5), "not entered yet: plea hearing Nov. 19, 2026"), (F(36), "name tag: a Brink's big rig, left about 8:25 p.m."), (F(44), "San Mateo, California, July 10, 2022"),
-            (F(48), "the indictment"), (F(50), "alleged in the indictment, June 2025"), (F(59), "'approximately 300 miles', U.S. Attorney's Office"), (F(62), "2:05 a.m., July 11, 2022, L.A. Times"),
-            (F(66), "Lebec, 70 miles north of Los Angeles"), (F(71), "both drivers are drawn as nobody in particular"), (F(77), "the indictment mentions no weapon here, L.A. Times"),
-            (F(84, 4), "2:05 to 2:32 a.m., L.A. Times"), (F(87), "'its rear lock had been cut away', L.A. Times"), (F(93), "the indictment and the plea agreement"), (F(100, 4), "July 2022 to June 2025"),
-            (F(103), "a break in the case"), (F(106), "'according to two people involved with the case'"), (cut_t(23), "tab: AS THE L.A. TIMES REPORTS"), (F(109), "phones connecting to towers"),
-            (F(113), "along the truck's route, San Mateo to Lebec"), (F(122), "'the number of his burner phone'"), (F(128), "the night before the heist"), (F(131), "'he witnessed a traffic collision'"),
-            (F(133), "the Times does not say which of them"), (F(138), "indictment unsealed June 17, 2025"), (F(139), "'presumed to be innocent' until proven guilty"), (F(143), "Panama City, July 1, 2025"),
-            (F(145), "on a layover to Ecuador, the plea agreement"), (F(150), "his name, as the court papers give it"), (F(152), "his lawyer declined to comment, L.A. Times"), (F(159, 2), "Fontana, Calif., March 11, 2022"),
-            (F(162, 8), "taken 'by force and threat of force'"), (F(162, 16), "one count of robbery, up to 20 years"), (F(164), "the same agreement"), (F(171, 3), "the other counts are to be dropped, CNS"),
-            (F(173), "their trial is set for March 2027"), (F(179), "as of Nov. 2026, L.A. Times"), (F(183), "to Ecuador, late Dec. 2025, L.A. Times"), (F(188), "a prosecutor's filing: 'genuine surprise'"),
-            (F(190), "they still hope to try him, L.A. Times"), (F(193), "'still unrecovered', L.A. Times, Jan. 2026"), (F(196), "14 jewelers, some have left the trade"), (F(200), "the jewelers' lawsuit against Brink's"),
-            (F(206), "prosecutors: 'at least $100,312,031.54', CNS"), (F(208), "name tag: Brink's, its own lawsuit"), (F(213), "'declared total value of $8.7 million', L.A. Times"),
-            (F(215), "the man with the deal: under $10 million, CNS"), (F(217), "WHICH NUMBER COUNTS?"), (F(219, 4), "a legal battle since 2022, L.A. Times")]
-    for n, (t, why) in enumerate(pops):
-        fx(t, pop(380 + 60 * (n % 3), 900 + 110 * (n % 3)), -13, 0.15 if n % 2 else -0.15, "pop", why)
-    for t, why in [(F(32, 1), "July 10, 2022"), (cut_t(19) + f_(1), "2022"), (F(96, 2), "2023"), (F(97, 3), "2024"), (F(98, 3), "2025"), (F(148, 1), "Nov. 9, 2026")]:
-        fx(t, paper(), -12.5, -0.3, "flap", "calendar leaf: " + why)
-    for t, why in [(F(107), "the newspaper's headline"), (F(153), "'interference with commerce by robbery'"), (F(166), "'stole 24 bags'"), (F(211), "DECLARED VALUE")]:
-        fx(t, marker(), -13.5, -0.1, "marker", why)
-    for i, why in [(5, "the plea agreement"), (22, "the newspaper"), (26, "the officer's pad"), (30, "the plea agreement"), (33, "the plea agreement, what he admits"), (42, "the shipping form")]:
-        fx(cut_t(i), paper(), -13, 0.1, "paper", why + " lands")
-
-    # 0: the loot. The bags settle; on "vanished" they go, one after another.
-    for k in range(3):
-        fx(f_(4 + 5 * k), clink(R, 2400 + 300 * k, 0.14), -15, -0.4 + 0.4 * k, "tick", "a bag of jewels settles")
-        fx(F(8, 3 * k), pop(900 - 120 * k, 300, 0.09), -11, -0.4 + 0.4 * k, "pop", f"bag {k + 1} of 3 is gone, and a mark is left on the floor")
-    fx(0.35, ding(2637, 0.5), -17, 0.3); fx(1.1, ding(3136, 0.5), -18, -0.3)
-    # 1: the truck stop at night; the clock on the sign runs from 2:05 to 2:32
-    night = cut_t(1)
-    fx(night + 0.02, crickets(cut_t(2) - night - 0.1, R), -20, 0, "crickets", "the truck stop at night")
-    a, b = Wf(13) - 2, Wf(14) + 14
-    k = 0
-    for f in range(a, b + 1):
-        if int(np.floor(10 * smoothstep(f, a, b) * 0.999)) > k:
-            k += 1
-            fx(f_(f), tick(1500 + 60 * k), -14, -0.3, "tick", f"the clock on the sign: {5 + 3 * k} minutes past two")
-    # 2: the diner
-    eat = cut_t(2)
-    fx(eat + 0.03, clink(R, 1900, 0.1), -16, 0.3)
-    for k in range(1, 5):
-        fx(eat + f_(9 * k), click(), -17, 0.1, "munch", "the driver takes a bite, then chews")
-    # 3: the bunk
-    fx(cut_t(3) + 0.12, snore(0.55), -15, -0.2, "snore", "the other driver, asleep"); fx(cut_t(3) + 0.8, snore(0.5), -16, -0.2)
-    # 4: one of the seven
-    fx(cut_t(4) + f_(2), knock(), -12, -0.2, "clunk", "a light on number 1")
-    # 5: the signature
-    for k in range(6):
-        fx(F(29) + k * (F(31, 8) - F(29)) / 6, pen(), -14.5, 0.2, "pen" if k == 0 else "", "a signature on the plea agreement")
-    # 6: the show
-    for k in range(3):
-        fx(cut_t(6) + f_(5 + 4 * k), ding(2093 + 370 * k, 0.4), -16, -0.4 + 0.4 * k, "tick", "a jeweler behind a full case")
-    # 7: the truck pulls out
-    fx(cut_t(7) + 0.02, engine(1.6, 62, 96), -15, 0.2, "engine", "the big rig pulls out under the sign")
-    # 8: the map
-    fx(cut_t(8) + f_(3), knock(), -12.5, 0, "clunk", "a pin on San Mateo")
-    # 10: followed
-    fx(cut_t(10) + 0.02, engine(1.35, 58, 62), -17, 0.2, "engines", "the truck, and two cars behind it")
-    fx(cut_t(10) + 0.1, engine(1.2, 118, 126), -19, -0.4); fx(cut_t(10) + 0.25, engine(1.1, 104, 110), -19, 0.4)
-    # 11: the route
-    fx(cut_t(11) + f_(2), slide(380, 760, F(59, 4) - cut_t(11) - f_(2)), -19, 0, "line", "the route is drawn down the valley")
-    fx(cut_t(11) + f_(18), pop(520, 1040), -13, -0.2, "pop", "pin: Buttonwillow")
-    fx(F(59), knock(), -12.5, 0.2, "clunk", "pin: Lebec")
-    # 12, 13: 2:05 a.m.; the truck pulls in
-    fx(cut_t(12) + 0.02, crickets(cut_t(14) - cut_t(12) - 0.1, R), -20, 0, "crickets", "2:05 a.m. at the truck stop")
-    fx(cut_t(12) + 0.05, hum(cut_t(13) - cut_t(12) - 0.1, 120), -21, 0.2, "neon hum", "the sign")
-    fx(cut_t(13) + 0.02, engine(1.0, 96, 52), -14, -0.2, "engine", "the big rig pulls in and stops")
-    fx(cut_t(13) + f_(30), whoosh(0.4, R, peak=0.15, f_lo=1800, f_hi=5200, tail=0.2), -14.5, -0.1, "air brake", "it stops")
-    # 14: he goes in
-    fx(cut_t(14) + 0.02, ding(2093, 0.5), -14, -0.5, "door bell", "the diner's door"); fx(cut_t(14) + 0.14, ding(1568, 0.6), -15, -0.5)
-    fx(cut_t(14) + f_(20), step(), -13, 0, "step", "he sits down at the counter")
-    fx(cut_t(14) + f_(34), clink(R, 1700, 0.12), -15.5, 0.2, "tick", "a plate arrives")
-    # 15: the cab
-    fx(cut_t(15) + 0.1, snore(0.55), -15, -0.3, "snore", "the bunk"); fx(cut_t(15) + 0.78, snore(0.5), -16, -0.3)
-    fx(cut_t(15) + f_(8), pop(440, 990, 0.09), -12.5, 0.3, "pop", "an empty seat: the outline of the driver who went to eat")
-    # 16: twenty-seven minutes on the wall clock
-    fx(cut_t(16) + f_(2), ratchet(9), -13, 0.2, "tick", "the hands run from 2:05 to 2:32"); fx(cut_t(16) + f_(13), ratchet(8), -13.5, 0.2)
-    # 17: the lock
-    fx(cut_t(17) + f_(1), clang(), -10.5, -0.2, "clack", "a cut padlock hits the ground")
-    fx(cut_t(17) + f_(9), clink(R, 2100, 0.14), -13, -0.1, "tick", "it bounces once"); fx(cut_t(17) + f_(3), rattle(0.3, R, density=26), -15, 0.1)
-    # 18: the marks of twenty-four bags
+    pops = [(F(10), "in bitcoin, at the time, U.S. Attorney's Office"), (F(13), "the man who was robbed is not drawn"), (F(17), "'notorious' in clubs, a court heard, BBC"), (F(20, 3), "31 cars, by his own account"),
+            (F(21, 3), "rented: Los Angeles, the Hamptons, Miami"), (F(22, 3), "'up to $500,000 per evening'"), (F(30), "name tag: Malone Lam, 20 then"), (F(32, 4), "a stock cartoon figure, not a likeness"),
+            (F(35), "left school at 14, he told investigators, BBC"), (F(38, 8), "stayed after his visa expired, BBC"), (F(40), "'ringleader', U.S. Attorney's Office"), (F(43), "'connections made on online gaming platforms'"),
+            (F(45, 4), "18 charged, his was the 11th guilty plea, AP"), (F(49), "the crew has no faces here"), (F(52), "Washington, D.C., Aug. 18, 2024"), (F(56), "'claiming they were from Google's security team'"),
+            (F(58), "court filing, as reported by CNBC"), (cut_t(14) + f_(2), "then as the 'support team' of his exchange"), (F(65), "'duped into downloading a program', USA Today"), (F(75), "'over 4,100 bitcoin', U.S. Attorney's Office"),
+            (F(84), "'a wild spending spree', Associated Press"), (F(87, 2), "rented, one at $68,000 a month"), (F(89, 2), "'private jet rentals'"), (F(95, 3), "'up to $500,000 per evening'"), (F(97, 2), "one receipt, a Los Angeles club"),
+            (F(107), "a Pagani Huayra, 'purchased for $3,800,000'"), (F(111), "court filing, Oct. 2024: it had not been found"), (F(115), "'posting and appearing in photos', Wired"), (F(120), "Aug. 19, 2024: the day after"),
+            (F(126), "name tag: ZachXBT, a pseudonym"), (F(129), "'three main threads', Wired"), (F(132), "'on Instagram and TikTok', Wired"), (F(133, 2), "he 'appeared to be in Miami'"), (F(138), "one of them 're-shared his screen'"),
+            (F(141, 2), "with 'another group of friends'"), (F(147), "a 90-minute video, first names are spoken in it"), (F(151), "he shared his findings with law enforcement"), (F(159), "Sept. 18, 2024, at his rental home in Miami"),
+            (F(162), "'off a dock ... into Biscayne Bay', USA Today"), (F(164, 2), "tipped off by an off-duty officer, it says, AP"), (F(169), "the indictment, as reported by USA Today"), (F(176), "one count of RICO conspiracy"),
+            (F(178, 2), "U.S. District Court, Washington"), (F(185, 3), "not sentenced yet, next hearing Dec. 8, 2026"), (F(187), "at the plea hearing, Associated Press"), (F(190), "he had bought most of them, not all, he indicated"),
+            (F(195, -2), "quote card: 'I would need some time.'"), (F(202), "quote card: 'If you build a cybercrime empire ...'"), (F(208), "quote card: 'It's a very sad case of a bunch of kids ...'"), (F(214, 2), "'online games ... through which they met'"),
+            (F(216), "the same statement, to USA Today"), (F(219), "WHO GETS SENTENCED?"), (F(221, 2), "no date yet, he faces up to 20 years")]
+    for k, (t, why) in enumerate(pops):
+        fx(t, pop(440 + 40 * (k % 3), 980 + 60 * (k % 3), 0.075), -13.5, 0.3 if k % 2 else -0.3, "pop", why)
+    for t, why in ((F(27, 1), "calendar leaf: Aug. 18, 2024"), (F(172, 1), "calendar leaf: Sept. 8, 2026")):
+        fx(t, paper(), -12, -0.3, "flap", why)
+    # 0: the pile
+    fx(0.1, clink(R), -14, 0.1, "coins", "coins settle; he comes up behind the pile"); fx(F(8), step(), -13, 0, "step", "a hop on 'billion'")
+    # 1: his wallet
+    fx(cut_t(1) + f_(3), pop(520, 1040, 0.08), -12.5, 0.2, "pop", "his wallet, on a card over the laptop")
+    # 2, 3: the selfie, the cars
+    fx(F(17), click(), -10.5, 0.2, "click", "the camera of his phone"); fx(cut_t(3) + 0.02, engine(0.75, 80.0, 190.0), -13, -0.2, "engine", "supercars: one is revved")
+    # 4, 5: the villa, the club
+    fx(cut_t(4) + 0.02, lapping(0.7), -15, 0.2, "water", "the bay in front of the villa"); fx(cut_t(5) + 0.03, crackle(0.7, 70.0), -14, -0.3, "sparklers", "the club: sparklers on the bottles")
+    # 6: the calendar
+    a = cut_t(6)
+    fx(a + f_(1), marker(0.2), -12, -0.2, "marker", "a circle round August 18"); fx(a + f_(3), pop(480, 900, 0.07), -13, -0.4, "pop", "THEFT flag")
+    for k in range(10):
+        fx(a + f_(6 + 2 * k), tick(1700.0 + 60 * k), -15, 0.1, "tick" if k % 3 == 0 else "", "thirty days crossed off, three to a tick")
+    fx(F(25), tick(900.0), -15.5, 0, "", ""); fx(F(26), tick(900.0), -15.5, 0, "", "")
+    EVENTS.append((F(25), "a clock", "two ticks on 'one month'"))
+    fx(F(25, 4), marker(0.2), -12, 0.2, "marker", "a circle round September 18"); fx(F(25, 7), pop(480, 900, 0.07), -13, 0.3, "pop", "ARREST flag")
+    # 7: his room
     for k in range(5):
-        fx(cut_t(18) + f_(2 * k), pop(820 - 70 * k, 360, 0.07), -13.5, -0.4 + 0.2 * k, "pop", f"row {k + 1}: the marks of four bags")
-    # 19-21: the shelf; the light comes on; a phone
-    fx(cut_t(19) + 0.05, hum(cut_t(20) - cut_t(19) - 0.1, 60), -21, 0, "room hum", "an evidence room")
-    fx(cut_t(19) + 0.5, crackle(0.3, 50), -20, 0.2)
-    fx(cut_t(21) + f_(2), click(), -11.5, 0, "click", "a light is switched on over the box")
-    fx(cut_t(21) + f_(3), creak(0.34, R), -15.5, 0.1, "creak", "the lid comes up")
-    fx(cut_t(21) + f_(16), ding(1760, 0.3), -12.5, 0.2, "ping", "a prepaid phone, out of the box"); fx(cut_t(21) + f_(16) + 0.09, ding(2217, 0.35), -13.5, 0.2)
-    # 23: towers
-    fx(cut_t(23) + 0.02, engine(0.95, 60, 64), -19, 0.1, "engines", "the road again")
-    for k in range(2):
-        fx(cut_t(23) + f_(2 + 5 * k), blip(1319 + 440 * k, 0.06), -14, -0.3 + 0.6 * k, "blip", "a phone over a car lights up")
-    # 24: the route again
-    fx(cut_t(24) + f_(22), knock(), -12.5, 0.2, "clunk", "pin: Lebec")
-    # 25: the number
-    KEYS = {"1": (697, 1209), "2": (697, 1336), "4": (770, 1209), "5": (770, 1336), "0": (941, 1336)}
-    for k, dgt in enumerate("2410555"):
-        fx(F(122, 4 * k), keytone(*KEYS[dgt]), -15, -0.2 + 0.07 * k, "blip", f"a digit crosses to the officer's pad ({k + 1} of 7)")
-    for k in range(6):
-        fx(cut_t(25) + f_(9 * k), tick(820 if k % 2 else 980), -21, 0.5)
-    # 26: the pad
-    for k in range(3):
-        fx(cut_t(26) + f_(3 + 5 * k), pen(), -15, 0.3, "pen" if k == 0 else "", "the officer writes it down")
-    # 27: the collision, wide
-    fx(cut_t(27) + f_(3), buzz(0.2, 330) + buzz(0.2, 415), -17, -0.4, "horn", "a car horn, far off")
-    fx(F(132, -2), pop(440, 990, 0.09), -12.5, -0.2, "pop", "tag: WITNESS")
+        fx(cut_t(7) + 0.2 + 0.13 * k, click(), -19, 0.2)
+    EVENTS.append((cut_t(7) + 0.2, "keys", "he types"))
+    # 9: the globe
+    fx(cut_t(9) + f_(4), pop(440, 990, 0.08), -12.5, -0.2, "pop", "the pin and the tag: SINGAPORE")
+    fx(F(38, -2), whoosh(0.5, R, peak=0.5, f_lo=500, f_hi=2600, tail=0.2), -15, 0.2, "plane", "a small plane leaves, going east"); fx(F(38, 10), pop(520, 1040, 0.08), -12.5, 0.4, "pop", "the tag: THE U.S., OCT. 2023")
+    # 10: the lobby
     for k in range(5):
-        fx(cut_t(27) + f_(9 * k), tick(820 if k % 2 else 980), -21, 0.5)
-    # 28: seven lights
-    for k in range(7):
-        fx(cut_t(28) + f_(2 + 3 * k), knock(), -13.5, -0.5 + k / 6, "clunk", f"a light on number {k + 1}")
-    # 29: the airport
-    fx(cut_t(29) + 0.03, ding(1047, 0.5), -14.5, 0, "airport chime", "two notes over the loudspeakers"); fx(cut_t(29) + 0.24, ding(784, 0.7), -15, 0)
-    fx(cut_t(29) + 0.05, rumble(0.5), -19, -0.3)
-    fx(F(142, -2), step(), -12, 0, "step", "he stops: an officer on either side")
-    # 31, 32: the other truck
-    fx(cut_t(31) + 0.05, bird_chirps(cut_t(33) - cut_t(31) - 0.2, R, density=1.2), -21, 0.3, "birds", "a car park by day")
+        fx(cut_t(10) + f_(4 + 4 * k), blip(660.0 * 2 ** (k / 6)), -14, -0.3 + 0.15 * k, "blip", f"player {k + 1} of 5 joins the lobby")
+    # 11, 12: the call
+    fx(cut_t(11) + 0.15, keytone(697.0, 1209.0), -16, 0.2); fx(cut_t(11) + 0.3, keytone(770.0, 1336.0), -16, 0.2); fx(cut_t(11) + 0.45, keytone(852.0, 1477.0), -16, 0.2)
+    EVENTS.append((cut_t(11) + 0.15, "telephone", "three keys: they dial"))
+    fx(cut_t(12) + f_(2), pop(440, 990, 0.08), -12.5, 0.3, "pop", "INCOMING CALL: 'SECURITY TEAM'"); fx(cut_t(12) + 0.05, ringtone(0.75), -11.5, 0.3, "telephone", "the phone on his desk rings")
+    # 13, 14: the paper faces
+    fx(F(55, -1), step(), -14, 0.2, "step", "a paper face comes up: SECURITY TEAM"); fx(cut_t(14), step(), -13, 0.2, "step", "the paper face is swapped: EXCHANGE SUPPORT")
+    # 15: the program
+    fx(cut_t(15) + f_(2), pop(440, 990, 0.09), -13, 0.2, "pop", "a window: INSTALL TO PROTECT YOUR COINS?"); fx(cut_t(15) + f_(6), tick(), -18, 0.3, "tick", "a cursor")
+    fx(F(68, 1), click(), -14.5, 0.2, "click", "INSTALL is pressed")
+    fx(F(68, 3), buzz(0.34, 130.0), -11.5, 0, "buzzer", "REMOTE ACCESS: ON"); fx(F(68, 3), clang(), -13, 0)
+    # 16, 17: the coins go
+    fx(cut_t(16) + f_(3), pop(520, 1040, 0.08), -13, 0.4, "pop", "somebody's wallet, with a question mark"); fx(cut_t(16) + 0.2, rumble(1.6), -14, 0, "rumble", "the piles sink")
+    for k in range(8):
+        fx(cut_t(16) + 0.35 + 0.2 * k, clink(R), -16, -0.3 + 0.08 * k)
+    EVENTS.append((cut_t(16) + 0.35, "coins", "coins fly up into the wallet"))
+    fx(cut_t(17), tick(1200.0), -14, 0, "tick", "the counter starts"); fx(F(81), register(), -9.5, 0.2, "cash register", "the counter stops: $230 MILLION+")
+    # 18-20: the flex
+    fx(cut_t(18) + 0.05, rattle(0.5, R, density=24), -16, 0, "paper", "banknotes in the air"); fx(cut_t(19) + 0.02, lapping(0.8), -15, -0.2, "water", "the pool")
+    fx(cut_t(20) + 0.02, whoosh(0.8, R, peak=0.6, f_lo=300, f_hi=2200, tail=0.3), -14, 0.3, "jet", "an engine winds up")
+    # 21, 22: the club
+    fx(cut_t(21) + 0.03, crackle(0.9, 70.0), -14, -0.3, "sparklers", "sparklers come in on bottles"); fx(cut_t(21) + f_(10), pop(900, 220, 0.06), -11.5, -0.2, "cork", "a cork")
+    fx(cut_t(22) + f_(1), printer(0.5), -12, 0.3, "printer", "the bill prints")
+    # 23, 24: the cars
+    a23 = CUTS[23]
+    for row in range(10):
+        fx(f_(a23 + 3 + jsround(row * (Wf(105) - a23 - 8) / 9)), blip(520.0 * 2 ** (row / 12)), -15, -0.3 + 0.06 * row, "blip", f"three more cars: shelf {row + 1} of 10")
+    fx(F(105), ding(1568.0, 0.6), -12, 0.2, "ping", "the counter stops: 31 CARS")
+    fx(cut_t(24) + 0.03, engine(0.8, 70.0, 150.0), -14, -0.2, "engine", "the blue car on its turntable"); fx(F(108, 4), ding(1318.0, 0.7), -12, 0.2, "ping", "the price tag: $3,800,000")
+    # 25: the feed
+    fx(cut_t(25) + f_(5), whoosh(0.5, R, peak=0.3, f_lo=700, f_hi=3200, tail=0.15), -15, 0.2, "swipe", "the feed scrolls")
+    for k in range(4):
+        fx(cut_t(25) + 0.35 + 0.28 * k, blip(1320.0 + 220 * (k % 2), 0.05), -17, 0.3)
+    EVENTS.append((cut_t(25) + 0.35, "likes", "hearts go up"))
+    # 26, 27: the investigator
+    fx(cut_t(26) + f_(3), pop(440, 990, 0.08), -13, 0.2, "pop", "a post comes up beside him"); fx(cut_t(27) + f_(2), step(), -14, -0.2, "step", "he steps up to the board")
+    # 29: Miami
+    fx(F(133), thud(0.8), -10, 0, "thud", "MIAMI, pinned where the strings meet")
     for k in range(3):
-        t = cut_t(32) + f_(4 + 7 * k)
-        fx(t, blip(1319, 0.05), -13, -0.3 + 0.3 * k, "blip", f"a tag lifts out of the carton and chirps ({k + 1} of 3)"); fx(t + 0.07, blip(1760, 0.07), -13, -0.3 + 0.3 * k)
-    # 34: the loot again
-    fx(cut_t(34) + 0.1, ding(2637, 0.5), -17, 0.3); fx(cut_t(34) + 0.5, ding(3136, 0.5), -18, -0.3)
-    # 35-37: where the seven are
+        fx(cut_t(29) + f_(8 * k + 6), tick(2300.0), -16, -0.3 + 0.3 * k, "tick" if k == 0 else "", "the glass goes from picture to picture")
+    # 30, 31: the shared screen
+    for k in range(4):
+        fx(cut_t(30) + f_(5 + 4 * k), blip(880.0 * 2 ** (k / 12)), -15, -0.3 + 0.2 * k, "blip", f"viewer {k + 1} of 4 is watching")
+    for k in range(13):
+        fx(cut_t(30) + f_(14 + 4 * k), tick(2000.0 - 90 * k), -17, 0.1, "tick" if k % 2 == 0 else "", "the balance rolls down from 4,100: a counter, falling in pitch")
+    fx(cut_t(30) + f_(62), tick(700.0), -12, 0, "tick", "the balance reaches 0")
+    fx(F(147), marker(0.18), -12, 0.1, "marker", "a red ring closes round one of the people watching")
+    fx(F(148), blip(990.0, 0.09), -11, 0.2, "blip", "REC: a recording light, two beeps"); fx(F(148, 9), blip(990.0, 0.09), -11, 0.2, "blip", "REC: a recording light, two beeps")
+    # 32: the calendar again
+    fx(cut_t(32) + f_(2), pop(480, 900, 0.07), -13, -0.4, "pop", "THEFT flag"); fx(F(152), pop(480, 900, 0.07), -13, 0.3, "pop", "ARREST flag")
+    for k in range(5):
+        fx(cut_t(32) + 0.1 + 0.26 * k, tick(900.0), -14, 0, "", "")
+    EVENTS.append((cut_t(32) + 0.1, "a clock", "five ticks: a month goes by"))
+    # 33: the arrest
+    fx(cut_t(33) + 0.02, siren(1.3, 3.3, 660.0, 1180.0), -13, -0.3, "siren", "the F.B.I. at the villa"); fx(cut_t(33) + f_(2), step(), -13, 0, "step", "his hands go up")
+    fx(F(159, 6), ratchet(5), -13, 0.2, "ratchet", "handcuffs")
+    # 34, 35: the dock, the bay
+    go = F(165, -2)
+    fx(cut_t(34) + 0.02, lapping(1.2), -16, -0.2, "water", "the bay under the dock")
+    fx(go - f_(1), whoosh(0.3, R, peak=0.6, f_lo=400, f_hi=2400, tail=0.08), -13, 0.2, "throw", "the phone leaves his hands")
+    fx(go + f_(13), splash(), -9.5, -0.3, "splash", "the phone goes into the bay")
+    fx(cut_t(35) + 0.05, bubbles(1.2), -13, 0, "bubbles", "under water: the phone sinks, NO SERVICE")
+    # 36-39: the court
+    fx(F(176, -2), step(), -13, -0.3, "step", "a card: GUILTY"); fx(F(176, 8), gavel(), -11, 0.2, "gavel", "the plea is taken")
+    fx(F(185, 6), slide(420.0, 180.0, 0.16), -15, -0.2, "gulp", "he swallows")
+    fx(F(188), tick(1500.0), -15, 0.2, "tick", "the judge leans over the bench")
     for k in range(3):
-        fx(F(175, -2 + 4 * k), paper(), -13.5, -0.3 + 0.3 * k, "paper", f"NOT GUILTY: card {k + 1} of 3 comes up")
-    for k in range(2):
-        fx(F(180, -2 + 4 * k), pop(700 - 120 * k, 330, 0.09), -12, -0.1 + 0.3 * k, "pop", f"never arrested: an outline where number {5 + k} stood")
-    fx(F(184, -2), step(), -13, 0.4, "step", "number 7 leaves the line")
-    fx(F(184, -2), whoosh(1.1, R, peak=0.55, f_lo=300, f_hi=1500, tail=0.4), -15.5, 0.4, "plane", "a plane, small, up and away")
-    fx(F(184, 4), pop(520, 300, 0.09), -12.5, 0.4, "pop", "an outline where number 7 stood")
-    # 38: the courtroom
-    fx(cut_t(38) + f_(3), pop(440, 990, 0.09), -12.5, -0.3, "pop", "an outline on the defendant's chair")
-    fx(cut_t(38) + f_(10), step(), -14, 0.3, "step", "the prosecutor looks up from the papers")
-    fx(F(190, -2), click(), -16, 0.3, "tick", "a shrug")
-    # 40: the jeweler's paper
-    fx(cut_t(40) + 0.1, paper(), -17, 0.2)
-    # 41, 43: the scale
-    A, B = F(205, -2), F(212, -2)
-    fx(A, whoosh(0.3, R, peak=0.8, f_lo=300, f_hi=900, tail=0.05), -17, -0.3)
-    fx(A + f_(8), thud(1.2), -9.5, -0.3, "thud", "the bag of jewels lands on the left pan, and its price with it"); fx(A + f_(9), rattle(0.4, R, density=30), -14.5, -0.3)
-    fx(A + f_(10), creak(0.4, R), -15.5, -0.2, "creak", "the beam goes down on that side")
-    fx(B + f_(10), paper(), -12.5, 0.3, "paper", "the form lands on the right pan, and its price with it")
-    fx(B + f_(12), creak(0.3, R), -17, 0.2)
-    # 44, 45: the question
-    fx(cut_t(44) + 0.3, creak(0.45, R), -18, 0, "creak", "the beam rocks: it has not made up its mind")
-    fx(F(222, -2), knock(), -12, -0.4, "clunk", "a light on the jewels: A, WHAT THEY LOST")
-    fx(F(227, -2), knock(), -12, 0.4, "clunk", "a light on the form: B, WHAT THEY DECLARED")
+        fx(F(189, -2 + 3 * k), rattle(0.25, R, density=30), -17, 0.4 - 0.2 * k)
+    EVENTS.append((F(189, -2), "wheels", "three toy cars roll onto the bench"))
+    fx(F(197), step(), -14, -0.2, "step", "a hop on 'need'")
+    fx(F(195, 2), slide(700.0, 1100.0, 0.5), -17, -0.2, "slide", "small cars go round his head")
+    # 40, 41: the steps
+    fx(F(204), step(), -14, -0.3, "step", "she points"); fx(F(209), step(), -14, 0.3, "step", "he shrugs")
+    # 42: the lobby
+    fx(cut_t(42) + f_(3), blip(660.0), -15, 0, "blip", "the lobby, bobbing")
+    # 43, 44: the question
+    fx(F(223, -2), knock(), -12, -0.4, "clunk", "a light on the crown: A, A CRIME BOSS")
+    fx(F(227, -2), knock(), -12, 0.4, "clunk", "a light on the controller: B, A KID IN OVER HIS HEAD")
     return buf[:, :N]
 
 
@@ -905,7 +861,7 @@ def limiter(x, ceil_db, look=0.003, rel=0.08):
 
 
 # sounds that go with something arriving in the picture: the ten frames from each are allowed to jump
-GRAPHIC_SOUNDS = {"stamp thud", "pop", "ping", "click", "clunk", "paper", "step", "tick", "flap", "marker", "blip", "thud", "clack", "munch"}
+GRAPHIC_SOUNDS = {"stamp thud", "pop", "ping", "click", "clunk", "paper", "step", "tick", "flap", "marker", "blip", "thud", "buzzer", "cash register", "splash", "plane", "throw"}
 
 
 SOLO: set[int] = set()                                              # the same words Captions.tsx keeps on their own: none in this film

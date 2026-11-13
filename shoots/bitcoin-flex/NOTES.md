@@ -200,3 +200,93 @@ Laundering, Home Break-Ins". Subtitle: "Defendants Spent $4M at Nightclubs, $9M 
   session." In it they call each other by their real names.
 - "So far, $79 million of the $243 million they allegedly stole has been seized or frozen." "Prosecutors say more than
   $100 million is still unaccounted for."
+
+## S8a. Wired, the original (read 2026-11-12, twice)
+
+<https://www.wired.com/story/meet-zachxbt-243-million-crypto-theft/>  "Meet ZachXBT, the Masked Vigilante Tracking
+Down Billions in Crypto Scams and Thefts", Andy Greenberg, Oct 2024.
+
+- "On August 19, a twentysomething man who goes by the online handle ZachXBT was walking into an airport to board a
+  flight home—which airport, his real name, where home is, he'd rather not say—when he saw an alert on his phone."
+- "By the time his flight had landed, ZachXBT had come to see that there were three main threads of the stolen
+  funds—going to what he believed were three likely culprits." (The pill: “THREE MAIN THREADS” · WIRED.)
+- "Over the next week, working on the case day and night ... and periodically sharing his findings with law
+  enforcement agencies, ZachXBT would identify the alleged suspects behind the theft—two young hackers named Malone
+  Lam and Jeandiel Serrano, both in their early twenties." "He even obtained a video recording that he says shows one
+  of their screens as the theft was completed and they celebrated their enormous windfall. In his whirlwind
+  investigation, ZachXBT went so far as to track the alleged suspects on Instagram and TikTok, watching one of them
+  blow millions on cars, private jets, and clubs where the alleged culprit spent as much as $500,000 a night."
+- Caption: "A detail of a diagram ZachXBT created showing how he identified one of the alleged thieves of the $243
+  million, Malone Lam, including social media posts showing Lam's spending on cars, private jets, nightclubs and
+  gifts of $50,000 luxury handbags."
+- "Online, he appears only as his avatar, a kind of platypus cartoon figure in a detective's trench coat or sometimes
+  a hoodie. To avoid retaliation from his many enemies in the world of crypto criminals and con artists, he has
+  never publicly shown his face nor revealed his real name or exact age. He would only speak to WIRED on the
+  condition that I not try to dig up those identifying details." (The name tag: A PSEUDONYM · REAL NAME NOT
+  PUBLIC · WIRED. The figure in the film is a blank head in a trench coat; it is not his avatar.)
+- "Greavys in particular—whose real name was Malone Lam and who appeared to be in Miami—was posting and appearing in
+  photos of luxury real estate, diamond watches, jets, and sports cars including a Lamborghini Revuelto and a Pagani
+  Huayra, the latter of which typically sells for more than $3 million. ZachXBT found posts from influencers to whom
+  Greavys had gifted Birkin and Hermès purses worth between $30,000 and $50,000 each, and pictures of electric signs
+  in a nightclub carried by servers that read, "WHO WANT A BIRK," tagged with his name."
+- ""It seemed like all they did was just party and steal money," ZachXBT says."
+- "Within a few days, he'd persuaded the source who'd first DMed him during his flight to send him a video of a
+  screenshare among the three hackers who appeared to be involved in the theft. Unbeknownst to them, one of the
+  alleged hackers had re-shared his screen during that screenshare with another group of friends—and one of them
+  appears to have recorded it. Several times in the 90-minute video, ZachXBT says, the three hackers refer to each
+  other by their first names. At another point, one of the three men also briefly flashed his Windows home screen,
+  revealing his last name, too."
+- "The video even captures the moment of the alleged hackers' delirious reaction to pulling off a nine-figure theft.
+  "Oh my god! Oh my god! 243 million dollars! Yes!" one of them says in the recording."
+- "Late in the afternoon on September 18, just shy of a month after ZachXBT's investigation began, Lam was arrested in
+  Miami at a waterfront rental property for which he was paying $68,000 a month."
+- "According to court documents, both hackers had confessed to law enforcement investigators that they participated in
+  multiple crypto thefts. Lam specifically admitted that the profits from them had funded his purchases of no fewer
+  than 31 high-end cars."
+- "So far, $79 million of the $243 million they allegedly stole has been seized or frozen." "Prosecutors say that more
+  than $100 million remains unaccounted for, even after the alleged hackers' spending spree."
+- "For the first time, he was retained by the victim in the case and was paid for his skills".
+
+## S9. Associated Press, 9 Sep 2026 (as carried by NBC News and local stations)
+
+Copied on 12 Nov from NBC News's page of the report. (This section and S8a were entered again on 13 Nov from the
+session's record: the first workspace, where they were written, did not survive the change of branch.)
+
+- "A 22-year-old man pleaded guilty on Tuesday to teaming up with friends to steal nearly a quarter-billion dollars in
+  bitcoin from a Washington, D.C., resident — one of the largest cryptocurrency thefts in U.S. history — and then
+  embarking on a wild spending spree with the laundered proceeds."
+- "He is one of 18 defendants charged in the case and is the 11th to plead guilty".
+- Lam is "an eighth grade dropout".
+- "In August 2024, Lam and others used "social engineering" techniques to dupe the Washington man out of bitcoin worth
+  over $245 million. Two of Lam's alleged co-conspirators posed as representatives of Google and the Gemini crypto
+  exchange to manipulate the man into giving them access to his Google Drive and revealing security codes that
+  allowed Lam to siphon off over 4,100 bitcoin, according to prosecutors."
+- "Lam helped launder and convert stolen crypto into cash that he used to buy a fleet of sports cars, rent mansions in
+  Miami and spend millions at nightclubs, including $569,000 in one evening at one Los Angeles club, authorities
+  said."
+- "The spending spree lasted a month before FBI agents arrested Lam in Miami. An off-duty law enforcement officer had
+  tipped off Lam that authorities were on their way to arrest him, the indictment says."
+- "Lam's purchases included a $2 million watch and over 30 cars, including custom Porsches, Lamborghinis and Ferraris,
+  according to the FBI. When Lam indicated that he purchased most but not all of those vehicles himself, the judge
+  asked him if he remembers which ones he personally bought. "I would need some time," he told the judge."
+
+## Numbers that differ, and what every count supports
+
+- The theft of 18 Aug 2024: "over 4,100 Bitcoin (worth over $230 million at the time)" (S2, S3); "$243 million"
+  (ZachXBT, Wired); "over $245 million" (AP, USA Today, citing the later indictment); "nearly a quarter-billion
+  dollars" (AP). The film: "nearly a quarter of a billion dollars" (AP's words) in line 1, then "over forty-one
+  hundred bitcoin ... more than two hundred thirty million dollars", which every count supports.
+- The cars: "31 luxury automobiles" he "admitted to purchasing" (filing, 2024); "at least 28 exotic cars" (the
+  enterprise, indictment 2025); "over 30 cars" (FBI, via AP), of which he told the judge he bought "most but not
+  all". The film: "some thirty exotic cars", and the exchange with the judge.
+- The year of the arrest: 18 Sep **2024** (S2, of 19 Sep 2024: "arrested last night"; Wired; BBC). The plea release
+  of 2026 and USA Today print "2025". The film says "one month after the theft" and shows Sept. 18, 2024.
+- Defendants: 18 charged, 11 guilty pleas including his (AP, IBTimes); USA Today: "at least 16 other people".
+
+## The state of the case, searched again on 12 Nov 2026 at 14:22 UTC
+
+- Nothing newer than the plea was found. "Lam's sentencing has not yet been scheduled. Judge Colleen Kollar-Kotelly set
+  a status hearing for Dec. 8, 2026." (CBS 12 / the stations' version of the release, 9 and 10 Sept 2026.)
+- One site (shattered.io, 22 Sept 2026, citing Fortune) writes that under the plea agreement "sentencing guidelines
+  recommend a minimum of 14 years". The agreement was not read and no source used here gives that figure: the film
+  keeps to the maximum, "up to twenty years" (the Justice Department, the BBC, AP).

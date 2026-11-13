@@ -10,7 +10,7 @@ import {btcSign, INK, LIGHT, rings, supercar, type Builder} from './sets';
 const op = (o: THREE.Mesh, k: number) => { (o.material as THREE.MeshBasicMaterial).opacity = k; };
 
 // ------------------------------------------------------------------ cal: 18 August to 18 September 2024
-const CW = 1.04, CH = 1.6, CY0 = 2.12, MONTHS: [string, number, number][] = [['AUGUST 2024', 4, 31], ['SEPTEMBER 2024', 0, 30]];
+const CW = 0.91, CH = 1.4, CY0 = 2.1, MONTHS: [string, number, number][] = [['AUGUST 2024', 4, 31], ['SEPTEMBER 2024', 0, 30]];
 const cell = (m: number, d: number): [number, number] => { const i = d - 1 + MONTHS[m][1]; return [60 + (i % 7) * 80, m * 470 + 162 + Math.floor(i / 7) * 58]; };
 const cx = (px: number) => (px / 600 - 0.5) * CW, cy = (py: number) => CY0 + (0.5 - py / 920) * CH;
 const calTex = () => tex('cal-sheet', 600, 920, (g, w) => {
@@ -28,13 +28,13 @@ export const cal: Builder = (root) => {
   box(root, 12, 0.1, 0.12, '#f1ead8', 0, 1.02, 0.06); box(root, 12, 1.0, 0.08, '#6a4426', 0, 0.5, 0.04); floor(root, 12, 8, tmat(tiled(woodTex('cal-floor', '#6a4426', '#3e2614'), 4, 3)), 0, 0, 4);
   box(root, CW + 0.1, CH + 0.1, 0.03, '#15121c', 0, CY0, 0.015); soft(panel(root, CW, CH, smat(calTex(), 1.0), 0, CY0, 0.035));
   const days: [number, number][] = []; for (let d = 19; d <= 31; d++) days.push([0, d]); for (let d = 1; d <= 17; d++) days.push([1, d]);
-  const crosses = days.map(([m, d]) => { const [x, y] = cell(m, d); return soft(panel(root, 0.1, 0.1, smat(crossTex(), 1.1, true), cx(x), cy(y), 0.05)); });
-  const ringAt = (m: number, d: number) => { const [x, y] = cell(m, d); const o = soft(mesh(root, new THREE.RingGeometry(0.058, 0.075, 28), lit('#e3342f', 1.15), cx(x), cy(y), 0.055)); return o; };
+  const crosses = days.map(([m, d]) => { const [x, y] = cell(m, d); return soft(panel(root, 0.088, 0.088, smat(crossTex(), 1.1, true), cx(x), cy(y), 0.05)); });
+  const ringAt = (m: number, d: number) => { const [x, y] = cell(m, d); const o = soft(mesh(root, new THREE.RingGeometry(0.05, 0.066, 28), lit('#e3342f', 1.15), cx(x), cy(y), 0.055)); return o; };
   const r1 = ringAt(0, 18), r2 = ringAt(1, 18);
   const flag = (s: string, key: string) => soft(panel(root, s.length * 0.052 + 0.07, 0.105, smat(signTex('cal-' + key, s.length * 52 + 70, 105, '#ffe14a', INK, [[s, 74, 0.56]], {border: INK}), 1.1), 0, 0, 0.065));
   const theft = flag('THEFT', 'theft'), arrest = flag('ARREST', 'arrest');
   const [tx, ty] = cell(0, 18), [ax, ay] = cell(1, 18);
-  theft.position.set(cx(0) - 0.12, cy(ty), 0.065); arrest.position.set(cx(ax) + 0.235, cy(ay), 0.065);
+  theft.position.set(cx(0) - 0.11, cy(ty), 0.065); arrest.position.set(cx(ax) + 0.23, cy(ay), 0.065);
   return {
     light: () => LIGHT.room,
     tick: ({f, shot}) => {
@@ -69,11 +69,11 @@ export const room: Builder = (root) => {
   [[-1.2, game], [0, chartTex()], [1.2, listTex()]].forEach(([x, t]) => { box(root, 1.06, 0.68, 0.05, '#0a0a12', x as number, 2.6, -1.76); soft(panel(root, 1.0, 0.62, smat(t as THREE.Texture, 1.15), x as number, 2.6, -1.73)); });
   // his desk: we look at him over the back of his monitor
   table(root, 0, 0.2, 2.4, 0.8, {h: 0.76, top: '#15121c', leg: '#0a0a12', skirt: '#0e0c16'}); box(root, 2.4, 0.03, 0.03, lit('#4fd8ff', 1.5), 0, 0.74, 0.61).castShadow = false;
-  box(root, 0.78, 0.5, 0.05, '#0a0a12', 0, 1.1, 0.3); box(root, 0.08, 0.2, 0.05, '#0a0a12', 0, 0.86, 0.29); soft(panel(root, 0.3, 0.17, lit('#ff4fd8', 1.5), 0, 1.1, 0.33));
+  box(root, 0.7, 0.4, 0.05, '#0a0a12', 0, 1.0, 0.3); box(root, 0.08, 0.1, 0.05, '#0a0a12', 0, 0.8, 0.29); soft(panel(root, 0.28, 0.15, lit('#ff4fd8', 1.5), 0, 1.0, 0.33));
   for (const [x, c] of [[-0.95, '#3fbf5a'], [-0.8, '#e8762c'], [0.95, '#3fbf5a']] as const) cyl(root, 0.035, 0.13, c, x, 0.83, 0.38);
   box(root, 0.72, 1.3, 0.12, '#c81e3c', 0, 1.3, -0.72); box(root, 0.8, 1.36, 0.08, '#0a0a12', 0, 1.3, -0.8);
   const glow = halo(root, 1.3, '#ff4fd8', 0.2, 0, 1.4, -0.3);
-  const me = actor(root, LAM(0), {type: {expr: 'grin', pose: 'type', mode: 'sit'}, smile: {expr: 'smile', pose: 'type', mode: 'sit'}}, 0, 0.6, -0.42, {scale: 1.0, res: 1.3, shadow: 0});
+  const me = actor(root, LAM(0), {type: {expr: 'grin', pose: 'type', mode: 'sit'}, smile: {expr: 'smile', pose: 'type', mode: 'sit'}}, 0, 0.72, -0.42, {scale: 1.0, res: 1.3, shadow: 0});
   return {
     light: () => ({...LIGHT.dark, sky: '#c8a0ff', ground: '#3a2a7a', amb: 1.2, key: '#d8b8ff', keyI: 0.7}),
     tick: ({f, cam, shot}) => { me.show(shot.v === 'close' ? 'smile' : 'type'); me.tick(f, cam); op(glow, 0.2 + 0.05 * Math.sin(f * 0.3)); },
@@ -157,7 +157,7 @@ const playerTex = (me: boolean, i: number) => tex('screen-player-' + i, 230, 300
 const viewerTex = () => tex('screen-viewer', 200, 200, (g, w, h) => { g.fillStyle = '#1c4a8a'; rrect(g, 4, 4, w - 8, h - 8, 26); g.fill(); person(g, w / 2, 108, 136, '#aeb8cc', '#aeb8cc'); });
 const numTex = (n: number) => tex('screen-num-' + n, 440, 170, (g, w, h) => text(g, n.toLocaleString('en-US'), w / 2, h / 2 + 6, 150, '#ffffff', {maxWidth: w - 10}));
 const recTex = () => tex('screen-rec', 300, 130, (g, w, h) => { g.fillStyle = '#e3342f'; rrect(g, 6, 6, w - 12, h - 12, 30); g.fill(); g.strokeStyle = '#ffffff'; g.lineWidth = 8; g.stroke(); g.fillStyle = '#ffffff'; g.beginPath(); g.arc(70, h / 2, 22, 0, 7); g.fill(); text(g, 'REC', 186, h / 2 + 4, 84, '#ffffff'); });
-const DRAIN = Array.from({length: 26}, (_, i) => Math.round(4100 * (1 - i / 25) ** 1.25)), VIEW = [205, 335, 465, 595], PLAYERS: [number, number][] = [[400, 470], [130, 760], [310, 772], [490, 760], [670, 772]];
+const DRAIN = Array.from({length: 26}, (_, i) => Math.round(4100 * (1 - i / 25) ** 1.25)), VIEW = [205, 335, 465, 595], PLAYERS: [number, number][] = [[400, 440], [130, 700], [310, 712], [490, 700], [670, 712]];
 export const screen: Builder = (root) => {
   backdrop(root, ['#040a1c', '#0a1a3a', '#0e2a5a']);
   floor(root, 18, 14, '#0a1836'); const spot = pool(root, 2.6, '#2a9fd0', 0.3, 0, 1.2);
@@ -180,7 +180,7 @@ export const screen: Builder = (root) => {
       nums.forEach((n, i) => { n.visible = !lobby && v !== 'rec' && i === step; });
       bar.visible = !lobby; bar.scale.x = Math.max(0.001, DRAIN[v === 'rec' ? 25 : step] / 4100); bar.position.x = -su(TW - 220) / 2 * (1 - bar.scale.x);
       viewers.forEach((p, i) => { p.visible = !lobby; p.scale.setScalar(v === 'rec' ? 1 : pop(f, a + 5 + i * 4, 6)); });
-      fly.forEach((c, i) => { const u = ((t - 12) * 0.03 + i / 6) % 1, on = v === 'share' && t > 12 && step < 25; c.visible = on; c.position.set(sx(520) + u * 0.95, sy(340) + 0.25 * Math.sin(Math.PI * u) + 0.12 * Math.sin(i * 2.1), SCZ + 0.03); c.scale.setScalar(Math.sin(Math.PI * u)); });
+      fly.forEach((c, i) => { const u = ((t - 12) * 0.03 + i / 6) % 1, on = v === 'share' && t > 12 && step < 25; c.visible = on; c.position.set(sx(712) + u * 0.5, sy(330) + 0.3 * Math.sin(Math.PI * u) + 0.12 * Math.sin(i * 2.1), SCZ + 0.03); c.scale.setScalar(0.8 * Math.sin(Math.PI * u)); });
       mark.visible = v === 'rec' && f >= W(147); mark.scale.setScalar(2.2 - 1.2 * smooth(f, W(147), W(147) + 7));
       rec.visible = v === 'rec' && f >= W(148); rec.scale.setScalar(pop(f, W(148), 6)); op(rec, 1); rec.position.y = sy(850) - 0.33 + 0.004 * Math.sin(f * 0.5);
     },
@@ -211,7 +211,7 @@ export const jet: Builder = (root) => {
   backdrop(root, ['#f0c070', '#f6d9a0', '#fbe9c8']);
   floor(root, 80, 60, tmat(tiled(grainTex('jet-apron', '#8a8f9a', 0.08), 20, 15))); box(root, 60, 0.012, 0.16, lit('#ffd21f', 1), 0, 0.008, 3.4).castShadow = false;
   box(root, 9, 3.6, 5, '#aab0bc', -8.5, 1.8, -9); box(root, 9.4, 0.3, 5.4, '#8a909c', -8.5, 3.7, -9); box(root, 3.4, 2.6, 0.1, '#5a6070', -8.5, 1.3, -6.48);
-  const j = grp(root, -1.3, 0, 0); j.rotation.y = 0.5;                                          // nose to -x, turned a little toward us
+  const j = grp(root, -0.4, 0, -1.0); j.rotation.y = 0.95;                                      // nose to -x, turned toward us: a long aircraft does not fit a portrait frame from the side
   const white = '#f3f1ea', teal = '#1fb5a8', Y = 1.62, Rf = 0.62;
   const tube = cyl(j, Rf, 4.2, white, 0.3, Y, 0, Rf, 24); tube.rotation.z = Math.PI / 2;
   const nose = cyl(j, Rf, 1.5, white, -2.55, Y - 0.06, 0, 0.12, 24); nose.rotation.z = Math.PI / 2; ball(j, 0.125, white, -3.3, Y - 0.06, 0);
@@ -229,7 +229,7 @@ export const jet: Builder = (root) => {
   for (const [x, z] of [[-2.2, 0], [0.9, -1.1], [0.9, 1.1]]) { cyl(j, 0.03, 0.75, '#3a3f4a', x, 0.6, z); const w = cyl(j, 0.21, 0.13, '#16171d', x, 0.21, z, 0.21, 16); w.rotation.x = Math.PI / 2; }
   const me = actor(root, LAM(2), {wave: {expr: 'grin', pose: 'wave'}, laugh: {expr: 'laugh', pose: 'wave'}}, 0, 0, 0, {scale: 1.0, res: 1.0, wide: true, shadow: 0}), at = new THREE.Vector3();
   return {
-    light: () => ({...LIGHT.dusk, amb: 1.5, keyI: 1.5}),
+    light: () => ({...LIGHT.dusk, sky: '#fff0d8', ground: '#b8a898', amb: 1.5, key: '#ffe0b0', keyI: 1.3}),
     tick: ({f, t, cam}) => {
       // he goes up the stairs (a point on them, taken from the jet's own frame to the set's)
       const k = smooth(t, 2, 24); at.set(-1.15, lerp(0, 1.05, k) + Math.abs(0.05 * Math.sin(f * 0.6)) * (k < 1 ? 1 : 0), Rf + lerp(1.75, 0.2, k)); j.updateWorldMatrix(true, false); j.localToWorld(at);
@@ -247,15 +247,15 @@ export const fleet: Builder = (root) => {
   const RX = [-1.35, 0, 1.35], RY = (i: number) => 1.12 + i * 0.6, RZ = -2.0;
   for (let i = 0; i <= 10; i++) box(root, 4.3, 0.04, 1.1, '#2a3048', 0, RY(i) - 0.03, RZ); for (const x of [-2.1, -0.675, 0.675, 2.1]) for (const z of [-0.5, 0.5]) box(root, 0.05, 6.1, 0.05, '#3a4260', x, 4.1, RZ + z);
   for (let i = 0; i < 10; i++) soft(panel(root, 4.2, 0.02, lit('#c8d8ff', 1.2), 0, RY(i) + 0.5, RZ + 0.56));
-  const small: THREE.Group[] = []; for (let i = 0; i < 10; i++) for (let c = 0; c < 3; c++) { const g = supercar(root, CAR_COLS[(i * 3 + c * 7 + i * i) % CAR_COLS.length], 0.46, true); g.position.set(RX[c], RY(i), RZ + 0.05); g.rotation.y = (c - 1) * 0.12 + ((i + c) % 2 ? Math.PI : 0) - 0.25; small.push(g); }
+  const small: THREE.Group[] = []; for (let i = 0; i < 10; i++) for (let c = 0; c < 3; c++) { const g = supercar(root, CAR_COLS[(i * 3 + c * 7 + i * i) % CAR_COLS.length], 0.5, true); g.position.set(RX[c], RY(i), RZ + 0.05); g.rotation.y = (c - 1) * 0.12 + ((i + c) % 2 ? Math.PI : 0) - 0.25; small.push(g); }
   cyl(root, 1.35, 0.1, '#1a2448', 0, 0.05, 1.6, 1.35, 44); const rim = torus(root, 1.35, 0.03, lamp('#4fd8ff', 1.5), 0, 0.105, 1.6); rim.rotation.x = Math.PI / 2; rim.castShadow = false;
   const turn = grp(root, 0, 0.1, 1.6); supercar(turn, '#2f6fe8'); beam(root, 0.25, 1.9, 8, '#c8d8ff', 0.035, 0, 8, 1.2); const spot = pool(root, 1.6, '#c8d8ff', 0.3, 0, 1.6, 0.112);
-  const tag = grp(root, 0.05, 0, 1.6); soft(panel(tag, 0.96, 0.32, smat(priceTex(), 1.1, true), 0, 1.5, 0.2)); for (const s of [-1, 1]) box(tag, 0.012, 3.0, 0.012, '#c9ced6', s * 0.34, 3.15, 0.2).castShadow = false;
+  const tag = grp(root, 0.05, 0, 1.6); soft(panel(tag, 0.96, 0.32, smat(priceTex(), 1.1, true), 0, 1.6, 0.2)); for (const s of [-1, 1]) box(tag, 0.012, 3.0, 0.012, '#c9ced6', s * 0.34, 3.15, 0.2).castShadow = false;
   return {
-    light: (v) => v === 'hero' ? {...LIGHT.show, amb: 1.25} : {...LIGHT.show, amb: 1.05},
+    light: (v) => v === 'hero' ? {...LIGHT.show, amb: 1.3} : {...LIGHT.show, amb: 1.6},
     tick: ({f, shot}) => {
       const tower = shot.v === 'tower', a = shot.at;
-      small.forEach((g, i) => { const row = Math.floor(i / 3), at = a + 3 + Math.round(row * (W(105) - a - 8) / 9); g.scale.setScalar(tower ? 0.46 * pop(f, at + (i % 3), 5) : 0.46); });
+      small.forEach((g, i) => { const row = Math.floor(i / 3), at = a + 3 + Math.round(row * (W(105) - a - 8) / 9); g.scale.setScalar(tower ? 0.5 * pop(f, at + (i % 3), 5) : 0.5); });
       turn.rotation.y = 0.9 + f * 0.012; (rim.material as THREE.MeshBasicMaterial).color.set('#4fd8ff').multiplyScalar(1.4 + 0.3 * Math.sin(f * 0.3)); op(spot, 0.3);
       const k = smooth(f, W(108) - 4, W(108) + 8); tag.visible = !tower; tag.position.y = lerp(2.6, 0, k) + 0.02 * Math.sin(f * 0.12) * k; tag.rotation.z = 0.05 * Math.sin(f * 0.21) * (1 - 0.6 * k);
     },

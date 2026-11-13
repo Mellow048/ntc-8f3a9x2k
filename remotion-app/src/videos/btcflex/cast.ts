@@ -142,18 +142,18 @@ function drawProp(p: Pen, d: Draw, hands: P2[], u: number, look: Look) {
     p.band([[R[0], R[1] + 2 * u], [x - 6 * u, y + 10 * u]], '#5a3e28', 4.6 * u, 1.4 * u, 'round');
     g.globalAlpha = 0.4; p.ell(x, y, 12.5 * u, 12.5 * u, '#bfe6ff', 0); g.globalAlpha = 1; p.arc(x, y, 12.5 * u, 12.5 * u, 0, 360, 3.4 * u, '#15121c'); fist();
   } else if (prop === 'mask') {                                                                     // a friendly paper face on a stick, with a label: who the caller says he is
-    const x = R[0] + 3 * u, y = R[1] - 42 * u, r = 21 * u, label = d.text ?? 'SECURITY TEAM', coinFace = d.badge === 'coin', bg = coinFace ? '#f2a516' : '#2f7fe0';
-    p.band([[R[0], R[1] + 4 * u], [x, y + r]], '#c9a27a', 3.6 * u, 1.3 * u, 'round');
-    p.ell(x, y, r, r, '#fffdf4', 2.4 * u);
-    for (const sgn of [-1, 1]) p.arc(x + sgn * 8 * u, y + 1 * u, 5.2 * u, 5.2 * u, 200, 340, 2.5 * u, '#15121c');                 // smiling eyes
-    p.arc(x, y + 5 * u, 10 * u, 8 * u, 20, 160, 2.5 * u, '#15121c');                                                              // and a smile
-    if (coinFace) { p.ell(x, y - 13 * u, 5.4 * u, 5.4 * u, '#f2c230', 1.5 * u); g.save(); g.font = `400 ${8 * u}px Anton, sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#7a5208'; g.fillText('$', x, y - 12.6 * u); g.restore(); }
-    else p.poly([[x - 5 * u, y - 18 * u], [x + 5 * u, y - 18 * u], [x + 5 * u, y - 12 * u], [x, y - 7.5 * u], [x - 5 * u, y - 12 * u]], '#2f7fe0', 1.5 * u);
-    const w = 31 * u, h = 8.5 * u, ly = y + r + 7 * u;
-    p.poly(rounded(x - w, ly - h, 2 * w, 2 * h, 3 * u), bg, 2.2 * u);
+    const x = R[0] + 8 * u, y = R[1] - 64 * u, r = 35 * u, label = d.text ?? 'SECURITY TEAM', coinFace = d.badge === 'coin', bg = coinFace ? '#f2a516' : '#2f7fe0';
+    p.band([[R[0], R[1] + 4 * u], [x, y + r]], '#c9a27a', 4 * u, 1.4 * u, 'round');
+    p.ell(x, y, r, r, '#fffdf4', 2.8 * u);
+    for (const sgn of [-1, 1]) p.arc(x + sgn * 13 * u, y + 2 * u, 8 * u, 8 * u, 200, 340, 3.4 * u, '#15121c');                    // smiling eyes
+    p.arc(x, y + 8 * u, 16 * u, 13 * u, 20, 160, 3.4 * u, '#15121c');                                                             // and a smile
+    if (coinFace) { p.ell(x, y - 21 * u, 9 * u, 9 * u, '#f2c230', 2 * u); g.save(); g.font = `400 ${13 * u}px Anton, sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#7a5208'; g.fillText('$', x, y - 20.4 * u); g.restore(); }
+    else p.poly([[x - 8 * u, y - 29 * u], [x + 8 * u, y - 29 * u], [x + 8 * u, y - 19 * u], [x, y - 12 * u], [x - 8 * u, y - 19 * u]], '#2f7fe0', 2 * u);
+    const w = 47 * u, h = 12 * u, ly = y + r + 9 * u;
+    p.poly(rounded(x - w, ly - h, 2 * w, 2 * h, 4 * u), bg, 2.6 * u);
     g.save(); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = coinFace ? '#15121c' : '#ffffff';
-    let px = 12.5 * u; g.font = `400 ${px}px Anton, sans-serif`; const mw = g.measureText(label).width; if (mw > 1.8 * w) { px *= 1.8 * w / mw; g.font = `400 ${px}px Anton, sans-serif`; }
-    g.fillText(label, x, ly + 0.6 * u); g.restore(); fist();
+    let px = 18 * u; g.font = `400 ${px}px Anton, sans-serif`; const mw = g.measureText(label).width; if (mw > 1.84 * w) { px *= 1.84 * w / mw; g.font = `400 ${px}px Anton, sans-serif`; }
+    g.fillText(label, x, ly + 0.8 * u); g.restore(); fist();
   } else if (prop === 'key') {                                                                      // a key held up
     const [x, y] = [R[0] + 3 * u, R[1] - 20 * u], gold = '#f2c230';
     p.poly(rect(x - 3.5 * u, y - 4 * u, 7 * u, 32 * u), gold, 1.8 * u); for (const dy of [16, 23]) p.poly(rect(x + 3.5 * u, y + dy * u, 9 * u, 4.5 * u), gold, 1.6 * u);

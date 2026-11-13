@@ -66,15 +66,15 @@ function loftGeo(secs: {x: number; ring: [number, number][]}[]) {
 }
 // station, half-width, floor, sill, shoulder, top, half-width of the top
 const BODY: number[][] = [[-1.15, 0.45, 0.17, 0.21, 0.42, 0.45, 0.36], [-0.95, 0.5, 0.1, 0.16, 0.45, 0.5, 0.4], [-0.45, 0.5, 0.1, 0.16, 0.44, 0.535, 0.36], [-0.1, 0.5, 0.1, 0.16, 0.42, 0.6, 0.31],
-  [0.25, 0.5, 0.1, 0.16, 0.4, 0.58, 0.31], [0.62, 0.49, 0.1, 0.15, 0.35, 0.375, 0.35], [1.0, 0.46, 0.1, 0.14, 0.25, 0.265, 0.37], [1.15, 0.42, 0.12, 0.14, 0.185, 0.195, 0.34]];
-const GLASS: number[][] = [[-0.52, 0.31, 0.5, 0.55], [-0.1, 0.32, 0.5, 0.618], [0.25, 0.32, 0.48, 0.598], [0.66, 0.36, 0.35, 0.385]];
+  [0.25, 0.5, 0.1, 0.16, 0.4, 0.58, 0.31], [0.62, 0.49, 0.1, 0.15, 0.37, 0.395, 0.35], [1.0, 0.46, 0.1, 0.14, 0.29, 0.305, 0.37], [1.15, 0.42, 0.12, 0.14, 0.2, 0.21, 0.34]];
+const GLASS: number[][] = [[-0.52, 0.31, 0.5, 0.55], [-0.1, 0.32, 0.5, 0.618], [0.25, 0.32, 0.48, 0.598], [0.66, 0.36, 0.375, 0.405]];
 let carGeo: {body: THREE.BufferGeometry; glass: THREE.BufferGeometry; wheel: THREE.BufferGeometry; hub: THREE.BufferGeometry} | null = null;
 const paint = new Map<string, THREE.Material>();
 /** A low wedge of a car, nose to +x, 2.3 long: nobody's model. Built from cross-sections, not from a side outline (which reads as a box). */
 export function supercar(p: Node, color: string, s = 1, plain = false) {
   if (!carGeo) {
-    const wheel = new THREE.CylinderGeometry(0.2, 0.2, 0.15, 18); wheel.rotateX(Math.PI / 2);
-    const hub = new THREE.CylinderGeometry(0.11, 0.11, 0.16, 5); hub.rotateX(Math.PI / 2);
+    const wheel = new THREE.CylinderGeometry(0.17, 0.17, 0.13, 18); wheel.rotateX(Math.PI / 2);
+    const hub = new THREE.CylinderGeometry(0.09, 0.09, 0.14, 5); hub.rotateX(Math.PI / 2);
     carGeo = {
       body: loftGeo(BODY.map(([x, w, yb, ys, yh, yr, wr]) => ({x, ring: [[yb, -w * 0.9], [yb, w * 0.9], [ys, w], [yh, w * 0.97], [yr, wr], [yr, -wr], [yh, -w * 0.97], [ys, -w]] as [number, number][]}))),
       glass: loftGeo(GLASS.map(([x, w, y0, y1]) => ({x, ring: [[y0, -w], [y0, w], [y1, w * 0.78], [y1, -w * 0.78]] as [number, number][]}))),
@@ -84,7 +84,7 @@ export function supercar(p: Node, color: string, s = 1, plain = false) {
   let m = paint.get(color); if (!m) paint.set(color, (m = new THREE.MeshLambertMaterial({color, side: THREE.DoubleSide})));
   const g = grp(p); g.scale.setScalar(s);
   mesh(g, carGeo.body, m); const gl = mesh(g, carGeo.glass, lit('#11141b', 1)); gl.castShadow = false;
-  for (const x of [-0.72, 0.72]) for (const z of [-0.43, 0.43]) { mesh(g, carGeo.wheel, '#16171d', x, 0.2, z); if (!plain) mesh(g, carGeo.hub, '#c9ced6', x, 0.2, z); }
+  for (const x of [-0.72, 0.68]) for (const z of [-0.43, 0.43]) { mesh(g, carGeo.wheel, '#16171d', x, 0.17, z); if (!plain) mesh(g, carGeo.hub, '#c9ced6', x, 0.17, z); }
   for (const z of [-0.25, 0.25]) box(g, 0.03, 0.035, 0.2, lit('#fff3c0', 2), 1.145, 0.215, z).rotation.y = z > 0 ? -0.25 : 0.25;      // thin lit blades, not bricks
   box(g, 0.03, 0.04, 0.78, lit('#ff3b30', 1.5), -1.158, 0.385, 0);
   if (!plain) {
@@ -110,20 +110,20 @@ export const coins: Builder = (root) => {
   const stacks = at.map(([x, z]) => coinStack(root, x, 0.16, z, Math.round(22 - 13 * Math.hypot(x, z) + 3 * r()), 0.12));
   const tops: V[] = at.map(([x, z], i) => [x, 0.16 + (stacks[i].userData.h as number) + 0.02, z]);
   const glint = glints(root, [tops[0], tops[3], tops[5], tops[8], tops[11], tops[14]].map(([x, y, z]) => [x + 0.05, y + 0.06, z + 0.14] as V));
-  beam(root, 0.3, 2.3, 7.5, '#ffd98a', 0.035, 0, 7.5, -0.7); const spot = pool(root, 1.5, '#ffe2a0', 0.3, 0, 0, 0.17);
-  const me = actor(root, LAM(0), {grin: {expr: 'grin', pose: 'panic'}, laugh: {expr: 'laugh', pose: 'panic'}}, 0, 0.36, -1.0, {scale: 1.05, res: 1.1, shadow: 0});
-  const wallet = soft(panel(root, 0.86, 0.56, smat(walletTex(), 1.1, true), 1.02, 2.42, -0.2));
+  beam(root, 0.25, 1.7, 7.5, '#ffd98a', 0.035, 0, 7.5, -0.7); const spot = pool(root, 1.5, '#ffe2a0', 0.3, 0, 0, 0.17);
+  const me = actor(root, LAM(0), {grin: {expr: 'grin', pose: 'panic'}, laugh: {expr: 'laugh', pose: 'panic'}}, 0, 0.36, -1.0, {scale: 1.0, res: 1.1, shadow: 0});
+  const wallet = soft(panel(root, 0.86, 0.56, smat(walletTex(), 1.1, true), 1.02, 1.95, -0.2));
   const stream = coinStream(root, 18, 0.085);
   const gone = soft(mesh(root, new THREE.PlaneGeometry(3.2, 3.2), smat(tex('coins-gone', 512, 512, (g) => { g.strokeStyle = '#ffe14a'; g.lineWidth = 5; g.setLineDash([13, 9]); for (const [x, z] of at) { g.beginPath(); g.arc(256 + x * 160, 256 + z * 160, 20, 0, 7); g.stroke(); } }), 1.2, true), 0, 0.172, 0)); gone.rotation.x = -Math.PI / 2;
   return {
     light: () => ({...LIGHT.dark, amb: 1.05, key: '#ffe6b0', keyI: 1.1}),
     tick: ({f, cam, shot}) => {
       const pile = shot.v === 'pile', a = W(71) - 2, end = W(76) - 2;                    // the drain and the empty stage are one take: timed from words
-      me.node.visible = pile; me.show(Math.floor(f / 12) % 2 ? 'laugh' : 'grin'); me.node.position.y = lerp(-1.5, 0.36, smooth(f, 4, 22)) + hop(f, W(8), 0.12, 9); me.tick(f, cam);
+      me.node.visible = pile; me.show(Math.floor(f / 12) % 2 ? 'laugh' : 'grin'); me.node.position.y = lerp(-1.6, 0.05, smooth(f, 4, 22)) + hop(f, W(8), 0.12, 9); me.tick(f, cam);
       stacks.forEach((s, i) => level(s, pile ? 1 : 1 - smooth(f, a + 8 + i * 1.6, a + 28 + i * 1.6)));
       glint(f, pile || f < a + 16); op(spot, 0.3 + 0.05 * Math.sin(f * 0.2));
-      wallet.visible = !pile; wallet.scale.setScalar(pop(f, a + 3, 8) * (1 + 0.05 * Math.sin(f * 0.6) * (f < end ? 1 : 0))); wallet.position.y = 2.42 + 0.03 * Math.sin(f * 0.13);
-      if (pile) stream.hide(); else stream.set(f, a + 8, end - 6, (i) => [at[i % 16][0], 0.7, at[i % 16][1]], [0.3, 3.0, 0.2], () => [1.02, 2.42, -0.15], 0.05);
+      wallet.visible = !pile; wallet.scale.setScalar(pop(f, a + 3, 8) * (1 + 0.05 * Math.sin(f * 0.6) * (f < end ? 1 : 0))); wallet.position.y = 1.95 + 0.03 * Math.sin(f * 0.13);
+      if (pile) stream.hide(); else stream.set(f, a + 8, end - 6, (i) => [at[i % 16][0], 0.7, at[i % 16][1]], [0.3, 2.7, 0.2], () => [1.02, 1.95, -0.15], 0.05);
       gone.visible = !pile && f >= end - 4; op(gone, smooth(f, end - 4, end + 8));
     },
   };
@@ -169,7 +169,7 @@ export const desk: Builder = (root) => {
   backdrop(root, ['#12142e', '#1c2046']);
   floor(root, 14, 12, tmat(tiled(woodTex('desk-floor', '#6a4426', '#3e2614'), 4, 4)));
   panel(root, 12, 6, tmat(tiled(grainTex('desk-wall', '#262b58', 0.1), 5, 3)), 0, 3, -1.6);
-  soft(panel(root, 1.3, 1.5, smat(duskTex(), 1.05), -1.25, 2.2, -1.58));
+  soft(panel(root, 1.3, 1.5, smat(duskTex(), 1.05), -0.95, 2.15, -1.58));
   box(root, 1.5, 0.05, 0.26, '#3e2614', 1.05, 2.45, -1.46); soft(panel(root, 1.2, 0.44, smat(booksTex(), 1, true), 1.05, 2.7, -1.42));
   table(root, 0.2, 0.2, 2.6, 0.9, {h: 0.76, top: '#8a5a34', leg: '#3e2614', skirt: '#6a4426'});
   laptop(root, -0.35, 0.76, 0.2, {ry: Math.PI, w: 0.62, body: '#8f96a3', back: lit('#dfe6f0', 1)});
@@ -180,25 +180,25 @@ export const desk: Builder = (root) => {
   const ring = rings(root, 3, '#2fd07a');
   const ghost = soft(panel(root, 0.78, 1.3, smat(ghostTex(), 1.2, true), -0.35, 1.5, -0.42));
   const one = bubble(root, 0.52, 2.0, 0.36, 0.95, 0.66, smat(walletCard(), 1.05), [-0.5, -0.36]);
-  const call = bubble(root, 0.42, 2.02, 0.36, 0.8, 0.73, smat(callCard(), 1.05), [0.3, -0.5]);
-  const tool = bubble(root, 0.36, 1.93, 0.3, 1.1, 0.95, smat(toolCard(), 1.05), [-0.5, -0.45]), toolM = tool.screen.material as THREE.MeshBasicMaterial, maps = [toolCard(), remoteCard()];
+  const call = bubble(root, 0.8, 1.98, 0.36, 0.72, 0.66, smat(callCard(), 1.05), [0.02, -0.45]);
+  const tool = bubble(root, 0.36, 1.84, 0.3, 1.1, 0.95, smat(toolCard(), 1.05), [-0.5, -0.45]), toolM = tool.screen.material as THREE.MeshBasicMaterial, maps = [toolCard(), remoteCard()];
   const cursor = soft(panel(root, 0.15, 0.2, smat(cursorTex(), 1.15, true), 0, 0, 0.36)); cursor.renderOrder = 8;
-  const BX = (px: number) => 0.36 + (px / 520 - 0.5) * 1.1, BY = (py: number) => 1.93 + (0.5 - py / 450) * 0.95;
+  const BX = (px: number) => 0.36 + (px / 520 - 0.5) * 1.1, BY = (py: number) => 1.84 + (0.5 - py / 450) * 0.95;
   return {
-    light: () => ({...LIGHT.warm, amb: 1.15}),
+    light: () => ({...LIGHT.room, sky: '#e6e2ff', amb: 1.3, keyI: 0.9}),
     tick: ({f, shot}) => {
       const v = shot.v, a = shot.at, click = W(68) + 1;
       ghost.position.y = 1.5 + 0.015 * Math.sin(f * 0.1);
       one.g.visible = v === 'one'; one.g.scale.setScalar(pop(f, a + 3, 8));
       call.g.visible = v === 'ring'; call.g.scale.setScalar(pop(f, a + 2, 8) * (1 + 0.025 * Math.sin(f * 0.9)));
-      ring(f, v === 'ring', [0.8, 0.98, 0.42], 0.55, 0, 0.07); (scr.material as THREE.MeshBasicMaterial).color.set(v === 'ring' ? '#2fd07a' : '#1c2433').multiplyScalar(v === 'ring' ? 1.3 + 0.3 * Math.sin(f * 0.9) : 1);
+      ring(f, v === 'ring', [0.8, 0.98, 0.42], 0.4, 0, 0.07); (scr.material as THREE.MeshBasicMaterial).color.set(v === 'ring' ? '#2fd07a' : '#1c2433').multiplyScalar(v === 'ring' ? 1.3 + 0.3 * Math.sin(f * 0.9) : 1);
       phone.rotation.z = v === 'ring' ? 0.05 * Math.sin(f * 1.7) : 0;
       tool.g.visible = v === 'allow'; tool.g.scale.setScalar(pop(f, a + 2, 8) * (1 + 0.06 * Math.max(0, 1 - Math.abs(f - click - 3) / 4)));
       toolM.map = maps[f >= click + 2 ? 1 : 0];
       // the cursor comes down to INSTALL and presses it; after that it moves by itself: somebody else has the desktop
       const k = smooth(f, a + 10, click - 1), away = smooth(f, click + 3, click + 12), d = Math.max(0, f - click - 12);
       cursor.visible = v === 'allow' && f >= a + 6;
-      cursor.position.set(lerp(lerp(BX(520) + 0.02, BX(400), k), BX(520) + 0.12 + 0.04 * Math.sin(d * 0.35), away) + 0.05, lerp(lerp(BY(120), BY(380), k), BY(250) + 0.04 * Math.sin(d * 0.5), away) - 0.08, 0.37);
+      cursor.position.set(lerp(lerp(BX(520) + 0.02, BX(400), k), BX(520) - 0.02 + 0.03 * Math.sin(d * 0.35), away) + 0.05, lerp(lerp(BY(120), BY(380), k), BY(250) + 0.04 * Math.sin(d * 0.5), away) - 0.08, 0.37);
       cursor.scale.setScalar((f >= click && f < click + 3 ? 0.8 : 1) * pop(f, a + 6, 6));
     },
   };
@@ -207,8 +207,8 @@ export const desk: Builder = (root) => {
 // ------------------------------------------------------------------ drive: the cars in front of a rented house
 const facadeTex = () => tex('drive-facade', 1024, 512, (g, w, h) => {
   g.fillStyle = '#f4f1e8'; g.fillRect(0, 0, w, h); g.fillStyle = '#e3ded0'; g.fillRect(0, 0, w, 44);
-  for (const x of [50, 240, 650, 840]) { g.fillStyle = '#5fd0e6'; g.fillRect(x, 96, 140, 250); g.strokeStyle = INK; g.lineWidth = 6; g.strokeRect(x, 96, 140, 250); }
-  g.fillStyle = '#5a3a22'; g.fillRect(450, 150, 130, 362); g.strokeRect(450, 150, 130, 362); g.fillStyle = '#e7c56a'; g.fillRect(558, 330, 8, 44);
+  for (const x of [36, 204, 372, 540, 708, 876]) { g.fillStyle = '#5fd0e6'; g.fillRect(x, 96, 112, 250); g.strokeStyle = INK; g.lineWidth = 6; g.strokeRect(x, 96, 112, 250); }
+  g.fillStyle = '#e3ded0'; g.fillRect(0, 400, w, 20);
 });
 export const drive: Builder = (root) => {
   backdrop(root, ['#3f9be0', '#a8dcf5', '#e8f6ff']);
@@ -263,7 +263,7 @@ export const villa: Builder = (root) => {
   const dock = grp(root, 2.1, 0, 5.4); box(dock, 1.3, 0.1, 4.6, '#8a5a34', 0, 0.2, 0); for (let i = 0; i < 9; i++) box(dock, 1.3, 0.012, 0.03, '#5a3a22', 0, 0.256, -2.1 + i * 0.52);
   for (const z of [-1.9, -0.3, 1.3, 2.25]) for (const s of [-1, 1]) cyl(dock, 0.085, 1.5, '#5a3a22', s * 0.66, 0.1, z);
   // people
-  const me = actor(root, LAM(1), {shock: {expr: 'shock', pose: 'panic'}, caught: {expr: 'nervous', pose: 'panic'}}, 0.9, 0, 3.0 - 0.3, {scale: 1.0, res: 1.2});
+  const me = actor(root, LAM(1), {shock: {expr: 'shock', pose: 'panic'}, caught: {expr: 'nervous', pose: 'panic'}}, 0.5, 0, 2.7, {scale: 1.0, res: 1.2});
   const agents = [actor(root, AGENT(0), {a: {expr: 'stern', pose: 'point'}}, -0.4, 0, 2.8, {scale: 1.02, res: 1.2, wide: true}), actor(root, AGENT(1), {a: {expr: 'stern', pose: 'push'}}, 2.2, 0, 2.8, {scale: 1.0, res: 1.2, wide: true})];
   const runner = actor(root, LAM(1), {look: {expr: 'nervous', pose: 'wave', prop: 'selfie', look: -1}, thrown: {expr: 'nervous', pose: 'push', look: -1}, gone: {expr: 'whistle', pose: 'hang'}}, 2.1, 0.25, 6.0, {scale: 1.0, res: 1.2, wide: true});
   const phone = box(root, 0.11, 0.2, 0.025, '#15161b', 0, 0, 0); phone.castShadow = false;
@@ -274,13 +274,14 @@ export const villa: Builder = (root) => {
     light: (v) => v === 'dock' ? {...LIGHT.dusk, amb: 1.3} : v === 'raid' ? {...LIGHT.dusk, amb: 1.45, keyI: 1.1} : LIGHT.day,
     tick: ({f, cam, shot}) => {
       const v = shot.v, a = shot.at, late = v === 'dock' || v === 'raid';
-      day.visible = !late; dusk.visible = late; glassM.color.set(late ? '#ffd98a' : '#7fd6e8').multiplyScalar(late ? 1.25 : 1.0);
+      day.visible = !late; dusk.visible = late; dock.visible = v !== 'raid';                  // from where the arrest is seen, its posts would stand in front of the lens
+      glassM.color.set(late ? '#ffd98a' : '#7fd6e8').multiplyScalar(late ? 1.25 : 1.0);
       (water.material as THREE.MeshBasicMaterial).color.set(late ? '#2a8fc0' : '#35c3e8');
       ripples.position.x = -0.4 + 0.05 * Math.sin(f * 0.07); waves.position.x = 0.4 * Math.sin(f * 0.03);
       floats.forEach((t, i) => { t.position.y = 0.13 + 0.012 * Math.sin(f * 0.13 + i * 2); t.rotation.z = f * 0.01 * (i ? -1 : 1); });
       // the arrest: he is alone for a moment, then they are on both sides of him
       me.node.visible = v === 'raid'; me.show(f < a + 14 ? 'shock' : 'caught'); me.node.position.y = hop(f, a + 2, 0.1, 8); me.tick(f, cam);
-      agents.forEach((g, i) => { const k = smooth(f, a + 6 + i * 3, a + 20 + i * 3); g.node.visible = v === 'raid'; g.node.position.x = lerp(i ? 4.6 : -2.8, i ? 2.05 : -0.25, k); g.node.position.y = Math.abs(0.05 * Math.sin(f * 0.5 + i)) * (1 - k); g.tick(f, cam); });
+      agents.forEach((g, i) => { const k = smooth(f, a + 6 + i * 3, a + 20 + i * 3); g.node.visible = v === 'raid'; g.node.position.x = lerp(i ? 4.2 : -3.2, i ? 1.55 : -0.55, k); g.node.position.y = Math.abs(0.05 * Math.sin(f * 0.5 + i)) * (1 - k); g.tick(f, cam); });
       // the dock: he looks round, and on "dropped" the phone leaves his hand
       const go = W(165) - 2, u = (f - go) / 13, flying = v === 'dock' && u >= 0 && u < 1;
       runner.node.visible = v === 'dock'; runner.show(f < go ? 'look' : f < go + 16 ? 'thrown' : 'gone'); runner.node.position.y = 0.25 + hop(f, go - 1, 0.12, 8); runner.tick(f, cam);
@@ -307,7 +308,7 @@ export const deep: Builder = (root) => {
   backdrop(root, ['#7fe0e8', '#2a9fc8', '#0f5a8a', '#0a3a66']);
   floor(root, 30, 20, tmat(tiled(grainTex('deep-sand', '#6fb0a8', 0.1), 6, 4)), 0, 0, -2);
   for (const [x, rr, z] of [[-2.2, 0.5, -1.6], [2.0, 0.6, -1.2], [1.2, 0.3, 0.6], [-1.3, 0.28, 0.9]]) { const o = ball(root, rr, '#4a7f8a', x, rr * 0.3, z); o.scale.y = 0.6; }
-  for (const [x, z, h] of [[-1.7, -0.6, 1.3], [-1.45, -0.4, 0.9], [1.6, -0.3, 1.1], [1.85, -0.5, 1.5], [0.6, -1.4, 0.9]]) cone(root, 0.12, h, '#7fd0c0', x, h / 2, z, 5);
+  for (const [x, z, h] of [[-1.25, -0.6, 1.3], [-1.05, -0.4, 0.9], [-0.85, -0.7, 0.6], [1.05, -0.3, 1.1], [1.25, -0.5, 1.5], [0.85, -0.6, 0.7], [0.3, -1.6, 0.9]]) cone(root, 0.11, h, h > 1 ? '#2f9a8a' : '#4fb8a0', x, h / 2, z, 5);
   for (const [x, o] of [[-0.8, 0.07], [0.6, 0.05], [1.9, 0.04]] as const) beam(root, 0.4, 1.3, 9, '#e8ffff', o, x, 8, -1.2 - x * 0.2);
   const fish = [card(root, 0.62, 0.34, fishTex('#ff8fa8'), 0, 0, -0.6, 1.05), card(root, 0.4, 0.22, fishTex('#7fe8e0'), 0, 0, -1.2, 1.0), card(root, 1.0, 0.55, fishTex('#ffb52e'), 0, 0, 1.0, 1.05)];
   const ph = grp(root); box(ph, 0.62, 1.16, 0.07, '#15161b'); soft(panel(ph, 0.55, 1.05, smat(sunkTex(), 1.1), 0, 0, 0.04));
@@ -317,9 +318,9 @@ export const deep: Builder = (root) => {
     tick: ({f, t}) => {
       const k = smooth(t, -2, 26);
       ph.position.set(0.15 + 0.05 * Math.sin(f * 0.07), lerp(4.4, 1.5, k) - 0.004 * Math.max(0, t - 26), 0); ph.rotation.set(0.1 * Math.sin(f * 0.06), 0.35 * Math.sin(f * 0.045) + 0.25, lerp(0.5, -0.12, k));
-      fish[0].position.set(lerp(1.9, -1.9, ((f * 0.006 + 0.35) % 1)), 2.35 + 0.05 * Math.sin(f * 0.1), -0.6); fish[0].scale.x = -1;
-      fish[1].position.set(lerp(-1.9, 1.9, ((f * 0.005 + 0.6) % 1)), 1.9, -1.2);
-      fish[2].position.set(lerp(-2.3, 2.3, ((f * 0.004 + 0.72) % 1)), 0.62 + 0.03 * Math.sin(f * 0.08), 1.0);
+      fish[0].position.set(lerp(1.5, -1.5, (t / 80 + 0.2) % 1), 2.5 + 0.05 * Math.sin(f * 0.1), -0.6); fish[0].scale.x = -1;
+      fish[1].position.set(lerp(-1.5, 1.5, (t / 100 + 0.45) % 1), 0.95, -1.0);
+      fish[2].position.set(lerp(-1.6, 1.6, (t / 110 + 0.3) % 1), 0.5 + 0.03 * Math.sin(f * 0.08), 0.9);
       bub.forEach((b, i) => { const u = (f * 0.012 + i * 0.143) % 1; b.position.set(ph.position.x + 0.3 * Math.sin(i * 2.4) + 0.05 * Math.sin(f * 0.1 + i), ph.position.y + 0.5 + u * 2.6, 0.1); b.scale.setScalar(0.7 + 1.3 * u); op(b, 0.9 * (1 - u)); b.visible = t > 6; });
     },
   };

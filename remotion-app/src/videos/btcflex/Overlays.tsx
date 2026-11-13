@@ -88,7 +88,7 @@ const Count: React.FC<{f: number; from: number; to: number; total: number; prefi
     <div style={{...row('9.5%'), flexDirection: 'column', alignItems: 'center'}}>
       <div style={{...anton, fontSize: '11.5cqw', color, WebkitTextStroke: `1.5cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, fontVariantNumeric: 'tabular-nums',
         transform: `translateX(${shakeX}cqw) scale(${pop(f, from, 6) * (done ? 1 + 0.1 * Math.max(0, 1 - (f - to) / 5) : 1)})`}}>{prefix}{value.toFixed(digits)}{suffix}</div>
-      <div style={{...mont(900), ...sticker(INK, '#ffffff'), boxShadow: 'none', fontSize: '3.5cqw', padding: '0.5em 1em', letterSpacing: '0.06em', marginTop: '-0.6cqw', opacity: c01((f - from - 4) / 4), whiteSpace: 'nowrap'}}>{label}</div>
+      <div style={{...mont(900), ...sticker(INK, '#ffffff'), boxShadow: 'none', fontSize: `${Math.min(3.5, 84 / (0.76 * label.length + 1.8))}cqw`, padding: '0.5em 1em', letterSpacing: '0.06em', marginTop: '-0.6cqw', opacity: c01((f - from - 4) / 4), whiteSpace: 'nowrap'}}>{label}</div>
     </div>
   );
 };
