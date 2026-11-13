@@ -1,13 +1,13 @@
-// The world of the bitcoin flex short: every set is built once, one is shown per shot, and the same two lights are
+// The world of the Nvidia exit short: every set is built once, one is shown per shot, and the same two lights are
 // re-coloured for each set (no shader recompiles between shots). Cuts are hard; each shot pushes in or travels.
 import * as THREE from 'three';
 import {SHOTS, shotAt, shotEnd, type Kind} from './story';
-import {club, coins, deep, desk, drive, villa, type Builder, type SetDef} from './sets';
-import {cal, fleet, globe, jet, mask, room, screen} from './sets2';
-import {court, feed, sleuth, split, steps} from './sets3';
+import {booth, chip, counter, diner, kitchen, office, type Builder, type SetDef} from './sets';
+import {caseSet, floorSet, map, paper, racks, ware} from './sets2';
+import {board, chart, copier, podium, release, stage} from './sets3';
 import {clamp01} from './kit';
 
-const BUILDERS: Record<Kind, Builder> = {coins, desk, drive, villa, deep, club, cal, room, globe, screen, mask, jet, fleet, feed, sleuth, court, steps, split};
+const BUILDERS: Record<Kind, Builder> = {kitchen, counter, diner, booth, chip, office, map, ware, racks, paper, case: caseSet, floor: floorSet, board, chart, release, podium, stage, copier};
 
 export class NvExitWorld {
   root = new THREE.Group();

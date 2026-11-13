@@ -1,9 +1,10 @@
-// The cast of the bitcoin flex short. Everyone is built on the shared flat cartoon construction (pendulum/toon.ts):
-// same big head, same deadpan face. A person is told apart by costume only: a hoodie, a robe, a jacket with three letters.
-// Malone Lam has pleaded guilty and is named; he is drawn as the house's stock figure in an invented costume (a pink hoodie,
-// a chain with a dollar sign for his alias "$$$"): no likeness of him. His crew, some of whom have not been tried, and the
-// investigator nobody has seen get a blank head with a question mark. The agents, the judge, the prosecutor, the lawyer and the
-// club staff are invented. The man who was robbed is never drawn.
+// The cast of the Nvidia exit short. Everyone is built on the shared flat cartoon construction (pendulum/toon.ts):
+// same big head, same deadpan face. A person is told apart by costume only.
+// Jensen Huang is a public figure and gets the series' simple caricature (white hair, rectangular glasses, a black leather
+// jacket), with the same head at 15 (a diner apron and a paper hat, invented) and at 30 (a blue shirt, invented).
+// His two co-founders are named on screen and drawn as stock figures: no likeness. The businesswoman is not named in this
+// film and has a blank head with a question mark: what is said about her is a suspicion. The executive is never drawn.
+// Officials, the spokesman, the board, the staff, the diner's people and the news crew are invented.
 import * as THREE from 'three';
 import {Pen, bodyFront, INK, type Outfit, type Expr, type FrontGeo, type HeadGeo} from '../pendulum/toon';
 import {NOINK} from '../pendulum/ink';
@@ -11,18 +12,16 @@ import {pool, rrect, type G2, type Node} from './kit';
 
 type P2 = [number, number];
 export type Pose = 'hang' | 'hold' | 'shrug' | 'panic' | 'point' | 'hips' | 'cross' | 'desk' | 'both' | 'phone' | 'think' | 'type' | 'wave' | 'push' | 'swing' | 'hush' | 'mask' | 'side';
-export type Prop = 'paper' | 'phone' | 'key' | 'card' | 'flowers' | 'cash' | 'heart' | 'megaphone' | 'clip' | 'burger' | 'mask' | 'lens' | 'selfie' | 'bottle' | null;
-/** the face in a hood */
-export type Emo = 'sad' | 'flat' | 'evil' | 'happy' | 'cash' | 'oh';
+export type Prop = 'paper' | 'phone' | 'card' | 'clip' | 'tub' | 'cups' | 'pot' | 'mic' | 'napkin' | 'plate' | null;
 export type Look = {
   id: string; outfit: Outfit; seed: number;
   eyewear?: 'rect' | 'round' | 'shades';
-  front?: 'suit' | 'hoodie' | 'tee' | 'polo' | 'scrubs' | 'uniform' | 'robe' | 'coat';
-  /** a gold chain with a dollar sign */
-  chain?: boolean;
+  front?: 'suit' | 'hoodie' | 'tee' | 'polo' | 'coat' | 'leather' | 'apron';
+  /** a folded paper cap, the kind a diner's kitchen wears */
+  paperhat?: boolean;
   /** a call-centre headset */
   headset?: boolean;
-  /** tie colour */
+  /** tie colour ('none': an open collar) */
   tie?: string; shirt?: string;
   /** a staff badge on a ribbon of this colour (on a suit: a lapel pin) */
   lanyard?: string;
@@ -32,15 +31,10 @@ export type Look = {
   hairColor?: string;
   /** nobody's face: a blank head with a question mark */
   blank?: boolean;
-  /** the hood is up and there is no face in it */
-  hood?: boolean;
 };
 export type Draw = {expr?: Expr; pose?: Pose; prop?: Prop; blink?: boolean; tilt?: number; look?: number; mode?: 'stand' | 'sit' | 'march'; phase?: number;
-  /** the face in the hood */ emo?: Emo;
-  /** a paper halo on a wire */ halo?: 'on' | 'askew';
   /** the word on a card */ text?: string;
-  /** a bigger card, for a word that has to be read from far away */ big?: boolean;
-  /** what the paper face wears on its forehead */ badge?: 'shield' | 'coin'};
+  /** a bigger card, for a word that has to be read from far away */ big?: boolean};
 
 const curve = (a: P2, k: P2, b: P2, n = 12): P2[] => {
   const c: P2 = [2 * k[0] - (a[0] + b[0]) / 2, 2 * k[1] - (a[1] + b[1]) / 2], out: P2[] = [];
@@ -95,26 +89,6 @@ function drawProp(p: Pen, d: Draw, hands: P2[], u: number, look: Look) {
     g.save(); g.translate(x, y); g.rotate(-0.05); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#e3342f';
     let px = 40 * u * kb; g.font = `400 ${px}px Anton, sans-serif`; const mw = g.measureText(word).width; if (mw > 1.7 * w) { px *= 1.7 * w / mw; g.font = `400 ${px}px Anton, sans-serif`; }
     g.fillText(word, 0, 2 * u); g.restore(); fist(L); fist(R);
-  } else if (prop === 'flowers') {                                                                  // a bunch of flowers in paper
-    const [x, y] = [R[0] + 4 * u, R[1] - 6 * u], cols = ['#ff6b9a', '#ffd43b', '#ff8a3c', '#ffffff', '#ff6b9a'];
-    p.poly([[x - 5 * u, y + 12 * u], [x + 5 * u, y + 12 * u], [x + 21 * u, y - 30 * u], [x - 21 * u, y - 30 * u]], '#fff3d6', 2.2 * u);
-    ([[-15, -36], [0, -45], [15, -36], [-7, -29], [8, -28]] as P2[]).forEach(([dx, dy], i) => { p.ell(x + dx * u, y + dy * u, 9 * u, 9 * u, cols[i], 1.8 * u); p.dot(x + dx * u, y + dy * u, 3 * u, '#7a4a12'); });
-    fist();
-  } else if (prop === 'cash') {                                                                     // a fan of banknotes
-    const [x, y] = [R[0] + 2 * u, R[1] - 6 * u];
-    for (const a of [-0.55, -0.18, 0.2]) { p.rot = [a, x, y + 8 * u]; p.poly(rect(x - 9.5 * u, y - 36 * u, 19 * u, 42 * u), '#62b77e', 2 * u); p.ell(x, y - 15 * u, 5 * u, 7.5 * u, '#dff3e2', 1.2 * u); p.rot = null; }
-    fist();
-  } else if (prop === 'heart') {                                                                    // a paper heart on a stick
-    const [x, y] = [R[0] + 3 * u, R[1] - 30 * u], k = 1.45 * u, pts: P2[] = [];
-    for (let i = 0; i <= 40; i++) { const t = (i / 40) * Math.PI * 2; pts.push([x + k * 16 * Math.sin(t) ** 3, y - k * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t))]); }
-    p.band([[R[0], R[1] + 4 * u], [x, y + 14 * u]], '#c9ced6', 3.2 * u, 1.2 * u, 'round'); p.poly(pts, '#e3342f', 2.4 * u); p.arc(x - 9 * u, y - 7 * u, 6 * u, 6 * u, 180, 265, 2.4 * u, '#ffffff'); fist();
-  } else if (prop === 'megaphone') {
-    const [x, y] = [R[0], R[1] - 4 * u];
-    p.poly([[x - 4 * u, y - 5 * u], [x + 30 * u, y - 21 * u], [x + 30 * u, y + 17 * u], [x - 4 * u, y + 5 * u]], '#f2c230', 2.4 * u); p.poly(rect(x + 30 * u, y - 24 * u, 5.5 * u, 44 * u), '#e3342f', 2 * u); fist();
-  } else if (prop === 'burger') {                                                                   // a burger, half eaten
-    const [x, y] = [R[0] + 2 * u, R[1] - 13 * u];
-    p.ell(x, y + 8 * u, 17 * u, 7 * u, '#d9a45a', 2 * u); p.poly(rect(x - 17 * u, y - 1 * u, 34 * u, 7 * u), '#6a3d24', 1.6 * u); p.poly(rect(x - 18.5 * u, y - 4.5 * u, 37 * u, 4 * u), '#6fbf5a', 1.2 * u);
-    p.ell(x, y - 9 * u, 17.5 * u, 10 * u, '#e0b06a', 2 * u); fist();
   } else if (prop === 'clip') {                                                                     // a clipboard: paper forms
     const [x, y] = [R[0] + 2 * u, R[1] - 18 * u];
     p.rot = [0.12, x, y]; p.poly(rounded(x - 15 * u, y - 21 * u, 30 * u, 42 * u, 3 * u), '#8a6a3a', 2.2 * u); p.poly(rect(x - 12 * u, y - 16 * u, 24 * u, 34 * u), '#fffdf4', 1.2 * u);
@@ -129,35 +103,43 @@ function drawProp(p: Pen, d: Draw, hands: P2[], u: number, look: Look) {
     p.rot = null; fist();
   } else if (prop === 'phone') {
     p.poly(rounded(R[0] - 5 * u, R[1] - 15 * u, 10 * u, 24 * u, 2 * u), '#26262e', 1.8 * u); p.dot(R[0] + 3 * u, R[1] + 3 * u, 5 * u);
-  } else if (prop === 'selfie') {                                                                   // a phone held up at arm's length, its back to us
-    const [x, y] = [R[0] + 1 * u, R[1] - 12 * u];
-    p.rot = [0.1, x, y]; p.poly(rounded(x - 8.5 * u, y - 15 * u, 17 * u, 30 * u, 3.5 * u), '#26262e', 2 * u); p.ell(x - 3 * u, y - 9.5 * u, 2.6 * u, 2.6 * u, '#5a6072', 1 * u); p.dot(x + 2.8 * u, y - 10.5 * u, 1.3 * u, '#fff3c0'); p.rot = null; fist();
-  } else if (prop === 'bottle') {                                                                   // a big bottle held up, a sparkler's wire in its neck (the spark itself is a light in the set)
-    const [x, y] = [R[0] + 1 * u, R[1] - 8 * u];
-    p.poly(rect(x - 3 * u, y - 40 * u, 6 * u, 16 * u), '#1f6b3a', 1.8 * u); p.poly(rounded(x - 7 * u, y - 26 * u, 14 * u, 34 * u, 4 * u), '#1f6b3a', 2 * u);
-    p.poly(rect(x - 3.4 * u, y - 43 * u, 6.8 * u, 5.5 * u), '#f2c230', 1.4 * u); p.poly(rect(x - 7 * u, y - 15 * u, 14 * u, 9 * u), '#fff3c0', 1.2 * u);
-    p.stroke([[x, y - 43 * u], [x, y - 56 * u]], 1.5 * u, '#8f8a96'); fist();
-  } else if (prop === 'lens') {                                                                     // a magnifying glass
-    const [x, y] = [R[0] + 7 * u, R[1] - 24 * u];
-    p.band([[R[0], R[1] + 2 * u], [x - 6 * u, y + 10 * u]], '#5a3e28', 4.6 * u, 1.4 * u, 'round');
-    g.globalAlpha = 0.4; p.ell(x, y, 12.5 * u, 12.5 * u, '#bfe6ff', 0); g.globalAlpha = 1; p.arc(x, y, 12.5 * u, 12.5 * u, 0, 360, 3.4 * u, '#15121c'); fist();
-  } else if (prop === 'mask') {                                                                     // a friendly paper face on a stick, with a label: who the caller says he is
-    const x = R[0] + 8 * u, y = R[1] - 64 * u, r = 35 * u, label = d.text ?? 'SECURITY TEAM', coinFace = d.badge === 'coin', bg = coinFace ? '#f2a516' : '#2f7fe0';
-    p.band([[R[0], R[1] + 4 * u], [x, y + r]], '#c9a27a', 4 * u, 1.4 * u, 'round');
-    p.ell(x, y, r, r, '#fffdf4', 2.8 * u);
-    for (const sgn of [-1, 1]) p.arc(x + sgn * 13 * u, y + 2 * u, 8 * u, 8 * u, 200, 340, 3.4 * u, '#15121c');                    // smiling eyes
-    p.arc(x, y + 8 * u, 16 * u, 13 * u, 20, 160, 3.4 * u, '#15121c');                                                             // and a smile
-    if (coinFace) { p.ell(x, y - 21 * u, 9 * u, 9 * u, '#f2c230', 2 * u); g.save(); g.font = `400 ${13 * u}px Anton, sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#7a5208'; g.fillText('$', x, y - 20.4 * u); g.restore(); }
-    else p.poly([[x - 8 * u, y - 29 * u], [x + 8 * u, y - 29 * u], [x + 8 * u, y - 19 * u], [x, y - 12 * u], [x - 8 * u, y - 19 * u]], '#2f7fe0', 2 * u);
-    const w = 47 * u, h = 12 * u, ly = y + r + 9 * u;
-    p.poly(rounded(x - w, ly - h, 2 * w, 2 * h, 4 * u), bg, 2.6 * u);
-    g.save(); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = coinFace ? '#15121c' : '#ffffff';
-    let px = 18 * u; g.font = `400 ${px}px Anton, sans-serif`; const mw = g.measureText(label).width; if (mw > 1.84 * w) { px *= 1.84 * w / mw; g.font = `400 ${px}px Anton, sans-serif`; }
-    g.fillText(label, x, ly + 0.8 * u); g.restore(); fist();
-  } else if (prop === 'key') {                                                                      // a key held up
-    const [x, y] = [R[0] + 3 * u, R[1] - 20 * u], gold = '#f2c230';
-    p.poly(rect(x - 3.5 * u, y - 4 * u, 7 * u, 32 * u), gold, 1.8 * u); for (const dy of [16, 23]) p.poly(rect(x + 3.5 * u, y + dy * u, 9 * u, 4.5 * u), gold, 1.6 * u);
-    p.ell(x, y - 15 * u, 14 * u, 14 * u, gold, 2.2 * u); p.ell(x, y - 15 * u, 5 * u, 5 * u, '#3a2c08', 0); fist();
+  } else if (prop === 'tub') {                                                                      // a bus tub in both hands, dirty dishes sticking out of it
+    const x = (L[0] + R[0]) / 2, y = Math.max(L[1], R[1]) + 2 * u, w = 47 * u, h = 17 * u;
+    for (let i = 0; i < 4; i++) p.poly(rounded(x - 34 * u, y - h - 9 * u - i * 5.4 * u, 34 * u, 5 * u, 2 * u), '#fffdf4', 1.5 * u);         // a pile of plates
+    p.poly(rect(x + 8 * u, y - h - 22 * u, 15 * u, 20 * u), '#fffdf4', 1.6 * u); p.arc(x + 25 * u, y - h - 12 * u, 5 * u, 6 * u, -80, 80, 2.2 * u, '#15121c');   // a cup
+    p.poly(rect(x + 26 * u, y - h - 14 * u, 4 * u, 12 * u), '#c9ced6', 1.2 * u);                                                                      // a fork
+    p.poly([[x - w, y - h], [x + w, y - h], [x + w - 7 * u, y + h], [x - w + 7 * u, y + h]], '#8f96a8', 2.4 * u);
+    p.poly(rounded(x - w - 3 * u, y - h - 4 * u, 2 * w + 6 * u, 8 * u, 3 * u), '#aab1c2', 2 * u); fist(L); fist(R);
+  } else if (prop === 'cups') {                                                                     // a tray on one hand and far too many coffee cups on it
+    const [x, y] = [R[0] + 2 * u, R[1] - 7 * u];
+    p.ell(x, y, 30 * u, 6 * u, '#c9ced6', 2 * u);
+    for (let i = 0; i < 9; i++) {
+      const cx = x + 0.34 * u * i * i - 3 * u, cy = y - 10 * u - i * 13.4 * u;
+      p.arc(cx + 12.5 * u, cy, 4.6 * u, 4.6 * u, -90, 90, 2.2 * u, '#15121c');
+      p.poly([[cx - 11 * u, cy - 6.4 * u], [cx + 11 * u, cy - 6.4 * u], [cx + 9 * u, cy + 6.4 * u], [cx - 9 * u, cy + 6.4 * u]], i % 2 ? '#fff3d6' : '#fffdf4', 1.7 * u);
+      p.stroke([[cx - 10 * u, cy - 3 * u], [cx + 10 * u, cy - 3 * u]], 1.5 * u, '#c8642c');
+    }
+    fist();
+  } else if (prop === 'pot') {                                                                      // a glass coffee pot, tipped to pour
+    const [x, y] = [R[0] - 8 * u, R[1] - 2 * u];
+    p.rot = [-0.5, x, y];
+    p.band([[x + 15 * u, y - 15 * u], [x + 25 * u, y - 4 * u], [x + 16 * u, y + 10 * u]], '#15121c', 5 * u, 0, 'round');
+    p.ell(x, y, 17 * u, 16 * u, '#dfeaf2', 2.2 * u); p.poly([[x - 15 * u, y + 1 * u], [x + 15 * u, y + 1 * u], [x + 11 * u, y + 12 * u], [x - 11 * u, y + 12 * u]], '#4a2a16', 0); p.arc(x, y, 17 * u, 16 * u, 0, 360, 2.2 * u, '#15121c');
+    p.poly(rect(x - 12 * u, y - 22 * u, 24 * u, 8 * u), '#e8553a', 1.8 * u); p.poly([[x - 12 * u, y - 20 * u], [x - 21 * u, y - 23 * u], [x - 12 * u, y - 15 * u]], '#e8553a', 1.6 * u);
+    p.rot = null; fist();
+  } else if (prop === 'mic') {                                                                      // a reporter's microphone with a plain cube on it
+    const [x, y] = [R[0], R[1] - 3 * u];
+    p.band([[x, y + 5 * u], [x - 2 * u, y - 26 * u]], '#2b2d38', 5 * u, 1.4 * u, 'round'); p.poly(rect(x - 10.5 * u, y - 31 * u, 17 * u, 14 * u), '#2f7fe0', 1.8 * u);
+    p.ell(x - 2.4 * u, y - 40 * u, 8 * u, 9.5 * u, '#3a3f4a', 2 * u); fist();
+  } else if (prop === 'plate') {                                                                    // a plate held up, clean
+    const [x, y] = [R[0] + 2 * u, R[1] - 16 * u];
+    p.ell(x, y, 22 * u, 22 * u, '#fffdf4', 2.2 * u); p.arc(x, y, 14 * u, 14 * u, 0, 360, 1.5 * u, '#c9ced6'); p.arc(x - 6 * u, y - 6 * u, 9 * u, 9 * u, 190, 260, 2 * u, '#9fd8ff'); fist();
+  } else if (prop === 'napkin') {                                                                   // a paper napkin held up, a chip sketched on it in ballpoint
+    const [x, y] = [R[0] + 3 * u, R[1] - 24 * u], blue = '#2a4fb0';
+    p.rot = [0.1, x, y]; p.poly(rect(x - 25 * u, y - 25 * u, 50 * u, 50 * u), '#fffdf4', 2.2 * u);
+    p.poly(rect(x - 11 * u, y - 11 * u, 22 * u, 22 * u), null, 0); g.lineWidth = 2 * u; g.strokeStyle = blue; g.strokeRect(x - 11 * u, y - 11 * u, 22 * u, 22 * u); g.strokeRect(x - 5 * u, y - 5 * u, 10 * u, 10 * u);
+    for (let i = -1; i <= 1; i++) for (const sgn of [-1, 1]) { p.stroke([[x + i * 7 * u, y + sgn * 11 * u], [x + i * 7 * u, y + sgn * 17 * u]], 1.7 * u, blue); p.stroke([[x + sgn * 11 * u, y + i * 7 * u], [x + sgn * 17 * u, y + i * 7 * u]], 1.7 * u, blue); }
+    p.rot = null; fist();
   }
 }
 
@@ -174,11 +156,32 @@ function torsoFront(p: Pen, look: Look, g: FrontGeo) {
     p.stroke([[x - 0.1 * Ta, chin + 0.69 * HH], [x + 0.14 * Ta, chin + 0.69 * HH]], 1.3 * u, '#777');
   };
   switch (look.front) {
+    case 'leather': {                                                                               // a black leather jacket over a dark tee: the caricature's costume
+      vee(0.5, 0.42, '#3a3b45');
+      for (const s of [-1, 1]) p.poly([[x + s * 0.52 * Ta, top], [x + s * 0.92 * Ta, chin + 0.2 * HH], [x + s * 0.3 * Ta, chin + 0.5 * HH], [x + s * 0.08 * Ta, chin + 0.36 * HH]], '#2b2c35', 2 * u);
+      p.stroke([[x, chin + 0.42 * HH], [x, torsoBot]], 2.2 * u, '#9aa0ad');                         // zip
+      for (let y = chin + 0.46 * HH; y < torsoBot; y += 3.4 * u) p.stroke([[x - 1.6 * u, y], [x + 1.6 * u, y]], 0.9 * u, '#454752');
+      p.g.globalAlpha = 0.34;                                                                       // leather shine
+      p.stroke(curve([x - 0.8 * Ta, chin + 0.42 * HH], [x - 0.9 * Ta, chin + 0.62 * HH], [x - 0.72 * Ta, chin + 0.84 * HH]), 3.2 * u, '#ffffff');
+      p.stroke([[x + 0.56 * Ta, chin + 0.66 * HH], [x + 0.7 * Ta, chin + 0.9 * HH]], 2.4 * u, '#ffffff');
+      p.g.globalAlpha = 1;
+      for (const s of [-1, 1]) p.stroke([[x + s * 0.34 * Ta, chin + 0.72 * HH], [x + s * 0.72 * Ta, chin + 0.68 * HH]], 1.5 * u, '#0c0c10'); // pockets
+      break;
+    }
+    case 'apron': {                                                                                 // a diner uniform: a collar, a white bib apron, a pocket
+      for (const s of [-1, 1]) p.poly([[x, chin + 0.16 * HH], [x + s * 0.42 * Ta, top], [x + s * 0.52 * Ta, chin + 0.12 * HH], [x + s * 0.14 * Ta, chin + 0.28 * HH]], look.shirt ?? '#fff3d6', 1.6 * u);
+      for (const s of [-1, 1]) { p.stroke([[x + s * 0.56 * Ta, top + 3 * u], [x + s * 0.44 * Ta, chin + 0.38 * HH]], 5 * u, '#15121c'); p.stroke([[x + s * 0.56 * Ta, top + 3 * u], [x + s * 0.44 * Ta, chin + 0.38 * HH]], 2.8 * u, '#fffdf4'); }
+      p.poly([[x - 0.52 * Ta, chin + 0.36 * HH], [x + 0.52 * Ta, chin + 0.36 * HH], [x + 0.66 * Ta, torsoBot], [x - 0.66 * Ta, torsoBot]], '#fffdf4', 1.8 * u);
+      p.poly(rect(x - 0.24 * Ta, chin + 0.64 * HH, 0.48 * Ta, 0.2 * HH), null, 1.4 * u);
+      break;
+    }
     case 'suit': {
       vee(0.46, 0.56, look.shirt ?? '#fbfaf5');
       const tie = look.tie ?? '#2b2d3a', end = chin + 0.5 * HH;
-      p.poly([[x - 5 * u, top + 4 * u], [x + 5 * u, top + 4 * u], [x + 3.4 * u, chin + 0.08 * HH], [x - 3.4 * u, chin + 0.08 * HH]], tie, 1.5 * u);
-      p.poly([[x - 3.4 * u, chin + 0.08 * HH], [x + 3.4 * u, chin + 0.08 * HH], [x + 6.5 * u, end - 6 * u], [x, end], [x - 6.5 * u, end - 6 * u]], tie, 1.5 * u);
+      if (tie !== 'none') {
+        p.poly([[x - 5 * u, top + 4 * u], [x + 5 * u, top + 4 * u], [x + 3.4 * u, chin + 0.08 * HH], [x - 3.4 * u, chin + 0.08 * HH]], tie, 1.5 * u);
+        p.poly([[x - 3.4 * u, chin + 0.08 * HH], [x + 3.4 * u, chin + 0.08 * HH], [x + 6.5 * u, end - 6 * u], [x, end], [x - 6.5 * u, end - 6 * u]], tie, 1.5 * u);
+      } else p.stroke([[x - 0.2 * Ta, top + 2 * u], [x, chin + 0.2 * HH], [x + 0.2 * Ta, top + 2 * u]], 1.6 * u);
       for (const s of [-1, 1]) {
         p.stroke([[x + s * 0.46 * Ta, top], [x + s * 0.2 * Ta, chin + 0.32 * HH], [x, chin + 0.56 * HH]], 1.8 * u);
         p.stroke([[x + s * 0.72 * Ta, chin + 0.1 * HH], [x + s * 0.2 * Ta, chin + 0.32 * HH]], 1.5 * u);     // lapel notch
@@ -198,29 +201,11 @@ function torsoFront(p: Pen, look: Look, g: FrontGeo) {
       else p.poly([[x, chin + 0.3 * HH], [x + 0.26 * Ta, chin + 0.48 * HH], [x, chin + 0.66 * HH], [x - 0.26 * Ta, chin + 0.48 * HH]], look.shirt ?? '#f3f1ea', 1.5 * u);   // a plain diamond print
       break;
     }
-    case 'scrubs': {                                                                               // hospital scrubs: a V neck over a white tee, a pocket, a badge
-      vee(0.42, 0.3, look.shirt ?? '#f3f1ea');
-      p.poly(rect(x + 0.22 * Ta, chin + 0.44 * HH, 0.44 * Ta, 0.2 * HH), null, 1.5 * u);
-      if (look.lanyard) lanyard(look.lanyard);
-      break;
-    }
-    case 'uniform': {                                                                              // a crew uniform: zip, a bright band, a word on the chest
-      p.stroke([[x, top], [x, torsoBot]], 1.6 * u);
-      p.poly(rect(x - 0.8 * Ta, chin + 0.5 * HH, 1.6 * Ta, 0.13 * HH), look.shirt ?? '#d7ff4a', 1.4 * u);
-      if (look.chest) word(look.chest, chin + 0.32 * HH, 13, '#ffffff');
-      break;
-    }
     case 'polo': {                                                                                  // uniform polo: collar, placket, a word across the chest
       const collar = look.shirt ?? '#f3f1ea';
       for (const s of [-1, 1]) p.poly([[x, chin + 0.18 * HH], [x + s * 0.44 * Ta, top], [x + s * 0.54 * Ta, chin + 0.14 * HH], [x + s * 0.14 * Ta, chin + 0.32 * HH]], collar, 1.6 * u);
       p.stroke([[x, chin + 0.22 * HH], [x, chin + 0.4 * HH]], 1.5 * u);
       if (look.chest) word(look.chest, chin + 0.58 * HH, 13.5, '#ffffff');
-      break;
-    }
-    case 'robe': {                                                                                 // a judge's robe: black to the neck, a white collar
-      p.poly([[x - 0.3 * Ta, top], [x + 0.3 * Ta, top], [x + 0.13 * Ta, chin + 0.3 * HH], [x, chin + 0.2 * HH], [x - 0.13 * Ta, chin + 0.3 * HH]], '#fbfaf5', 1.6 * u);
-      p.stroke([[x, chin + 0.3 * HH], [x, torsoBot]], 1.5 * u, '#3a3442');
-      for (const s of [-1, 1]) p.stroke([[x + s * 0.5 * Ta, chin + 0.32 * HH], [x + s * 0.44 * Ta, torsoBot]], 1.3 * u, '#3a3442');
       break;
     }
     case 'coat': {                                                                                 // a trench coat: wide lapels, a belt, two rows of buttons
@@ -232,12 +217,6 @@ function torsoFront(p: Pen, look: Look, g: FrontGeo) {
       break;
     }
     default:
-  }
-  if (look.chain) {                                                                                 // a gold chain, a dollar sign hanging from it
-    const gold = '#f2c230', my = chin + 0.58 * HH;
-    for (const s of [-1, 1]) { const pts = curve([x + s * 0.36 * Ta, top + 2 * u], [x + s * 0.24 * Ta, chin + 0.36 * HH], [x, my - 5 * u]); p.stroke(pts, 4.6 * u, '#15121c'); p.stroke(pts, 2.4 * u, gold); }
-    p.ell(x, my, 7.6 * u, 7.6 * u, gold, 1.8 * u);
-    const c = p.g; c.save(); c.font = `400 ${11.5 * u}px Anton, sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillStyle = '#7a5208'; c.fillText('$', x, my + 0.6 * u); c.restore();
   }
 }
 
@@ -296,6 +275,10 @@ function onHead(p: Pen, look: Look, h: HeadGeo) {
     }
     p.stroke([[cx - 2.6 * u, hc - 4.5 * u], [cx + 2.6 * u, hc - 4.5 * u]], 3 * u, '#15121c');
   }
+  if (look.paperhat) {                                                                             // a folded paper cap with a coloured band, sitting on the hair
+    const y0 = hc - 0.98 * b;
+    p.poly([[cx - 0.66 * a, y0], [cx + 0.66 * a, y0], [cx + 0.52 * a, y0 - 0.46 * b], [cx - 0.52 * a, y0 - 0.46 * b]], '#fffdf4', 2.8 * u); p.poly(rect(cx - 0.66 * a, y0 - 0.13 * b, 1.32 * a, 0.13 * b), '#e8553a', 1.6 * u);
+  }
   if (look.headset) {                                                                              // a band over the head, a cup on one ear, a microphone
     const band: P2[] = []; for (let i = 0; i <= 16; i++) { const t = Math.PI * (1.08 + 0.84 * (i / 16)); band.push([cx + 1.1 * a * Math.cos(t), hc + 1.14 * b * Math.sin(t)]); }
     p.stroke(band, 5.6 * u, '#15121c'); p.stroke(band, 2.6 * u, '#5a6072');
@@ -303,37 +286,6 @@ function onHead(p: Pen, look: Look, h: HeadGeo) {
     p.stroke(curve([cx + 1.04 * a, hc + 0.3 * b], [cx + 0.96 * a, hc + 0.68 * b], [cx + 0.56 * a, hc + 0.64 * b]), 2.6 * u, '#15121c');
     p.ell(cx + 0.54 * a, hc + 0.64 * b, 3.8 * u, 3.2 * u, '#15121c', 0);
   }
-}
-
-const GLOW = '#8dff7a';
-/** A raised hood with nobody's face in it: a dark opening and a face made of green dots, the way a terminal would draw one. */
-function cowl(p: Pen, h: HeadGeo, col: string, emo: Emo) {
-  const {cx, hc, a, b, u} = h, g = p.g, out: P2[] = [];
-  for (let i = 0; i <= 28; i++) { const t = Math.PI * (0.92 + 1.16 * (i / 28)); out.push([cx + 1.27 * a * Math.cos(t), hc - 0.02 * b + (1.25 + 0.12 * Math.exp(-((i - 14) ** 2) / 10)) * b * Math.sin(t)]); }   // a little peak on top
-  out.push([cx + 1.12 * a, hc + 0.98 * b], [cx + 0.6 * a, hc + 1.22 * b], [cx - 0.6 * a, hc + 1.22 * b], [cx - 1.12 * a, hc + 0.98 * b]);
-  p.shadedFill(out, col, '#120e1c', -2.1, a * 1.3, 0.45); p.poly(out, null, 4.2 * u);
-  p.ell(cx, hc + 0.12 * b, 0.82 * a, 0.82 * b, '#07090c', 2.6 * u);
-  const ex = 0.33 * a, ey = hc + 0.0 * b, my = hc + 0.44 * b, s = 0.085 * a;
-  g.save(); g.fillStyle = GLOW; g.strokeStyle = GLOW; g.lineCap = 'round'; g.lineJoin = 'round'; g.lineWidth = 2 * s; g.shadowColor = GLOW; g.shadowBlur = 0.3 * a;
-  const eye = (x: number) => { g.beginPath(); g.rect(x - s * 1.35, ey - s * 1.6, s * 2.7, s * 3.2); g.fill(); };
-  if (emo === 'cash') { g.font = `400 ${0.56 * b}px Anton, sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; for (const d of [-1, 1]) g.fillText('$', cx + d * ex, ey + 0.02 * b); }
-  else if (emo === 'happy') for (const d of [-1, 1]) { g.beginPath(); g.moveTo(cx + d * ex - 2.2 * s, ey + s); g.lineTo(cx + d * ex, ey - 1.4 * s); g.lineTo(cx + d * ex + 2.2 * s, ey + s); g.stroke(); }
-  else { eye(cx - ex); eye(cx + ex); }
-  if (emo === 'evil') for (const d of [-1, 1]) { g.beginPath(); g.moveTo(cx + d * (ex + 2.8 * s), ey - 4.8 * s); g.lineTo(cx + d * (ex - 2.4 * s), ey - 2.4 * s); g.stroke(); }
-  g.beginPath();
-  if (emo === 'sad') { g.moveTo(cx - 3.2 * s, my + 1.6 * s); g.lineTo(cx, my - 1.2 * s); g.lineTo(cx + 3.2 * s, my + 1.6 * s); }                       // the "<" of ":<", stood upright
-  else if (emo === 'flat') { g.moveTo(cx - 2.8 * s, my); g.lineTo(cx + 2.8 * s, my); }
-  else if (emo === 'oh') g.rect(cx - 1.5 * s, my - 1.6 * s, 3 * s, 3.2 * s);
-  else { g.moveTo(cx - 3.4 * s, my - 1.2 * s); g.lineTo(cx - 1.6 * s, my + 1.2 * s); g.lineTo(cx + 1.6 * s, my + 1.2 * s); g.lineTo(cx + 3.4 * s, my - 1.2 * s); }
-  g.stroke(); g.restore();
-}
-/** a paper halo on a wire, the kind a school play has */
-function haloRing(p: Pen, h: HeadGeo, askew: boolean) {
-  const {cx, hc, a, b, u} = h, g = p.g, x = cx + (askew ? 0.62 * a : 0), y = hc - (askew ? 1.3 : 1.56) * b;
-  p.stroke([[cx + 0.62 * a, hc - 1.02 * b], [x + 0.5 * a, y + 0.1 * b]], 1.7 * u, '#8f8a96');
-  g.save(); g.translate(x, y); g.rotate(askew ? 0.55 : -0.06);
-  for (const [lw, c] of [[9.5 * u, '#15121c'], [5.4 * u, '#ffd84a']] as const) { g.beginPath(); g.ellipse(0, 0, 0.9 * a, 0.24 * b, 0, 0, 7); g.lineWidth = lw; g.strokeStyle = c; g.stroke(); }
-  g.restore();
 }
 
 /** No features at all, and a question mark: somebody who has been accused and not tried, or who has not been identified. */
@@ -354,9 +306,8 @@ export function drawActor(g: G2, look: Look, d: Draw, res = 1) {
     torso: (pen, geo) => torsoFront(pen, look, geo),
     behindHead: (pen, h) => behindHead(pen, look, h),
     onHead: (pen, h) => {
-      onHead(pen, look, h);
       if (look.blank) blankFace(pen, h, look.outfit.skin ?? NOBODY);
-      if (look.hood) { cowl(pen, h, look.outfit.jacket, d.emo ?? 'flat'); if (d.halo) haloRing(pen, h, d.halo === 'askew'); }
+      onHead(pen, look, h);
     },
   });
   drawProp(p, d, hands, unit, look);
@@ -366,32 +317,42 @@ export function drawActor(g: G2, look: Look, d: Draw, res = 1) {
 // ---------- the people ----------
 const SKIN = ['#ffe2c2', '#c99067', '#f5c9a0', '#8a5a3c', '#ecd0b6'], HAIR = ['#3b271c', '#241c18', '#5c3c24', '#a8643a'];
 const NOBODY = '#cfcadb';
-const CREW_COL = ['#4f6fa8', '#3f8a55', '#7a5c9a', '#b08a3a'];
-/** Malone Lam, named: the house's stock figure in four invented costumes. 0 a pink hoodie; 1 the same with a gold chain;
- *  2 the chain and sunglasses; 3 plain grey, in court. No likeness. */
-export const LAM = (v = 0): Look => ({id: 'lam' + v, seed: 23, front: v === 3 ? 'tee' : 'hoodie', shirt: v === 3 ? '#c3c7d1' : '#fffdf4', hairdo: 'swept', hairColor: '#1f1b24', chain: v === 1 || v === 2, eyewear: v === 2 ? 'shades' : undefined,
-  outfit: {jacket: v === 3 ? '#8f96a8' : '#e83e8c', pants: v === 3 ? '#8f96a8' : '#1f2230', boots: v === 3 ? '#6f7688' : '#f3f1ea', hat: null, skin: SKIN[2], build: 'adult', noButtons: true}});
-/** The crew: eighteen people are charged and not all of them have been tried. A blank head with a question mark, nobody's likeness. */
-export const CREW = (v = 0, headset = false): Look => ({id: 'crew' + v + (headset ? 'h' : ''), seed: 11 + v * 5, front: 'hoodie', shirt: '#d9d6cf', blank: true, headset,
-  outfit: {jacket: CREW_COL[v % 4], pants: '#2b2f3a', boots: '#15161b', hat: null, skin: NOBODY, build: 'adult', noButtons: true}});
-/** The investigator, known by a handle: no face. A trench coat (not his own avatar). */
-export const SLEUTH: Look = {id: 'sleuth', seed: 61, front: 'coat', shirt: '#3a3f4a', blank: true,
-  outfit: {jacket: '#c9a86a', pants: '#3b3552', boots: '#15161b', hat: null, skin: NOBODY, build: 'adult', noButtons: true}};
-/** Two agents: invented. */
-export const AGENT = (v = 0): Look => ({id: 'agent' + v, seed: 71 + v * 6, front: 'uniform', chest: 'FBI', shirt: '#ffd21f', hairdo: v ? 'long' : undefined, hairColor: '#241c18',
-  outfit: {jacket: '#1b2440', pants: '#1b2440', boots: '#15161b', hat: v ? null : 'cap', cap: '#1b2440', hair: HAIR[1], skin: SKIN[v ? 3 : 0], build: 'adult', noButtons: true}});
-/** A judge: invented, no likeness of the judge in the case. */
-export const JUDGE: Look = {id: 'judge', seed: 131, front: 'robe', hairdo: 'swept', hairColor: '#c9ccd6',
-  outfit: {jacket: '#1b1820', pants: '#1b1820', boots: '#15161b', hat: null, skin: SKIN[4], build: 'adult', noButtons: true}};
-/** A prosecutor: invented, no likeness of anyone who works on the case. */
-export const PROSECUTOR: Look = {id: 'prosecutor', seed: 201, front: 'suit', tie: '#2f4a7a', shirt: '#fbfaf5', hairdo: 'long', hairColor: '#3b271c', lanyard: '#c9a23a',
-  outfit: {jacket: '#2b3348', pants: '#2b3348', boots: '#15161b', hat: null, skin: SKIN[0], build: 'adult', noButtons: true}};
-/** A defence lawyer: invented. */
-export const LAWYER: Look = {id: 'lawyer', seed: 171, front: 'suit', tie: '#a02c3a', shirt: '#fbfaf5', hairdo: 'swept', hairColor: '#b9bcc6', eyewear: 'rect',
-  outfit: {jacket: '#5a6072', pants: '#3b3f4d', boots: '#2b2b33', hat: null, skin: SKIN[1], build: 'adult', noButtons: true}};
-/** Club staff: invented. */
-export const STAFF = (v = 0): Look => ({id: 'staff' + v, seed: 91 + v * 9, front: 'tee', shirt: '#f3f1ea', hairdo: v ? 'long' : 'swept', hairColor: v ? '#a8643a' : '#241c18',
-  outfit: {jacket: '#15161b', pants: '#15161b', boots: '#15161b', hat: null, skin: SKIN[v ? 0 : 3], build: 'adult', noButtons: true}});
+/** Jensen Huang, a public figure: the series' caricature. 0 today (white hair, rectangular glasses, black leather jacket);
+ *  1 in 1993, at 30 (dark hair, a blue shirt: invented); 2 in 1978, at 15 (a diner apron and a paper cap: invented). One head for all three. */
+export const JENSEN = (v = 0): Look => v === 0
+  ? {id: 'jensen0', seed: 4, eyewear: 'rect', front: 'leather', hairdo: 'swept', hairColor: '#f4f3ee', outfit: {jacket: '#1d1d24', pants: '#26262f', boots: '#131318', hat: null, skin: '#f4cfa8', build: 'adult', noButtons: true}}
+  : v === 1
+    ? {id: 'jensen1', seed: 4, eyewear: 'rect', front: 'polo', shirt: '#e9eef6', hairdo: 'swept', hairColor: '#1f1b24', outfit: {jacket: '#4f86d6', pants: '#3b3f4d', boots: '#2b2b33', hat: null, skin: '#f4cfa8', build: 'adult', noButtons: true}}
+    : {id: 'jensen2', seed: 4, eyewear: 'rect', front: 'apron', shirt: '#fff3d6', paperhat: true, hairdo: 'swept', hairColor: '#1f1b24', outfit: {jacket: '#c8642c', pants: '#4a3a30', boots: '#2b2b33', hat: null, skin: '#f4cfa8', build: 'kid', noButtons: true}};
+/** The two co-founders, Chris Malachowsky and Curtis Priem: named on screen, drawn as stock figures in invented clothes. No likeness. */
+export const ENGINEER = (v = 0): Look => ({id: 'eng' + v, seed: 37 + v * 8, front: v ? 'hoodie' : 'polo', shirt: v ? '#f3f1ea' : '#f1ead8', hairdo: 'swept', hairColor: v ? '#5c3c24' : '#3b271c', eyewear: v ? 'round' : undefined,
+  outfit: {jacket: v ? '#8a5a3c' : '#3f8a55', pants: '#3b3f4d', boots: '#2b2b33', hat: null, skin: SKIN[v ? 0 : 4], build: v ? 'stout' : 'adult', noButtons: true}});
+/** The businesswoman: not named in this film. A blank head with a question mark; what is said about her is a suspicion. */
+export const WOMAN: Look = {id: 'woman', seed: 9, front: 'suit', tie: 'none', shirt: '#fbfaf5', hairdo: 'bob', hairColor: '#2b2330', blank: true,
+  outfit: {jacket: '#2f8f8a', pants: '#2b2f3a', boots: '#15161b', hat: null, skin: NOBODY, build: 'adult', noButtons: true}};
+/** Diner staff and guests: invented. */
+export const WAITER: Look = {id: 'waiter', seed: 95, front: 'apron', shirt: '#fff3d6', hairdo: 'long', hairColor: '#a8643a',
+  outfit: {jacket: '#1f8f96', pants: '#2b2f3a', boots: '#15161b', hat: null, skin: SKIN[0], build: 'adult', noButtons: true}};
+export const GUEST = (v = 0): Look => ({id: 'guest' + v, seed: 141 + v * 7, front: v % 2 ? 'tee' : 'hoodie', shirt: '#f3f1ea', hairdo: v % 2 ? 'long' : 'swept', hairColor: HAIR[(v + 2) % 4],
+  outfit: {jacket: ['#b8552f', '#6a8f3a', '#8a5aa8'][v % 3], pants: '#3b3f4d', boots: '#2b2b33', hat: null, skin: SKIN[(v * 2 + 1) % 5], build: v % 2 ? 'adult' : 'stout', noButtons: true}});
+/** U.S. officials: invented. */
+export const OFFICIAL = (v = 0): Look => ({id: 'official' + v, seed: 71 + v * 6, front: 'suit', tie: v ? '#8a2f3d' : '#2f4a7a', shirt: '#fbfaf5', hairdo: v ? 'long' : 'swept', hairColor: v ? '#3b271c' : '#b9bcc6', lanyard: '#c9a23a', eyewear: v ? undefined : 'rect',
+  outfit: {jacket: v ? '#3b3f4d' : '#24304f', pants: v ? '#3b3f4d' : '#24304f', boots: '#15161b', hat: null, skin: SKIN[v ? 3 : 0], build: 'adult', noButtons: true}});
+/** A spokesman at a foreign-ministry lectern: a stock figure, no likeness of the man who made the statement. */
+export const SPOKESMAN: Look = {id: 'spokesman', seed: 17, front: 'suit', tie: '#b8232f', shirt: '#fbfaf5', hairdo: 'swept', hairColor: '#1f1c1e', eyewear: 'round',
+  outfit: {jacket: '#2b2d3a', pants: '#2b2d3a', boots: '#15161b', hat: null, skin: SKIN[2], build: 'adult', noButtons: true}};
+/** The official at the Justice Department's lectern: a stock figure, no likeness of the attorney general. */
+export const ATTORNEY: Look = {id: 'attorney', seed: 201, front: 'suit', tie: '#2f5fa8', shirt: '#fbfaf5', hairdo: 'swept', hairColor: '#5c3c24',
+  outfit: {jacket: '#2b3348', pants: '#2b3348', boots: '#15161b', hat: null, skin: SKIN[0], build: 'stout', noButtons: true}};
+/** The board: invented people. */
+export const BOARD = (v = 0): Look => ({id: 'board' + v, seed: 161 + v * 5, front: 'suit', tie: v % 2 ? 'none' : ['#8a2f3d', '#2f5fa8', '#3f7a52'][v % 3], shirt: '#fbfaf5', hairdo: v % 2 ? 'bob' : 'swept', hairColor: ['#b9b6bd', '#3a2a20', '#d9d6cf', '#5c3c24', '#8a8690'][v % 5], eyewear: v % 3 === 0 ? 'rect' : undefined,
+  outfit: {jacket: ['#3b4252', '#4a3f38', '#2f3f4f', '#5a4a6a', '#3a4a44'][v % 5], pants: '#2b2f3a', boots: '#15161b', hat: null, skin: SKIN[(v * 3) % 5], build: v % 3 === 2 ? 'stout' : 'adult', noButtons: true}});
+/** Employees: invented. */
+export const STAFF = (v = 0): Look => ({id: 'staff' + v, seed: 91 + v * 9, front: v % 2 ? 'hoodie' : 'tee', shirt: ['#f3f1ea', '#d9d6cf', '#f3f1ea'][v % 3], lanyard: '#76b900', hairdo: v % 3 === 1 ? 'long' : v % 3 === 2 ? 'bob' : 'swept', hairColor: HAIR[v % 4], eyewear: v % 4 === 3 ? 'round' : undefined,
+  outfit: {jacket: ['#4f6fa8', '#7a5c9a', '#b08a3a', '#3f8a55', '#b8552f'][v % 5], pants: '#2b2f3a', boots: '#15161b', hat: null, skin: SKIN[(v * 2) % 5], build: 'adult', noButtons: true}});
+/** A television reporter: invented. */
+export const REPORTER: Look = {id: 'reporter', seed: 121, front: 'coat', shirt: '#3a3f4a', hairdo: 'long', hairColor: '#3b271c',
+  outfit: {jacket: '#c9a86a', pants: '#3b3552', boots: '#15161b', hat: null, skin: SKIN[1], build: 'adult', noButtons: true}};
 
 // ---------- billboards ----------
 const cache = new Map<string, THREE.CanvasTexture>();
@@ -415,7 +376,7 @@ export type Actor = {
 export type ActorOpt = {scale?: number; res?: number; shadow?: number; still?: boolean; phase?: number; /** a wider drawing: for things held out to the side */ wide?: boolean};
 export function actor(parent: Node, look: Look, states: Record<string, Draw>, x: number, y: number, z: number, o: ActorOpt = {}): Actor {
   const scale = o.scale ?? 1, res = o.res ?? 0.7, node = new THREE.Group(); node.position.set(x, y, z); parent.add(node);
-  const blinks = !look.blank && !look.hood;
+  const blinks = !look.blank;
   const maps = new Map<string, [THREE.Texture, THREE.Texture]>();
   const wide = !!o.wide;
   for (const [k, d] of Object.entries(states)) maps.set(k, [texture(look, d, res, wide), blinks ? texture(look, {...d, blink: true}, res, wide) : texture(look, d, res, wide)]);

@@ -1,17 +1,17 @@
-// Development aid: every character of the bitcoin flex short on one page, to check costumes and poses at a glance.
+// Development aid: every character of the Nvidia exit short on one page, to check costumes and poses at a glance.
 //   node scripts/stills.mjs NvExitCastSheet out/cast --frames=0
 import React, {useEffect, useRef} from 'react';
 import {AbsoluteFill} from 'remotion';
 import {useFonts} from './fonts';
-import {drawActor, AGENT, CREW, JUDGE, LAM, LAWYER, PROSECUTOR, SLEUTH, STAFF, type Look, type Draw} from './cast';
+import {drawActor, ATTORNEY, BOARD, ENGINEER, GUEST, JENSEN, OFFICIAL, REPORTER, SPOKESMAN, STAFF, WAITER, WOMAN, type Look, type Draw} from './cast';
 
 const CELLS: [Look, Draw][] = [
-  [LAM(0), {expr: 'grin', pose: 'type', mode: 'sit'}], [LAM(0), {expr: 'grin', pose: 'panic'}], [LAM(1), {expr: 'grin', pose: 'wave', prop: 'selfie'}], [LAM(2), {expr: 'laugh', pose: 'shrug'}], [LAM(2), {expr: 'laugh', pose: 'hold', prop: 'cash'}],
-  [LAM(2), {expr: 'grin', pose: 'wave'}], [LAM(1), {expr: 'shock', pose: 'panic'}], [LAM(1), {expr: 'nervous', pose: 'push', look: -1}], [LAM(3), {expr: 'nervous'}], [LAM(3), {expr: 'nervous', pose: 'both', prop: 'card', text: 'GUILTY', big: true}],
-  [LAM(3), {expr: 'dazed', pose: 'shrug'}], [LAM(0), {expr: 'nervous', pose: 'shrug', look: -1}], [CREW(1, true), {pose: 'phone', prop: 'phone'}], [CREW(1, true), {pose: 'side', prop: 'mask', text: 'SECURITY TEAM', badge: 'shield'}], [CREW(1, true), {pose: 'side', prop: 'mask', text: 'EXCHANGE SUPPORT', badge: 'coin'}],
-  [CREW(0), {pose: 'type', mode: 'sit'}], [SLEUTH, {pose: 'hold', prop: 'lens'}], [SLEUTH, {pose: 'type', mode: 'sit'}], [AGENT(0), {expr: 'stern', pose: 'point'}], [AGENT(1), {expr: 'stern', pose: 'push'}],
-  [JUDGE, {expr: 'stern', pose: 'desk'}], [JUDGE, {expr: 'neutral', pose: 'point'}], [PROSECUTOR, {expr: 'stern', pose: 'point'}], [PROSECUTOR, {expr: 'stern', pose: 'hold', prop: 'paper'}], [LAWYER, {expr: 'neutral', pose: 'hold', prop: 'paper'}],
-  [LAWYER, {expr: 'nervous', pose: 'shrug'}], [STAFF(0), {expr: 'smile', pose: 'hold', prop: 'bottle'}], [STAFF(1), {expr: 'smile', pose: 'hold', prop: 'bottle'}],
+  [JENSEN(0), {expr: 'neutral'}], [JENSEN(0), {expr: 'grin', pose: 'panic'}], [JENSEN(0), {expr: 'pained', pose: 'hang'}], [JENSEN(0), {expr: 'nervous', pose: 'shrug'}], [JENSEN(0), {expr: 'stern', pose: 'type', mode: 'sit'}], [JENSEN(0), {expr: 'neutral', pose: 'cross'}],
+  [JENSEN(1), {expr: 'grin', pose: 'wave', prop: 'napkin'}], [JENSEN(1), {expr: 'smile', pose: 'desk', mode: 'sit'}], [JENSEN(1), {expr: 'shock', pose: 'panic'}], [JENSEN(1), {expr: 'relief', pose: 'hang'}], [JENSEN(2), {expr: 'smile', pose: 'both'}], [JENSEN(2), {expr: 'grin', pose: 'wave', prop: 'plate'}],
+  [JENSEN(2), {expr: 'whistle', pose: 'both', prop: 'tub', mode: 'march', phase: 0.2}], [JENSEN(2), {expr: 'nervous', pose: 'hold', prop: 'cups'}], [JENSEN(2), {expr: 'smile', pose: 'wave'}], [ENGINEER(0), {expr: 'smile', pose: 'desk', mode: 'sit'}], [ENGINEER(1), {expr: 'grin', pose: 'desk', mode: 'sit'}], [ENGINEER(0), {expr: 'shock', pose: 'panic'}],
+  [ENGINEER(1), {expr: 'relief', pose: 'hang'}], [WAITER, {expr: 'smile', pose: 'hold', prop: 'pot'}], [GUEST(0), {expr: 'smile', pose: 'desk', mode: 'sit'}], [GUEST(1), {expr: 'neutral', pose: 'desk', mode: 'sit'}], [WOMAN, {}], [OFFICIAL(0), {expr: 'stern', pose: 'point'}],
+  [OFFICIAL(1), {expr: 'stern', pose: 'hold', prop: 'paper'}], [SPOKESMAN, {expr: 'stern', pose: 'desk'}], [ATTORNEY, {expr: 'neutral', pose: 'desk'}], [BOARD(0), {expr: 'stern', pose: 'desk', mode: 'sit'}], [BOARD(1), {expr: 'neutral', pose: 'desk', mode: 'sit'}], [BOARD(2), {expr: 'stern', pose: 'desk', mode: 'sit'}],
+  [BOARD(3), {expr: 'neutral', pose: 'desk', mode: 'sit'}], [BOARD(4), {expr: 'stern', pose: 'desk', mode: 'sit'}], [STAFF(0), {expr: 'shock', pose: 'type', mode: 'sit'}], [STAFF(1), {expr: 'shock', pose: 'phone', prop: 'phone'}], [STAFF(2), {expr: 'nervous', pose: 'type', mode: 'sit'}], [REPORTER, {expr: 'neutral', pose: 'mask', prop: 'mic'}],
 ];
 
 export const CastSheet: React.FC = () => {
@@ -19,7 +19,7 @@ export const CastSheet: React.FC = () => {
   useEffect(() => {
     if (!ok || !ref.current) return;
     const g = ref.current.getContext('2d')!; g.fillStyle = '#8fa6b8'; g.fillRect(0, 0, 1080, 1920);
-    CELLS.forEach(([look, draw], i) => { g.save(); g.translate((i % 5) * 216 + 12, Math.floor(i / 5) * 318 + 6); drawActor(g, look, draw, 0.31); g.restore(); });   // five across, six rows: nobody stands on anybody
+    CELLS.forEach(([look, draw], i) => { g.save(); g.translate((i % 6) * 180 + 2, Math.floor(i / 6) * 318 + 6); drawActor(g, look, draw, 0.3); g.restore(); });   // six across, six rows
   }, [ok]);
   return <AbsoluteFill><canvas ref={ref} width={1080} height={1920} style={{width: '100%', height: '100%'}} /></AbsoluteFill>;
 };
