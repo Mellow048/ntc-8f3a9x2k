@@ -62,6 +62,7 @@ export function chipIcon(g: G2, x: number, y: number, s: number, body = '#1c1f26
 
 // ------------------------------------------------------------------ kitchen: the dishwasher (the hook, and "I was a dishwasher")
 export const kitchen: Builder = (root) => {
+  const STEP = 0.2;                                                     // fifteen, and on a crate to reach the sink
   backdrop(root, ['#cfdde2', '#aebfc6']);
   floor(root, 12, 10, tmat(tiled(tileTex('kit-floor', '#b9a58a', '#7a6a56', 4, '#a8947a'), 6, 5)));
   panel(root, 10, 4.8, tmat(tiled(tileTex('kit-wall', '#f2f5f3', '#b9c6cb', 4), 10, 5)), 0, 2.4, -1.7);
@@ -80,8 +81,8 @@ export const kitchen: Builder = (root) => {
   const N = 18, DX = -0.41, CX = 0.41, dirty = plates(root, DX, 0.95, 0.52, N, 0.13), clean = plates(root, CX, 0.95, 0.52, N, 0.13);
   const fly = cyl(root, 0.078, 0.028, lit('#fffdf4', 1), 0, 0, 0, 0.13, 24); fly.castShadow = false;
   const bubbles = Array.from({length: 10}, () => soft(mesh(root, new THREE.SphereGeometry(1, 14, 10), glass('#eaf7ff', 0.6, 1.05))));
-  const me = actor(root, JENSEN(2), {wash: {expr: 'smile', pose: 'both'}, show: {expr: 'grin', pose: 'wave', prop: 'plate'}}, 0, 0, -0.15, {scale: 1.0, res: 1.3, wide: true, shadow: 0});
-  const twinkle = glints(root, [[0.42, 1.62, 0.1]]);
+  const me = actor(root, JENSEN(2), {wash: {expr: 'smile', pose: 'both'}, show: {expr: 'grin', pose: 'wave', prop: 'plate'}}, 0, STEP, -0.15, {scale: 1.0, res: 1.3, wide: true, shadow: 0});
+  const twinkle = glints(root, [[0.35, 1.45, -0.05]]);
   return {
     light: () => LIGHT.room,
     tick: ({f, cam, shot}) => {
@@ -93,7 +94,7 @@ export const kitchen: Builder = (root) => {
       const y0 = 0.97 + nd * 0.03, y1 = 0.97 + nc * 0.03;                                    // down from one pile, through his hands, up onto the other
       fly.visible = !up && nd > 2; fly.position.set(lerp(DX, CX, k), (1 - k) ** 2 * y0 + 2 * k * (1 - k) * 0.98 + k * k * y1, 0.52); fly.rotation.z = Math.sin(k * Math.PI) * 0.5;
       bubbles.forEach((b, i) => { const u = frac(f * 0.011 + i / 10); b.position.set((i % 2 ? 1 : -1) * (0.2 + 0.36 * hash(i)) + 0.05 * Math.sin(f * 0.07 + i), 1.02 + u * 1.2, 0.45); b.scale.setScalar((0.035 + 0.03 * hash(i, 2)) * (1 - 0.4 * u)); op(b, 0.65 * (1 - u)); });
-      me.show(up ? 'show' : 'wash'); me.node.position.y = hop(f, W(39), 0.06, 8) + 0.012 * Math.sin(f * 0.7); me.tick(f, cam); twinkle(f, up);
+      me.show(up ? 'show' : 'wash'); me.node.position.y = STEP + hop(f, W(39), 0.06, 8) + 0.012 * Math.sin(f * 0.7); me.tick(f, cam); twinkle(f, up);
     },
   };
 };
@@ -119,7 +120,7 @@ export const counter: Builder = (root) => {
     light: () => LIGHT.warm,
     tick: ({f, cam, shot}) => {
       const a = shot.at;
-      if (shot.v === 'bus') { me.show('w' + (Math.floor((f - a) / 3) % 4)); me.node.position.set(lerp(-0.95, 0.2, (f - a) / 30), 0, 0.8); me.tick(f, cam); }
+      if (shot.v === 'bus') { me.show('w' + (Math.floor((f - a) / 3) % 4)); me.node.position.set(lerp(-0.85, 0.1, (f - a) / 30), 0, 0.8); me.tick(f, cam); }
       else { me.show(f >= W(46) ? 'oops' : 'cups'); me.node.position.set(0.3, 0, 0.9); me.tick(f, cam); me.mesh.rotation.z = 0.035 * Math.sin(f * 0.33) + 0.02 * Math.sin(f * 0.71); }
     },
   };
@@ -197,8 +198,9 @@ export const booth: Builder = (root) => {
   const me = actor(root, JENSEN(1), {sit: {expr: 'smile', pose: 'desk', mode: 'sit'}, idea: {expr: 'grin', pose: 'wave', prop: 'napkin', mode: 'sit'}, talk: {expr: 'grin', pose: 'point', mode: 'sit'}, late: {expr: 'relief', pose: 'desk', mode: 'sit'}}, 0, 0.56, -0.95, {scale: 1.0, res: 1.3, wide: true, shadow: 0});
   const pals = [0, 1].map((i) => actor(root, ENGINEER(i), {sit: {expr: 'smile', pose: 'desk', mode: 'sit'}, wow: {expr: 'grin', pose: 'desk', mode: 'sit'}, late: {expr: 'dazed', pose: 'desk', mode: 'sit'}}, i ? 0.74 : -0.74, 0.56, -0.95, {scale: 1.0, res: 1.2, shadow: 0}));
   const waiter = actor(root, WAITER, {pour: {expr: 'smile', pose: 'hold', prop: 'pot'}, a: {expr: 'smile'}}, 1.45, 0, 0.1, {scale: 1.0, res: 1.2, wide: true});
+  waiter.mesh.scale.x = -1;                                             // the pot on the table's side of her
   const cups = Array.from({length: 14}, (_, i) => cup(root, -0.98 + (i % 7) * 0.33 + (i > 6 ? 0.1 : 0), 0.79, i > 6 ? -0.42 : -0.12));
-  const still3 = [cup(root, -0.62, 0.79, -0.42), cup(root, 0.38, 0.79, -0.56), cup(root, 0.78, 0.79, -0.36)];
+  const still3 = [cup(root, -0.62, 0.79, -0.42), cup(root, 0.38, 0.79, -0.56), cup(root, 0.78, 0.79, -0.36)], topCup = cup(root, -0.33, 0.79, 0.0);
   // seen from above: the napkin, the sketch, a pen, three pairs of sleeves
   const napkin = grp(root, 0, 0.792, -0.26); const sheet = panel(napkin, 0.44, 0.44, lit('#fffdf4', 1), 0, 0, 0); sheet.rotation.x = -Math.PI / 2; napkin.rotation.y = 0.12;
   const marks = [0, 1, 2].map((i) => { const o = soft(panel(napkin, 0.44, 0.44, smat(sketchTex(i), 1, true), 0, 0.003 + i * 0.001, 0)); o.rotation.x = -Math.PI / 2; return o; });
@@ -221,7 +223,7 @@ export const booth: Builder = (root) => {
       const pour = v === 'coffee' || v === 'stay', gone = smooth(f, T0 + 4, T0 + 22);
       waiter.node.visible = pour && gone < 1; waiter.show(f < T0 ? 'pour' : 'a'); waiter.node.position.set(1.45 + 1.6 * gone, hop(f, W(69), 0.05, 8), 0.1); waiter.tick(f, cam);
       cups.forEach((c, i) => { const at = W(67) + i * 3; c.visible = pour && f >= at; c.scale.setScalar(pop(f, at, 5)); });
-      still3.forEach((c) => { c.visible = (then && !pour) || top; });
+      still3.forEach((c) => { c.visible = then && !pour; }); topCup.visible = top;
       napkin.visible = top || v === 'three'; pen.visible = arms.visible = top;
       marks.forEach((m, i) => { const at = W(56) + i * 9; m.visible = v === 'three' ? false : f >= at; op(m, smooth(f, at, at + 7)); });
       const pt = f * 0.5; pen.position.set(0.1 * Math.cos(pt) + 0.02, 0.8, -0.26 + 0.1 * Math.sin(pt * 1.3));

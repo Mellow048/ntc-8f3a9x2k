@@ -50,7 +50,7 @@ export const map: Builder = (root) => {
   const dots = Array.from({length: 15}, (_, i) => { const o = ball(root, 0.019, lit('#ffffff', 1.1), ...at((i + 1) / 16)); o.castShadow = false; return o; });
   const plane = card(root, 0.3, 0.3, planeTex(), 0, 0, 0, 1.1);
   const tagT = soft(panel(root, 0.66, 0.21, smat(signTex('map-tw', 440, 140, '#e3342f', '#ffffff', [['TAIWAN', 104, 0.56]], {border: INK}), 1.1), TW[0] + 0.3, TW[1] - 0.2, -0.47));
-  const tagO = soft(panel(root, 0.66, 0.21, smat(signTex('map-or', 440, 140, '#ffe14a', INK, [['OREGON', 104, 0.56]], {border: INK}), 1.1), OR[0] - 0.36, OR[1] + 0.2, -0.47));
+  const tagO = soft(panel(root, 0.66, 0.21, smat(signTex('map-or', 440, 140, '#ffe14a', INK, [['OREGON', 104, 0.56]], {border: INK}), 1.1), OR[0] - 0.46, OR[1] + 0.2, -0.47));
   return {
     light: () => ({...LIGHT.room, amb: 1.7}),
     tick: ({f, shot}) => {
@@ -100,7 +100,7 @@ export const ware: Builder = (root) => {
       belt.visible = !flop; marks.forEach((m, i) => { m.position.z = 1.6 - frac((f * 0.1 + i * 0.6) / 6) * 6; });
       // "flopped": it keels over and slides off its table
       stand.visible = flop; op(lampH, flop ? 0.3 : 0); const k = smooth(f, W(83) - 2, W(83) + 8), fall = k * k;
-      hero.position.set(0.62 * k, 0.96 - 0.78 * fall + 0.1 * Math.sin(Math.PI * k), 0.05 + 0.3 * k); hero.rotation.set(0, 0.12, -1.57 * k);
+      const tip = Math.PI / 2 * fall; hero.position.set(0.25 - 0.25 * Math.cos(tip) + 0.18 * Math.sin(tip), 0.78 + 0.25 * Math.sin(tip) + 0.18 * Math.cos(tip), 0.05); hero.rotation.set(0, 0, -tip);
       // out: they ride away from us into the daylight
       out.forEach((c, i) => { const z = 1.4 - frac(((f - a) * 0.085 + i * 0.66) / 5.94) * 5.94; c.visible = going; c.position.set(0, 0.89, z); c.rotation.y = (hash(i) - 0.5) * 0.3; });
       // back: they come flying out of the door, over the belt, and land round the three of them
@@ -176,7 +176,7 @@ export const paper: Builder = (root) => {
   return {
     light: () => LIGHT.show,
     tick: ({f, shot}) => {
-      const v = shot.v, second = v === 'second', a = second ? shot.at : W(110) - 2, k = smooth(f, a, a + 15), s = lerp(0.03, 1, k) * (1 + 0.06 * Math.sin(Math.PI * Math.min(1, Math.max(0, (f - a - 15) / 7))));
+      const v = shot.v, second = v === 'second', a = second ? shot.at : W(110) - 2, k = smooth(f, a, a + 15), s = lerp(second ? 0.03 : 0.3, 1, k) * (1 + 0.06 * Math.sin(Math.PI * Math.min(1, Math.max(0, (f - a - 15) / 7))));
       const top = second ? two : one;
       one.visible = true; two.visible = second;
       if (second) { one.scale.setScalar(1); one.rotation.z = 0.13; one.position.set(-0.07, 1.63, -0.08); }

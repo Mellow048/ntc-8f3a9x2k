@@ -32,14 +32,14 @@ const boxTex = (key: string, draw: (g: G2, w: number, h: number) => void, bg: st
 export const chart: Builder = (root) => {
   backdrop(root, ['#101826', '#22304a']);
   panel(root, 12, 8, tmat(tiled(grainTex('chart-wall', '#1c2638', 0.05), 5, 3)), 0, 3, -0.4); floor(root, 12, 8, '#141c2c', 0, 0, 3.4);
-  const TOP = 2.62, ROW = 1.22, XS = [-0.76, 0, 0.76], white = lit('#dfe6f2', 1), HOT = 2, BAR = 1.82;
-  soft(panel(root, 0.98, 0.865, smat(boxTex('ceo', (g, w, h) => { bust(g, JENSEN(0), {expr: 'neutral'}, 78, 22, 184, 206, '#cfe3d0'); g.fillStyle = '#76b900'; g.fillRect(5, 236, w - 10, h - 241); text(g, 'CEO', w / 2, 270, 54, '#ffffff'); }, '#fffdf4', 340, 300), 1.0), 0, TOP, -0.36));
+  const TOP = 2.56, ROW = 1.42, XS = [-0.76, 0, 0.76], white = lit('#dfe6f2', 1), HOT = 2, BAR = 1.94;
+  soft(panel(root, 0.9, 0.795, smat(boxTex('ceo', (g, w, h) => { bust(g, JENSEN(0), {expr: 'neutral'}, 78, 22, 184, 206, '#cfe3d0'); g.fillStyle = '#76b900'; g.fillRect(5, 236, w - 10, h - 241); text(g, 'CEO', w / 2, 270, 54, '#ffffff'); }, '#fffdf4', 340, 300), 1.0), 0, TOP, -0.36));
   XS.forEach((x, i) => soft(panel(root, 0.68, 0.6, smat(i === HOT ? boxTex('hot', (g, w, h) => { ghost(g, w / 2, 150, 210); text(g, '?', w / 2, 94, 78, '#ffffff'); }, '#2b2f3a') : boxTex('exec' + i, (g, w, h) => person(g, w / 2, 150, 150, '#aeb8cc'), '#e6eaf2'), 1.0), x, ROW, -0.36)));
-  box(root, 0.03, TOP - 0.43 - BAR, 0.01, white, 0, (TOP - 0.43 + BAR) / 2, -0.37).castShadow = false; box(root, 1.55, 0.03, 0.01, white, 0, BAR, -0.37).castShadow = false; for (const x of XS) box(root, 0.03, BAR - ROW - 0.3, 0.01, white, x, (BAR + ROW + 0.3) / 2, -0.37).castShadow = false;
+  box(root, 0.03, TOP - 0.4 - BAR, 0.01, white, 0, (TOP - 0.4 + BAR) / 2, -0.37).castShadow = false; box(root, 1.55, 0.03, 0.01, white, 0, BAR, -0.37).castShadow = false; for (const x of XS) box(root, 0.03, BAR - ROW - 0.3, 0.01, white, x, (BAR + ROW + 0.3) / 2, -0.37).castShadow = false;
   // the line from that box up to his: who answered to whom
-  const yel = lit('#ffe14a', 1.25), segs: [V, V][] = [[[XS[HOT], ROW + 0.3, -0.35], [XS[HOT], BAR, -0.35]], [[XS[HOT], BAR, -0.35], [0, BAR, -0.35]], [[0, BAR, -0.35], [0, TOP - 0.5, -0.35]]];
+  const yel = lit('#ffe14a', 1.25), segs: [V, V][] = [[[XS[HOT], ROW + 0.3, -0.35], [XS[HOT], BAR, -0.35]], [[XS[HOT], BAR, -0.35], [0, BAR, -0.35]], [[0, BAR, -0.35], [0, TOP - 0.47, -0.35]]];
   const line = segs.map(([a, b]) => { const o = rod(root, a, b, 0.022, yel); o.castShadow = false; return {o, a: new THREE.Vector3(...a), b: new THREE.Vector3(...b)}; });
-  const tip = cone(root, 0.07, 0.13, yel, 0, TOP - 0.485, -0.35, 12); tip.castShadow = false;
+  const tip = cone(root, 0.07, 0.13, yel, 0, TOP - 0.455, -0.35, 12); tip.castShadow = false;
   const ringM = glass('#ffe14a', 0, 1.2), ring = soft(mesh(root, new THREE.RingGeometry(0.47, 0.51, 4, 1, Math.PI / 4), ringM, XS[HOT], ROW, -0.34)); ring.scale.set(1.06, 0.95, 1);
   return {
     light: () => LIGHT.show,
@@ -88,7 +88,7 @@ export const podium: Builder = (root) => {
   backdrop(root, ['#15121c', '#2b2733']);
   floor(root, 14, 12, tmat(tiled(grainTex('pod-carpet', '#4a4f5c', 0.08), 5, 5)));
   const red = grp(root), blue = grp(root);
-  box(root, 1.5, RISE, 0.8, '#3a3f4a', 0, RISE / 2, -0.25);
+  box(root, 12, RISE, 1.3, '#3a3f4a', 0, RISE / 2, -0.55); box(root, 12, 0.03, 0.03, '#6f7684', 0, RISE, 0.1);
   panel(red, 12, 6, tmat(tiled(foldTex('pod-red', '#9a1826', '#5a0a14', 10), 2.4, 1)), 0, 3, -1.6); panel(blue, 12, 6, tmat(tiled(foldTex('pod-blue', '#1f3f86', '#122650', 10), 2.4, 1)), 0, 3, -1.6);
   lectern(red, 0, 0.3, '#5a3a22', signTex('pod-cn', 580, 210, '#8a1420', '#ffde6a', [['MINISTRY OF', 74, 0.32], ['FOREIGN AFFAIRS', 74, 0.72]], {border: '#ffde6a'}));
   lectern(blue, 0, 0.3, '#6b4a30', signTex('pod-us', 580, 210, '#16223c', '#ffffff', [['DEPARTMENT', 78, 0.32], ['OF JUSTICE', 78, 0.72]], {border: '#c9a23a'}));
@@ -129,31 +129,30 @@ export const copier: Builder = (root) => {
   floor(root, 14, 12, tmat(tiled(grainTex('copier-carpet', '#5f6d80', 0.08), 6, 5)));
   panel(root, 12, 6, tmat(tiled(grainTex('copier-wall', '#e4e9ee', 0.04), 5, 3)), 0, 3, -1.5); box(root, 12, 0.12, 0.05, '#aab6c2', 0, 0.06, -1.46);
   // the machine
-  const CX = 0.5, mc = grp(root, CX, 0, 0);
+  const CX = 0.45, mc = grp(root, CX, 0, 0);
   box(mc, 1.0, 0.86, 0.72, '#d9dde4', 0, 0.43, 0); box(mc, 1.02, 0.12, 0.74, '#b8bec8', 0, 0.92, 0); box(mc, 0.9, 0.2, 0.02, '#8f96a8', 0, 0.3, 0.365); box(mc, 0.9, 0.2, 0.02, '#8f96a8', 0, 0.06 + 0.02, 0.365);
+  box(mc, 0.7, 0.035, 0.03, '#22202a', 0, 0.62, 0.37); box(mc, 0.76, 0.02, 0.22, '#b8bec8', 0, 0.585, 0.47).rotation.x = 0.2;
   const lid = grp(mc, 0, 0.98, -0.34); box(lid, 0.98, 0.05, 0.68, '#8f96a8', 0, 0.025, 0.34);
   box(mc, 0.3, 0.03, 0.16, '#22202a', 0.3, 0.995, 0.3); const led = ball(mc, 0.022, lamp('#3fe06a', 1.6), 0.2, 1.02, 0.32); led.castShadow = false;
   const scanM = lamp('#7dff9a', 1.8), scan = box(mc, 0.92, 0.02, 0.05, scanM, 0, 0.985, 0); scan.castShadow = false; const scanGlow = halo(root, 0.9, '#7dff9a', 0, CX, 1.0, 0.45);
-  box(mc, 0.5, 0.03, 0.46, '#b8bec8', -0.7, 0.6, 0.05).rotation.z = -0.12;
   const sheets = Array.from({length: 7}, (_, i) => soft(mesh(root, new THREE.PlaneGeometry(0.33, 0.44), new THREE.MeshBasicMaterial({map: scribble(i % 3), side: THREE.DoubleSide}), 0, 0, 0)));
-  const me = actor(root, JENSEN(0), {a: {expr: 'neutral', pose: 'cross'}, b: {expr: 'smile', pose: 'cross'}}, -0.62, 0, 0.2, {scale: 1.0, res: 1.2, wide: true});
-  // the machine reads him: a bar of green light goes down him, from the lid's edge
-  const beamM = glass('#7dff9a', 0.5, 1.3), bar = soft(panel(root, 0.86, 0.035, beamM, -0.62, 1.0, 0.36)), fan = soft(mesh(root, new THREE.PlaneGeometry(1, 1), glass('#7dff9a', 0.1, 1.2), 0, 0, 0.34));
-  const LAND: V[] = [[0.02, 0.012, 1.25], [0.62, 0.014, 1.55], [-0.28, 0.016, 1.75], [0.36, 0.018, 2.05], [0.98, 0.02, 1.2], [-0.02, 0.022, 2.4]];
+  const JX = -0.55, me = actor(root, JENSEN(0), {a: {expr: 'neutral', pose: 'cross'}, b: {expr: 'smile', pose: 'cross'}}, JX, 0, 0.3, {scale: 1.0, res: 1.2, wide: true});
+  // the machine reads him: a bar of green light goes down him and up again
+  const beamM = glass('#7dff9a', 0.8, 1.5), bar = soft(panel(root, 0.7, 0.03, beamM, JX, 1.0, 0.46)), glowM = glass('#7dff9a', 0.16, 1.2), glow = soft(panel(root, 0.76, 0.22, glowM, JX, 1.0, 0.455));
+  const OUT: V = [CX, 0.64, 0.44], LAND: V[] = [[0.0, 0.012, 1.3], [0.62, 0.014, 1.6], [-0.3, 0.016, 1.8], [0.36, 0.018, 2.1], [0.95, 0.02, 1.25], [0.02, 0.022, 2.45]];
   return {
     light: () => LIGHT.cold,
     tick: ({f, cam}) => {
       const A = W(219) - 2, P = W(225) - 2, scanning = f < P;
       const sw = 0.5 + 0.5 * Math.sin((f - A) * 0.3); scan.position.z = lerp(-0.3, 0.3, sw); scan.visible = f < P + 60; lid.rotation.x = -0.22; op(scanGlow, 0.16 + 0.1 * sw);
-      const by = lerp(1.74, 0.2, 0.5 - 0.5 * Math.cos((f - A) * 0.21)); bar.visible = fan.visible = scanning; bar.position.y = by;
-      fan.position.set(-0.3, (by + 1.0) / 2, 0.34); fan.scale.set(0.62, Math.max(0.02, Math.abs(by - 1.0)), 1); beamM.opacity = 0.45 + 0.2 * Math.sin(f * 0.9);
+      const by = lerp(1.76, 0.12, 0.5 - 0.5 * Math.cos((f - A) * 0.21)); bar.visible = glow.visible = scanning; bar.position.y = glow.position.y = by; beamM.opacity = 0.7 + 0.25 * Math.sin(f * 0.9);
       me.show(f >= P + 20 ? 'b' : 'a'); me.tick(f, cam);
       // sheet after sheet: each a scribble with a question mark; the first comes up to be read, the rest land on the floor in front
       sheets.forEach((q, i) => {
         const t0 = P + i * 7, u = Math.min(1, Math.max(0, (f - t0) / (i ? 20 : 12))), e = 1 - (1 - u) ** 2;
         q.visible = f >= t0;
-        if (i === 0) { q.position.set(lerp(CX - 0.7, 0.0, e), lerp(0.66, 1.74, e), lerp(0.1, 1.0, e)); q.rotation.set(0, 0, lerp(1.2, -0.06, e) + 0.03 * Math.sin(f * 0.1)); q.scale.setScalar(lerp(0.4, 1.5, e)); }
-        else { const to = LAND[i - 1]; q.position.set(lerp(CX - 0.7, to[0], u), lerp(0.66, to[1], u * u) + 0.7 * Math.sin(Math.PI * u) * (1 - 0.3 * u), lerp(0.1, to[2], u)); q.rotation.set(-Math.PI / 2 * e, 0, (hash(i, 2) - 0.5) * 2.4 * e + (1 - u) * 3); q.scale.setScalar(0.6 + 0.4 * e); }
+        if (i === 0) { q.position.set(lerp(OUT[0], 0.0, e), lerp(OUT[1], 1.56, e), lerp(OUT[2], 1.0, e)); q.rotation.set(0, 0, lerp(1.2, -0.06, e) + 0.03 * Math.sin(f * 0.1)); q.scale.setScalar(lerp(0.4, 1.5, e)); }
+        else { const to = LAND[i - 1]; q.position.set(lerp(OUT[0], to[0], u), lerp(OUT[1], to[1], u * u) + 0.6 * Math.sin(Math.PI * u) * (1 - 0.3 * u), lerp(OUT[2], to[2], u)); q.rotation.set(-Math.PI / 2 * e, 0, (hash(i, 2) - 0.5) * 2.4 * e + (1 - u) * 3); q.scale.setScalar(0.6 + 0.4 * e); }
       });
     },
   };

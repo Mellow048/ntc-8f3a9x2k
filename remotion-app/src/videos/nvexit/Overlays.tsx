@@ -152,7 +152,7 @@ export const Overlays: React.FC = () => {
       {over(21, 22, W(113)) ? <Pill f={f} at={W(113)} text="THE NEW YORK TIMES · OCT. 29, 2026" /> : null}
       {over(21, 22, W(120)) ? <Pill f={f} at={W(120)} text="NO PUBLIC WORD FROM HER · AS OF NOV. 13" top="15.4%" tone="yellow" /> : null}
       {during(23, W(124)) ? <Stamp f={f} at={W(124)} text="SUSPECTED" tone="yellow" top="9.5%" size={11.5} /> : null}
-      {during(23, W(126)) ? <Pill f={f} at={W(126)} text="NOT ESTABLISHED · AS OF NOV. 13, 2026" top="20.5%" /> : null}
+      {during(23, W(126)) ? <Pill f={f} at={W(126)} text="NOT ESTABLISHED · AS OF NOV. 13, 2026" top="18.4%" /> : null}
       {during(24, W(129)) ? <Day f={f} at={W(129)} day="NOV 2026"><Big>8</Big></Day> : null}
       {during(24, W(131)) ? <Pill f={f} at={W(131)} text="A MEMO TO EMPLOYEES" dx={17} size={3} /> : null}
       {during(25, W(136)) ? <Quote f={f} at={W(136)} text={<>“I was <Hot>unfaithful</Hot> to my wife. ... There is no excuse for what I did. I am deeply sorry.”</>} by="JENSEN HUANG TO EMPLOYEES, NOV. 8 · NBC NEWS" size={4.7} /> : null}
