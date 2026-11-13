@@ -155,7 +155,7 @@ export const court: Builder = (root) => {
       me.show(v === 'plea' ? (f >= W(176) - 2 ? 'guilty' : 'idle') : v === 'years' ? (f >= W(184) - 1 ? 'shock' : 'idle') : v === 'time' ? (f >= W(195) - 2 ? 'lost' : 'think') : 'idle');
       me.node.position.y = hop(f, W(176) - 2, 0.08, 8) + hop(f, W(184) - 1, 0.1, 8) + hop(f, W(197), 0.08, 8); me.tick(f, cam); pros.tick(f, cam);
       // three toy cars roll onto the bench as the judge asks; later a ring of them goes round his head
-      toys.forEach((c, i) => { const k = smooth(f, W(189) - 2 + i * 3, W(189) + 10 + i * 3); c.visible = v === 'judge' || v === 'time'; c.position.set(lerp(2.6, -0.5 + i * 0.45, v === 'judge' ? k : 1), 1.575, -2.18); c.rotation.y = Math.PI + 0.2; });
+      toys.forEach((c, i) => { const k = smooth(f, W(189) - 2 + i * 3, W(189) + 10 + i * 3); c.visible = v === 'judge' || v === 'time'; c.position.set(lerp(2.6, -0.3 + i * 0.4, v === 'judge' ? k : 1), 1.575, -2.18); c.rotation.y = Math.PI + 0.2; });
       orbit.forEach((c, i) => { const ang = f * 0.11 + i * 1.2566, on = v === 'time' && f >= W(195) - 2; c.visible = on; c.position.set(-0.82 + 0.62 * Math.cos(ang), 2.02 + 0.07 * Math.sin(ang * 2 + i), -0.45 + 0.5 * Math.sin(ang)); c.rotation.y = -ang - Math.PI / 2; c.scale.setScalar(0.12 * pop(f, W(195) - 2 + i * 2, 6)); });
     },
   };

@@ -82,7 +82,9 @@ passages copied out, are in `NOTES.md`.
   it as his account. It does not say that this is what led the FBI to him: no source says so. (A filing also describes
   a co-defendant who signed up for an exchange account from his home connection; the film leaves that out.)
 - **The phone in the bay, and the tip-off.** Both are in the indictment as reported, not established at a trial. The
-  film says "the indictment says".
+  film says "the indictment says". The report's word is "dropped ... off a dock", and the narration keeps it; in the
+  picture he tosses the phone a few metres out, because water at his feet would lie under the caption. That is
+  staging, not a claim.
 - **The year of the arrest.** The plea release of 2026 prints "Sept. 18, 2025", and USA Today repeats it. The release
   of 19 Sept 2024 ("arrested last night"), Wired and the BBC give 2024. The film shows 2024.
 - **What he posted.** Wired describes him "posting and appearing in photos"; which posts were his own and which were
@@ -160,3 +162,113 @@ Facts behind the lines: 1 → 2, 3, 4; 2 → 3, 5, 6; 3 → 8; 4 → 3; 5 → 9,
   servers. The people watching the shared screen are four grey silhouettes.
 - No company's mark is drawn. The cars are the film's own wedge-shaped supercar in ten colours, not any maker's
   model; the Pagani is named in a line of text only.
+
+## Visual beat map
+
+45 entries in the shot list on 18 sets: 41 cuts and 3 joins (13 and 14, 16 and 17, 43 and 44 are one take each).
+Frames at 30 fps; the film is 2231 frames, 74.4 s. A cut falls two frames before the word it belongs to.
+
+| # | Frames | Set / staging | What is seen | On screen (every number with its source) |
+|---|---|---|---|---|
+| 0 | 0-81 | `coins/pile` | A round stage under one light, stacked with gold coins that glint. He comes up behind the pile, hands on his head, grinning. | stamp OVER $230 MILLION; IN BITCOIN, AT THE TIME · U.S. ATTORNEY'S OFFICE, D.C. |
+| 1 | 82-110 | `desk/one` | A study at dusk, the Capitol's dome in the window. A laptop, and a dashed outline where its owner would sit. A card over the laptop: HIS WALLET · 4,100+ BITCOIN, a padlock. | THE MAN WHO WAS ROBBED IS NOT DRAWN |
+| 2 | 111-146 | `drive/selfie` | In front of a house: he holds his phone up for a selfie, supercars behind him. | “NOTORIOUS” IN L.A. AND MIAMI CLUBS, A COURT HEARD · BBC |
+| 3 | 147-174 | `drive/row` | From above: a yellow, a purple, a green and a white supercar, one behind another. | 31 CARS, BY HIS OWN ACCOUNT · COURT FILING |
+| 4 | 175-198 | `villa/wide` | A glass house with a pool, palms, a dock on the bay. | RENTED: LOS ANGELES, THE HAMPTONS, MIAMI |
+| 5 | 199-224 | `club/party` | A club: he in sunglasses with a fan of banknotes, a server with a bottle and a sparkler. | “UP TO $500,000 PER EVENING” · U.S. ATTORNEY'S OFFICE |
+| 6 | 225-272 | `cal/hook` | A wall calendar, August and September 2024. A ring round 18 August (THEFT), thirty days crossed off, a ring round 18 September (ARREST). | stamp 31 DAYS |
+| 7 | 273-306 | `room/wide` | His room at night: purple light, a game and a chart on the screens, he at the keyboard behind his monitor. | calendar leaf AUG 2024 · 18 |
+| 8 | 307-343 | `room/close` | Close on him in his chair. | name tag MALONE LAM · 20 THEN · PLEADED GUILTY IN SEPT. 2026; A STOCK CARTOON FIGURE, NOT A LIKENESS |
+| 9 | 344-388 | `globe/path` | A classroom globe. A pin and a tag on SINGAPORE; on "Singapore" a small plane leaves along a dotted route while the globe turns under it, and comes to rest under a second tag: THE U.S., OCT. 2023. | LEFT SCHOOL AT 14, HE TOLD INVESTIGATORS · BBC; STAYED AFTER HIS VISA EXPIRED · BBC |
+| 10 | 389-447 | `screen/lobby` | A big screen with the lobby of a block game: LOBBY · 5 PLAYERS. His card has a crown and "$$$"; four cards have question marks. | “RINGLEADER” · U.S. ATTORNEY'S OFFICE, D.C.; “CONNECTIONS MADE ON ONLINE GAMING PLATFORMS”; 18 CHARGED · HIS WAS THE 11TH GUILTY PLEA · AP |
+| 11 | 448-480 | `mask/dial` | A caller with a blank head and a headset under one lamp, two more at desks behind. Rings go out from the headset. | tab AS PROSECUTORS TELL IT (it stays through shot 15); THE CREW HAS NO FACES HERE: NOT ALL HAVE BEEN TRIED |
+| 12 | 481-508 | `desk/ring` | The study: the phone on the desk rings. A card: INCOMING CALL · “SECURITY TEAM”. | WASHINGTON, D.C. · AUG. 18, 2024 |
+| 13 | 509-547 | `mask/google` | The caller holds up a smiling paper face with a shield: SECURITY TEAM. | “CLAIMING THEY WERE FROM GOOGLE'S SECURITY TEAM”; COURT FILING, AS REPORTED BY CNBC |
+| 14 | 548-589 | `mask/exchange` (join) | The same take: the paper face is swapped for one with a coin: EXCHANGE SUPPORT. | THEN AS THE “SUPPORT TEAM” OF HIS EXCHANGE |
+| 15 | 590-634 | `desk/allow` | The study: a window, “SECURITY” TOOL · INSTALL TO PROTECT YOUR COINS? · NO / INSTALL. The cursor comes down and presses INSTALL on "into". The window turns red, REMOTE ACCESS: ON · SOMEBODY ELSE HAS THE DESKTOP, and the cursor moves off by itself. | “DUPED INTO DOWNLOADING A PROGRAM” · USA TODAY |
+| 16 | 635-697 | `coins/drain` | The stage of coins: the piles sink while coins fly up into a wallet marked with a question mark. | stamp 4,100+ BITCOIN; “OVER 4,100 BITCOIN” · U.S. ATTORNEY'S OFFICE |
+| 17 | 698-764 | `coins/gone` (join) | The same take: the stage is empty, dashed rings where the piles stood. A counter runs up and stops on "million". | $230 MILLION+ · “WORTH OVER $230 MILLION AT THE TIME” |
+| 18 | 765-802 | `drive/flex` | In front of the house: he in sunglasses and a gold chain, arms out, banknotes falling. | “A WILD SPENDING SPREE” · ASSOCIATED PRESS |
+| 19 | 803-833 | `villa/pool` | The pool from above, a pink ring and a yellow one on the water. | RENTED · ONE AT $68,000 A MONTH · COURT FILING |
+| 20 | 834-859 | `jet/board` | An apron at sunset: a small jet, nose toward us; he goes up its stairs and waves. | “PRIVATE JET RENTALS” · U.S. ATTORNEY'S OFFICE |
+| 21 | 860-892 | `club/bill` | The club, closer: servers come in with sparklers, bottles in a bucket, he on the seat with the banknotes. | stamp UP TO $500,000 A NIGHT; “UP TO $500,000 PER EVENING” · U.S. ATTORNEY'S OFFICE |
+| 22 | 893-924 | `club/receipt` | Close on a till in the club: a long receipt feeds up out of the printer, top first: ONE NIGHT · TOTAL $569,528.39, the total marked in yellow. | ONE RECEIPT, A LOS ANGELES CLUB · COURT FILING |
+| 23 | 925-983 | `fleet/tower` | A dark tower of shelves; small supercars in many colours appear on it row by row, a blue one on a turntable below. A counter runs to 31. | 31 CARS · “31 LUXURY AUTOMOBILES” · COURT FILING, 2024 |
+| 24 | 984-1058 | `fleet/hero` | The blue car, whole from nose to wing, turns on its lit turntable from its side to its tail; a price tag comes down over it on two strings: $3,800,000. | A PAGANI HUAYRA · “PURCHASED FOR $3,800,000”; COURT FILING, OCT. 2024: IT HAD NOT BEEN FOUND |
+| 25 | 1059-1111 | `feed/post` | A phone, its feed scrolling: a car, a jet, banknotes, a villa; hearts going up. The account's name is "$$$". | “POSTING AND APPEARING IN PHOTOS” · WIRED |
+| 26 | 1112-1150 | `sleuth/watch` | A dark office: a figure with a blank head and a trench coat in the light of a screen; a post with a car comes up beside him. | AUG. 19, 2024: THE DAY AFTER · WIRED |
+| 27 | 1151-1227 | `sleuth/who` | He stands at a pin board with a magnifying glass. On top a diagram: 4,100 BTC, MIXERS, three boxes EXCHANGE, three question marks. Under it four photos (a car, a jet, a bag, a villa) joined with red string. | name tag ZACHXBT · A PSEUDONYM · REAL NAME NOT PUBLIC · WIRED |
+| 28 | 1228-1257 | `sleuth/coins` | Close on the diagram: one coin becomes three and they run down the three threads, the glass after one of them. | “THREE MAIN THREADS” · WIRED |
+| 29 | 1258-1288 | `sleuth/posts` | Close on the photos: the glass goes from picture to picture. A tag, MIAMI, is pinned where the strings meet. | “ON INSTAGRAM AND TIKTOK” · WIRED; HE “APPEARED TO BE IN MIAMI” |
+| 30 | 1289-1363 | `screen/share` | The big screen: SHARING THIS SCREEN. A card headed ONE MAN'S WALLET: the balance rolls down from 4,100 to 0 BITCOIN, coins flying off it. Under it, WATCHING, and four grey silhouettes. | tab AS ZACHXBT TOLD WIRED (it stays through shot 31); ONE OF THEM “RE-SHARED HIS SCREEN”; WITH “ANOTHER GROUP OF FRIENDS” |
+| 31 | 1364-1405 | `screen/rec` | Close on the silhouettes under WATCHING: a red ring closes round one of them and a REC badge lights beside it. | A 90-MINUTE VIDEO · FIRST NAMES ARE SPOKEN IN IT |
+| 32 | 1406-1447 | `cal/month` | The calendar again: THEFT on 18 August, the crossed days, ARREST on 18 September. | HE SHARED HIS FINDINGS WITH LAW ENFORCEMENT · WIRED |
+| 33 | 1448-1530 | `villa/raid` | The villa's terrace at dusk, wide: he stands by the pool with his hands on his head; two agents in jackets marked FBI walk in from both sides and stand left and right of him. | stamp ARRESTED; SEPT. 18, 2024 · AT HIS RENTAL HOME IN MIAMI |
+| 34 | 1531-1573 | `villa/dock` | The reverse angle, from the terrace out over the bay, the sun going down in it: he stands on the dock with his phone held up, looks round and, on "dropped", tosses it out into the water. Drops and rings where it lands. | “OFF A DOCK ... INTO BISCAYNE BAY” · USA TODAY; TIPPED OFF BY AN OFF-DUTY OFFICER, IT SAYS · AP |
+| 35 | 1574-1614 | `deep/sink` | Under water: the phone sinks past the fish, NO SERVICE on its screen. | THE INDICTMENT, AS REPORTED BY USA TODAY |
+| 36 | 1615-1704 | `court/plea` | A courtroom: the judge on the bench, he in grey at the table with a card that says GUILTY, the prosecutor at the right. | calendar leaf SEPT 2026 · 8; ONE COUNT OF RICO CONSPIRACY; U.S. DISTRICT COURT, WASHINGTON |
+| 37 | 1705-1766 | `court/years` | Close on him: his mouth falls open. | stamp UP TO 20 YEARS; NOT SENTENCED YET · NEXT HEARING DEC. 8, 2026 |
+| 38 | 1767-1828 | `court/judge` | The judge leans over the bench; three toy cars roll onto it. | AT THE PLEA HEARING · ASSOCIATED PRESS; HE HAD BOUGHT MOST OF THEM, NOT ALL, HE INDICATED |
+| 39 | 1829-1891 | `court/time` | Close on him, dazed; small cars go round his head. He hops on "need". | quote card “I would need some time.” · MALONE LAM TO THE JUDGE · AP |
+| 40 | 1892-1960 | `steps/pros` | The courthouse steps: the prosecutor at a lectern marked U.S. ATTORNEY'S OFFICE, a flag beside her. | quote card “If you build a cybercrime empire, we will find you ...” · THE U.S. ATTORNEY FOR D.C. · SEPT. 8, 2026 |
+| 41 | 1961-2026 | `steps/def` | The same steps, the other side: his lawyer at three microphones, a sheet of paper in his hand; he shrugs. | quote card “It’s a very sad case of a bunch of kids ...” · HIS LAWYER, TO USA TODAY |
+| 42 | 2027-2065 | `screen/kids` | The game's lobby again, close: the five cards. | “ONLINE GAMES ... THROUGH WHICH THEY MET”; THE SAME STATEMENT, TO USA TODAY |
+| 43 | 2066-2105 | `split/what` | A stage in two halves. Left: a red curtain, a throne, a crown, banknotes. Right: blue light, a game controller, a screen with the block game, a beanbag, a school bag. He stands on the line between them in his hoodie. | header WHO GETS SENTENCED? |
+| 44 | 2106-2230 | `split/choice` (join) | The same take: the crown glints on A, the controller lights on B. He looks from one to the other. | NO DATE YET · HE FACES UP TO 20 YEARS; A · A CRIME BOSS; B · A KID IN OVER HIS HEAD |
+
+The quotation marks on screen mark words copied from the source named beside them; an ellipsis marks a cut inside a
+quotation. Lines without quotation marks are the film's own summary of the source named.
+
+## Voice
+
+- Arena TTS `voice-15` (en-US, masculine, conversational), the series' narrator. **One take, one call**, kept as
+  `voice/raw-take.mp3` (93.94 s). "ZachXBT" was sent as "Zack X B T". (The first build's take was lost with its
+  workspace; this is a second read of the same text, made on 13 November.)
+- `build_voice.py`: the 48 pauses between phrases are cut to the house lengths (84.25 s), the pace is raised 1.2
+  times, a shelf takes 1 dB off the bass and a bell adds 1.5 dB of presence. Result `voice/voice.wav`, 72.97 s; with
+  the tail the film is 74.4 s. 233 words at 3.19 words a second.
+- Beats added after: the three words of the hook's list ("supercars", "mansions", "nightclubs": a tenth of a second
+  each, so that no shot of the hook is under 24 frames), "one month", "million dollars", "the flex", "online",
+  "watching", "recorded it", "first", "twenty years", "Quote", "some time", "empire", and before the closing question.
+  The spelled initials "F.B.I." are squeezed by 0.4 s.
+- Word times (`voice/words.json`, copied to the film folder) come from a forced alignment against the narration with
+  the house lexicon; "zachxbt" and "f.b.i." have their own spellings in it. Every cut and every cue in picture and
+  sound is placed from these times.
+
+## Sound
+
+Everything is synthesized in `audio/build_mix.py`; nothing is sampled. The cue sheet with every sound and its reason
+is `audio/cues.md` (about 200 cues).
+
+- **The score** is in F minor at 140 beats a minute felt at half speed, and it tells the story with one tune:
+  - **the flex** (the hook; again from "Then came the flex"): a sub-bass, a kick, a clap on three, rolling hats and a
+    bell tune; in the club the kick is on every beat;
+  - **"It lasted one month"**: the music is cut dead on a clap and a low F, and a clock ticks twice;
+  - **his room**: only the sub-bass and the hats; **the globe**: one bright chord, D flat major, a harp going up as
+    the plane leaves; **the lobby**: the tune as an old computer plays it;
+  - **the call**: a low pulse; then a cheerful hold-music jingle on fife and bells for the paper face, a tone higher
+    for the second face; it comes down a diminished chord on "until he let them", and a kettledrum with brass lands
+    on "into his computer";
+  - **the coins go**: bells running down three octaves, a climb under the counter, kettledrum and brass on "million";
+  - **"Someone was watching"**: the beat stops; one note on a vibraphone; then a walking plucked bass with brushes
+    for the investigator, no drums; it stops when "somebody recorded it";
+  - **the arrest**: the beat of the flex with nothing on top of it; **the dock**: a harp on tiptoe; **under water**:
+    the tune's four notes, two octaves down and muffled;
+  - **the court**: one low chord, a toll on "twenty years", a question on the harp for "which cars", and no tune under
+    his answer;
+  - **the two quotations**: the tune's first four notes on a tuba and a horn for "a cybercrime empire", then the same
+    four notes on a music box, three octaves up, for "a bunch of kids";
+  - **the choice**: A gets the kettledrum and brass, B gets the music box and one blip of a game.
+- **Effects** follow what is seen: coins, a camera click, an engine, water, sparklers, a marker on the calendar, keys,
+  a telephone, a pop for each tag and window, the click on INSTALL, a buzzer for REMOTE ACCESS: ON, a rumble as the
+  piles sink, a cash register when the counter stops, a cork, a printer for the receipt, a blip for each shelf of
+  cars, a jet, a swipe for the feed, three rising pings down the threads, ticks falling in pitch as the balance runs
+  down, two beeps for REC, a siren, a ratchet for the handcuffs, the throw and the splash on "dropped", bubbles, a
+  gavel, a gulp, and a swish on each of the 41 cuts (none on the 3 joins).
+- **Measured on the WAV:** 74.367 s, 48 kHz stereo; integrated loudness -14.5 LUFS, true peak -2.7 dBTP; the limiter
+  takes off at most 3.6 dB. Music 5.7 LU under the voice while someone speaks. Word by word
+  (`templates/scripts/word_margins.py`): the voice is a median 5.4 LU over music and effects, 10th percentile 1.9 LU,
+  lowest -1.2 LU ("the", word 132); 5 of 233 words are under 0, all of them short function words. One content word,
+  "vanished" (75), sat 0.6 LU under the bells and is lifted 2 dB with the bed 2 dB down under it.
+- Nobody has listened to it: these are measurements. The same checks passed on the seven earlier films, whose mixes
+  were built the same way.

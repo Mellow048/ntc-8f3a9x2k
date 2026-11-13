@@ -114,7 +114,7 @@ export const globe: Builder = (root) => {
   const pulse = rings(root, 2, '#e3342f');
   const tagSG = soft(panel(root, 0.92, 0.3, smat(signTex('globe-sg', 460, 150, '#e3342f', '#ffffff', [['SINGAPORE', 112, 0.56]], {border: INK}), 1.1), 0, 0, 0));
   const tagUS = soft(panel(root, 1.06, 0.3, smat(signTex('globe-us', 530, 150, '#ffe14a', INK, [['THE U.S., OCT. 2023', 100, 0.56]], {border: INK}), 1.1), 0.4, GY + 0.98, 0.7));
-  const plane = card(root, 0.36, 0.36, planeTex(), 0, 0, 0, 1.1), wp = new THREE.Vector3();
+  const plane = card(root, 0.36, 0.36, planeTex(), 0, 0, 0, 1.1), wp = new THREE.Vector3(), at = new THREE.Vector3();
   return {
     light: () => ({...LIGHT.room, amb: 1.7}),
     tick: ({f, shot}) => {
@@ -122,9 +122,12 @@ export const globe: Builder = (root) => {
       ball3.rotation.set(0.12, RHO - turn, 0); pin.getWorldPosition(wp);
       pulse(f, f < go + 6, [wp.x, wp.y, wp.z + 0.06], 0.3, 0, 0.06);
       tagSG.scale.setScalar(pop(f, a + 4, 7)); tagSG.position.set(Math.max(-0.26, wp.x + 0.1), wp.y - 0.34, Math.max(1.12, wp.z + 0.3));
-      dots.forEach((d, i) => { d.visible = f >= go + 2 + i * 2; });
-      const u = smooth(f, go, go + 18); plane.visible = f >= go - 2; plane.position.set(lerp(wp.x + 0.1, -0.2, u), lerp(wp.y + 0.12, GY + 1.0, u) + 0.25 * Math.sin(Math.PI * u), lerp(1.2, 0.8, u)); plane.rotation.z = lerp(0.5, 0.3, u); plane.scale.setScalar(pop(f, go - 2, 5) * lerp(1, 0.75, u) * (1 - smooth(f, go + 15, go + 20)));   // it lands at the tag's edge and is gone: it must not sit on the words
-      tagUS.scale.setScalar(pop(f, go + 10, 7));
+      // the plane rides the head of its own dotted route while the globe turns under it, and comes to rest under the tag
+      const u = smooth(f, go, go + 17), along = u * 8.5;
+      dots.forEach((d, i) => { d.visible = along >= i + 1.2; });
+      at.set(...spot(SG[0] + along * 8.5, SG[1] + along * 4.2, 1.16)).applyMatrix4(ball3.matrixWorld);
+      plane.visible = f >= go - 2; plane.position.copy(at); plane.rotation.z = lerp(0.95, 0.5, u); plane.scale.setScalar(pop(f, go - 2, 5) * lerp(1, 0.62, u));
+      tagUS.scale.setScalar(pop(f, go + 11, 7));
     },
   };
 };
@@ -139,7 +142,9 @@ const lobbyTex = () => tex('screen-lobby', TW, TH, (g, w, h) => {
 const shareTex = () => tex('screen-share', TW, TH, (g, w, h) => {
   vgrad(g, w, h, ['#0d2a52', '#0a1f40']);
   g.fillStyle = '#e3342f'; rrect(g, 60, 34, w - 120, 84, 22); g.fill(); g.fillStyle = '#ffffff'; g.beginPath(); g.arc(124, 76, 20, 0, 7); g.fill(); text(g, 'SHARING THIS SCREEN', 440, 78, 54, '#ffffff', {maxWidth: 520});
-  g.strokeStyle = '#2f6fc0'; g.lineWidth = 6; rrect(g, 56, 148, w - 112, 486, 26); g.stroke(); text(g, 'ONE MAN’S WALLET', w / 2, 306, 42, '#8fc0ff', {font: 'Montserrat'});
+  // the card's heading is a strip along its top edge: the source tab on the left of the frame lies across rows 222 to 317 of this texture over the shot
+  g.fillStyle = '#143a72'; rrect(g, 56, 148, w - 112, 70, 26); g.fill(); g.fillRect(56, 190, w - 112, 28);
+  g.strokeStyle = '#2f6fc0'; g.lineWidth = 6; rrect(g, 56, 148, w - 112, 486, 26); g.stroke(); text(g, 'ONE MAN’S WALLET', w / 2, 184, 42, '#8fc0ff', {font: 'Montserrat'});
   btcSign(g, 190, 440, 74); text(g, 'BITCOIN', 520, 528, 52, '#f7931a');
   g.fillStyle = '#16365f'; rrect(g, 110, 580, w - 220, 30, 15); g.fill();
   text(g, 'WATCHING', w / 2, 684, 46, '#9fb4d8', {font: 'Montserrat'});
@@ -257,7 +262,7 @@ export const fleet: Builder = (root) => {
       const tower = shot.v === 'tower', a = shot.at;
       small.forEach((g, i) => { const row = Math.floor(i / 3), at = a + 3 + Math.round(row * (W(105) - a - 8) / 9); g.scale.setScalar(tower ? 0.5 * pop(f, at + (i % 3), 5) : 0.5); });
       turn.rotation.y = 0.9 + f * 0.012; (rim.material as THREE.MeshBasicMaterial).color.set('#4fd8ff').multiplyScalar(1.4 + 0.3 * Math.sin(f * 0.3)); op(spot, 0.3);
-      const k = smooth(f, W(108) - 4, W(108) + 8); tag.visible = !tower; tag.position.y = lerp(2.6, 0, k) + 0.02 * Math.sin(f * 0.12) * k; tag.rotation.z = 0.05 * Math.sin(f * 0.21) * (1 - 0.6 * k);
+      const k = smooth(f, W(108) - 4, W(108) + 8); tag.visible = !tower; tag.scale.setScalar(1.3); tag.position.y = lerp(2.6, -0.33, k) + 0.02 * Math.sin(f * 0.12) * k; tag.rotation.z = 0.05 * Math.sin(f * 0.21) * (1 - 0.6 * k);
     },
   };
 };

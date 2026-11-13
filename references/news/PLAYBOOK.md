@@ -15,6 +15,12 @@ Nothing below needs the user, except the choice of topic and, once in a session,
   than your branch: another `HEAD`, a stale tree, and `/tmp`, the caches and `node_modules` gone. GitHub is the
   record. After a reset: `git fetch origin <branch>`, check that nothing local is newer, then
   `git reset --hard FETCH_HEAD && git clean -fd`. Keep drafts in the repository, never in `/tmp`.
+- **A merged branch is a dead branch.** When the session's pull request is merged or closed, the branch stops
+  accepting pushes within minutes, and "Continue" then gives the session a new branch on a **fresh checkout of
+  `main`**: whatever was only in the old workspace is gone, commits included. The eighth film was built once on a
+  branch whose pull request had just been merged, could not be pushed, and had to be built a second time. So: push
+  after every step, never start a film on a branch whose pull request is already merged, and merge the session's
+  pull request last (section 11).
 - **Tools.** The sandbox reaches GitHub, the npm registry and PyPI, and nothing else.
 
   ```sh
@@ -127,6 +133,27 @@ Write `story.ts` first, then cast and sets, then `Overlays.tsx`.
   aims beside the figure; water from a hose is one tapered tube with spray at its end; fire needs drawn flames; a figure that holds something out to
   the side needs a wider drawing (`WIDE` in the fifth film's `cast.ts`), or the thing is cut off at the edge of the
   figure's canvas; a small animal on the ground sits under the captions, so stand it on something.
+- **From the eighth film** (a story with cars, screens and counters):
+  - A car made from an extruded side outline reads as a box. Build it from cross-sections along its length
+    (`supercar` in that film's `sets.ts`), give it thin lit blades for lamps, keep the wheels under the fenders (a
+    wheel taller than the bonnet makes an open-wheel racer), and show cars from above, one behind another.
+  - A cone of light between the camera and a face whitens the face; a wide one above 0.03 opacity washes the set.
+  - A prop held at hand height covers the holder's face in a close shot: hold it up beside the head, and draw it as
+    big as a head if it has to be read. A microphone on a stand belongs at chest height.
+  - A tag that belongs to the set and sits in the top third collides with the source lines, and so does a set's own
+    header (a game lobby's title bar): place both under the lines, and check the last frame of the shot, when the
+    camera has pushed in.
+  - Whatever a set keeps for another staging (a till, a dock, a parasol) is in the first frames of every shot on
+    that set unless it is hidden for that staging: look at the first and the last frame of every shot.
+  - An action timed from `shot.at` can happen before its word, and one timed from its word can have no time left
+    before the cut (a phone thrown on "dropped" needs its splash inside the shot). Count the frames to the cut, and
+    work out where the thing lands in the frame before you render it.
+  - A counter with four values jumps. Give it twenty or more and a step every two frames. A `Count` label is fitted
+    to its length like every other line.
+  - A cursor or a hand left resting on a screen covers the line the viewer should read: move it off after its moment.
+  - **Words on screen claim only what a passage copied into `NOTES.md` supports.** Quotation marks go round words
+    that are in the notes letter for letter, and the name beside them is the outlet the passage is from. Compare every
+    line of `Overlays.tsx` with the notes before the render.
 - **Things that jump and that the check does not report:** something that appears inside the frame before it
   moves (start it outside), something that leaves after a few frames (let it shrink away in the frame), a cue that
   starts too late to finish before the cut. Read every set's `tick` for these before the render.
@@ -149,6 +176,10 @@ renders the frames you name (four took 23 seconds in the two-core sandbox). Tile
 4. **The two frames either side of every change of shot on the same set.** A hop shows only there. Do this before
    the render is started, not while it runs: the sixth film lost a queued run to it.
 5. The last second: the closing question, both answers, nothing under the captions.
+
+`PYTHON=~/.cache/ntc-venv/bin/python scripts/sheets.sh out/r1 r1 12 6 250` tiles a folder of stills into sheets of
+twelve. Give every round a new name, and measure a pixel when a sheet seems to show something odd (a dimmed board
+looked bright beside a dark wall; `PIL` said otherwise).
 
 Expect five to eight rounds and 170 to 350 stills. A full render costs a commit and eleven minutes each time; a
 round of stills costs neither, and you choose the frames.
@@ -202,6 +233,15 @@ git fetch origin <branch> && git merge --ff-only FETCH_HEAD   # the run commits 
   (`templates/scripts/aac_check.py`: the encoder once wrote a click that no meter on the mix could show), counts the
   frames again and refuses a peak above −1 dBFS.
 
+### When the branch cannot be pushed: render in the sandbox
+
+`remotion-app/scripts/render-local.sh` does the workflow's steps on the sandbox itself: the same `remotion render`
+command for each part, the same stitch, the same sound encode with its check, the same film check and gates. It is
+a last resort: about 2.5 seconds a frame, an hour and a half for a film, against twelve minutes on GitHub, and what
+it makes is in the workspace only. On 12 November 2026 it rendered four parts of the eighth film before that
+workspace was replaced; its stitch and its checks have never run. If the branch is closed, the better answer is to
+ask the user to press Continue first, and to know that the new branch starts from `main` (section 0).
+
 ## 9. Check the finished file
 
 - `qa-report.md`: the right frame count, about −14.6 LUFS, a peak under −1 dBFS, no silence, no black, white or
@@ -235,3 +275,6 @@ Search the story again on the day, note the time, and change the film if the sto
   `references/news/<slug>/README.md`, run `python references/news/make_reference.py …` (its docstring has the
   arguments), add the folder to the two loops in `.github/workflows/ci.yml` and to the table in `README.md`, remove
   the film's live folders, run `python references/news/verify.py`, and open a pull request to `main`.
+- **Merge the session's pull request last.** Merging it closes the branch (section 0). When the user approves two
+  films and asks for a third in the same message, make, render and deliver the third first, or tell the user that
+  keeping the approved ones comes after it.

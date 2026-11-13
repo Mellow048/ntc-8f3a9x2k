@@ -75,7 +75,7 @@ export const SHOTS: Shot[] = [
   s(97, 'club', 'receipt', [1.0, 1.5, 3.3], [1.1, 1.42, 1.5], 42, {push: 0.1, close: true}),               // 22
   // 6  "And some thirty exotic cars, one a three point eight million dollar Pagani. He was posting it online."
   s(101, 'fleet', 'tower', [0, 3.3, 10.5], [0, 3.45, -2.0], 42, {push: 0.04}),                              // 23
-  s(106, 'fleet', 'hero', [1.5, 1.7, 6.8], [0, 0.8, 1.6], 42, {push: 0.07}),                               // 24
+  s(106, 'fleet', 'hero', [1.9, 1.95, 8.3], [0, 0.9, 1.6], 42, {push: 0.05}),                              // 24  far enough back for the whole car, nose to wing, at every angle of the turntable
   s(114, 'feed', 'post', [0.2, 2.2, 6.4], [0, 2.2, 0], 42, {push: 0.05}),                                  // 25
   // 7  "Someone was watching. An investigator known only as ZachXBT followed the coins, and the posts."
   s(119, 'sleuth', 'watch', [-0.8, 1.62, 4.3], [-0.95, 1.6, 0], 42, {push: 0.07, close: true}),            // 26
@@ -87,8 +87,8 @@ export const SHOTS: Shot[] = [
   s(146, 'screen', 'rec', [0.3, 1.58, 3.17], [0.22, 1.5, -0.43], 42, {push: 0.04}),                        // 31
   // 9  "One month after the theft, the F.B.I. arrested him in Miami. The indictment says he dropped his phone into the bay first."
   s(150, 'cal', 'month', [0, 1.9, 4.0], [0, 1.95, 0], 42, {push: 0.05}),                                   // 32
-  s(155, 'villa', 'raid', [0.5, 1.6, 7.8], [0.5, 1.35, 2.7], 42, {push: 0.07}),                            // 33
-  s(161, 'villa', 'dock', [0.2, 1.9, 10.4], [1.7, 1.45, 5.6], 42, {push: 0.05}),                           // 34
+  s(155, 'villa', 'raid', [0.5, 1.6, 9.3], [0.5, 1.3, 2.7], 42, {push: 0.05}),                             // 33  wide: all three stand inside the frame
+  s(161, 'villa', 'dock', [2.25, 2.2, 2.3], [2.3, 1.25, 6.6], 42, {push: 0.05}),                           // 34  the reverse angle: from the terrace out over the bay, so the water he throws into is behind him and above the caption
   s(168, 'deep', 'sink', [0, 1.7, 5.4], [0, 1.7, 0], 42, {push: 0.05}),                                    // 35
   // 10 "This September he pleaded guilty to racketeering conspiracy. He faces up to twenty years."
   s(172, 'court', 'plea', [0.2, 1.75, 6.6], [0, 1.6, -1.0], 42, {push: 0.05}),                             // 36
