@@ -306,7 +306,9 @@ tiled with `scripts/sheets.sh`. Where a point of a set lands in the frame: `scri
   peak -1.7 dBFS; no silence; no black, unplanned white or frozen frames; no unplanned frame jumps. The encode
   against its WAV, run again locally (`templates/scripts/aac_check.py`): highest sample -1.74 dBFS against the WAV's
   -2.69, nothing late, no sample that stands clear of the WAV. The encode added 0.95 dB to the peak, which is why
-  the mix is built to -2.8: the file is 0.7 dB inside the gate of -1.0.
+  the mix is built to -2.8: the file is 0.7 dB inside the gate of -1.0. The film check itself was run again in the
+  sandbox after the approval (`templates/scripts/short_qa.py`, twenty seconds): it wrote the same report as the run,
+  character for character.
 - **Picture, third render against the second,** frame by frame at a quarter of the size: frames 1452-1472 (the
   agents come in) and 1793-1891 (the toy cars, on the bench and behind him in the next shot) differ; each of the
   other 2111 frames reads 46.7 dB PSNR or more, and 1322 of them are the same picture exactly. The second against
