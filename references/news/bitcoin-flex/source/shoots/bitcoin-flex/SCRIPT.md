@@ -284,7 +284,7 @@ branch by the run itself. Three full runs of nine to ten minutes each, all on 13
 
 | Run | Commit | Why it was made |
 |-----|--------|-----------------|
-| `43343391420` | `3a35598` | The first full render (published as `15c2011`). The check was clean. One frame in every 24 of it was looked at, together with the first and last frame of every shot, and that found six things the check does not see: the two agents stood half outside the frame for the whole arrest; the dock showed the same figure at the same size against the same house as the arrest, with the splash at the frame's edge under the caption; the plane on the globe ended on top of the tag it flies to; the blue car was cropped at both ends for its whole shot; the wallet card's heading slid under the source tab as the camera pushed in; the toy cars stood at the left edge of the bench. |
+| `43343391420` | `3a35598` | The first full render (published as `15c2011`). The check was clean. It was started one minute after the fifth round of stills and should not have been: six faults were on the sheets of rounds 3 to 5 (the first and last frame of every shot, then the fixes) and had been passed. They were recognised a quarter of an hour later on one frame in every 24 of the render, none of them a thing the check sees: the two agents stood half outside the frame for the whole arrest; the dock showed the same figure at the same size against the same house as the arrest, with the splash at the frame's edge under the caption; the plane on the globe ended on top of the tag it flies to; the blue car was cropped at both ends for its whole shot; the wallet card's heading slid under the source tab as the camera pushed in; the toy cars stood at the left edge of the bench. |
 | `43346052087` | `dc3e676` | The second (published as `91f3652`), with those six put right. Its check reported three unplanned jumps, frames 1467 to 1469: the agents, who now came from outside a wider frame, crossed into it in four frames. And the toy cars, moved to the middle, reached the right edge at the end of the push. |
 | `43347793839` | `284ca3a` | **The final file** (published as `cf828d1`). The agents start just outside the frame and walk for eighteen frames; the toy cars are a little smaller. The check is clean. |
 
@@ -306,7 +306,9 @@ tiled with `scripts/sheets.sh`. Where a point of a set lands in the frame: `scri
   peak -1.7 dBFS; no silence; no black, unplanned white or frozen frames; no unplanned frame jumps. The encode
   against its WAV, run again locally (`templates/scripts/aac_check.py`): highest sample -1.74 dBFS against the WAV's
   -2.69, nothing late, no sample that stands clear of the WAV. The encode added 0.95 dB to the peak, which is why
-  the mix is built to -2.8: the file is 0.7 dB inside the gate of -1.0.
+  the mix is built to -2.8: the file is 0.7 dB inside the gate of -1.0. The film check itself was run again in the
+  sandbox after the approval (`templates/scripts/short_qa.py`, twenty seconds): it wrote the same report as the run,
+  character for character.
 - **Picture, third render against the second,** frame by frame at a quarter of the size: frames 1452-1472 (the
   agents come in) and 1793-1891 (the toy cars, on the bench and behind him in the next shot) differ; each of the
   other 2111 frames reads 46.7 dB PSNR or more, and 1322 of them are the same picture exactly. The second against

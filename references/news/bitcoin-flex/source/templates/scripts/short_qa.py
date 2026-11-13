@@ -36,13 +36,23 @@ W, H = 180, 320
 raw = subprocess.run(["ffmpeg", "-v", "error", "-i", vid, "-vf", f"scale={W}:{H}:flags=area", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], capture_output=True).stdout
 F = np.frombuffer(raw, np.uint8).reshape(-1, H, W, 3)
 n = len(F)
-f32 = F.astype(np.float32) / 255
-luma = (f32 @ np.array([0.2126, 0.7152, 0.0722], np.float32))
-mx, mn = f32.max(-1), f32.min(-1)
-sat = np.where(mx > 0.06, (mx - mn) / np.maximum(mx, 1e-6), 0)
-L = luma.reshape(n, -1)
-stats = {"mean": L.mean(1), "std": L.std(1), "p2": np.percentile(L, 2, 1), "p98": np.percentile(L, 98, 1), "sat": sat.reshape(n, -1).mean(1)}
-diff = np.abs(np.diff(F.astype(np.int16), axis=0)).mean(axis=(1, 2, 3))
+# The per-frame figures are worked out in blocks of 200 frames. Taken as one array, a 75-second film in float32 needed
+# more than 4 GB and the check was killed on a 4 GB machine (an agent's sandbox). Every figure belongs to one frame, or
+# to two neighbours, so the blocks give the same numbers.
+BLOCK = 200
+parts = {k: [] for k in ("mean", "std", "p2", "p98", "sat", "diff")}
+for a in range(0, n, BLOCK):
+    blk = F[a:a + BLOCK]
+    f32 = blk.astype(np.float32) / 255
+    luma = (f32 @ np.array([0.2126, 0.7152, 0.0722], np.float32))
+    mx, mn = f32.max(-1), f32.min(-1)
+    sat = np.where(mx > 0.06, (mx - mn) / np.maximum(mx, 1e-6), 0)
+    L = luma.reshape(len(blk), -1)
+    for k, x in (("mean", L.mean(1)), ("std", L.std(1)), ("p2", np.percentile(L, 2, 1)), ("p98", np.percentile(L, 98, 1)), ("sat", sat.reshape(len(blk), -1).mean(1))):
+        parts[k].append(x)
+    parts["diff"].append(np.abs(np.diff(F[a:a + BLOCK + 1].astype(np.int16), axis=0)).mean(axis=(1, 2, 3)))   # one frame of the next block: its first difference
+stats = {k: np.concatenate(parts[k]) for k in ("mean", "std", "p2", "p98", "sat")}
+diff = np.concatenate(parts["diff"])
 med = np.array([np.median(diff[max(0, i - 8):i + 9]) for i in range(len(diff))])
 pops = [i + 1 for i in range(len(diff)) if diff[i] > 3 * med[i] + 1.0 and (i + 1) not in planned]
 black = [i for i in range(n) if stats["mean"][i] < 0.04]

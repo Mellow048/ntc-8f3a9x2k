@@ -1,6 +1,6 @@
 {
   "title": "One Month of Being Rich",
-  "origin_commit": "45353f0dd1a49dc55f311e5326470bb9847e70bf",
+  "origin_commit": "84585764d5f3915d15049aca2c86335bf928e459",
   "origin_video": "shoots/bitcoin-flex/final-720p.mp4",
   "origin_branch": "arena/becd20b7-ntc-8f3a9x2k",
   "render_commit": "cf828d13c1b5d541a1c3200bcd525692d6786b3f",
@@ -21,7 +21,8 @@
     "shoots/bitcoin-flex/SCRIPT.md",
     "shoots/bitcoin-flex/audio/build_mix.py",
     "shoots/bitcoin-flex/audio/cues.md",
-    "shoots/bitcoin-flex/qa-report.md"
+    "shoots/bitcoin-flex/qa-report.md",
+    "templates/scripts/short_qa.py"
   ],
   "mix_wav_sha256": "624a2a4f5bf72a88a33c0e837281d77a30e078ae6c858ee74a104239adfa2b7a",
   "files": [
@@ -237,8 +238,8 @@
     },
     {
       "path": "source/shoots/bitcoin-flex/SCRIPT.md",
-      "sha256": "69bcd75089fbdc326be4afeac5289925137fbfcdde576a3aae8fb219867f344c",
-      "bytes": 41195
+      "sha256": "83e2821dae33448c34e158c346ceebd2cb882408150ab13e1276457c3fcd61bd",
+      "bytes": 41569
     },
     {
       "path": "source/shoots/bitcoin-flex/audio/build_mix.py",
@@ -317,8 +318,8 @@
     },
     {
       "path": "source/templates/scripts/short_qa.py",
-      "sha256": "9a71fa351b2db50bac669eebdd37c9d9f00ccd2b8b710ab472871e0ce4160550",
-      "bytes": 4727
+      "sha256": "0cd8d4bba39f817290248c2396761efa4beb116486672cef28d833a051f884ce",
+      "bytes": 5451
     },
     {
       "path": "source/templates/scripts/word_margins.py",

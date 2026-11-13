@@ -102,7 +102,13 @@ python templates/scripts/word_margins.py shoots/bitcoin-flex/audio/build_mix.py
 cd remotion-app && REVIEW=BtcFlexReview REMOTION_BROWSER="$(scripts/local-chromium.sh)" scripts/pick.sh out/r1 100,1000,2100 540
 ```
 
-`mix_wav_sha256` in [`manifest.json`](manifest.json) is the mix that went into the MP4. To render the film again,
+`mix_wav_sha256` in [`manifest.json`](manifest.json) is the mix that went into the MP4; `restore.py bitcoin-flex
+--mix` rebuilds it and says whether it is that file. Two files of the snapshot's machinery are newer than the render
+(the manifest lists them): `build_mix.py`, where only the title it writes on the cue sheet changed, and
+`templates/scripts/short_qa.py`, which now works in blocks and needs 1.2 GB instead of more than 4. Both were run
+again on this film: the mix is the same file byte for byte, and the report is the same character for character.
+
+To render the film again,
 commit the restored tree with the mix on your branch, push, and run
 
 ```sh
