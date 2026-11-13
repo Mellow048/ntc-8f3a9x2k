@@ -349,8 +349,6 @@ tiled with `scripts/sheets.sh`. Where a point of a set lands in the frame: `scri
   - While he answers the judge (1829-1891) the three toy cars on the bench stand behind his head, out of focus: the
     red one is half hidden by his hair and the blue one is cut by the right edge of the frame. The cars that circle
     over his head pass in front of the judge's face behind him.
-  - `remotion-app/scripts/render-local.sh` is in the repository and has never been run in its present form (its
-    header says so).
 - **The story on the day:** searched again on 13 November 2026 at 01:37 UTC, before the last two renders. Nothing
   has moved since the plea of 8 September: no sentence, no date for one, a status hearing on 8 December 2026.
   Nothing the film says has changed. After 8 December the line NEXT HEARING DEC. 8, 2026 will be out of date: it

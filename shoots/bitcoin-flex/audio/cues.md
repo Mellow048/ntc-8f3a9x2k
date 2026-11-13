@@ -1,4 +1,4 @@
-# Truck-stop heist short: soundtrack cue sheet
+# One Month of Being Rich: soundtrack cue sheet
 
 Written by `build_mix.py`. All music and effects are synthesized in that script; nothing is sampled.
 
