@@ -1,0 +1,104 @@
+{
+ "source": "raw-take.mp3",
+ "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
+ "raw_seconds": 93.94,
+ "tight_seconds": 84.25,
+ "pauses_cut": 48,
+ "tempo": 1.2,
+ "eq": {
+  "bass_shelf_db": -1.0,
+  "presence_db": 1.5
+ },
+ "squeezed": [
+  {
+   "line": 7,
+   "word": "ZachXBT",
+   "seconds_removed": 0.0
+  },
+  {
+   "line": 9,
+   "word": "F.B.I.",
+   "seconds_removed": 0.4
+  }
+ ],
+ "beats": [
+  {
+   "line": 1,
+   "after": "month",
+   "at": 8.495,
+   "seconds": 0.25
+  },
+  {
+   "line": 4,
+   "after": "dollars",
+   "at": 24.72,
+   "seconds": 0.2
+  },
+  {
+   "line": 5,
+   "after": "flex",
+   "at": 25.814,
+   "seconds": 0.15
+  },
+  {
+   "line": 6,
+   "after": "online",
+   "at": 35.871,
+   "seconds": 0.25
+  },
+  {
+   "line": 7,
+   "after": "watching",
+   "at": 36.973,
+   "seconds": 0.2
+  },
+  {
+   "line": 8,
+   "after": "it",
+   "at": 45.238,
+   "seconds": 0.25
+  },
+  {
+   "line": 9,
+   "after": "first",
+   "at": 51.955,
+   "seconds": 0.25
+  },
+  {
+   "line": 10,
+   "after": "years",
+   "at": 56.784,
+   "seconds": 0.25
+  },
+  {
+   "line": 11,
+   "after": "Quote",
+   "at": 59.329,
+   "seconds": 0.15
+  },
+  {
+   "line": 11,
+   "after": "time",
+   "at": 60.442,
+   "seconds": 0.4
+  },
+  {
+   "line": 12,
+   "after": "empire",
+   "at": 62.538,
+   "seconds": 0.15
+  },
+  {
+   "line": 12,
+   "after": "kids",
+   "at": 65.703,
+   "seconds": 0.35
+  }
+ ],
+ "seconds": 72.633,
+ "words": 233,
+ "words_per_second": 3.21,
+ "lufs": -16.6,
+ "lra": 2.4,
+ "peak": -1.6
+}
