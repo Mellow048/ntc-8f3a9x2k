@@ -232,3 +232,74 @@ each). Frames at 30 fps; the film is 2334 frames, 77.8 s. A cut falls two frames
 | 39 | 2139-2175 | `copier/scan` | An office wall: he stands with his arms crossed beside a photocopier. A bar of green light goes down him and up again. | NEIL WILSON, AN ANALYST AT SAXO UK |
 | 40 | 2176-2235 | `copier/print (join)` | The same take: the copier puts out sheet after sheet, each a scribbled outline with a red question mark. The first comes up to be read; the rest land on the floor. He smiles a little. | quote card “His technical knowledge ... is basically unique and impossible to replicate.” · NEIL WILSON, SAXO UK · THE GUARDIAN, NOV. 12 |
 | 41 | 2236-2333 | `office/empty` | The office at night under one spotlight: the empty chair with his jacket over it, the nameplate, the badge on the desk. The camera backs away. | CAN NVIDIA REPLACE HIM?; FOR NOW: COLETTE KRESS, THE FINANCE CHIEF; A · YES, IT'S THE CHIPS; B · NO, IT WAS HIM |
+
+The quotation marks on screen mark words copied from the source named beside them; an ellipsis marks a cut inside a
+quotation. Lines without quotation marks are the film's own summary of the source named.
+
+## Voice
+
+- Arena TTS `voice-15` (en-US, masculine, conversational), the series' narrator. **One take, one call**, kept as
+  `voice/raw-take.mp3` (101.03 s). The text went in as `narration.txt` has it: numbers as words, the initials with
+  full stops ("A.I.", "U.S.", "N.B.C.").
+- `build_voice.py`: the 60 pauses between phrases are cut to the house lengths (89.37 s), the pace is raised 1.2
+  times, which is the cap, a shelf takes 1 dB off the bass and a bell adds 1.5 dB of presence. Result
+  `voice/voice.wav`, 76.41 s; with the tail of 1.55 s the film is 77.8 s. 233 words at 3.05 words a second.
+- **The film is 3.4 seconds longer than the eighth** (74.4 s) and longer than the 73 to 75 seconds the playbook counts
+  on for this many words: this take is the slowest read of the series (the eighth film's take of 233 words was 93.9 s
+  raw). It was left at that length. The text is at the playbook's word count, the pace is at its cap, a shorter text
+  would have cost a second take, and the request asks for two stories in one film: how he started, and how he ended
+  up resigning.
+- Beats added after the tightening, 2.62 s in all: after "company" (0.12 s), "resigned" in the hook (0.25), each
+  "Quote" that opens his own words (0.1), "tables" (0.2), "out" (0.25), "back" (0.25), "ChatGPT" (0.3), "wife" (0.25),
+  "why" (0.2), "gone" (0.3) and "replicate" (0.2). The pauses inside the spelled initials are squeezed: "A.I." by
+  0.20 s, "N.B.C." by 0.46 s.
+- Word times (`voice/words.json`, copied to the film folder) come from a forced alignment against the narration with
+  the house lexicon; the names, the initials and the run-together numbers have their own entries in it (`LEXICON`
+  and `SPOKEN` in `build_voice.py`). Every cut and every cue in picture and sound is placed from these times.
+
+## Sound
+
+Everything is synthesized in `audio/build_mix.py`; nothing is sampled. The cue sheet with every sound and its reason
+is `audio/cues.md` (204 cues).
+
+- **The score** is in E major, twelve quavers to the bar at 88 beats a minute, a key and a metre no earlier film
+  used: a tune for a diner's jukebox. A plucked bass walks, brushes shuffle, a vibraphone plays the triplets, and
+  somebody whistles over the oldest changes there are (E, C sharp minor, A, B). The whistle belongs to the boy at the
+  sink. What happens to it is the film:
+  - **"On Thursday"**: the band stops, the whistled note sags a fourth and gives out; a toll on "resigned";
+  - **Taiwan, Portland**: the band without the tune, a harp going up as the plane leaves; under **his own words**
+    ("I was a dishwasher ...", "It had all the coffee ...") only the bass and the brushes;
+  - **the booth, 1993**: the whole band and the whistle, from the top; "Why Denny's?" waits on the dominant;
+  - **the first chip**: two notes of a tuba on "flopped", the second falling; the units go out on a run up the scale
+    and come back on the same run down, over C sharp minor; "They survived" is the home chord on a harp;
+  - **"Then came A.I."**: the same four chords as a computer would play them, in broken chords on square waves, then
+    the whistled tune in that sound through the server hall; six bells on "ChatGPT", and the boom stops there;
+  - **the newspaper**: the key turns to C sharp minor. No drums and no tune from here on: a bass note on every beat
+    and one thin chord. One note that does not belong, on a vibraphone, on "suspect"; one held chord and nothing else
+    under "I was unfaithful to my wife";
+  - **"Thursday, after thirty-three years"**: the tune's first five notes on a music box, slowly, and the toll of the
+    hook on "he resigned"; a question on the harp for "doesn't say why";
+  - **the three statements** (China, the Justice Department, he himself): three chords, each a step higher than the
+    one before, and none of them is home;
+  - **the plaque**: the music box plays the tune and breaks off before its last two notes on "It was gone";
+  - **the two analysts**: a chord of four horns and a kettledrum on "rip"; then the whistle's first bar, and the
+    computer's copy of it with two wrong notes for "impossible to replicate";
+  - **the question** hangs on the dominant: four notes on square waves answer for A, the whistle answers for B and
+    stays in the air. The tune does not come home.
+- **Effects** follow what is seen: the tap and a plate every nine frames, a door bell, dishes rattling in the tub,
+  the pot, clicks as the cups arrive, a clock, a pen on the napkin, crickets and a humming sign, a creak and a thud as the
+  NV1 tips over, a belt, ticks under the counters, seven thuds for the returned boxes, fans in the server hall, a tick for
+  each line the chat window types, paper and a thud for each front page, a marker for the red cord, a pin, a pop for each tag and
+  line, a thud for each stamp, a calendar leaf, laptop keys, five mail blips, press cameras, the badge on the desk, a
+  knock on the bare wall, the plaster coming off, the copier's lamp and seven sheets, and a swish on each of the 37
+  cuts (none on the 4 joins).
+- **Measured on the WAV:** 77.800 s, 48 kHz stereo; integrated loudness -14.5 LUFS, true peak -2.7 dBTP; the limiter
+  takes off at most 3.3 dB. Music 5.8 LU under the voice while someone speaks (the user's range is 5 to 6). Word by
+  word (`templates/scripts/word_margins.py`): the voice is a median 5.5 LU over music and effects, 10th percentile
+  2.0 LU, lowest -0.8 LU ("who", word 156); 3 of 233 words are under 0, all of them short function words. Five content
+  words sat under the band in the first build ("company" twice, "booth", "out", "flopped"); each is lifted 1 to 2 dB
+  with the bed 1.5 to 2.5 dB down under it (`WEAK_WORDS`).
+- **The build is deterministic:** run twice on 13 November, it wrote the same `mix.wav` both times, the file that was
+  already committed (SHA-256 `b5b6fb507f50814b7ceee419eb13b9f55bd0501dafa2503ddd55a5c8344fd7ef`).
+- Nobody has listened to it: these are measurements. The same checks passed on the eight earlier films, whose mixes
+  were built the same way.

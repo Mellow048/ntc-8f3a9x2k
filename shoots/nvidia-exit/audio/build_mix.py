@@ -718,7 +718,10 @@ def limiter(x, ceil_db, look=0.003, rel=0.08):
 
 
 # sounds that go with something arriving in the picture: the ten frames from each are allowed to jump
-GRAPHIC_SOUNDS = {"stamp thud", "pop", "ping", "click", "clunk", "paper", "step", "tick", "flap", "marker", "blip", "thud", "buzzer", "plane", "throw", "pen", "plate"}
+# "creak" is in the list for the NV1: the box tips over between frames 775 and 782, fastest at 779 to 781, and its thud
+# comes when it lands (782). With only the thud declared, the first render's check reported frame 780.
+GRAPHIC_SOUNDS = {"stamp thud", "pop", "ping", "click", "clunk", "paper", "step", "tick", "flap", "marker", "blip", "thud", "buzzer", "plane", "throw", "pen", "plate",
+                  "creak"}
 
 
 SOLO: set[int] = set()                                              # the same words Captions.tsx keeps on their own: none in this film
