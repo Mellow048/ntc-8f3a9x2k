@@ -41,8 +41,8 @@ Nothing below needs the user, except the choice of topic and, once in a session,
   ids in the copy's `register.tsx` (`<Film>Short`, `<Film>Review`, `<Film>CastSheet`, `<Film>Compositions`), point
   `PICTURE_WORDS` in `build_voice.py` and `STORY` in `build_mix.py` at the new film folder, change the title that
   `build_mix.py` writes at the top of `cues.md` (the eighth film's cue sheet carried the seventh's until after the
-  delivery), add the film's two lines to `src/Root.tsx` beside the anchors, and delete the restored folders again. Your film is written
-  in the copies: the machinery stays, every set, costume, cue and note is new.
+  delivery), add the film's two lines to `src/Root.tsx` beside the anchors, and delete the restored folders again.
+  Your film is written in the copies: the machinery stays, every set, costume, cue and note is new.
 
 ## 1. Topic
 

@@ -53,8 +53,9 @@ necessary: read "What went wrong" below before you start.
 - **A report's word and the staging are kept apart.** The report says he "dropped" his phone off the dock. The
   narration keeps the word; the picture shows a toss, so that the water is in the frame; the script records that as
   staging.
-- **Words on screen claim only what a passage copied into `NOTES.md` supports.** Five lines were reworded against the
-  notes ("U.S. Attorney's Office", not "the indictment").
+- **Words on screen claim only what a passage copied into `NOTES.md` supports.** Quotation marks go round words that
+  are in the notes letter for letter, with the outlet beside them; a line without them is the film's summary of the
+  source it names. The beat map in the script lists every line on screen.
 - **`scripts/project.py`** says where a point of a set lands in the frame at the start and at the end of a push,
   before any still is rendered.
 - **Things for a story with cars, screens and counters** are in the playbook's section 5: a car built from
