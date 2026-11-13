@@ -577,7 +577,7 @@ def build_sfx(voice_lufs):
         fx(ta + (tb - ta) * (k / 12) ** 0.8, tick(900.0), -14.5, 0.2, "tick" if k % 4 == 0 else "", "the clock on the wall runs through a night")
     fx(F(76), snore(0.7), -13, -0.2, "step", "nobody chases them out: they sag")
     # 14: the first chip
-    fx(F(83, -2), creak(0.3, R, rate0=140, rate1=90), -14, 0.1, "creak", "the box tips"); fx(F(83, 7), thud(0.9), -9.5, 0.1, "thud", "the NV1 falls off its table")
+    fx(F(83, -2), creak(0.3, R, rate0=140, rate1=90), -14, 0.1, "creak", "the box tips"); fx(F(83, 7), thud(0.9), -9.5, 0.1, "thud", "the NV1 tips over on its table")
     # 15: out
     fx(cut_t(15) + 0.03, hum(1.7, 70.0), -17, -0.2, "belt", "the belt runs to the dock door")
     for k in range(8):

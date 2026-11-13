@@ -63,7 +63,7 @@ export const SHOTS: Shot[] = [
   s(64, 'booth', 'coffee', [1.65, 1.65, 4.5], [0.87, 1.25, -0.5], 42, {push: 0.07}),                        // 12
   s(73, 'booth', 'stay', [0, 1.6, 4.9], [0, 1.35, -0.9], 42, {push: 0.06}),                                 // 13
   // 4  "Their first chip flopped. He says two hundred fifty thousand went out, and two hundred forty-nine thousand came back."
-  s(80, 'ware', 'flop', [0.5, 1.35, 2.8], [0, 1.0, 0.6], 42, {push: 0.08}),                                 // 14
+  s(80, 'ware', 'flop', [0.66, 1.35, 3.05], [0.2, 1.0, 0.6], 42, {push: 0.05}),                             // 14
   s(84, 'ware', 'out', [-0.3, 2.3, 5.6], [1.2, 1.0, -1.6], 42, {push: 0.05}),                               // 15
   s(92, 'ware', 'back', [-0.7, 1.7, 7.0], [0.1, 1.15, 1.6], 42, {push: 0.05}),                              // 16
   // 5  "They survived. Then came A.I.: Nvidia makes the chips behind ChatGPT."

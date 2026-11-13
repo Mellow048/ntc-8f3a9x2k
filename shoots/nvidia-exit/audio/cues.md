@@ -77,7 +77,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  25.63 |  769 | pop | the NV1, their first product |
 |  25.77 |  773 | creak | the box tips |
 |  25.83 |  775 | two notes of a tuba | 'flopped': the second note a semitone lower, and falling |
-|  26.07 |  782 | thud | the NV1 falls off its table |
+|  26.07 |  782 | thud | the NV1 tips over on its table |
 |  26.37 |  791 | pop | tab: as he tells it, Sequoia's podcast |
 |  26.40 |  792 | belt | the belt runs to the dock door |
 |  26.77 |  803 | a run up | 'two hundred fifty thousand went out': twelve notes up the scale of E under the counter, and a bell where it stops |

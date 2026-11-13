@@ -91,8 +91,8 @@ export const kitchen: Builder = (root) => {
       const nd = Math.max(2, N - n), nc = Math.min(N, 1 + n);
       dirty.forEach((d, i) => { d.visible = i < nd; d.position.x = DX + 0.0004 * i * i * Math.sin(f * 0.17); });
       clean.forEach((c, i) => { c.visible = i < nc; });
-      const y0 = 0.97 + nd * 0.03, y1 = 0.97 + nc * 0.03;                                    // down from one pile, through his hands, up onto the other
-      fly.visible = !up && nd > 2; fly.position.set(lerp(DX, CX, k), (1 - k) ** 2 * y0 + 2 * k * (1 - k) * 0.98 + k * k * y1, 0.52); fly.rotation.z = Math.sin(k * Math.PI) * 0.5;
+      const y0 = 0.97 + nd * 0.03, y1 = 0.97 + nc * 0.03, LOW = 1.0;                         // down beside one pile, low through the suds and his hands, up beside the other: never across his face
+      fly.visible = !up && nd > 2; fly.position.set(lerp(DX, CX, k), k < 0.5 ? lerp(y0, LOW, smooth(k, 0, 0.24)) : lerp(LOW, y1, smooth(k, 0.76, 1)), 0.52); fly.rotation.z = Math.sin(k * Math.PI * 2) * 0.35;
       bubbles.forEach((b, i) => { const u = frac(f * 0.011 + i / 10); b.position.set((i % 2 ? 1 : -1) * (0.2 + 0.36 * hash(i)) + 0.05 * Math.sin(f * 0.07 + i), 1.02 + u * 1.2, 0.45); b.scale.setScalar((0.035 + 0.03 * hash(i, 2)) * (1 - 0.4 * u)); op(b, 0.65 * (1 - u)); });
       me.show(up ? 'show' : 'wash'); me.node.position.y = STEP + hop(f, W(39), 0.06, 8) + 0.012 * Math.sin(f * 0.7); me.tick(f, cam); twinkle(f, up);
     },
@@ -197,8 +197,8 @@ export const booth: Builder = (root) => {
   // the three of them in 1993; a waiter with the pot
   const me = actor(root, JENSEN(1), {sit: {expr: 'smile', pose: 'desk', mode: 'sit'}, idea: {expr: 'grin', pose: 'wave', prop: 'napkin', mode: 'sit'}, talk: {expr: 'grin', pose: 'point', mode: 'sit'}, late: {expr: 'relief', pose: 'desk', mode: 'sit'}}, 0, 0.56, -0.95, {scale: 1.0, res: 1.3, wide: true, shadow: 0});
   const pals = [0, 1].map((i) => actor(root, ENGINEER(i), {sit: {expr: 'smile', pose: 'desk', mode: 'sit'}, wow: {expr: 'grin', pose: 'desk', mode: 'sit'}, late: {expr: 'dazed', pose: 'desk', mode: 'sit'}}, i ? 0.74 : -0.74, 0.56, -0.95, {scale: 1.0, res: 1.2, shadow: 0}));
-  const waiter = actor(root, WAITER, {pour: {expr: 'smile', pose: 'hold', prop: 'pot'}, a: {expr: 'smile'}}, 1.45, 0, 0.1, {scale: 1.0, res: 1.2, wide: true});
-  waiter.mesh.scale.x = -1;                                             // the pot on the table's side of her
+  const waiter = actor(root, WAITER, {pour: {expr: 'smile', pose: 'side', prop: 'pot'}, a: {expr: 'smile'}}, 1.45, 0, 0.1, {scale: 1.0, res: 1.2, wide: true});
+  waiter.mesh.scale.x = -1;                                             // the pot on the table's side of her, held low: at shoulder height it hid the engineer's face
   const cups = Array.from({length: 14}, (_, i) => cup(root, -0.98 + (i % 7) * 0.33 + (i > 6 ? 0.1 : 0), 0.79, i > 6 ? -0.42 : -0.12));
   const still3 = [cup(root, -0.62, 0.79, -0.42), cup(root, 0.38, 0.79, -0.56), cup(root, 0.78, 0.79, -0.36)], topCup = cup(root, -0.33, 0.79, 0.0);
   // seen from above: the napkin, the sketch, a pen, three pairs of sleeves
