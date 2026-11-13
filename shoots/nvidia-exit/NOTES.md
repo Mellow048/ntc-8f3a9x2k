@@ -395,3 +395,52 @@ third alleged affair. ... Reuters did not reveal her name.").
 - Hindustan Times, live, 13 Nov: "Huang has agreed to testify before the US Congress before Thanksgiving".
 - Newsweek, above: the House committees' deadline is Friday 13 November, 8 p.m. EST (01:00 UTC on 14 November), after
   this cut was made.
+
+## F. Checks after the second cut was built (13 November 2026, 07:51 and 07:54 UTC; search excerpts only)
+
+Nothing here was used to write the film. These are the passages against which its lines were checked again before
+the delivery.
+
+### The Straits Times, carrying Reuters's text on the third relationship
+
+<https://www.straitstimes.com/world/united-states/former-nvidia-ceo-jensen-huang-had-a-relationship-with-a-second-employee-sources-say>
+
+- "Ousted Nvidia chief executive officer Jensen Huang had an intimate relationship with a second employee, according to
+  two people familiar with the matter, Reuters has learnt."
+- "Reuters is not naming the second employee. Attempts to reach the woman were not successful. Nvidia declined to
+  comment. Powell, Jensen Huang and a representative for Nvidia's board did not reply to requests for comment."
+- **Against the film:** the narration's "Reuters reported a third relationship, with another employee" and the three
+  lines on screen (REUTERS · NOV. 12, 2026; CITING TWO PEOPLE FAMILIAR WITH THE MATTER; NOT NAMED · NO COMMENT FROM HIM
+  OR NVIDIA) agree with it. Reuters counts employees ("a second employee"); the film counts reported relationships
+  ("a third"), as Newsweek and The Guardian do. Reuters's text says "ousted"; the film says "resigned", the word of the
+  company's statement and of its filing.
+- The Australian Financial Review, 13 Nov, 05:32 UTC: he "resigned after coming under pressure over three reported
+  extramarital affairs".
+- Mac Observer: "The claims have not all been independently verified".
+
+### CNN, live page, updated 06:05 GMT on 13 November
+
+<https://edition.cnn.com/2026/11/11/business/live-news/nvidia-jensen-huang-investigation-fallout> (as summarised from
+the search excerpt, not word for word): Colette Kress is interim chief executive and the board is searching for a
+successor; three House committees have asked him for a closed-door interview; the chairman of the Senate Banking
+Committee asks him and the Commerce Secretary to testify; the President says it is unclear whether the woman was a
+spy; the company's statement carries no word from him.
+
+### Congress, 07:54 UTC (for the line HE HAS AGREED TO TESTIFY BEFORE CONGRESS)
+
+- IBTimes UK, 13 Nov, 06:53 GMT, <https://www.ibtimes.co.uk/jensen-huang-congress-testimony-china-allegations-1832004>:
+  "'He has agreed to come. We're in negotiations for which day,' Mast told reporters, according to Bloomberg and other
+  US media outlets." "Although Mast initially suggested Huang could testify before Thanksgiving, the House committees
+  have since requested his appearance on 1 December."
+- NBC News, live blog, 13 Nov,
+  <https://www.nbcnews.com/politics/trump-administration/live-blog/trump-congress-2026-election-alaska-senate-colom-live-updates-rcna608929>:
+  "The letter to Huang this evening asks that he appear before the committee on Dec. 1 for a "closed-door, transcribed
+  interview," adding that a subpoena would be issued if Huang did not confirm the interview by tomorrow evening."
+  And the chairman of the House Foreign Affairs Committee: "As of right now, we don't have to subpoena because he came
+  back last night and agreed to come in".
+- The Hindu BusinessLine, 13 Nov: the chairman "told reporters that Huang had tentatively agreed to appear before
+  lawmakers on Wednesday night, shortly before his resignation from Nvidia", and "the committees were prepared to issue
+  a subpoena if Huang withdrew his agreement to testify."
+- **Against the film:** the line stands as The Guardian wrote it ("Huang has agreed to testify before US Congress").
+  The agreement is reported on a committee chairman's word, no date is fixed, and the committees ask for a
+  confirmation by Friday evening. If he does not confirm, the line is out of date.

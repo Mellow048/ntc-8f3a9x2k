@@ -7,8 +7,26 @@ starting from the eighth film's folders (`restore.py bitcoin-flex --mix`). Film 
 The user asked for it on 13 November, after the eighth film had been filed and merged: "wait! the nvidia CEO just resigned. make a
 short about that first!" and then "make sure you include in how he started too then ended up resigning."
 
-**Status:** delivered on 13 November 2026 on branch `arena/92d6dc1f-ntc-8f3a9x2k`, with this script. Not yet
-approved, not filed under `references/news/`, no pull request. What was checked and what was not is under Result.
+**Status:** second cut, delivered on 13 November 2026 on branch `arena/92d6dc1f-ntc-8f3a9x2k`, with this script. Not
+yet approved, not filed under `references/news/`, no pull request. What was checked and what was not is under Result.
+
+## The second cut
+
+The first cut (77.8 s, commit `49b9f72`) went out the same morning. The user's answer: "yeah good enough but didnt mention
+the 3rd one tho and theres no sad music on the end". This script describes the second cut.
+
+| | First cut | Second cut |
+|---|---|---|
+| Narration | 233 words, 13 lines | 244 words, 14 lines. New line 10: "The same day, Reuters reported a third relationship, with another employee." |
+| Voice | one take | the same take; the new sentence was read in a second call and put into it (see Voice) |
+| Picture | 42 shots, 2334 frames | 43 shots, 2521 frames. New shot 31: a third front page lands on the other two. The date line in the hook now says ANNOUNCED. The light over the empty chair goes down at the end. |
+| Score | under the analysts a low pulse, a chord of brass, a whistled bar and a computer's wrong copy of it; the question left on the dominant; 1.55 s after the last word | from "It was gone" strings and a piano in C sharp minor; after the last word the whistle plays the tune's first five notes, slowly, and comes home in the minor; 3.6 s after the last word |
+| Length | 77.8 s | 84.0 s |
+
+Everything before the new line is the first cut's: the same words, pictures and score. The words there moved by at most
+10 ms, which shifts two cuts by one frame (into shots 11 and 18). The effects are the same sounds at the same places; the noise inside them is
+drawn afresh, because the builder draws all its noise from one seeded sequence and the new music takes a different
+number of draws.
 
 The first film of the series, `references/news/nvidia-spy/`, told an earlier stage of the same story (as of 10
 November, when he was still chief executive). This film shares none of its script, sets or score. It takes over one
@@ -19,7 +37,8 @@ thing: the look of the caricature (white hair, glasses, a black leather jacket).
 Jensen Huang, who washed dishes at a Denny's at fifteen and started Nvidia in a Denny's booth in 1993, resigned as
 president, chief executive and board member of Nvidia on Thursday 12 November 2026: two weeks after The New York
 Times tied him to a businesswoman whom U.S. officials suspect of spying for China, four days after he wrote to his
-staff "I was unfaithful to my wife", and one day after a second report. The company's statement gives no reason.
+staff "I was unfaithful to my wife", and one day after a second report. The company's statement gives no reason. The
+same day, Reuters reported a third relationship, with another employee.
 
 ## Sources
 
@@ -40,10 +59,16 @@ checks on the day of delivery listed at the end. The passages are copied out in 
 | 247 | 24/7 Wall St, AJ Tiarsmith, 31 Oct 2026 (it quotes Huang on Sequoia Capital's "Crucible Moments" podcast). <https://247wallst.com/investing/2026/10/31/in-1993-3-friends-met-at-dennys-to-talk-about-making-a-chip-that-would-allow-computers-to-create-realistic-3d-graphics-by-the-mid-1990s-the-company-was-weeks-from-running-out-of-cash-today-nvidi/> | the first of three parts |
 | HINDU-X | The Hindu Bureau, 12 Nov 2026, "Who is Jensen Huang and how the timeline of spy scandal unfolded" (timeline by Graphics News). <https://www.thehindu.com/news/international/who-is-nvidia-ceo-jensen-huang-what-we-know-about-alleged-chinese-spy-scandal/article71689414.ece> | the first of three parts |
 | More | Business Insider (reactions, profile), Nils Pratley in The Guardian, Tom's Guide live, People, India Today, The AGI Clock, BBN Times, Gulf News | search excerpts only |
+| NWK | Newsweek, 13 Nov 2026, "Jensen Huang Reportedly Had Third Affair; Nvidia Exit Caps Week of Scandal". <https://www.newsweek.com/jensen-huang-reportedly-had-third-affair-nvidia-exit-caps-week-of-scandal-12708382> | for the second cut, at about 06:53 UTC: the first of six parts |
+| MM | Malay Mail, 13 Nov 2026, "Jensen Huang faces third workplace relationship allegation after Nvidia resignation". <https://www.malaymail.com/news/money/2026/11/13/jensen-huang-faces-third-workplace-relationship-allegation-after-nvidia-resignation/243047> | a search excerpt only (the page returned its navigation) |
+| 8-K | Nvidia's Form 8-K of 12 Nov 2026, Item 5.02, as quoted by FourWeekMBA (<https://fourweekmba.com/ai-nvidias-huang-resigns-after-33-years-cfo-kress-interim-ceo/>) and three other sites | search excerpts only; the filing itself was not opened |
+| ST | The Straits Times, 13 Nov 2026, carrying Reuters's text: "Former Nvidia CEO Jensen Huang had a relationship with a second employee, sources say". <https://www.straitstimes.com/world/united-states/former-nvidia-ceo-jensen-huang-had-a-relationship-with-a-second-employee-sources-say> | a search excerpt only, at about 07:51 UTC, after the second cut was built: a check of the line already written, not its source |
 
 Not read: The New York Times's and The Wall Street Journal's own articles (the film reports them as NBC, The Guardian,
 Reuters and Variety describe them), the memo itself (its words are NBC's quotation), the podcast itself (24/7 Wall St's
-quotation).
+quotation), and **Reuters's own article on the third relationship** (the film reports it as Newsweek describes it; The
+Guardian's live blog and Malay Mail's excerpt say the same, and so does the excerpt of Reuters's text that The Straits
+Times carries, which a search returned after the film was built).
 
 ## Facts
 
@@ -73,6 +98,8 @@ quotation).
 | 22 | "A plaque adorned with a Nvidia logo hung on the wall inside that Denny's for years, reading: "The booth that launched a $1 trillion company." On Thursday, when NBC News visited the restaurant, it was gone." It was unveiled in September 2023 by the chain's chief executive, "joined ... by NVIDIA CEO Jensen Huang". | NBC, NV-BLOG, BZ |
 | 23 | "Dan Ives, a senior US tech analyst, said the board had done what "it needed to do, which is rip off the Band-Aid and take Nvidia into its next chapter without him" and that the company remained ahead of its competitors." | GUA |
 | 24 | "Neil Wilson, an analyst at the investment platform Saxo UK, said Nvidia would need a "great CEO" to replace Huang. "His technical knowledge and understanding of every last bit of product is basically unique and impossible to replicate," Wilson said". | GUA |
+| 25 | "Jensen Huang had an intimate relationship with a second Nvidia employee, Reuters reported Thursday, citing two people familiar with the matter. It is the third extramarital relationship attributed to the 63-year-old, and it emerged only after Nvidia's board had accepted his resignation ... Reuters did not name the woman or describe her role at Nvidia, and said its attempts to reach her were unsuccessful. Nvidia declined to comment. Jensen Huang and a representative for the company's board did not respond to the news agency's requests." The Guardian's live blog: "After Huang's resignation was announced on Thursday, Reuters reported a third alleged affair. ... Reuters did not reveal her name." Malay Mail: "another Nvidia employee, separate from two previously reported affairs". | NWK, GUA-L, MM |
+| 26 | "The board accepted his resignation on Wednesday, according to a regulatory filing, and Nvidia announced it Thursday morning." The filing, as quoted: "On November 11, 2026, the Board of Directors ... accepted the resignation of Jen-Hsun Huang, as NVIDIA's President, Chief Executive Officer and member of the Board, effective immediately." | NWK, 8-K |
 
 ## Not confirmed, and how the film handles it
 
@@ -90,12 +117,30 @@ quotation).
   "not independently verified" it; Nvidia and the executive did not reply. The film says "the Times reported", shows
   whose report it is and who did not reply, and neither names nor draws the executive (The Guardian prints a name; the
   film leaves it out).
-- **A third report.** Reuters reported another relationship, with an unnamed employee, after the resignation was
-  announced ("two people familiar with the matter"). The film leaves it out: it came after the decision the film is
-  about, and it rests on two unnamed people.
+- **The third relationship.** It is Reuters's report, "citing two people familiar with the matter". Reuters did not
+  name the employee and could not reach her; Nvidia declined to comment; he and the board's representative did not
+  respond. The first cut left the report out (it came after the decision the film is about, and it rests on two unnamed
+  people). The user asked for it, and the second cut reports it as what it is: the narration says "Reuters reported",
+  and three lines on screen say REUTERS · NOV. 12, 2026, CITING TWO PEOPLE FAMILIAR WITH THE MATTER and NOT NAMED · NO
+  COMMENT FROM HIM OR NVIDIA. The employee is neither named nor drawn. **Reuters's own article was not read:** the
+  film goes by Newsweek's account of it, and The Guardian's live blog and Malay Mail's excerpt say the same. After the
+  film was built, a search returned an excerpt of Reuters's text as The Straits Times carries it: "according to two
+  people familiar with the matter ... Reuters is not naming the second employee. Attempts to reach the woman were not
+  successful. Nvidia declined to comment." He and a representative of the board "did not reply". It agrees with the
+  three lines on screen.
+- **"A third".** The count is the outlets' ("the third extramarital relationship attributed to" him, Newsweek). He has
+  admitted being unfaithful and has named nobody; he has not confirmed any of the three reports.
+- **The day he resigned.** The board accepted the resignation on Wednesday 11 November, according to the filing as
+  Newsweek and others quote it, and the company announced it on Thursday 12 November. The narration says "On
+  Thursday, he resigned", as every outlet read for the first cut put it, and the date line in the hook now says
+  ANNOUNCED THURSDAY, NOV. 12, 2026. The film's order (the second report on Wednesday, the resignation on Thursday,
+  Reuters's report the same day) is the order in which each became public.
 - **Resigned, or pushed.** The company says "resigned". The Wall Street Journal reported on Wednesday that the board
   was weighing whether to oust him, and NBC that it met that night "to address Huang's future". The film says
-  "resigned" and does not say what happened in the room.
+  "resigned" and does not say what happened in the room. On 13 November Reuters's text, as The Straits Times
+  carries it, begins "Ousted Nvidia chief executive officer Jensen Huang", and the Australian Financial Review writes
+  that he "resigned after coming under pressure". The film keeps the word of the company's statement and of its
+  filing, which says the board "accepted the resignation".
 - **His first job.** "At fifteen" and "Portland" are his own account, as Nvidia's blog gives it. The year on screen,
   AROUND 1978, follows from his date of birth and from the dates on his LinkedIn page as Benzinga reports them.
 - **The first chip.** "250,000 ... 249,000 came back" is his own telling on a podcast, as 24/7 Wall St quotes it. The
@@ -115,7 +160,8 @@ quotation).
 1. **Nothing sexual, and no joke at the expense of his wife or his children.** The memo is quoted with his apology
    ("There is no excuse for what I did. I am deeply sorry."), and the picture shows staff reading it.
 2. **The businesswoman is not named and has no likeness.** The executive is not named and not drawn at all: a dashed
-   outline with a question mark, in a newspaper and in an organisation chart.
+   outline with a question mark, in a newspaper and in an organisation chart. The employee of the third report
+   likewise: the same outline, on a third front page.
 3. **A suspicion is always somebody's.** "U.S. officials suspect"; "China calls the spy claim a smear"; "The Justice
    Department says it has reached no conclusion"; "he denies any knowledge of it". Three statements, one after another,
    each with its date.
@@ -132,7 +178,7 @@ quotation).
 8. Co-founders, waitress, officials, directors, staff, spokesman, attorney general and reporter are the house's stock
    figures: nobody but Jensen Huang is drawn as a likeness, and the co-founders' name line says so.
 
-## Narration (233 words, 13 lines, one take, `voice-15`)
+## Narration (244 words, 14 lines, `voice-15`: one take, and one sentence from a second call)
 
 > Jensen Huang washed dishes at Denny's, founded Nvidia in a Denny's booth, and built the first five-trillion-dollar company. On Thursday, he resigned.
 >
@@ -152,6 +198,8 @@ quotation).
 >
 > Thursday, after thirty-three years, he resigned. Nvidia's statement doesn't say why.
 >
+> The same day, Reuters reported a third relationship, with another employee.
+>
 > China calls the spy claim a smear. The Justice Department says it has reached no conclusion. And he denies any knowledge of it.
 >
 > That Denny's booth had a plaque. N.B.C. News visited Thursday. It was gone.
@@ -161,11 +209,14 @@ quotation).
 > So, can Nvidia replace him?
 
 Facts behind the lines: 1 → 5, 8, 13, 1; 2 → 6, 5; 3 → 8, 9; 4 → 10; 5 → 11, 12; 6 → 14; 7 → 15, 16; 8 → 17;
-9 → 1, 2, 3; 10 → 18, 19, 20; 11 → 22; 12 → 23, 24; 13 → 4.
+9 → 1, 2, 3, 26; 10 → 25; 11 → 18, 19, 20; 12 → 22; 13 → 23, 24; 14 → 4.
 
 "Two weeks ago" is 29 October, fifteen days before the day of delivery; "Sunday", "Wednesday" and "Thursday" are 8, 11
-and 12 November 2026. The weekday names date the film: it is written to be watched in the week of 13 November, and the
-dates stand on screen for anybody who sees it later.
+and 12 November 2026, and "the same day" is that Thursday. The weekday names date the film: it is written to be watched
+in the week of 13 November, and the dates stand on screen for anybody who sees it later.
+
+Line 10 is the second cut's. It says whose report it is ("Reuters reported"), and it says "relationship", the word the
+film uses for the second report, where the outlets write "affair".
 
 ## Characters
 
@@ -178,6 +229,8 @@ dates stand on screen for anybody who sees it later.
 - **The businesswoman:** a figure with a blank face and a question mark, seen only as a photograph in a newspaper and
   on a cork board. Not named.
 - **The executive:** never a figure. A dashed outline with a question mark, in a newspaper and in a chart. Not named.
+- **The employee of the third report:** never a figure either: the same dashed outline, on the third front page. Not
+  named (Reuters withheld the name).
 - **Invented stock figures:** a waitress, two officials, five members of staff, five directors, a spokesman at a
   lectern marked MINISTRY OF FOREIGN AFFAIRS, a man at a lectern marked DEPARTMENT OF JUSTICE (the attorney general is
   named in the sources; the figure is not a likeness and carries no name), a reporter with a blank microphone, the
@@ -186,30 +239,31 @@ dates stand on screen for anybody who sees it later.
 
 ## Visual beat map
 
-42 entries in the shot list on 18 sets: 37 cuts and 4 joins (19 and 20, 21 and 22, 37 and 38, 39 and 40 are one take
-each). Frames at 30 fps; the film is 2334 frames, 77.8 s. A cut falls two frames before the word it belongs to.
+43 entries in the shot list on 18 sets: 38 cuts and 4 joins (19 and 20, 21 and 22, 38 and 39, 40 and 41 are one take
+each). Frames at 30 fps; the film is 2521 frames, 84.03 s. A cut falls two frames before the word it belongs to. Shot
+31 is the second cut's; the shots after it are the first cut's shots 31 to 41, 125 or 126 frames later.
 
 | # | Frames | Set / staging | What is seen | On screen |
 |---|---|---|---|---|
 | 0 | 0-70 | `kitchen/wash` | A diner's kitchen: tiled wall, pots, order tickets. A boy of fifteen in a paper cap and an apron stands on a crate at a sink full of suds, between a tall pile of dirty plates and a growing pile of clean ones; a plate goes through his hands every nine frames. | name tag JENSEN HUANG · NVIDIA'S CEO FOR 33 YEARS · A CARICATURE |
 | 1 | 71-132 | `booth/found` | A booth in the same invented diner, 1993: three young men at a table, a clock, two windows. The one in the middle (dark hair, glasses, a blue shirt) holds up a napkin with a chip drawn on it; the other two light up. | 1993 · EAST SAN JOSE, CALIFORNIA |
 | 2 | 133-210 | `chip/peak` | Three chip packages stacked like a podium on a green circuit board. He stands on top as he looks today (white hair, glasses, a black leather jacket), hops and waves; confetti falls. | stamp $5 TRILLION; A FIRST FOR ANY COMPANY · OCTOBER 2025 |
-| 3 | 211-264 | `office/chair` | An office with a skyline in the window. A tan high-backed chair turns slowly; his leather jacket hangs over its back. On the desk, a CEO nameplate and a staff badge. | THURSDAY, NOV. 12, 2026; stamp RESIGNED |
+| 3 | 211-264 | `office/chair` | An office with a skyline in the window. A tan high-backed chair turns slowly; his leather jacket hangs over its back. On the desk, a CEO nameplate and a staff badge. | ANNOUNCED THURSDAY, NOV. 12, 2026; stamp RESIGNED |
 | 4 | 265-303 | `map/born` | A wall map of the Pacific. A pin drops on Taiwan, a tag says TAIWAN; a small plane leaves along a dotted line and arrives under a tag that says OREGON. | BORN FEB. 17, 1963 |
 | 5 | 304-375 | `diner/job` | Outside the diner by day: cream walls, a teal band, a red roof, a roadside sign DINER · OPEN 24 HOURS. The boy in his cap and apron waves. | PORTLAND, OREGON · AROUND 1978 |
 | 6 | 376-426 | `kitchen/dish` | The sink, close. He washes, then holds up a plate that shines. | tab HIS WORDS · NVIDIA'S BLOG, 2023 (it stays through shot 8) |
 | 7 | 427-456 | `counter/bus` | The dining room: a counter, red stools, a coffee machine. He walks a tub of dishes along the counter, whistling. |  |
 | 8 | 457-492 | `counter/cups` | The same room, closer: he balances a tower of nine coffee cups on a tray, and it starts to lean. |  |
 | 9 | 493-560 | `booth/three` | The booth again, from the side: the three of them, cups, a napkin on the table; he points at it. | stamp 1993; CHRIS MALACHOWSKY AND CURTIS PRIEM; STOCK CARTOON FIGURES, NOT LIKENESSES |
-| 10 | 561-622 | `booth/napkin` | Straight down on the table: three pairs of sleeves, a pen, a napkin. A square is drawn, then its pins, then a cube inside it. | THE IDEA: 3D GRAPHICS FOR THE PC; AS NVIDIA'S BLOG TELLS IT |
-| 11 | 623-649 | `diner/why` | The diner at night: the sign glows red and flickers, the windows are lit. |  |
+| 10 | 561-623 | `booth/napkin` | Straight down on the table: three pairs of sleeves, a pen, a napkin. A square is drawn, then its pins, then a cube inside it. | THE IDEA: 3D GRAPHICS FOR THE PC; AS NVIDIA'S BLOG TELLS IT |
+| 11 | 624-649 | `diner/why` | The diner at night: the sign glows red and flickers, the windows are lit. |  |
 | 12 | 650-705 | `booth/coffee` | The booth: he and one of the engineers; a waitress stands at the table's end and pours from a glass pot; cups appear on the table one after another, fourteen in all. | tab HIS WORDS · NVIDIA'S BLOG, 2023 (through shot 13) |
 | 13 | 706-752 | `booth/stay` | The booth, square on: the windows go through dusk, night and dawn, the clock's hands run round, and the three of them sag over their cups. |  |
 | 14 | 753-790 | `ware/flop` | A warehouse, dark, a dock door bright behind. One dark blue box marked NV1, with a chip on it, stands on a table under a lamp; on "flopped" it tips over onto its side. | THE NV1, THEIR FIRST PRODUCT |
 | 15 | 791-844 | `ware/out` | The warehouse from above: a belt carries NV1 boxes away from us into the daylight. A counter runs up. | tab AS HE TELLS IT · SEQUOIA'S PODCAST (through shot 16); counter 250,000 OUT · “250,000 UNITS WENT OUT.” · JENSEN HUANG |
 | 16 | 845-908 | `ware/back` | The three founders in front of the belt. Boxes come flying back out of the door and land round them until they stand behind a wall of NV1 boxes. A second counter runs up. | counter 249,000 BACK · “... PRACTICALLY PUT US OUT OF BUSINESS.” |
-| 17 | 909-934 | `ware/alive` | The same wall of boxes, closer: he holds up a card that says RIVA 128; the other two breathe out. | 1997 · “WE SAVED THE COMPANY” |
-| 18 | 935-975 | `chip/ai` | The top chip from above: its die lights up green and rings leave it. | GRAPHICS CHIPS, MADE FOR VIDEO GAMES |
+| 17 | 909-935 | `ware/alive` | The same wall of boxes, closer: he holds up a card that says RIVA 128; the other two breathe out. | 1997 · “WE SAVED THE COMPANY” |
+| 18 | 936-975 | `chip/ai` | The top chip from above: its die lights up green and rings leave it. | GRAPHICS CHIPS, MADE FOR VIDEO GAMES |
 | 19 | 976-1010 | `racks/hall` | A server hall: two rows of racks with running lights, a strip of lamps overhead. The camera travels down the aisle. | ITS CHIPS TRAIN AND RUN A.I. SYSTEMS |
 | 20 | 1011-1064 | `racks/chat (join)` | The same take: a chat window opens in the aisle. "Write a poem about a diner at 3 a.m.", and an answer types itself in four lines. | WORTH $1 TRILLION BY MAY 2023 |
 | 21 | 1065-1089 | `paper/drop` | A newspaper's front page spins in on a dark blue ground and lands: a row of blocks for a masthead, his photograph, and beside it a woman with a blank face and a question mark. |  |
@@ -222,38 +276,45 @@ each). Frames at 30 fps; the film is 2334 frames, 77.8 s. A cut falls two frames
 | 28 | 1488-1539 | `chart/report` | An organisation chart: his picture in a box marked CEO, three boxes under it. Two hold grey figures; the third is dark, with the dashed outline. A yellow line runs from that box up to his. | THE EXECUTIVE IS NOT NAMED OR DRAWN; NO REPLY FROM NVIDIA OR THE EXECUTIVE · NBC |
 | 29 | 1540-1616 | `office/leave` | The office by day: he stands in front of his desk and lays his staff badge on it. | stamp 33 YEARS; PRESIDENT, CEO AND BOARD MEMBER |
 | 30 | 1617-1671 | `release/why` | The press release, as a sheet: PRESS RELEASE · NOVEMBER 12, 2026 · NVIDIA Announces CEO Transition, and its three headline points word for word. A magnifying glass goes along the lines and stops with a red question mark in it. | stamp NO REASON GIVEN; THE INVESTIGATION IS NOT MENTIONED |
-| 31 | 1672-1742 | `podium/china` | A red curtain, China's flag, a lectern marked MINISTRY OF FOREIGN AFFAIRS: a spokesman in glasses points. | quote card “... it is nothing but smears against China.” · CHINA'S FOREIGN MINISTRY, NOV. 9 · REUTERS |
-| 32 | 1743-1823 | `podium/doj` | A blue curtain, the U.S. flag, a lectern marked DEPARTMENT OF JUSTICE: a man in a suit, who shrugs on "no". | THE U.S. ATTORNEY GENERAL · NOV. 12, 2026; THE F.B.I. IS INVESTIGATING, HE SAID |
-| 33 | 1824-1885 | `stage/deny` | He alone on a bare grey-green stage, and he shrugs. | “HAS DENIED ANY KNOWLEDGE” · THE GUARDIAN; HE HAS AGREED TO TESTIFY BEFORE CONGRESS |
-| 34 | 1886-1933 | `booth/plaque` | The booth's wall, 2026: a dark green plaque with a chip on it: THE BOOTH THAT LAUNCHED A $1 TRILLION COMPANY. Light glints on it. | UNVEILED WITH HIM IN SEPTEMBER 2023 |
-| 35 | 1934-2016 | `diner/crew` | Outside the diner under a grey sky: a reporter with a microphone, a television camera on a tripod in front of us, the sign behind. | NBC NEWS · THURSDAY, NOV. 12, 2026 |
-| 36 | 2017-2049 | `booth/gone` | The same wall from the same place: a pale patch and four screw holes where the plaque hung. | NBC DOES NOT SAY WHO REMOVED IT, OR WHY |
-| 37 | 2050-2091 | `chip/aid` | The top chip, with a sticking plaster across it. | DAN IVES, A U.S. TECH ANALYST |
-| 38 | 2092-2138 | `chip/rip (join)` | The same take: on "rip" the plaster peels up at one end and flies off; the die under it lights up. | quote card “... rip off the Band-Aid and take Nvidia into its next chapter without him.” · DAN IVES, TECH ANALYST · THE GUARDIAN, NOV. 12 |
-| 39 | 2139-2175 | `copier/scan` | An office wall: he stands with his arms crossed beside a photocopier. A bar of green light goes down him and up again. | NEIL WILSON, AN ANALYST AT SAXO UK |
-| 40 | 2176-2235 | `copier/print (join)` | The same take: the copier puts out sheet after sheet, each a scribbled outline with a red question mark. The first comes up to be read; the rest land on the floor. He smiles a little. | quote card “His technical knowledge ... is basically unique and impossible to replicate.” · NEIL WILSON, SAXO UK · THE GUARDIAN, NOV. 12 |
-| 41 | 2236-2333 | `office/empty` | The office at night under one spotlight: the empty chair with his jacket over it, the nameplate, the badge on the desk. The camera backs away. | CAN NVIDIA REPLACE HIM?; FOR NOW: COLETTE KRESS, THE FINANCE CHIEF; A · YES, IT'S THE CHIPS; B · NO, IT WAS HIM |
+| 31 | 1672-1796 | `paper/third` | The two front pages lie where they fell. On "third" a third one spins in and lands on them: the dashed outline with a question mark again, this time on the left, his photograph on the right. | REUTERS · NOV. 12, 2026; CITING TWO PEOPLE FAMILIAR WITH THE MATTER; NOT NAMED · NO COMMENT FROM HIM OR NVIDIA |
+| 32 | 1797-1867 | `podium/china` | A red curtain, China's flag, a lectern marked MINISTRY OF FOREIGN AFFAIRS: a spokesman in glasses points. | quote card “... it is nothing but smears against China.” · CHINA'S FOREIGN MINISTRY, NOV. 9 · REUTERS |
+| 33 | 1868-1949 | `podium/doj` | A blue curtain, the U.S. flag, a lectern marked DEPARTMENT OF JUSTICE: a man in a suit, who shrugs on "no". | THE U.S. ATTORNEY GENERAL · NOV. 12, 2026; THE F.B.I. IS INVESTIGATING, HE SAID |
+| 34 | 1950-2010 | `stage/deny` | He alone on a bare grey-green stage, and he shrugs. | “HAS DENIED ANY KNOWLEDGE” · THE GUARDIAN; HE HAS AGREED TO TESTIFY BEFORE CONGRESS |
+| 35 | 2011-2058 | `booth/plaque` | The booth's wall, 2026: a dark green plaque with a chip on it: THE BOOTH THAT LAUNCHED A $1 TRILLION COMPANY. Light glints on it. | UNVEILED WITH HIM IN SEPTEMBER 2023 |
+| 36 | 2059-2142 | `diner/crew` | Outside the diner under a grey sky: a reporter with a microphone, a television camera on a tripod in front of us, the sign behind. | NBC NEWS · THURSDAY, NOV. 12, 2026 |
+| 37 | 2143-2174 | `booth/gone` | The same wall from the same place: a pale patch and four screw holes where the plaque hung. | NBC DOES NOT SAY WHO REMOVED IT, OR WHY |
+| 38 | 2175-2216 | `chip/aid` | The top chip, with a sticking plaster across it. | DAN IVES, A U.S. TECH ANALYST |
+| 39 | 2217-2264 | `chip/rip (join)` | The same take: on "rip" the plaster peels up at one end and flies off; the die under it lights up. | quote card “... rip off the Band-Aid and take Nvidia into its next chapter without him.” · DAN IVES, TECH ANALYST · THE GUARDIAN, NOV. 12 |
+| 40 | 2265-2301 | `copier/scan` | An office wall: he stands with his arms crossed beside a photocopier. A bar of green light goes down him and up again. | NEIL WILSON, AN ANALYST AT SAXO UK |
+| 41 | 2302-2361 | `copier/print (join)` | The same take: the copier puts out sheet after sheet, each a scribbled outline with a red question mark. The first comes up to be read; the rest land on the floor. He smiles a little. | quote card “His technical knowledge ... is basically unique and impossible to replicate.” · NEIL WILSON, SAXO UK · THE GUARDIAN, NOV. 12 |
+| 42 | 2362-2520 | `office/empty` | The office at night under one spotlight: the empty chair with his jacket over it, the nameplate, the badge on the desk. The camera backs away. When the last word has been said, the light over the chair goes down slowly while the whistle plays; the question and the two answers stay lit. | CAN NVIDIA REPLACE HIM?; FOR NOW: COLETTE KRESS, THE FINANCE CHIEF; A · YES, IT'S THE CHIPS; B · NO, IT WAS HIM |
 
 The quotation marks on screen mark words copied from the source named beside them; an ellipsis marks a cut inside a
 quotation. Lines without quotation marks are the film's own summary of the source named.
 
 ## Voice
 
-- Arena TTS `voice-15` (en-US, masculine, conversational), the series' narrator. **One take, one call**, kept as
-  `voice/raw-take.mp3` (101.03 s). The text went in as `narration.txt` has it: numbers as words, the initials with
-  full stops ("A.I.", "U.S.", "N.B.C.").
-- `build_voice.py`: the 60 pauses between phrases are cut to the house lengths (89.37 s), the pace is raised 1.2
+- Arena TTS `voice-15` (en-US, masculine, conversational), the series' narrator. The first cut's thirteen lines are
+  **one take from one call**, kept as `voice/raw-take.mp3` (101.03 s). The text went in as `narration.txt` had it:
+  numbers as words, the initials with full stops ("A.I.", "U.S.", "N.B.C.").
+- **The second cut's sentence came from a second call, the only other one** (`voice/pickup-take.mp3`, 19.78 s). The
+  line before it, the new line and the line after it were read together, so that the new sentence would be read as a
+  sentence in the middle of the story. Only the new sentence is used, 5.29 s of it. `build_voice.py` puts it into the
+  first take after "doesn't say why", 0.26 dB up to match the take's level (`splice_pickup`). The pauses on either side
+  of it are silence (0.34 s each): no join lies inside a sound. The two reads were compared by measurement: their
+  levels are within 0.3 dB, the pace of the lines they share within 6 per cent, and the new sentence is a little darker
+  above 3 kHz. **Nobody has listened to the join.**
+- `build_voice.py`: the 63 pauses between phrases are cut to the house lengths (94.14 s), the pace is raised 1.2
   times, which is the cap, a shelf takes 1 dB off the bass and a bell adds 1.5 dB of presence. Result
-  `voice/voice.wav`, 76.41 s; with the tail of 1.55 s the film is 77.8 s. 233 words at 3.05 words a second.
-- **The film is 3.4 seconds longer than the eighth** (74.4 s) and longer than the 73 to 75 seconds the playbook counts
-  on for this many words: this take is the slowest read of the series (the eighth film's take of 233 words was 93.9 s
-  raw). It was left at that length. The text is at the playbook's word count, the pace is at its cap, a shorter text
-  would have cost a second take, and the request asks for two stories in one film: how he started, and how he ended
-  up resigning.
-- Beats added after the tightening, 2.62 s in all: after "company" (0.12 s), "resigned" in the hook (0.25), each
+  `voice/voice.wav`, 80.60 s; with the tail of 3.6 s the film is 84.03 s. 244 words at 3.03 words a second.
+- **The film is 84 seconds, nearly ten more than the eighth** (74.4 s). The first cut was 77.8 s: the take is the
+  slowest read of the series (the eighth film's take of 233 words was 93.9 s raw), the pace is at its cap, and the
+  request asks for two stories in one film: how he started, and how he ended up resigning. The second cut adds 4.2 s
+  for the new sentence and 2.05 s after the last word for the closing music.
+- Beats added after the tightening, 2.82 s in all: after "company" (0.12 s), "resigned" in the hook (0.25), each
   "Quote" that opens his own words (0.1), "tables" (0.2), "out" (0.25), "back" (0.25), "ChatGPT" (0.3), "wife" (0.25),
-  "why" (0.2), "gone" (0.3) and "replicate" (0.2). The pauses inside the spelled initials are squeezed: "A.I." by
-  0.20 s, "N.B.C." by 0.46 s.
+  "why" (0.2), "employee" (0.2), "gone" (0.3) and "replicate" (0.2). The pauses inside the spelled initials are
+  squeezed: "A.I." by 0.20 s, "N.B.C." by 0.46 s.
 - Word times (`voice/words.json`, copied to the film folder) come from a forced alignment against the narration with
   the house lexicon; the names, the initials and the run-together numbers have their own entries in it (`LEXICON`
   and `SPOKEN` in `build_voice.py`). Every cut and every cue in picture and sound is placed from these times.
@@ -261,7 +322,7 @@ quotation. Lines without quotation marks are the film's own summary of the sourc
 ## Sound
 
 Everything is synthesized in `audio/build_mix.py`; nothing is sampled. The cue sheet with every sound and its reason
-is `audio/cues.md` (204 cues).
+is `audio/cues.md` (211 cues).
 
 - **The score** is in E major, twelve quavers to the bar at 88 beats a minute, a key and a metre no earlier film
   used: a tune for a diner's jukebox. A plucked bass walks, brushes shuffle, a vibraphone plays the triplets, and
@@ -280,41 +341,72 @@ is `audio/cues.md` (204 cues).
     under "I was unfaithful to my wife";
   - **"Thursday, after thirty-three years"**: the tune's first five notes on a music box, slowly, and the toll of the
     hook on "he resigned"; a question on the harp for "doesn't say why";
+  - **the third report** (second cut): the pulse of the other two reports, a semitone above the key (D major over a
+    low D, a chord from outside the key), and a low drum when the page lands;
   - **the three statements** (China, the Justice Department, he himself): three chords, each a step higher than the
     one before, and none of them is home;
   - **the plaque**: the music box plays the tune and breaks off before its last two notes on "It was gone";
-  - **the two analysts**: a chord of four horns and a kettledrum on "rip"; then the whistle's first bar, and the
-    computer's copy of it with two wrong notes for "impossible to replicate";
-  - **the question** hangs on the dominant: four notes on square waves answer for A, the whistle answers for B and
-    stays in the air. The tune does not come home.
+  - **the elegy** (second cut; the user missed sad music at the end). From "gone" to the last frame the music is
+    slow, in C sharp minor, and unbroken: strings, and a piano with a soft hammer. The chords change where the picture
+    does: C sharp minor over the bare wall and the first analyst, with the chord played a note at a time on the piano;
+    A major on "rip"; F sharp minor for the second analyst, with the tune's first three notes on the piano; G sharp
+    with a seventh on "impossible to replicate"; and home to C sharp minor on the cut to the empty chair. Nothing
+    plays a tune under either quotation. The question is asked over the held chord;
+  - **after the last word** the whistle from the sink comes back, alone and slowly, over the strings: the tune's first
+    five notes, each softer than the one before, and the last one, C sharp, held over C sharp minor. The tune comes
+    home, in the minor, and the last half second fades. (In the first cut the analysts had a chord of four horns, a
+    whistled bar and a computer's copy of it with two wrong notes; the question hung on the dominant, and the whistle
+    stayed in the air.)
 - **Effects** follow what is seen: the tap and a plate every nine frames, a door bell, dishes rattling in the tub,
   the pot, clicks as the cups arrive, a clock, a pen on the napkin, crickets and a humming sign, a creak and a thud as the
   NV1 tips over, a belt, ticks under the counters, seven thuds for the returned boxes, fans in the server hall, a tick for
-  each line the chat window types, paper and a thud for each front page, a marker for the red cord, a pin, a pop for each tag and
+  each line the chat window types, paper and a thud for each of the three front pages, a marker for the red cord, a pin, a pop for each tag and
   line, a thud for each stamp, a calendar leaf, laptop keys, five mail blips, press cameras, the badge on the desk, a
-  knock on the bare wall, the plaster coming off, the copier's lamp and seven sheets, and a swish on each of the 37
+  knock on the bare wall, the plaster coming off, the copier's lamp and seven sheets, and a swish on each of the 38
   cuts (none on the 4 joins).
-- **Measured on the WAV:** 77.800 s, 48 kHz stereo; integrated loudness -14.5 LUFS, true peak -2.7 dBTP; the limiter
-  takes off at most 3.3 dB. Music 5.8 LU under the voice while someone speaks (the user's range is 5 to 6). Word by
-  word (`templates/scripts/word_margins.py`): the voice is a median 5.5 LU over music and effects, 10th percentile
-  2.0 LU, lowest -0.8 LU ("who", word 156); 3 of 233 words are under 0, all of them short function words. Five content
-  words sat under the band in the first build ("company" twice, "booth", "out", "flopped"); each is lifted 1 to 2 dB
-  with the bed 1.5 to 2.5 dB down under it (`WEAK_WORDS`).
-- **The build is deterministic:** run twice on 13 November, it wrote the same `mix.wav` both times, the file that was
-  already committed (SHA-256 `b5b6fb507f50814b7ceee419eb13b9f55bd0501dafa2503ddd55a5c8344fd7ef`).
+- **Measured on the WAV:** 84.033 s, 48 kHz stereo; integrated loudness -14.5 LUFS, true peak -2.7 dBTP; the limiter
+  takes off at most 4.2 dB (for an instant at 24.4 s, where an effect and a syllable peak together; 3.3 dB in the
+  first cut). Music 5.7 LU under the voice while someone speaks (the user's range is 5 to 6). Word by word
+  (`templates/scripts/word_margins.py`): the voice is a median 5.5 LU over music and effects, 10th percentile 2.1 LU,
+  lowest 0.0 LU ("I", word 44); none of the 244 words is under 0. Five content words sat under the band in the first
+  cut's first build ("company" twice, "booth", "out", "flopped"); each is lifted 1 to 2 dB with the bed 1.5 to 2.5 dB
+  down under it (`WEAK_WORDS`).
+- **How loud the ending is,** measured above 300 Hz, which is what a phone speaker plays, against the voice in the
+  same band:
+
+  | | First cut | Second cut |
+  |---|---|---|
+  | the first analyst | 11.4 LU under the voice | 6.6 |
+  | the second analyst | 6.8 | 6.7 |
+  | the question, while it is spoken | 7.8 | 6.9 |
+  | after the last word | 1.55 s: one whistled bar | 3.6 s: -17.6 LUFS on the whistle's first note, -14.3 on the last chord (momentary; the voice is at -15.5), then the fade |
+
+  For comparison, the band in the hook is 4.5 LU under the voice on the same measure. The first cut's ending was not
+  much quieter than this one; it was fragments, it was not sad, and it stopped 1.55 s after the last word.
+- **Measured and left alone:** from the newspaper to the three statements, the score is a bass note on every beat
+  and one thin chord, as in the first cut, and most of that is below 300 Hz. On the same measure the music there is
+  11 to 23 LU under the voice (the memo and the statements 22 to 23): on a phone it is close to silent, apart from
+  the vibraphone note, the music box, the harp and the drums. The user heard the first cut and asked for music at
+  the end only, so this cut does not touch it.
+- **The build is deterministic:** run four times on 13 November after the last change to the sound, it wrote the
+  same `mix.wav` each time (SHA-256 `a66991628c8359496e9549c5335c74cdb35d406816a7adfaf3df73d6829c263b`).
 - Nobody has listened to it: these are measurements. The same checks passed on the eight earlier films, whose mixes
-  were built the same way.
+  were built the same way. Whether the ending sounds sad is a matter of how it is written (a minor key, a slow
+  tempo, strings, a tune that falls and comes home); no measurement shows it.
 
 ## Render
 
 Rendered on GitHub Actions by `.github/workflows/render-short.yml`: twenty parts in parallel, joined, the sound laid
 under, the finished file checked with `templates/scripts/short_qa.py`, and the file and the report committed to the
-branch by the run itself. One full render and one run that reused its picture, both on 13 November 2026.
+branch by the run itself. Each cut had one full render and one run that reused its picture, all four on 13 November
+2026.
 
 | Run | Commit | Why it was made |
 |-----|--------|-----------------|
-| `43374926523` | `4fb9bbd` | The only full render (published as `7a090e8`), nine and a half minutes. Its check reported one unplanned jump, frame 780: the NV1 box falling over. The fall is meant. It runs from frame 775 to 782, a little faster on every frame, with a creak as the box starts to tip and a thud when it lands; only the thud was declared, and its ten frames begin at the landing. Picture and sound were left as they are. The creak was added to the declared sounds (`GRAPHIC_SOUNDS` in `build_mix.py`), which puts frames 773-782 (and 213-222, the chair turning) on the list of planned changes. |
-| `43376771682` | `309f02a` | The same picture (`parts_from` the first run), the sound laid under again, the check with the corrected list (published as `49b9f72`), under four minutes. It wrote **the same MP4 as the first run, byte for byte**, and a clean report: the commit changes one line of `qa-report.md` and nothing else. |
+| `43374926523` | `4fb9bbd` | **First cut,** the full render (published as `7a090e8`), nine and a half minutes. Its check reported one unplanned jump, frame 780: the NV1 box falling over. The fall is meant. It runs from frame 775 to 782, a little faster on every frame, with a creak as the box starts to tip and a thud when it lands; only the thud was declared, and its ten frames begin at the landing. Picture and sound were left as they are. The creak was added to the declared sounds (`GRAPHIC_SOUNDS` in `build_mix.py`). |
+| `43376771682` | `309f02a` | **First cut,** the same picture (`parts_from` the first run), the sound laid under again, the check with the corrected list (published as `49b9f72`), under four minutes. It wrote the same MP4 as the first run, byte for byte, and a clean report. |
+| `43387559393` | `f27075e` | **Second cut,** the full render (published as `9346240`), twelve and a half minutes. Its check reported two unplanned jumps, frames 1763 and 1764, in the new shot. Nothing jumps there: the caption WITH ANOTHER comes in 7 per cent large on frame 1762 and settles on the next two frames, as every caption does. Everywhere else something in the picture moves more than a caption settling. Here the third front page has landed and lies still, the camera creeps (a change of 0.56 from frame to frame on the check's measure), and the caption is the only thing that moves (2.9 and 2.6). Picture and sound were left as they are. The caption's three frames were declared (`STILL_CAPTIONS` in `build_mix.py`, which writes `qa-shots.json`); the mix came out the same, bit for bit. |
+| `43389462564` | `8884fd6` | **Second cut,** the same picture (`parts_from` the run above), the sound laid under again, the check with the corrected list (published as `30c71ae`), three and a half minutes. It wrote **the same MP4 as the run above, byte for byte**, and a clean report: the commit changes one line of `qa-report.md` and nothing else. |
 
 ```
 gh workflow run render-short.yml --ref <branch> -f composition=NvExitShort \
@@ -322,38 +414,62 @@ gh workflow run render-short.yml --ref <branch> -f composition=NvExitShort \
   -f publish='shoots/nvidia-exit/final-{size}p.mp4' -f size=720 -f chunks=20
 ```
 
+`-f parts_from=<run id>` takes the picture from an earlier run. The first cut's picture could not be reused for the
+second: from the new line on, every shot begins 125 or 126 frames later.
+
 Stills for review are made locally: `REVIEW=NvExitReview remotion-app/scripts/pick.sh <dir> <frame,frame,...> 540`,
 tiled with `scripts/sheets.sh`. Where a point of a set lands in the frame: `scripts/project.py`.
 
 ## Result
 
-- **File:** [`shoots/nvidia-exit/final-720p.mp4` at commit `49b9f72`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/49b9f72c4ac0cc3cce11241acf85f8c8237a4eea/shoots/nvidia-exit/final-720p.mp4).
-  720x1280, 30 fps, 2334 frames, 77.800 s, 48,474,947 bytes, H.264 with 48 kHz stereo AAC.
-  SHA-256 `03c575ce36fd599bd62ed56ff6eec9c0e4e769dda34a86600934da0af018f27e`.
-- **Finished-file check** (`qa-report.md`, written by the second run): -14.6 LUFS integrated, loudness range 1.7 LU,
-  true peak -1.7 dBFS; no silence; no black, unplanned white or frozen frames; no unplanned frame jumps. The same
+- **File:** [`shoots/nvidia-exit/final-720p.mp4` at commit `30c71ae`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/30c71ae96db0be9ff4b2a45a49aa598e207bb01b/shoots/nvidia-exit/final-720p.mp4).
+  720x1280, 30 fps, 2521 frames, 84.033 s, 51,731,823 bytes, H.264 with 48 kHz stereo AAC.
+  SHA-256 `f6d2ecdbb6c581029fa9320488f3841dbf13920695b4487d018161795ff909e4`.
+- **The first cut** is still there:
+  [the same path at commit `49b9f72`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/49b9f72c4ac0cc3cce11241acf85f8c8237a4eea/shoots/nvidia-exit/final-720p.mp4)
+  (2334 frames, 77.800 s, 48,474,947 bytes, SHA-256
+  `03c575ce36fd599bd62ed56ff6eec9c0e4e769dda34a86600934da0af018f27e`), with its record in this file at commit
+  `f90620d`.
+- **Finished-file check** (`qa-report.md`, written by the second run): -14.6 LUFS integrated, loudness range 1.9 LU,
+  true peak -2.2 dBFS; no silence; no black, unplanned white or frozen frames; no unplanned frame jumps. The same
   check run in the sandbox on the same file wrote the same report, character for character. The encode against its
-  WAV (`templates/scripts/aac_check.py`): highest sample -1.74 dBFS against the WAV's -2.70, nothing late, no sample
-  that stands clear of the WAV. The encode added 0.96 dB to the peak; the file is 0.7 dB inside the gate of -1.0.
+  WAV (`templates/scripts/aac_check.py`): highest sample -2.19 dBFS against the WAV's -2.71, nothing late, no sample
+  that stands clear of the WAV. The encode added 0.52 dB to the peak; the file is 1.2 dB inside the gate of -1.0.
+- **The closing music, measured in the file itself** (the sound decoded from the MP4, not the WAV): the three seconds
+  after the last word are at -15.3 LUFS, and at -17.0 above 300 Hz, the part a phone speaker plays; the whole film is
+  at -14.6. Momentary loudness: -17.5 LUFS on the whistle's first note (81.0 s), -14.2 on the last chord (82.5 s),
+  -18.2 in the fade (83.5 s). At eleven moments between 72.5 s and the end the file is within 0.1 dB of the WAV.
 - **The cuts and the joins, measured in the finished file** on the check's measure (mean change from one frame to the
-  next). The 37 cuts change the picture by 50.3 or more, 79.3 at the median. At the four joins the picture carries
-  on: into frame 1011 the change is 2.9 (3.0 to 3.1 on the three frames before it: the camera is travelling down the
-  aisle), into 1090 it is 1.4 (1.4 before), into 2092 it is 0.45 (0.5 to 0.6 before), into 2176 it is 2.5 (1.7 to 2.1
-  before and 2.7 after: the bar of light is getting faster). The four frames either side of each were looked at.
-- **Looked at, all of it on still frames, all of it before the delivery:** the cast sheet, twice; 330 local stills in
-  seven rounds (the middle of every shot, twice; the faults found; the first and the last frame of every shot; one
-  frame in every 24 of the whole film; every entrance and every move frame by frame; the coffee shot again); and of
-  the final file: one frame in every 24 (98 frames, every shot at least once, the last second among them), the
-  fourteen frames of the box falling over (771-784), and the sixteen frames round the four joins.
-- **Not done:** nobody has watched the film in motion or listened to it. The sound was measured, not heard; that
-  includes how the voice says the names.
+  next). The 38 cuts change the picture by 50.3 or more, 78.9 at the median. At the four joins the picture carries
+  on: into frame 1011 the change is 2.9 (3.0 to 3.3 on the three frames before it: the camera is travelling down the
+  aisle), into 1090 it is 1.4 (1.4 before), into 2217 it is 0.5 (0.5 before), into 2302 it is 2.4 (1.9 to 2.0 before
+  and 2.5 after: the bar of light is getting faster). The four frames either side of each were looked at.
+- **Looked at, all of it on still frames, all of it before the delivery:**
+  - for the first cut: the cast sheet, twice, and 330 local stills in seven rounds;
+  - for the second cut: 122 local stills in three rounds (the hook's new date line, the new shot, the middle of every
+    shot after it and the ending; then the whole film, one frame in every 72 as far as the new line and one in every
+    24 from there; then the new shot and the ending again after the last changes);
+  - of the final file: one frame in every 24 (106 frames, every shot at least once, the last frame among them), and 52
+    chosen frames: the sixteen round the four joins, the eight round the cuts into and out of the new shot, the third
+    page's flight on every third frame (1716-1742), the seven round the caption the check had reported (1760-1766), and
+    twelve from the last word to the last frame. Three of them at the file's full size: the hook's date line (264),
+    the new shot with its three lines (1776) and the last frame (2520).
+- **Not done:** nobody has watched the film in motion or listened to it. The sound was measured, not heard. That
+  includes how the voice says the names, the place where the second read is set into the first, and whether the
+  ending sounds sad.
 - **Known small things, left as they are:**
-  - The film is 77.8 seconds, three and a half longer than the others (see Voice).
+  - The film is 84.0 seconds, nearly ten longer than the others (see Voice).
+  - The new sentence is a second read (see Voice). Measured, it matches the take around it; it was not heard.
+  - From the newspaper to the three statements the score is close to silent on a phone, as it was in the first cut
+    (see Sound, "Measured and left alone").
+  - The limiter takes 4.2 dB off for an instant at 24.4 s, where a syllable and an effect peak together (3.3 dB at
+    its most in the first cut).
   - In the booth the wall clock hangs where lines of text come in: the name line CHRIS MALACHOWSKY AND CURTIS PRIEM
     touches the top of it (543-560), and the end of the tab HIS WORDS · NVIDIA'S BLOG, 2023 lies on its rim while the
     night passes (706-752). The hands can be read.
-  - Stamps land over the line above them for a few frames: RESIGNED covers THURSDAY, NOV. 12, 2026 while it comes
-    down, and stands under it from then on.
+  - Stamps land over the line above them for a few frames: RESIGNED covers ANNOUNCED THURSDAY, NOV. 12, 2026 while it
+    comes down (the line is wider than the first cut's and shows on either side of the stamp), and stands under it
+    from frame 246 on.
   - The counters show numbers that are not facts on their way up ("225,929 OUT", "207,181 BACK") for a few frames
     each; each stops on its sourced value and holds it. Returned boxes fly across the second counter as they fall.
   - A caption can hold for one or two frames after a change of shot (the change falls two frames before the next
@@ -361,15 +477,29 @@ tiled with `scripts/sheets.sh`. Where a point of a set lands in the frame: `scri
   - The copier's bar of light passes over his face on its way down him, twice. It is meant.
   - The NV1's box is the film's own (dark blue, a chip, a gold border); it is not a drawing of the real package.
   - The dotted route on the map runs from Taiwan straight to Oregon (see "Not confirmed").
-  - One word of the narration, "who" (word 156), measures 0.8 LU under music and effects.
-- **The story on the day:** searched again on 13 November 2026 at 05:52 UTC, before the render, and at 06:14 UTC,
-  after it. New since the first reading (04:10): a Senate committee has called on him and the Commerce Secretary to
-  testify on 3 December; a House committee has asked for a closed-door interview and speaks of a subpoena if no date
-  is agreed; Singapore's authorities say they questioned the businesswoman in 2025 and found too little evidence of
-  a crime; the President has said whom he would like as successor; staff are asking for his return. None of it is
-  in the film and none of it contradicts a line of it. As of 06:14 UTC: Colette Kress is interim chief executive and
-  no successor is named; the company has still given no reason; the Justice Department has reached no conclusion;
-  no report of a charge against her or of a word from her; he is reported to have agreed to testify.
+- **The story on the day:** searched again on 13 November 2026, five times after the first reading (04:10 UTC).
+  - **05:52 and 06:14 UTC,** before and after the first cut's render. New then: a Senate committee has called on him
+    and the Commerce Secretary to testify on 3 December; a House committee has asked for a closed-door interview and
+    speaks of a subpoena if no date is agreed; Singapore's authorities say they questioned the businesswoman in 2025
+    and found too little evidence of a crime; the President has said whom he would like as successor; staff are
+    asking for his return.
+  - **06:53 UTC,** before the new line was written: Newsweek's account of Reuters's report (fact 25) and the filing's
+    date for the board's acceptance (fact 26).
+  - **07:51 UTC,** after the second cut was built: The Straits Times carries Reuters's text on the third relationship
+    (see "Not confirmed"); CNN's live page (updated 06:05 GMT) has Colette Kress as interim chief and the board
+    searching, three House committees and the Senate Banking chairman asking for him, and the President saying it is
+    unclear whether the woman was a spy; the Guardian's live blog has closed.
+  - **07:54 UTC,** while the second cut rendered: IBTimes UK, NBC's live blog, Stocktwits and BusinessLine. The
+    chairman of the House Foreign Affairs Committee says "He has agreed to come. We're in negotiations for which
+    day." The three House committees have since written to him asking for a closed-door, transcribed interview on 1
+    December, to be confirmed by Friday evening (14 November, 01:00 UTC), or they will issue a subpoena.
+  - **None of it contradicts a line of the film.** As of 07:54 UTC: Colette Kress is interim chief executive and no
+    successor is named; the company has still given no reason; the Justice Department has reached no conclusion; no
+    report of a charge against the businesswoman or of a word from her; he has confirmed none of the three reported
+    relationships; he is reported to have agreed to testify, has not yet done so, and the committees' deadline has not
+    passed.
 - **What will go out of date:** the two lines that say AS OF NOV. 13; HE HAS AGREED TO TESTIFY BEFORE CONGRESS (once
-  he has, or if he does not); FOR NOW: COLETTE KRESS, THE FINANCE CHIEF (when a successor is named); and the
-  narration's "Thursday", "Sunday", "Wednesday" and "two weeks ago", which are right in the week of 13 November 2026.
+  he has, or if he does not confirm the date the committees ask for); FOR NOW: COLETTE KRESS, THE FINANCE CHIEF (when
+  a successor is named); NOT NAMED · NO COMMENT FROM HIM OR NVIDIA (if Reuters or anyone else names the employee, or
+  if he or the company answers); and the narration's "Thursday", "Sunday", "Wednesday", "The same day" and "two weeks
+  ago", which are right in the week of 13 November 2026.
