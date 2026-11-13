@@ -193,8 +193,43 @@ Stills for review are made locally: `REVIEW=MonaReview scripts/pick.sh <dir> <fr
 
 ## Result
 
-*(filled in after the render)*
+- **File:** [`shoots/mona-lisa/final-720p.mp4`](final-720p.mp4), 720x1280, 30 fps, 2220 frames, 74.000 s,
+  57,140,529 bytes, H.264 with 48 kHz stereo AAC. SHA-256
+  `9a02cf37cbf2054da5f3b058152acc43a4515e3d38f926990ba8df3506131385`. Render run `43443885559` (`Render MonaShort
+  at 720p (run 259)`, commit `fb037a2`).
+- **Finished-file check** (`qa-report.md`): -14.5 LUFS integrated, loudness range 2.3 LU, true peak -2.3 dBFS; no
+  silence; no black, unplanned white or frozen frames (the longest held runs are 24 frames in all, 1%); mean frame
+  difference 3.20. One unplanned pop, frame 1951 (below).
+- **The sound measured in the mix:** voice at -15.4 LUFS, music at -20.8, effects at -27.3; the music 5.6 LU under the
+  voice while someone speaks (5.4 over the whole film), 11.6 LU under it above 300 Hz, the part a phone plays. Word by
+  word a median of 5.7 LU of clearance, the tenth percentile 2.0 LU. The encode added 0.4 dB to the peak.
+- **Looked at on stills, before and after the render:** 37 first-and-middle frames in seven rounds while the sets were
+  built (about 300 stills), then six frames of the shots that had been wrong (the knob, the queue, the crowd, Leonardo,
+  the cell, the lift), then three more rounds of the three cameras that changed on the last pass, then the six frames
+  round the pop. Nothing was watched in motion and nothing was heard (below).
+- **Order of work:** the story and the facts, then the narration and the voice, then the cast sheet, then the sets and
+  the shot list, then the score, then one render, one camera pass, and a second render. The first render's 20 parallel
+  jobs were cancelled at about seven minutes when the stills showed three shots that did not read; the second was left
+  to finish.
 
 ## Known small things
 
-*(filled in after the render)*
+- **Frame 1951 is reported as a pop.** It is the dark cell: the film shimmers for two frames at a time there (the
+  window's thin bars and glazing sample differently as the camera pushes), and one of those frames passes the check's
+  three-times-the-local-median rule. The frames either side were looked at; nothing lands, nothing changes. Left as
+  it is: the alternative is a re-render for a sparkle in a dark shot.
+- **Shot 30 (Napoleon) and shot 33 (the cell) are the two dark shots** (mean luma 0.096 and 0.089); they are drawn dark
+  on purpose, and the grade is the same as the rest of the film.
+- **The queue at the Louvre and the crowd in the Salon Carré are drawn from four reusable citizens** (a hat, a
+  bonnet, a bowler, a flat cap), so the same faces come round twice in a crowd. Only Peruggia is drawn as Peruggia.
+- **The crowd at the bare wall is seven backs,** and the four hooks show above their heads, not between them; from the
+  low angle the crowd covers the darker patch of wall where she hung.
+- **The join between shots 13 and 14 is a cut in the sound and not in the picture:** the plumber opens the door, and
+  one step later the same take is still running. The check's measure puts the change at that frame below the cut
+  threshold, which is what a join is for.
+- **The score's own tune is new for this film:** a waltz in D at 90 to the minute, with a D minor ostinato, a G minor
+  version for the police, an A major music box for Florence, a four-bar march in B flat for Napoleon, a fife over a
+  lute for 1516 and a toll for the cell. No melody is taken from any other short in the repository.
+- **Not done:** nobody has watched the film in motion or listened to it. The mix was measured, not heard: the
+  balance of the waltz against the voice, whether the tick on the door is funny, and whether the ending lands are
+  arguments from numbers and from the cue sheet, not from listening.
