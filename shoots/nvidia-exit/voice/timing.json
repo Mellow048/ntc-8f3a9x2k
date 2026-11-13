@@ -1,0 +1,115 @@
+{
+ "source": "raw-take.mp3",
+ "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
+ "raw_seconds": 101.03,
+ "tight_seconds": 89.37,
+ "pauses_cut": 60,
+ "tempo": 1.2,
+ "eq": {
+  "bass_shelf_db": -1.0,
+  "presence_db": 1.5
+ },
+ "squeezed": [
+  {
+   "line": 5,
+   "word": "A.I.",
+   "seconds_removed": 0.195
+  },
+  {
+   "line": 6,
+   "word": "U.S.",
+   "seconds_removed": 0.0
+  },
+  {
+   "line": 11,
+   "word": "N.B.C.",
+   "seconds_removed": 0.46
+  }
+ ],
+ "beats": [
+  {
+   "line": 1,
+   "after": "company",
+   "at": 6.907,
+   "seconds": 0.12
+  },
+  {
+   "line": 1,
+   "after": "resigned",
+   "at": 8.454,
+   "seconds": 0.25
+  },
+  {
+   "line": 2,
+   "after": "Quote",
+   "at": 12.609,
+   "seconds": 0.1
+  },
+  {
+   "line": 2,
+   "after": "tables",
+   "at": 15.762,
+   "seconds": 0.2
+  },
+  {
+   "line": 3,
+   "after": "Quote",
+   "at": 21.473,
+   "seconds": 0.1
+  },
+  {
+   "line": 3,
+   "after": "out",
+   "at": 24.121,
+   "seconds": 0.25
+  },
+  {
+   "line": 4,
+   "after": "back",
+   "at": 29.11,
+   "seconds": 0.25
+  },
+  {
+   "line": 5,
+   "after": "ChatGPT",
+   "at": 33.936,
+   "seconds": 0.3
+  },
+  {
+   "line": 7,
+   "after": "Quote",
+   "at": 42.192,
+   "seconds": 0.1
+  },
+  {
+   "line": 7,
+   "after": "wife",
+   "at": 43.776,
+   "seconds": 0.25
+  },
+  {
+   "line": 9,
+   "after": "why",
+   "at": 53.656,
+   "seconds": 0.2
+  },
+  {
+   "line": 11,
+   "after": "gone",
+   "at": 65.922,
+   "seconds": 0.3
+  },
+  {
+   "line": 12,
+   "after": "replicate",
+   "at": 71.931,
+   "seconds": 0.2
+  }
+ ],
+ "seconds": 76.412,
+ "words": 233,
+ "words_per_second": 3.05,
+ "lufs": -16.5,
+ "lra": 2.1,
+ "peak": -1.6
+}

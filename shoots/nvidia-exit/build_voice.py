@@ -1,4 +1,4 @@
-"""Lock the narration for the bitcoin flex short and derive word timings from it.
+"""Lock the narration for the Nvidia exit short and derive word timings from it.
 
     python shoots/nvidia-exit/build_voice.py [--target-seconds 66] [--max-tempo 1.2]
     python shoots/nvidia-exit/build_voice.py --beats-only     # only add the BEATS to an existing voice.wav
@@ -10,9 +10,9 @@ Output  voice/voice.wav     mastered narration, 48 kHz mono (pauses tightened, t
         voice/timing.json   how the track was made (tempo, cuts, duration, loudness)
         remotion-app/src/videos/nvexit/words.json   the same words, read by the picture
 
-The read is brisk, so deliberate beats (BEATS below) are added at the end: silence after the hook ("one month"), after
-the sum, after "the flex", after "online", after "watching", after "recorded it", after "first", after "twenty years",
-either side of his answer to the judge, after "empire" and before the closing question.
+The pauses of the take are tightened, so deliberate beats (BEATS below) are put back at the end: silence before and
+after "On Thursday, he resigned", after each "Quote" and each quotation, after the chips that came back, before the
+story turns ("ChatGPT"), after "doesn't say why", after "It was gone" and before the closing question.
 The picture, captions and sound follow words.json, so they move with it.
 
 Word times come from PocketSphinx forced alignment of the *raw* take (natural pace
@@ -43,27 +43,28 @@ NARRATION = HERE / "narration.txt"
 PICTURE_WORDS = HERE.parents[1] / "remotion-app" / "src" / "videos" / "nvexit" / "words.json"
 
 # Spoken forms the aligner needs, and pronunciations missing from the CMU dictionary.
-SPOKEN: dict[str, str] = {"zachxbt": "zackexbeetee", "f.b.i.": "efbeeeye"}
+SPOKEN: dict[str, str] = {"a.i.": "ayeye", "u.s.": "youess", "n.b.c.": "enbeesee"}
 LEXICON = {
-    "zackexbeetee": "Z AE K EH K S B IY T IY",
-    "efbeeeye": "EH F B IY AY",
-    "bitcoin": "B IH T K OY N",
-    "supercars": "S UW P ER K AA R Z",
-    "nightclubs": "N AY T K L AH B Z",
-    "twentyfour": "T W EH N T IY F AO R",
-    "fortyone": "F AO R T IY W AH N",
-    "malone": "M AH L OW N",
-    "lam": "L AE M",
-    "dropout": "D R AA P AW T",
-    "google": "G UW G AH L",
-    "crypto": "K R IH P T OW",
-    "pagani": "P AH G AA N IY",
-    "cybercrime": "S AY B ER K R AY M",
-    "racketeering": "R AE K AH T IH R IH NG",
-    "indictment": "IH N D AY T M AH N T",
-    "prosecutors": "P R AA S AH K Y UW T ER Z",
-    "pleaded": "P L IY D AH D",
-    "online": "AO N L AY N",
+    "ayeye": "EY AY",
+    "youess": "Y UW EH S",
+    "enbeesee": "EH N B IY S IY",
+    "denny's": "D EH N IY Z",
+    "nvidia": "EH N V IH D IY AH",
+    "nvidia's": "EH N V IH D IY AH Z",
+    "huang": "HH W AA NG",
+    "jensen": "JH EH N S AH N",
+    "fivetrilliondollar": "F AY V T R IH L Y AH N D AA L ER",
+    "ninetythree": "N AY N T IY TH R IY",
+    "fortynine": "F AO R T IY N AY N",
+    "thirtythree": "TH ER T IY TH R IY",
+    "chatgpt": "CH AE T JH IY P IY T IY",
+    "bandaid": "B AE N D EY D",
+    "busboy": "B AH S B OY",
+    "dishwasher": "D IH SH W AA SH ER",
+    "businesswoman": "B IH Z N AH S W UH M AH N",
+    "taiwan": "T AY W AA N",
+    "unfaithful": "AH N F EY TH F AH L",
+    "replicate": "R EH P L AH K EY T",
 }
 
 
@@ -111,10 +112,10 @@ def align(x48: np.ndarray, tokens: list[str]) -> list[tuple[float, float]]:
 
 
 # Deliberate beats: (narration line, word, seconds of silence added after that word in the finished read).
-BEATS = [(1, "supercars", 0.1), (1, "mansions", 0.12), (1, "nightclubs", 0.12), (1, "month", 0.25), (4, "dollars", 0.2), (5, "flex", 0.15), (6, "online", 0.25), (7, "watching", 0.2), (8, "it", 0.25), (9, "first", 0.25), (10, "years", 0.25),
-         (11, "Quote", 0.15), (11, "time", 0.4), (12, "empire", 0.15), (12, "kids", 0.35)]
+BEATS = [(1, "company", 0.12), (1, "resigned", 0.25), (2, "Quote", 0.1), (2, "tables", 0.2), (3, "Quote", 0.1), (3, "out", 0.25), (4, "back", 0.25),
+         (5, "ChatGPT", 0.3), (7, "Quote", 0.1), (7, "wife", 0.25), (9, "why", 0.2), (11, "gone", 0.3), (12, "replicate", 0.2)]
 # Spelled-out initials come with a pause after every letter. (narration line, word, seconds of silence left between its letters)
-SQUEEZE: list = [(7, "ZachXBT", 0.05), (9, "F.B.I.", 0.04)]
+SQUEEZE: list = [(5, "A.I.", 0.04), (6, "U.S.", 0.04), (11, "N.B.C.", 0.04)]
 
 
 def add_beats(audio: np.ndarray, words: list[dict], sr: int = vm.SR):
@@ -167,7 +168,7 @@ def squeeze(audio: np.ndarray, words: list[dict], sr: int = vm.SR):
             elif start is not None:
                 runs.append((start, k)); start = None
         cut = 0
-        for a, b in reversed([r for r in runs if (r[1] - r[0]) * hop > (keep + 0.03) * sr and r[0] > 0 and r[1] < n]):
+        for a, b in reversed([r for r in runs if (r[1] - r[0]) * hop > (keep + 0.03) * sr and r[0] > 0]):   # also the silence the take leaves after the last letter ("N. B. C. [pause] News")
             drop = (b - a) * hop - int(keep * sr)
             mid = lo + (a + b) * hop // 2
             x0, x1 = mid - drop // 2, mid - drop // 2 + drop
