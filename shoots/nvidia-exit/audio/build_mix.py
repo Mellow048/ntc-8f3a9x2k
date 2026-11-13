@@ -162,8 +162,9 @@ T8 = BEAT / 3                                                     # one quaver o
 SLOT = 2 * BEAT                                                   # one chord: six quavers
 BASS_MIX = 0.8
 # Levels of the closing music's strings and piano. Set by measurement: with these the music from "It was gone" to the last word
-# is 6.6 to 7 LU under the voice above 300 Hz (the hook's band is 4.5 under it there, the first cut's ending was 11 to 15), and the
-# music after the last word plays at the loudness the voice had (-15 LUFS, momentary) and no louder.
+# is 6.6 to 7 LU under the voice above 300 Hz, and unbroken (the hook's band is 4.5 under it there; the first cut's ending was 7 to
+# 11 under it, in fragments, with 1.4 s after the last word), and the music after the last word plays at the loudness the voice
+# had (-15 LUFS, momentary) and no louder.
 ELEGY_STRINGS, ELEGY_PIANO = 0.6, 1.4
 BUS = {k: np.zeros((2, N + SR * 6)) for k in ("drums", "bass", "comp", "lead", "hits")}
 # the changes, two beats each: (the bass's root, the chord as the vibraphone plays it, the note the bass walks through to the next root)
@@ -773,6 +774,11 @@ def limiter(x, ceil_db, look=0.003, rel=0.08):
 # sounds that go with something arriving in the picture: the ten frames from each are allowed to jump
 # "creak" is in the list for the NV1: the box tips over between frames 775 and 782, fastest at 779 to 781, and its thud
 # comes when it lands (782). With only the thud declared, the first render's check reported frame 780.
+# A caption comes in 12 per cent large and settles over three frames (Captions.tsx). Everywhere else something in the picture
+# moves more than that. Under "with another" (word 179) the third front page has landed and lies still, the camera creeps, and the
+# caption is the only thing that moves: the check of the second cut's first render reported the caption's second and third frames
+# (1763, 1764). Captions that begin with these words are declared for their three frames instead of one.
+STILL_CAPTIONS = {179}
 FLIGHTS: list[tuple[float, float]] = []                           # (from, to) in seconds: filled in by build_sfx, read by planned_changes
 GRAPHIC_SOUNDS = {"stamp thud", "pop", "ping", "click", "clunk", "paper", "step", "tick", "flap", "marker", "blip", "thud", "buzzer", "plane", "throw", "pen", "plate",
                   "creak"}
@@ -786,18 +792,19 @@ def planned_changes():
     ten frames in which something that has a sound arrives (a stamp lands, a card pops, somebody hops, a key is
     pressed, a readout changes colour). Hard cuts are in the shot list. Everything else that jumps is a defect and
     gets reported."""
-    out, caps = [], []
+    out, caps, heads = [], [], []
     i = 0
     while i < len(WORDS):                                         # same grouping and timing as Captions.tsx
         a, b = WORDS[i], WORDS[i + 1] if i + 1 < len(WORDS) else None
         pair = bool(b) and not a["ends_sentence"] and not a["comma"] and i not in SOLO and b["start"] - a["end"] < 0.16 and len(a["word"]) + len(b["word"]) <= 15
+        heads.append(i)
         i += 2 if pair else 1
         last, nxt = (b if pair else a), WORDS[i] if i < len(WORDS) else None
         caps.append((max(0.0, a["start"] - 0.03), nxt["start"] if nxt and nxt["start"] - last["end"] < 0.3 else last["end"] + 0.14))
     first = lambda t: int(np.ceil(t * FPS - 1e-9))                # first frame at or after time t
     for k, (start, end) in enumerate(caps):                       # a caption waits for the one before it to end
         on = first(max(start, caps[k - 1][1]) if k else start)
-        out.append([on, on])
+        out.append([on, on + 2] if heads[k] in STILL_CAPTIONS else [on, on])
         if k + 1 == len(caps) or caps[k + 1][0] > end:            # it goes away before the next one comes
             out.append([first(end), first(end)])
     for t, name, _ in EVENTS:
