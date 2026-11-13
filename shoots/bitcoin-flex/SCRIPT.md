@@ -10,7 +10,10 @@ internet and stuff and eventually he got tracked down and arrested making his la
 ever. if u can find that story please adapt it cuz its really interesting". The story is the case of Malone Lam
 (U.S. v. Lam et al., 24-cr-417, U.S. District Court for the District of Columbia).
 
-**Status:** delivered on 2026-11-13 on branch `arena/becd20b7-ntc-8f3a9x2k`; waiting for the user's verdict. It is not a reference yet: no pull request is open, and `references/news/` does not hold it (PLAYBOOK section 11 comes after an approval). See "Result" at the end.
+**Status:** delivered on 2026-11-13 on branch `arena/becd20b7-ntc-8f3a9x2k`. Three full renders; the final file is
+`shoots/bitcoin-flex/final-720p.mp4` at commit `cf828d1` (run `43347793839`). **Approved at the first delivery:**
+the agent wrote "Tell me what to change, or approve it and I will file it with the other seven", and the user
+answered "yes go ahead lad". Kept as `references/news/bitcoin-flex/`.
 
 **This film was made twice.** The first build, on branch `arena/be67280b-ntc-8f3a9x2k`, was complete up to its render
 when that branch was closed: its pull request (the sixth and seventh films, PR #10) had been merged before the eighth
@@ -313,14 +316,20 @@ tiled with `scripts/sheets.sh`. Where a point of a set lands in the frame: `scri
 - **The joins, measured in the finished file.** The 41 cuts change the picture by 30.8 or more on the measure the
   check uses (mean change from one frame to the next), 80.8 at the median. At the three joins the camera does not
   move: into frame 2106, 0.8 % of the picture changes, as in the frames before it. Into 548, 5.2 % changes (1.8 %
-  before): the paper face is swapped and the source line changes, on the word. Into 698, 12.6 % changes (3.9 %
-  before): the stamp 4,100+ BITCOIN gives way to the counter, on the word. Both are meant, both are in the list of
-  planned changes, and neither moves the set.
-- **Looked at, all of it on still frames:** the cast sheet; 264 local stills in twelve rounds (the middle of
+  before): the paper face is swapped for the next one and the first source line goes; the caller bobs over the two
+  frames after it, and the new line comes in at 551. Into 698, 12.6 % changes (3.9 % before): the stamp 4,100+
+  BITCOIN and its source line go, and the counter starts on the next frame. Both are meant, both are in the list of
+  planned changes, and neither moves the set. The frames either side of all three were looked at (below).
+- **Looked at, all of it on still frames:** the cast sheet; 264 local stills in thirteen rounds (the middle of
   every shot, then every fault found, then the first and last frame of every shot, then every fault again); one
   frame in every 24 of the first render (93 frames, every shot); the six places that changed on 50 frames of the
   second render; the two places that changed, the first frame and the last two seconds on 14 frames of the final
   file.
+- **Looked at only after the delivery** (13 November, after the user's approval and before the film was filed), on
+  frames of the final file: the eight frames round each of the joins at 548 and 698 and the four round 2106, and
+  eight frames of his answer to the judge (1829-1891), a shot whose toy cars had moved for the third render. The
+  joins are as described above. The answer to the judge added one line to the list below. The approved file was
+  not changed.
 - **Not done:** nobody has watched the film in motion or listened to it. The sound was measured, not heard; that
   includes how the voice says "ZachXBT", which was sent to it as "Zack X B T".
 - **Known small things, left as they are:**
@@ -335,7 +344,11 @@ tiled with `scripts/sheets.sh`. Where a point of a set lands in the frame: `scri
   - In the club a server stands at the left edge, partly outside the frame.
   - The source line over the club receipt is white on the receipt's white paper: it reads as a line of the receipt.
   - Under water a pink fish swims behind the source line for a moment.
-  - A caption can hold for one or two frames after a cut (the cut falls two frames before the next word).
+  - A caption can hold for two or three frames after a change of shot (the change falls two frames before the next
+    word): VANISHED stays for three frames after the join at 698.
+  - While he answers the judge (1829-1891) the three toy cars on the bench stand behind his head, out of focus: the
+    red one is half hidden by his hair and the blue one is cut by the right edge of the frame. The cars that circle
+    over his head pass in front of the judge's face behind him.
   - `remotion-app/scripts/render-local.sh` is in the repository and has never been run in its present form (its
     header says so).
 - **The story on the day:** searched again on 13 November 2026 at 01:37 UTC, before the last two renders. Nothing
