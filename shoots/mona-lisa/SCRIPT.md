@@ -137,8 +137,8 @@ canvas billboard; her portrait is drawn once in `art.ts` and hung in a frame (`m
 | 36 | gallery | hooks | 0.00,1.95,1.20 → 0.00,1.90,-2.85 | 2097–2132 | — |
 | 37 | today | look | 2.60,1.86,4.90 → 0.10,1.62,-2.20, then to 1.50,1.78,3.40 | 2132–2220 | THE LOUVRE · TODAY |
 
-Shot 13 and 14 are one take: the join (`JOINS = {13}` in `build_mix.py`) is a cut in the sound only where the picture
-carries on.
+Shot 12 and 13 are one take (`join: true` on shot 13, `JOINS = {13}` in `build_mix.py`): the plumber opens the door
+and the same camera keeps running, so the only change there is in the sound.
 
 Her frame rests on the hanging position while she is on the wall and off it while she is gone; the four hooks stay,
 which is the joke of shots 3, 16 and 36. The paint on the wall behind her is a shade darker than around it, so the
@@ -224,7 +224,7 @@ Stills for review are made locally: `REVIEW=MonaReview scripts/pick.sh <dir> <fr
   bonnet, a bowler, a flat cap), so the same faces come round twice in a crowd. Only Peruggia is drawn as Peruggia.
 - **The crowd at the bare wall is seven backs,** and the four hooks show above their heads, not between them; from the
   low angle the crowd covers the darker patch of wall where she hung.
-- **The join between shots 13 and 14 is a cut in the sound and not in the picture:** the plumber opens the door, and
+- **The join between shots 12 and 13 is a cut in the sound and not in the picture:** the plumber opens the door, and
   one step later the same take is still running. The check's measure puts the change at that frame below the cut
   threshold, which is what a join is for.
 - **The score's own tune is new for this film:** a waltz in D at 90 to the minute, with a D minor ostinato, a G minor
