@@ -168,7 +168,7 @@ export const Overlays: React.FC = () => {
       {during(30, W(170)) ? <Pill f={f} at={W(170)} text="THE INVESTIGATION IS NOT MENTIONED" top="17.6%" /> : null}
       {during(31, S(31)[0] + 2) ? <Pill f={f} at={S(31)[0] + 2} text="REUTERS · NOV. 12, 2026" /> : null}
       {during(31, W(174)) ? <Pill f={f} at={W(174)} text="CITING TWO PEOPLE FAMILIAR WITH THE MATTER" top="15.4%" tone="yellow" /> : null}
-      {during(31, W(178)) ? <Pill f={f} at={W(178)} text="NOT NAMED · NVIDIA DECLINED TO COMMENT" top="20.5%" /> : null}
+      {during(31, W(178)) ? <Pill f={f} at={W(178)} text="NOT NAMED · NO COMMENT FROM HIM OR NVIDIA" top="20.5%" /> : null}
       {during(32, W(185)) ? <Quote f={f} at={W(185)} text={<>“... it is nothing but <Hot>smears</Hot> against China.”</>} by="CHINA'S FOREIGN MINISTRY, NOV. 9 · REUTERS" size={5.6} /> : null}
       {during(33, W(190)) ? <Pill f={f} at={W(190)} text="THE U.S. ATTORNEY GENERAL · NOV. 12, 2026" /> : null}
       {during(33, W(195)) ? <Pill f={f} at={W(195)} text="THE F.B.I. IS INVESTIGATING, HE SAID" top="15.4%" tone="yellow" /> : null}

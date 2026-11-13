@@ -341,3 +341,57 @@ waited tables at a Denny's in Portland." "His uncle sent him to Oneida Baptist I
   "preparing to oust" him (Reuters timeline) or "weighing whether to oust" him (Variety).
 - **Whether she is a spy:** "suspected", "alleged", "believed" in every outlet; the attorney general said on Thursday
   that the Justice Department "has not yet reached a conclusion"; Beijing denies it; she has not spoken publicly.
+
+## E. Read for the second cut (13 November 2026, about 06:53 UTC)
+
+The user's answer to the first cut: "yeah good enough but didnt mention the 3rd one tho and theres no sad music on the end".
+"The 3rd one" is the third reported relationship. The first cut left it out (it came after the decision the film is about,
+and it rests on two unnamed people); the second cut reports it as Reuters's report, with its sourcing on screen.
+
+**Reuters's own article was not read.** What follows are other outlets' accounts of it. They agree with each other and
+with The Guardian's live blog (section B above: "After Huang's resignation was announced on Thursday, Reuters reported a
+third alleged affair. ... Reuters did not reveal her name.").
+
+### Newsweek, 13 Nov 2026, "Jensen Huang Reportedly Had Third Affair; Nvidia Exit Caps Week of Scandal"
+
+<https://www.newsweek.com/jensen-huang-reportedly-had-third-affair-nvidia-exit-caps-week-of-scandal-12708382>
+(the first of six parts was read)
+
+- "Jensen Huang had an intimate relationship with a second Nvidia employee, Reuters reported Thursday, citing two people
+  familiar with the matter. It is the third extramarital relationship attributed to the 63-year-old, and it emerged only
+  after Nvidia's board had accepted his resignation from the company he had led for 33 years. Reuters did not name the
+  woman or describe her role at Nvidia, and said its attempts to reach her were unsuccessful. Nvidia declined to comment.
+  Jensen Huang and a representative for the company's board did not respond to the news agency's requests."
+- "The board accepted his resignation on Wednesday, according to a regulatory filing, and Nvidia announced it Thursday
+  morning. The announcement did not address either relationship."
+- "In a letter Thursday, the Republican chairs of the House Foreign Affairs, China and Intelligence committees gave
+  Jensen Huang until 8 p.m. EST Friday to agree to a closed-door, transcribed interview on December 1, or face a
+  subpoena." Senator Tim Scott "separately invited him to a public hearing on December 3."
+
+### Malay Mail, 13 Nov 2026 (search excerpt; the page itself returned only its navigation)
+
+<https://www.malaymail.com/news/money/2026/11/13/jensen-huang-faces-third-workplace-relationship-allegation-after-nvidia-resignation/243047>
+
+- "Reuters, citing two people familiar with the matter, reported that Huang had an intimate relationship with another
+  Nvidia employee, separate from two previously reported affairs. The news agency withheld the employee's identity and
+  said its attempts to contact her were unsuccessful."
+- "Reuters said Nvidia declined to comment on its latest report, while Jensen Huang, Powell and a board representative
+  did not respond to requests for comment."
+- Mac Observer, news24online and The Logical Indian carry the same account (search excerpts).
+
+### The regulatory filing (Form 8-K), as quoted by others (search excerpts; the filing itself was not opened)
+
+- FourWeekMBA, <https://fourweekmba.com/ai-nvidias-huang-resigns-after-33-years-cfo-kress-interim-ceo/>: Item 5.02 reads
+  "On November 11, 2026, the Board of Directors, or the Board, of NVIDIA Corporation accepted the resignation of Jen-Hsun
+  Huang, as NVIDIA's President, Chief Executive Officer and member of the Board, effective immediately."; the filing was
+  accepted by the regulator's system at 13:52 UTC on 12 November. livenewschat.eu, theindustryspread.com and
+  readtheprofile.com say the same.
+- **What follows for the film:** the board accepted the resignation on Wednesday 11 November and the company announced
+  it on Thursday 12 November. The narration's "On Thursday, he resigned" is the day it was announced and the day every
+  outlet read for the first cut gives; the date line in the hook now says ANNOUNCED THURSDAY, NOV. 12, 2026.
+
+### Congress (for the line HE HAS AGREED TO TESTIFY BEFORE CONGRESS)
+
+- Hindustan Times, live, 13 Nov: "Huang has agreed to testify before the US Congress before Thanksgiving".
+- Newsweek, above: the House committees' deadline is Friday 13 November, 8 p.m. EST (01:00 UTC on 14 November), after
+  this cut was made.

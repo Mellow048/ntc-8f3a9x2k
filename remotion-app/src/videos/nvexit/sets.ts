@@ -311,8 +311,8 @@ export const office: Builder = (root) => {
       he.node.visible = v === 'leave'; he.show(f >= R + 12 ? 'c' : f >= R - 2 ? 'b' : 'a'); he.tick(f, cam);
       const k = v === 'leave' ? smooth(f, R - 2, R + 8) : 1;
       badge.visible = v !== 'write' && (v !== 'leave' || f >= R - 2); badge.position.set(lerp(0.95, 0.5, k), lerp(1.15, 0.775, k) + 0.25 * Math.sin(Math.PI * k), lerp(0.3, 0.08, k)); badge.rotation.y = 0.3 + (1 - k) * 2;
-      // the light over the chair goes down while the last note rings (not to black: the question stays up)
-      const down = empty ? smooth(f, TOTAL - 54, TOTAL - 6) : 0;
+      // the light over the chair goes down from the whistle's first note to its last (not to black: the question stays up)
+      const down = empty ? smooth(f, W(243) + 12, TOTAL - 6) : 0;
       op(spot, empty ? lerp(0.34, 0.12, down) : 0); op(cone1, empty ? lerp(0.035, 0.008, down) : 0); op(dim, empty ? lerp(0.45, 0.62, down) : 0);
     },
   };

@@ -87,7 +87,7 @@ export const SHOTS: Shot[] = [
   s(160, 'office', 'leave', [2.0, 1.6, 5.4], [0.62, 1.3, -0.2], 42, {push: 0.06}),                          // 29
   s(166, 'release', 'why', [0.2, 1.65, 5.6], [0, 1.6, 0], 42, {push: 0.07}),                                // 30
   // 10 "The same day, Reuters reported a third relationship, with another employee."   (read in a second call and put into the take)
-  s(171, 'paper', 'third', [-0.35, 1.6, 5.5], [0, 1.56, 0], 42, {push: 0.07}),                              // 31
+  s(171, 'paper', 'third', [-0.35, 1.7, 5.5], [0, 1.66, 0], 42, {push: 0.07}),                              // 31
   // 11 "China calls the spy claim a smear. The Justice Department says it has reached no conclusion. And he denies any knowledge of it."
   s(182, 'podium', 'china', [-1.3, 1.65, 5.0], [0, 1.5, 0], 42, {push: 0.06}),                              // 32
   s(189, 'podium', 'doj', [1.0, 1.65, 3.9], [0.05, 1.55, 0], 42, {push: 0.06}),                             // 33

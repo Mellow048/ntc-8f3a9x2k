@@ -3,12 +3,12 @@
 Written by `build_mix.py`. All music and effects are synthesized in that script; nothing is sampled.
 
 - length 84.033 s (2521 frames at 30 fps), 48 kHz stereo, 16-bit
-- integrated loudness -14.5 LUFS, true peak -2.7 dBTP, limiter at most 3.4 dB
-- stems at mix gain: voice -15.6 LUFS, music -20.6 LUFS, effects -27.0 LUFS
-- music after ducking: 5.7 LU under the voice while someone speaks, 5.1 LU under it over the whole film
-- the same above 300 Hz (what a phone speaker plays): 6.9 LU under the voice; loudest 200 ms under a spoken word 3.3 LU under it
+- integrated loudness -14.5 LUFS, true peak -2.7 dBTP, limiter at most 4.2 dB
+- stems at mix gain: voice -15.5 LUFS, music -20.8 LUFS, effects -27.0 LUFS
+- music after ducking: 5.7 LU under the voice while someone speaks, 5.2 LU under it over the whole film
+- the same above 300 Hz (what a phone speaker plays): 6.5 LU under the voice; loudest 200 ms under a spoken word 3.4 LU under it
 - voice over the bed while speaking: median 5.1 LU, 10th percentile 2.2 LU
-- word by word, the voice over music and effects across each word's own span: median 5.5 LU, 10th percentile 2.0 LU, lowest -0.1 LU ('I', word 44); 1 of 244 words under 0; 'company' (word 57) is lifted 2 dB with the bed 2.5 dB down under it; 'out' (word 79) is lifted 1.5 dB with the bed 2 dB down under it; 'booth' (word 61) is lifted 1.5 dB with the bed 2 dB down under it; 'flopped' (word 83) is lifted 1.5 dB with the bed 2 dB down under it; 'company' (word 17) is lifted 1 dB with the bed 1.5 dB down under it
+- word by word, the voice over music and effects across each word's own span: median 5.5 LU, 10th percentile 2.1 LU, lowest 0.0 LU ('I', word 44); 0 of 244 words under 0; 'company' (word 57) is lifted 2 dB with the bed 2.5 dB down under it; 'out' (word 79) is lifted 1.5 dB with the bed 2 dB down under it; 'booth' (word 61) is lifted 1.5 dB with the bed 2 dB down under it; 'flopped' (word 83) is lifted 1.5 dB with the bed 2 dB down under it; 'company' (word 17) is lifted 1 dB with the bed 1.5 dB down under it
 
 | time s | frame | sound | why |
 |---|---|---|---|
@@ -170,7 +170,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  57.23 | 1717 | paper | a third front page lands on the two |
 |  57.73 | 1732 | a low drum | 'third': the page lands on the other two |
 |  57.73 | 1732 | thud | it lands |
-|  57.93 | 1738 | pop | not named; Nvidia declined to comment |
+|  57.93 | 1738 | pop | not named; no comment from him or from Nvidia |
 |  59.90 | 1797 | a chord, a step higher | China: 'a smear': F sharp minor, then G sharp, then A; none of them is home |
 |  60.15 | 1805 | shutter | press cameras |
 |  60.73 | 1822 | pop | quote card: '... it is nothing but smears against China.' |
@@ -207,8 +207,8 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  75.70 | 2271 | the tune on the piano | 'Another says his knowledge is': its first three notes, slowly, over F sharp minor |
 |  76.57 | 2297 | blip | a bar of light reads him, top to toe |
 |  76.80 | 2304 | pop | quote card: 'His technical knowledge ... is basically unique and impossible to replicate.' |
-|  76.80 | 2304 | the dominant | 'impossible to replicate': G sharp with a seventh, and a low piano note; it wants to go home |
 |  77.13 | 2314 | paper | copy 1 of 7 comes out: a scribble and a question mark |
+|  77.20 | 2316 | the dominant | 'impossible to replicate': G sharp with a seventh, and a low piano note; it wants to go home |
 |  77.37 | 2321 | paper | copy 2 of 7 comes out: a scribble and a question mark |
 |  77.53 | 2326 | buzzer | the first copy is held up: it is not him |
 |  77.60 | 2328 | paper | copy 3 of 7 comes out: a scribble and a question mark |
@@ -216,7 +216,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  78.07 | 2342 | paper | copy 5 of 7 comes out: a scribble and a question mark |
 |  78.30 | 2349 | paper | copy 6 of 7 comes out: a scribble and a question mark |
 |  78.53 | 2356 | paper | copy 7 of 7 comes out: a scribble and a question mark |
-|  78.73 | 2362 | home, in the minor | the empty chair: C sharp minor, the piano's lowest C sharp; the question is asked over the held chord |
+|  78.73 | 2362 | home, in the minor | the empty chair: C sharp minor, a low C sharp on the piano; the question is asked over the held chord |
 |  78.76 | 2363 | clunk | a spotlight comes on over the empty chair |
 |  79.30 | 2379 | pop | CAN NVIDIA REPLACE HIM? |
 |  79.60 | 2388 | pop | for now: Colette Kress, the finance chief |
