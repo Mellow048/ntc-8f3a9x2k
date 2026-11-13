@@ -55,7 +55,7 @@ export const SHOTS: Shot[] = [
   s(59, 'stairs', 'strip', [0.2, 1.45, 4.9], [0.15, 0.78, 0.4], 46, {push: 0.08, tag: 'A SERVICE STAIRCASE'}),            // 9
   // 5 "Then, a locked door. He's unscrewing the doorknob when a plumber comes by, and kindly lets him out."
   s(70, 'stairs', 'locked', [0.6, 1.5, 4.7], [0.9, 1.4, -2.6], 46, {push: 0.07, tag: 'A SERVICE STAIRCASE'}),           // 10
-  s(74, 'stairs', 'knob', [2.25, 1.30, -0.2], [1.32, 1.05, -2.55], 46, {push: 0.08, close: true, tag: 'A SERVICE STAIRCASE'}), // 11
+  s(74, 'stairs', 'knob', [2.10, 1.46, 2.05], [0.72, 1.02, -2.50], 46, {push: 0.08, tag: 'A SERVICE STAIRCASE'}), // 11
   s(78, 'stairs', 'plumber', [0.2, 1.5, 5.6], [0.2, 1.2, -0.3], 46, {push: 0.05, tag: 'A SERVICE STAIRCASE'}),           // 12
   s(83, 'stairs', 'out', [0.2, 1.5, 5.6], [0.2, 1.2, -0.3], 46, {join: true, tag: 'A SERVICE STAIRCASE'}),               // 13  one take with 12
   // 6 "Next day, an artist comes to paint her, and finds four bare hooks. A guard shrugs. The photographers must have her."
@@ -66,8 +66,8 @@ export const SHOTS: Shot[] = [
   s(109, 'studio', 'dont', [0.3, 1.56, 4.5], [0.35, 1.3, -1.0], 46, {push: 0.07, tag: "THE PHOTOGRAPHERS' STUDIO"}),       // 17
   s(111, 'exit', 'shut', [1.1, 1.9, 9.6], [0.4, 1.9, -2.6], 46, {push: 0.07, tag: 'THE LOUVRE'}),                       // 18
   // 8 "When it reopens, thousands line up to stare at an empty wall."
-  s(117, 'exit', 'queue', [4.2, 1.6, 7.4], [0.5, 1.35, 0.8], 46, {push: 0.05, tag: 'A WEEK LATER'}),                    // 19
-  s(123, 'gallery', 'crowd', [0.0, 2.95, 4.4], [0.0, 1.9, -2.7], 46, {push: 0.08, tag: 'A WEEK LATER'}),                // 20
+  s(117, 'exit', 'queue', [4.5, 1.98, 8.8], [0.9, 1.42, 0.4], 46, {push: 0.05, tag: 'A WEEK LATER'}),                    // 19
+  s(123, 'gallery', 'crowd', [0.0, 2.55, 7.6], [0.0, 1.66, -2.9], 46, {push: 0.08, tag: 'A WEEK LATER'}),                // 20
   // 9 "Police arrest a poet, and question a young Pablo Picasso."
   s(129, 'police', 'poet', [0.2, 1.46, 5.0], [0.3, 1.6, -1.0], 46, {push: 0.07, tag: 'SEPTEMBER 1911'}),                // 21
   s(133, 'police', 'picasso', [0.2, 1.44, 4.8], [0.3, 1.58, -0.9], 46, {push: 0.07, tag: 'SEPTEMBER 1911'}),              // 22
