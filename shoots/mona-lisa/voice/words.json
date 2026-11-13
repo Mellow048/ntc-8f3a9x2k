@@ -1,0 +1,1810 @@
+[
+ {
+  "word": "In",
+  "start": 0.0,
+  "end": 0.116,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "nineteen",
+  "start": 0.116,
+  "end": 0.428,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "eleven",
+  "start": 0.428,
+  "end": 0.857,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "a",
+  "start": 0.992,
+  "end": 1.081,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "handyman",
+  "start": 1.081,
+  "end": 1.599,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "walks",
+  "start": 1.599,
+  "end": 1.911,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "out",
+  "start": 1.911,
+  "end": 2.018,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "of",
+  "start": 2.018,
+  "end": 2.117,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 2.117,
+  "end": 2.179,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Louvre",
+  "start": 2.179,
+  "end": 2.688,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "with",
+  "start": 2.688,
+  "end": 2.795,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 2.795,
+  "end": 2.857,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Mona",
+  "start": 2.857,
+  "end": 3.063,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Lisa",
+  "start": 3.063,
+  "end": 3.482,
+  "line": 1,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "For",
+  "start": 3.922,
+  "end": 4.092,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 4.092,
+  "end": 4.119,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "whole",
+  "start": 4.119,
+  "end": 4.378,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "day",
+  "start": 4.378,
+  "end": 4.735,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "nobody",
+  "start": 4.951,
+  "end": 5.344,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "raises",
+  "start": 5.344,
+  "end": 5.683,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 5.683,
+  "end": 5.781,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "alarm",
+  "start": 5.781,
+  "end": 6.219,
+  "line": 1,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Vincenzo",
+  "start": 6.696,
+  "end": 7.259,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Peruggia",
+  "start": 7.259,
+  "end": 7.83,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "once",
+  "start": 7.83,
+  "end": 8.116,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "worked",
+  "start": 8.116,
+  "end": 8.428,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "there",
+  "start": 8.428,
+  "end": 8.803,
+  "line": 2,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "He",
+  "start": 8.917,
+  "end": 9.025,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "helped",
+  "start": 9.025,
+  "end": 9.257,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "build",
+  "start": 9.257,
+  "end": 9.542,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "her",
+  "start": 9.542,
+  "end": 9.649,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "glass",
+  "start": 9.649,
+  "end": 9.971,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "case",
+  "start": 9.971,
+  "end": 10.489,
+  "line": 2,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "It's",
+  "start": 10.859,
+  "end": 11.011,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 11.011,
+  "end": 11.047,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Monday",
+  "start": 11.047,
+  "end": 11.574,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 11.762,
+  "end": 11.824,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "museum",
+  "start": 11.824,
+  "end": 12.261,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "is",
+  "start": 12.261,
+  "end": 12.36,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "closed",
+  "start": 12.36,
+  "end": 12.851,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "He",
+  "start": 13.063,
+  "end": 13.161,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "says",
+  "start": 13.161,
+  "end": 13.384,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "he",
+  "start": 13.384,
+  "end": 13.464,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "just",
+  "start": 13.464,
+  "end": 13.643,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "walks",
+  "start": 13.643,
+  "end": 13.955,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 13.955,
+  "end": 14.25,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "wearing",
+  "start": 14.462,
+  "end": 14.685,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 14.685,
+  "end": 14.712,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "white",
+  "start": 14.712,
+  "end": 14.953,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "smock",
+  "start": 14.953,
+  "end": 15.417,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "like",
+  "start": 15.599,
+  "end": 15.75,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 15.75,
+  "end": 15.813,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "staff",
+  "start": 15.813,
+  "end": 16.331,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "He",
+  "start": 16.636,
+  "end": 16.77,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "lifts",
+  "start": 16.77,
+  "end": 17.011,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "her",
+  "start": 17.011,
+  "end": 17.154,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "off",
+  "start": 17.154,
+  "end": 17.333,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "four",
+  "start": 17.333,
+  "end": 17.627,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hooks",
+  "start": 17.627,
+  "end": 18.091,
+  "line": 4,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "In",
+  "start": 18.254,
+  "end": 18.361,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 18.361,
+  "end": 18.406,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "stairwell",
+  "start": 18.406,
+  "end": 19.075,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "he",
+  "start": 19.075,
+  "end": 19.218,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "strips",
+  "start": 19.218,
+  "end": 19.548,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "off",
+  "start": 19.548,
+  "end": 19.691,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 19.691,
+  "end": 19.789,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "frame",
+  "start": 19.789,
+  "end": 20.155,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "and",
+  "start": 20.155,
+  "end": 20.423,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 20.423,
+  "end": 20.486,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "glass",
+  "start": 20.486,
+  "end": 20.994,
+  "line": 4,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Then",
+  "start": 21.197,
+  "end": 21.51,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "a",
+  "start": 21.758,
+  "end": 21.829,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "locked",
+  "start": 21.829,
+  "end": 22.195,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "door",
+  "start": 22.195,
+  "end": 22.579,
+  "line": 5,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "He's",
+  "start": 22.92,
+  "end": 23.072,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "unscrewing",
+  "start": 23.072,
+  "end": 23.58,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 23.58,
+  "end": 23.643,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "doorknob",
+  "start": 23.643,
+  "end": 24.125,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "when",
+  "start": 24.125,
+  "end": 24.214,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 24.214,
+  "end": 24.259,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "plumber",
+  "start": 24.259,
+  "end": 24.598,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "comes",
+  "start": 24.598,
+  "end": 24.848,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "by",
+  "start": 24.848,
+  "end": 25.169,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 25.474,
+  "end": 25.634,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "kindly",
+  "start": 25.634,
+  "end": 26.0,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "lets",
+  "start": 26.0,
+  "end": 26.241,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "him",
+  "start": 26.241,
+  "end": 26.349,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "out",
+  "start": 26.349,
+  "end": 26.652,
+  "line": 5,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Next",
+  "start": 27.113,
+  "end": 27.39,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "day",
+  "start": 27.39,
+  "end": 27.774,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "an",
+  "start": 27.859,
+  "end": 27.993,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "artist",
+  "start": 27.993,
+  "end": 28.404,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "comes",
+  "start": 28.404,
+  "end": 28.654,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 28.654,
+  "end": 28.743,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "paint",
+  "start": 28.743,
+  "end": 28.984,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "her",
+  "start": 28.984,
+  "end": 29.234,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 29.382,
+  "end": 29.498,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "finds",
+  "start": 29.498,
+  "end": 29.829,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "four",
+  "start": 29.829,
+  "end": 30.105,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bare",
+  "start": 30.105,
+  "end": 30.391,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hooks",
+  "start": 30.391,
+  "end": 30.811,
+  "line": 6,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "A",
+  "start": 31.248,
+  "end": 31.311,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "guard",
+  "start": 31.311,
+  "end": 31.703,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "shrugs",
+  "start": 31.703,
+  "end": 32.23,
+  "line": 6,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 32.428,
+  "end": 32.517,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "photographers",
+  "start": 32.517,
+  "end": 33.124,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "must",
+  "start": 33.124,
+  "end": 33.312,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "have",
+  "start": 33.312,
+  "end": 33.517,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "her",
+  "start": 33.517,
+  "end": 33.785,
+  "line": 6,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "They",
+  "start": 33.909,
+  "end": 34.052,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "don't",
+  "start": 34.052,
+  "end": 34.516,
+  "line": 7,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 34.982,
+  "end": 35.089,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Louvre",
+  "start": 35.089,
+  "end": 35.687,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "shuts",
+  "start": 35.77,
+  "end": 36.279,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "for",
+  "start": 36.361,
+  "end": 36.549,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 36.549,
+  "end": 36.576,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "week",
+  "start": 36.576,
+  "end": 36.977,
+  "line": 7,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "When",
+  "start": 37.1,
+  "end": 37.225,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 37.225,
+  "end": 37.314,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "reopens",
+  "start": 37.314,
+  "end": 37.921,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "thousands",
+  "start": 38.055,
+  "end": 38.465,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "line",
+  "start": 38.465,
+  "end": 38.68,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "up",
+  "start": 38.68,
+  "end": 38.796,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 38.796,
+  "end": 38.876,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "stare",
+  "start": 38.876,
+  "end": 39.135,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "at",
+  "start": 39.135,
+  "end": 39.197,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "an",
+  "start": 39.197,
+  "end": 39.296,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "empty",
+  "start": 39.296,
+  "end": 39.492,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "wall",
+  "start": 39.492,
+  "end": 39.84,
+  "line": 8,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Police",
+  "start": 40.312,
+  "end": 40.82,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "arrest",
+  "start": 40.82,
+  "end": 41.151,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 41.151,
+  "end": 41.195,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "poet",
+  "start": 41.195,
+  "end": 41.615,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 41.731,
+  "end": 41.918,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "question",
+  "start": 41.918,
+  "end": 42.4,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 42.4,
+  "end": 42.552,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "young",
+  "start": 42.552,
+  "end": 42.847,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Pablo",
+  "start": 42.847,
+  "end": 43.222,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Picasso",
+  "start": 43.222,
+  "end": 43.936,
+  "line": 9,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "They",
+  "start": 44.276,
+  "end": 44.401,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "even",
+  "start": 44.401,
+  "end": 44.669,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "question",
+  "start": 44.669,
+  "end": 45.008,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 45.008,
+  "end": 45.08,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "handyman",
+  "start": 45.08,
+  "end": 45.669,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "at",
+  "start": 45.852,
+  "end": 45.994,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "home",
+  "start": 45.994,
+  "end": 46.45,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "She's",
+  "start": 46.609,
+  "end": 46.877,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 46.877,
+  "end": 46.948,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 46.948,
+  "end": 47.002,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "trunk",
+  "start": 47.002,
+  "end": 47.421,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "in",
+  "start": 47.585,
+  "end": 47.692,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 47.692,
+  "end": 47.781,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "same",
+  "start": 47.781,
+  "end": 48.201,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "room",
+  "start": 48.201,
+  "end": 48.612,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "They",
+  "start": 49.039,
+  "end": 49.191,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "believe",
+  "start": 49.191,
+  "end": 49.486,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "him",
+  "start": 49.486,
+  "end": 49.878,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Two",
+  "start": 50.292,
+  "end": 50.498,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "years",
+  "start": 50.498,
+  "end": 50.765,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "later",
+  "start": 50.765,
+  "end": 51.14,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "he",
+  "start": 51.217,
+  "end": 51.315,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "tries",
+  "start": 51.315,
+  "end": 51.654,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 51.654,
+  "end": 51.753,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "sell",
+  "start": 51.753,
+  "end": 52.056,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "her",
+  "start": 52.056,
+  "end": 52.172,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 52.172,
+  "end": 52.342,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "an",
+  "start": 52.342,
+  "end": 52.404,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "art",
+  "start": 52.404,
+  "end": 52.636,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "dealer",
+  "start": 52.636,
+  "end": 52.967,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 52.967,
+  "end": 53.047,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Florence",
+  "start": 53.047,
+  "end": 53.574,
+  "line": 11,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "A",
+  "start": 53.762,
+  "end": 53.833,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "patriot",
+  "start": 53.833,
+  "end": 54.459,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "he",
+  "start": 54.459,
+  "end": 54.602,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "says",
+  "start": 54.602,
+  "end": 55.048,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "bringing",
+  "start": 55.17,
+  "end": 55.536,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "home",
+  "start": 55.536,
+  "end": 55.795,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "what",
+  "start": 55.795,
+  "end": 56.045,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Napoleon",
+  "start": 56.045,
+  "end": 56.581,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "stole",
+  "start": 56.581,
+  "end": 57.125,
+  "line": 11,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Napoleon",
+  "start": 57.382,
+  "end": 58.15,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "never",
+  "start": 58.15,
+  "end": 58.471,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "stole",
+  "start": 58.471,
+  "end": 58.819,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "her",
+  "start": 58.819,
+  "end": 59.158,
+  "line": 12,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Leonardo",
+  "start": 59.318,
+  "end": 59.845,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "brought",
+  "start": 59.845,
+  "end": 60.077,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "her",
+  "start": 60.077,
+  "end": 60.184,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 60.184,
+  "end": 60.264,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "France",
+  "start": 60.264,
+  "end": 60.657,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "himself",
+  "start": 60.657,
+  "end": 61.318,
+  "line": 12,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 61.669,
+  "end": 61.776,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "dealer",
+  "start": 61.776,
+  "end": 62.142,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "calls",
+  "start": 62.142,
+  "end": 62.419,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 62.419,
+  "end": 62.49,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "police",
+  "start": 62.49,
+  "end": 63.053,
+  "line": 13,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 63.182,
+  "end": 63.298,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "thief",
+  "start": 63.298,
+  "end": 63.771,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "serves",
+  "start": 63.931,
+  "end": 64.253,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "seven",
+  "start": 64.253,
+  "end": 64.538,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "months",
+  "start": 64.538,
+  "end": 64.967,
+  "line": 13,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "She",
+  "start": 65.436,
+  "end": 65.597,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "left",
+  "start": 65.597,
+  "end": 65.829,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 65.829,
+  "end": 65.865,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "masterpiece",
+  "start": 65.865,
+  "end": 66.507,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "that",
+  "start": 66.507,
+  "end": 66.641,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "art",
+  "start": 66.641,
+  "end": 66.838,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "lovers",
+  "start": 66.838,
+  "end": 67.177,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "knew",
+  "start": 67.177,
+  "end": 67.48,
+  "line": 14,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "She",
+  "start": 67.627,
+  "end": 67.769,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "returns",
+  "start": 67.769,
+  "end": 68.153,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 68.153,
+  "end": 68.207,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "most",
+  "start": 68.207,
+  "end": 68.439,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "famous",
+  "start": 68.439,
+  "end": 68.76,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "painting",
+  "start": 68.76,
+  "end": 69.073,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "on",
+  "start": 69.073,
+  "end": 69.198,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Earth",
+  "start": 69.198,
+  "end": 69.457,
+  "line": 14,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "It",
+  "start": 69.965,
+  "end": 70.099,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "took",
+  "start": 70.099,
+  "end": 70.259,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "an",
+  "start": 70.259,
+  "end": 70.331,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "empty",
+  "start": 70.331,
+  "end": 70.59,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "wall",
+  "start": 70.59,
+  "end": 70.964,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 71.117,
+  "end": 71.189,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "make",
+  "start": 71.189,
+  "end": 71.322,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 71.322,
+  "end": 71.385,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "world",
+  "start": 71.385,
+  "end": 71.662,
+  "line": 14,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "look",
+  "start": 71.662,
+  "end": 72.01,
+  "line": 14,
+  "ends_sentence": true,
+  "comma": false
+ }
+]

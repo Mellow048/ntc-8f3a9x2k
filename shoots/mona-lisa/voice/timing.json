@@ -1,0 +1,123 @@
+{
+ "source": "raw-take.mp3",
+ "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
+ "raw_seconds": 87.32,
+ "tight_seconds": 76.59,
+ "pauses_cut": 50,
+ "tempo": 1.1197,
+ "eq": {
+  "bass_shelf_db": -1.0,
+  "presence_db": 1.5
+ },
+ "squeezed": [],
+ "beats": [
+  {
+   "line": 1,
+   "after": "Lisa",
+   "at": 3.612,
+   "seconds": 0.15
+  },
+  {
+   "line": 1,
+   "after": "alarm",
+   "at": 6.164,
+   "seconds": 0.3
+  },
+  {
+   "line": 2,
+   "after": "case",
+   "at": 10.124,
+   "seconds": 0.2
+  },
+  {
+   "line": 3,
+   "after": "staff",
+   "at": 15.781,
+   "seconds": 0.15
+  },
+  {
+   "line": 5,
+   "after": "door",
+   "at": 21.884,
+   "seconds": 0.15
+  },
+  {
+   "line": 5,
+   "after": "by",
+   "at": 24.329,
+   "seconds": 0.12
+  },
+  {
+   "line": 5,
+   "after": "out",
+   "at": 25.682,
+   "seconds": 0.3
+  },
+  {
+   "line": 6,
+   "after": "hooks",
+   "at": 29.576,
+   "seconds": 0.2
+  },
+  {
+   "line": 7,
+   "after": "don't",
+   "at": 33.061,
+   "seconds": 0.25
+  },
+  {
+   "line": 8,
+   "after": "wall",
+   "at": 38.16,
+   "seconds": 0.3
+  },
+  {
+   "line": 9,
+   "after": "Picasso",
+   "at": 41.906,
+   "seconds": 0.2
+  },
+  {
+   "line": 10,
+   "after": "room",
+   "at": 46.457,
+   "seconds": 0.2
+  },
+  {
+   "line": 10,
+   "after": "him",
+   "at": 47.458,
+   "seconds": 0.3
+  },
+  {
+   "line": 11,
+   "after": "stole",
+   "at": 54.365,
+   "seconds": 0.15
+  },
+  {
+   "line": 12,
+   "after": "himself",
+   "at": 58.463,
+   "seconds": 0.2
+  },
+  {
+   "line": 13,
+   "after": "months",
+   "at": 61.917,
+   "seconds": 0.3
+  },
+  {
+   "line": 14,
+   "after": "Earth",
+   "at": 66.122,
+   "seconds": 0.35
+  }
+ ],
+ "seconds": 72.187,
+ "words": 226,
+ "words_per_second": 3.13,
+ "lufs": -16.4,
+ "lra": 2.4,
+ "peak": -1.5
+}
