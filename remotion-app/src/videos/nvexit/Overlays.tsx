@@ -121,7 +121,7 @@ export const Overlays: React.FC = () => {
   const during = (i: number, from = S(i)[0]) => f >= from && f < S(i)[1];
   /** from a frame in shot a to the end of shot b: something that stays up over a cut or a join */
   const over = (a: number, b: number, from = S(a)[0]) => f >= from && f < S(b)[1];
-  const closing = S(41)[0];
+  const closing = S(42)[0];
   return (
     <AbsoluteFill style={{pointerEvents: 'none'}}>
       {/* Three passages are his own telling (two from Nvidia's blog, one from a podcast): a tab says so for as long as each runs. */}
@@ -133,7 +133,7 @@ export const Overlays: React.FC = () => {
       {during(1, W(8)) ? <Pill f={f} at={W(8)} text="1993 · EAST SAN JOSE, CALIFORNIA" /> : null}
       {during(2, W(16)) ? <Stamp f={f} at={W(16)} text="$5 TRILLION" tone="yellow" top="9.5%" size={12} /> : null}
       {during(2, W(17)) ? <Pill f={f} at={W(17)} text="A FIRST FOR ANY COMPANY · OCTOBER 2025" top="20.5%" /> : null}
-      {during(3, W(19)) ? <Pill f={f} at={W(19)} text="THURSDAY, NOV. 12, 2026" top="9%" /> : null}
+      {during(3, W(19)) ? <Pill f={f} at={W(19)} text="ANNOUNCED THURSDAY, NOV. 12, 2026" top="9%" /> : null}
       {during(3, W(21)) ? <Stamp f={f} at={W(21)} text="RESIGNED" top="14.5%" size={13} /> : null}
       {during(4, W(24)) ? <Pill f={f} at={W(24)} text="BORN FEB. 17, 1963" /> : null}
       {during(5, W(28)) ? <Pill f={f} at={W(28)} text="PORTLAND, OREGON · AROUND 1978" /> : null}
@@ -166,24 +166,27 @@ export const Overlays: React.FC = () => {
       {during(29, W(164)) ? <Pill f={f} at={W(164)} text="PRESIDENT, CEO AND BOARD MEMBER" top="20.5%" /> : null}
       {during(30, W(168)) ? <Stamp f={f} at={W(168)} text="NO REASON GIVEN" top="8.5%" size={9.6} /> : null}
       {during(30, W(170)) ? <Pill f={f} at={W(170)} text="THE INVESTIGATION IS NOT MENTIONED" top="17.6%" /> : null}
-      {during(31, W(174)) ? <Quote f={f} at={W(174)} text={<>“... it is nothing but <Hot>smears</Hot> against China.”</>} by="CHINA'S FOREIGN MINISTRY, NOV. 9 · REUTERS" size={5.6} /> : null}
-      {during(32, W(179)) ? <Pill f={f} at={W(179)} text="THE U.S. ATTORNEY GENERAL · NOV. 12, 2026" /> : null}
-      {during(32, W(184)) ? <Pill f={f} at={W(184)} text="THE F.B.I. IS INVESTIGATING, HE SAID" top="15.4%" tone="yellow" /> : null}
-      {during(33, W(189)) ? <Pill f={f} at={W(189)} text="“HAS DENIED ANY KNOWLEDGE” · THE GUARDIAN" /> : null}
-      {during(33, W(191)) ? <Pill f={f} at={W(191)} text="HE HAS AGREED TO TESTIFY BEFORE CONGRESS" top="15.4%" tone="yellow" /> : null}
-      {during(34, W(197)) ? <Pill f={f} at={W(197)} text="UNVEILED WITH HIM IN SEPTEMBER 2023" /> : null}
-      {during(35, W(200)) ? <Pill f={f} at={W(200)} text="NBC NEWS · THURSDAY, NOV. 12, 2026" /> : null}
-      {during(36, S(36)[0] + 3) ? <Pill f={f} at={S(36)[0] + 3} text="NBC DOES NOT SAY WHO REMOVED IT, OR WHY" /> : null}
-      {over(37, 38, W(208)) && f < W(214) ? <Pill f={f} at={W(208)} text="DAN IVES, A U.S. TECH ANALYST" /> : null}
-      {over(37, 38, W(214)) ? <Quote f={f} at={W(214)} text={<>“... <Hot>rip off the Band-Aid</Hot> and take Nvidia into its next chapter without him.”</>} by="DAN IVES, TECH ANALYST · THE GUARDIAN, NOV. 12" size={4.8} /> : null}
-      {over(39, 40, W(219) + 2) && f < W(224) ? <Pill f={f} at={W(219) + 2} text="NEIL WILSON, AN ANALYST AT SAXO UK" /> : null}
-      {over(39, 40, W(224)) ? <Quote f={f} at={W(224)} text={<>“His technical knowledge ... is basically unique and <Hot>impossible to replicate</Hot>.”</>} by="NEIL WILSON, SAXO UK · THE GUARDIAN, NOV. 12" size={4.8} /> : null}
+      {during(31, S(31)[0] + 2) ? <Pill f={f} at={S(31)[0] + 2} text="REUTERS · NOV. 12, 2026" /> : null}
+      {during(31, W(174)) ? <Pill f={f} at={W(174)} text="CITING TWO PEOPLE FAMILIAR WITH THE MATTER" top="15.4%" tone="yellow" /> : null}
+      {during(31, W(178)) ? <Pill f={f} at={W(178)} text="NOT NAMED · NVIDIA DECLINED TO COMMENT" top="20.5%" /> : null}
+      {during(32, W(185)) ? <Quote f={f} at={W(185)} text={<>“... it is nothing but <Hot>smears</Hot> against China.”</>} by="CHINA'S FOREIGN MINISTRY, NOV. 9 · REUTERS" size={5.6} /> : null}
+      {during(33, W(190)) ? <Pill f={f} at={W(190)} text="THE U.S. ATTORNEY GENERAL · NOV. 12, 2026" /> : null}
+      {during(33, W(195)) ? <Pill f={f} at={W(195)} text="THE F.B.I. IS INVESTIGATING, HE SAID" top="15.4%" tone="yellow" /> : null}
+      {during(34, W(200)) ? <Pill f={f} at={W(200)} text="“HAS DENIED ANY KNOWLEDGE” · THE GUARDIAN" /> : null}
+      {during(34, W(202)) ? <Pill f={f} at={W(202)} text="HE HAS AGREED TO TESTIFY BEFORE CONGRESS" top="15.4%" tone="yellow" /> : null}
+      {during(35, W(208)) ? <Pill f={f} at={W(208)} text="UNVEILED WITH HIM IN SEPTEMBER 2023" /> : null}
+      {during(36, W(211)) ? <Pill f={f} at={W(211)} text="NBC NEWS · THURSDAY, NOV. 12, 2026" /> : null}
+      {during(37, S(37)[0] + 3) ? <Pill f={f} at={S(37)[0] + 3} text="NBC DOES NOT SAY WHO REMOVED IT, OR WHY" /> : null}
+      {over(38, 39, W(219)) && f < W(225) ? <Pill f={f} at={W(219)} text="DAN IVES, A U.S. TECH ANALYST" /> : null}
+      {over(38, 39, W(225)) ? <Quote f={f} at={W(225)} text={<>“... <Hot>rip off the Band-Aid</Hot> and take Nvidia into its next chapter without him.”</>} by="DAN IVES, TECH ANALYST · THE GUARDIAN, NOV. 12" size={4.8} /> : null}
+      {over(40, 41, W(230) + 2) && f < W(235) ? <Pill f={f} at={W(230) + 2} text="NEIL WILSON, AN ANALYST AT SAXO UK" /> : null}
+      {over(40, 41, W(235)) ? <Quote f={f} at={W(235)} text={<>“His technical knowledge ... is basically unique and <Hot>impossible to replicate</Hot>.”</>} by="NEIL WILSON, SAXO UK · THE GUARDIAN, NOV. 12" size={4.8} /> : null}
       {f >= closing ? (
         <>
-          <div style={row('8%')}><div style={{...anton, fontSize: '8.4cqw', color: '#fff', WebkitTextStroke: `1.4cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, transform: `scale(${pop(f, W(229), 8)})`}}>CAN NVIDIA REPLACE HIM?</div></div>
-          {f >= W(230) + 4 ? <Pill f={f} at={W(230) + 4} text="FOR NOW: COLETTE KRESS, THE FINANCE CHIEF" top="15.6%" size={3.3} /> : null}
-          {f >= W(231) + 4 ? <Choice f={f} at={W(231) + 4} letter="A" text="YES, IT'S THE CHIPS" top="20.4%" tone="yellow" size={6.6} /> : null}
-          {f >= W(232) + 8 ? <Choice f={f} at={W(232) + 8} letter="B" text="NO, IT WAS HIM" top="25.4%" tone="white" size={6.6} /> : null}
+          <div style={row('8%')}><div style={{...anton, fontSize: '8.4cqw', color: '#fff', WebkitTextStroke: `1.4cqw ${INK}`, paintOrder: 'stroke fill', textShadow: `0 0.9cqw 0 ${INK}`, transform: `scale(${pop(f, W(240), 8)})`}}>CAN NVIDIA REPLACE HIM?</div></div>
+          {f >= W(241) + 4 ? <Pill f={f} at={W(241) + 4} text="FOR NOW: COLETTE KRESS, THE FINANCE CHIEF" top="15.6%" size={3.3} /> : null}
+          {f >= W(242) + 4 ? <Choice f={f} at={W(242) + 4} letter="A" text="YES, IT'S THE CHIPS" top="20.4%" tone="yellow" size={6.6} /> : null}
+          {f >= W(243) + 8 ? <Choice f={f} at={W(243) + 8} letter="B" text="NO, IT WAS HIM" top="25.4%" tone="white" size={6.6} /> : null}
         </>
       ) : null}
     </AbsoluteFill>

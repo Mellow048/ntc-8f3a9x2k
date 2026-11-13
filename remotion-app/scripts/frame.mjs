@@ -21,7 +21,9 @@ if (!shot) { console.error(`${film}: ${shots.length} shots; give a shot index`);
 // its first shot then runs across all of them, so this shot shows only its share of that move.
 const words = JSON.parse(fs.readFileSync(new URL(`../src/videos/${film}/words.json`, import.meta.url), 'utf8'));
 const FPS = 30, at = (i) => Math.max(0, Math.round(words[shots[i].word].start * FPS) - 2);
-const total = Math.round((words[words.length - 1].end + 1.55) * FPS), end = (i) => (i + 1 < shots.length ? at(i + 1) : total);
+// seconds held after the last word: a film says so in story.ts (`export const TAIL = 3.6;`); the films before the ninth's second cut held 1.55
+const TAIL = +(src.match(/^export const TAIL = ([\d.]+);/m)?.[1] ?? 1.55);
+const total = Math.round((words[words.length - 1].end + TAIL) * FPS), end = (i) => (i + 1 < shots.length ? at(i + 1) : total);
 let a = +idx, b = +idx; while (a > 0 && shots[a].join) a--; while (shots[b + 1]?.join) b++;
 const mv = shots[a], ease = (f) => { const t = (f - at(a)) / (end(b) - at(a)); return mv.soft ? t * t * (3 - 2 * t) : 1 - (1 - t) ** 2.2; };
 console.log(`${film} shot ${idx}: ${shot.kind}/${shot.v} frames ${at(+idx)}-${end(+idx) - 1}`, a !== b ? `| part of the take over shots ${a}-${b} (frames ${at(a)}-${end(b) - 1})` : '',

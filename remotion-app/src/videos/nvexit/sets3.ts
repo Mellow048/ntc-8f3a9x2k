@@ -99,8 +99,8 @@ export const podium: Builder = (root) => {
     light: (v) => v === 'china' ? {...LIGHT.room, key: '#ffe6d0'} : LIGHT.cold,
     tick: ({f, cam, shot}) => {
       const china = shot.v === 'china'; red.visible = china; blue.visible = !china;
-      cn.show(f >= W(175) ? 'b' : 'a'); cn.node.position.y = RISE + hop(f, W(175), 0.06, 8); cn.tick(f, cam);
-      us.show(f >= W(185) - 1 ? 'b' : 'a'); us.node.position.y = RISE + hop(f, W(185) - 1, 0.06, 8); us.tick(f, cam);
+      cn.show(f >= W(186) ? 'b' : 'a'); cn.node.position.y = RISE + hop(f, W(186), 0.06, 8); cn.tick(f, cam);
+      us.show(f >= W(196) - 1 ? 'b' : 'a'); us.node.position.y = RISE + hop(f, W(196) - 1, 0.06, 8); us.tick(f, cam);
     },
   };
 };
@@ -112,7 +112,7 @@ export const stage: Builder = (root) => {
   const me = actor(root, JENSEN(0), {a: {expr: 'stern'}, b: {expr: 'nervous', pose: 'shrug'}}, 0, 0, 0, {scale: 1.0, res: 1.3, wide: true});
   return {
     light: () => LIGHT.room,
-    tick: ({f, cam}) => { const S = W(189) - 1; me.show(f >= S ? 'b' : 'a'); me.node.position.y = hop(f, S, 0.06, 8); me.tick(f, cam); },
+    tick: ({f, cam}) => { const S = W(200) - 1; me.show(f >= S ? 'b' : 'a'); me.node.position.y = hop(f, S, 0.06, 8); me.tick(f, cam); },
   };
 };
 
@@ -143,7 +143,7 @@ export const copier: Builder = (root) => {
   return {
     light: () => LIGHT.cold,
     tick: ({f, cam}) => {
-      const A = W(219) - 2, P = W(225) - 2, scanning = f < P;
+      const A = W(230) - 2, P = W(236) - 2, scanning = f < P;
       const sw = 0.5 + 0.5 * Math.sin((f - A) * 0.3); scan.position.z = lerp(-0.3, 0.3, sw); scan.visible = f < P + 60; lid.rotation.x = -0.22; op(scanGlow, 0.16 + 0.1 * sw);
       const by = lerp(1.76, 0.12, 0.5 - 0.5 * Math.cos((f - A) * 0.21)); bar.visible = glow.visible = scanning; bar.position.y = glow.position.y = by; beamM.opacity = 0.7 + 0.25 * Math.sin(f * 0.9);
       me.show(f >= P + 20 ? 'b' : 'a'); me.tick(f, cam);

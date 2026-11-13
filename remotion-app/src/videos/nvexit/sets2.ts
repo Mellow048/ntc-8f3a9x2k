@@ -150,15 +150,18 @@ export const racks: Builder = (root) => {
   };
 };
 
-// ------------------------------------------------------------------ paper: what a newspaper reported, twice
-const pageTex = (key: string, second: boolean) => tex('paper-' + key, 680, 840, (g, w, h) => {
-  g.fillStyle = '#f4eedc'; g.fillRect(0, 0, w, h); const r = rng(second ? 41 : 17);
+// ------------------------------------------------------------------ paper: what was reported, three times
+// n = 0: the first report, his photograph and hers (a blank face). 1: the second, his and a dashed outline. 2: the third, laid out the
+// other way round (the outline on the left), so that it reads as another page and another person.
+const pageTex = (key: string, n: 0 | 1 | 2) => tex('paper-' + key, 680, 840, (g, w, h) => {
+  const second = n > 0, [HIS, OTHER] = n === 2 ? [370, 40] : [40, 370];
+  g.fillStyle = '#f4eedc'; g.fillRect(0, 0, w, h); const r = rng([17, 41, 67][n]);
   g.fillStyle = '#15121c'; g.fillRect(34, 36, w - 68, 9); for (let x = 150; x < w - 150;) { const bw = 30 + r() * 70; g.fillRect(x, 60, Math.min(bw, w - 150 - x), 46); x += bw + 14; } g.fillRect(34, 122, w - 68, 4);
   g.fillStyle = '#8f8a96'; g.fillRect(34, 134, 150, 8); g.fillRect(w - 184, 134, 150, 8);
-  g.fillStyle = '#2b2733'; g.fillRect(40, 162, w - 120, 28); g.fillRect(40, 202, w * 0.55, 28);
-  bust(g, JENSEN(0), {expr: second ? 'nervous' : 'neutral'}, 40, 256, 270, 330, '#cfe3d0');
-  if (second) { g.fillStyle = '#2b2f3a'; g.fillRect(370, 256, 270, 330); ghost(g, 505, 440, 250); text(g, '?', 505, 372, 92, '#ffffff'); g.strokeStyle = INK; g.lineWidth = 6; g.strokeRect(370, 256, 270, 330); }
-  else bust(g, WOMAN, {}, 370, 256, 270, 330, '#d9d6e3');
+  g.fillStyle = '#2b2733'; g.fillRect(40, 162, n === 2 ? w * 0.62 : w - 120, 28); g.fillRect(40, 202, n === 2 ? w - 150 : w * 0.55, 28);
+  bust(g, JENSEN(0), {expr: second ? 'nervous' : 'neutral'}, HIS, 256, 270, 330, '#cfe3d0');
+  if (second) { g.fillStyle = '#2b2f3a'; g.fillRect(OTHER, 256, 270, 330); ghost(g, OTHER + 135, 440, 250); text(g, '?', OTHER + 135, 372, 92, '#ffffff'); g.strokeStyle = INK; g.lineWidth = 6; g.strokeRect(OTHER, 256, 270, 330); }
+  else bust(g, WOMAN, {}, OTHER, 256, 270, 330, '#d9d6e3');
   g.fillStyle = '#8f8a96'; for (const x of [40, 370]) { g.fillRect(x, 598, 230, 8); g.fillRect(x, 612, 170, 8); }
   for (let c = 0; c < 3; c++) for (let y = 644; y < h - 30; y += 15) g.fillRect(40 + c * 206, y, 150 + r() * 38, 6);
   g.strokeStyle = '#b9b09a'; g.lineWidth = 6; g.strokeRect(3, 3, w - 6, h - 6);
@@ -166,8 +169,8 @@ const pageTex = (key: string, second: boolean) => tex('paper-' + key, 680, 840, 
 export const paper: Builder = (root) => {
   backdrop(root, ['#141a2a', '#2a3350']);
   const glow = halo(root, 3.4, '#8fb0ff', 0.16, 0, 1.6, -0.6);
-  const PW = 1.7, PH = 2.1, sheet = (key: string, second: boolean) => { const g = grp(root, 0, 1.6, 0); box(g, PW + 0.02, PH + 0.02, 0.012, '#d9d2bc', 0.02, -0.02, -0.02); soft(panel(g, PW, PH, smat(pageTex(key, second), 1.0), 0, 0, 0)); return g; };
-  const one = sheet('one', false), two = sheet('two', true);
+  const PW = 1.7, PH = 2.1, sheet = (key: string, n: 0 | 1 | 2) => { const g = grp(root, 0, 1.6, 0); box(g, PW + 0.02, PH + 0.02, 0.012, '#d9d2bc', 0.02, -0.02, -0.02); soft(panel(g, PW, PH, smat(pageTex(key, n), 1.0), 0, 0, 0)); return g; };
+  const one = sheet('one', 0), two = sheet('two', 1), three = sheet('three', 2);
   // a red cord from one photograph to the other
   const X0 = (175 / 680 - 0.5) * PW, X1 = (505 / 680 - 0.5) * PW, Y = (0.5 - 268 / 840) * PH, SEG = 12;
   const cordAt = (t: number): V => [lerp(X0, X1, t), Y - 0.09 * Math.sin(Math.PI * t), 0.03];
@@ -176,12 +179,16 @@ export const paper: Builder = (root) => {
   return {
     light: () => LIGHT.show,
     tick: ({f, shot}) => {
-      const v = shot.v, second = v === 'second', a = second ? shot.at : W(110) - 2, k = smooth(f, a, a + 15), s = lerp(second ? 0.03 : 0.3, 1, k) * (1 + 0.06 * Math.sin(Math.PI * Math.min(1, Math.max(0, (f - a - 15) / 7))));
-      const top = second ? two : one;
-      one.visible = true; two.visible = second;
-      if (second) { one.scale.setScalar(1); one.rotation.z = 0.13; one.position.set(-0.07, 1.63, -0.08); }
+      // 'drop' and 'tie': the first page spins in. 'second': it lies there and the second lands on it. 'third': the two lie there and
+      // the third lands on the word "third".
+      const v = shot.v, second = v === 'second', third = v === 'third', pile = second || third;
+      const a = third ? W(177) - 12 : second ? shot.at : W(110) - 2, k = smooth(f, a, a + 15), s = lerp(pile ? 0.03 : 0.3, 1, k) * (1 + 0.06 * Math.sin(Math.PI * Math.min(1, Math.max(0, (f - a - 15) / 7))));
+      const top = third ? three : second ? two : one;
+      one.visible = true; two.visible = pile; three.visible = third && f >= a;
+      if (pile) { one.scale.setScalar(1); one.rotation.z = 0.13; one.position.set(-0.07, 1.63, -0.08); }
       else { one.position.set(0, 1.6, 0); }
-      top.scale.setScalar(s); top.rotation.z = (1 - k) * 12.566 + (second ? -0.05 : -0.04);
+      if (third) { two.scale.setScalar(1); two.rotation.z = -0.05; two.position.set(0, 1.6, 0); three.position.set(0.05, 1.57, 0.08); }
+      top.scale.setScalar(s); top.rotation.z = (1 - k) * 12.566 + (third ? 0.07 : second ? -0.05 : -0.04);
       const tie = !second && f >= W(117) - 1, u = smooth(f, W(117) - 1, W(117) + 9);
       cord.forEach((c, i) => { c.visible = tie && u * SEG >= i + 0.5; }); pins[0].visible = tie; pins[1].visible = tie && u >= 1; pins.forEach((p, i) => p.scale.setScalar(pop(f, W(117) - 1 + i * 10, 5)));
       op(glow, 0.14 + 0.04 * Math.sin(f * 0.1));

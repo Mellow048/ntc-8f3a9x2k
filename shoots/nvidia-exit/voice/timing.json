@@ -2,8 +2,26 @@
  "source": "raw-take.mp3",
  "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
  "raw_seconds": 101.03,
- "tight_seconds": 89.37,
- "pauses_cut": 60,
+ "pickup": {
+  "source": "pickup-take.mp3",
+  "line": 10,
+  "seconds_used": 5.285,
+  "from": 6.08,
+  "to": 11.365,
+  "put_at": 72.815,
+  "gain_db": 0.26,
+  "level_difference_db": [
+   0.31,
+   0.22
+  ],
+  "pace_of_shared_lines": [
+   1.057,
+   0.956
+  ]
+ },
+ "spliced_seconds": 106.31,
+ "tight_seconds": 94.14,
+ "pauses_cut": 63,
  "tempo": 1.2,
  "eq": {
   "bass_shelf_db": -1.0,
@@ -21,64 +39,64 @@
    "seconds_removed": 0.0
   },
   {
-   "line": 11,
+   "line": 12,
    "word": "N.B.C.",
-   "seconds_removed": 0.46
+   "seconds_removed": 0.45
   }
  ],
  "beats": [
   {
    "line": 1,
    "after": "company",
-   "at": 6.907,
+   "at": 6.903,
    "seconds": 0.12
   },
   {
    "line": 1,
    "after": "resigned",
-   "at": 8.454,
+   "at": 8.455,
    "seconds": 0.25
   },
   {
    "line": 2,
    "after": "Quote",
-   "at": 12.609,
+   "at": 12.61,
    "seconds": 0.1
   },
   {
    "line": 2,
    "after": "tables",
-   "at": 15.762,
+   "at": 15.764,
    "seconds": 0.2
   },
   {
    "line": 3,
    "after": "Quote",
-   "at": 21.473,
+   "at": 21.47,
    "seconds": 0.1
   },
   {
    "line": 3,
    "after": "out",
-   "at": 24.121,
+   "at": 24.119,
    "seconds": 0.25
   },
   {
    "line": 4,
    "after": "back",
-   "at": 29.11,
+   "at": 29.108,
    "seconds": 0.25
   },
   {
    "line": 5,
    "after": "ChatGPT",
-   "at": 33.936,
+   "at": 33.935,
    "seconds": 0.3
   },
   {
    "line": 7,
    "after": "Quote",
-   "at": 42.192,
+   "at": 42.191,
    "seconds": 0.1
   },
   {
@@ -90,26 +108,32 @@
   {
    "line": 9,
    "after": "why",
-   "at": 53.656,
+   "at": 53.652,
    "seconds": 0.2
   },
   {
-   "line": 11,
-   "after": "gone",
-   "at": 65.922,
-   "seconds": 0.3
+   "line": 10,
+   "after": "employee",
+   "at": 57.616,
+   "seconds": 0.2
   },
   {
    "line": 12,
+   "after": "gone",
+   "at": 69.908,
+   "seconds": 0.3
+  },
+  {
+   "line": 13,
    "after": "replicate",
-   "at": 71.931,
+   "at": 75.916,
    "seconds": 0.2
   }
  ],
- "seconds": 76.412,
- "words": 233,
- "words_per_second": 3.05,
- "lufs": -16.5,
+ "seconds": 80.604,
+ "words": 244,
+ "words_per_second": 3.03,
+ "lufs": -16.4,
  "lra": 2.1,
  "peak": -1.6
 }

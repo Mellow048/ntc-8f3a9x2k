@@ -6,7 +6,7 @@ import * as THREE from 'three';
 import {backdrop, ball, beam, box, cone, cyl, floor, foldTex, grainTex, grp, hop, lamp, lerp, lit, mesh, panel, pool, pop, rng, rod, smat, smooth, soft, tex, text, tiled, tileTex, tmat, torus, woodTex, type G2, type Node, type V} from './kit';
 import {actor, ENGINEER, JENSEN, REPORTER, WAITER} from './cast';
 import {glints, halo, laptop, plant, signTex, skylineTex, table, tvCamera} from './props';
-import {W, type Shot} from './story';
+import {TOTAL, W, type Shot} from './story';
 
 export type Ctx = {f: number; /** frames since the shot began */ t: number; cam: THREE.PerspectiveCamera; shot: Shot};
 export type Light = {sky: string; ground: string; amb: number; key: string; keyI: number; from: V; span: number};
@@ -153,7 +153,7 @@ export const diner: Builder = (root) => {
       paneM.color.set('#ffe2a8').multiplyScalar(dark ? 1.5 : v === 'crew' ? 0.8 : 0.95); doorM.color.set(dark ? '#ffe2a8' : '#bfe6ff').multiplyScalar(dark ? 1.3 : 0.9);
       signM.color.set('#ffffff').multiplyScalar(dark ? 1.35 + 0.12 * Math.sin(f * 0.9) : 1.05); op(glowS, dark ? 0.3 : 0); glowW.forEach((g) => op(g, dark ? 0.22 : 0));
       teen.node.visible = v === 'job'; teen.show(f >= W(31) ? 'hi' : 'a'); teen.node.position.y = hop(f, W(31), 0.07, 8); teen.tick(f, cam);
-      rep.node.visible = tv.visible = v === 'crew'; rep.show(f >= W(202) ? 'b' : 'a'); rep.tick(f, cam);
+      rep.node.visible = tv.visible = v === 'crew'; rep.show(f >= W(213) ? 'b' : 'a'); rep.tick(f, cam);
     },
   };
 };
@@ -258,7 +258,7 @@ export const chip: Builder = (root) => {
     light: (v) => v === 'ai' ? {...LIGHT.dark, amb: 1.25, keyI: 1.0, key: '#d8ffd8'} : {...LIGHT.show, sky: '#c8ffd8', ground: '#2a5a44', amb: 1.2},
     tick: ({f, cam, shot}) => {
       const v = shot.v, peak = v === 'peak', ai = v === 'ai', plaster = v === 'aid' || v === 'rip';
-      const top = W(17) - 4, R = W(215), k = ai ? smooth(f, shot.at, shot.at + 10) : plaster ? smooth(f, R + 4, R + 16) : peak ? 0.5 : 0;
+      const top = W(17) - 4, R = W(226), k = ai ? smooth(f, shot.at, shot.at + 10) : plaster ? smooth(f, R + 4, R + 16) : peak ? 0.5 : 0;
       dieM.color.set('#ffffff').lerp(new THREE.Color('#9dff8a'), k).multiplyScalar(1 + (ai ? 0.9 : 0.7) * k + (ai ? 0.25 * Math.sin(f * 0.5) : 0));
       op(glow, peak ? 0.26 : ai ? 0.12 + 0.2 * k : 0.1 + 0.2 * k);
       pulse(f, ai && f >= W(103) - 2, [0, 1.46, 0], 2.6, 0, 0.045, true); sparks(f, peak && f >= top);
@@ -311,7 +311,9 @@ export const office: Builder = (root) => {
       he.node.visible = v === 'leave'; he.show(f >= R + 12 ? 'c' : f >= R - 2 ? 'b' : 'a'); he.tick(f, cam);
       const k = v === 'leave' ? smooth(f, R - 2, R + 8) : 1;
       badge.visible = v !== 'write' && (v !== 'leave' || f >= R - 2); badge.position.set(lerp(0.95, 0.5, k), lerp(1.15, 0.775, k) + 0.25 * Math.sin(Math.PI * k), lerp(0.3, 0.08, k)); badge.rotation.y = 0.3 + (1 - k) * 2;
-      op(spot, empty ? 0.34 : 0); op(cone1, empty ? 0.035 : 0); op(dim, empty ? 0.45 : 0);
+      // the light over the chair goes down while the last note rings (not to black: the question stays up)
+      const down = empty ? smooth(f, TOTAL - 54, TOTAL - 6) : 0;
+      op(spot, empty ? lerp(0.34, 0.12, down) : 0); op(cone1, empty ? lerp(0.035, 0.008, down) : 0); op(dim, empty ? lerp(0.45, 0.62, down) : 0);
     },
   };
 };

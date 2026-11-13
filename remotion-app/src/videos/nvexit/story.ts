@@ -8,8 +8,9 @@ export type Word = {word: string; start: number; end: number; line: number; ends
 export const WORDS = words as Word[];
 /** frame on which narration word i starts */
 export const W = (i: number) => Math.round(WORDS[i].start * FPS);
-/** hold the closing question long enough to read it and reach for the comments */
-export const TOTAL = Math.round((WORDS[WORDS.length - 1].end + 1.55) * FPS);
+/** seconds after the last word: the closing question is held, and the music has room to end (the same number is TAIL in build_mix.py) */
+export const TAIL = 3.6;
+export const TOTAL = Math.round((WORDS[WORDS.length - 1].end + TAIL) * FPS);
 
 export type Kind = 'kitchen' | 'counter' | 'diner' | 'booth' | 'chip' | 'office' | 'map' | 'ware' | 'racks' | 'paper' | 'case' | 'floor' | 'board' | 'chart' | 'release' | 'podium' | 'stage' | 'copier';
 export type Shot = {
@@ -85,21 +86,23 @@ export const SHOTS: Shot[] = [
   // 9  "Thursday, after thirty-three years, he resigned. Nvidia's statement doesn't say why."
   s(160, 'office', 'leave', [2.0, 1.6, 5.4], [0.62, 1.3, -0.2], 42, {push: 0.06}),                          // 29
   s(166, 'release', 'why', [0.2, 1.65, 5.6], [0, 1.6, 0], 42, {push: 0.07}),                                // 30
-  // 10 "China calls the spy claim a smear. The Justice Department says it has reached no conclusion. And he denies any knowledge of it."
-  s(171, 'podium', 'china', [-1.3, 1.65, 5.0], [0, 1.5, 0], 42, {push: 0.06}),                              // 31
-  s(178, 'podium', 'doj', [1.0, 1.65, 3.9], [0.05, 1.55, 0], 42, {push: 0.06}),                             // 32
-  s(187, 'stage', 'deny', [0.4, 1.5, 3.8], [0, 1.3, 0], 42, {push: 0.07}),                                  // 33
-  // 11 "That Denny's booth had a plaque. N.B.C. News visited Thursday. It was gone."
-  s(194, 'booth', 'plaque', [0.4, 1.75, 2.4], [-0.05, 1.9, -1.3], 42, {push: 0.06}),                        // 34
-  s(200, 'diner', 'crew', [1.6, 1.6, 5.6], [-0.1, 1.4, 0.4], 42, {push: 0.05}),                             // 35
-  s(204, 'booth', 'gone', [0.4, 1.75, 2.4], [-0.05, 1.9, -1.3], 42, {push: 0.1}),                           // 36  the same place as 34, so that the eye can compare
-  // 12 "One analyst says the board had to, quote, rip off the Band-Aid. Another says his knowledge is, quote, impossible to replicate."
-  s(207, 'chip', 'aid', [-1.0, 2.9, 4.6], [0, 1.35, 0], 42, {push: 0.08}),                                  // 37
-  s(214, 'chip', 'rip', [-1.0, 2.9, 4.6], [0, 1.35, 0], 42, {join: true}),                                  // 38  one take with 37
-  s(219, 'copier', 'scan', [0.1, 1.5, 5.1], [0.06, 1.25, 0.25], 42, {push: 0.04}),                          // 39
-  s(224, 'copier', 'print', [0.1, 1.5, 5.1], [0.06, 1.25, 0.25], 42, {join: true}),                         // 40  one take with 39
-  // 13 "So, can Nvidia replace him?"
-  s(228, 'office', 'empty', [0.15, 1.6, 4.6], [0, 1.35, -0.6], 42, {to: [0, 1.65, 5.3]}),                   // 41  it backs away a little
+  // 10 "The same day, Reuters reported a third relationship, with another employee."   (read in a second call and put into the take)
+  s(171, 'paper', 'third', [-0.35, 1.6, 5.5], [0, 1.56, 0], 42, {push: 0.07}),                              // 31
+  // 11 "China calls the spy claim a smear. The Justice Department says it has reached no conclusion. And he denies any knowledge of it."
+  s(182, 'podium', 'china', [-1.3, 1.65, 5.0], [0, 1.5, 0], 42, {push: 0.06}),                              // 32
+  s(189, 'podium', 'doj', [1.0, 1.65, 3.9], [0.05, 1.55, 0], 42, {push: 0.06}),                             // 33
+  s(198, 'stage', 'deny', [0.4, 1.5, 3.8], [0, 1.3, 0], 42, {push: 0.07}),                                  // 34
+  // 12 "That Denny's booth had a plaque. N.B.C. News visited Thursday. It was gone."
+  s(205, 'booth', 'plaque', [0.4, 1.75, 2.4], [-0.05, 1.9, -1.3], 42, {push: 0.06}),                        // 35
+  s(211, 'diner', 'crew', [1.6, 1.6, 5.6], [-0.1, 1.4, 0.4], 42, {push: 0.05}),                             // 36
+  s(215, 'booth', 'gone', [0.4, 1.75, 2.4], [-0.05, 1.9, -1.3], 42, {push: 0.1}),                           // 37  the same place as 35, so that the eye can compare
+  // 13 "One analyst says the board had to, quote, rip off the Band-Aid. Another says his knowledge is, quote, impossible to replicate."
+  s(218, 'chip', 'aid', [-1.0, 2.9, 4.6], [0, 1.35, 0], 42, {push: 0.08}),                                  // 38
+  s(225, 'chip', 'rip', [-1.0, 2.9, 4.6], [0, 1.35, 0], 42, {join: true}),                                  // 39  one take with 38
+  s(230, 'copier', 'scan', [0.1, 1.5, 5.1], [0.06, 1.25, 0.25], 42, {push: 0.04}),                          // 40
+  s(235, 'copier', 'print', [0.1, 1.5, 5.1], [0.06, 1.25, 0.25], 42, {join: true}),                         // 41  one take with 40
+  // 14 "So, can Nvidia replace him?"
+  s(239, 'office', 'empty', [0.15, 1.6, 4.6], [0, 1.35, -0.6], 42, {to: [0, 1.65, 5.3]}),                   // 42  it backs away a little
 ];
 /** shot on screen at frame f */
 export const shotAt = (f: number) => { let i = 0; while (i + 1 < SHOTS.length && SHOTS[i + 1].at <= f) i++; return i; };

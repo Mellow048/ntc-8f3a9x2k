@@ -3,8 +3,10 @@
     python shoots/nvidia-exit/build_voice.py [--target-seconds 66] [--max-tempo 1.2]
     python shoots/nvidia-exit/build_voice.py --beats-only     # only add the BEATS to an existing voice.wav
 
-Input   voice/raw-take.mp3  the approved Arena TTS read (voice-15) as it came, kept so the pace can be changed later
-                            (voice/v15.tmp.wav, the uncompressed and uncommitted original, is used instead if present)
+Input   voice/raw-take.mp3     the approved Arena TTS read (voice-15) as it came, kept so the pace can be changed later
+        voice/pickup-take.mp3  a second call to the same voice, made after the first delivery: narration lines 9, 10 and 11.
+                               Only line 10 is used (the sentence the user asked for); 9 and 11 were read with it so that it is
+                               spoken as it would have been inside the take, and so that the two reads can be compared.
 Output  voice/voice.wav     mastered narration, 48 kHz mono (pauses tightened, tone nearly untouched, tempo lift)
         voice/words.json    one entry per spoken word: display text, start and end in seconds
         voice/timing.json   how the track was made (tempo, cuts, duration, loudness)
@@ -12,7 +14,7 @@ Output  voice/voice.wav     mastered narration, 48 kHz mono (pauses tightened, t
 
 The pauses of the take are tightened, so deliberate beats (BEATS below) are put back at the end: silence before and
 after "On Thursday, he resigned", after each "Quote" and each quotation, after the chips that came back, before the
-story turns ("ChatGPT"), after "doesn't say why", after "It was gone" and before the closing question.
+story turns ("ChatGPT"), after "doesn't say why", after the third report, after "It was gone" and before the closing question.
 The picture, captions and sound follow words.json, so they move with it.
 
 Word times come from PocketSphinx forced alignment of the *raw* take (natural pace
@@ -39,6 +41,8 @@ sys.path.insert(0, str(HERE.parent))
 import voice_master as vm  # noqa: E402
 
 RAW = HERE / "voice" / "raw-take.mp3"
+PICKUP = HERE / "voice" / "pickup-take.mp3"
+PICKUP_LINE = 10          # the narration line that comes from the pickup; the pickup call read lines 9, 10 and 11
 NARRATION = HERE / "narration.txt"
 PICTURE_WORDS = HERE.parents[1] / "remotion-app" / "src" / "videos" / "nvexit" / "words.json"
 
@@ -65,6 +69,7 @@ LEXICON = {
     "taiwan": "T AY W AA N",
     "unfaithful": "AH N F EY TH F AH L",
     "replicate": "R EH P L AH K EY T",
+    "reuters": "R OY T ER Z",
 }
 
 
@@ -112,10 +117,57 @@ def align(x48: np.ndarray, tokens: list[str]) -> list[tuple[float, float]]:
 
 
 # Deliberate beats: (narration line, word, seconds of silence added after that word in the finished read).
+AFTER_PICKUP = 0.2        # the beat after the sentence from the pickup, before "China calls ..."
 BEATS = [(1, "company", 0.12), (1, "resigned", 0.25), (2, "Quote", 0.1), (2, "tables", 0.2), (3, "Quote", 0.1), (3, "out", 0.25), (4, "back", 0.25),
-         (5, "ChatGPT", 0.3), (7, "Quote", 0.1), (7, "wife", 0.25), (9, "why", 0.2), (11, "gone", 0.3), (12, "replicate", 0.2)]
+         (5, "ChatGPT", 0.3), (7, "Quote", 0.1), (7, "wife", 0.25), (9, "why", 0.2), (10, "employee", AFTER_PICKUP), (12, "gone", 0.3), (13, "replicate", 0.2)]
 # Spelled-out initials come with a pause after every letter. (narration line, word, seconds of silence left between its letters)
-SQUEEZE: list = [(5, "A.I.", 0.04), (6, "U.S.", 0.04), (11, "N.B.C.", 0.04)]
+SQUEEZE: list = [(5, "A.I.", 0.04), (6, "U.S.", 0.04), (12, "N.B.C.", 0.04)]
+
+
+def quiet_point(x: np.ndarray, lo: float, hi: float, sr: int = vm.SR) -> int:
+    """The sample in the middle of the quietest 10 ms between `lo` and `hi` seconds: a cut there is not heard."""
+    n, a, b = int(0.01 * sr), int(lo * sr), int(hi * sr)
+    starts = list(range(a, max(a + 1, b - n), n // 2))
+    return starts[int(np.argmin([np.mean(x[i:i + n] ** 2) for i in starts]))] + n // 2
+
+
+def speech_db(x: np.ndarray) -> float:
+    """Level of the 10 ms pieces that hold speech (above -45 dBFS), in dB."""
+    n = len(x) // 480
+    e = (x[: n * 480].reshape(n, 480) ** 2).mean(axis=1)
+    return float(10 * np.log10(e[e > 10 ** -4.5].mean() + 1e-12))
+
+
+def splice_pickup(main: np.ndarray, words: list[dict], sr: int = vm.SR):
+    """The raw take with the pickup's sentence in the pause where it belongs.
+
+    Both reads are aligned. The sentence is cut out of the pickup at the quietest point of the pause on either side of it
+    and goes into the take at the quietest point of the pause between the lines before and after. The two lines that both
+    reads hold say how much louder one read is than the other, and the sentence is brought to the take's level.
+    Everything after this (pauses, tone, pace, loudness) treats the result as one take."""
+    pick = vm.decode(str(PICKUP))
+    rest = [w for w in words if w["line"] != PICKUP_LINE]
+    near = [w for w in words if abs(w["line"] - PICKUP_LINE) <= 1]
+    mt, pt = align(main, [w["token"] for w in rest]), align(pick, [w["token"] for w in near])
+    last = max(k for k, w in enumerate(rest) if w["line"] == PICKUP_LINE - 1)       # the last word before the new sentence, in the take
+    new = [k for k, w in enumerate(near) if w["line"] == PICKUP_LINE]
+    a, b = quiet_point(pick, pt[new[0] - 1][1], pt[new[0]][0]), quiet_point(pick, pt[new[-1]][1], pt[new[-1] + 1][0])
+    at = quiet_point(main, mt[last][1], mt[last + 1][0])
+    span = lambda x, ts: x[int(ts[0][0] * sr): int(ts[-1][1] * sr)]
+    diffs, pace = [], []
+    for line in (PICKUP_LINE - 1, PICKUP_LINE + 1):
+        m = [mt[k] for k, w in enumerate(rest) if w["line"] == line]
+        q = [pt[k] for k, w in enumerate(near) if w["line"] == line]
+        diffs.append(speech_db(span(main, m)) - speech_db(span(pick, q)))
+        pace.append(sum(e - s for s, e in q) / sum(e - s for s, e in m))
+    gain = float(np.clip(np.mean(diffs), -2.0, 2.0))
+    seg, fade = pick[a:b] * 10 ** (gain / 20), int(0.005 * sr)
+    head, tail, ramp = main[:at].copy(), main[at:].copy(), np.linspace(1.0, 0.0, fade)
+    head[-fade:] *= ramp; seg[:fade] *= ramp[::-1]; seg[-fade:] *= ramp; tail[:fade] *= ramp[::-1]
+    info = {"source": PICKUP.name, "line": PICKUP_LINE, "seconds_used": round((b - a) / sr, 3), "from": round(a / sr, 3), "to": round(b / sr, 3),
+            "put_at": round(at / sr, 3), "gain_db": round(gain, 2), "level_difference_db": [round(d, 2) for d in diffs],
+            "pace_of_shared_lines": [round(p, 3) for p in pace]}
+    return np.concatenate([head, seg, tail]), info
 
 
 def add_beats(audio: np.ndarray, words: list[dict], sr: int = vm.SR):
@@ -246,7 +298,8 @@ def main() -> None:
         return
 
     words = script_words()
-    x = vm.decode(str(RAW))
+    take = vm.decode(str(RAW))
+    x, pickup = splice_pickup(take, words)
     raw_times = align(x, [w["token"] for w in words])
 
     # Sentence ends keep a slightly longer breath than commas, so the read still has shape.
@@ -296,7 +349,8 @@ def main() -> None:
             prev["end"] = cur["start"]
 
     info = {"source": RAW.name, "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
-            "raw_seconds": round(len(x) / vm.SR, 2), "tight_seconds": round(len(tight) / vm.SR, 2),
+            "raw_seconds": round(len(take) / vm.SR, 2), "pickup": pickup, "spliced_seconds": round(len(x) / vm.SR, 2),
+            "tight_seconds": round(len(tight) / vm.SR, 2),
             "pauses_cut": len(edits), "tempo": round(tempo, 4),
             "eq": {"bass_shelf_db": args.bass, "presence_db": args.presence}}
     audio, info["squeezed"] = squeeze(final, result)

@@ -8,7 +8,9 @@ const src = fs.readFileSync(`src/videos/${film}/story.ts`, 'utf8');
 const words = JSON.parse(fs.readFileSync(`src/videos/${film}/words.json`, 'utf8'));
 const re = /^\s*s\((\d+), '(\w+)', '(\w+)'/gm; const shots = []; let m;
 while ((m = re.exec(src))) shots.push({word: +m[1], kind: m[2], v: m[3]});
-const at = (i) => Math.max(0, Math.round(words[shots[i].word].start * 30) - 2), total = Math.round((words[words.length - 1].end + 1.55) * 30);
+// seconds held after the last word: a film says so in story.ts (`export const TAIL = 3.6;`); the films before the ninth's second cut held 1.55
+const TAIL = +(src.match(/^export const TAIL = ([\d.]+);/m)?.[1] ?? 1.55);
+const at = (i) => Math.max(0, Math.round(words[shots[i].word].start * 30) - 2), total = Math.round((words[words.length - 1].end + TAIL) * 30);
 const rows = shots.map((s, i) => ({i, ...s, a: at(i), b: (i + 1 < shots.length ? at(i + 1) : total) - 1}));
 const mode = process.argv[3] ?? 'table';
 if (mode === 'mid') console.log(rows.map((r) => Math.round((r.a + r.b) / 2)).join(','));

@@ -17,9 +17,15 @@ second one falling; the units go out on a run up and come back on the same run d
 changes as a computer would, in broken chords on square waves. With the newspaper the key turns to C sharp minor: no
 drums, a bass note on every beat and one thin chord, and never a tune under a quotation. The resignation is the tune's
 first five notes on a music box, slowly, and a toll. The three statements get three chords, each a step higher, and
-settle nothing. Over the plaque the music box plays the tune and breaks off before its end. One analyst gets a chord of
-brass on "rip"; the other gets the whistle's first bar and then the computer's copy of it, with two wrong notes. The
-question hangs on the dominant: the chips answer for A, the whistle for B, and the tune does not come home.
+settle nothing. A third report gets the pulse of the other two, a semitone above the key. Over the plaque the music box plays
+the tune and breaks off before its end. From "It was gone" the film stays in C sharp minor and goes slowly: strings and a
+felt piano under the two analysts (the chord a note at a time, the tune's first three notes, nothing under either
+quotation), the dominant on "impossible to replicate", and home to C sharp minor on the cut to the empty chair. The
+question is asked over the held chord. Then the whistle from the sink, alone and slowly, plays the tune's first five notes
+and the last one is held over C sharp minor: the tune comes home, in the minor.
+
+The elegy was written after the first delivery: the user missed sad music at the end. The first version scored the analysts
+with a low pulse, a chord of brass, a whistled bar and a computer's wrong copy of it, and left the question on the dominant.
 """
 from __future__ import annotations
 
@@ -68,12 +74,13 @@ jsround = lambda x: int(np.floor(x + 0.5))
 Wf = lambda i: jsround(WORDS[i]["start"] * FPS)                # frame a word starts on (same rounding as the picture)
 Wt = lambda i: Wf(i) / FPS
 F = lambda i, d=0: (Wf(i) + d) / FPS                           # the time of "d frames after word i", as the picture counts it
-TOTAL = jsround((WORDS[-1]["end"] + 1.55) * FPS)
+TAIL = 3.6                                                     # seconds after the last word: the question is held and the music ends (TAIL in story.ts)
+TOTAL = jsround((WORDS[-1]["end"] + TAIL) * FPS)
 DUR = TOTAL / FPS
 N = ns(DUR)
 CUTS = [max(0, Wf(int(m)) - 2) for m in re.findall(r"^\s*s\((\d+), '", STORY, re.M)]   # first frame of every shot
-assert len(CUTS) == 42 and CUTS[0] == 0, CUTS
-JOINS = {20, 22, 38, 40}                                         # shots that carry on the take before them: not cuts
+assert len(CUTS) == 43 and CUTS[0] == 0, CUTS
+JOINS = {20, 22, 39, 41}                                         # shots that carry on the take before them: not cuts
 cut_t = lambda i: CUTS[i] / FPS
 shot_end = lambda i: (CUTS[i + 1] if i + 1 < len(CUTS) else TOTAL) / FPS
 smoothstep = lambda f, a, b: (lambda u: u * u * (3 - 2 * u))(min(1.0, max(0.0, (f - a) / (b - a))))   # kit.ts smooth()
@@ -98,6 +105,22 @@ def synth_bass(m, d):
     f, t = I.m2f(m), tt(d)
     y = np.sin(TAU * f * t) + 0.55 * np.sin(TAU * 2 * f * t) * np.exp(-t / 0.14) + 0.4 * np.sin(TAU * 3 * f * t) * np.exp(-t / 0.09) + 0.25 * np.sin(TAU * 4 * f * t) * np.exp(-t / 0.06)
     return fades(y * np.exp(-t / (d * 0.6)), 0.004, 0.03)
+
+
+def piano(m, d=2.4, vel=0.6):
+    """a felt piano, for the elegy: partials a little sharp of the harmonics, the high ones weak (a soft hammer) and the first to die,
+    two strings a cent apart, a small thump from the hammer. Low notes ring longer than high ones."""
+    f, t = I.m2f(m), tt(d)
+    inh, y = 0.0004 * (f / 261.6) ** 1.1, np.zeros_like(t)
+    for k in range(1, int(min(14, 6500 / f)) + 1):
+        fk = k * f * np.sqrt(1 + inh * k * k)
+        amp = k ** -1.3 * np.exp(-(k - 1) / 5.0) * (abs(np.sin(np.pi * k / 8.3)) + 0.12)
+        tau = 1.8 * (261.6 / f) ** 0.45 / (1 + 0.3 * (k - 1))
+        env = 0.7 * np.exp(-t / tau) + 0.3 * np.exp(-t / (3.2 * tau))
+        for cents in (-0.6, 0.7):
+            y += amp * env * np.sin(TAU * fk * 2 ** (cents / 1200) * t + 0.3 * k)
+    y = y / np.abs(y).max() * (1 - np.exp(-t / 0.004)) + lp(R.standard_normal(len(t)), 900) * np.exp(-t / 0.012) * 0.2
+    return fades(y * vel, 0.001, min(0.4, d / 3))
 
 
 def hat(v=0.5):
@@ -214,15 +237,26 @@ def build_music():
         for j, m in enumerate(notes):
             put("comp", voice(m, 1.3), t + gap * j, g, -0.3 + 0.6 * j / max(1, len(notes) - 1))
 
+    def strings(t0, t1, notes, g=0.3, att=0.45, rel=0.8):
+        """a chord on strings, for the second half of the film. The first cut held these chords on a pad at a third of this level, voiced
+        an octave lower: measured above 300 Hz, which is all a phone plays, the music from the newspaper on was 11 to 23 LU under the
+        voice, the range the user rejects as inaudible, and after the first delivery the user missed the music at the end."""
+        put("comp", I.pad([m2f(m) for m in notes], t1 - t0, 0.5, R, att=att, rel=rel, warm=2100.0), t0, g)
+
+    def pno(t, m, g=0.5, d=2.4, p=0.0):
+        put("lead", piano(m, d), t, g, p)
+
     def pulse(t0, t1, root, chord, g=1.0):
-        """the scandal: no drums, a synthesizer bass on every beat, a hat between every other pair, one thin chord"""
+        """the scandal: no drums. A synthesizer bass on every beat with a plucked string an octave over it (the part of the pulse a
+        phone can play), a hat between every other pair, one chord on strings"""
         k = 0
         while t0 + k * BEAT < t1 - 0.05:
             put("bass", subn(root, 0.4), t0 + k * BEAT, 0.8 * g)
+            put("comp", bassn(root + 12, 0.5), t0 + k * BEAT, 0.55 * g, -0.15)
             if k % 2:
                 put("drums", hat(0.22), t0 + k * BEAT + BEAT / 2, 0.6 * g, 0.2)
             k += 1
-        thin(t0, t1, chord, 0.1 * g)
+        strings(t0, t1, chord, 0.3 * g)
 
     # 0-2 (the hook): the whole band, and the boy at the sink whistles the tune. It gets as far as the sixth chord.
     stop = cut_t(3)
@@ -287,14 +321,14 @@ def build_music():
     EVENTS.append((cut_t(19), "the tune, eight-bit", "the server hall: the whistled tune as a computer plays it"))
     EVENTS.append((F(109), "bells", "'ChatGPT': E major on six bells, and the boom stops there"))
     # 21-23: the newspaper: C sharp minor. A semitone over the root on "suspect"
-    pulse(cut_t(21), cut_t(24), 37, (49, 56, 61, 64))
+    pulse(cut_t(21), cut_t(24), 37, (56, 61, 64, 68))
     put("lead", vibe(74, 2.0), F(124), 0.5, -0.1)
-    EVENTS.append((cut_t(21), "a low pulse", "'Two weeks ago, The New York Times ...': C sharp minor; a bass note on every beat, one thin chord, no drums, no tune"))
+    EVENTS.append((cut_t(21), "a low pulse", "'Two weeks ago, The New York Times ...': C sharp minor; a bass note on every beat with a plucked string over it, one chord on strings, no drums, no tune"))
     EVENTS.append((F(124), "one note on the vibraphone", "'suspect': a D over C sharp minor, a semitone that does not belong"))
     # 24, 25: the memo: one chord, held; nothing moves under his words. 26: the board: the bass goes down a third
-    thin(cut_t(24), cut_t(26), (45, 57, 61, 64), 0.1); put("bass", subn(33, 1.6), cut_t(24), 0.7)
-    thin(cut_t(26), cut_t(27), (54, 57, 61), 0.1); put("bass", subn(42, 1.4), cut_t(26), 0.8)
-    EVENTS.append((cut_t(24), "one chord, held", "Sunday, the memo: A major, and nothing under 'I was unfaithful to my wife'"))
+    strings(cut_t(24), cut_t(26), (57, 61, 64, 69), 0.3); put("bass", subn(33, 1.6), cut_t(24), 0.7)
+    strings(cut_t(26), cut_t(27), (57, 61, 66, 69), 0.3); put("bass", subn(42, 1.4), cut_t(26), 0.8)
+    EVENTS.append((cut_t(24), "one chord, held", "Sunday, the memo: A major on strings, and nothing moves under 'I was unfaithful to my wife'"))
     EVENTS.append((cut_t(26), "the bass moves", "'The board kept him': F sharp minor"))
     # 27, 28: Wednesday: the pulse again, on the dominant
     pulse(cut_t(27), cut_t(29), 44, (56, 60, 63, 66))
@@ -302,51 +336,63 @@ def build_music():
     # 29: "after thirty-three years, he resigned": the tune's first five notes on a music box, slowly; a toll on "resigned"
     for j, m in enumerate((83, 80, 76, 80, 73)):
         put("lead", mbox(m, 1.6), cut_t(29) + 0.12 + j * 0.36, 0.55, 0.15)
-    thin(cut_t(29), cut_t(30), (49, 56, 61, 64), 0.1); put("bass", subn(37, 1.5), cut_t(29), 0.7)
+    strings(cut_t(29), cut_t(30), (56, 61, 64), 0.22); put("bass", subn(37, 1.5), cut_t(29), 0.7)
     put("hits", I.timpani(m2f(37), 0.9, R, 2.0), F(165), 0.9); put("lead", vibe(49, 2.2), F(165), 0.6)
     EVENTS.append((cut_t(29) + 0.12, "the tune on a music box", "'Thursday, after thirty-three years': its first five notes, slowly, over C sharp minor"))
     EVENTS.append((F(165), "a toll", "'he resigned': a kettledrum and one low note of the vibraphone, as in the hook"))
     # 30: "doesn't say why": a question on the harp, ending in the air
-    thin(cut_t(30), cut_t(31), (44, 56, 60, 66), 0.1)
+    strings(cut_t(30), cut_t(31), (56, 60, 63, 66), 0.22)
     for j, m in enumerate((68, 72, 75, 78)):
         put("lead", harp(m, 1.2), F(168) + j * 0.15, 0.5, -0.2 + 0.13 * j)
     EVENTS.append((F(168), "a question on the harp", "'doesn't say why': four notes up the dominant, ending in the air"))
-    # 31-33: three statements, three chords, each a step higher; nothing is settled
-    for a, b, low, chord, who in ((cut_t(31), cut_t(32), 42, (54, 57, 61, 66), "China: 'a smear'"), (cut_t(32), cut_t(33), 44, (56, 60, 63, 66), "the Justice Department: 'no conclusion'"),
-                                  (cut_t(33), cut_t(34), 45, (57, 61, 64, 68), "he 'denies any knowledge'")):
-        thin(a, b, chord, 0.11, att=0.15); put("bass", subn(low, 1.6), a, 0.8); put("hits", I.timpani(m2f(low), 0.7, R, 1.2), a, 0.5)
-        EVENTS.append((a, "a chord, a step higher", who + ": F sharp minor, then G sharp, then A; none of them is home"))
-    # 34, 35: the plaque: the tune on a music box, and it breaks off before "It was gone"; 36: nothing
-    for t, d, m in tune(cut_t(34) + 0.1, 4):
-        if t < F(204) - 0.1:
+    # 31: the third report (a line added after the first delivery): the pulse of the other two reports, a semitone above the key,
+    # and a low drum when the page lands
+    pulse(cut_t(31), cut_t(32), 38, (57, 62, 66, 69))
+    put("hits", I.timpani(m2f(38), 0.8, R, 1.6), F(177, 3), 0.7)
+    EVENTS.append((cut_t(31), "the pulse, a semitone up", "'The same day, Reuters reported a third relationship': D major over a low D, a chord from outside the key"))
+    EVENTS.append((F(177, 3), "a low drum", "'third': the page lands on the other two"))
+    # 32-34: three statements, three chords, each a step higher; nothing is settled
+    for a, b, low, chord, who in ((cut_t(32), cut_t(33), 42, (57, 61, 66), "China: 'a smear'"), (cut_t(33), cut_t(34), 44, (56, 60, 63, 68), "the Justice Department: 'no conclusion'"),
+                                  (cut_t(34), cut_t(35), 45, (57, 61, 64, 69), "he 'denies any knowledge'")):
+        strings(a, b, chord, 0.3, att=0.15); put("bass", subn(low, 1.6), a, 0.8); put("hits", I.timpani(m2f(low), 0.7, R, 1.2), a, 0.5)
+        EVENTS.append((a, "a chord, a step higher", who + ": F sharp minor, then G sharp, then A, on strings; none of them is home"))
+    # 35, 36: the plaque: the tune on a music box, and it breaks off before "It was gone"
+    for t, d, m in tune(cut_t(35) + 0.1, 4):
+        if t < F(215) - 0.1:
             put("lead", mbox(m, 1.4), t, 0.5, 0.15); put("lead", glock(m + 12, 0.8), t, 0.12, -0.2)
-    thin(cut_t(34), F(204), (52, 59, 64, 68), 0.08, warm=4000.0)
-    EVENTS.append((cut_t(34) + 0.1, "the tune on a music box", "'That Denny's booth had a plaque': the whistled tune, an octave of bells over it"))
-    EVENTS.append((F(204), "the tune breaks off", "'It was gone': the music box stops before the tune's last two notes, and nothing plays"))
-    # 37, 38: "rip off the Band-Aid": the low pulse, and a chord of brass on "rip"
-    pulse(cut_t(37), F(215), 37, (49, 56, 61, 64), 0.9)
-    for m, w in ((49, 0.5), (56, 0.4), (61, 0.4), (64, 0.35)):
-        put("hits", I.brass(m2f(m), 0.35, 0.9, R, "stab"), F(215), w)
-    put("hits", I.timpani(m2f(37), 0.9, R, 1.4), F(215), 0.8)
-    EVENTS.append((cut_t(37), "the low pulse", "'One analyst says the board had to': C sharp minor again"))
-    EVENTS.append((F(215), "a chord of brass", "'rip': C sharp minor on four horns, and a kettledrum"))
-    # 39, 40: "impossible to replicate": the whistle's first bar, then the machine's copy of it with two wrong notes
-    whistled(tune(cut_t(39) + 0.15, 1), 0.5)
-    for (t, d, m), wrong in zip(tune(F(224, 2), 1), (0, -1, 1)):
-        put("lead", chipn(m + wrong, 0.22), t, 0.4, 0.2)
-    thin(cut_t(39), cut_t(41), (47, 54, 59, 63), 0.08)
-    EVENTS.append((cut_t(39) + 0.15, "the whistle, three notes", "'Another says his knowledge is': the tune's first bar, as he whistled it"))
-    EVENTS.append((F(224, 2), "the copy, wrong", "'impossible to replicate': the same three notes on square waves, the second a semitone flat, the third a semitone sharp"))
-    # 41: the question on the dominant; a sound for each answer; the whistle has the last word and does not come home
-    z0, za, zb = cut_t(41) + 0.05, F(231, 4), F(232, 8)
-    rolled(z0, (47, 54, 59, 63, 66, 69), 0.45); thin(z0, DUR - 0.2, (47, 54, 59, 63), 0.09)
-    for j, m in enumerate((76, 80, 83, 88)):
-        put("lead", chipn(m, 0.12), za + j * 0.07, 0.36, -0.3)
-    whistled([(zb, 0.2, 83), (zb + 0.21, 0.2, 80), (zb + 0.42, 0.2, 76), (zb + 0.63, 0.6, 78)], 0.55, p=0.2)
-    put("bass", subn(35, 1.0), zb + 0.63, 0.8)
-    EVENTS.append((z0, "harp on the dominant", "B with a seventh: the question is coming"))
-    EVENTS.append((za, "the chips' sound", "A, 'YES, IT'S THE CHIPS': four notes up on square waves"))
-    EVENTS.append((zb, "the whistle, and it stops in the air", "B, 'NO, IT WAS HIM': the tune's first three notes, whistled, and a fourth that stays on the dominant: it does not come home"))
+    thin(cut_t(35), F(215), (52, 59, 64, 68), 0.08, warm=4000.0)
+    EVENTS.append((cut_t(35) + 0.1, "the tune on a music box", "'That Denny's booth had a plaque': the whistled tune, an octave of bells over it"))
+    EVENTS.append((F(215), "the tune breaks off", "'It was gone': the music box stops before the tune's last two notes"))
+    # 37-42: the elegy. (Written after the first delivery: the user missed sad music at the end. The first cut had a low pulse and a
+    # chord of brass for one analyst, a whistled bar and a computer's wrong copy of it for the other, and a question left on the
+    # dominant.) From "gone" on the film stays in C sharp minor and goes slowly: strings, a felt piano, and, when the last word has
+    # been said, the whistle from the sink, alone. The chords change where the picture does: C sharp minor (the bare wall, the first
+    # analyst), A on "rip", F sharp minor (the second analyst), G sharp with a seventh on "impossible to replicate", and home to C
+    # sharp minor on the cut to the empty chair. No tune under either quotation: the piano plays before them.
+    EL = 0.36                                                      # the strings of the elegy
+    e0, rip_t, an2, imp, home = F(217, 8), F(226), cut_t(40), F(235), cut_t(42)
+    strings(e0, rip_t, (56, 61, 64, 68), EL, att=0.6); pno(e0, 37, 0.45, 3.0); pno(e0, 49, 0.5, 3.0)
+    for j, m in enumerate((56, 61, 64, 68)):                       # "One analyst says the board had to, quote": the chord, a note at a time, going up
+        pno(cut_t(38) + 0.12 + j * 0.34, m, 0.5 + 0.03 * j, 2.2, -0.2 + 0.12 * j)
+    strings(rip_t, an2, (57, 61, 64, 69), EL); pno(rip_t, 33, 0.45, 3.0); pno(rip_t, 45, 0.55, 3.0); put("hits", I.timpani(m2f(45), 0.6, R, 1.6), rip_t, 0.5)
+    strings(an2, imp, (57, 61, 66, 69), EL); pno(an2 + 0.03, 42, 0.5, 2.6)
+    for j, m in enumerate((71, 68, 64)):                           # "Another says his knowledge is, quote": the tune's first three notes, an octave under the whistle
+        pno(an2 + 0.2 + j * 0.36, m, 0.58, 2.2, 0.1)
+    strings(imp, home, (56, 60, 63, 66), EL); pno(imp, 32, 0.45, 2.6); pno(imp, 44, 0.55, 2.6)
+    # 42, the empty chair: home, in the minor, and the question is asked over the held chord. Then the whistle, slowly, the tune's first
+    # five notes: B, G sharp and E over C sharp minor, G sharp over A, and C sharp, held, over C sharp minor. The tune comes home.
+    z = WORDS[-1]["end"] + 0.16
+    strings(home, z + 1.5, (56, 61, 64, 68, 73), EL, att=0.2); pno(home + 0.03, 37, 0.5, 4.0); pno(home + 0.03, 49, 0.55, 4.0); pno(home + 0.03, 61, 0.4, 4.0)
+    whistled([(z, 0.5, 83), (z + 0.5, 0.5, 80), (z + 1.0, 0.5, 76), (z + 1.5, 0.5, 80), (z + 2.0, 1.4, 73)], 0.5, p=0.0)
+    strings(z + 1.5, z + 2.0, (57, 61, 64, 69), EL * 0.8, att=0.25, rel=0.5); pno(z + 1.5, 45, 0.45, 2.0)
+    strings(z + 2.0, DUR, (56, 61, 64, 68), EL * 0.8, att=0.25, rel=0.3); pno(z + 2.0, 37, 0.5, 3.0); pno(z + 2.0, 49, 0.5, 3.0); pno(z + 2.0, 61, 0.35, 3.0)
+    EVENTS.append((e0, "the elegy begins", "'It was gone': strings and a low piano note, C sharp minor; from here to the end the music is slow and in the minor"))
+    EVENTS.append((cut_t(38) + 0.12, "piano, going up", "'One analyst says the board had to': the chord of C sharp minor, a note at a time"))
+    EVENTS.append((rip_t, "the chord moves", "'rip': A major, a low piano octave and a soft kettledrum; nothing plays a tune under the quotation"))
+    EVENTS.append((an2 + 0.2, "the tune on the piano", "'Another says his knowledge is': its first three notes, slowly, over F sharp minor"))
+    EVENTS.append((imp, "the dominant", "'impossible to replicate': G sharp with a seventh, and a low piano note; it wants to go home"))
+    EVENTS.append((home, "home, in the minor", "the empty chair: C sharp minor, a low C sharp on the piano; the question is asked over the held chord"))
+    EVENTS.append((z, "the whistle, alone", "after the last word: the tune's first five notes, slowly, as the boy at the sink whistled them; the last one, C sharp, is held over C sharp minor: the tune comes home, in the minor"))
 
     dry = 2.2 * BUS["drums"] + BASS_MIX * BUS["bass"] + 0.9 * BUS["comp"] + 1.0 * BUS["lead"] + 0.5 * BUS["hits"]
     send = 0.1 * BUS["drums"] + 0.6 * BUS["comp"] + 0.6 * BUS["lead"] + 0.28 * BUS["hits"] + 0.1 * BUS["bass"]
@@ -516,17 +562,18 @@ def build_sfx(voice_lufs):
     stamps = [(F(16), "$5 TRILLION"), (F(21), "RESIGNED"), (F(48), "1993"), (F(124), "SUSPECTED"), (F(162), "33 YEARS"), (F(168), "NO REASON GIVEN")]
     for t, why in stamps:
         fx(t, thud(), -8.5, 0, "stamp thud", why + " stamp")
-    pops = [(F(0, 2), "name tag: Jensen Huang, Nvidia's CEO for 33 years, a caricature"), (F(8), "1993, East San Jose, California"), (F(17), "a first for any company, October 2025"), (F(19), "Thursday, Nov. 12, 2026"),
+    pops = [(F(0, 2), "name tag: Jensen Huang, Nvidia's CEO for 33 years, a caricature"), (F(8), "1993, East San Jose, California"), (F(17), "a first for any company, October 2025"), (F(19), "announced Thursday, Nov. 12, 2026"),
             (F(24), "born Feb. 17, 1963"), (F(28), "Portland, Oregon, around 1978"), (F(35), "tab: his words, Nvidia's blog, 2023"), (F(52), "Chris Malachowsky and Curtis Priem"), (F(53, 5), "stock cartoon figures, not likenesses"),
             (F(56), "the idea: 3D graphics for the PC"), (F(58), "as Nvidia's blog tells it"), (F(64), "tab: his words, Nvidia's blog, 2023"), (F(82), "the NV1, their first product"), (cut_t(15), "tab: as he tells it, Sequoia's podcast"),
             (cut_t(17) + f_(2), "1997, 'we saved the company'"), (F(102), "graphics chips, made for video games"), (F(105), "its chips train and run A.I. systems"), (F(109), "worth $1 trillion by May 2023"),
             (F(113), "The New York Times, Oct. 29, 2026"), (F(120), "no public word from her, as of Nov. 13"), (F(126), "not established, as of Nov. 13, 2026"), (F(131), "a memo to employees"),
             (F(136), "quote card: 'I was unfaithful to my wife. ... I am deeply sorry.'"), (F(143), "and opened an investigation, Nov. 8"), (F(149), "The New York Times, citing"), (F(150), "five people who worked there"),
             (F(155), "the executive is not named or drawn"), (F(157), "no reply from Nvidia or the executive, NBC"), (F(164), "president, CEO and board member"), (F(170), "the investigation is not mentioned"),
-            (F(174), "quote card: '... it is nothing but smears against China.'"), (F(179), "the U.S. attorney general, Nov. 12, 2026"), (F(184), "the F.B.I. is investigating, he said"), (F(189), "'has denied any knowledge', The Guardian"),
-            (F(191), "he has agreed to testify before Congress"), (F(197), "unveiled with him in September 2023"), (F(200), "NBC News, Thursday, Nov. 12, 2026"), (cut_t(36) + f_(3), "NBC does not say who removed it, or why"),
-            (F(208), "Dan Ives, a U.S. tech analyst"), (F(214), "quote card: '... rip off the Band-Aid and take Nvidia into its next chapter without him.'"), (F(219, 2), "Neil Wilson, an analyst at Saxo UK"),
-            (F(224), "quote card: 'His technical knowledge ... is basically unique and impossible to replicate.'"), (F(229), "CAN NVIDIA REPLACE HIM?"), (F(230, 4), "for now: Colette Kress, the finance chief")]
+            (cut_t(31) + f_(2), "Reuters, Nov. 12, 2026"), (F(174), "citing two people familiar with the matter"), (F(178), "not named; Nvidia declined to comment"),
+            (F(185), "quote card: '... it is nothing but smears against China.'"), (F(190), "the U.S. attorney general, Nov. 12, 2026"), (F(195), "the F.B.I. is investigating, he said"), (F(200), "'has denied any knowledge', The Guardian"),
+            (F(202), "he has agreed to testify before Congress"), (F(208), "unveiled with him in September 2023"), (F(211), "NBC News, Thursday, Nov. 12, 2026"), (cut_t(37) + f_(3), "NBC does not say who removed it, or why"),
+            (F(219), "Dan Ives, a U.S. tech analyst"), (F(225), "quote card: '... rip off the Band-Aid and take Nvidia into its next chapter without him.'"), (F(230, 2), "Neil Wilson, an analyst at Saxo UK"),
+            (F(235), "quote card: 'His technical knowledge ... is basically unique and impossible to replicate.'"), (F(240), "CAN NVIDIA REPLACE HIM?"), (F(241, 4), "for now: Colette Kress, the finance chief")]
     for k, (t, why) in enumerate(pops):
         fx(t, pop(440 + 40 * (k % 3), 980 + 60 * (k % 3), 0.075), -13.5, 0.3 if k % 2 else -0.3, "pop", why)
     for t, why in ((F(129), "calendar leaf: Nov. 8, 2026"), (F(146), "calendar leaf: Nov. 11, 2026")):
@@ -629,31 +676,34 @@ def build_sfx(voice_lufs):
     for k in range(4):
         fx(cut_t(30) + f_(6 + 6 * k), tick(2300.0), -16, -0.3 + 0.2 * k, "tick" if k == 0 else "", "the glass goes along the lines")
     fx(F(169, -2), buzz(0.2, 160.0), -12.5, 0, "buzzer", "a question mark in the glass: no reason is given")
-    # 31-33: three statements
-    for i, (w, d, who) in enumerate(((175, 0, "the spokesman points"), (185, -1, "the attorney general shrugs"), (189, -1, "he shrugs"))):
+    # 31: the third front page lands on the word "third"
+    a = F(177, -12)
+    fx(a, whoosh(0.5, R, peak=0.45, f_lo=400, f_hi=2400, tail=0.1), -14, 0, "paper", "a third front page lands on the two"); fx(a + f_(15), thud(0.6), -10.5, 0, "thud", "it lands")
+    # 32-34: three statements
+    for i, (w, d, who) in enumerate(((186, 0, "the spokesman points"), (196, -1, "the attorney general shrugs"), (200, -1, "he shrugs"))):
         fx(F(w, d), step(), -14, 0, "step", who)
-    for i, t in enumerate((cut_t(31) + 0.25, cut_t(31) + 0.9, cut_t(32) + 0.3, cut_t(32) + 1.1, cut_t(32) + 1.9)):
+    for i, t in enumerate((cut_t(32) + 0.25, cut_t(32) + 0.9, cut_t(33) + 0.3, cut_t(33) + 1.1, cut_t(33) + 1.9)):
         fx(t, shutter(), -15, 0.4 if i % 2 else -0.4, "shutter" if i in (0, 2) else "", "press cameras")
-    # 34: the plaque
-    fx(cut_t(34) + 0.2, ding(2349.0, 0.5), -14.5, -0.2, "ping", "light on the plaque"); fx(cut_t(34) + 0.75, ding(2794.0, 0.5), -15, 0.2)
-    # 35: the crew
-    fx(cut_t(35) + 0.03, breeze(2.4, R, level=0.8), -19, 0, "air", "outside the diner"); fx(cut_t(35) + 0.15, blip(990.0, 0.09), -12.5, -0.3, "blip", "the camera is recording")
-    fx(F(202), step(), -14, 0.3, "step", "the reporter turns to the door")
-    # 36: gone
-    fx(F(206), knock(), -11, 0, "clunk", "four screw holes and a pale patch: a knock on a bare wall")
-    # 38: the plaster
-    fx(F(215), rip(0.3), -9.5, 0, "paper", "the plaster comes off the chip"); fx(F(215, 7), whoosh(0.45, R, peak=0.3, f_lo=500, f_hi=3000, tail=0.15), -14, 0.3, "throw", "and flies off")
-    # 39, 40: the copier
-    A, P = F(219, -2), F(225, -2)
+    # 35: the plaque
+    fx(cut_t(35) + 0.2, ding(2349.0, 0.5), -14.5, -0.2, "ping", "light on the plaque"); fx(cut_t(35) + 0.75, ding(2794.0, 0.5), -15, 0.2)
+    # 36: the crew
+    fx(cut_t(36) + 0.03, breeze(2.4, R, level=0.8), -19, 0, "air", "outside the diner"); fx(cut_t(36) + 0.15, blip(990.0, 0.09), -12.5, -0.3, "blip", "the camera is recording")
+    fx(F(213), step(), -14, 0.3, "step", "the reporter turns to the door")
+    # 37: gone
+    fx(F(217), knock(), -11, 0, "clunk", "four screw holes and a pale patch: a knock on a bare wall")
+    # 39: the plaster
+    fx(F(226), rip(0.3), -9.5, 0, "paper", "the plaster comes off the chip"); fx(F(226, 7), whoosh(0.45, R, peak=0.3, f_lo=500, f_hi=3000, tail=0.15), -14, 0.3, "throw", "and flies off")
+    # 40, 41: the copier
+    A, P = F(230, -2), F(236, -2)
     fx(A + 0.02, hum(1.3, 140.0), -15, 0.3, "copier", "the lamp goes to and fro under the lid")
     for k in range(2):
         fx(A + f_(30 * k + 2), blip(1760.0, 0.06), -15, -0.3, "blip", "a bar of light reads him, top to toe")
     for k in range(7):
         fx(P + f_(7 * k), printer(0.18), -13.5, 0.3, "paper", f"copy {k + 1} of 7 comes out: a scribble and a question mark")
     fx(P + f_(12), buzz(0.26, 196.0), -11.5, 0.2, "buzzer", "the first copy is held up: it is not him")
-    # 41: the empty chair
-    fx(cut_t(41) + 0.03, knock(), -12, 0, "clunk", "a spotlight comes on over the empty chair")
-    fx(F(231, 4), knock(), -12.5, -0.4, "clunk", "A, YES, IT'S THE CHIPS"); fx(F(232, 8), knock(), -12.5, 0.4, "clunk", "B, NO, IT WAS HIM")
+    # 42: the empty chair
+    fx(cut_t(42) + 0.03, knock(), -12, 0, "clunk", "a spotlight comes on over the empty chair")
+    fx(F(242, 4), knock(), -12.5, -0.4, "clunk", "A, YES, IT'S THE CHIPS"); fx(F(243, 8), knock(), -12.5, 0.4, "clunk", "B, NO, IT WAS HIM")
     return buf[:, :N]
 
 

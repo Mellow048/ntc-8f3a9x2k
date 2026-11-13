@@ -2,13 +2,13 @@
 
 Written by `build_mix.py`. All music and effects are synthesized in that script; nothing is sampled.
 
-- length 77.800 s (2334 frames at 30 fps), 48 kHz stereo, 16-bit
-- integrated loudness -14.5 LUFS, true peak -2.7 dBTP, limiter at most 3.3 dB
-- stems at mix gain: voice -15.5 LUFS, music -21.2 LUFS, effects -27.0 LUFS
-- music after ducking: 5.8 LU under the voice while someone speaks, 5.6 LU under it over the whole film
-- the same above 300 Hz (what a phone speaker plays): 6.4 LU under the voice; loudest 200 ms under a spoken word 3.2 LU under it
-- voice over the bed while speaking: median 5.2 LU, 10th percentile 2.2 LU
-- word by word, the voice over music and effects across each word's own span: median 5.5 LU, 10th percentile 2.0 LU, lowest -0.8 LU ('who', word 156); 3 of 233 words under 0; 'company' (word 57) is lifted 2 dB with the bed 2.5 dB down under it; 'out' (word 79) is lifted 1.5 dB with the bed 2 dB down under it; 'booth' (word 61) is lifted 1.5 dB with the bed 2 dB down under it; 'flopped' (word 83) is lifted 1.5 dB with the bed 2 dB down under it; 'company' (word 17) is lifted 1 dB with the bed 1.5 dB down under it
+- length 84.033 s (2521 frames at 30 fps), 48 kHz stereo, 16-bit
+- integrated loudness -14.5 LUFS, true peak -2.7 dBTP, limiter at most 3.4 dB
+- stems at mix gain: voice -15.6 LUFS, music -20.6 LUFS, effects -27.0 LUFS
+- music after ducking: 5.7 LU under the voice while someone speaks, 5.1 LU under it over the whole film
+- the same above 300 Hz (what a phone speaker plays): 6.9 LU under the voice; loudest 200 ms under a spoken word 3.3 LU under it
+- voice over the bed while speaking: median 5.1 LU, 10th percentile 2.2 LU
+- word by word, the voice over music and effects across each word's own span: median 5.5 LU, 10th percentile 2.0 LU, lowest -0.1 LU ('I', word 44); 1 of 244 words under 0; 'company' (word 57) is lifted 2 dB with the bed 2.5 dB down under it; 'out' (word 79) is lifted 1.5 dB with the bed 2 dB down under it; 'booth' (word 61) is lifted 1.5 dB with the bed 2 dB down under it; 'flopped' (word 83) is lifted 1.5 dB with the bed 2 dB down under it; 'company' (word 17) is lifted 1 dB with the bed 1.5 dB down under it
 
 | time s | frame | sound | why |
 |---|---|---|---|
@@ -16,7 +16,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |   0.05 |    2 | water | the tap runs into the sink |
 |   0.10 |    3 | pop | name tag: Jensen Huang, Nvidia's CEO for 33 years, a caricature |
 |   0.30 |    9 | plate | a plate lands on the clean pile, one every nine frames |
-|   2.37 |   71 | swish | on 37 cuts, alternating left and right; none on the 4 joins inside a take |
+|   2.37 |   71 | swish | on 38 cuts, alternating left and right; none on the 4 joins inside a take |
 |   3.47 |  104 | pop | 1993, East San Jose, California |
 |   3.47 |  104 | step | he holds up the napkin |
 |   3.63 |  109 | step | the two engineers light up |
@@ -27,7 +27,7 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |   6.40 |  192 | pop | a first for any company, October 2025 |
 |   7.03 |  211 | the whistle falters | 'On Thursday': the band stops, the whistled note sags a fourth and gives out; one low E |
 |   7.08 |  213 | creak | the empty chair turns, his jacket over its back |
-|   7.27 |  218 | pop | Thursday, Nov. 12, 2026 |
+|   7.27 |  218 | pop | announced Thursday, Nov. 12, 2026 |
 |   7.97 |  239 | a toll | 'resigned': a kettledrum and one low note of the vibraphone |
 |   7.97 |  239 | stamp thud | RESIGNED stamp |
 |   8.83 |  265 | the band, lighter | born in Taiwan, a first job in Portland: bass, brushes, the vibraphone on the beats; no tune |
@@ -60,9 +60,9 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  19.50 |  585 | pen | its pins on the napkin |
 |  19.80 |  594 | pen | a cube on the napkin |
 |  19.83 |  595 | pop | as Nvidia's blog tells it |
-|  20.79 |  624 | crickets | night |
-|  20.79 |  624 | neon | the sign hums |
-|  20.81 |  624 | harp on the dominant | 'Why Denny's?': B with a seventh, and the band waits |
+|  20.82 |  625 | crickets | night |
+|  20.82 |  625 | neon | the sign hums |
+|  20.84 |  625 | harp on the dominant | 'Why Denny's?': B with a seventh, and the band waits |
 |  21.67 |  650 | bass and brushes | 'It had all the coffee you could drink ...': his words again, and no tune under them |
 |  21.73 |  652 | pop | tab: his words, Nvidia's blog, 2023 |
 |  21.77 |  653 | pour | the pot: coffee into a cup |
@@ -101,8 +101,8 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  30.37 |  911 | pop | 1997, 'we saved the company' |
 |  30.53 |  916 | pop | a card: RIVA 128 |
 |  30.53 |  916 | step | a hop |
-|  31.17 |  935 | the changes, eight-bit | 'Then came A.I.': the same four chords broken into quavers on square waves, a synthesizer bass, a hat |
-|  31.20 |  936 | hum | current |
+|  31.20 |  936 | the changes, eight-bit | 'Then came A.I.': the same four chords broken into quavers on square waves, a synthesizer bass, a hat |
+|  31.23 |  937 | hum | current |
 |  31.53 |  946 | pop | graphics chips, made for video games |
 |  31.73 |  952 | blip | the die lights up; rings leave it |
 |  32.53 |  976 | the tune, eight-bit | the server hall: the whistled tune as a computer plays it |
@@ -123,14 +123,14 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  37.30 | 1119 | marker | a red cord across the page |
 |  37.57 | 1127 | tick | a pin in hers |
 |  37.80 | 1134 | pop | no public word from her, as of Nov. 13 |
-|  39.63 | 1189 | one note on the vibraphone | 'suspect': a D over C sharp minor, a semitone that does not belong |
-|  39.63 | 1189 | stamp thud | SUSPECTED stamp |
-|  39.80 | 1194 | step | the second official looks up |
+|  39.67 | 1190 | one note on the vibraphone | 'suspect': a D over C sharp minor, a semitone that does not belong |
+|  39.67 | 1190 | stamp thud | SUSPECTED stamp |
+|  39.83 | 1195 | step | the second official looks up |
 |  40.27 | 1208 | pop | not established, as of Nov. 13, 2026 |
 |  41.37 | 1241 | one chord, held | Sunday, the memo: A major, and nothing under 'I was unfaithful to my wife' |
 |  41.43 | 1243 | flap | calendar leaf: Nov. 8, 2026 |
 |  41.57 | 1247 | keys | he types |
-|  42.17 | 1265 | pop | a memo to employees |
+|  42.20 | 1266 | pop | a memo to employees |
 |  42.57 | 1277 | click | the last key: he stops |
 |  43.33 | 1300 | blip | mail: desk 1 of 5 |
 |  43.47 | 1304 | blip | mail: desk 2 of 5 |
@@ -148,9 +148,9 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  48.00 | 1440 | pop | The New York Times, citing |
 |  48.40 | 1452 | pop | five people who worked there |
 |  49.87 | 1496 | pop | the executive is not named or drawn |
-|  50.43 | 1513 | marker | a yellow line from that box up to his |
-|  50.50 | 1515 | pop | no reply from Nvidia or the executive, NBC |
-|  50.87 | 1526 | ping | the arrow reaches CEO |
+|  50.47 | 1514 | marker | a yellow line from that box up to his |
+|  50.53 | 1516 | pop | no reply from Nvidia or the executive, NBC |
+|  50.90 | 1527 | ping | the arrow reaches CEO |
 |  51.45 | 1544 | the tune on a music box | 'Thursday, after thirty-three years': its first five notes, slowly, over C sharp minor |
 |  52.13 | 1564 | stamp thud | 33 YEARS stamp |
 |  53.07 | 1592 | pop | president, CEO and board member |
@@ -164,55 +164,62 @@ Written by `build_mix.py`. All music and effects are synthesized in that script;
 |  54.70 | 1641 | stamp thud | NO REASON GIVEN stamp |
 |  54.83 | 1645 | buzzer | a question mark in the glass: no reason is given |
 |  55.07 | 1652 | pop | the investigation is not mentioned |
-|  55.73 | 1672 | a chord, a step higher | China: 'a smear': F sharp minor, then G sharp, then A; none of them is home |
-|  55.98 | 1680 | shutter | press cameras |
-|  56.53 | 1696 | pop | quote card: '... it is nothing but smears against China.' |
-|  56.83 | 1705 | step | the spokesman points |
-|  58.10 | 1743 | a chord, a step higher | the Justice Department: 'no conclusion': F sharp minor, then G sharp, then A; none of them is home |
-|  58.23 | 1747 | pop | the U.S. attorney general, Nov. 12, 2026 |
-|  58.40 | 1752 | shutter | press cameras |
-|  59.43 | 1783 | pop | the F.B.I. is investigating, he said |
-|  59.83 | 1795 | step | the attorney general shrugs |
-|  60.80 | 1824 | a chord, a step higher | he 'denies any knowledge': F sharp minor, then G sharp, then A; none of them is home |
-|  61.10 | 1833 | step | he shrugs |
-|  61.13 | 1834 | pop | 'has denied any knowledge', The Guardian |
-|  62.07 | 1862 | pop | he has agreed to testify before Congress |
-|  62.97 | 1889 | the tune on a music box | 'That Denny's booth had a plaque': the whistled tune, an octave of bells over it |
-|  63.07 | 1892 | ping | light on the plaque |
-|  63.67 | 1910 | pop | unveiled with him in September 2023 |
-|  64.50 | 1935 | air | outside the diner |
-|  64.53 | 1936 | pop | NBC News, Thursday, Nov. 12, 2026 |
-|  64.62 | 1939 | blip | the camera is recording |
-|  66.27 | 1988 | step | the reporter turns to the door |
-|  67.30 | 2019 | the tune breaks off | 'It was gone': the music box stops before the tune's last two notes, and nothing plays |
-|  67.33 | 2020 | pop | NBC does not say who removed it, or why |
-|  67.53 | 2026 | clunk | four screw holes and a pale patch: a knock on a bare wall |
-|  68.33 | 2050 | the low pulse | 'One analyst says the board had to': C sharp minor again |
-|  68.60 | 2058 | pop | Dan Ives, a U.S. tech analyst |
-|  69.80 | 2094 | pop | quote card: '... rip off the Band-Aid and take Nvidia into its next chapter without him.' |
-|  70.17 | 2105 | a chord of brass | 'rip': C sharp minor on four horns, and a kettledrum |
-|  70.17 | 2105 | paper | the plaster comes off the chip |
-|  70.40 | 2112 | throw | and flies off |
-|  71.32 | 2140 | copier | the lamp goes to and fro under the lid |
-|  71.37 | 2141 | blip | a bar of light reads him, top to toe |
-|  71.43 | 2143 | pop | Neil Wilson, an analyst at Saxo UK |
-|  71.45 | 2144 | the whistle, three notes | 'Another says his knowledge is': the tune's first bar, as he whistled it |
-|  72.37 | 2171 | blip | a bar of light reads him, top to toe |
-|  72.60 | 2178 | pop | quote card: 'His technical knowledge ... is basically unique and impossible to replicate.' |
-|  72.67 | 2180 | the copy, wrong | 'impossible to replicate': the same three notes on square waves, the second a semitone flat, the third a semitone sharp |
-|  72.93 | 2188 | paper | copy 1 of 7 comes out: a scribble and a question mark |
-|  73.17 | 2195 | paper | copy 2 of 7 comes out: a scribble and a question mark |
-|  73.33 | 2200 | buzzer | the first copy is held up: it is not him |
-|  73.40 | 2202 | paper | copy 3 of 7 comes out: a scribble and a question mark |
-|  73.63 | 2209 | paper | copy 4 of 7 comes out: a scribble and a question mark |
-|  73.87 | 2216 | paper | copy 5 of 7 comes out: a scribble and a question mark |
-|  74.10 | 2223 | paper | copy 6 of 7 comes out: a scribble and a question mark |
-|  74.33 | 2230 | paper | copy 7 of 7 comes out: a scribble and a question mark |
-|  74.56 | 2237 | clunk | a spotlight comes on over the empty chair |
-|  74.58 | 2238 | harp on the dominant | B with a seventh: the question is coming |
-|  75.10 | 2253 | pop | CAN NVIDIA REPLACE HIM? |
-|  75.40 | 2262 | pop | for now: Colette Kress, the finance chief |
-|  75.80 | 2274 | clunk | A, YES, IT'S THE CHIPS |
-|  75.80 | 2274 | the chips' sound | A, 'YES, IT'S THE CHIPS': four notes up on square waves |
-|  76.33 | 2290 | clunk | B, NO, IT WAS HIM |
-|  76.33 | 2290 | the whistle, and it stops in the air | B, 'NO, IT WAS HIM': the tune's first three notes, whistled, and a fourth that stays on the dominant: it does not come home |
+|  55.73 | 1672 | the pulse, a semitone up | 'The same day, Reuters reported a third relationship': D major over a low D, a chord from outside the key |
+|  55.80 | 1674 | pop | Reuters, Nov. 12, 2026 |
+|  56.63 | 1699 | pop | citing two people familiar with the matter |
+|  57.23 | 1717 | paper | a third front page lands on the two |
+|  57.73 | 1732 | a low drum | 'third': the page lands on the other two |
+|  57.73 | 1732 | thud | it lands |
+|  57.93 | 1738 | pop | not named; Nvidia declined to comment |
+|  59.90 | 1797 | a chord, a step higher | China: 'a smear': F sharp minor, then G sharp, then A; none of them is home |
+|  60.15 | 1805 | shutter | press cameras |
+|  60.73 | 1822 | pop | quote card: '... it is nothing but smears against China.' |
+|  61.00 | 1830 | step | the spokesman points |
+|  62.27 | 1868 | a chord, a step higher | the Justice Department: 'no conclusion': F sharp minor, then G sharp, then A; none of them is home |
+|  62.43 | 1873 | pop | the U.S. attorney general, Nov. 12, 2026 |
+|  62.57 | 1877 | shutter | press cameras |
+|  63.60 | 1908 | pop | the F.B.I. is investigating, he said |
+|  64.00 | 1920 | step | the attorney general shrugs |
+|  65.00 | 1950 | a chord, a step higher | he 'denies any knowledge': F sharp minor, then G sharp, then A; none of them is home |
+|  65.27 | 1958 | step | he shrugs |
+|  65.30 | 1959 | pop | 'has denied any knowledge', The Guardian |
+|  66.23 | 1987 | pop | he has agreed to testify before Congress |
+|  67.13 | 2014 | the tune on a music box | 'That Denny's booth had a plaque': the whistled tune, an octave of bells over it |
+|  67.23 | 2017 | ping | light on the plaque |
+|  67.87 | 2036 | pop | unveiled with him in September 2023 |
+|  68.66 | 2060 | air | outside the diner |
+|  68.70 | 2061 | pop | NBC News, Thursday, Nov. 12, 2026 |
+|  68.78 | 2064 | blip | the camera is recording |
+|  70.47 | 2114 | step | the reporter turns to the door |
+|  71.50 | 2145 | the tune breaks off | 'It was gone': the music box stops before the tune's last two notes |
+|  71.53 | 2146 | pop | NBC does not say who removed it, or why |
+|  71.70 | 2151 | clunk | four screw holes and a pale patch: a knock on a bare wall |
+|  71.97 | 2159 | the elegy begins | 'It was gone': strings and a low piano note, C sharp minor; from here to the end the music is slow and in the minor |
+|  72.62 | 2179 | piano, going up | 'One analyst says the board had to': the chord of C sharp minor, a note at a time |
+|  72.77 | 2183 | pop | Dan Ives, a U.S. tech analyst |
+|  73.97 | 2219 | pop | quote card: '... rip off the Band-Aid and take Nvidia into its next chapter without him.' |
+|  74.37 | 2231 | paper | the plaster comes off the chip |
+|  74.37 | 2231 | the chord moves | 'rip': A major, a low piano octave and a soft kettledrum; nothing plays a tune under the quotation |
+|  74.60 | 2238 | throw | and flies off |
+|  75.52 | 2266 | copier | the lamp goes to and fro under the lid |
+|  75.57 | 2267 | blip | a bar of light reads him, top to toe |
+|  75.63 | 2269 | pop | Neil Wilson, an analyst at Saxo UK |
+|  75.70 | 2271 | the tune on the piano | 'Another says his knowledge is': its first three notes, slowly, over F sharp minor |
+|  76.57 | 2297 | blip | a bar of light reads him, top to toe |
+|  76.80 | 2304 | pop | quote card: 'His technical knowledge ... is basically unique and impossible to replicate.' |
+|  76.80 | 2304 | the dominant | 'impossible to replicate': G sharp with a seventh, and a low piano note; it wants to go home |
+|  77.13 | 2314 | paper | copy 1 of 7 comes out: a scribble and a question mark |
+|  77.37 | 2321 | paper | copy 2 of 7 comes out: a scribble and a question mark |
+|  77.53 | 2326 | buzzer | the first copy is held up: it is not him |
+|  77.60 | 2328 | paper | copy 3 of 7 comes out: a scribble and a question mark |
+|  77.83 | 2335 | paper | copy 4 of 7 comes out: a scribble and a question mark |
+|  78.07 | 2342 | paper | copy 5 of 7 comes out: a scribble and a question mark |
+|  78.30 | 2349 | paper | copy 6 of 7 comes out: a scribble and a question mark |
+|  78.53 | 2356 | paper | copy 7 of 7 comes out: a scribble and a question mark |
+|  78.73 | 2362 | home, in the minor | the empty chair: C sharp minor, the piano's lowest C sharp; the question is asked over the held chord |
+|  78.76 | 2363 | clunk | a spotlight comes on over the empty chair |
+|  79.30 | 2379 | pop | CAN NVIDIA REPLACE HIM? |
+|  79.60 | 2388 | pop | for now: Colette Kress, the finance chief |
+|  80.00 | 2400 | clunk | A, YES, IT'S THE CHIPS |
+|  80.50 | 2415 | clunk | B, NO, IT WAS HIM |
+|  80.60 | 2418 | the whistle, alone | after the last word: the tune's first five notes, slowly, as the boy at the sink whistled them; the last one, C sharp, is held over C sharp minor: the tune comes home, in the minor |

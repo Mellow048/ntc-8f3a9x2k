@@ -5,7 +5,7 @@ import {WORDS, type Word} from './story';
 
 type Caption = {start: number; end: number; text: string; hot: boolean};
 /** words that carry the story get the accent colour */
-const HOT = /^(dishes|booth|five-trillion-dollar|resigned|taiwan|fifteen|dishwasher|busboy|tables|ninety-three|engineers|coffee|chase|flopped|fifty|forty-nine|back|survived|a\.i\.|chatgpt|businesswoman|spying|unfaithful|kept|second|executive|thirty-three|why|smear|conclusion|denies|plaque|gone|band-aid|impossible|replicate|replace)$/i;
+const HOT = /^(dishes|booth|five-trillion-dollar|resigned|taiwan|fifteen|dishwasher|busboy|tables|ninety-three|engineers|coffee|chase|flopped|fifty|forty-nine|back|survived|a\.i\.|chatgpt|businesswoman|spying|unfaithful|kept|second|executive|third|thirty-three|why|smear|conclusion|denies|plaque|gone|band-aid|impossible|replicate|replace)$/i;
 /** words that stand alone so the pairs after them fall on phrases */
 const SOLO = new Set<number>([]);
 function groups(words: Word[]): Caption[] {
