@@ -17,8 +17,8 @@ facts, script, sets or score. The category rules and the order of work are in [`
 number, command and trap is in [`../PLAYBOOK.md`](../PLAYBOOK.md).
 
 **This is the newest snapshot, and the one to start a new film from.** It was made by following the playbook,
-starting from the seventh film's folders. It was also built twice and rendered three times, and none of that was
-necessary: read "What went wrong" below before you start.
+starting from the seventh film's folders. It was also built twice and rendered three times, where once each would
+have done: read "What went wrong" below before you start.
 
 ## The film in numbers
 
@@ -76,8 +76,8 @@ necessary: read "What went wrong" below before you start.
   the render, read tile by tile. The second render had two agents who crossed into the frame in four frames, which
   the check reported, and a prop cut by the edge at the end of a push. Before a render, make the playbook's last
   pass (section 6, step 7): every tile, the same questions. And look at every entrance frame by frame.
-- **Three places of the final file were looked at only after the user had approved it:** the frames either side of
-  the three joins, and a shot whose props had moved for the last render. They added one line to the known small
+- **Parts of the final file were looked at only after the user had approved it:** the frames either side of the
+  three joins, and a shot whose props had moved for the last render. They added one line to the known small
   things and changed nothing in the file. Look before you deliver.
 
 ## Read in this order
