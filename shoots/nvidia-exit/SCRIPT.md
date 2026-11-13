@@ -4,10 +4,11 @@ News short, ninth in the series (`references/news/`). Made on 2026-11-13, follow
 starting from the eighth film's folders (`restore.py bitcoin-flex --mix`). Film folder
 `remotion-app/src/videos/nvexit/`, composition `NvExitShort`.
 
-The user asked for it on 13 November, while the eighth film was being filed: "wait! the nvidia CEO just resigned. make a
+The user asked for it on 13 November, after the eighth film had been filed and merged: "wait! the nvidia CEO just resigned. make a
 short about that first!" and then "make sure you include in how he started too then ended up resigning."
 
-**Status:** STATUS-LINE
+**Status:** delivered on 13 November 2026 on branch `arena/92d6dc1f-ntc-8f3a9x2k`, with this script. Not yet
+approved, not filed under `references/news/`, no pull request. What was checked and what was not is under Result.
 
 The first film of the series, `references/news/nvidia-spy/`, told an earlier stage of the same story (as of 10
 November, when he was still chief executive). This film shares none of its script, sets or score. It takes over one
@@ -303,3 +304,72 @@ is `audio/cues.md` (204 cues).
   already committed (SHA-256 `b5b6fb507f50814b7ceee419eb13b9f55bd0501dafa2503ddd55a5c8344fd7ef`).
 - Nobody has listened to it: these are measurements. The same checks passed on the eight earlier films, whose mixes
   were built the same way.
+
+## Render
+
+Rendered on GitHub Actions by `.github/workflows/render-short.yml`: twenty parts in parallel, joined, the sound laid
+under, the finished file checked with `templates/scripts/short_qa.py`, and the file and the report committed to the
+branch by the run itself. One full render and one run that reused its picture, both on 13 November 2026.
+
+| Run | Commit | Why it was made |
+|-----|--------|-----------------|
+| `43374926523` | `4fb9bbd` | The only full render (published as `7a090e8`), nine and a half minutes. Its check reported one unplanned jump, frame 780: the NV1 box falling over. The fall is meant. It runs from frame 775 to 782, a little faster on every frame, with a creak as the box starts to tip and a thud when it lands; only the thud was declared, and its ten frames begin at the landing. Picture and sound were left as they are. The creak was added to the declared sounds (`GRAPHIC_SOUNDS` in `build_mix.py`), which puts frames 773-782 (and 213-222, the chair turning) on the list of planned changes. |
+| `43376771682` | `309f02a` | The same picture (`parts_from` the first run), the sound laid under again, the check with the corrected list (published as `49b9f72`), under four minutes. It wrote **the same MP4 as the first run, byte for byte**, and a clean report: the commit changes one line of `qa-report.md` and nothing else. |
+
+```
+gh workflow run render-short.yml --ref <branch> -f composition=NvExitShort \
+  -f mix=shoots/nvidia-exit/audio/mix.wav -f shots=shoots/nvidia-exit/qa-shots.json \
+  -f publish='shoots/nvidia-exit/final-{size}p.mp4' -f size=720 -f chunks=20
+```
+
+Stills for review are made locally: `REVIEW=NvExitReview remotion-app/scripts/pick.sh <dir> <frame,frame,...> 540`,
+tiled with `scripts/sheets.sh`. Where a point of a set lands in the frame: `scripts/project.py`.
+
+## Result
+
+- **File:** [`shoots/nvidia-exit/final-720p.mp4` at commit `49b9f72`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/49b9f72c4ac0cc3cce11241acf85f8c8237a4eea/shoots/nvidia-exit/final-720p.mp4).
+  720x1280, 30 fps, 2334 frames, 77.800 s, 48,474,947 bytes, H.264 with 48 kHz stereo AAC.
+  SHA-256 `03c575ce36fd599bd62ed56ff6eec9c0e4e769dda34a86600934da0af018f27e`.
+- **Finished-file check** (`qa-report.md`, written by the second run): -14.6 LUFS integrated, loudness range 1.7 LU,
+  true peak -1.7 dBFS; no silence; no black, unplanned white or frozen frames; no unplanned frame jumps. The same
+  check run in the sandbox on the same file wrote the same report, character for character. The encode against its
+  WAV (`templates/scripts/aac_check.py`): highest sample -1.74 dBFS against the WAV's -2.70, nothing late, no sample
+  that stands clear of the WAV. The encode added 0.96 dB to the peak; the file is 0.7 dB inside the gate of -1.0.
+- **The cuts and the joins, measured in the finished file** on the check's measure (mean change from one frame to the
+  next). The 37 cuts change the picture by 50.3 or more, 79.3 at the median. At the four joins the picture carries
+  on: into frame 1011 the change is 2.9 (3.0 to 3.1 on the three frames before it: the camera is travelling down the
+  aisle), into 1090 it is 1.4 (1.4 before), into 2092 it is 0.45 (0.5 to 0.6 before), into 2176 it is 2.5 (1.7 to 2.1
+  before and 2.7 after: the bar of light is getting faster). The four frames either side of each were looked at.
+- **Looked at, all of it on still frames, all of it before the delivery:** the cast sheet, twice; 330 local stills in
+  seven rounds (the middle of every shot, twice; the faults found; the first and the last frame of every shot; one
+  frame in every 24 of the whole film; every entrance and every move frame by frame; the coffee shot again); and of
+  the final file: one frame in every 24 (98 frames, every shot at least once, the last second among them), the
+  fourteen frames of the box falling over (771-784), and the sixteen frames round the four joins.
+- **Not done:** nobody has watched the film in motion or listened to it. The sound was measured, not heard; that
+  includes how the voice says the names.
+- **Known small things, left as they are:**
+  - The film is 77.8 seconds, three and a half longer than the others (see Voice).
+  - In the booth the wall clock hangs where lines of text come in: the name line CHRIS MALACHOWSKY AND CURTIS PRIEM
+    touches the top of it (543-560), and the end of the tab HIS WORDS · NVIDIA'S BLOG, 2023 lies on its rim while the
+    night passes (706-752). The hands can be read.
+  - Stamps land over the line above them for a few frames: RESIGNED covers THURSDAY, NOV. 12, 2026 while it comes
+    down, and stands under it from then on.
+  - The counters show numbers that are not facts on their way up ("225,929 OUT", "207,181 BACK") for a few frames
+    each; each stops on its sourced value and holds it. Returned boxes fly across the second counter as they fall.
+  - A caption can hold for one or two frames after a change of shot (the change falls two frames before the next
+    word): DENNY'S BOOTH over the diner at night, CHIP FLOPPED over the belt, THEY SURVIVED over the chip.
+  - The copier's bar of light passes over his face on its way down him, twice. It is meant.
+  - The NV1's box is the film's own (dark blue, a chip, a gold border); it is not a drawing of the real package.
+  - The dotted route on the map runs from Taiwan straight to Oregon (see "Not confirmed").
+  - One word of the narration, "who" (word 156), measures 0.8 LU under music and effects.
+- **The story on the day:** searched again on 13 November 2026 at 05:52 UTC, before the render, and at 06:14 UTC,
+  after it. New since the first reading (04:10): a Senate committee has called on him and the Commerce Secretary to
+  testify on 3 December; a House committee has asked for a closed-door interview and speaks of a subpoena if no date
+  is agreed; Singapore's authorities say they questioned the businesswoman in 2025 and found too little evidence of
+  a crime; the President has said whom he would like as successor; staff are asking for his return. None of it is
+  in the film and none of it contradicts a line of it. As of 06:14 UTC: Colette Kress is interim chief executive and
+  no successor is named; the company has still given no reason; the Justice Department has reached no conclusion;
+  no report of a charge against her or of a word from her; he is reported to have agreed to testify.
+- **What will go out of date:** the two lines that say AS OF NOV. 13; HE HAS AGREED TO TESTIFY BEFORE CONGRESS (once
+  he has, or if he does not); FOR NOW: COLETTE KRESS, THE FINANCE CHIEF (when a successor is named); and the
+  narration's "Thursday", "Sunday", "Wednesday" and "two weeks ago", which are right in the week of 13 November 2026.
