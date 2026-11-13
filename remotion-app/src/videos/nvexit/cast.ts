@@ -336,7 +336,7 @@ export const WAITER: Look = {id: 'waiter', seed: 95, front: 'apron', shirt: '#ff
 export const GUEST = (v = 0): Look => ({id: 'guest' + v, seed: 141 + v * 7, front: v % 2 ? 'tee' : 'hoodie', shirt: '#f3f1ea', hairdo: v % 2 ? 'long' : 'swept', hairColor: HAIR[(v + 2) % 4],
   outfit: {jacket: ['#b8552f', '#6a8f3a', '#8a5aa8'][v % 3], pants: '#3b3f4d', boots: '#2b2b33', hat: null, skin: SKIN[(v * 2 + 1) % 5], build: v % 2 ? 'adult' : 'stout', noButtons: true}});
 /** U.S. officials: invented. */
-export const OFFICIAL = (v = 0): Look => ({id: 'official' + v, seed: 71 + v * 6, front: 'suit', tie: v ? '#8a2f3d' : '#2f4a7a', shirt: '#fbfaf5', hairdo: v ? 'long' : 'swept', hairColor: v ? '#3b271c' : '#b9bcc6', lanyard: '#c9a23a', eyewear: v ? undefined : 'rect',
+export const OFFICIAL = (v = 0): Look => ({id: 'official' + v, seed: 71 + v * 6, front: 'suit', tie: v ? '#8a2f3d' : '#2f4a7a', shirt: '#fbfaf5', hairdo: v ? 'long' : 'swept', hairColor: v ? '#3b271c' : '#7a4a2a', lanyard: '#c9a23a',
   outfit: {jacket: v ? '#3b3f4d' : '#24304f', pants: v ? '#3b3f4d' : '#24304f', boots: '#15161b', hat: null, skin: SKIN[v ? 3 : 0], build: 'adult', noButtons: true}});
 /** A spokesman at a foreign-ministry lectern: a stock figure, no likeness of the man who made the statement. */
 export const SPOKESMAN: Look = {id: 'spokesman', seed: 17, front: 'suit', tie: '#b8232f', shirt: '#fbfaf5', hairdo: 'swept', hairColor: '#1f1c1e', eyewear: 'round',
@@ -345,7 +345,7 @@ export const SPOKESMAN: Look = {id: 'spokesman', seed: 17, front: 'suit', tie: '
 export const ATTORNEY: Look = {id: 'attorney', seed: 201, front: 'suit', tie: '#2f5fa8', shirt: '#fbfaf5', hairdo: 'swept', hairColor: '#5c3c24',
   outfit: {jacket: '#2b3348', pants: '#2b3348', boots: '#15161b', hat: null, skin: SKIN[0], build: 'stout', noButtons: true}};
 /** The board: invented people. */
-export const BOARD = (v = 0): Look => ({id: 'board' + v, seed: 161 + v * 5, front: 'suit', tie: v % 2 ? 'none' : ['#8a2f3d', '#2f5fa8', '#3f7a52'][v % 3], shirt: '#fbfaf5', hairdo: v % 2 ? 'bob' : 'swept', hairColor: ['#b9b6bd', '#3a2a20', '#d9d6cf', '#5c3c24', '#8a8690'][v % 5], eyewear: v % 3 === 0 ? 'rect' : undefined,
+export const BOARD = (v = 0): Look => ({id: 'board' + v, seed: 161 + v * 5, front: 'suit', tie: v % 2 ? 'none' : ['#8a2f3d', '#2f5fa8', '#3f7a52'][v % 3], shirt: '#fbfaf5', hairdo: v % 2 ? 'bob' : 'swept', hairColor: ['#3a2a20', '#8a8690', '#7a4a2a', '#5c3c24', '#a8643a'][v % 5], eyewear: v % 5 === 2 ? 'round' : undefined,
   outfit: {jacket: ['#3b4252', '#4a3f38', '#2f3f4f', '#5a4a6a', '#3a4a44'][v % 5], pants: '#2b2f3a', boots: '#15161b', hat: null, skin: SKIN[(v * 3) % 5], build: v % 3 === 2 ? 'stout' : 'adult', noButtons: true}});
 /** Employees: invented. */
 export const STAFF = (v = 0): Look => ({id: 'staff' + v, seed: 91 + v * 9, front: v % 2 ? 'hoodie' : 'tee', shirt: ['#f3f1ea', '#d9d6cf', '#f3f1ea'][v % 3], lanyard: '#76b900', hairdo: v % 3 === 1 ? 'long' : v % 3 === 2 ? 'bob' : 'swept', hairColor: HAIR[v % 4], eyewear: v % 4 === 3 ? 'round' : undefined,

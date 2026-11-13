@@ -1,8 +1,9 @@
 # Working notes: Jensen Huang, from a Denny's booth to his resignation (news short 9)
 
-Passages copied word for word from pages read on 13 November 2026, 04:05 to 04:40 UTC, so that they survive the
-session. Fetched pages are not saved anywhere else. `SCRIPT.md` beside this file is built from these notes; a word on
-screen claims only what a passage here supports.
+Passages copied word for word from pages read on 13 November 2026 between 04:02 and 04:13 UTC by the sandbox clock
+(one more page, NV-BLOG, at about 04:47 UTC), so that they survive the session. Fetched pages are not saved anywhere
+else. `SCRIPT.md` beside this file is built from these notes; a word on screen claims only what a passage here
+supports.
 
 The user's request, 13 November 2026: "wait! the nvidia CEO just resigned. make a short about that first!" and then
 "make sure you include in how he started too then ended up resigning."
@@ -192,7 +193,7 @@ parts 1 to 4 of 6 read. **The newest state found:**
 - Search excerpt of the same article: "Earlier this month, Nvidia's board launched a probe ... It also expressed
   confidence in him at the time."
 
-**Reactions** (search excerpts, 13 Nov 04:20 UTC; not fetched in full):
+**Reactions** (search excerpts of 13 Nov, in the same eleven minutes; not fetched in full):
 
 - Business Insider, "What smart people in business and tech are saying about Jensen Huang's ouster", 12 Nov 2026: Ross
   Gerber: "Jensen has resigned which is sadly the correct action in this case. Nvidia needs to be bigger than one man";
@@ -237,6 +238,25 @@ read (it holds the biography):
   this week".
 - "Huang's 3.6% stake in Nvidia has given him considerable wealth. His fortune is valued at $145bn, according to
   Bloomberg, the 13th highest in the world."
+
+**NV-BLOG** — NVIDIA Blog, "Jensen Huang Returns to Denny's Where NVIDIA Launched a Trillion-Dollar Vision", September
+2023 (<https://blogs.nvidia.com/blog/nvidia-dennys-trillion/>), read in full on 13 Nov 2026 at about 04:47 UTC. It is
+the first-hand source of both quotes in the narration and of the plaque's unveiling:
+
+- "Denny's CEO Kelli Valade was joined Tuesday by NVIDIA CEO Jensen Huang to unveil a plaque at the Silicon Valley
+  Denny's where NVIDIA's founders hatched their idea for a chip that would enable realistic 3D graphics on personal
+  computers."
+- "Huang got his first job at Denny's in Portland when he was 15."
+- ""I was a dishwasher, I was a busboy, I waited tables," Huang said. "No one can carry more coffee cups than I
+  can.""
+- "In 1993, three friends — Huang, Chris Malachowsky and Curtis Priem — met at Denny's to discuss creating a chip that
+  would enable realistic 3D graphics on personal computers."
+- "The Denny's just off a busy thoroughfare in the heart of Silicon Valley was the perfect place to start a business,
+  said Huang, who lived nearby at the time with his wife and kids."
+- ""It had all the coffee you could drink and no one could chase you out," Huang told Valade."
+- "Huang, whose family immigrated to the United States from Taiwan when he was a child".
+- The page text gives the day only as "Tuesday"; its picture is filed under `/2023/09/`, and Benzinga (below) dates the
+  unveiling to September 2023.
 
 **BZ** — Benzinga, Chris Katje, "Jensen Huang Founded Nvidia At A Denny's ...", May 30, 2025
 (<https://www.benzinga.com/news/education/25/05/45701924/jensen-huang-founded-nvidia-at-a-dennys-now-hes-worth-600x-more-than-the-restaurant-chain>),
@@ -287,6 +307,21 @@ Search excerpts, not fetched: Business Insider profile ("Huang got his first job
 waited tables at a Denny's in Portland." "His uncle sent him to Oneida Baptist Institute in Kentucky"; "As of November
 2026, Huang's net worth is $155 billion, per Bloomberg's Billionaire Index."); inkl / Economic Times, Sept 2026 ("In
 1978, 15-year-old Jensen Huang got his first job as a dishwasher at Denny's", from a March 2024 interview at Stanford).
+
+**Whether she has been charged** (search of 13 Nov, about 04:13 UTC; three pages, none dated 12 or 13 Nov, excerpts only):
+
+- The AGI Clock, 9 Nov 2026, addendum 11 Nov
+  (<https://theagiclock.com/articles/who-is-alice-huang-huang-le-megaspeed-nvidia-life-story/>): "She has not been
+  charged, and Nvidia's board says it has seen no sign that secrets were compromised."
+- BBN Times, 10 Nov 2026
+  (<https://www.bbntimes.com/society/who-is-alice-huang-the-megaspeed-executive-at-the-centre-of-jensen-huang-s-nvidia-scandal>):
+  "No charges have been filed against Alice Huang, and she has not commented publicly."
+- Gulf News, 9 Nov 2026 (<https://gulfnews.com/business/who-is-alice-huang-woman-at-centre-of-nvidia-ceo-probe-1.500741038>):
+  "She has not been charged, and Beijing so far has rejected all claims."
+- None of the pages of 12 or 13 November read for this film says she has been charged, and none says in so many words
+  that she has not. The film therefore does not put NOT CHARGED on screen; it says "suspect", shows the Justice
+  Department's "no conclusion" of 12 November with its date, and says that she has not spoken publicly (The Guardian
+  live, 13 Nov).
 
 ## D. Where the sources differ (the film has to find words every count supports)
 

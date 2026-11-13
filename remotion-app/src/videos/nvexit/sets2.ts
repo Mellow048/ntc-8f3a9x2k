@@ -25,21 +25,25 @@ const LAND: [number, number][][] = [
   [[-168, 66], [-140, 70], [-100, 72], [-80, 70], [-62, 58], [-55, 50], [-70, 44], [-76, 35], [-81, 26], [-90, 29], [-97, 26], [-97, 18], [-88, 16], [-83, 9], [-78, 8], [-105, 21], [-113, 31], [-124, 40], [-125, 49], [-135, 58], [-155, 59]],
   [[-78, 8], [-62, 10], [-50, 0], [-35, -7], [-40, -22], [-58, -38], [-68, -54], [-74, -46], [-71, -18], [-81, -5]],
 ];
-const LON0 = 98, LON1 = 252, LAT0 = 2, LAT1 = 66, MW = 2.3, MH = 1.3, MY = 1.62;
-const mx = (lon: number) => ((lon < 0 ? lon + 360 : lon) - LON0) / (LON1 - LON0), my = (lat: number) => (LAT1 - lat) / (LAT1 - LAT0);
+// the Pacific in the middle: 100 E to 110 W, so that Taiwan and Oregon are on one sheet
+const LON0 = 100, LON1 = 250, LAT0 = -45, LAT1 = 70, MW = 2.3, MH = MW * (LAT1 - LAT0) / (LON1 - LON0), MY = 1.7;
+const east = (lon: number) => (lon < 0 ? lon + 360 : lon);
+const mx = (lon: number) => (east(lon) - LON0) / (LON1 - LON0), my = (lat: number) => (LAT1 - lat) / (LAT1 - LAT0);
 const spot = (lon: number, lat: number): [number, number] => [(mx(lon) - 0.5) * MW, MY + (0.5 - my(lat)) * MH];
-const mapTex = () => tex('map-pacific', 1024, 580, (g, w, h) => {
+const TAIWAN: [number, number][] = [[120.1, 23.6], [121.0, 25.4], [122.0, 25.0], [121.5, 22.7], [120.8, 21.9]];
+const mapTex = () => tex('map-pacific', 1024, 785, (g, w, h) => {
   g.fillStyle = '#2a7fd0'; g.fillRect(0, 0, w, h);
-  g.strokeStyle = 'rgba(255,255,255,.2)'; g.lineWidth = 2; for (let lon = 100; lon <= 250; lon += 15) { g.beginPath(); g.moveTo(mx(lon) * w, 0); g.lineTo(mx(lon) * w, h); g.stroke(); } for (let lat = 10; lat <= 60; lat += 10) { g.beginPath(); g.moveTo(0, my(lat) * h); g.lineTo(w, my(lat) * h); g.stroke(); }
+  g.strokeStyle = 'rgba(255,255,255,.2)'; g.lineWidth = 2; for (let lon = 105; lon <= 245; lon += 15) { g.beginPath(); g.moveTo(mx(lon) * w, 0); g.lineTo(mx(lon) * w, h); g.stroke(); } for (let lat = -30; lat <= 60; lat += 15) { g.beginPath(); g.moveTo(0, my(lat) * h); g.lineTo(w, my(lat) * h); g.stroke(); }
   g.fillStyle = '#e8cf9a'; g.strokeStyle = INK; g.lineWidth = 3; g.lineJoin = 'round';
-  for (const poly of [...LAND, [[120.1, 23.6], [121.0, 25.4], [122.0, 25.0], [121.5, 22.7], [120.8, 21.9]] as [number, number][]]) { g.beginPath(); poly.forEach(([lon, lat], i) => { const x = mx(lon) * w, y = my(lat) * h; if (i) g.lineTo(x, y); else g.moveTo(x, y); }); g.closePath(); g.fill(); g.stroke(); }
+  // a polygon that lies on both sides of Greenwich (Africa) is not on this sheet; the Americas are, east of the date line
+  for (const poly of [...LAND, TAIWAN]) { const lons = poly.map((q) => q[0]); if (Math.min(...lons) < 0 && Math.max(...lons) > 0) continue; g.beginPath(); poly.forEach(([lon, lat], i) => { const x = mx(lon) * w, y = my(lat) * h; if (i) g.lineTo(x, y); else g.moveTo(x, y); }); g.closePath(); g.fill(); g.stroke(); }
 });
 const planeTex = () => tex('plane-icon', 200, 200, (g) => { g.fillStyle = '#ffffff'; g.strokeStyle = INK; g.lineWidth = 9; g.lineJoin = 'round'; g.beginPath(); g.moveTo(178, 100); g.lineTo(120, 86); g.lineTo(74, 22); g.lineTo(56, 26); g.lineTo(80, 88); g.lineTo(40, 90); g.lineTo(24, 68); g.lineTo(12, 70); g.lineTo(22, 100); g.lineTo(12, 130); g.lineTo(24, 132); g.lineTo(40, 110); g.lineTo(80, 112); g.lineTo(56, 174); g.lineTo(74, 178); g.lineTo(120, 114); g.closePath(); g.fill(); g.stroke(); });
 export const map: Builder = (root) => {
   backdrop(root, ['#e8dcc4', '#d8c8a8']);
   panel(root, 12, 7, tmat(tiled(grainTex('map-wall', '#e6d8bc', 0.06), 5, 3)), 0, 3.2, -0.6); floor(root, 12, 8, tmat(tiled(woodTex('map-floor', '#8a5a34', '#5a3a1e'), 4, 3)), 0, 0, 3.4);
   box(root, MW + 0.12, MH + 0.12, 0.04, '#3a2a1e', 0, MY, -0.56); soft(panel(root, MW, MH, smat(mapTex(), 1.0), 0, MY, -0.535)); for (const s of [-1, 1]) cyl(root, 0.035, MW + 0.3, '#5a3a1e', 0, MY + s * (MH / 2 + 0.07), -0.54).rotation.z = Math.PI / 2;
-  const TW = spot(121, 23.8), OR = spot(-122.7, 45.5), mid: [number, number] = [(TW[0] + OR[0]) / 2 - 0.1, MY + 0.86];
+  const TW = spot(121, 23.8), OR = spot(-122.7, 45.5), mid: [number, number] = [(TW[0] + OR[0]) / 2 - 0.1, MY + 0.95];
   const at = (t: number): V => [(1 - t) ** 2 * TW[0] + 2 * t * (1 - t) * mid[0] + t * t * OR[0], (1 - t) ** 2 * TW[1] + 2 * t * (1 - t) * mid[1] + t * t * OR[1], -0.5];
   const pin = grp(root, TW[0], TW[1], -0.5); ball(pin, 0.06, lit('#e3342f', 1.2), 0, 0.13, 0).castShadow = false; const stem = cyl(pin, 0.004, 0.13, '#15121c', 0, 0.065, 0, 0.014, 8); stem.castShadow = false;
   const ring = soft(mesh(root, new THREE.RingGeometry(0.07, 0.092, 32), glass('#e3342f', 1, 1.2), TW[0], TW[1], -0.52));
@@ -71,7 +75,7 @@ export const ware: Builder = (root) => {
   // the dock door, bright with daylight, and the belt that runs to it
   box(root, 3.0, 3.1, 0.1, '#3a3f4a', 0, 1.55, -4.36); const dayM = lamp('#dff1ff', 1.25); soft(panel(root, 2.7, 2.9, dayM, 0, 1.5, -4.3)); for (let i = 0; i < 4; i++) box(root, 2.7, 0.06, 0.06, '#565c68', 0, 3.0 - i * 0.14, -4.28);
   for (const s of [-1, 1]) for (let i = 0; i < 6; i++) box(root, 0.12, 0.16, 0.02, i % 2 ? '#15121c' : '#ffd21f', s * 1.47, 0.08 + i * 0.16, -4.27);
-  const belt = grp(root); box(belt, 0.96, 0.66, 6.0, '#3a3f4a', 0, 0.33, -1.3); box(belt, 0.84, 0.05, 6.0, '#1c1e26', 0, 0.685, -1.3); cyl(belt, 0.085, 0.9, '#8f96a8', 0, 0.66, 1.7).rotation.z = Math.PI / 2;
+  const belt = grp(root); box(belt, 0.96, 0.66, 6.0, '#5a6170', 0, 0.33, -1.3); box(belt, 0.84, 0.05, 6.0, '#262a34', 0, 0.685, -1.3); cyl(belt, 0.085, 0.9, '#aeb4c0', 0, 0.66, 1.7).rotation.z = Math.PI / 2;
   const marks = Array.from({length: 10}, () => { const o = box(belt, 0.84, 0.012, 0.05, '#3a3f4a', 0, 0.716, 0); o.castShadow = false; return o; });
   for (const [x, z] of [[-3.2, -3.4], [3.3, -3.2]]) { box(root, 1.5, 2.6, 0.7, '#565c68', x, 1.3, z); for (let i = 0; i < 3; i++) box(root, 1.2, 0.5, 0.6, i % 2 ? '#b98a5a' : '#a37848', x, 0.45 + i * 0.8, z + 0.08); }
   const mats = [0, 1, 2, 3, 4, 5].map((i) => i === 4 || i === 5 ? new THREE.MeshLambertMaterial({map: nv1Tex()}) : new THREE.MeshLambertMaterial({color: i === 2 ? '#3a2a8a' : '#2a1e6a'}));
@@ -80,13 +84,15 @@ export const ware: Builder = (root) => {
   // one on a little table, under a lamp
   const stand = grp(root, 0, 0, 0.6); box(stand, 0.8, 0.74, 0.5, '#565c68', 0, 0.37, 0); box(stand, 0.9, 0.04, 0.6, '#8f96a8', 0, 0.76, 0); const hero = crate(stand); const lampH = halo(root, 1.1, '#fff0c8', 0, 0, 1.2, 0.3);
   const out = Array.from({length: 9}, () => crate(root));
-  // the pile they come back to: slots round the three of them, filled from the floor up
-  const N = 34, slots: V[] = Array.from({length: N}, (_, i) => { const layer = i < 14 ? 0 : i < 26 ? 1 : 2, j = layer === 0 ? i : layer === 1 ? i - 14 : i - 26, n = [14, 12, 8][layer]; const side = j % 2 ? 1 : -1, k = Math.floor(j / 2);
-    return [side * (1.12 + 0.52 * (k % 2) - layer * 0.1) + (hash(i) - 0.5) * 0.1, 0.18 + layer * 0.36, 0.4 + (k / (n / 2)) * 1.9 - layer * 0.1] as V; });
+  // the pile they come back to: a wall of boxes between the three and us, stacks beside them and behind them
+  const spots: {p: V; rank: number}[] = [];
+  for (let l = 0; l < 3; l++) for (let k = 0; k < 5 - l; k++) { const x = (k - (4 - l) / 2) * 0.47; if (l === 2 && Math.abs(x) < 0.3) continue; spots.push({p: [x + (hash(spots.length) - 0.5) * 0.06, 0.18 + l * 0.36, 3.2 - l * 0.03], rank: l}); }
+  for (let l = 0; l < 4; l++) for (const sx of [-1, 1]) spots.push({p: [sx * (1.1 + 0.05 * hash(l, sx + 3)), 0.18 + l * 0.36, 2.25], rank: l + 0.4});
+  for (let l = 0; l < 2; l++) for (let k = 0; k < 4; k++) spots.push({p: [(k - 1.5) * 0.5, 0.18 + l * 0.36, 1.78], rank: l + 0.7});
+  const slots = spots.sort((p, q) => p.rank - q.rank).map((q) => q.p), N = slots.length;
   const back = slots.map(() => crate(root));
-  const front = [[-0.5, 0.18, 2.5], [0.42, 0.18, 2.62], [0.0, 0.18, 2.3]].map(() => crate(root));
-  const me = actor(root, JENSEN(1), {a: {expr: 'shock', pose: 'panic'}, b: {expr: 'nervous', pose: 'shrug'}, c: {expr: 'grin', pose: 'both', prop: 'card', text: 'RIVA 128', big: true}}, 0, 0, 1.6, {scale: 1.0, res: 1.3, wide: true});
-  const pals = [0, 1].map((i) => actor(root, ENGINEER(i), {a: {expr: 'shock', pose: 'panic'}, b: {expr: 'dazed', pose: 'hang'}, c: {expr: 'relief', pose: 'hang'}}, i ? 0.66 : -0.66, 0, 1.35, {scale: 1.0, res: 1.2, wide: true}));
+  const me = actor(root, JENSEN(1), {a: {expr: 'shock', pose: 'panic'}, b: {expr: 'nervous', pose: 'shrug'}, c: {expr: 'grin', pose: 'both', prop: 'card', text: 'RIVA 128', big: true}}, 0, 0, 2.6, {scale: 1.0, res: 1.3, wide: true});
+  const pals = [0, 1].map((i) => actor(root, ENGINEER(i), {a: {expr: 'shock', pose: 'panic'}, b: {expr: 'dazed', pose: 'hang'}, c: {expr: 'relief', pose: 'hang'}}, i ? 0.62 : -0.62, 0, 2.35, {scale: 1.0, res: 1.2, wide: true}));
   return {
     light: (v) => v === 'flop' ? {...LIGHT.dark, amb: 1.15, keyI: 1.1} : LIGHT.cold,
     tick: ({f, cam, shot}) => {
@@ -97,14 +103,13 @@ export const ware: Builder = (root) => {
       hero.position.set(0.62 * k, 0.96 - 0.78 * fall + 0.1 * Math.sin(Math.PI * k), 0.05 + 0.3 * k); hero.rotation.set(0, 0.12, -1.57 * k);
       // out: they ride away from us into the daylight
       out.forEach((c, i) => { const z = 1.4 - frac(((f - a) * 0.085 + i * 0.66) / 5.94) * 5.94; c.visible = going; c.position.set(0, 0.89, z); c.rotation.y = (hash(i) - 0.5) * 0.3; });
-      // back: they come flying out of the door, and land round the three of them
+      // back: they come flying out of the door, over the belt, and land round the three of them
       const T0 = W(92), per = (W(98) + 4 - T0) / N;
-      back.forEach((c, i) => { const t0 = T0 + i * per, u = Math.min(1, Math.max(0, (f - t0) / 15)), s = slots[i]; c.visible = home && f >= t0; c.position.set(lerp((hash(i, 4) - 0.5) * 1.6, s[0], u), lerp(2.0, s[1], u * u) + 2.3 * Math.sin(Math.PI * u) * (1 - 0.35 * u), lerp(-4.0, s[2], u)); c.rotation.set((1 - u) * (3 + i), (hash(i, 5) - 0.5) * 0.9, (1 - u) * (2 + i * 0.7)); });
-      front.forEach((c, i) => { const t0 = T0 + 14 + i * 16, u = Math.min(1, Math.max(0, (f - t0) / 15)), s = [[-0.5, 0.18, 2.5], [0.42, 0.18, 2.62], [0.0, 0.54, 2.56]][i]; c.visible = home && f >= t0; c.position.set(lerp(0, s[0], u), lerp(2.0, s[1], u * u) + 2.5 * Math.sin(Math.PI * u) * (1 - 0.35 * u), lerp(-4.0, s[2], u)); c.rotation.set((1 - u) * 4, 0.3 * (i - 1), (1 - u) * 3); });
-      const alive = f >= W(99) - 2, card1 = f >= W(100) - 1, duck = f >= T0 + 10 && !alive;
-      me.node.visible = home; pals.forEach((p) => { p.node.visible = home; });
-      me.show(card1 ? 'c' : alive || !duck ? (alive ? 'b' : 'a') : 'b'); me.node.position.y = hop(f, W(100) - 1, 0.1, 8); me.tick(f, cam);
-      pals.forEach((p, i) => { p.show(alive ? 'c' : duck ? 'b' : 'a'); p.node.position.y = hop(f, W(99) + i * 3, 0.06, 8); p.tick(f, cam); });
+      back.forEach((c, i) => { const t0 = T0 + i * per, u = Math.min(1, Math.max(0, (f - t0) / 15)), q = slots[i]; c.visible = home && f >= t0; c.position.set(lerp((hash(i, 4) - 0.5) * 1.4, q[0], u), lerp(2.0, q[1], u * u) + 2.3 * Math.sin(Math.PI * u) * (1 - 0.35 * u), lerp(-4.0, q[2], u)); c.rotation.set((1 - u) * (3 + i), (hash(i, 5) - 0.5) * 0.5 * u, (1 - u) * (2 + i * 0.7)); });
+      const alive = f >= W(99) - 2, card1 = f >= W(100) - 1, duck = f >= T0 + 10;
+      me.node.visible = home; pals.forEach((q) => { q.node.visible = home; });
+      me.show(card1 ? 'c' : duck || alive ? 'b' : 'a'); me.node.position.y = hop(f, W(100) - 1, 0.1, 8); me.tick(f, cam);
+      pals.forEach((q, i) => { q.show(alive ? 'c' : duck ? 'b' : 'a'); q.node.position.y = hop(f, W(99) + i * 3, 0.06, 8); q.tick(f, cam); });
       dayM.color.set('#dff1ff').multiplyScalar(1.25);
     },
   };
@@ -152,7 +157,7 @@ const pageTex = (key: string, second: boolean) => tex('paper-' + key, 680, 840, 
   g.fillStyle = '#8f8a96'; g.fillRect(34, 134, 150, 8); g.fillRect(w - 184, 134, 150, 8);
   g.fillStyle = '#2b2733'; g.fillRect(40, 162, w - 120, 28); g.fillRect(40, 202, w * 0.55, 28);
   bust(g, JENSEN(0), {expr: second ? 'nervous' : 'neutral'}, 40, 256, 270, 330, '#cfe3d0');
-  if (second) { g.fillStyle = '#2b2f3a'; g.fillRect(370, 256, 270, 330); ghost(g, 505, 420, 230); text(g, '?', 505, 436, 150, '#ffe14a'); g.strokeStyle = INK; g.lineWidth = 6; g.strokeRect(370, 256, 270, 330); }
+  if (second) { g.fillStyle = '#2b2f3a'; g.fillRect(370, 256, 270, 330); ghost(g, 505, 440, 250); text(g, '?', 505, 372, 92, '#ffffff'); g.strokeStyle = INK; g.lineWidth = 6; g.strokeRect(370, 256, 270, 330); }
   else bust(g, WOMAN, {}, 370, 256, 270, 330, '#d9d6e3');
   g.fillStyle = '#8f8a96'; for (const x of [40, 370]) { g.fillRect(x, 598, 230, 8); g.fillRect(x, 612, 170, 8); }
   for (let c = 0; c < 3; c++) for (let y = 644; y < h - 30; y += 15) g.fillRect(40 + c * 206, y, 150 + r() * 38, 6);

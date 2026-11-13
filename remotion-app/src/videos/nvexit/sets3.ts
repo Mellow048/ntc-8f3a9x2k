@@ -17,7 +17,7 @@ export const board: Builder = (root) => {
   box(root, 2.5, 1.3, 0.06, '#15121c', 0, 2.5, -3.24); soft(panel(root, 2.36, 1.16, lit('#16301e', 1), 0, 2.5, -3.2)); box(root, 2.36, 0.06, 0.02, lit('#76b900', 1.3), 0, 2.0, -3.18).castShadow = false;
   // the table runs away from us; two sit on each side and one at its head
   box(root, 1.0, 0.08, 3.5, '#4a3626', 0, 0.76, -0.9); box(root, 0.7, 0.7, 3.1, '#3a2a1e', 0, 0.36, -0.9);
-  const SEATS: V[] = [[-0.78, 0.5, 0.15], [0.78, 0.5, 0.15], [-0.78, 0.5, -1.3], [0.78, 0.5, -1.3], [0, 0.5, -2.75]];
+  const SEATS: V[] = [[-0.72, 0.5, 0.15], [0.72, 0.5, 0.15], [-0.74, 0.5, -1.3], [0.74, 0.5, -1.3], [0, 0.5, -2.75]];
   const who = SEATS.map(([x, y, z], i) => actor(root, BOARD(i), {a: {expr: i % 2 ? 'neutral' : 'stern', pose: 'desk', mode: 'sit'}, b: {expr: 'stern', pose: 'think', mode: 'sit'}}, x, y, z, {scale: 1.0, res: 1.1, shadow: 0}));
   for (const [x, z] of [[-0.25, 0.1], [0.22, -0.2], [-0.2, -1.2], [0.24, -1.5], [0, -2.2]]) { const s = panel(root, 0.26, 0.34, lit('#fffdf4', 1), x, 0.805, z); s.rotation.x = -Math.PI / 2; s.rotation.z = (hash(Math.round(z * 10)) - 0.5) * 0.8; }
   for (const [x, z] of [[0.3, 0.3], [-0.3, -0.7], [0.3, -1.0], [-0.28, -2.0]]) cyl(root, 0.035, 0.11, glass('#cfe9f6', 0.55), x, 0.855, z).castShadow = false;
@@ -32,15 +32,15 @@ const boxTex = (key: string, draw: (g: G2, w: number, h: number) => void, bg: st
 export const chart: Builder = (root) => {
   backdrop(root, ['#101826', '#22304a']);
   panel(root, 12, 8, tmat(tiled(grainTex('chart-wall', '#1c2638', 0.05), 5, 3)), 0, 3, -0.4); floor(root, 12, 8, '#141c2c', 0, 0, 3.4);
-  const TOP = 2.45, ROW = 1.5, XS = [-0.74, 0, 0.74], white = lit('#dfe6f2', 1), HOT = 2;
-  soft(panel(root, 0.8, 0.7, smat(boxTex('ceo', (g, w, h) => { bust(g, JENSEN(0), {expr: 'neutral'}, 78, 22, 184, 206, '#cfe3d0'); g.fillStyle = '#76b900'; g.fillRect(5, 236, w - 10, h - 241); text(g, 'CEO', w / 2, 270, 54, '#ffffff'); }, '#fffdf4', 340, 300), 1.0), 0, TOP, -0.36));
-  XS.forEach((x, i) => soft(panel(root, 0.62, 0.56, smat(i === HOT ? boxTex('hot', (g, w, h) => { ghost(g, w / 2, 132, 190); text(g, '?', w / 2, 150, 120, '#ffe14a'); }, '#2b2f3a') : boxTex('exec' + i, (g, w, h) => person(g, w / 2, 150, 150, '#aeb8cc'), '#e6eaf2'), 1.0), x, ROW, -0.36)));
-  const BAR = 1.94; box(root, 0.03, TOP - 0.35 - BAR, 0.01, white, 0, (TOP - 0.35 + BAR) / 2, -0.37).castShadow = false; box(root, 1.51, 0.03, 0.01, white, 0, BAR, -0.37).castShadow = false; for (const x of XS) box(root, 0.03, BAR - ROW - 0.28, 0.01, white, x, (BAR + ROW + 0.28) / 2, -0.37).castShadow = false;
+  const TOP = 2.62, ROW = 1.22, XS = [-0.76, 0, 0.76], white = lit('#dfe6f2', 1), HOT = 2, BAR = 1.82;
+  soft(panel(root, 0.98, 0.865, smat(boxTex('ceo', (g, w, h) => { bust(g, JENSEN(0), {expr: 'neutral'}, 78, 22, 184, 206, '#cfe3d0'); g.fillStyle = '#76b900'; g.fillRect(5, 236, w - 10, h - 241); text(g, 'CEO', w / 2, 270, 54, '#ffffff'); }, '#fffdf4', 340, 300), 1.0), 0, TOP, -0.36));
+  XS.forEach((x, i) => soft(panel(root, 0.68, 0.6, smat(i === HOT ? boxTex('hot', (g, w, h) => { ghost(g, w / 2, 150, 210); text(g, '?', w / 2, 94, 78, '#ffffff'); }, '#2b2f3a') : boxTex('exec' + i, (g, w, h) => person(g, w / 2, 150, 150, '#aeb8cc'), '#e6eaf2'), 1.0), x, ROW, -0.36)));
+  box(root, 0.03, TOP - 0.43 - BAR, 0.01, white, 0, (TOP - 0.43 + BAR) / 2, -0.37).castShadow = false; box(root, 1.55, 0.03, 0.01, white, 0, BAR, -0.37).castShadow = false; for (const x of XS) box(root, 0.03, BAR - ROW - 0.3, 0.01, white, x, (BAR + ROW + 0.3) / 2, -0.37).castShadow = false;
   // the line from that box up to his: who answered to whom
-  const yel = lit('#ffe14a', 1.25), segs: [V, V][] = [[[XS[HOT], ROW + 0.28, -0.35], [XS[HOT], BAR, -0.35]], [[XS[HOT], BAR, -0.35], [0, BAR, -0.35]], [[0, BAR, -0.35], [0, TOP - 0.43, -0.35]]];
+  const yel = lit('#ffe14a', 1.25), segs: [V, V][] = [[[XS[HOT], ROW + 0.3, -0.35], [XS[HOT], BAR, -0.35]], [[XS[HOT], BAR, -0.35], [0, BAR, -0.35]], [[0, BAR, -0.35], [0, TOP - 0.5, -0.35]]];
   const line = segs.map(([a, b]) => { const o = rod(root, a, b, 0.022, yel); o.castShadow = false; return {o, a: new THREE.Vector3(...a), b: new THREE.Vector3(...b)}; });
-  const tip = cone(root, 0.07, 0.13, yel, 0, TOP - 0.41, -0.35, 12); tip.castShadow = false;
-  const ringM = glass('#ffe14a', 0, 1.2), ring = soft(mesh(root, new THREE.RingGeometry(0.42, 0.46, 4, 1, Math.PI / 4), ringM, XS[HOT], ROW, -0.34)); ring.scale.set(1.08, 0.98, 1);
+  const tip = cone(root, 0.07, 0.13, yel, 0, TOP - 0.485, -0.35, 12); tip.castShadow = false;
+  const ringM = glass('#ffe14a', 0, 1.2), ring = soft(mesh(root, new THREE.RingGeometry(0.47, 0.51, 4, 1, Math.PI / 4), ringM, XS[HOT], ROW, -0.34)); ring.scale.set(1.06, 0.95, 1);
   return {
     light: () => LIGHT.show,
     tick: ({f}) => {
@@ -55,12 +55,12 @@ export const chart: Builder = (root) => {
 // ------------------------------------------------------------------ release: the statement, and what is not in it
 const BULLETS = ['Jensen Huang Resigns', 'Colette Kress, Executive Vice President and', 'Chief Financial Officer, Appointed Interim CEO', 'Harvey C. Jones Appointed First-Ever Chair', 'of the Board'];
 const releaseTex = () => tex('release-sheet', 760, 980, (g, w, h) => {
-  g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); g.fillStyle = '#76b900'; g.fillRect(0, 0, w, 24);
+  g.fillStyle = '#ffffff'; g.fillRect(0, 0, w, h); g.fillStyle = '#76b900'; g.fillRect(0, 0, w, 26);
   const L = {font: 'Montserrat', align: 'left'} as const;
-  text(g, 'PRESS RELEASE · NOVEMBER 12, 2026', 56, 232, 25, '#5a6072', {...L, weight: 700});
-  text(g, 'NVIDIA Announces CEO Transition', 56, 290, 44, INK, {...L, weight: 900, maxWidth: w - 112});
-  let y = 366; BULLETS.forEach((s, i) => { const first = i === 0 || i === 1 || i === 3; if (first && i) y += 16; if (first) { g.fillStyle = '#76b900'; g.beginPath(); g.arc(70, y, 8, 0, 7); g.fill(); } text(g, s, 96, y, 28, INK, {...L, weight: 700, maxWidth: w - 150}); y += 38; });
-  const r = rng(3); g.fillStyle = '#c2c7d0'; for (let yy = 610; yy < h - 60; yy += 30) g.fillRect(56, yy, (yy % 150 > 110 ? 0.5 : 0.8 + r() * 0.06) * (w - 112), 11);
+  text(g, 'PRESS RELEASE · NOVEMBER 12, 2026', 56, 96, 27, '#5a6072', {...L, weight: 700});
+  text(g, 'NVIDIA Announces CEO Transition', 56, 160, 46, INK, {...L, weight: 900, maxWidth: w - 112});
+  let y = 244; BULLETS.forEach((t, i) => { const first = i === 0 || i === 1 || i === 3; if (first && i) y += 18; if (first) { g.fillStyle = '#76b900'; g.beginPath(); g.arc(70, y, 9, 0, 7); g.fill(); } text(g, t, 98, y, 30, INK, {...L, weight: 700, maxWidth: w - 150}); y += 42; });
+  const r = rng(3); g.fillStyle = '#c2c7d0'; for (let yy = 520; yy < h - 50; yy += 33) g.fillRect(56, yy, ((yy - 520) % 165 > 120 ? 0.5 : 0.8 + r() * 0.06) * (w - 112), 12);
   g.strokeStyle = '#b9bec8'; g.lineWidth = 6; g.strokeRect(3, 3, w - 6, h - 6);
 });
 export const release: Builder = (root) => {
@@ -74,7 +74,7 @@ export const release: Builder = (root) => {
     light: () => LIGHT.show,
     tick: ({f, shot}) => {
       const a = shot.at, S = W(169) - 2, u = smooth(f, a + 3, S), rows = 3.4, t = u * rows, row = Math.min(rows - 0.4, t), side = Math.floor(t) % 2 ? -1 : 1;
-      lens.position.set(side * lerp(-0.45, 0.45, t - Math.floor(t)) * (f >= S ? 0 : 1) + (f >= S ? 0.1 : 0), 1.3 - row * 0.14, 0.08); lens.scale.setScalar(pop(f, a + 1, 6) * (1 + 0.25 * smooth(f, S, S + 6)));
+      const rest = smooth(f, S - 4, S + 2); lens.position.set(lerp(side * lerp(-0.45, 0.45, t - Math.floor(t)), 0.05, rest), lerp(1.47 - row * 0.115, 1.2, rest), 0.08); lens.scale.setScalar(pop(f, a + 1, 6) * (1 + 0.25 * smooth(f, S, S + 6)));
       q.visible = f >= S; q.scale.setScalar(pop(f, S, 6));
     },
   };
@@ -84,21 +84,23 @@ export const release: Builder = (root) => {
 const star = (g: G2, x: number, y: number, r: number, rot = -Math.PI / 2) => { g.beginPath(); for (let i = 0; i < 10; i++) { const a = rot + i * Math.PI / 5, rr = i % 2 ? r * 0.4 : r; g.lineTo(x + rr * Math.cos(a), y + rr * Math.sin(a)); } g.closePath(); g.fill(); };
 const flagCN = () => tex('flag-cn', 400, 267, (g, w, h) => { g.fillStyle = '#de2910'; g.fillRect(0, 0, w, h); g.fillStyle = '#ffde00'; star(g, 67, 67, 40); for (const [x, y] of [[133, 27], [160, 53], [160, 93], [133, 120]]) star(g, x, y, 13, Math.atan2(67 - y, 67 - x)); });
 export const podium: Builder = (root) => {
+  const RISE = 0.24;
   backdrop(root, ['#15121c', '#2b2733']);
   floor(root, 14, 12, tmat(tiled(grainTex('pod-carpet', '#4a4f5c', 0.08), 5, 5)));
   const red = grp(root), blue = grp(root);
+  box(root, 1.5, RISE, 0.8, '#3a3f4a', 0, RISE / 2, -0.25);
   panel(red, 12, 6, tmat(tiled(foldTex('pod-red', '#9a1826', '#5a0a14', 10), 2.4, 1)), 0, 3, -1.6); panel(blue, 12, 6, tmat(tiled(foldTex('pod-blue', '#1f3f86', '#122650', 10), 2.4, 1)), 0, 3, -1.6);
   lectern(red, 0, 0.3, '#5a3a22', signTex('pod-cn', 580, 210, '#8a1420', '#ffde6a', [['MINISTRY OF', 74, 0.32], ['FOREIGN AFFAIRS', 74, 0.72]], {border: '#ffde6a'}));
   lectern(blue, 0, 0.3, '#6b4a30', signTex('pod-us', 580, 210, '#16223c', '#ffffff', [['DEPARTMENT', 78, 0.32], ['OF JUSTICE', 78, 0.72]], {border: '#c9a23a'}));
   flagPole(red, 1.0, -0.9, flagCN(), {h: 2.2, w: 0.62, left: true}); flagPole(blue, -1.1, -0.9, flagUS(), {h: 2.2, w: 0.62});
-  const cn = actor(red, SPOKESMAN, {a: {expr: 'stern', pose: 'desk'}, b: {expr: 'stern', pose: 'point'}}, 0, 0, -0.2, {scale: 1.0, res: 1.2, wide: true});
-  const us = actor(blue, ATTORNEY, {a: {expr: 'neutral', pose: 'desk'}, b: {expr: 'neutral', pose: 'shrug'}}, 0, 0, -0.2, {scale: 1.0, res: 1.3, wide: true});
+  const cn = actor(red, SPOKESMAN, {a: {expr: 'stern', pose: 'desk'}, b: {expr: 'stern', pose: 'point'}}, 0, RISE, -0.2, {scale: 1.0, res: 1.2, wide: true, shadow: 0});
+  const us = actor(blue, ATTORNEY, {a: {expr: 'neutral', pose: 'desk'}, b: {expr: 'neutral', pose: 'shrug'}}, 0, RISE, -0.2, {scale: 1.0, res: 1.3, wide: true, shadow: 0});
   return {
     light: (v) => v === 'china' ? {...LIGHT.room, key: '#ffe6d0'} : LIGHT.cold,
     tick: ({f, cam, shot}) => {
       const china = shot.v === 'china'; red.visible = china; blue.visible = !china;
-      cn.show(f >= W(175) ? 'b' : 'a'); cn.node.position.y = hop(f, W(175), 0.06, 8); cn.tick(f, cam);
-      us.show(f >= W(185) - 1 ? 'b' : 'a'); us.node.position.y = hop(f, W(185) - 1, 0.06, 8); us.tick(f, cam);
+      cn.show(f >= W(175) ? 'b' : 'a'); cn.node.position.y = RISE + hop(f, W(175), 0.06, 8); cn.tick(f, cam);
+      us.show(f >= W(185) - 1 ? 'b' : 'a'); us.node.position.y = RISE + hop(f, W(185) - 1, 0.06, 8); us.tick(f, cam);
     },
   };
 };
@@ -135,18 +137,23 @@ export const copier: Builder = (root) => {
   box(mc, 0.5, 0.03, 0.46, '#b8bec8', -0.7, 0.6, 0.05).rotation.z = -0.12;
   const sheets = Array.from({length: 7}, (_, i) => soft(mesh(root, new THREE.PlaneGeometry(0.33, 0.44), new THREE.MeshBasicMaterial({map: scribble(i % 3), side: THREE.DoubleSide}), 0, 0, 0)));
   const me = actor(root, JENSEN(0), {a: {expr: 'neutral', pose: 'cross'}, b: {expr: 'smile', pose: 'cross'}}, -0.62, 0, 0.2, {scale: 1.0, res: 1.2, wide: true});
+  // the machine reads him: a bar of green light goes down him, from the lid's edge
+  const beamM = glass('#7dff9a', 0.5, 1.3), bar = soft(panel(root, 0.86, 0.035, beamM, -0.62, 1.0, 0.36)), fan = soft(mesh(root, new THREE.PlaneGeometry(1, 1), glass('#7dff9a', 0.1, 1.2), 0, 0, 0.34));
+  const LAND: V[] = [[0.02, 0.012, 1.25], [0.62, 0.014, 1.55], [-0.28, 0.016, 1.75], [0.36, 0.018, 2.05], [0.98, 0.02, 1.2], [-0.02, 0.022, 2.4]];
   return {
     light: () => LIGHT.cold,
     tick: ({f, cam}) => {
-      const A = W(219) - 2, P = W(225) - 2, scanning = f < P + 60;
-      const sw = 0.5 + 0.5 * Math.sin((f - A) * 0.3); scan.position.z = lerp(-0.3, 0.3, sw); scan.visible = scanning; lid.rotation.x = -0.22; op(scanGlow, 0.16 + 0.1 * sw);
+      const A = W(219) - 2, P = W(225) - 2, scanning = f < P;
+      const sw = 0.5 + 0.5 * Math.sin((f - A) * 0.3); scan.position.z = lerp(-0.3, 0.3, sw); scan.visible = f < P + 60; lid.rotation.x = -0.22; op(scanGlow, 0.16 + 0.1 * sw);
+      const by = lerp(1.74, 0.2, 0.5 - 0.5 * Math.cos((f - A) * 0.21)); bar.visible = fan.visible = scanning; bar.position.y = by;
+      fan.position.set(-0.3, (by + 1.0) / 2, 0.34); fan.scale.set(0.62, Math.max(0.02, Math.abs(by - 1.0)), 1); beamM.opacity = 0.45 + 0.2 * Math.sin(f * 0.9);
       me.show(f >= P + 20 ? 'b' : 'a'); me.tick(f, cam);
-      // sheet after sheet: each one a scribble with a question mark; the first stays up to be read
-      sheets.forEach((s, i) => {
-        const t0 = P + i * 8, u = Math.min(1, Math.max(0, (f - t0) / (i ? 26 : 12))), e = 1 - (1 - u) ** 2;
-        s.visible = f >= t0;
-        if (i === 0) { s.position.set(lerp(CX - 0.7, -0.02, e), lerp(0.66, 1.72, e), lerp(0.1, 1.0, e)); s.rotation.set(0, 0, lerp(1.2, -0.06, e) + 0.03 * Math.sin(f * 0.1)); s.scale.setScalar(lerp(0.4, 1.5, e)); }
-        else { const dir = hash(i) - 0.35; s.position.set(CX - 0.7 + dir * 1.3 * e - 0.25 * e, 0.66 + 1.0 * Math.sin(Math.PI * Math.min(1, u * 1.15)) * (1 - 0.3 * u) - 0.6 * e * e, 0.1 + 1.5 * e); s.rotation.set(-1.2 * e, 0.6 * Math.sin(f * 0.2 + i), (hash(i, 2) - 0.5) * 2 * e); s.scale.setScalar(0.5 + 0.5 * e); }
+      // sheet after sheet: each a scribble with a question mark; the first comes up to be read, the rest land on the floor in front
+      sheets.forEach((q, i) => {
+        const t0 = P + i * 7, u = Math.min(1, Math.max(0, (f - t0) / (i ? 20 : 12))), e = 1 - (1 - u) ** 2;
+        q.visible = f >= t0;
+        if (i === 0) { q.position.set(lerp(CX - 0.7, 0.0, e), lerp(0.66, 1.74, e), lerp(0.1, 1.0, e)); q.rotation.set(0, 0, lerp(1.2, -0.06, e) + 0.03 * Math.sin(f * 0.1)); q.scale.setScalar(lerp(0.4, 1.5, e)); }
+        else { const to = LAND[i - 1]; q.position.set(lerp(CX - 0.7, to[0], u), lerp(0.66, to[1], u * u) + 0.7 * Math.sin(Math.PI * u) * (1 - 0.3 * u), lerp(0.1, to[2], u)); q.rotation.set(-Math.PI / 2 * e, 0, (hash(i, 2) - 0.5) * 2.4 * e + (1 - u) * 3); q.scale.setScalar(0.6 + 0.4 * e); }
       });
     },
   };

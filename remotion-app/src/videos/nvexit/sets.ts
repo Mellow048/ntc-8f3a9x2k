@@ -71,14 +71,14 @@ export const kitchen: Builder = (root) => {
   box(root, 2.6, 0.035, 0.04, '#8f96a8', -1.1, 1.98, -1.66);
   for (let i = 0; i < 6; i++) { const t = panel(root, 0.2, 0.3 + (i % 3) * 0.05, lit(i % 2 ? '#fffdf4' : '#fff3a8', 1), -2.2 + i * 0.44, 1.8 - (i % 3) * 0.025, -1.65); t.rotation.z = (i % 2 ? 1 : -1) * 0.04; }
   box(root, 1.25, 2.4, 0.08, '#c8642c', 2.45, 1.2, -1.66); cyl(root, 0.26, 0.03, lit('#ffe9b0', 1.2), 2.45, 1.6, -1.6).rotation.x = Math.PI / 2; torus(root, 0.27, 0.03, '#8f96a8', 2.45, 1.6, -1.59);
-  // the sink: a steel counter between him and us
+  // the sink: a steel counter between him and us, a basin of suds, a tap, and a pile of plates on either side of him
   box(root, 3.5, 0.9, 0.8, '#aeb7c3', 0, 0.45, 0.5); box(root, 3.6, 0.05, 0.9, '#d5dbe3', 0, 0.925, 0.5); box(root, 3.5, 0.1, 0.02, '#8f96a8', 0, 0.25, 0.91);
-  box(root, 1.1, 0.02, 0.62, '#6f7a8a', 0, 0.953, 0.5);
-  rod(root, [0.72, 0.95, 0.2], [0.72, 1.38, 0.2], 0.03, '#c9ced6'); rod(root, [0.72, 1.38, 0.2], [0.45, 1.42, 0.38], 0.03, '#c9ced6'); rod(root, [0.45, 1.42, 0.38], [0.45, 1.34, 0.4], 0.03, '#c9ced6');
-  soft(mesh(root, new THREE.CylinderGeometry(0.014, 0.014, 0.36, 8), glass('#bfe6ff', 0.8, 1.1), 0.45, 1.15, 0.4));
-  for (let i = 0; i < 9; i++) ball(root, 0.1 + (i % 3) * 0.035, lit('#ffffff', 1), -0.42 + (i % 5) * 0.21 + (i > 4 ? 0.1 : 0), 0.99 + (i % 2) * 0.05, 0.36 + (i % 3) * 0.14).castShadow = false;
-  const N = 18, DX = -1.2, CX = 1.25, dirty = plates(root, DX, 0.95, 0.5, N), clean = plates(root, CX, 0.95, 0.5, N);
-  const fly = cyl(root, 0.102, 0.028, lit('#fffdf4', 1), 0, 0, 0, 0.17, 24); fly.castShadow = false;
+  box(root, 0.52, 0.02, 0.5, '#6f7a8a', 0, 0.953, 0.52);
+  rod(root, [-0.2, 0.95, 0.16], [-0.2, 1.15, 0.16], 0.022, '#c9ced6'); rod(root, [-0.2, 1.15, 0.16], [-0.12, 1.17, 0.34], 0.022, '#c9ced6'); rod(root, [-0.12, 1.17, 0.34], [-0.12, 1.12, 0.36], 0.022, '#c9ced6');
+  soft(mesh(root, new THREE.CylinderGeometry(0.01, 0.01, 0.14, 8), glass('#bfe6ff', 0.8, 1.1), -0.12, 1.04, 0.36));
+  for (let i = 0; i < 9; i++) ball(root, 0.045 + (i % 3) * 0.014, lit('#ffffff', 1), -0.19 + (i % 5) * 0.095 + (i > 4 ? 0.05 : 0), 0.965 + (i % 2) * 0.02, 0.42 + (i % 3) * 0.09).castShadow = false;
+  const N = 18, DX = -0.41, CX = 0.41, dirty = plates(root, DX, 0.95, 0.52, N, 0.13), clean = plates(root, CX, 0.95, 0.52, N, 0.13);
+  const fly = cyl(root, 0.078, 0.028, lit('#fffdf4', 1), 0, 0, 0, 0.13, 24); fly.castShadow = false;
   const bubbles = Array.from({length: 10}, () => soft(mesh(root, new THREE.SphereGeometry(1, 14, 10), glass('#eaf7ff', 0.6, 1.05))));
   const me = actor(root, JENSEN(2), {wash: {expr: 'smile', pose: 'both'}, show: {expr: 'grin', pose: 'wave', prop: 'plate'}}, 0, 0, -0.15, {scale: 1.0, res: 1.3, wide: true, shadow: 0});
   const twinkle = glints(root, [[0.42, 1.62, 0.1]]);
@@ -88,10 +88,11 @@ export const kitchen: Builder = (root) => {
       const dish = shot.v === 'dish', a = shot.at, P = 9, base = dish ? 9 : 0, n = base + Math.max(0, Math.floor((f - a) / P)), k = frac(Math.max(0, f - a) / P), up = dish && f >= W(39);
       // one plate after another leaves the dirty pile, passes through his hands and lands on the clean one
       const nd = Math.max(2, N - n), nc = Math.min(N, 1 + n);
-      dirty.forEach((d, i) => { d.visible = i < nd; d.position.x = DX + 0.0005 * i * i * Math.sin(f * 0.17); });
+      dirty.forEach((d, i) => { d.visible = i < nd; d.position.x = DX + 0.0004 * i * i * Math.sin(f * 0.17); });
       clean.forEach((c, i) => { c.visible = i < nc; });
-      fly.visible = !up && nd > 2; fly.position.set(lerp(DX, CX, k), 0.95 + lerp(nd, nc, k) * 0.03 + 0.5 * Math.sin(Math.PI * k), 0.5); fly.rotation.z = k * Math.PI * 2;
-      bubbles.forEach((b, i) => { const u = frac(f * 0.011 + i / 10); b.position.set(-0.3 + 0.6 * hash(i) + 0.07 * Math.sin(f * 0.07 + i), 1.02 + u * 1.2, 0.45); b.scale.setScalar((0.035 + 0.03 * hash(i, 2)) * (1 - 0.4 * u)); op(b, 0.65 * (1 - u)); });
+      const y0 = 0.97 + nd * 0.03, y1 = 0.97 + nc * 0.03;                                    // down from one pile, through his hands, up onto the other
+      fly.visible = !up && nd > 2; fly.position.set(lerp(DX, CX, k), (1 - k) ** 2 * y0 + 2 * k * (1 - k) * 0.98 + k * k * y1, 0.52); fly.rotation.z = Math.sin(k * Math.PI) * 0.5;
+      bubbles.forEach((b, i) => { const u = frac(f * 0.011 + i / 10); b.position.set((i % 2 ? 1 : -1) * (0.2 + 0.36 * hash(i)) + 0.05 * Math.sin(f * 0.07 + i), 1.02 + u * 1.2, 0.45); b.scale.setScalar((0.035 + 0.03 * hash(i, 2)) * (1 - 0.4 * u)); op(b, 0.65 * (1 - u)); });
       me.show(up ? 'show' : 'wash'); me.node.position.y = hop(f, W(39), 0.06, 8) + 0.012 * Math.sin(f * 0.7); me.tick(f, cam); twinkle(f, up);
     },
   };
@@ -118,7 +119,7 @@ export const counter: Builder = (root) => {
     light: () => LIGHT.warm,
     tick: ({f, cam, shot}) => {
       const a = shot.at;
-      if (shot.v === 'bus') { me.show('w' + (Math.floor((f - a) / 3) % 4)); me.node.position.set(lerp(-1.25, 0.25, (f - a) / 30), 0, 0.8); me.tick(f, cam); }
+      if (shot.v === 'bus') { me.show('w' + (Math.floor((f - a) / 3) % 4)); me.node.position.set(lerp(-0.95, 0.2, (f - a) / 30), 0, 0.8); me.tick(f, cam); }
       else { me.show(f >= W(46) ? 'oops' : 'cups'); me.node.position.set(0.3, 0, 0.9); me.tick(f, cam); me.mesh.rotation.z = 0.035 * Math.sin(f * 0.33) + 0.02 * Math.sin(f * 0.71); }
     },
   };
@@ -136,13 +137,13 @@ export const diner: Builder = (root) => {
   for (const x of [-2.9, -1.0, 2.6]) { box(root, 1.74, 1.24, 0.06, '#3a3f4a', x, 1.55, -1.69); soft(panel(root, 1.6, 1.1, paneM, x, 1.55, -1.65)); box(root, 0.04, 1.1, 0.03, '#3a3f4a', x, 1.55, -1.64); box(root, 1.74, 0.07, 0.16, '#c9c2b4', x, 0.9, -1.64); }
   box(root, 1.0, 2.1, 0.06, '#3a3f4a', 0.9, 1.19, -1.69); soft(panel(root, 0.84, 1.9, doorM, 0.9, 1.2, -1.65)); box(root, 0.04, 0.3, 0.05, '#c9ced6', 0.62, 1.2, -1.62);
   // a low roadside sign of its own
-  box(root, 0.14, 1.5, 0.14, '#3a3f4a', -0.9, 0.75, 0.2); box(root, 1.3, 0.86, 0.14, '#22202a', -0.9, 1.95, 0.2);
+  box(root, 0.14, 1.5, 0.14, '#3a3f4a', -0.55, 0.75, 0.2); box(root, 1.3, 0.86, 0.14, '#22202a', -0.55, 1.95, 0.2);
   const signM = smat(signTex('diner-sign', 600, 380, '#b8232f', '#fff3d6', [['DINER', 210, 0.42], ['OPEN 24 HOURS', 60, 0.83]], {border: '#fff3d6'}), 1.05);
-  soft(panel(root, 1.2, 0.76, signM, -0.9, 1.95, 0.275));
-  const glowS = halo(root, 1.5, '#ff6a4a', 0, -0.9, 1.95, 0.4), glowW = [-2.9, -1.0].map((x) => halo(root, 1.5, '#ffd28a', 0, x, 1.55, -1.5));
-  const teen = actor(root, JENSEN(2), {hi: {expr: 'smile', pose: 'wave'}, a: {expr: 'smile'}}, 0.5, 0, 1.0, {scale: 1.0, res: 1.2, wide: true});
+  soft(panel(root, 1.2, 0.76, signM, -0.55, 1.95, 0.275));
+  const glowS = halo(root, 1.5, '#ff6a4a', 0, -0.55, 1.95, 0.4), glowW = [-2.9, -1.0].map((x) => halo(root, 1.5, '#ffd28a', 0, x, 1.55, -1.5));
+  const teen = actor(root, JENSEN(2), {hi: {expr: 'smile', pose: 'wave'}, a: {expr: 'smile'}}, 0.45, 0, 1.0, {scale: 1.0, res: 1.2, wide: true});
   const rep = actor(root, REPORTER, {a: {expr: 'neutral', pose: 'mask', prop: 'mic'}, b: {expr: 'stern', pose: 'mask', prop: 'mic'}}, 0.55, 0, 0.9, {scale: 1.0, res: 1.2, wide: true});
-  const tv = tvCamera(root, 1.75, 1.9, 0.75, 1.0);
+  const tv = tvCamera(root, 0.2, 2.6, -0.2, 1.0);
   return {
     light: (v) => v === 'why' ? LIGHT.night : v === 'crew' ? {...LIGHT.cold, amb: 1.75} : LIGHT.day,
     tick: ({f, cam, shot}) => {
@@ -179,7 +180,7 @@ export const booth: Builder = (root) => {
   panel(root, 12, 4.4, tmat(tiled(grainTex('booth-wall', '#f6ecd4', 0.05), 5, 2)), 0, 2.2, -1.36);
   box(root, 12, 1.16, 0.04, '#1f8f96', 0, 0.58, -1.33); box(root, 12, 0.07, 0.07, '#e8553a', 0, 1.2, -1.31);
   const skyM = lamp(SKIES[0], 1);
-  for (const x of [-2.4, 2.4]) { box(root, 2.3, 1.36, 0.05, '#3a3f4a', x, 2.0, -1.33); soft(panel(root, 2.14, 1.2, skyM, x, 2.0, -1.3)); box(root, 0.05, 1.2, 0.04, '#3a3f4a', x, 2.0, -1.29); for (let i = 0; i < 3; i++) box(root, 2.14, 0.035, 0.05, '#f3f1ea', x, 2.52 - i * 0.09, -1.28); }
+  for (const x of [-1.85, 1.85]) { box(root, 2.3, 1.36, 0.05, '#3a3f4a', x, 2.0, -1.33); soft(panel(root, 2.14, 1.2, skyM, x, 2.0, -1.3)); box(root, 0.05, 1.2, 0.04, '#3a3f4a', x, 2.0, -1.29); for (let i = 0; i < 3; i++) box(root, 2.14, 0.035, 0.05, '#f3f1ea', x, 2.52 - i * 0.09, -1.28); }
   // the booth: a bench against the wall with two short arms, and a table
   box(root, 3.2, 0.5, 0.62, '#156c72', 0, 0.25, -0.98); box(root, 3.2, 0.74, 0.16, tmat(tiled(foldTex('booth-vinyl', '#1f8f96', '#156c72', 10), 1.2, 1)), 0, 0.87, -1.22); box(root, 3.3, 0.06, 0.2, '#d5dbe3', 0, 1.26, -1.22);
   for (const s of [-1, 1]) { box(root, 0.16, 0.86, 0.7, '#156c72', s * 1.68, 0.43, -0.92); box(root, 0.2, 0.05, 0.74, '#d5dbe3', s * 1.68, 0.88, -0.92); }
@@ -195,9 +196,9 @@ export const booth: Builder = (root) => {
   // the three of them in 1993; a waiter with the pot
   const me = actor(root, JENSEN(1), {sit: {expr: 'smile', pose: 'desk', mode: 'sit'}, idea: {expr: 'grin', pose: 'wave', prop: 'napkin', mode: 'sit'}, talk: {expr: 'grin', pose: 'point', mode: 'sit'}, late: {expr: 'relief', pose: 'desk', mode: 'sit'}}, 0, 0.56, -0.95, {scale: 1.0, res: 1.3, wide: true, shadow: 0});
   const pals = [0, 1].map((i) => actor(root, ENGINEER(i), {sit: {expr: 'smile', pose: 'desk', mode: 'sit'}, wow: {expr: 'grin', pose: 'desk', mode: 'sit'}, late: {expr: 'dazed', pose: 'desk', mode: 'sit'}}, i ? 0.74 : -0.74, 0.56, -0.95, {scale: 1.0, res: 1.2, shadow: 0}));
-  const waiter = actor(root, WAITER, {pour: {expr: 'smile', pose: 'hold', prop: 'pot'}, a: {expr: 'smile'}}, 1.5, 0, -0.05, {scale: 1.0, res: 1.2, wide: true});
+  const waiter = actor(root, WAITER, {pour: {expr: 'smile', pose: 'hold', prop: 'pot'}, a: {expr: 'smile'}}, 1.45, 0, 0.1, {scale: 1.0, res: 1.2, wide: true});
   const cups = Array.from({length: 14}, (_, i) => cup(root, -0.98 + (i % 7) * 0.33 + (i > 6 ? 0.1 : 0), 0.79, i > 6 ? -0.42 : -0.12));
-  const still3 = [cup(root, -0.62, 0.79, -0.42), cup(root, 0.1, 0.79, -0.5), cup(root, 0.72, 0.79, -0.4)];
+  const still3 = [cup(root, -0.62, 0.79, -0.42), cup(root, 0.38, 0.79, -0.56), cup(root, 0.78, 0.79, -0.36)];
   // seen from above: the napkin, the sketch, a pen, three pairs of sleeves
   const napkin = grp(root, 0, 0.792, -0.26); const sheet = panel(napkin, 0.44, 0.44, lit('#fffdf4', 1), 0, 0, 0); sheet.rotation.x = -Math.PI / 2; napkin.rotation.y = 0.12;
   const marks = [0, 1, 2].map((i) => { const o = soft(panel(napkin, 0.44, 0.44, smat(sketchTex(i), 1, true), 0, 0.003 + i * 0.001, 0)); o.rotation.x = -Math.PI / 2; return o; });
@@ -218,7 +219,7 @@ export const booth: Builder = (root) => {
       pals.forEach((p, i) => { p.show(late ? 'late' : wow ? 'wow' : 'sit'); p.node.position.y = 0.56 + hop(f, W(9) + i * 3, 0.05, 8); p.tick(f, cam); });
       // the waiter comes with the pot, the cups multiply, and nobody sends them home
       const pour = v === 'coffee' || v === 'stay', gone = smooth(f, T0 + 4, T0 + 22);
-      waiter.node.visible = pour && gone < 1; waiter.show(f < T0 ? 'pour' : 'a'); waiter.node.position.set(1.5 + 1.6 * gone, hop(f, W(69), 0.05, 8), -0.05); waiter.tick(f, cam);
+      waiter.node.visible = pour && gone < 1; waiter.show(f < T0 ? 'pour' : 'a'); waiter.node.position.set(1.45 + 1.6 * gone, hop(f, W(69), 0.05, 8), 0.1); waiter.tick(f, cam);
       cups.forEach((c, i) => { const at = W(67) + i * 3; c.visible = pour && f >= at; c.scale.setScalar(pop(f, at, 5)); });
       still3.forEach((c) => { c.visible = (then && !pour) || top; });
       napkin.visible = top || v === 'three'; pen.visible = arms.visible = top;
@@ -287,9 +288,11 @@ export const office: Builder = (root) => {
   const lap = laptop(root, 0.1, 0.76, -0.25, {ry: Math.PI, w: 0.52, body: '#c9ced6', back: lit('#76b900', 1.0)});
   const screenGlow = halo(root, 0.9, '#bfe6ff', 0, 0.1, 1.25, -0.5);
   // the chair, and the jacket that hangs over it when nobody sits there
-  const chair = grp(root, 0, 0, -1.0); cyl(chair, 0.32, 0.05, '#22202a', 0, 0.06, 0); cyl(chair, 0.04, 0.42, '#8f96a8', 0, 0.28, 0); box(chair, 0.7, 0.12, 0.62, '#2b2f3a', 0, 0.52, 0); box(chair, 0.72, 1.25, 0.14, '#2b2f3a', 0, 1.2, -0.26); for (const s of [-1, 1]) { box(chair, 0.08, 0.06, 0.5, '#22202a', s * 0.4, 0.78, -0.02); box(chair, 0.06, 0.24, 0.06, '#22202a', s * 0.4, 0.64, 0.18); }
-  const jacket = grp(chair, 0, 0, 0); box(jacket, 0.8, 0.6, 0.2, '#1d1d24', 0, 1.56, -0.26); box(jacket, 0.3, 0.1, 0.24, '#2b2c35', 0, 1.89, -0.26); for (const s of [-1, 1]) { const sl = box(jacket, 0.15, 0.62, 0.17, '#1d1d24', s * 0.43, 1.3, -0.2); sl.rotation.z = s * 0.1; }
-  box(jacket, 0.02, 0.56, 0.01, '#9aa0ad', 0, 1.56, -0.155);
+  const chair = grp(root, 0, 0, -1.0); cyl(chair, 0.32, 0.05, '#22202a', 0, 0.06, 0); cyl(chair, 0.04, 0.42, '#8f96a8', 0, 0.28, 0); box(chair, 0.7, 0.12, 0.62, '#a8774a', 0, 0.52, 0);
+  box(chair, 0.72, 1.25, 0.14, '#b98a5a', 0, 1.2, -0.26); box(chair, 0.54, 1.05, 0.02, '#cda072', 0, 1.2, -0.185); for (const s of [-1, 1]) { box(chair, 0.08, 0.06, 0.5, '#5a4430', s * 0.4, 0.78, -0.02); box(chair, 0.06, 0.24, 0.06, '#5a4430', s * 0.4, 0.64, 0.18); }
+  const jacket = grp(chair, 0, 0, 0); box(jacket, 0.8, 0.62, 0.2, '#1d1d24', 0, 1.55, -0.26); box(jacket, 0.34, 0.1, 0.24, '#34353f', 0, 1.89, -0.26);
+  for (const s of [-1, 1]) { const sl = box(jacket, 0.15, 0.66, 0.17, '#1d1d24', s * 0.44, 1.26, -0.2); sl.rotation.z = s * 0.1; box(jacket, 0.16, 0.07, 0.18, '#34353f', s * 0.475, 0.95, -0.2).rotation.z = s * 0.1; box(jacket, 0.13, 0.3, 0.012, '#34353f', s * 0.11, 1.7, -0.154).rotation.z = -s * 0.5; }
+  box(jacket, 0.022, 0.6, 0.012, '#aeb4c0', 0, 1.55, -0.154);
   const badge = grp(root, 0.5, 0.775, 0.08); const bc = panel(badge, 0.2, 0.28, smat(badgeTex(), 1.0), 0, 0, 0); bc.rotation.x = -Math.PI / 2; torus(badge, 0.11, 0.012, '#76b900', 0.06, 0.004, -0.2).rotation.x = Math.PI / 2;
   const spot = pool(root, 1.5, '#fff0c8', 0, 0, -0.7), cone1 = beam(root, 0.15, 1.5, 6, '#fff0c8', 0, 0, 6.2, -0.7), dim = soft(panel(root, 12, 6, glass('#05060f', 0), 0, 3, -2.5));
   const me = actor(root, JENSEN(0), {type: {expr: 'stern', pose: 'type', mode: 'sit'}, pause: {expr: 'pained', pose: 'desk', mode: 'sit'}}, 0, 0.66, -0.82, {scale: 1.0, res: 1.3, shadow: 0});
