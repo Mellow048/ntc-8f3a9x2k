@@ -135,9 +135,10 @@ Write `story.ts` first, then cast and sets, then `Overlays.tsx`.
   figure's canvas; a small animal on the ground sits under the captions, so stand it on something.
 - **From the eighth film** (a story with cars, screens and counters):
   - A car made from an extruded side outline reads as a box. Build it from cross-sections along its length
-    (`supercar` in that film's `sets.ts`), give it thin lit blades for lamps, keep the wheels under the fenders (a
-    wheel taller than the bonnet makes an open-wheel racer), and show cars from above, one behind another.
-  - A cone of light between the camera and a face whitens the face; a wide one above 0.03 opacity washes the set.
+    (`supercar` in that film's `sets.ts`), give it thin lit blades for lamps and wheels smaller than its fenders,
+    and show a row of cars from above, one behind another. A car on a turntable must fit the frame at its widest
+    angle, nose to wing: a car that is cropped at both ends for the whole shot is a blue wall.
+  - A cone of light between the camera and a face whitens the face: keep such cones at about 0.03 opacity.
   - A prop held at hand height covers the holder's face in a close shot: hold it up beside the head, and draw it as
     big as a head if it has to be read. A microphone on a stand belongs at chest height.
   - A tag that belongs to the set and sits in the top third collides with the source lines, and so does a set's own
@@ -148,8 +149,18 @@ Write `story.ts` first, then cast and sets, then `Overlays.tsx`.
   - An action timed from `shot.at` can happen before its word, and one timed from its word can have no time left
     before the cut (a phone thrown on "dropped" needs its splash inside the shot). Count the frames to the cut, and
     work out where the thing lands in the frame before you render it.
-  - A counter with four values jumps. Give it twenty or more and a step every two frames. A `Count` label is fitted
-    to its length like every other line.
+  - A counter with four values jumps: give it twenty or more. A `Count` label is fitted to its length like every
+    other line.
+  - A group has to fit the frame at the END of the push, not at its start: two agents who walked in beside a man
+    stood half outside the frame for the whole shot until the camera was pulled back (`scripts/project.py`).
+  - In a portrait frame the water round a man on a dock lies at the bottom, under the caption. For something that
+    happens in the water, turn round and shoot toward it, so that the water is the background behind him. The same
+    turn cured a hop: before it, the arrest and the dock showed the same figure at the same size against the same
+    house.
+  - A thing that travels along a drawn route rides the head of that route (the plane and its dots on the globe);
+    a plane that flies one way while its dots appear another way reads as two things.
+  - The tab on the left edge lies across fixed rows of a screen that the camera pushes into, and across more rows at
+    the end than at the start. Work those rows out and keep the screen's own text out of them.
   - A cursor or a hand left resting on a screen covers the line the viewer should read: move it off after its moment.
   - **Words on screen claim only what a passage copied into `NOTES.md` supports.** Quotation marks go round words
     that are in the notes letter for letter, and the name beside them is the outlet the passage is from. Compare every
@@ -178,8 +189,10 @@ renders the frames you name (four took 23 seconds in the two-core sandbox). Tile
 5. The last second: the closing question, both answers, nothing under the captions.
 
 `PYTHON=~/.cache/ntc-venv/bin/python scripts/sheets.sh out/r1 r1 12 6 250` tiles a folder of stills into sheets of
-twelve. Give every round a new name, and measure a pixel when a sheet seems to show something odd (a dimmed board
-looked bright beside a dark wall; `PIL` said otherwise).
+twelve. Give every round a new name. Before a still is rendered, `python scripts/project.py "<cam>" "<target>" 42
+<push> -- "x,y,z:name" ...` says where a point of the set lands in the frame at the start and the end of a shot: it
+found the camera for the eighth film's dock (a splash that must be above the caption) and for its arrest (three
+figures that must fit) in two tries instead of five rounds of stills.
 
 Expect five to eight rounds and 170 to 350 stills. A full render costs a commit and eleven minutes each time; a
 round of stills costs neither, and you choose the frames.
@@ -235,12 +248,14 @@ git fetch origin <branch> && git merge --ff-only FETCH_HEAD   # the run commits 
 
 ### When the branch cannot be pushed: render in the sandbox
 
-`remotion-app/scripts/render-local.sh` does the workflow's steps on the sandbox itself: the same `remotion render`
-command for each part, the same stitch, the same sound encode with its check, the same film check and gates. It is
-a last resort: about 2.5 seconds a frame, an hour and a half for a film, against twelve minutes on GitHub, and what
-it makes is in the workspace only. On 12 November 2026 it rendered four parts of the eighth film before that
-workspace was replaced; its stitch and its checks have never run. If the branch is closed, the better answer is to
-ask the user to press Continue first, and to know that the new branch starts from `main` (section 0).
+`remotion-app/scripts/render-local.sh` is meant to do the workflow's steps on the sandbox itself: the same
+`remotion render` command for each part, the same stitch, the same sound encode with its check, the same film check
+and gates. **It is untested in its present form.** A first version rendered four parts of the eighth film on 12
+November 2026 (190 frames took eight to fourteen minutes: one and a half to nearly three hours for a film, against
+twelve minutes on GitHub) and was lost with that workspace; the file in the repository was written again afterwards
+and has not been run, and no version ever reached the stitch. What it makes is in the workspace only. If the branch
+is closed, the better answer is to ask the user to press Continue first, and to know that the new branch starts from
+`main` (section 0).
 
 ## 9. Check the finished file
 

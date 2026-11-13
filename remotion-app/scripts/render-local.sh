@@ -4,12 +4,14 @@
 # the same film check and the same two gates (true peak at most -1.0 dBFS, loudness between -17 and -13 LUFS).
 #
 # For when the workflow cannot be used: the session's branch can no longer be pushed to, so there is nothing for a
-# runner to check out. It is slow: software WebGL on two cores does about 2.5 s a frame at 720x1280, a little over an
-# hour and a half for a 76-second film. Start it with the process tool, not with a plain shell call, and wait for
+# runner to check out. It is slow: software WebGL on two cores does 2.5 to 4.5 s a frame at 720x1280, one and a half
+# to nearly three hours for a 75-second film. Start it with the process tool, not with a plain shell call, and wait for
 # the line RENDER-LOCAL-DONE.
 #
-# How far it has been used: on 12 November 2026 it bundled and rendered four parts of the eighth film (190 frames in
-# about eight minutes each) before that session's branch was replaced. Everything from the stitch on has never run.
+# How far it has been used: NOT AT ALL in this form. A first version bundled and rendered four parts of the eighth
+# film on 12 November 2026 (190 frames in eight to fourteen minutes each) and was lost, with that film's first build,
+# when the session's branch was replaced. This file was written again afterwards and has not been run: read it before
+# you trust it, and expect to fix something from the stitch on, which no version has ever reached.
 #
 #   cd remotion-app
 #   scripts/render-local.sh <Composition> <mix.wav> <shots.json> <out.mp4> [parts=12] ["03 07" = parts to render again]
