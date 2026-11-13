@@ -290,3 +290,14 @@ session's record: the first workspace, where they were written, did not survive 
 - One site (shattered.io, 22 Sept 2026, citing Fortune) writes that under the plea agreement "sentencing guidelines
   recommend a minimum of 14 years". The agreement was not read and no source used here gives that figure: the film
   keeps to the maximum, "up to twenty years" (the Justice Department, the BBC, AP).
+
+## The state of the case, searched once more on 13 Nov 2026 at 01:37 UTC (the day of the render)
+
+- Two searches ("Malone Lam sentencing date ... November 2026", "Malone Lam sentenced"). Nothing newer than the plea of
+  8 Sept 2026: every page found says no sentencing date is set, that he faces up to 20 years, and that a status
+  hearing is set for 8 Dec 2026 (cointracking.info, 15 Sept; bitcoinethereumnews.com and cryptonomist.ch, 10 Sept;
+  gate.com, 30 Sept; greekreporter.com, 11 Sept, which also gives the arrest as "Sept. 18, 2024").
+- The same site as before (shattered.io) repeats the 14-year guideline figure, now "according to court filings
+  reviewed by Fox News". Still not read at the source, still not used.
+- Channel NewsAsia, 25 Apr 2026: a co-defendant who laundered for the group was sentenced to 70 months. The film
+  leaves the co-defendants' sentences out (rule 6).

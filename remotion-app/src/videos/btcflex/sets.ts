@@ -284,7 +284,8 @@ export const villa: Builder = (root) => {
       floats.forEach((t, i) => { t.position.y = 0.13 + 0.012 * Math.sin(f * 0.13 + i * 2); t.rotation.z = f * 0.01 * (i ? -1 : 1); });
       // the arrest: he is alone for a moment, then they are on both sides of him
       me.node.visible = v === 'raid'; me.show(f < W(157) ? 'shock' : 'caught'); me.node.position.y = hop(f, a + 2, 0.1, 8); me.tick(f, cam);
-      agents.forEach((g, i) => { const k = smooth(f, a + 6 + i * 3, a + 20 + i * 3); g.node.visible = v === 'raid'; g.node.position.x = lerp(i ? 4.2 : -3.2, i ? 1.3 : -0.3, k); g.node.position.y = Math.abs(0.05 * Math.sin(f * 0.5 + i)) * (1 - k); g.tick(f, cam); });
+      // they start just outside the frame and take eighteen frames to reach him: from further off they were in the picture for four frames
+      agents.forEach((g, i) => { const k = smooth(f, a + 3 + i * 4, a + 21 + i * 4); g.node.visible = v === 'raid'; g.node.position.x = lerp(i ? 2.4 : -1.4, i ? 1.3 : -0.3, k); g.node.position.y = Math.abs(0.05 * Math.sin(f * 0.5 + i)) * (1 - k); g.tick(f, cam); });
       // the dock: he looks round, and on "dropped" the phone leaves his hand
       const go = W(165) - 3, FLY = 9, u = (f - go) / FLY, flying = v === 'dock' && u >= 0 && u < 1;        // it lands with ten frames of the shot left for the splash
       runner.node.visible = v === 'dock'; runner.show(f < go ? 'look' : f < go + FLY + 3 ? 'thrown' : 'gone'); runner.node.position.y = 0.25 + hop(f, go - 1, 0.12, 8); runner.tick(f, cam);

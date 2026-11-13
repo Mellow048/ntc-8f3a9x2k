@@ -146,7 +146,7 @@ export const court: Builder = (root) => {
   const judge = actor(root, JUDGE, {sit: {expr: 'stern', pose: 'desk'}, ask: {expr: 'neutral', pose: 'point'}, wait: {expr: 'stern', pose: 'cross'}}, 0, 0.8, -2.9, {scale: 1.0, res: 1.3, wide: true, shadow: 0});
   const me = actor(root, LAM(3), {idle: {expr: 'nervous'}, guilty: {expr: 'nervous', pose: 'both', prop: 'card', text: 'GUILTY', big: true}, shock: {expr: 'shock'}, think: {expr: 'nervous', pose: 'think'}, lost: {expr: 'dazed', pose: 'shrug'}}, -0.82, 0, -0.45, {scale: 1.0, res: 1.3, wide: true});
   const pros = actor(root, PROSECUTOR, {a: {expr: 'stern', pose: 'hold', prop: 'paper'}}, 0.82, 0, -0.5, {scale: 1.0, res: 1.1, wide: true});
-  const toys = TOYS.slice(0, 3).map((c) => supercar(root, c, 0.2, true)), orbit = TOYS.map((c) => supercar(root, c, 0.12, true));
+  const toys = TOYS.slice(0, 3).map((c) => supercar(root, c, 0.17, true)), orbit = TOYS.map((c) => supercar(root, c, 0.12, true));
   return {
     light: () => LIGHT.warm,
     tick: ({f, cam, shot}) => {
@@ -155,7 +155,7 @@ export const court: Builder = (root) => {
       me.show(v === 'plea' ? (f >= W(176) - 2 ? 'guilty' : 'idle') : v === 'years' ? (f >= W(184) - 1 ? 'shock' : 'idle') : v === 'time' ? (f >= W(195) - 2 ? 'lost' : 'think') : 'idle');
       me.node.position.y = hop(f, W(176) - 2, 0.08, 8) + hop(f, W(184) - 1, 0.1, 8) + hop(f, W(197), 0.08, 8); me.tick(f, cam); pros.tick(f, cam);
       // three toy cars roll onto the bench as the judge asks; later a ring of them goes round his head
-      toys.forEach((c, i) => { const k = smooth(f, W(189) - 2 + i * 3, W(189) + 10 + i * 3); c.visible = v === 'judge' || v === 'time'; c.position.set(lerp(2.6, -0.3 + i * 0.4, v === 'judge' ? k : 1), 1.575, -2.18); c.rotation.y = Math.PI + 0.2; });
+      toys.forEach((c, i) => { const k = smooth(f, W(189) - 2 + i * 3, W(189) + 10 + i * 3); c.visible = v === 'judge' || v === 'time'; c.position.set(lerp(2.6, -0.32 + i * 0.36, v === 'judge' ? k : 1), 1.575, -2.18); c.rotation.y = Math.PI + 0.2; });   // the three of them span 1.1 of the 1.4 the lens sees here at the end of its push
       orbit.forEach((c, i) => { const ang = f * 0.11 + i * 1.2566, on = v === 'time' && f >= W(195) - 2; c.visible = on; c.position.set(-0.82 + 0.62 * Math.cos(ang), 2.02 + 0.07 * Math.sin(ang * 2 + i), -0.45 + 0.5 * Math.sin(ang)); c.rotation.y = -ang - Math.PI / 2; c.scale.setScalar(0.12 * pop(f, W(195) - 2 + i * 2, 6)); });
     },
   };
