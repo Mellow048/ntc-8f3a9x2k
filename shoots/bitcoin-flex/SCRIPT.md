@@ -10,7 +10,7 @@ internet and stuff and eventually he got tracked down and arrested making his la
 ever. if u can find that story please adapt it cuz its really interesting". The story is the case of Malone Lam
 (U.S. v. Lam et al., 24-cr-417, U.S. District Court for the District of Columbia).
 
-**Status:** see "Result" at the end.
+**Status:** delivered on 2026-11-13 on branch `arena/becd20b7-ntc-8f3a9x2k`; waiting for the user's verdict. It is not a reference yet: no pull request is open, and `references/news/` does not hold it (PLAYBOOK section 11 comes after an approval). See "Result" at the end.
 
 **This film was made twice.** The first build, on branch `arena/be67280b-ntc-8f3a9x2k`, was complete up to its render
 when that branch was closed: its pull request (the sixth and seventh films, PR #10) had been merged before the eighth
@@ -272,3 +272,73 @@ is `audio/cues.md` (about 200 cues).
   "vanished" (75), sat 0.6 LU under the bells and is lifted 2 dB with the bed 2 dB down under it.
 - Nobody has listened to it: these are measurements. The same checks passed on the seven earlier films, whose mixes
   were built the same way.
+
+## Render
+
+Rendered on GitHub Actions by `.github/workflows/render-short.yml`: twenty parts in parallel, joined, the sound laid
+under, the finished file checked with `templates/scripts/short_qa.py`, and the file and the report committed to the
+branch by the run itself. Three full runs of nine to ten minutes each, all on 13 November 2026.
+
+| Run | Commit | Why it was made |
+|-----|--------|-----------------|
+| `43343391420` | `3a35598` | The first full render (published as `15c2011`). The check was clean. One frame in every 24 of it was looked at, together with the first and last frame of every shot, and that found six things the check does not see: the two agents stood half outside the frame for the whole arrest; the dock showed the same figure at the same size against the same house as the arrest, with the splash at the frame's edge under the caption; the plane on the globe ended on top of the tag it flies to; the blue car was cropped at both ends for its whole shot; the wallet card's heading slid under the source tab as the camera pushed in; the toy cars stood at the left edge of the bench. |
+| `43346052087` | `dc3e676` | The second (published as `91f3652`), with those six put right. Its check reported three unplanned jumps, frames 1467 to 1469: the agents, who now came from outside a wider frame, crossed into it in four frames. And the toy cars, moved to the middle, reached the right edge at the end of the push. |
+| `43347793839` | `284ca3a` | **The final file** (published as `cf828d1`). The agents start just outside the frame and walk for eighteen frames; the toy cars are a little smaller. The check is clean. |
+
+```
+gh workflow run render-short.yml --ref <branch> -f composition=BtcFlexShort \
+  -f mix=shoots/bitcoin-flex/audio/mix.wav -f shots=shoots/bitcoin-flex/qa-shots.json \
+  -f publish='shoots/bitcoin-flex/final-{size}p.mp4' -f size=720 -f chunks=20
+```
+
+Stills for review are made locally: `REVIEW=BtcFlexReview remotion-app/scripts/pick.sh <dir> <frame,frame,...> 400`,
+tiled with `scripts/sheets.sh`. Where a point of a set lands in the frame: `scripts/project.py`.
+
+## Result
+
+- **File:** [`shoots/bitcoin-flex/final-720p.mp4` at commit `cf828d1`](https://github.com/Mellow048/ntc-8f3a9x2k/blob/cf828d13c1b5d541a1c3200bcd525692d6786b3f/shoots/bitcoin-flex/final-720p.mp4).
+  720x1280, 30 fps, 2231 frames, 74.367 s, 42,450,851 bytes, H.264 with 48 kHz stereo AAC.
+  SHA-256 `651d88988e053d226ddbed57ce8259c876e735bf3d60ada0647cacbd12c30195`.
+- **Finished-file check** (`qa-report.md`, written by the run): -14.6 LUFS integrated, loudness range 2.1 LU, true
+  peak -1.7 dBFS; no silence; no black, unplanned white or frozen frames; no unplanned frame jumps. The encode
+  against its WAV, run again locally (`templates/scripts/aac_check.py`): highest sample -1.74 dBFS against the WAV's
+  -2.69, nothing late, no sample that stands clear of the WAV. The encode added 0.95 dB to the peak, which is why
+  the mix is built to -2.8: the file is 0.7 dB inside the gate of -1.0.
+- **Picture, third render against the second,** frame by frame at a quarter of the size: frames 1452-1472 (the
+  agents come in) and 1793-1891 (the toy cars, on the bench and behind him in the next shot) differ; each of the
+  other 2111 frames reads 46.7 dB PSNR or more, and 1322 of them are the same picture exactly. The second against
+  the first: 369-388 (the globe), 984-1058 (the car), 1289-1363 (the shared screen), 1448-1573 (the arrest and the
+  dock) and 1793-1891 (the toy cars) differ; each of the other 1836 frames reads 50.3 dB or more, which is what two
+  encodes of one picture read.
+- **The joins, measured in the finished file.** The 41 cuts change the picture by 30.8 or more on the measure the
+  check uses (mean change from one frame to the next), 80.8 at the median. At the three joins the camera does not
+  move: into frame 2106, 0.8 % of the picture changes, as in the frames before it. Into 548, 5.2 % changes (1.8 %
+  before): the paper face is swapped and the source line changes, on the word. Into 698, 12.6 % changes (3.9 %
+  before): the stamp 4,100+ BITCOIN gives way to the counter, on the word. Both are meant, both are in the list of
+  planned changes, and neither moves the set.
+- **Looked at, all of it on still frames:** the cast sheet; 264 local stills in twelve rounds (the middle of
+  every shot, then every fault found, then the first and last frame of every shot, then every fault again); one
+  frame in every 24 of the first render (93 frames, every shot); the six places that changed on 50 frames of the
+  second render; the two places that changed, the first frame and the last two seconds on 14 frames of the final
+  file.
+- **Not done:** nobody has watched the film in motion or listened to it. The sound was measured, not heard; that
+  includes how the voice says "ZachXBT", which was sent to it as "Zack X B T".
+- **Known small things, left as they are:**
+  - The cars are the house's own wedge-shaped supercar in many colours. The blue one stands for the Pagani the
+    filing names; it is not a drawing of that model, and the line above it carries the name and the price.
+  - The report says he "dropped" his phone off the dock; in the picture he tosses it a few metres (see "Not
+    confirmed").
+  - On the globe the plane comes to rest over the western Pacific, under the tag THE U.S.: the globe turns 46
+    degrees, not far enough to bring America round.
+  - The counters show numbers that are not facts on their way up ("$219 MILLION+", "17 CARS") for a few frames each;
+    each stops on its sourced value and holds it.
+  - In the club a server stands at the left edge, partly outside the frame.
+  - The source line over the club receipt is white on the receipt's white paper: it reads as a line of the receipt.
+  - Under water a pink fish swims behind the source line for a moment.
+  - A caption can hold for one or two frames after a cut (the cut falls two frames before the next word).
+  - `remotion-app/scripts/render-local.sh` is in the repository and has never been run in its present form (its
+    header says so).
+- **The story on the day:** searched again on 13 November 2026 at 01:37 UTC, before the last two renders. Nothing
+  has moved since the plea of 8 September: no sentence, no date for one, a status hearing on 8 December 2026.
+  Nothing the film says has changed. After 8 December the line NEXT HEARING DEC. 8, 2026 will be out of date: it
+  carries its date on screen.
