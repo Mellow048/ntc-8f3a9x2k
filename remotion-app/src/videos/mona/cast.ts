@@ -409,6 +409,17 @@ function texture(look: Look, d: Draw, res: number, wide = false) {
   drawActor(g, look, d, res);
   t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; cache.set(key, t); return t;
 }
+/** A painted portrait of a character: the actor drawn on a dark ground, cropped at the chest, for a frame on a wall. */
+export function portraitTex(look: Look, d: Draw, key: string, bg: [string, string] = ['#4a5468', '#232a38']) {
+  const k = 'portrait-' + key + JSON.stringify(d); const hit = cache.get(k); if (hit) return hit;
+  const cv = document.createElement('canvas'); cv.width = 460; cv.height = 600; const g = cv.getContext('2d')!;
+  const sk = g.createLinearGradient(0, 0, 0, 600); sk.addColorStop(0, bg[0]); sk.addColorStop(1, bg[1]); g.fillStyle = sk; g.fillRect(0, 0, 460, 600);
+  for (let i = 0; i < 5; i++) { g.fillStyle = `rgba(255,240,210,${0.03 + i * 0.012})`; g.beginPath(); g.ellipse(80 + i * 70, 120 + i * 40, 120, 60, 0.2, 0, 7); g.fill(); }
+  g.save(); g.beginPath(); g.rect(0, 0, 460, 600); g.clip(); g.translate(230, 205); g.scale(0.9, 0.9); g.translate(-300, -215); drawActor(g, look, d, 1); g.restore();
+  const v = g.createRadialGradient(230, 250, 120, 230, 300, 420); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(14,10,4,0.55)'); g.fillStyle = v; g.fillRect(0, 0, 460, 600);
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; cache.set(k, t); return t;
+}
+
 export type Actor = {
   node: THREE.Group; mesh: THREE.Mesh; state: string;
   /** switch the drawing (expression + pose) */

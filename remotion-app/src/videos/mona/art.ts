@@ -15,54 +15,71 @@ const ell = (g: G2, x: number, y: number, rx: number, ry: number, fill: string |
 const curveTo = (g: G2, pts: P[], w: number, col: string) => { g.beginPath(); g.moveTo(...pts[0]); for (let i = 1; i + 1 < pts.length; i += 2) g.quadraticCurveTo(...pts[i], ...pts[i + 1]); g.lineWidth = w; g.strokeStyle = col; g.lineCap = 'round'; g.stroke(); };
 
 export type Mood = 'smile' | 'bored' | 'wide' | 'wink';
-/** The portrait, 53 by 77: hazy hills, a winding road, a bridge, a veil, folded hands, the smile. `eyes` -1 .. 1 looks to her right .. left. */
+/** The portrait, 53 by 77: a hazy blue-green country behind her, the sheer veil, the folded hands, and the smile.
+ *  `eyes` -1 .. 1 turns her gaze; `mood` changes the mouth and the brows. */
 export const monaTex = (eyes = 0, mood: Mood = 'smile') => tex(`mona-${eyes}-${mood}`, 424, 616, (g, w, h) => {
-  const sky = g.createLinearGradient(0, 0, 0, h * 0.62); sky.addColorStop(0, '#7f9f96'); sky.addColorStop(0.45, '#a9b48c'); sky.addColorStop(1, '#c6b274'); g.fillStyle = sky; g.fillRect(0, 0, w, h);
-  // far peaks and a lake on her left (our right), nearer hills, a winding road, a bridge
-  poly(g, [[0, 210], [34, 150], [70, 196], [112, 138], [150, 204], [150, 330], [0, 330]], '#6f8f8c', 2.2);
-  poly(g, [[270, 214], [306, 120], [340, 180], [380, 104], [424, 170], [424, 330], [270, 330]], '#789a94', 2.2);
-  poly(g, [[262, 250], [424, 236], [424, 300], [262, 300]], '#9db8ae', 0);
-  poly(g, [[0, 290], [60, 262], [130, 286], [170, 330], [170, 420], [0, 420]], '#7d7a44', 2.2);
-  poly(g, [[254, 300], [330, 284], [424, 300], [424, 430], [254, 430]], '#6f7040', 2.2);
-  curveTo(g, [[12, 420], [70, 392], [44, 362], [10, 340], [50, 320], [96, 306], [70, 290]], 9, '#d9bb72'); curveTo(g, [[12, 420], [70, 392], [44, 362], [10, 340], [50, 320], [96, 306], [70, 290]], 2, '#8a6a34');
-  g.fillStyle = '#b89a5a'; g.fillRect(300, 322, 110, 9); g.strokeStyle = INK; g.lineWidth = 1.8; g.strokeRect(300, 322, 110, 9); for (let i = 0; i < 4; i++) ell(g, 316 + i * 26, 334, 9, 9, '#56603a', 1.6, 0, Math.PI, Math.PI * 2);
-  g.fillStyle = '#4a4a2a'; g.fillRect(0, 410, w, h - 410);                                       // the parapet behind her
-  // her: the veil and hair, the dress, the neckline, the face, the hands
-  poly(g, [[212, 96], [286, 112], [320, 190], [326, 300], [352, 372], [72, 372], [98, 300], [104, 190], [138, 112]], '#2c2016', 3);
-  poly(g, [[60, 616], [70, 430], [112, 356], [312, 356], [354, 430], [364, 616]], '#30382a', 3);
-  for (const s of [-1, 1]) { poly(g, [[212 + s * 70, 440], [212 + s * 146, 430], [212 + s * 150, 560], [212 + s * 84, 574]], '#8a6a2e', 2.4); for (let i = 0; i < 4; i++) curveTo(g, [[212 + s * (86 + i * 16), 446], [212 + s * (96 + i * 16), 500], [212 + s * (90 + i * 16), 562]], 1.6, '#5a431c'); }
-  poly(g, [[150, 362], [176, 330], [248, 330], [274, 362], [262, 408], [212, 424], [162, 408]], '#e6c491', 2.6);
-  curveTo(g, [[156, 372], [212, 404], [268, 372]], 3, '#c9a23a');
-  ell(g, 212, 232, 66, 86, '#ecd0a0', 3);
-  g.save(); g.beginPath(); g.ellipse(212, 232, 66, 86, 0, 0, 7); g.clip(); ell(g, 276, 240, 40, 96, 'rgba(150,104,48,0.34)', 0); poly(g, [[146, 146], [212, 132], [278, 146], [278, 190], [246, 170], [212, 150], [178, 170], [146, 190]], '#2c2016', 0); g.restore();
-  curveTo(g, [[212, 148], [212, 132], [212, 118]], 2, '#5a4630');
-  // eyes, nose, mouth
-  const ex = eyes * 5, ey = 226;
+  // ---- the country behind her: pale sky, blue peaks, a lake, ochre rock, the parapet
+  const sky = g.createLinearGradient(0, 0, 0, h * 0.6); sky.addColorStop(0, '#9fb3a6'); sky.addColorStop(0.5, '#b9bf94'); sky.addColorStop(1, '#cdb87c'); g.fillStyle = sky; g.fillRect(0, 0, w, h);
+  poly(g, [[0, 232], [30, 150], [58, 196], [96, 128], [136, 200], [150, 330], [0, 330]], '#7d9a98', 0);
+  poly(g, [[0, 244], [40, 186], [86, 214], [120, 168], [150, 240], [150, 330], [0, 330]], 'rgba(150,170,166,0.75)', 0);
+  poly(g, [[262, 226], [300, 132], [332, 188], [372, 112], [424, 176], [424, 330], [262, 330]], '#7d9a98', 0);
+  poly(g, [[262, 250], [340, 228], [424, 244], [424, 300], [262, 300]], '#a8c0b8', 0);
+  poly(g, [[0, 292], [64, 268], [132, 292], [168, 336], [168, 430], [0, 430]], '#87824a', 0);
+  poly(g, [[252, 296], [330, 282], [424, 298], [424, 430], [252, 430]], '#76763f', 0);
+  curveTo(g, [[10, 424], [72, 396], [42, 364], [12, 340], [52, 320], [98, 306], [72, 288]], 10, '#cdae6a'); curveTo(g, [[10, 424], [72, 396], [42, 364], [12, 340], [52, 320], [98, 306], [72, 288]], 2, '#8a6a34');
+  g.fillStyle = '#b89a5a'; g.fillRect(306, 320, 112, 8); g.strokeStyle = 'rgba(90,70,30,0.8)'; g.lineWidth = 1.6; g.strokeRect(306, 320, 112, 8);
+  for (let i = 0; i < 4; i++) { g.strokeStyle = 'rgba(70,60,30,0.8)'; g.beginPath(); g.ellipse(318 + i * 28, 330, 8, 8, 0, Math.PI, Math.PI * 2); g.stroke(); }
+  g.fillStyle = '#4f4a2c'; g.fillRect(0, 412, w, h - 412);                                     // the parapet
+  // ---- her veil, hair and dress
+  poly(g, [[208, 104], [286, 122], [322, 208], [330, 372], [350, 400], [74, 400], [94, 372], [102, 208], [138, 122]], '#2a2018', 3);
+  poly(g, [[60, 616], [74, 424], [118, 360], [306, 360], [350, 424], [364, 616]], '#3b3f2e', 3);
+  // the neckline of the dress, with the gold embroidery
+  poly(g, [[154, 356], [178, 330], [246, 330], [270, 356], [262, 402], [212, 418], [162, 402]], '#dfc08a', 2.4);
+  for (let i = 0; i < 9; i++) { const t = i / 8, x = 158 + t * 108, y = 366 + Math.sin(t * Math.PI) * 22; g.strokeStyle = '#b98a2c'; g.lineWidth = 2.2; g.beginPath(); g.arc(x, y, 5, 0, 7); g.stroke(); }
+  for (const s of [-1, 1]) { poly(g, [[212 + s * 74, 436], [212 + s * 150, 428], [212 + s * 154, 566], [212 + s * 86, 582]], '#8f7130', 2); for (let i = 0; i < 4; i++) curveTo(g, [[212 + s * (88 + i * 17), 444], [212 + s * (98 + i * 17), 502], [212 + s * (92 + i * 17), 570]], 1.4, 'rgba(90,64,20,0.7)'); }
+  // ---- the face: high forehead, no brows, small mouth, the corners lifted
+  ell(g, 212, 234, 63, 88, '#e8c894', 3);
+  g.save(); g.beginPath(); g.ellipse(212, 234, 63, 88, 0, 0, 7); g.clip();
+  ell(g, 278, 244, 38, 96, 'rgba(150,104,48,0.3)', 0); ell(g, 150, 240, 30, 90, 'rgba(255,236,196,0.3)', 0);
+  // the veil across the brow, and the hair coming down either side
+  poly(g, [[146, 158], [212, 142], [278, 158], [284, 208], [250, 182], [212, 164], [174, 182], [140, 208]], '#2a2018', 0);
+  poly(g, [[146, 158], [156, 300], [140, 340], [118, 300], [120, 200]], '#2a2018', 0);
+  poly(g, [[278, 158], [268, 300], [284, 340], [306, 300], [304, 200]], '#2a2018', 0);
+  g.fillStyle = 'rgba(40,30,20,0.14)'; g.fillRect(140, 250, 80, 120); g.restore();
+  g.strokeStyle = 'rgba(60,44,26,0.55)'; g.lineWidth = 2; g.beginPath(); g.moveTo(146, 160); g.quadraticCurveTo(212, 132, 278, 160); g.stroke();
+  // eyes: calm, looking out
+  const ex = eyes * 5, ey = 232;
   for (const s of [-1, 1]) {
     const x = 212 + s * 25;
-    if (mood === 'wink' && s === 1) { curveTo(g, [[x - 11, ey], [x, ey + 7], [x + 11, ey]], 3.4, INK); continue; }
-    if (mood === 'wide') { ell(g, x, ey, 11, 12, '#fffdf4', 2.6); ell(g, x + ex, ey, 4.6, 5.4, INK); continue; }
-    ell(g, x + ex, ey + 1, 5.2, 7, INK);
-    if (mood === 'bored') { g.fillStyle = '#ecd0a0'; g.fillRect(x - 12, ey - 9, 24, 9.5); curveTo(g, [[x - 11, ey + 0.5], [x, ey + 0.5], [x + 11, ey + 0.5]], 2.8, INK); }
-    else curveTo(g, [[x - 11, ey - 6], [x, ey - 10], [x + 11, ey - 6]], 2.4, INK);
+    if (mood === 'wink' && s === 1) { curveTo(g, [[x - 12, ey], [x, ey + 8], [x + 12, ey]], 3.6, '#2c2016'); continue; }
+    if (mood === 'wide') { ell(g, x, ey, 11, 12, '#fffdf4', 2.4); ell(g, x + ex, ey, 4.4, 5.2, '#3a2a18'); continue; }
+    ell(g, x + ex, ey + 1, 4.8, 6.4, '#3a2a18');
+    g.strokeStyle = 'rgba(60,44,26,0.8)'; g.lineWidth = 2; g.beginPath(); g.arc(x + ex * 0.4, ey + 1, 7.6, -2.4, -0.7); g.stroke();       // the lid
+    if (mood === 'bored') { g.fillStyle = '#e8c894'; g.fillRect(x - 12, ey - 8, 24, 9); curveTo(g, [[x - 11, ey], [x, ey + 1], [x + 11, ey]], 2.8, '#2c2016'); }
+    else { g.strokeStyle = 'rgba(70,52,30,0.35)'; g.lineWidth = 2.6; g.beginPath(); g.arc(x, ey - 8, 12, Math.PI * 1.1, Math.PI * 1.9); g.stroke(); }   // a brow so faint it is no brow at all
   }
-  curveTo(g, [[214, 240], [208, 262], [218, 264]], 2.2, '#9a7440');
-  if (mood === 'bored') curveTo(g, [[194, 284], [212, 285], [230, 284]], 3, '#7a3a2a');
-  else if (mood === 'wide') ell(g, 212, 286, 7, 8, '#7a3a2a', 2);
-  else { curveTo(g, [[190, 280], [212, 292], [234, 280]], 3.2, '#7a3a2a'); curveTo(g, [[186, 277], [189, 279], [191, 282]], 2, '#7a3a2a'); curveTo(g, [[238, 277], [235, 279], [233, 282]], 2, '#7a3a2a'); }
-  // the folded hands on the arm of the chair
-  poly(g, [[110, 574], [316, 574], [330, 616], [96, 616]], '#3a2a18', 2.6);
-  ell(g, 236, 566, 50, 21, '#e6c491', 2.6, -0.14); ell(g, 196, 552, 50, 20, '#ecd0a0', 2.6, 0.12);
-  for (let i = 0; i < 3; i++) curveTo(g, [[212 + i * 12, 540], [220 + i * 12, 548], [222 + i * 12, 560]], 1.6, '#9a7440');
-  // four hundred years of varnish
-  g.fillStyle = 'rgba(128,88,22,0.16)'; g.fillRect(0, 0, w, h);
-  const v = g.createRadialGradient(w / 2, h * 0.45, h * 0.3, w / 2, h * 0.45, h * 0.78); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(30,18,4,0.42)'); g.fillStyle = v; g.fillRect(0, 0, w, h);
+  curveTo(g, [[214, 246], [207, 268], [217, 270]], 2, 'rgba(140,104,64,0.85)');
+  if (mood === 'bored') curveTo(g, [[194, 288], [212, 289], [230, 288]], 3, '#8a4632');
+  else if (mood === 'wide') ell(g, 212, 290, 7, 8, '#7c3a2a', 2);
+  else {
+    g.save(); g.beginPath(); g.moveTo(188, 282); g.quadraticCurveTo(212, 300, 236, 282); g.quadraticCurveTo(212, 292, 188, 282); g.fillStyle = '#8f4634'; g.fill(); g.restore();
+    curveTo(g, [[186, 281], [190, 284], [193, 288]], 2.2, 'rgba(120,60,40,0.8)'); curveTo(g, [[238, 281], [234, 284], [231, 288]], 2.2, 'rgba(120,60,40,0.8)');
+    g.strokeStyle = 'rgba(120,60,40,0.4)'; g.lineWidth = 1.6; g.beginPath(); g.moveTo(196, 276); g.quadraticCurveTo(212, 282, 228, 276); g.stroke();
+  }
+  // ---- the folded hands on the arm of the chair
+  poly(g, [[104, 578], [320, 578], [334, 616], [92, 616]], '#3a2a18', 2.4);
+  ell(g, 240, 568, 48, 20, '#e8c894', 2.4, -0.16); ell(g, 198, 552, 48, 19, '#e8c894', 2.4, 0.14);
+  for (let i = 0; i < 3; i++) curveTo(g, [[214 + i * 12, 540], [222 + i * 12, 548], [224 + i * 12, 562]], 1.6, 'rgba(150,110,60,0.8)');
+  // ---- four hundred years of varnish, and the sfumato at the edges
+  g.fillStyle = 'rgba(128,88,22,0.07)'; g.fillRect(0, 0, w, h);
+  const v = g.createRadialGradient(w / 2, h * 0.42, h * 0.3, w / 2, h * 0.42, h * 0.85); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(26,14,2,0.3)'); g.fillStyle = v; g.fillRect(0, 0, w, h);
+  g.strokeStyle = 'rgba(224,196,140,0.35)'; g.lineWidth = 3; g.strokeRect(1.5, 1.5, w - 3, h - 3);
 });
 
 /** Old masters for the rest of the wall: eight invented pictures in the manner of a museum, flat and brown with varnish. */
 export const oldMaster = (i: number, wide = true) => tex(`master-${i}-${wide}`, wide ? 400 : 300, wide ? 300 : 400, (g, w, h) => {
   const r = rng(31 + i * 17), k = i % 8;
-  const varnish = () => { g.fillStyle = 'rgba(110,70,20,0.22)'; g.fillRect(0, 0, w, h); const v = g.createRadialGradient(w / 2, h / 2, h * 0.2, w / 2, h / 2, h * 0.8); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(20,10,0,0.5)'); g.fillStyle = v; g.fillRect(0, 0, w, h); };
+  const varnish = () => { g.fillStyle = 'rgba(110,70,20,0.1)'; g.fillRect(0, 0, w, h); const v = g.createRadialGradient(w / 2, h / 2, h * 0.2, w / 2, h / 2, h * 0.8); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(20,10,0,0.28)'); g.fillStyle = v; g.fillRect(0, 0, w, h); };
   const figure = (x: number, y: number, s: number, robe: string, skin = '#e3c090', hair = '#3a2416') => { poly(g, [[x - 0.5 * s, y + 1.5 * s], [x - 0.36 * s, y + 0.3 * s], [x + 0.36 * s, y + 0.3 * s], [x + 0.5 * s, y + 1.5 * s]], robe, 2); ell(g, x, y, 0.3 * s, 0.34 * s, skin, 2); ell(g, x, y - 0.12 * s, 0.32 * s, 0.26 * s, hair, 0, 0, Math.PI, Math.PI * 2); };
   if (k === 0) {                                                                                  // a landscape: sky, a river, trees
     const s = g.createLinearGradient(0, 0, 0, h); s.addColorStop(0, '#8fb0c4'); s.addColorStop(0.6, '#e6d6a0'); g.fillStyle = s; g.fillRect(0, 0, w, h);
@@ -107,8 +124,8 @@ export function framed(p: Node, w: number, h: number, t: THREE.Texture, x: numbe
   }
   const out: Framed = {g, pic, w, h};
   if (o.glass) {                                                                                 // a pane in front of the picture: two streaks of reflected light
-    const gt = tex('glass-streak', 128, 128, (c) => { c.clearRect(0, 0, 128, 128); c.fillStyle = 'rgba(255,255,255,0.5)'; c.beginPath(); c.moveTo(18, 128); c.lineTo(58, 0); c.lineTo(74, 0); c.lineTo(34, 128); c.fill(); c.fillStyle = 'rgba(255,255,255,0.3)'; c.beginPath(); c.moveTo(60, 128); c.lineTo(100, 0); c.lineTo(106, 0); c.lineTo(66, 128); c.fill(); });
-    const m = new THREE.MeshBasicMaterial({map: gt, transparent: true, depthWrite: false, opacity: 0.9}); out.glass = soft(panel(g, w, h, m, 0, 0, 0.05));
+    const gt = tex('glass-streak', 128, 128, (c) => { c.clearRect(0, 0, 128, 128); c.fillStyle = 'rgba(255,255,255,0.2)'; c.beginPath(); c.moveTo(18, 128); c.lineTo(58, 0); c.lineTo(74, 0); c.lineTo(34, 128); c.fill(); c.fillStyle = 'rgba(255,255,255,0.12)'; c.beginPath(); c.moveTo(60, 128); c.lineTo(100, 0); c.lineTo(106, 0); c.lineTo(66, 128); c.fill(); });
+    const m = new THREE.MeshBasicMaterial({map: gt, transparent: true, depthWrite: false, opacity: 0.55}); out.glass = soft(panel(g, w, h, m, 0, 0, 0.05));
   }
   return out;
 }
