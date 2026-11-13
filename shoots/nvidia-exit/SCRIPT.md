@@ -129,7 +129,9 @@ Times carries, which a search returned after the film was built).
   successful. Nvidia declined to comment." He and a representative of the board "did not reply". It agrees with the
   three lines on screen.
 - **"A third".** The count is the outlets' ("the third extramarital relationship attributed to" him, Newsweek). He has
-  admitted being unfaithful and has named nobody; he has not confirmed any of the three reports.
+  admitted being unfaithful, in the memo of 8 November, and named nobody; outlets read that as an admission of the
+  first relationship ("Huang has formally acknowledged only one", The Statesman). He has not answered the second
+  report or the third.
 - **The day he resigned.** The board accepted the resignation on Wednesday 11 November, according to the filing as
   Newsweek and others quote it, and the company announced it on Thursday 12 November. The narration says "On
   Thursday, he resigned", as every outlet read for the first cut put it, and the date line in the hook now says
@@ -477,7 +479,7 @@ tiled with `scripts/sheets.sh`. Where a point of a set lands in the frame: `scri
   - The copier's bar of light passes over his face on its way down him, twice. It is meant.
   - The NV1's box is the film's own (dark blue, a chip, a gold border); it is not a drawing of the real package.
   - The dotted route on the map runs from Taiwan straight to Oregon (see "Not confirmed").
-- **The story on the day:** searched again on 13 November 2026, five times after the first reading (04:10 UTC).
+- **The story on the day:** searched again on 13 November 2026, six times after the first reading (04:10 UTC).
   - **05:52 and 06:14 UTC,** before and after the first cut's render. New then: a Senate committee has called on him
     and the Commerce Secretary to testify on 3 December; a House committee has asked for a closed-door interview and
     speaks of a subpoena if no date is agreed; Singapore's authorities say they questioned the businesswoman in 2025
@@ -493,10 +495,14 @@ tiled with `scripts/sheets.sh`. Where a point of a set lands in the frame: `scri
     chairman of the House Foreign Affairs Committee says "He has agreed to come. We're in negotiations for which
     day." The three House committees have since written to him asking for a closed-door, transcribed interview on 1
     December, to be confirmed by Friday evening (14 November, 01:00 UTC), or they will issue a subpoena.
-  - **None of it contradicts a line of the film.** As of 07:54 UTC: Colette Kress is interim chief executive and no
+  - **08:06 UTC,** after the render, before the delivery: The Statesman, ThePrint, Sky News's live page, Dainik
+    Jagran and ChinaTechNews give Reuters's report as the film does (Thursday, two people familiar with the matter,
+    the employee not named and not reached, Nvidia declining to comment, he and the board's representative not
+    answering).
+  - **None of it contradicts a line of the film.** As of 08:06 UTC: Colette Kress is interim chief executive and no
     successor is named; the company has still given no reason; the Justice Department has reached no conclusion; no
-    report of a charge against the businesswoman or of a word from her; he has confirmed none of the three reported
-    relationships; he is reported to have agreed to testify, has not yet done so, and the committees' deadline has not
+    report of a charge against the businesswoman or of a word from her; he has not answered the second or the third
+    report; he is reported to have agreed to testify, has not yet done so, and the committees' deadline has not
     passed.
 - **What will go out of date:** the two lines that say AS OF NOV. 13; HE HAS AGREED TO TESTIFY BEFORE CONGRESS (once
   he has, or if he does not confirm the date the committees ask for); FOR NOW: COLETTE KRESS, THE FINANCE CHIEF (when

@@ -444,3 +444,16 @@ spy; the company's statement carries no word from him.
 - **Against the film:** the line stands as The Guardian wrote it ("Huang has agreed to testify before US Congress").
   The agreement is reported on a committee chairman's word, no date is fixed, and the committees ask for a
   confirmation by Friday evening. If he does not confirm, the line is out of date.
+
+### The third report once more, 08:06 UTC, before the delivery (search excerpts)
+
+- The Statesman, 13 Nov: "Reuters reported on Thursday that Jensen Huang had an intimate relationship with a second
+  Nvidia employee, citing two people familiar with the matter. The agency did not name the woman. It said attempts to
+  reach her were not successful. ... It is the third relationship now alleged against him in a week. Huang has
+  formally acknowledged only one. None of the claims has been tested in court or confirmed by an independent inquiry."
+- ThePrint, 13 Nov: "Nvidia declined to comment, while Huang, Powell and representatives of the company's board did not
+  respond to requests for comment."
+- Sky News, live, 13 Nov, 03:47: "Following the resignation, two sources told the Reuters news agency that Huang had
+  an "intimate relationship" with a second employee. They have not been named. Huang and Nvidia are yet to comment."
+- **Against the film:** as before. The film does not say whether he has admitted any one of the three; it quotes his
+  memo ("I was unfaithful to my wife") and names nobody.
