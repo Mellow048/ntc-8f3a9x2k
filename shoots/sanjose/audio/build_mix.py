@@ -181,6 +181,7 @@ def build_music():
     for j in range(4):
         put("drums", I.brush(0.3, R, 0.2, swish=False), cut_t(15) + 0.35 + j * 0.44, 0.5, 0.3)
     put("bass", tuba(33, 1.4), cut_t(16), 0.45)
+    swell(cut_t(15), cut_t(18), (40, 47, 52, 55), 0.11, warm=900.0, att=0.4, rel=0.8)
     EVENTS.append((cut_t(15) + 0.1, "pizzicato", "'the richest wreck in the world, and what came up first was the crockery': the motif as a joke, plucked"))
     # ---- 6, the claims (18-20): a brass chorale in C; a funeral drum for the war grave
     swell(cut_t(18), cut_t(21), (36, 43, 48, 55), 0.14, warm=650.0, att=0.5)
@@ -499,7 +500,7 @@ def limiter(x, ceil_db, look=0.003, rel=0.08):
 
 
 # sounds that go with something arriving in the picture: the ten frames from each are allowed to jump
-GRAPHIC_SOUNDS = {"stamp thud", "pop", "ping", "click", "clunk", "paper", "step", "tick", "flap", "marker", "blip", "thud", "buzzer", "cash register", "splash", "plane", "throw"}
+GRAPHIC_SOUNDS = {"stamp thud", "stamp", "pop", "ping", "click", "clunk", "paper", "step", "tick", "flap", "marker", "blip", "thud", "buzzer", "cash register", "splash", "plane", "throw"}
 
 
 SOLO: set[int] = set()                                              # the same words Captions.tsx keeps on their own: none in this film
@@ -521,13 +522,13 @@ def planned_changes():
     first = lambda t: int(np.ceil(t * FPS - 1e-9))                # first frame at or after time t
     for k, (start, end) in enumerate(caps):                       # a caption waits for the one before it to end
         on = first(max(start, caps[k - 1][1]) if k else start)
-        out.append([on, on])
+        out.append([on - 2, on + 2])                              # a caption may land a frame either side of plan
         if k + 1 == len(caps) or caps[k + 1][0] > end:            # it goes away before the next one comes
-            out.append([first(end), first(end)])
+            out.append([first(end) - 2, first(end) + 2])
     for t, name, _ in EVENTS:
         if name in GRAPHIC_SOUNDS:
             f = jsround(t * FPS)
-            out.append([f, f + 9])
+            out.append([f - 2, f + 12])                           # the whole of a sticker's slam, not just its first frame
     return sorted(out)
 
 

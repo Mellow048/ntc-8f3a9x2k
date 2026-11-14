@@ -3,12 +3,12 @@
 Written by `build_mix.py`. All music and effects are synthesized in that script; nothing is sampled.
 
 - length 77.767 s (2333 frames at 30 fps), 48 kHz stereo, 16-bit
-- integrated loudness -14.5 LUFS, true peak -2.7 dBTP, limiter at most 4.1 dB
-- stems at mix gain: voice -15.3 LUFS, music -21.2 LUFS, effects -29.2 LUFS
-- music after ducking: 6.0 LU under the voice while someone speaks, 5.9 LU under it over the whole film
-- the same above 300 Hz (what a phone speaker plays): 7.4 LU under the voice; loudest 200 ms under a spoken word 3.9 LU under it
-- voice over the bed while speaking: median 8.0 LU, 10th percentile 2.9 LU
-- word by word, the voice over music and effects across each word's own span: median 7.2 LU, 10th percentile 2.2 LU, lowest -2.0 LU ('who', word 256); 6 of 262 words under 0; 'and' (word 14) is lifted 4 dB with the bed 3.5 dB down under it; 'her' (word 20) is lifted 2 dB with the bed 2 dB down under it; 'per' (word 154) is lifted 2.5 dB with the bed 2 dB down under it; 'A' (word 156) is lifted 2 dB with the bed 2 dB down under it; 'who' (word 256) is lifted 3 dB with the bed 2.5 dB down under it
+- integrated loudness -14.5 LUFS, true peak -2.7 dBTP, limiter at most 4.4 dB
+- stems at mix gain: voice -15.3 LUFS, music -21.1 LUFS, effects -29.2 LUFS
+- music after ducking: 5.9 LU under the voice while someone speaks, 5.8 LU under it over the whole film
+- the same above 300 Hz (what a phone speaker plays): 7.5 LU under the voice; loudest 200 ms under a spoken word 4.0 LU under it
+- voice over the bed while speaking: median 8.1 LU, 10th percentile 2.9 LU
+- word by word, the voice over music and effects across each word's own span: median 7.0 LU, 10th percentile 1.9 LU, lowest -1.6 LU ('who', word 256); 6 of 262 words under 0; 'and' (word 14) is lifted 4 dB with the bed 3.5 dB down under it; 'her' (word 20) is lifted 2 dB with the bed 2 dB down under it; 'per' (word 154) is lifted 2.5 dB with the bed 2 dB down under it; 'A' (word 156) is lifted 2 dB with the bed 2 dB down under it; 'who' (word 256) is lifted 3 dB with the bed 2.5 dB down under it
 
 | time s | frame | sound | why |
 |---|---|---|---|
