@@ -2,7 +2,7 @@ SPECS 720x1280 30/1 fps, 2333 frames, 77.766 s; audio: aac 48000 Hz 2ch
 LOUDNESS I:         -14.5 LUFS | LRA:         2.6 LU | Peak:       -2.5 dBFS
 SILENCES none
 FRAMES 2333; black []; unplanned white []; frozen spans >=12f []
-POPS (unplanned frame-diff spikes > 3x local median): [1308, 1362, 1363, 1438]
+POPS (unplanned frame-diff spikes > 3x local median): [1438]
 MOTION mean diff 2.66; frames with diff<0.3 (held): 312 (13%)
 
 PER SHOT  (luma mean / std / p2 / p98 / saturation mean, medians over the shot)
@@ -22,10 +22,10 @@ PER SHOT  (luma mean / std / p2 / p98 / saturation mean, medians over the shot)
   shot 14 f602-631: 0.731 / 0.155 / 0.080 / 0.878 / 0.128
   shot 15 f632-672: 0.718 / 0.200 / 0.076 / 0.899 / 0.077
   shot 16 f673-722: 0.724 / 0.171 / 0.076 / 0.869 / 0.096
-  shot 17 f723-762: 0.271 / 0.137 / 0.031 / 0.492 / 0.692
-  shot 18 f763-830: 0.751 / 0.151 / 0.327 / 0.882 / 0.061
-  shot 19 f831-891: 0.178 / 0.160 / 0.024 / 0.852 / 0.871
-  shot 20 f892-924: 0.198 / 0.254 / 0.015 / 0.854 / 0.787
+  shot 17 f723-762: 0.271 / 0.137 / 0.031 / 0.494 / 0.692
+  shot 18 f763-830: 0.751 / 0.151 / 0.328 / 0.882 / 0.061
+  shot 19 f831-891: 0.178 / 0.160 / 0.024 / 0.852 / 0.870
+  shot 20 f892-924: 0.198 / 0.254 / 0.015 / 0.854 / 0.786
   shot 21 f925-969: 0.575 / 0.168 / 0.187 / 0.889 / 0.537
   shot 22 f970-1024: 0.400 / 0.208 / 0.030 / 0.797 / 0.683
   shot 23 f1025-1067: 0.222 / 0.215 / 0.039 / 0.907 / 0.810
