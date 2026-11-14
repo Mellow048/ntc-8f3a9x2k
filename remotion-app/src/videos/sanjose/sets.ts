@@ -190,7 +190,7 @@ export const deep: Builder = (root) => {
   // a cloud needs a material of its own: the shared colour materials are opaque, and an opacity on one of those
   // would be ignored (and would dim every other thing of that colour)
   const cloud = Array.from({length: 14}, () => soft(mesh(root, new THREE.SphereGeometry(0.9, 18, 12),
-    new THREE.MeshBasicMaterial({color: '#b8ccd0', transparent: true, opacity: 0, depthWrite: false}))));
+    new THREE.MeshBasicMaterial({color: '#3f6a78', transparent: true, opacity: 0, depthWrite: false}))));
   const cloudG = grp(root, 0, 0, 0);
   cloud.forEach((c, i) => { cloudG.add(c); c.userData.i = i; });
   cloudG.visible = false;
@@ -216,7 +216,7 @@ export const deep: Builder = (root) => {
         rov.position.set(2.4, 4.2, 2.0);
       }
       if (silt) {
-        cloud.forEach((c, i) => { const u = (f * 0.006 + i * 0.125) % 1; c.position.set(lerp(-2.4, 2.4, (i % 4) / 3) - 3.0 * u, 0.5 + u * 2.6, -1.8 + ((i * 13) % 20) / 10); c.scale.setScalar(2.4); op(c, 0.15 * Math.sin(Math.PI * u) ** 1.5); });
+        cloud.forEach((c, i) => { const u = (f * 0.006 + i * 0.125) % 1; c.position.set(lerp(-2.4, 2.4, (i % 4) / 3) - 3.0 * u, 0.5 + u * 2.6, -1.8 + ((i * 13) % 20) / 10); c.scale.setScalar(1.5); op(c, 0.085 * Math.sin(Math.PI * u) ** 1.5); });
       }
     },
   };
