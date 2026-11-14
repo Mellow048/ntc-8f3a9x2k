@@ -42,9 +42,9 @@ export const SHOTS: Shot[] = [
   s(29, 'chart', 'estimate', [0, 1.9, 5.2], [0, 1.35, -2.2], 42, {push: 0.06, tag: 'WHAT SHE CARRIES'}),
   s(36, 'deep', 'coins', [-0.6, 1.5, 3.9], [-0.7, 0.15, 1.5], 44, {push: 0.09}),
   // 3 "Colombia found her in twenty fifteen, at two thousand feet. Her coordinates are a state secret."
-  s(41, 'chart', 'secret', [1.4, 2.6, 2.2], [0.7, 0.95, -1.0], 45, {push: 0.07, tag: 'FOUND · 2015'}),
+  s(41, 'chart', 'secret', [1.1, 2.4, 2.6], [0.8, 0.95, -0.8], 48, {push: 0.07, tag: 'FOUND · 2015'}),
   s(47, 'deep', 'wreck', [0.4, 3.4, 14.0], [-0.4, 1.0, -1.6], 52, {push: 0.05, tag: '600 METRES DOWN'}),
-  s(52, 'chart', 'secret', [0.9, 1.85, 0.6], [0.9, 0.97, -1.2], 38, {push: 0.1, close: true}),
+  s(52, 'chart', 'secret', [0.9, 2.0, 1.2], [0.9, 0.97, -1.0], 40, {push: 0.1, close: true}),
   // 4 "Last November a robot lifted the first objects: a bronze cannon, three coins, and two porcelain cups."
   s(57, 'deep', 'rov', [0, 2.2, 7.0], [0, 1.9, -0.5], 44, {push: 0.07, tag: 'NOVEMBER 2025'}),
   s(61, 'deep', 'arm', [2.6, 1.8, 5.0], [0.9, 1.1, 0.2], 44, {push: 0.09, close: true}),
@@ -62,16 +62,16 @@ export const SHOTS: Shot[] = [
   s(108, 'andes', 'claim', [0.2, 1.55, 4.8], [0.1, 1.25, 0.6], 42, {push: 0.08}),
   // 7 "An American salvage firm says it found her in nineteen eighty-two, and wants ten billion dollars: half of everything."
   s(116, 'court', 'salvor', [1.9, 1.55, 3.6], [1.9, 1.3, 0.2], 40, {push: 0.08, close: true, tag: 'SEA SEARCH ARMADA'}),
-  s(121, 'chart', 'tenk', [-0.2, 2.2, 2.8], [-0.2, 0.95, -0.4], 46, {push: 0.07, tag: 'THEY SAY THEY FOUND HER IN 1982'}),
-  s(128, 'chart', 'tenk', [-0.2, 1.7, 2.2], [-0.3, 0.96, -0.3], 42, {push: 0.1, close: true}),
+  s(121, 'chart', 'tenk', [-0.2, 2.6, 3.2], [-0.3, 0.95, -0.3], 50, {push: 0.07, tag: 'THEY SAY THEY FOUND HER IN 1982'}),
+  s(128, 'chart', 'tenk', [-0.2, 2.1, 2.6], [-0.3, 0.96, -0.3], 44, {push: 0.1, close: true}),
   // 8 "Colombia says they were ten kilometres off. In nineteen eighty-four the finder's share was cut from half to five per cent."
-  s(135, 'chart', 'tenk', [-0.3, 2.4, 3.0], [-0.5, 0.95, -0.4], 46, {push: 0.06}),
-  s(142, 'chart', 'decree', [1.1, 2.2, 4.0], [1.1, 0.97, 0.8], 42, {push: 0.08, tag: 'DECREE · 1984'}),
-  s(149, 'chart', 'decree', [1.1, 1.7, 2.6], [1.1, 1.02, 1.15], 40, {push: 0.1, close: true}),
+  s(135, 'chart', 'tenk', [-0.3, 2.8, 3.4], [-0.4, 0.95, -0.3], 50, {push: 0.06}),
+  s(142, 'chart', 'decree', [1.1, 2.3, 3.4], [1.1, 0.97, 0.7], 46, {push: 0.08, tag: 'DECREE · 1984'}),
+  s(149, 'chart', 'decree', [1.1, 1.9, 2.6], [1.1, 1.02, 1.1], 40, {push: 0.1, close: true}),
   // 9 "A Colombian heritage watchdog says the site was already disturbed, in twenty sixteen and twenty twenty two, and that the coordinates leaked. The state institute denies it."
   s(156, 'deep', 'silt', [0, 2.0, 6.2], [0, 0.9, -1.4], 42, {push: 0.07, tag: 'ALREADY DISTURBED?'}),
   s(165, 'deep', 'silt', [1.0, 1.5, 4.0], [0.6, 0.8, -1.6], 40, {push: 0.09}),
-  s(174, 'chart', 'leak', [0.9, 1.9, 1.6], [0.9, 0.97, -1.0], 40, {push: 0.1, close: true, tag: 'THE COORDINATES'}),
+  s(174, 'chart', 'leak', [0.9, 2.0, 1.6], [0.9, 0.97, -1.0], 42, {push: 0.1, close: true, tag: 'THE COORDINATES'}),
   s(178, 'court', 'deny', [3.7, 1.55, 3.2], [3.7, 1.3, 0], 38, {push: 0.08, close: true, tag: 'ICANH'}),
   // 10 "The government says this is science, not treasure. President Petro wants her raised before his term ends."
   s(183, 'press', 'science', [0, 1.8, 4.4], [0, 1.35, -1.0], 36, {push: 0.07, tag: 'BOGOTÁ'}),

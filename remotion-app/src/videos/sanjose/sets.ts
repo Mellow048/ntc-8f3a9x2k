@@ -295,6 +295,10 @@ const chartTex = () => tex('chart', 1024, 700, (g, w, h) => {
 export const chart: Builder = (root) => {
   backdrop(root, ['#4a4236', '#2a2620']);
   floor(root, 12, 10, tmat(tiled(woodTex('chart-floor', '#6a4a2c', '#3a2818'), 4, 4)));
+  // the room round the table: a panelled wall, so a view over the chart is not a void
+  panel(root, 14, 5.0, tmat(tiled(woodTex('chart-wall', '#5a4a34', '#33281c'), 5, 4)), 0, 2.5, -3.6);
+  for (const x of [-4.2, -1.4, 1.4, 4.2]) box(root, 0.22, 5, 0.2, '#33281c', x, 2.5, -3.5);
+  soft(panel(root, 1.6, 1.0, smat(signTex('chart-plate', 520, 320, '#e8dfc4', '#4a4236', [['MAR CARIBE', 52, 0.45], ['1708', 44, 0.8]], {font: 'Anton'}), 1.0), 0, 3.1, -3.5));
   const top = grp(root, 0, 0.92, -0.6);
   table(root, 0, 0, 7.2, 4.4, {h: 0.92, top: '#c9a86a', leg: '#5a3e28', skirt: '#8a6a44'});
   const map = soft(panel(top, 5.6, 3.8, smat(chartTex(), 1.0), 0, 0.02, 0));
