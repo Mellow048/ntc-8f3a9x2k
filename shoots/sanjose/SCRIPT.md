@@ -9,8 +9,9 @@ approve your script cuz u always make good scripts") and asked that each film be
 This is the first of the four. It is also the first film in the series with two colours of flag on the table and no
 apostrophe in its title.
 
-**Status:** rendered on 2026-11-13 on branch `arena/92d6dc1f-ntc-8f3a9x2k`. The file is `shoots/sanjose/final-720p.mp4`.
-The result section at the foot records the render run, the checks and the numbers.
+**Status:** delivered on 2026-11-13 on branch `arena/92d6dc1f-ntc-8f3a9x2k`. Six renders; the final file is
+`shoots/sanjose/final-720p.mp4` at commit `eb2ca5c` (run `43561002911`). Not approved yet: it goes to the user as the
+first of the four films he asked for. The Result section at the foot records the run, the checks and the numbers.
 
 ## The story in one line
 
@@ -169,5 +170,21 @@ gh workflow run render-short.yml --ref arena/92d6dc1f-ntc-8f3a9x2k \
 
 ## Result
 
-To be filled in from the render run: the run's number, the duration and loudness of the finished file, the checks on
-it (frame count, the planned changes in `qa-shots.json`, the cuts), and the SHA-256.
+- **File:** `shoots/sanjose/final-720p.mp4`, 720 × 1280, 30 fps, 2333 frames / 77.766 s, 27,680,536 bytes, H.264 +
+  48 kHz stereo AAC. SHA-256 `b93db174ac5a79efc431d14bb1fdbbda77157bd7ac108af7212a0f1ad4045dbf`. Render run
+  `43561002911` on commit `eb2ca5c`; the published file landed as `78c9f85`.
+- **Sound:** −14.5 LUFS integrated, LRA 2.6 LU, true peak −2.5 dBFS. No silence anywhere in the film (the first render
+  had a 0.35 s hole between lines 5 and 6, where a pad ended early; a pad was added under the crockery).
+- **Picture:** 2333 frames, no black frames, no unplanned white frames, no frozen span of twelve frames or more, and
+  **no unplanned pops** in the final render. Getting there took three passes over one effect: the silt clouds were
+  built on the shared colour materials, which are opaque, so their opacity animation did nothing and they arrived whole
+  in the frame; given their own transparent material and a dark teal tint they now read as murk.
+- **The five renders before it** were: 1) the first full render, 22 unplanned pops (every sticker and caption arrival)
+  and a 0.35 s silence; 2) after the plan was widened to cover a whole sticker's slam and a pad was added, four pops
+  left (the 5% stamp, painted in the set); 3) with the stamp in the plan, one pop (the silt); 4) the silt given a
+  growing scale, three pops; 5) the silt on sin-shaped opacity, still one pop, because the material was opaque all
+  along. Nothing was rendered twice for the same reason.
+- **What was checked, and what was not:** the finished file technically (all of the above) and the picture on about
+  eighty stills across the nine sets, in eight rounds, as each set's staging was framed. The film has not been watched
+  in motion and the mix has not been listened to: the balance of the score under the voice, whether the broadside
+  reads as a battle, and whether the last line lands were reasoned from the numbers in `audio/cues.md`, not heard.
