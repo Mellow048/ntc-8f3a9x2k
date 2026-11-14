@@ -529,6 +529,8 @@ def planned_changes():
         if name in GRAPHIC_SOUNDS:
             f = jsround(t * FPS)
             out.append([f - 2, f + 12])                           # the whole of a sticker's slam, not just its first frame
+    for i in (26, 27):                                            # the 5% stamp is painted in the set, not the overlay layer:
+        out.append([CUTS[i] + 20, CUTS[i] + 34])                  # it grows over ten frames, from shot.at + 22
     return sorted(out)
 
 
