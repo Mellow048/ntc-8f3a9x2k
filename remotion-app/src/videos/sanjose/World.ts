@@ -1,13 +1,11 @@
-// The world of the bitcoin flex short: every set is built once, one is shown per shot, and the same two lights are
+// The world of the shipwreck short: every set is built once, one is shown per shot, and the same two lights are
 // re-coloured for each set (no shader recompiles between shots). Cuts are hard; each shot pushes in or travels.
 import * as THREE from 'three';
 import {SHOTS, shotAt, shotEnd, type Kind} from './story';
-import {club, coins, deep, desk, drive, villa, type Builder, type SetDef} from './sets';
-import {cal, fleet, globe, jet, mask, room, screen} from './sets2';
-import {court, feed, sleuth, split, steps} from './sets3';
+import {andes, chart, court, deep, lab, press, sea, type Builder, type SetDef} from './sets';
 import {clamp01} from './kit';
 
-const BUILDERS: Record<Kind, Builder> = {coins, desk, drive, villa, deep, club, cal, room, globe, screen, mask, jet, fleet, feed, sleuth, court, steps, split};
+const BUILDERS: Record<Kind, Builder> = {sea, deep, lab, chart, court, andes, press};
 
 export class SanJoseWorld {
   root = new THREE.Group();

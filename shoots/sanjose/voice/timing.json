@@ -1,0 +1,75 @@
+{
+ "source": "raw-take.mp3",
+ "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
+ "raw_seconds": 99.15,
+ "tight_seconds": 89.09,
+ "pauses_cut": 47,
+ "tempo": 1.2,
+ "eq": {
+  "bass_shelf_db": -1.0,
+  "presence_db": 1.5
+ },
+ "squeezed": [],
+ "beats": [
+  {
+   "line": 2,
+   "after": "twenty",
+   "at": 11.717,
+   "seconds": 0.22
+  },
+  {
+   "line": 4,
+   "after": "cups",
+   "at": 22.005,
+   "seconds": 0.26
+  },
+  {
+   "line": 5,
+   "after": "crockery",
+   "at": 26.909,
+   "seconds": 0.26
+  },
+  {
+   "line": 6,
+   "after": "mountain",
+   "at": 33.248,
+   "seconds": 0.2
+  },
+  {
+   "line": 7,
+   "after": "everything",
+   "at": 39.337,
+   "seconds": 0.22
+  },
+  {
+   "line": 8,
+   "after": "cent",
+   "at": 45.121,
+   "seconds": 0.2
+  },
+  {
+   "line": 9,
+   "after": "leaked",
+   "at": 51.285,
+   "seconds": 0.22
+  },
+  {
+   "line": 10,
+   "after": "ends",
+   "at": 58.537,
+   "seconds": 0.22
+  },
+  {
+   "line": 12,
+   "after": "her",
+   "at": 66.979,
+   "seconds": 0.34
+  }
+ ],
+ "seconds": 76.356,
+ "words": 262,
+ "words_per_second": 3.43,
+ "lufs": -16.4,
+ "lra": 2.4,
+ "peak": -1.6
+}

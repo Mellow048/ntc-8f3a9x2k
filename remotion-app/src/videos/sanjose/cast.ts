@@ -367,31 +367,49 @@ export function drawActor(g: G2, look: Look, d: Draw, res = 1) {
 const SKIN = ['#ffe2c2', '#c99067', '#f5c9a0', '#8a5a3c', '#ecd0b6'], HAIR = ['#3b271c', '#241c18', '#5c3c24', '#a8643a'];
 const NOBODY = '#cfcadb';
 const CREW_COL = ['#4f6fa8', '#3f8a55', '#7a5c9a', '#b08a3a'];
-/** Malone Lam, named: the house's stock figure in four invented costumes. 0 a pink hoodie; 1 the same with a gold chain;
- *  2 the chain and sunglasses; 3 plain grey, in court. No likeness. */
-export const LAM = (v = 0): Look => ({id: 'lam' + v, seed: 23, front: v === 3 ? 'tee' : 'hoodie', shirt: v === 3 ? '#c3c7d1' : '#fffdf4', hairdo: 'swept', hairColor: '#1f1b24', chain: v === 1 || v === 2, eyewear: v === 2 ? 'shades' : undefined,
-  outfit: {jacket: v === 3 ? '#8f96a8' : '#e83e8c', pants: v === 3 ? '#8f96a8' : '#1f2230', boots: v === 3 ? '#6f7688' : '#f3f1ea', hat: null, skin: SKIN[2], build: 'adult', noButtons: true}});
-/** The crew: eighteen people are charged and not all of them have been tried. A blank head with a question mark, nobody's likeness. */
-export const CREW = (v = 0, headset = false): Look => ({id: 'crew' + v + (headset ? 'h' : ''), seed: 11 + v * 5, front: 'hoodie', shirt: '#d9d6cf', blank: true, headset,
-  outfit: {jacket: CREW_COL[v % 4], pants: '#2b2f3a', boots: '#15161b', hat: null, skin: NOBODY, build: 'adult', noButtons: true}});
-/** The investigator, known by a handle: no face. A trench coat (not his own avatar). */
-export const SLEUTH: Look = {id: 'sleuth', seed: 61, front: 'coat', shirt: '#3a3f4a', blank: true,
-  outfit: {jacket: '#c9a86a', pants: '#3b3552', boots: '#15161b', hat: null, skin: NOBODY, build: 'adult', noButtons: true}};
-/** Two agents: invented. */
-export const AGENT = (v = 0): Look => ({id: 'agent' + v, seed: 71 + v * 6, front: 'uniform', chest: 'FBI', shirt: '#ffd21f', hairdo: v ? 'long' : undefined, hairColor: '#241c18',
-  outfit: {jacket: '#1b2440', pants: '#1b2440', boots: '#15161b', hat: v ? null : 'cap', cap: '#1b2440', hair: HAIR[1], skin: SKIN[v ? 3 : 0], build: 'adult', noButtons: true}});
-/** A judge: invented, no likeness of the judge in the case. */
-export const JUDGE: Look = {id: 'judge', seed: 131, front: 'robe', hairdo: 'swept', hairColor: '#c9ccd6',
-  outfit: {jacket: '#1b1820', pants: '#1b1820', boots: '#15161b', hat: null, skin: SKIN[4], build: 'adult', noButtons: true}};
-/** A prosecutor: invented, no likeness of anyone who works on the case. */
-export const PROSECUTOR: Look = {id: 'prosecutor', seed: 201, front: 'suit', tie: '#2f4a7a', shirt: '#fbfaf5', hairdo: 'long', hairColor: '#3b271c', lanyard: '#c9a23a',
-  outfit: {jacket: '#2b3348', pants: '#2b3348', boots: '#15161b', hat: null, skin: SKIN[0], build: 'adult', noButtons: true}};
-/** A defence lawyer: invented. */
-export const LAWYER: Look = {id: 'lawyer', seed: 171, front: 'suit', tie: '#a02c3a', shirt: '#fbfaf5', hairdo: 'swept', hairColor: '#b9bcc6', eyewear: 'rect',
-  outfit: {jacket: '#5a6072', pants: '#3b3f4d', boots: '#2b2b33', hat: null, skin: SKIN[1], build: 'adult', noButtons: true}};
-/** Club staff: invented. */
-export const STAFF = (v = 0): Look => ({id: 'staff' + v, seed: 91 + v * 9, front: 'tee', shirt: '#f3f1ea', hairdo: v ? 'long' : 'swept', hairColor: v ? '#a8643a' : '#241c18',
-  outfit: {jacket: '#15161b', pants: '#15161b', boots: '#15161b', hat: null, skin: SKIN[v ? 0 : 3], build: 'adult', noButtons: true}});
+/** The cast of the shipwreck short. Only the four claimants and the two named presidents are drawn as people; every
+ *  official who speaks for an institution is an invented figure. No likeness of anyone living, except Petro, drawn as the
+ *  house's stock figure in a sash (the film says who he is with a tag, not with a portrait). */
+
+/** the Spanish captain of 1708: the Count of Casa Alegre, as the sources style him. Coat, sash, sword, no likeness. */
+export const CAPTAIN: Look = {id: 'captain', seed: 31, front: 'coat', shirt: '#f3ead6', hairdo: 'swept', hairColor: '#4a3220',
+  outfit: {jacket: '#2f4a7a', pants: '#243a5e', boots: '#15161b', hat: null, sash: '#b23a3a', sword: true, moustache: '#4a3220', skin: SKIN[0], build: 'adult', noButtons: true}};
+/** the British commodore who fired on her: Charles Wager. Red coat, a plain hat, no likeness. */
+export const COMMODORE: Look = {id: 'commodore', seed: 37, front: 'coat', shirt: '#f6f1e2', hairdo: 'swept', hairColor: '#8f8371',
+  outfit: {jacket: '#9b2f2f', pants: '#2b2a33', boots: '#15161b', hat: null, cap: '#9b2f2f', sash: '#e8d9a8', sword: true, skin: SKIN[0], build: 'adult', noButtons: true}};
+/** the culture ministry's minister, at the lectern: invented face. */
+export const MINISTER: Look = {id: 'minister', seed: 43, front: 'suit', tie: '#c9a23a', shirt: '#fbfaf5', hairdo: 'bob', hairColor: '#241c18',
+  outfit: {jacket: '#2b3550', pants: '#2b3550', boots: '#15161b', hat: null, skin: SKIN[1], build: 'adult'}};
+/** the president, at the same lectern a moment later: a sash, and the tag says which president. */
+export const PRESIDENT: Look = {id: 'president', seed: 47, front: 'suit', tie: '#8a1f2a', shirt: '#fbfaf5', hairdo: 'swept', hairColor: '#9aa0ab',
+  outfit: {jacket: '#232a3c', pants: '#232a3c', boots: '#15161b', hat: null, sash: '#e8b93a', skin: SKIN[3], build: 'adult'}};
+/** the salvor: an invented executive of the salvage company. Tie, no name, no likeness. */
+export const SALVOR: Look = {id: 'salvor', seed: 53, front: 'suit', tie: '#3b6ea8', shirt: '#f4f7fb', hairdo: 'swept', hairColor: '#c9ccd6', eyewear: 'shades',
+  outfit: {jacket: '#3a3f4a', pants: '#3a3f4a', boots: '#15161b', hat: null, skin: SKIN[0], build: 'adult'}};
+/** counsel for the other side: a robe and a stack of paper. */
+export const COUNSEL: Look = {id: 'counsel', seed: 59, front: 'robe', shirt: '#ffffff', hairdo: 'long', hairColor: '#3b271c',
+  outfit: {jacket: '#1d1f26', pants: '#1d1f26', boots: '#15161b', hat: null, skin: SKIN[2], build: 'adult', noButtons: true}};
+/** the archaeologist who has questioned the plan since 2018: glasses, a clipboard, invented. */
+export const SCIENTIST: Look = {id: 'scientist', seed: 67, front: 'coat', shirt: '#c8cdd8', hairdo: 'bob', hairColor: '#5c3c24', eyewear: 'round',
+  outfit: {jacket: '#6b7a5a', pants: '#3f4652', boots: '#2a2a30', hat: null, skin: SKIN[4], build: 'adult', noButtons: true}};
+/** the Qhara Qhara claim: a woman of the Bolivian altiplano, in a woven shawl and a bowler hat. Invented. */
+export const QHARA: Look = {id: 'qhara', seed: 73, front: 'coat', shirt: '#f2ead6', hairdo: 'long', hairColor: '#241c18',
+  outfit: {jacket: '#a8443a', pants: '#3b3552', boots: '#2a2a30', hat: null, cap: '#2a2a30', sash: '#e8c04a', skin: SKIN[1], build: 'adult', noButtons: true}};
+/** the institute's official, who denies it: invented. */
+export const OFFICIAL: Look = {id: 'official', seed: 79, front: 'suit', tie: '#3f7a5a', shirt: '#f7f5ee', hairdo: 'swept', hairColor: '#241c18', eyewear: 'rect', lanyard: '#3f7a5a',
+  outfit: {jacket: '#4a4f5e', pants: '#4a4f5e', boots: '#15161b', hat: null, skin: SKIN[2], build: 'adult'}};
+/** the pilot of the robot, aboard the research ship: invented. */
+export const PILOT: Look = {id: 'pilot', seed: 83, front: 'uniform', shirt: '#2f4a6a', hairdo: 'swept', hairColor: '#241c18', headset: true,
+  outfit: {jacket: '#2f4a6a', pants: '#243a52', boots: '#15161b', hat: null, cap: '#2f4a6a', skin: SKIN[0], build: 'adult', noButtons: true}};
+/** the watch: a heritage-group officer with a folder. Invented. */
+export const WATCH: Look = {id: 'watch', seed: 89, front: 'coat', shirt: '#e8e2d2', hairdo: 'long', hairColor: '#a8643a', eyewear: 'round',
+  outfit: {jacket: '#7a6a4a', pants: '#3b3552', boots: '#2a2a30', hat: null, skin: SKIN[3], build: 'adult', noButtons: true}};
+/** reporters and the crowd: invented, blank-headed, no likeness. */
+export const CROWD = (v = 0): Look => ({id: 'crowd' + v, seed: 97 + v * 7, front: 'tee', shirt: ['#d9d6cf', '#c9c2b4', '#b7c3d6', '#d6c3b7'][v % 4], hairdo: v % 2 ? 'long' : 'swept',
+  outfit: {jacket: ['#4f6fa8', '#3f8a55', '#7a5c9a', '#b08a3a'][v % 4], pants: '#2b2f3a', boots: '#15161b', hat: null, skin: NOBODY, build: 'adult', noButtons: true}});
+/** a diver aboard the research ship, for the deck. */
+export const DECKHAND: Look = {id: 'deckhand', seed: 103, front: 'uniform', shirt: '#ffd21f', hairdo: 'swept', hairColor: '#3b271c',
+  outfit: {jacket: '#1d4a6a', pants: '#1d4a6a', boots: '#15161b', hat: null, cap: '#1d4a6a', skin: SKIN[4], build: 'adult', noButtons: true}};
 
 // ---------- billboards ----------
 const cache = new Map<string, THREE.CanvasTexture>();

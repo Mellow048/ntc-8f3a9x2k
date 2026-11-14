@@ -45,6 +45,18 @@ PICTURE_WORDS = HERE.parents[1] / "remotion-app" / "src" / "videos" / "sanjose" 
 # Spoken forms the aligner needs, and pronunciations missing from the CMU dictionary.
 SPOKEN: dict[str, str] = {"zachxbt": "zackexbeetee", "f.b.i.": "efbeeeye"}
 LEXICON = {
+    "seventeenoheight": "S EH V AH N T IY OW EY T",
+    "eightyfour": "EY T IY F AO R",
+    "eightytwo": "EY T IY T UW",
+    "qhara": "K AA R AH",
+    "shipwrecks": "SH IH P R EH K S",
+    "kilometres": "K IH L AA M AH T ER Z",
+    "crockery": "K R AA K ER IY",
+    "watchdog": "W AA CH D AO G",
+    "petro": "P EH T R OW",
+    "porcelain": "P AO R S AH L AH N",
+    "salvage": "S AE L V IH JH",
+    "treasure": "T R EH ZH ER",
     "zackexbeetee": "Z AE K EH K S B IY T IY",
     "efbeeeye": "EH F B IY AY",
     "bitcoin": "B IH T K OY N",
@@ -111,16 +123,15 @@ def align(x48: np.ndarray, tokens: list[str]) -> list[tuple[float, float]]:
 
 
 # Deliberate beats: (narration line, word, seconds of silence added after that word in the finished read).
-BEATS = [(1, "supercars", 0.1), (1, "mansions", 0.12), (1, "nightclubs", 0.12), (1, "month", 0.25), (4, "dollars", 0.2), (5, "flex", 0.15), (6, "online", 0.25), (7, "watching", 0.2), (8, "it", 0.25), (9, "first", 0.25), (10, "years", 0.25),
-         (11, "Quote", 0.15), (11, "time", 0.4), (12, "empire", 0.15), (12, "kids", 0.35)]
+BEATS = [(2, "twenty", 0.22), (4, "cups", 0.26), (5, "crockery", 0.26), (6, "mountain", 0.2), (7, "everything", 0.22), (8, "cent", 0.2), (9, "leaked", 0.22), (10, "ends", 0.22), (12, "her", 0.34)]
 # Spelled-out initials come with a pause after every letter. (narration line, word, seconds of silence left between its letters)
-SQUEEZE: list = [(7, "ZachXBT", 0.05), (9, "F.B.I.", 0.04)]
+SQUEEZE: list = []
 
 
 def add_beats(audio: np.ndarray, words: list[dict], sr: int = vm.SR):
     """Insert BEATS into a finished read, inside the pause that is already there. Updates `words` in place."""
     hop, fade = int(0.005 * sr), int(0.005 * sr)
-    index = lambda b: next(k for k, w in enumerate(words) if w["line"] == b[0] and w["word"] == b[1])
+    index = lambda b: next(k for k, w in enumerate(words) if w["line"] == b[0] and w["word"].strip(".,!?:;").lower() == b[1].strip(".,!?:;").lower())
     done = []
     for line, word, extra in sorted(BEATS, key=index, reverse=True):       # last first: earlier times stay valid
         i = index((line, word))

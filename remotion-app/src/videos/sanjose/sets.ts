@@ -1,389 +1,473 @@
-// Sets of the bitcoin flex short, part 1: what every set shares, the supercar, and the sets coins, desk, drive, villa,
-// deep and club. Each builder fills a group once and returns a tick that poses it for a frame (motion is a pure function of
-// the frame number, so any frame can be rendered on its own).
+// Sets of the shipwreck short: the battle of 1708, the wreck at 600 metres, the conservation lab, the chart table,
+// the arbitration room, the altiplano and the lectern. Each builder fills a group once and returns a tick that poses it
+// for a frame, so any frame can be rendered on its own.
 import * as THREE from 'three';
-import {backdrop, ball, beam, box, card, cone, cyl, floor, foldTex, grainTex, grp, hop, lamp, lerp, lit, mat, mesh, panel, pool, pop, rng, rod, rrect, smat, smooth, soft, tex, text, tiled, tileTex, tmat, torus, vgrad, woodTex, type G2, type Node, type V} from './kit';
-import {actor, AGENT, LAM, STAFF} from './cast';
-import {bubble, bundle, coinStack, coinStream, glints, halo, laptop, level, mug, palm, table} from './props';
+import {backdrop, ball, beam, box, card, cone, cyl, floor, grp, hop, lamp, lerp, lit, mat, mesh, panel, pool, pop, rng, rod, rrect, smat, smooth, soft, tex, text, tiled, tileTex, tmat, torus, vgrad, woodTex, grainTex, type G2, type V} from './kit';
+import {actor, CAPTAIN, COMMODORE, COUNSEL, CROWD, DECKHAND, MINISTER, OFFICIAL, PILOT, PRESIDENT, QHARA, SALVOR, SCIENTIST, WATCH} from './cast';
+import {coin, coinStack, glints, lectern, sack, signTex, table} from './props';
 import {W, type Shot} from './story';
 
-export type Ctx = {f: number; /** frames since the shot began */ t: number; cam: THREE.PerspectiveCamera; shot: Shot};
+export type Ctx = {f: number; t: number; cam: THREE.PerspectiveCamera; shot: Shot};
 export type Light = {sky: string; ground: string; amb: number; key: string; keyI: number; from: V; span: number};
 export type SetDef = {tick: (c: Ctx) => void; light: (v: string) => Light};
 export type Builder = (root: THREE.Group) => SetDef;
+export {type Light as LightDef};
 
-export const LIGHT: Record<'day' | 'room' | 'cold' | 'dark' | 'warm' | 'show' | 'dusk' | 'night', Light> = {
-  day: {sky: '#fff4da', ground: '#99aac1', amb: 1.7, key: '#fff0d4', keyI: 2.0, from: [-8, 16, 12], span: 16},
-  room: {sky: '#fff1dc', ground: '#8f8aa0', amb: 1.55, key: '#fff3e0', keyI: 1.1, from: [-5, 10, 9], span: 9},
-  cold: {sky: '#e6efff', ground: '#8fa3c4', amb: 1.6, key: '#eaf2ff', keyI: 1.0, from: [-3, 10, 8], span: 10},
-  dark: {sky: '#9fb0ff', ground: '#3a3f66', amb: 0.8, key: '#cfd8ff', keyI: 0.6, from: [-4, 10, 8], span: 9},
-  warm: {sky: '#ffd9a8', ground: '#6a4a4a', amb: 1.05, key: '#ffc98a', keyI: 0.95, from: [-4, 9, 8], span: 8},
-  show: {sky: '#bcd0ff', ground: '#3a4466', amb: 1.0, key: '#ffffff', keyI: 1.35, from: [1, 12, 10], span: 9},
-  dusk: {sky: '#ffd0a0', ground: '#5a568a', amb: 1.15, key: '#ffb070', keyI: 1.3, from: [-7, 8, 9], span: 14},
-  night: {sky: '#aab8ff', ground: '#3a4270', amb: 1.0, key: '#d6deff', keyI: 0.75, from: [-6, 12, 9], span: 16},
+export const LIGHT: Record<'dawn' | 'sun' | 'under' | 'lab' | 'paper' | 'room' | 'altiplano' | 'press', Light> = {
+  dawn: {sky: '#ffcf9a', ground: '#4a5a7a', amb: 1.25, key: '#ffbe78', keyI: 1.5, from: [-9, 7, 8], span: 18},
+  sun: {sky: '#ffe9c8', ground: '#8fa0b8', amb: 1.5, key: '#fff0d0', keyI: 1.7, from: [-8, 12, 10], span: 16},
+  under: {sky: '#7fd0e8', ground: '#124a6a', amb: 1.15, key: '#cfeeff', keyI: 0.7, from: [-4, 10, 8], span: 10},
+  lab: {sky: '#f2f6ff', ground: '#9aa4b4', amb: 1.55, key: '#ffffff', keyI: 1.15, from: [-4, 10, 8], span: 8},
+  paper: {sky: '#fff3d8', ground: '#a89a86', amb: 1.5, key: '#fff4dc', keyI: 1.25, from: [-5, 10, 9], span: 9},
+  room: {sky: '#ffe8c4', ground: '#6a5a52', amb: 1.2, key: '#ffd9a8', keyI: 1.05, from: [-5, 9, 8], span: 9},
+  altiplano: {sky: '#cfe4ff', ground: '#b08a5a', amb: 1.45, key: '#fff0d0', keyI: 1.5, from: [-9, 13, 10], span: 18},
+  press: {sky: '#dfe8f4', ground: '#8a8f9a', amb: 1.5, key: '#ffffff', keyI: 1.3, from: [-5, 11, 9], span: 9},
 };
 
 export const INK = '#15121c';
 const op = (o: THREE.Mesh, k: number) => { (o.material as THREE.MeshBasicMaterial).opacity = k; };
-
-/** Rings that leave a point, facing the camera side of the set. Call the returned function every frame. */
-export function rings(p: Node, n = 3, color = '#7af0e0') {
-  const os = Array.from({length: n}, () => { const o = soft(mesh(p, new THREE.RingGeometry(0.86, 1, 44), new THREE.MeshBasicMaterial({color, transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide}))); o.renderOrder = 6; return o; });
-  return (f: number, on: boolean, at: V, r = 0.5, ry = 0, speed = 0.05) => os.forEach((o, i) => {
-    const u = (f * speed + i / n) % 1; o.visible = on; o.position.set(...at); o.rotation.y = ry; o.scale.setScalar(r * (0.2 + 0.8 * u)); op(o, 0.9 * (1 - u) ** 1.4);
-  });
-}
-/** a dashed outline of head and shoulders: somebody who is in the story and is not drawn */
-export const ghostTex = () => tex('ghost', 300, 500, (g, w) => {
-  g.strokeStyle = '#ffe14a'; g.lineWidth = 11; g.setLineDash([24, 17]); g.lineCap = 'round'; g.beginPath(); g.arc(w / 2, 104, 78, 0, 7); g.stroke(); rrect(g, w / 2 - 96, 200, 192, 280, 60); g.stroke();
+const flagTex = (a: string, b: string, c: string) => tex('flag-' + a + b + c, 300, 200, (g, w, h) => {
+  g.fillStyle = a; g.fillRect(0, 0, w, h / 2); g.fillStyle = b; g.fillRect(0, h / 2, w, h / 4); g.fillStyle = c; g.fillRect(0, (h * 3) / 4, w, h / 4);
+  g.strokeStyle = 'rgba(0,0,0,0.18)'; g.lineWidth = 4; g.strokeRect(2, 2, w - 4, h - 4);
 });
-/** a padlock, shut or open */
-export function lock(g: G2, x: number, y: number, s: number, open: boolean, body: string, line = INK) {
-  g.save(); g.lineWidth = s * 0.16; g.strokeStyle = body; g.lineCap = 'round';
-  g.beginPath(); if (open) { g.arc(x - s * 0.34, y - s * 0.36, s * 0.3, Math.PI, 0); g.lineTo(x - s * 0.04, y - s * 0.1); } else { g.moveTo(x - s * 0.3, y - s * 0.1); g.lineTo(x - s * 0.3, y - s * 0.36); g.arc(x, y - s * 0.36, s * 0.3, Math.PI, 0); g.lineTo(x + s * 0.3, y - s * 0.1); } g.stroke();
-  g.fillStyle = body; rrect(g, x - s * 0.5, y - s * 0.12, s, s * 0.74, s * 0.12); g.fill();
-  g.fillStyle = line; g.beginPath(); g.arc(x, y + s * 0.18, s * 0.1, 0, 7); g.fill(); g.fillRect(x - s * 0.04, y + s * 0.2, s * 0.08, s * 0.22); g.restore();
-}
-/** the bitcoin sign on an orange disc */
-export function btcSign(g: G2, x: number, y: number, r: number) {
-  g.save(); g.fillStyle = '#f7931a'; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); g.strokeStyle = '#c56f08'; g.lineWidth = r * 0.12; g.stroke();
-  g.fillStyle = '#ffffff'; for (const dx of [-0.16, 0.1]) { g.fillRect(x + dx * r, y - r * 0.7, r * 0.1, r * 0.22); g.fillRect(x + dx * r, y + r * 0.48, r * 0.1, r * 0.22); }
-  text(g, 'B', x, y + r * 0.04, r * 1.18, '#ffffff'); g.restore();
+const ensign = (c: string) => tex('ensign-' + c, 300, 200, (g, w, h) => {
+  g.fillStyle = c; g.fillRect(0, 0, w, h); g.fillStyle = '#e8d9a8'; g.fillRect(0, 0, w, 26); g.fillRect(0, h - 26, w, 26);
+  g.strokeStyle = '#e8d9a8'; g.lineWidth = 8; g.beginPath(); g.moveTo(w / 2, 30); g.lineTo(w / 2, h - 30); g.stroke();
+  g.beginPath(); g.moveTo(20, h / 2); g.lineTo(w - 20, h / 2); g.stroke();
+});
+function clothFlag(p: THREE.Group, t: THREE.Texture, x: number, y: number, z: number, h = 1.4) {
+  rod(p, [x, y - h, z], [x, y, z], 0.02, '#7a6a52');
+  return soft(panel(p, h * 1.4, h, smat(t, 1.0), x + h * 0.7, y - h / 2, z));
 }
 
-// ------------------------------------------------------------------ the supercar
-/** A skin over cross-sections. Each section is a closed ring of [y, z] points at a station x; all rings have the same count. */
-function loftGeo(secs: {x: number; ring: [number, number][]}[]) {
-  const n = secs[0].ring.length, pos: number[] = [];
-  const P = (i: number, j: number): V => { const s = secs[i], [y, z] = s.ring[j % n]; return [s.x, y, z]; };
-  const tri = (a: V, b: V, c: V) => { pos.push(...a, ...b, ...c); };
-  for (let i = 0; i + 1 < secs.length; i++) for (let j = 0; j < n; j++) { const a = P(i, j), b = P(i + 1, j), c = P(i + 1, j + 1), d = P(i, j + 1); tri(a, b, c); tri(a, c, d); }
-  for (const i of [0, secs.length - 1]) {                                    // close both ends with a fan
-    const s = secs[i], c: V = [s.x, s.ring.reduce((t, q) => t + q[0], 0) / n, s.ring.reduce((t, q) => t + q[1], 0) / n];
-    for (let j = 0; j < n; j++) tri(c, P(i, j), P(i, j + 1));
-  }
-  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.computeVertexNormals(); return g;
-}
-// station, half-width, floor, sill, shoulder, top, half-width of the top
-const BODY: number[][] = [[-1.15, 0.45, 0.17, 0.21, 0.42, 0.45, 0.36], [-0.95, 0.5, 0.1, 0.16, 0.45, 0.5, 0.4], [-0.45, 0.5, 0.1, 0.16, 0.44, 0.535, 0.36], [-0.1, 0.5, 0.1, 0.16, 0.42, 0.6, 0.31],
-  [0.25, 0.5, 0.1, 0.16, 0.4, 0.58, 0.31], [0.62, 0.49, 0.1, 0.15, 0.37, 0.395, 0.35], [1.0, 0.46, 0.1, 0.14, 0.29, 0.305, 0.37], [1.15, 0.42, 0.12, 0.14, 0.2, 0.21, 0.34]];
-const GLASS: number[][] = [[-0.52, 0.31, 0.5, 0.55], [-0.1, 0.32, 0.5, 0.618], [0.25, 0.32, 0.48, 0.598], [0.66, 0.36, 0.375, 0.405]];
-let carGeo: {body: THREE.BufferGeometry; glass: THREE.BufferGeometry; wheel: THREE.BufferGeometry; hub: THREE.BufferGeometry} | null = null;
-const paint = new Map<string, THREE.Material>();
-/** A low wedge of a car, nose to +x, 2.3 long: nobody's model. Built from cross-sections, not from a side outline (which reads as a box). */
-export function supercar(p: Node, color: string, s = 1, plain = false) {
-  if (!carGeo) {
-    const wheel = new THREE.CylinderGeometry(0.17, 0.17, 0.13, 18); wheel.rotateX(Math.PI / 2);
-    const hub = new THREE.CylinderGeometry(0.09, 0.09, 0.14, 5); hub.rotateX(Math.PI / 2);
-    carGeo = {
-      body: loftGeo(BODY.map(([x, w, yb, ys, yh, yr, wr]) => ({x, ring: [[yb, -w * 0.9], [yb, w * 0.9], [ys, w], [yh, w * 0.97], [yr, wr], [yr, -wr], [yh, -w * 0.97], [ys, -w]] as [number, number][]}))),
-      glass: loftGeo(GLASS.map(([x, w, y0, y1]) => ({x, ring: [[y0, -w], [y0, w], [y1, w * 0.78], [y1, -w * 0.78]] as [number, number][]}))),
-      wheel, hub,
-    };
-  }
-  let m = paint.get(color); if (!m) paint.set(color, (m = new THREE.MeshLambertMaterial({color, side: THREE.DoubleSide})));
-  const g = grp(p); g.scale.setScalar(s);
-  mesh(g, carGeo.body, m); const gl = mesh(g, carGeo.glass, lit('#11141b', 1)); gl.castShadow = false;
-  for (const x of [-0.72, 0.68]) for (const z of [-0.43, 0.43]) { mesh(g, carGeo.wheel, '#16171d', x, 0.17, z); if (!plain) mesh(g, carGeo.hub, '#c9ced6', x, 0.17, z); }
-  for (const z of [-0.25, 0.25]) box(g, 0.03, 0.035, 0.2, lit('#fff3c0', 2), 1.145, 0.215, z).rotation.y = z > 0 ? -0.25 : 0.25;      // thin lit blades, not bricks
-  box(g, 0.03, 0.04, 0.78, lit('#ff3b30', 1.5), -1.158, 0.385, 0);
-  if (!plain) {
-    for (const z of [-0.3, 0.3]) box(g, 0.05, 0.16, 0.04, '#16171d', -1.0, 0.56, z);
-    box(g, 0.27, 0.03, 0.98, m, -1.04, 0.655, 0); box(g, 0.12, 0.03, 0.9, '#16171d', 1.1, 0.105, 0);
-    for (const z of [-0.502, 0.502]) box(g, 0.3, 0.12, 0.02, lit('#11141b', 1), -0.42, 0.3, z);
+// ------------------------------------------------------------------ sea: 8 June 1708, the battle of Barú
+function hull(p: THREE.Group, s: number, c: string, deck: string) {
+  const g = grp(p, 0, 0, 0);
+  box(g, 7.2 * s, 1.5 * s, 2.4 * s, c, 0, 0.75 * s, 0);
+  box(g, 6.4 * s, 0.5 * s, 2.0 * s, c, 0, 1.62 * s, 0);
+  box(g, 8.0 * s, 0.5 * s, 2.6 * s, deck, 0, 1.9 * s, 0);
+  for (const sgn of [-1, 1]) box(g, 7.0 * s, 0.22 * s, 0.2 * s, '#c9a23a', 0, 1.42 * s, sgn * 1.2 * s);
+  // gunports down both sides
+  for (let i = 0; i < 7; i++) for (const sgn of [-1, 1]) box(g, 0.34 * s, 0.3 * s, 0.06 * s, '#15161b', (-2.6 + i * 0.86) * s, 1.0 * s, sgn * 1.22 * s);
+  // the stern castle and its lantern
+  box(g, 2.0 * s, 1.1 * s, 2.2 * s, c, -2.5 * s, 2.4 * s, 0); box(g, 2.2 * s, 0.16 * s, 2.4 * s, deck, -2.5 * s, 3.0 * s, 0);
+  ball(g, 0.14 * s, lit('#ffe8b0', 1.6), -2.5 * s, 3.2 * s, 0);
+  // three masts, yards and square sails
+  const masts = [[-1.9, 6.2], [0.2, 7.4], [2.0, 5.6]] as const;
+  for (const [mx, mh] of masts) {
+    rod(g, [mx * s, 1.9 * s, 0], [mx * s, mh * s, 0], 0.075 * s, '#6a4a2a');
+    for (let k = 0; k < 2; k++) {
+      const y = (3.5 + k * 1.5) * s, w = (2.6 - k * 0.5) * s, hh = 1.3 * s;
+      rod(g, [mx * s - w / 2, y + hh, 0], [mx * s + w / 2, y + hh, 0], 0.03 * s, '#6a4a2a');
+      const sail = box(g, w, hh, 0.04 * s, '#f2e8d0', mx * s, y + hh / 2, 0.05 * s);
+      sail.rotation.z = 0.02;
+    }
   }
   return g;
 }
-
-// ------------------------------------------------------------------ coins: what was taken, as a stage full of gold
-const walletTex = () => tex('coins-wallet', 400, 260, (g, w, h) => {
-  g.fillStyle = '#10141c'; rrect(g, 7, 7, w - 14, h - 14, 38); g.fill(); g.strokeStyle = '#7af0e0'; g.lineWidth = 11; g.stroke();
-  text(g, '?', 132, h / 2 + 8, 190, '#7af0e0'); g.lineWidth = 10; rrect(g, 238, 78, 112, 104, 24); g.stroke();
-});
-export const coins: Builder = (root) => {
-  backdrop(root, ['#05061a', '#10143c', '#1c1f55']);
-  floor(root, 30, 30, tmat(tiled(tileTex('coins-floor', '#0b0e2c', '#1a2060', 4), 10, 10)));
-  cyl(root, 1.62, 0.06, '#0d1136', 0, 0.03, 0, 1.62, 44); cyl(root, 1.34, 0.16, '#161c52', 0, 0.08, 0, 1.34, 44);
-  const rim = torus(root, 1.34, 0.035, lit('#f2c230', 1.25), 0, 0.165, 0); rim.rotation.x = Math.PI / 2;
-  const r = rng(5), at: [number, number][] = [];
-  for (let i = 0; i < 16; i++) { const a = i * 2.39996, d = 0.2 * Math.sqrt(i); at.push([d * Math.cos(a), d * Math.sin(a)]); }
-  const stacks = at.map(([x, z]) => coinStack(root, x, 0.16, z, Math.round(22 - 13 * Math.hypot(x, z) + 3 * r()), 0.12));
-  const tops: V[] = at.map(([x, z], i) => [x, 0.16 + (stacks[i].userData.h as number) + 0.02, z]);
-  const glint = glints(root, [tops[0], tops[3], tops[5], tops[8], tops[11], tops[14]].map(([x, y, z]) => [x + 0.05, y + 0.06, z + 0.14] as V));
-  beam(root, 0.25, 1.7, 7.5, '#ffd98a', 0.035, 0, 7.5, -0.7); const spot = pool(root, 1.5, '#ffe2a0', 0.3, 0, 0, 0.17);
-  const me = actor(root, LAM(0), {grin: {expr: 'grin', pose: 'panic'}, laugh: {expr: 'laugh', pose: 'panic'}}, 0, 0.36, -1.0, {scale: 1.0, res: 1.1, shadow: 0});
-  const wallet = soft(panel(root, 0.86, 0.56, smat(walletTex(), 1.1, true), 1.02, 1.95, -0.2));
-  const stream = coinStream(root, 18, 0.085);
-  const gone = soft(mesh(root, new THREE.PlaneGeometry(3.2, 3.2), smat(tex('coins-gone', 512, 512, (g) => { g.strokeStyle = '#ffe14a'; g.lineWidth = 5; g.setLineDash([13, 9]); for (const [x, z] of at) { g.beginPath(); g.arc(256 + x * 160, 256 + z * 160, 20, 0, 7); g.stroke(); } }), 1.2, true), 0, 0.172, 0)); gone.rotation.x = -Math.PI / 2;
+export const sea: Builder = (root) => {
+  backdrop(root, ['#ffcf9a', '#e88a52', '#7a4a5a']);
+  const water = floor(root, 60, 60, tmat(tiled(tex('waves', 256, 256, (g, w, h) => {
+    g.fillStyle = '#2f6a8a'; g.fillRect(0, 0, w, h);
+    g.strokeStyle = '#4a8aa8'; g.lineWidth = 5;
+    for (let i = 0; i < 9; i++) { g.beginPath(); for (let x = 0; x <= w; x += 16) g.lineTo(x, 18 + i * 26 + 7 * Math.sin(x / 22 + i)); g.stroke(); }
+  }, true), 8, 8)), 0, 0, -4);
+  water.receiveShadow = true;
+  const galleon = hull(root, 1, '#8a5a2a', '#c9a86a');
+  const british = hull(root, 0.86, '#4a5a3a', '#c9a86a');
+  british.position.set(11, 0, -7); british.rotation.y = -0.55;
+  galleon.position.set(-1.4, 0, -1.2); galleon.rotation.y = 0.5;
+  const galleon2 = galleon;   // the same ship, moved for the sinking
+  // the smoke of a broadside: puffs that grow and fade
+  const puffs = Array.from({length: 14}, (_, i) => soft(ball(root, 0.5, '#d8d2c8', 0, -5, 0)));
+  // the magazine goes up: a cluster of fire, and a white-hot core
+  const fire = Array.from({length: 7}, (_, i) => {
+    const o = soft(ball(root, 0.4 + 0.1 * (i % 3), i % 2 ? '#ffb03a' : '#ff7a1a', 0, 0, 0));
+    o.position.set(-0.6 + 0.45 * Math.cos(i * 1.9), 1.9 + 0.4 * Math.sin(i * 2.3), -0.7 + 0.4 * Math.sin(i * 1.7));
+    return o;
+  });
+  const flash = soft(mesh(root, new THREE.SphereGeometry(0.34, 14, 10), new THREE.MeshBasicMaterial({color: '#fff0c0', transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending})));
+  flash.position.set(-0.6, 2.0, -0.6);
+  // the captain on his own deck, and the commodore on his
+  const cap = actor(root, CAPTAIN, {a: {expr: 'stern', pose: 'point'}, b: {expr: 'shock', pose: 'both'}, c: {expr: 'pained', pose: 'cross'}}, 0, 2.1, 0.6, {scale: 0.94, res: 1.1});
+  const com = actor(root, COMMODORE, {a: {expr: 'grin', pose: 'point'}, b: {expr: 'stern', pose: 'hold'}}, 0, 0, 0, {scale: 0.9, res: 0.9});
+  com.node.visible = false;
+  // the hold: chests, coins, emeralds
+  const hold = grp(root, 0, 0, 0); hold.visible = false;
+  const holdWall = box(hold, 9, 4.4, 0.4, '#3a2618', 0, 2.2, -2.6);
+  floor(hold, 9, 7, tmat(tiled(woodTex('hold-deck', '#5a3a20', '#3a2414'), 4, 3)), 0, 0, 0);
+  for (const [x, z, s] of [[-1.7, -1.4, 1], [-0.4, -1.8, 1.1], [1.3, -1.3, 0.95], [0.4, 0.2, 1.2], [-1.5, 0.4, 1.05]] as const) {
+    const c = grp(hold, x, 0, z); box(c, 1.5 * s, 0.9 * s, 1.0 * s, '#7a4a24', 0, 0.45 * s, 0); box(c, 1.56 * s, 0.12 * s, 1.06 * s, '#c9a23a', 0, 0.93 * s, 0);
+    coinStack(c, 0, 0.98 * s, 0, 5, 0.13); coinStack(c, 0.3 * s, 0.98 * s, 0.1, 3, 0.12);
+  }
+  const emeralds = Array.from({length: 9}, (_, i) => { const o = ball(hold, 0.07, lit('#2fc98a', 1.25), -2.4 + (i % 3) * 0.5, 0.06, 0.9 + Math.floor(i / 3) * 0.45); o.scale.y = 0.8; return o; });
+  const holdLight = soft(panel(hold, 3.4, 2.2, new THREE.MeshBasicMaterial({color: '#ffcf8a', transparent: true, opacity: 0.16, depthWrite: false, blending: THREE.AdditiveBlending}), 0, 1.2, 2.2));
   return {
-    light: () => ({...LIGHT.dark, amb: 1.05, key: '#ffe6b0', keyI: 1.1}),
-    tick: ({f, cam, shot}) => {
-      const pile = shot.v === 'pile', a = W(71) - 2, end = W(76) - 2;                    // the drain and the empty stage are one take: timed from words
-      me.node.visible = pile; me.show(Math.floor(f / 12) % 2 ? 'laugh' : 'grin'); me.node.position.y = lerp(-1.6, 0.05, smooth(f, 4, 22)) + hop(f, W(8), 0.12, 9); me.tick(f, cam);
-      stacks.forEach((s, i) => level(s, pile ? 1 : 1 - smooth(f, a + 8 + i * 1.6, a + 28 + i * 1.6)));
-      glint(f, pile || f < a + 16); op(spot, 0.3 + 0.05 * Math.sin(f * 0.2));
-      wallet.visible = !pile; wallet.scale.setScalar(pop(f, a + 3, 8) * (1 + 0.05 * Math.sin(f * 0.6) * (f < end ? 1 : 0))); wallet.position.y = 1.95 + 0.03 * Math.sin(f * 0.13);
-      if (pile) stream.hide(); else stream.set(f, a + 8, end - 6, (i) => [at[i % 16][0], 0.7, at[i % 16][1]], [0.3, 2.7, 0.2], () => [1.02, 1.95, -0.15], 0.05);
-      gone.visible = !pile && f >= end - 4; op(gone, smooth(f, end - 4, end + 8));
+    light: (v) => (v === 'hold' ? {...LIGHT.dawn, amb: 0.9, keyI: 0.7, sky: '#8a5a3a', ground: '#2a1a12'} : LIGHT.dawn),
+    tick: ({f, t, shot, cam}) => {
+      const v = shot.v, u = smooth(t, 0, 60);
+      const isHold = v === 'hold';
+      hold.visible = isHold; galleon.visible = !isHold; british.visible = !isHold && v !== 'sink'; water.visible = !isHold;
+      cap.node.visible = v === 'deck' || v === 'sink';
+      if (!isHold) {
+        galleon2.position.set(-1.4 + (v === 'sink' ? 0.4 * u : 0), v === 'sink' ? -0.5 * u : 0, -1.2 + (v === 'sink' ? 0.3 * u : 0));
+        galleon2.rotation.z = v === 'sink' ? 0.36 * u : 0; galleon2.rotation.y = 0.5 + (v === 'sink' ? 0.1 * u : 0);
+        british.position.set(11 - (v === 'battle' ? 2.2 * u : 0), 0, -7 + (v === 'battle' ? 0.6 * u : 0));
+        // the broadside: smoke rolls off the British ship's side
+        puffs.forEach((o, i) => {
+          const s0 = v === 'battle' ? smooth(f, shot.at + i * 2, shot.at + i * 2 + 34) : 0;
+          o.visible = s0 > 0.02;
+          o.position.set(6.4 - i * 0.42 + 0.3 * Math.sin(i + f * 0.02), 1.3 + 0.22 * i, -6.2 + Math.sin(i * 1.7) * 0.5);
+          o.scale.setScalar((0.5 + 0.5 * i / 14) * (0.4 + 1.7 * s0));
+          op(o, 0.5 * s0 * (1 - 0.4 * s0));
+        });
+        const fl = v === 'fire' ? smooth(f, shot.at + 2, shot.at + 9) : 0;
+        flash.visible = fl > 0.01; flash.scale.setScalar(0.6 + 0.5 * fl); op(flash, 0.9 * fl * (1 - 0.4 * fl));
+        fire.forEach((o, i) => {
+          const u = v === 'fire' ? smooth(f, shot.at + 2 + i * 2, shot.at + 12 + i * 3) : 0;
+          o.visible = u > 0.02; o.scale.setScalar(0.35 + 1.35 * u); op(o, 0.9 * u * (1 - 0.55 * u));
+        });
+        cap.show(v === 'sink' ? (f > shot.at + 40 ? 'c' : 'b') : 'a');
+        cap.node.position.set(-2.6, v === 'sink' ? 2.1 - 0.3 * u : 2.1, 0.8);
+        cap.node.rotation.z = v === 'sink' ? 0.2 * u : 0; cap.tick(f, cam);
+        com.tick(f, cam);
+      } else {
+        // the hold: the chests breathe a little with the sea
+        hold.rotation.z = 0.012 * Math.sin(f * 0.08);
+        emeralds.forEach((o, i) => { o.position.y = 0.06 + 0.01 * Math.sin(f * 0.1 + i); });
+        op(holdLight, 0.14 + 0.03 * Math.sin(f * 0.07));
+      }
     },
   };
 };
 
-// ------------------------------------------------------------------ desk: a study in Washington; the man who was robbed is a dashed outline
-const duskTex = () => tex('desk-window', 400, 460, (g, w, h) => {
-  vgrad(g, w, h, ['#3b2a6e', '#a04c8c', '#ff9a6a', '#ffd9a0']);
-  g.fillStyle = '#241a3c'; g.fillRect(0, h - 84, w, 84); g.fillRect(116, h - 112, 168, 30);
-  g.beginPath(); g.arc(200, h - 150, 48, Math.PI, 0); g.fill(); g.fillRect(152, h - 152, 96, 44); g.fillRect(189, h - 224, 22, 30); g.fillRect(197, h - 250, 6, 30);      // a dome with a lantern: the Capitol, far off
-  g.strokeStyle = '#efe6d2'; g.lineWidth = 16; g.strokeRect(8, 8, w - 16, h - 16); g.lineWidth = 9; g.beginPath(); g.moveTo(w / 2, 0); g.lineTo(w / 2, h); g.moveTo(0, h / 2); g.lineTo(w, h / 2); g.stroke();
-});
-const cardBg = (g: G2, w: number, h: number, c = '#10141c') => { g.fillStyle = c; g.fillRect(0, 0, w, h); };
-const walletCard = () => tex('desk-wallet', 520, 360, (g, w, h) => {
-  cardBg(g, w, h); text(g, 'HIS WALLET', w / 2, 62, 46, '#9fd0ff', {font: 'Montserrat'});
-  btcSign(g, 108, 176, 58); text(g, '4,100+', 334, 150, 104, '#ffffff'); text(g, 'BITCOIN', 334, 232, 50, '#f7931a');
-  g.fillStyle = '#2fbf71'; rrect(g, 200, 276, 120, 60, 12); g.fill(); lock(g, 260, 304, 34, false, '#ffffff', '#2fbf71');
-});
-const callCard = () => tex('desk-call', 460, 420, (g, w, h) => {
-  cardBg(g, w, h); text(g, 'INCOMING CALL', w / 2, 60, 46, '#9fd0ff', {font: 'Montserrat'});
-  g.fillStyle = '#cfcadb'; g.beginPath(); g.arc(w / 2, 172, 62, 0, 7); g.fill(); text(g, '?', w / 2, 178, 96, '#4a4560');
-  text(g, '“SECURITY TEAM”', w / 2, 282, 50, '#ffffff');
-  for (const [x, c] of [[150, '#ff3b30'], [310, '#2fd07a']] as const) { g.fillStyle = c; g.beginPath(); g.arc(x, 360, 36, 0, 7); g.fill(); }
-});
-const toolCard = () => tex('desk-tool', 520, 450, (g, w, h) => {
-  cardBg(g, w, h, '#fbfaf5'); g.fillStyle = '#3f8cff'; g.fillRect(0, 0, w, 84); text(g, '“SECURITY” TOOL', w / 2, 44, 44, '#ffffff', {font: 'Montserrat'});
-  g.fillStyle = '#3f8cff'; g.beginPath(); g.moveTo(204, 120); g.lineTo(316, 120); g.lineTo(316, 186); g.lineTo(260, 232); g.lineTo(204, 186); g.closePath(); g.fill();
-  text(g, 'INSTALL TO PROTECT YOUR COINS?', w / 2, 284, 27, '#1a1c24', {font: 'Montserrat', maxWidth: w - 50});
-  g.fillStyle = '#c9ced6'; rrect(g, 50, 330, 180, 78, 16); g.fill(); text(g, 'NO', 140, 372, 50, '#5a6072');
-  g.fillStyle = '#2fd07a'; rrect(g, 290, 330, 190, 78, 16); g.fill(); text(g, 'INSTALL', 385, 372, 50, '#ffffff');
-});
-const remoteCard = () => tex('desk-remote', 520, 450, (g, w, h) => {
-  cardBg(g, w, h, '#d81f3a'); text(g, 'REMOTE ACCESS: ON', w / 2, 62, 46, '#ffffff', {font: 'Montserrat', maxWidth: w - 50});
-  lock(g, w / 2 + 22, 232, 150, true, '#ffffff', '#d81f3a');
-  text(g, 'SOMEBODY ELSE HAS THE DESKTOP', w / 2, 398, 27, '#ffffff', {font: 'Montserrat', maxWidth: w - 50});
-});
-const cursorTex = () => tex('cursor', 96, 128, (g) => {
-  g.beginPath(); g.moveTo(10, 8); g.lineTo(10, 100); g.lineTo(34, 78); g.lineTo(52, 118); g.lineTo(70, 110); g.lineTo(52, 72); g.lineTo(84, 70); g.closePath();
-  g.fillStyle = '#ffffff'; g.fill(); g.lineWidth = 9; g.lineJoin = 'round'; g.strokeStyle = INK; g.stroke();
-});
-const booksTex = () => tex('desk-books', 300, 110, (g, w, h) => { const cs = ['#d81f3a', '#2f7fe0', '#f2c230', '#2f9e5a', '#8a4fd0', '#d81f3a', '#e8762c']; cs.forEach((c, i) => { g.fillStyle = c; g.fillRect(8 + i * 41, 8 + (i % 3) * 6, 35, h - 8 - (i % 3) * 6); g.strokeStyle = INK; g.lineWidth = 4; g.strokeRect(8 + i * 41, 8 + (i % 3) * 6, 35, h - 8 - (i % 3) * 6); }); });
-export const desk: Builder = (root) => {
-  backdrop(root, ['#12142e', '#1c2046']);
-  floor(root, 14, 12, tmat(tiled(woodTex('desk-floor', '#6a4426', '#3e2614'), 4, 4)));
-  panel(root, 12, 6, tmat(tiled(grainTex('desk-wall', '#262b58', 0.1), 5, 3)), 0, 3, -1.6);
-  soft(panel(root, 1.3, 1.5, smat(duskTex(), 1.05), -0.95, 2.15, -1.58));
-  box(root, 1.5, 0.05, 0.26, '#3e2614', 1.05, 2.45, -1.46); soft(panel(root, 1.2, 0.44, smat(booksTex(), 1, true), 1.05, 2.7, -1.42));
-  table(root, 0.2, 0.2, 2.6, 0.9, {h: 0.76, top: '#8a5a34', leg: '#3e2614', skirt: '#6a4426'});
-  laptop(root, -0.35, 0.76, 0.2, {ry: Math.PI, w: 0.62, body: '#8f96a3', back: lit('#dfe6f0', 1)});
-  cyl(root, 0.11, 0.03, '#2b2f3a', -1.0, 0.775, 0.1); cyl(root, 0.014, 0.42, '#2b2f3a', -1.0, 1.0, 0.1); const shade = cyl(root, 0.17, 0.2, lit('#ffe2a0', 1.4), -1.0, 1.28, 0.1, 0.09); shade.castShadow = false;
-  halo(root, 1.0, '#ffd98a', 0.16, -1.0, 1.25, 0.2); mug(root, 1.15, 0.76, 0.3, '#d81f3a');
-  // the phone, propped up, its screen to us
-  const phone = grp(root, 0.8, 0.76, 0.36); box(phone, 0.2, 0.36, 0.03, '#15161b', 0, 0.2, 0).rotation.x = -0.2; const scr = soft(panel(phone, 0.165, 0.31, lamp('#1c2433', 1), 0, 0.2, 0.02)); scr.rotation.x = -0.2;
-  const ring = rings(root, 3, '#2fd07a');
-  const ghost = soft(panel(root, 0.78, 1.3, smat(ghostTex(), 1.2, true), -0.35, 1.5, -0.42));
-  const one = bubble(root, 0.52, 1.9, 0.36, 0.95, 0.66, smat(walletCard(), 1.05), [-0.5, -0.36]);
-  const call = bubble(root, 0.74, 1.98, 0.36, 0.66, 0.6, smat(callCard(), 1.05), [0.06, -0.45]);
-  const tool = bubble(root, 0.36, 1.84, 0.3, 1.1, 0.95, smat(toolCard(), 1.05), [-0.5, -0.45]), toolM = tool.screen.material as THREE.MeshBasicMaterial, maps = [toolCard(), remoteCard()];
-  const cursor = soft(panel(root, 0.15, 0.2, smat(cursorTex(), 1.15, true), 0, 0, 0.36)); cursor.renderOrder = 8;
-  const BX = (px: number) => 0.36 + (px / 520 - 0.5) * 1.1, BY = (py: number) => 1.84 + (0.5 - py / 450) * 0.95;
-  return {
-    light: () => ({...LIGHT.room, sky: '#e6e2ff', amb: 1.3, keyI: 0.9}),
-    tick: ({f, shot}) => {
-      const v = shot.v, a = shot.at, click = W(68) + 1;
-      ghost.position.y = 1.5 + 0.015 * Math.sin(f * 0.1);
-      one.g.visible = v === 'one'; one.g.scale.setScalar(pop(f, a + 3, 8));
-      call.g.visible = v === 'ring'; call.g.scale.setScalar(pop(f, a + 2, 8) * (1 + 0.025 * Math.sin(f * 0.9)));
-      ring(f, v === 'ring', [0.8, 0.98, 0.42], 0.4, 0, 0.07); (scr.material as THREE.MeshBasicMaterial).color.set(v === 'ring' ? '#2fd07a' : '#1c2433').multiplyScalar(v === 'ring' ? 1.3 + 0.3 * Math.sin(f * 0.9) : 1);
-      phone.rotation.z = v === 'ring' ? 0.05 * Math.sin(f * 1.7) : 0;
-      tool.g.visible = v === 'allow'; tool.g.scale.setScalar(pop(f, a + 2, 8) * (1 + 0.06 * Math.max(0, 1 - Math.abs(f - click - 3) / 4)));
-      toolM.map = maps[f >= click + 2 ? 1 : 0];
-      // the cursor comes down to INSTALL and presses it; after that it moves by itself: somebody else has the desktop
-      const k = smooth(f, a + 10, click - 1), away = smooth(f, click + 3, click + 12), d = Math.max(0, f - click - 12);
-      cursor.visible = v === 'allow' && f >= a + 6;
-      cursor.position.set(lerp(lerp(BX(520) + 0.02, BX(400), k), BX(520) - 0.02 + 0.03 * Math.sin(d * 0.35), away) + 0.05, lerp(lerp(BY(120), BY(380), k), BY(250) + 0.04 * Math.sin(d * 0.5), away) - 0.08, 0.37);
-      cursor.scale.setScalar((f >= click && f < click + 3 ? 0.8 : 1) * pop(f, a + 6, 6));
-    },
-  };
-};
-
-// ------------------------------------------------------------------ drive: the cars in front of a rented house
-const facadeTex = () => tex('drive-facade', 1024, 512, (g, w, h) => {
-  g.fillStyle = '#f4f1e8'; g.fillRect(0, 0, w, h); g.fillStyle = '#e3ded0'; g.fillRect(0, 0, w, 44);
-  for (const x of [36, 204, 372, 540, 708, 876]) { g.fillStyle = '#5fd0e6'; g.fillRect(x, 96, 112, 250); g.strokeStyle = INK; g.lineWidth = 6; g.strokeRect(x, 96, 112, 250); }
-  g.fillStyle = '#e3ded0'; g.fillRect(0, 400, w, 20);
-});
-export const drive: Builder = (root) => {
-  backdrop(root, ['#3f9be0', '#a8dcf5', '#e8f6ff']);
-  floor(root, 22, 20, tmat(tiled(tileTex('drive-floor', '#efe9da', '#cfc7b4', 2), 9, 9)));
-  panel(root, 12, 6, tmat(facadeTex()), 0, 3, -3.6);
-  palm(root, -3.3, -2.6, 4.4, 0.5, 1.1); palm(root, 3.5, -2.8, 4.0, -0.4, 1.1);
-  const cars: [string, number, number, number][] = [['#ffd21f', 0.3, 1.4, -2.094], ['#8a2be2', 1.2, -0.35, -0.72], ['#a6e22e', -1.05, -0.9, -2.5], ['#f5f5f0', 0.4, -2.1, -1.27]];
-  for (const [c, x, z, ry] of cars) { const g = supercar(root, c); g.position.set(x, 0, z); g.rotation.y = ry; }
-  const selfie = actor(root, LAM(1), {a: {expr: 'grin', pose: 'wave', prop: 'selfie'}, b: {expr: 'laugh', pose: 'wave', prop: 'selfie'}}, 0, 0, 3.4, {scale: 1.0, res: 1.2, wide: true});
-  const flex = actor(root, LAM(2), {a: {expr: 'laugh', pose: 'shrug'}, b: {expr: 'grin', pose: 'shrug'}}, 0, 0, 3.4, {scale: 1.0, res: 1.2, wide: true});
-  const flash = halo(root, 0.7, '#ffffff', 0, 0.42, 1.62, 3.55);
-  const notes = Array.from({length: 16}, () => bundle(root, 0.75, true)), q = rng(9), nx = notes.map(() => [(q() - 0.5) * 2.6, 2.4 + q() * 1.6, q()] as V);
-  return {
-    light: () => LIGHT.day,
-    tick: ({f, cam, shot}) => {
-      const v = shot.v;
-      selfie.node.visible = v === 'selfie'; selfie.show(f >= W(17) ? 'b' : 'a'); selfie.node.position.y = hop(f, W(17), 0.1, 9); selfie.tick(f, cam);
-      op(flash, v === 'selfie' ? 0.9 * Math.max(0, 1 - Math.abs(f - W(17) - 1) / 3) : 0);
-      flex.node.visible = v === 'flex'; flex.show(Math.floor(f / 10) % 2 ? 'b' : 'a'); flex.node.position.y = Math.abs(0.06 * Math.sin(f * 0.42)); flex.tick(f, cam);
-      notes.forEach((n, i) => {
-        const u = (f * 0.022 + nx[i][2]) % 1; n.visible = v === 'flex';
-        n.position.set(nx[i][0] + 0.15 * Math.sin(f * 0.11 + i), 3.6 - u * 3.9, nx[i][1] + 0.4); n.rotation.set(f * 0.13 + i, f * 0.09 + i * 2, 0.6 * Math.sin(f * 0.1 + i));
-      });
-    },
-  };
-};
-
-// ------------------------------------------------------------------ villa: a rented glass house on the bay (the pool, the arrest, the dock)
-export const villa: Builder = (root) => {
-  const day = backdrop(root, ['#3f9be0', '#a8dcf5', '#e8f6ff']), dusk = backdrop(root, ['#3a2a6e', '#b0508a', '#ff9a6a', '#ffd0a0']);
-  floor(root, 60, 60, lit('#2a9fd0', 1), -0.36);                                                   // the bay
-  const waves = soft(mesh(root, new THREE.PlaneGeometry(40, 30), smat(tiled(tex('villa-waves', 256, 128, (g, w, h) => { g.strokeStyle = 'rgba(255,255,255,.5)'; g.lineWidth = 4; g.lineCap = 'round'; for (let i = 0; i < 7; i++) { const x = (i * 97) % w, y = 10 + i * 17; g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + 18, y - 8, x + 36, y); g.stroke(); } }, true), 10, 12), 1, true), 0, -0.35, 14)); waves.rotation.x = -Math.PI / 2;
-  box(root, 12, 0.5, 9.4, '#efe9da', 0, -0.25, -1.5);                                              // the terrace, 0 high, from z = -6.2 to 3.2
-  soft(mesh(root, new THREE.PlaneGeometry(12, 9.4), tmat(tiled(tileTex('villa-stone', '#efe9da', '#d3cbb8', 2), 6, 5)), 0, 0.004, -1.5)).rotation.x = -Math.PI / 2;
-  // the house: two floors of glass between white slabs
-  const glassM = lamp('#7fd6e8', 1.0), frame = '#f6f3ea';
-  box(root, 6.8, 0.22, 3.2, frame, -0.2, 2.25, -4.2); box(root, 7.2, 0.24, 3.6, frame, -0.2, 4.3, -4.2);
-  for (const x of [-3.4, -1.8, -0.2, 1.4, 3.0]) box(root, 0.16, 4.2, 0.16, frame, x, 2.1, -2.7);
-  soft(panel(root, 6.4, 2.05, glassM, -0.2, 1.1, -2.78)); soft(panel(root, 6.4, 1.85, glassM, -0.2, 3.26, -2.78));
-  for (const x of [-2.6, -1.0, 0.6, 2.2]) for (const y of [1.1, 3.26]) box(root, 0.05, 1.9, 0.05, frame, x, y, -2.74);
-  for (let i = 0; i < 9; i++) box(root, 0.03, 0.5, 0.03, '#3a3f4a', -3.3 + i * 0.775, 2.6, -2.62); box(root, 6.4, 0.04, 0.04, '#3a3f4a', -0.2, 2.86, -2.62);
-  box(root, 12, 5.2, 0.3, '#f1ede2', 0, 2.6, -6.0);
-  // the pool, sunk in the terrace: x -1.9 .. 1.1, z 0.1 .. 2.4
-  box(root, 3.3, 0.06, 2.6, '#fbf8f0', -0.4, 0.03, 1.25); const water = soft(mesh(root, new THREE.PlaneGeometry(3.0, 2.3), lamp('#35c3e8', 1.05), -0.4, 0.07, 1.25)); water.rotation.x = -Math.PI / 2;
-  const ripples = soft(mesh(root, new THREE.PlaneGeometry(3.0, 2.3), smat(tiled(tex('villa-ripple', 128, 128, (g) => { g.strokeStyle = 'rgba(255,255,255,.55)'; g.lineWidth = 4; g.lineCap = 'round'; for (const [x, y] of [[14, 30], [70, 62], [30, 100]]) { g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + 14, y - 7, x + 28, y); g.stroke(); } }, true), 5, 4), 1, true), -0.4, 0.075, 1.25)); ripples.rotation.x = -Math.PI / 2;
-  const floats = [torus(root, 0.27, 0.085, '#ff4fa3', -1.0, 0.13, 1.5), torus(root, 0.22, 0.07, '#ffd21f', 0.2, 0.13, 0.75)]; floats.forEach((t) => { t.rotation.x = Math.PI / 2; });
-  // loungers, a parasol, palms
-  for (const x of [1.9, 2.6]) { box(root, 0.5, 0.1, 1.2, '#fbf8f0', x, 0.22, 0.9); box(root, 0.5, 0.42, 0.1, '#fbf8f0', x, 0.42, 0.34).rotation.x = -0.5; }
-  cyl(root, 0.03, 2.0, '#8a8f9a', 2.25, 1.0, 0.1); cone(root, 0.95, 0.4, '#ff4fa3', 2.25, 2.1, 0.1, 12);
-  palm(root, -3.6, 0.3, 4.2, 0.5, 1.0); palm(root, 3.9, -1.2, 4.6, -0.4, 1.0); palm(root, -2.9, 2.7, 3.2, 0.35, 0.85);
-  // the dock: from the terrace's edge out into the bay
-  const dock = grp(root, 2.1, 0, 5.4); box(dock, 1.3, 0.1, 4.6, '#8a5a34', 0, 0.2, 0); for (let i = 0; i < 9; i++) box(dock, 1.3, 0.012, 0.03, '#5a3a22', 0, 0.256, -2.1 + i * 0.52);
-  const posts: THREE.Object3D[] = [];                                                            // the far posts on the bay side: they would stand in front of the splash
-  for (const z of [-1.9, -0.3, 1.3, 2.25]) for (const s of [-1, 1]) { const o = cyl(dock, 0.085, 1.5, '#5a3a22', s * 0.66, 0.1, z); if (s > 0 && z > 1) posts.push(o); }
-  // seen from the terrace (the dock shot): the bay runs to the horizon, with the sun going down in it
-  const sea = floor(root, 420, 420, lit('#2a9fd0', 1), -0.37); const sun = soft(mesh(root, new THREE.CircleGeometry(3.9, 40), new THREE.MeshBasicMaterial({color: '#fff0b8', fog: false}), 14, -0.2, 128)); sun.rotation.y = Math.PI;
-  // people
-  const me = actor(root, LAM(1), {shock: {expr: 'shock', pose: 'panic'}, caught: {expr: 'nervous', pose: 'panic'}}, 0.5, 0, 2.7, {scale: 1.0, res: 1.2});
-  const agents = [actor(root, AGENT(0), {a: {expr: 'stern', pose: 'point'}}, -0.4, 0, 2.8, {scale: 1.02, res: 1.2, wide: true}), actor(root, AGENT(1), {a: {expr: 'stern', pose: 'push'}}, 2.2, 0, 2.8, {scale: 1.0, res: 1.2, wide: true})];
-  const runner = actor(root, LAM(1), {look: {expr: 'nervous', pose: 'wave', prop: 'selfie', look: -1}, thrown: {expr: 'nervous', pose: 'push', look: -1}, gone: {expr: 'whistle', pose: 'hang'}}, 2.1, 0.25, 6.6, {scale: 1.0, res: 1.2, wide: true});
-  const phone = box(root, 0.11, 0.2, 0.025, '#15161b', 0, 0, 0); phone.castShadow = false;
-  const HIT: V = [3.45, -0.34, 10.5];                                                            // out in the bay, left of him in the frame and well above the caption (scripts/project.py)
-  const splash = [0, 1, 2].map(() => { const o = soft(mesh(root, new THREE.RingGeometry(0.8, 1, 40), new THREE.MeshBasicMaterial({color: '#ffffff', transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide}), HIT[0], -0.33, HIT[2])); o.rotation.x = -Math.PI / 2; return o; });
-  const drops = Array.from({length: 7}, () => { const o = ball(root, 0.075, lit('#ffffff', 1.1)); o.castShadow = false; return o; });
-  return {
-    light: (v) => v === 'dock' ? {...LIGHT.dusk, amb: 1.3} : v === 'raid' ? {...LIGHT.dusk, amb: 1.45, keyI: 1.1} : LIGHT.day,
-    tick: ({f, cam, shot}) => {
-      const v = shot.v, a = shot.at, late = v === 'dock' || v === 'raid';
-      day.visible = !late; dusk.visible = late; dock.visible = v !== 'raid' && v !== 'pool';                  // from where the arrest is seen, its posts would stand in front of the lens
-      glassM.color.set(late ? '#ffd98a' : '#7fd6e8').multiplyScalar(late ? 1.25 : 1.0);
-      (water.material as THREE.MeshBasicMaterial).color.set(late ? '#2a8fc0' : '#35c3e8');
-      ripples.position.x = -0.4 + 0.05 * Math.sin(f * 0.07); waves.position.x = 0.4 * Math.sin(f * 0.03);
-      floats.forEach((t, i) => { t.position.y = 0.13 + 0.012 * Math.sin(f * 0.13 + i * 2); t.rotation.z = f * 0.01 * (i ? -1 : 1); });
-      // the arrest: he is alone for a moment, then they are on both sides of him
-      me.node.visible = v === 'raid'; me.show(f < W(157) ? 'shock' : 'caught'); me.node.position.y = hop(f, a + 2, 0.1, 8); me.tick(f, cam);
-      // they start just outside the frame and take eighteen frames to reach him: from further off they were in the picture for four frames
-      agents.forEach((g, i) => { const k = smooth(f, a + 3 + i * 4, a + 21 + i * 4); g.node.visible = v === 'raid'; g.node.position.x = lerp(i ? 2.4 : -1.4, i ? 1.3 : -0.3, k); g.node.position.y = Math.abs(0.05 * Math.sin(f * 0.5 + i)) * (1 - k); g.tick(f, cam); });
-      // the dock: he looks round, and on "dropped" the phone leaves his hand
-      const go = W(165) - 3, FLY = 9, u = (f - go) / FLY, flying = v === 'dock' && u >= 0 && u < 1;        // it lands with ten frames of the shot left for the splash
-      runner.node.visible = v === 'dock'; runner.show(f < go ? 'look' : f < go + FLY + 3 ? 'thrown' : 'gone'); runner.node.position.y = 0.25 + hop(f, go - 1, 0.12, 8); runner.tick(f, cam);
-      const from: V = [2.65, 1.75, 6.4];                                                             // his thrown-out hand (the left of the frame is +x from here)
-      sea.visible = sun.visible = v === 'dock'; posts.forEach((o) => { o.visible = v !== 'dock'; });
-      phone.visible = flying; if (flying) { phone.position.set(lerp(from[0], HIT[0], u), lerp(from[1], HIT[1], u) + 1.5 * 4 * u * (1 - u) * 0.5, lerp(from[2], HIT[2], u)); phone.rotation.set(f * 0.9, 0.4, f * 0.6); phone.scale.setScalar(1.5); }
-      splash.forEach((o, i) => { const w = (f - go - FLY - i * 3) / 14; o.visible = v === 'dock' && w > 0 && w < 1; o.scale.setScalar(0.12 + 0.5 * w); op(o, 0.9 * (1 - w)); });
-      drops.forEach((o, i) => { const w = (f - go - FLY) / 11, ang = i * 0.9; o.visible = v === 'dock' && w > 0 && w < 1; o.position.set(HIT[0] + 0.55 * w * Math.cos(ang), -0.3 + 1.3 * 4 * w * (1 - w) * (0.5 + 0.08 * i), HIT[2] + 0.3 * w * Math.sin(ang)); });
-    },
-  };
-};
-
-// ------------------------------------------------------------------ deep: where the phone went
-const fishTex = (c: string) => tex('fish-' + c, 220, 120, (g) => {
-  g.fillStyle = c; g.strokeStyle = INK; g.lineWidth = 7; g.lineJoin = 'round';
-  g.beginPath(); g.moveTo(14, 20); g.lineTo(60, 60); g.lineTo(14, 100); g.closePath(); g.fill(); g.stroke();
-  g.beginPath(); g.ellipse(124, 60, 78, 40, 0, 0, 7); g.fill(); g.stroke(); g.fillStyle = '#ffffff'; g.beginPath(); g.arc(166, 50, 12, 0, 7); g.fill(); g.fillStyle = INK; g.beginPath(); g.arc(169, 50, 6, 0, 7); g.fill();
-});
-const sunkTex = () => tex('deep-phone', 240, 440, (g, w, h) => {
-  g.fillStyle = '#0d1118'; g.fillRect(0, 0, w, h); text(g, 'NO SERVICE', w / 2, 70, 34, '#ffffff', {font: 'Montserrat'});
-  lock(g, w / 2, 210, 96, false, '#ffffff', '#0d1118');
-  g.strokeStyle = '#ff3b30'; g.lineWidth = 8; rrect(g, 76, 342, 76, 40, 8); g.stroke(); g.fillStyle = '#ff3b30'; g.fillRect(156, 352, 8, 20); g.fillRect(84, 350, 14, 24);
+// ------------------------------------------------------------------ deep: the wreck, 600 metres down
+const siltTex = () => tex('silt', 512, 512, (g, w, h) => {
+  g.fillStyle = '#0a2c3e'; g.fillRect(0, 0, w, h);
+  const r = rng(9);
+  for (let i = 0; i < 260; i++) { g.fillStyle = `rgba(190,220,235,${0.03 + r() * 0.05})`; const s = 1 + r() * 3; g.fillRect(r() * w, r() * h, s, s); }
 });
 export const deep: Builder = (root) => {
-  backdrop(root, ['#7fe0e8', '#2a9fc8', '#0f5a8a', '#0a3a66']);
-  floor(root, 30, 20, tmat(tiled(grainTex('deep-sand', '#6fb0a8', 0.1), 6, 4)), 0, 0, -2);
-  for (const [x, rr, z] of [[-2.2, 0.5, -1.6], [2.0, 0.6, -1.2], [1.2, 0.3, 0.6], [-1.3, 0.28, 0.9]]) { const o = ball(root, rr, '#4a7f8a', x, rr * 0.3, z); o.scale.y = 0.6; }
-  for (const [x, z, h] of [[-1.25, -0.6, 1.3], [-1.05, -0.4, 0.9], [-0.85, -0.7, 0.6], [1.05, -0.3, 1.1], [1.25, -0.5, 1.5], [0.85, -0.6, 0.7], [0.3, -1.6, 0.9]]) cone(root, 0.11, h, h > 1 ? '#2f9a8a' : '#4fb8a0', x, h / 2, z, 5);
-  for (const [x, o] of [[-0.8, 0.07], [0.6, 0.05], [1.9, 0.04]] as const) beam(root, 0.4, 1.3, 9, '#e8ffff', o, x, 8, -1.2 - x * 0.2);
-  const fish = [card(root, 0.62, 0.34, fishTex('#ff8fa8'), 0, 0, -0.6, 1.05), card(root, 0.4, 0.22, fishTex('#7fe8e0'), 0, 0, -1.2, 1.0), card(root, 1.0, 0.55, fishTex('#ffb52e'), 0, 0, 1.0, 1.05)];
-  const ph = grp(root); box(ph, 0.62, 1.16, 0.07, '#15161b'); soft(panel(ph, 0.55, 1.05, smat(sunkTex(), 1.1), 0, 0, 0.04));
-  const bub = Array.from({length: 7}, () => soft(mesh(root, new THREE.RingGeometry(0.05, 0.068, 20), new THREE.MeshBasicMaterial({color: '#e8ffff', transparent: true, opacity: 0.9, depthWrite: false}))));
+  backdrop(root, ['#1a6a8a', '#0d3f5a', '#061e30']);
+  floor(root, 40, 30, tmat(tiled(grainTex('seafloor', '#7a8a86', 0.12), 8, 6)), 0, 0, -3);
+  for (const [x, z, r] of [[-3.4, -2.2, 0.8], [3.1, -1.6, 0.6], [-1.6, 1.4, 0.5], [2.4, 1.8, 0.44]] as const) { const o = ball(root, r, '#3f5a5e', x, r * 0.22, z); o.scale.y = 0.5; }
+  // her: the broken hull, a rib cage of frames, her stern half standing
+  const wreck = grp(root, 0, 0, -1.2);
+  box(wreck, 9.0, 0.6, 3.4, '#5a4a34', 0, 0.3, 0);
+  for (let i = 0; i < 11; i++) {
+    const x = -4.2 + i * 0.82, hh = 2.2 - Math.abs(i - 5) * 0.16;
+    box(wreck, 0.20, hh, 0.22, '#6a5a40', x, 0.6 + hh / 2, -1.5);
+    box(wreck, 0.20, hh, 0.22, '#6a5a40', x, 0.6 + hh / 2, 1.5);
+    if (i % 2 === 0) box(wreck, 0.20, 0.2, 3.0, '#6a5a40', x, 0.6 + hh, 0);
+  }
+  box(wreck, 3.2, 2.6, 3.2, '#4a3a26', -4.4, 1.9, 0);       // the stern castle, standing
+  for (let i = 0; i < 4; i++) cyl(wreck, 0.16, 0.22, '#4a3a26', 3.4 + i * 0.5, 0.35, -1.0 + i * 0.5);   // cannon, still in the silty row
+  // the cannon that comes up, on its own, for the lift
+  const cannon = grp(root, 1.2, 0.3, 0.4);
+  {
+    const c = cyl(cannon, 0.19, 1.5, '#3f5a44', 0, 0, 0, 0.15, 14); c.rotation.z = Math.PI / 2;
+    cyl(cannon, 0.21, 0.12, '#3f5a44', 0.72, 0, 0, 0.21, 14).rotation.z = Math.PI / 2;
+    ball(cannon, 0.15, '#3f5a44', -0.78, 0, 0);
+  }
+  // the coins on the seabed: a field of them, and they glint
+  const coins = Array.from({length: 34}, (_, i) => { const o = coin(root, 0.07); o.rotation.x = -Math.PI / 2; o.position.set(-1.9 + (i % 9) * 0.42 + 0.05 * (i % 3), 0.02, 0.9 + Math.floor(i / 9) * 0.42 + 0.04 * (i % 4)); return o; });
+  const shine = glints(root, [[-1.4, 0.14, 1.1], [0.5, 0.14, 1.3], [1.5, 0.14, 1.6], [-0.4, 0.14, 1.8]]);
+  // the robot: a yellow box with lights and an arm
+  const rov = grp(root, 0, 0, 0);
+  {
+    box(rov, 1.1, 0.7, 0.9, '#e8b93a', 0, 0, 0);
+    box(rov, 1.2, 0.12, 1.0, '#2a2a30', 0, 0.4, 0);
+    for (const [x, z] of [[-0.5, -0.4], [0.5, -0.4], [-0.5, 0.4], [0.5, 0.4]]) cyl(rov, 0.09, 0.3, '#2a2a30', x, 0.45, z);
+    for (const s of [-1, 1]) { const l = cyl(rov, 0.06, 0.12, lit('#bfe8ff', 0.9), s * 0.44, -0.08, 0.5); l.rotation.x = Math.PI / 2; }
+    const arm = grp(rov, 0.15, -0.1, 0.5);
+    rod(arm, [0, 0, 0], [0.35, -0.36, 0.28], 0.06, '#8a8f96'); rod(arm, [0.35, -0.36, 0.28], [0.62, -0.62, 0.5], 0.05, '#8a8f96'); box(arm, 0.14, 0.1, 0.16, '#c9c2b4', 0.66, -0.66, 0.54);
+  }
+  rov.position.set(0, 5.2, 1.4);
+  // two beams down from the surface, and the silt that hangs in the water
+  beam(root, 0.5, 1.4, 14, '#e8ffff', 0.06, -2.2, 9, -1.0);
+  beam(root, 0.5, 1.4, 14, '#e8ffff', 0.055, 1.6, 9, -0.6);
+  const snow = Array.from({length: 26}, (_, i) => { const o = soft(ball(root, 0.02, '#dff4ff', 0, 0, 0)); o.userData.i = i; return o; });
+  const cloud = Array.from({length: 14}, (_, i) => soft(ball(root, 0.9, '#b8ccd0', 0, 0, 0)));
+  const cloudG = grp(root, 0, 0, 0);
+  cloud.forEach((c, i) => { cloudG.add(c); c.userData.i = i; });
+  cloudG.visible = false;
   return {
-    light: () => ({...LIGHT.cold, sky: '#bff4ff', ground: '#2a7f9a', amb: 1.5}),
-    tick: ({f, t}) => {
-      const k = smooth(t, -2, 26);
-      ph.position.set(0.15 + 0.05 * Math.sin(f * 0.07), lerp(4.4, 1.5, k) - 0.004 * Math.max(0, t - 26), 0); ph.rotation.set(0.1 * Math.sin(f * 0.06), 0.35 * Math.sin(f * 0.045) + 0.25, lerp(0.5, -0.12, k));
-      fish[0].position.set(lerp(1.5, -1.5, (t / 80 + 0.2) % 1), 3.25 + 0.05 * Math.sin(f * 0.1), -0.6); fish[0].scale.x = -1;
-      fish[1].position.set(lerp(-1.5, 1.5, (t / 100 + 0.45) % 1), 0.85, -1.0);
-      fish[2].position.set(lerp(-1.7, 1.7, (t / 120 + 0.12) % 1), 0.36 + 0.03 * Math.sin(f * 0.08), 0.9);
-      bub.forEach((b, i) => { const u = (f * 0.012 + i * 0.143) % 1; b.position.set(ph.position.x + 0.3 * Math.sin(i * 2.4) + 0.05 * Math.sin(f * 0.1 + i), ph.position.y + 0.5 + u * 2.6, 0.1); b.scale.setScalar(0.7 + 1.3 * u); op(b, 0.9 * (1 - u) * smooth(t, 3, 14)); });
+    light: (v) => (v === 'coins' ? {...LIGHT.under, amb: 1.5, keyI: 1.7, sky: '#9ad0e8'} : LIGHT.under),
+    tick: ({f, t, shot, cam}) => {
+      const v = shot.v, k = smooth(t, 0, 40);
+      const silt = v === 'silt';
+      coins.forEach((c) => (c.visible = v === 'coins'));
+      cloudG.visible = silt;
+      rov.visible = v === 'rov' || v === 'arm';
+      cannon.visible = !silt;
+      snow.forEach((o, i) => { const u = ((f * 0.0025 + i * 0.037) % 1); o.position.set(-5 + ((i * 37) % 90) / 10, 0.4 + u * 5.6, -3 + ((i * 17) % 40) / 10); o.visible = true; });
+      shine(f, v === 'coins');
+      if (v === 'rov') {
+        rov.position.set(0.2 * Math.sin(f * 0.05), lerp(5.4, 1.9, k), lerp(2.2, 0.6, k));
+        rov.rotation.y = 0.2 * Math.sin(f * 0.04);
+      } else if (v === 'arm') {
+        rov.position.set(0.6, lerp(2.4, 1.5, k), lerp(1.4, 0.9, k));
+        cannon.position.set(lerp(1.2, 0.9, k), lerp(0.3, 0.9, smooth(t, 18, 50)), lerp(0.4, 0.9, k));
+        cannon.rotation.z = lerp(0, -0.25, smooth(t, 18, 50));
+      } else {
+        rov.position.set(2.4, 4.2, 2.0);
+      }
+      if (silt) {
+        cloud.forEach((c, i) => { const u = (f * 0.006 + i * 0.125) % 1; c.position.set(lerp(-2.4, 2.4, (i % 4) / 3) - 3.0 * u, 0.5 + u * 2.6, -1.8 + ((i * 13) % 20) / 10); c.scale.setScalar(1.1 + 2.2 * u); op(c, 0.15 * (1 - u)); });
+      }
     },
   };
 };
 
-// ------------------------------------------------------------------ club: up to half a million dollars a night
-const billTex = () => tex('club-bill', 420, 950, (g, w, h) => {
-  g.fillStyle = '#fbfaf5'; g.fillRect(0, 0, w, h); text(g, 'ONE NIGHT', w / 2, 70, 74, '#1a1c24'); g.fillStyle = '#1a1c24'; g.fillRect(40, 124, w - 80, 6);
-  g.fillStyle = '#c3c7d1'; for (let i = 0; i < 7; i++) { g.fillRect(44, 160 + i * 40, 150 + ((i * 53) % 110), 16); g.fillRect(w - 44 - 90, 160 + i * 40, 90, 16); }
-  g.fillStyle = '#1a1c24'; g.fillRect(40, 452, w - 80, 6); text(g, 'TOTAL', w / 2, 508, 62, '#1a1c24');
-  g.fillStyle = '#ffe14a'; g.fillRect(26, 552, w - 52, 96); text(g, '$569,528.39', w / 2, 602, 78, '#1a1c24', {maxWidth: w - 70}); g.fillStyle = '#1a1c24'; g.fillRect(40, 682, w - 80, 6);
-  for (let x = 60; x < w - 60;) { const bw = 3 + ((x * 7) % 9); g.fillRect(x, 722, bw, 86); x += bw + 4 + ((x * 3) % 5); }
-  g.fillStyle = '#c3c7d1'; for (let i = 0; i < 3; i++) g.fillRect(96, 846 + i * 32, w - 192, 14);
-});
-const crowdTex = () => tex('club-crowd', 512, 256, (g, w, h) => {
-  g.fillStyle = '#2a3460'; for (let i = 0; i < 9; i++) { const x = 30 + i * 56, y = 120 + ((i * 37) % 50); g.beginPath(); g.arc(x, y, 30, 0, 7); g.fill(); g.fillRect(x - 34, y + 20, 68, h); if (i % 3 === 0) g.fillRect(x + 18, y - 70, 14, 90); }
-});
-const sparkTex = () => tex('club-spark', 128, 128, (g) => { g.strokeStyle = '#ffffff'; g.lineCap = 'round'; for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6, r = i % 2 ? 36 : 60; g.lineWidth = i % 2 ? 3 : 5; g.beginPath(); g.moveTo(64 + 8 * Math.cos(a), 64 + 8 * Math.sin(a)); g.lineTo(64 + r * Math.cos(a), 64 + r * Math.sin(a)); g.stroke(); } });
-export const club: Builder = (root) => {
-  backdrop(root, ['#12041c', '#2a0a3a']);
-  floor(root, 16, 14, '#1a0a2a'); panel(root, 14, 7, mat('#2a0a3a'), 0, 3.5, -2.9);
-  const neon = torus(root, 0.78, 0.035, lamp('#ff4fd8', 1.8), 0.25, 2.8, -2.82); neon.castShadow = false;
-  for (const [x, c] of [[-2.0, '#4fd8ff'], [-0.95, '#ff4fd8'], [1.25, '#ff4fd8'], [2.15, '#4fd8ff']] as const) box(root, 0.045, 4.6, 0.045, lit(c, 1.6), x, 2.3, -2.84).castShadow = false;
-  // the booth and its table
-  box(root, 5.4, 0.44, 1.0, '#5a0a3a', 0, 0.22, -1.4); box(root, 5.4, 1.1, 0.26, '#6a1046', 0, 0.75, -1.9);
-  box(root, 2.5, 0.5, 0.95, '#120818', -0.1, 0.25, 0.35); box(root, 2.5, 0.03, 0.03, lit('#ff4fd8', 1.6), -0.1, 0.5, 0.83).castShadow = false;
-  cyl(root, 0.2, 0.3, '#8a4fd0', -0.1, 0.66, 0.3, 0.27); for (const [dx, tz] of [[-0.1, -0.3], [0.02, 0.05], [0.13, 0.3]]) { const b = cyl(root, 0.045, 0.5, '#1f4a30', -0.1 + dx, 0.95, 0.3, 0.03); b.rotation.z = -tz; cyl(root, 0.032, 0.07, '#e8762c', -0.1 + dx - tz * 0.24, 1.2, 0.3).rotation.z = -tz; }
-  for (const x of [-0.75, 0.5]) { cyl(root, 0.035, 0.02, '#c9ced6', x, 0.51, 0.35); cyl(root, 0.012, 0.12, '#c9ced6', x, 0.57, 0.35); cyl(root, 0.05, 0.1, lit('#ffe9a0', 1.2), x, 0.68, 0.35, 0.03); }
-  // the till: a stand, a printer, a long strip of paper
-  const till = [box(root, 0.5, 0.95, 0.4, '#23252e', 1.1, 0.48, 1.4), box(root, 0.36, 0.14, 0.3, '#3a3f4a', 1.1, 1.02, 1.4)];
-  const bill = soft(panel(root, 0.42, 0.95, smat(billTex(), 1.02), 1.1, 1.57, 1.44)); bill.rotation.x = -0.06;
-  // the room: a crowd, beams, moving light
-  const crowd = [card(root, 3.0, 1.5, crowdTex(), -2.6, 1.0, -2.5, 1), card(root, 3.0, 1.5, crowdTex(), 2.7, 1.0, -2.6, 1)];
-  const beams = ['#ff4fd8', '#4fd8ff', '#b6f03a', '#ffb52e'].map((c, i) => beam(root, 0.03, 0.55, 7, c, 0.15, -2.1 + i * 1.4, 6.2, -2.7));
-  const spots = ['#ff4fd8', '#4fd8ff', '#ffb52e'].map((c) => pool(root, 1.1, c, 0.3, 0, 0));
-  const me = actor(root, LAM(2), {cash: {expr: 'laugh', pose: 'hold', prop: 'cash'}, grin: {expr: 'grin', pose: 'hold', prop: 'cash'}}, 0.2, 0.44, -1.3, {scale: 1.18, res: 1.2, wide: true, shadow: 0});
-  const staff = [actor(root, STAFF(0), {a: {expr: 'smile', pose: 'hold', prop: 'bottle'}}, -1.5, 0, 0.5, {scale: 0.98, res: 1.1, wide: true}), actor(root, STAFF(1), {a: {expr: 'smile', pose: 'hold', prop: 'bottle'}}, -0.95, 0, 1.1, {scale: 0.98, res: 1.1, wide: true})];
-  const sparks = staff.map(() => ({star: soft(panel(root, 0.5, 0.5, new THREE.MeshBasicMaterial({map: sparkTex(), transparent: true, depthWrite: false, color: new THREE.Color('#fff3c0').multiplyScalar(2.2)}), 0, 0, 0)), glow: halo(root, 0.7, '#ffd98a', 0.5, 0, 0, 0)}));
+// ------------------------------------------------------------------ lab: what came up
+export const lab: Builder = (root) => {
+  backdrop(root, ['#eef3fa', '#cfd9e6']);
+  floor(root, 14, 12, tmat(tiled(tileTex('lab-floor', '#d8dee6', '#aab4c0'), 6, 6)));
+  panel(root, 14, 5.2, tmat(tiled(tileTex('lab-wall', '#e8edf4', '#c3ccd8'), 8, 4)), 0, 2.6, -3.4);
+  // the refrigerated container the cannon went into: a white box with its door open and mist coming out
+  const cont = grp(root, -1.7, 0, -1.2);
+  box(cont, 2.6, 2.2, 1.8, '#e8ecf0', 0, 1.1, 0);
+  box(cont, 2.7, 0.16, 1.9, '#b9c2cc', 0, 2.2, 0);
+  const door = grp(cont, 1.32, 0, 0.88); box(door, 0.08, 2.0, 1.7, '#c9d2dc', 0, 1.05, 0);
+  const mouth = box(cont, 0.06, 1.9, 1.6, '#0d1620', 1.3, 1.05, 0);
+  const mist = Array.from({length: 54 as number}, () => soft(ball(root, 0.16, '#ffffff', 0, -4, 0)));
+  // the tank of salt water, with three coins in it
+  const tank = grp(root, 1.4, 0, 0.6);
+  box(tank, 1.7, 0.14, 1.2, '#c6ccd4', 0, 0.86, 0);
+  for (const [x, z] of [[-0.8, -0.55], [0.8, -0.55], [-0.8, 0.55], [0.8, 0.55]]) box(tank, 0.08, 0.86, 0.08, '#8a929c', x, 0.43, z);
+  soft(box(tank, 1.6, 0.7, 1.1, new THREE.MeshBasicMaterial({color: '#bfe4ef', transparent: true, opacity: 0.34, depthWrite: false}), 0, 1.2, 0));
+  const tre = [0, 1, 2].map((i) => { const o = coin(tank, 0.11); o.rotation.set(-1.2, 0.4, 0.2 + i * 0.4); o.position.set(-0.3 + i * 0.3, 0.9 + 0.02 * i, 0.0); return o; });
+  // two porcelain cups on a tray, under a lamp
+  const tray = grp(root, 1.5, 0, -1.6);
+  box(tray, 1.6, 0.06, 1.0, '#8a929c', 0, 0.9, 0);
+  const cups = [0, 1].map((i) => {
+    const c = grp(tray, -0.34 + i * 0.68, 0.93, 0);
+    cyl(c, 0.17, 0.2, '#f4f6f8', 0, 0.1, 0, 0.2, 18); cyl(c, 0.2, 0.03, '#c9d2dc', 0, 0.21, 0, 0.2, 18);
+    torus(c, 0.07, 0.02, '#f4f6f8', 0.2, 0.11, 0).rotation.y = Math.PI / 2;
+    return c;
+  });
+  const lampo = soft(panel(root, 1.4, 1.4, new THREE.MeshBasicMaterial({color: '#fff4d8', transparent: true, opacity: 0.22, depthWrite: false, blending: THREE.AdditiveBlending}), 1.5, 1.5, -1.2));
+  // the gun itself, on a wooden cradle, muzzle to the right
+  const gun = grp(root, 0.25, 0, 0.55);
+  {
+    const b = cyl(gun, 0.2, 2.5, '#3f5a44', 0, 0.78, 0, 0.17, 16); b.rotation.z = Math.PI / 2;
+    cyl(gun, 0.24, 0.24, '#3f5a44', 1.12, 0.78, 0, 0.23, 16).rotation.z = Math.PI / 2;
+    ball(gun, 0.25, '#3f5a44', -1.3, 0.78, 0);
+    box(gun, 1.5, 0.26, 0.44, '#7a5a34', 0, 0.32, -0.26); box(gun, 1.5, 0.26, 0.44, '#7a5a34', 0, 0.32, 0.26);
+    for (const x of [-0.62, 0.62]) box(gun, 0.16, 0.34, 0.9, '#6a4a2c', x, 0.17, 0);
+    soft(ball(gun, 0.045, lit('#bff0e8', 0.85), 0.3, 1.0, 0));
+  }
   return {
-    light: () => ({...LIGHT.dark, sky: '#c8a0ff', ground: '#4a2a7a', amb: 1.15, key: '#ff9ad8', keyI: 0.8}),
-    tick: ({f, cam, shot}) => {
+    light: () => LIGHT.lab,
+    tick: ({f, t, shot, cam}) => {
       const v = shot.v;
-      me.show(Math.floor(f / 10) % 2 ? 'cash' : 'grin'); me.node.position.y = 0.44 + Math.abs(0.05 * Math.sin(f * 0.42)); me.tick(f, cam);
-      staff.forEach((s, i) => {
-        const k = v === 'bill' ? smooth(f, shot.at - 6 + i * 4, shot.at + 14 + i * 4) : 1, x = lerp(-2.8 - i * 0.5, i ? -0.85 : -1.3, k);
-        s.node.position.set(x, Math.abs(0.045 * Math.sin(f * 0.5 + i)), i ? 0.0 : -0.7); s.tick(f, cam); s.node.visible = v !== 'receipt';
-        const sp = sparks[i], fl = 0.75 + 0.25 * Math.sin(f * 2.3 + i * 1.7);
-        sp.star.position.set(x + 0.36, s.node.position.y + 2.02, s.node.position.z + 0.05); sp.star.scale.setScalar(0.7 + 0.5 * fl); sp.glow.position.copy(sp.star.position); op(sp.glow, 0.5 * fl);
-        sp.star.visible = sp.glow.visible = v !== 'receipt'; sp.star.lookAt(cam.position); sp.star.rotateZ(f * 0.7 + i);
+      cont.visible = v === 'cannon'; gun.visible = v === 'cannon'; tank.visible = v === 'coins'; tray.visible = v === 'cups' || v === 'crockery';
+      door.rotation.y = -0.9 * smooth(t, 4, 22);
+      mist.forEach((m, i) => {
+        const u = ((f * 0.006 + i * 0.019) % 1); m.visible = v === 'cannon';
+        m.position.set(-0.45 + 0.4 * Math.sin(i * 2.1), -0.05 + 0.6 * u, -1.0 + 0.3 * Math.sin(i * 1.3));
+        m.scale.setScalar(0.5 + 1.1 * u); op(m, 0.34 * (1 - u) ** 1.5);
       });
-      crowd.forEach((c, i) => { c.position.y = 1.0 + 0.06 * Math.abs(Math.sin(f * 0.42 + i * 1.3)); });
-      beams.forEach((b, i) => { b.rotation.z = 0.5 * Math.sin(f * 0.07 + i * 1.7); b.rotation.x = -0.06 + 0.05 * Math.sin(f * 0.05 + i); });
-      spots.forEach((s, i) => { s.position.set(1.8 * Math.sin(f * 0.06 + i * 2.1), 0.012, 0.4 + 1.0 * Math.cos(f * 0.05 + i * 1.3)); });
-      (neon.material as THREE.MeshBasicMaterial).color.set('#ff4fd8').multiplyScalar(1.7 + 0.5 * Math.sin(f * 0.42));
-      // the receipt feeds up out of the printer, top first: the panel shows the top `k` of the paper, its foot at the slot
-      const k = v === 'receipt' ? lerp(0.4, 1, smooth(f, shot.at - 1, shot.at + 15)) : 1, paper = (bill.material as THREE.MeshBasicMaterial).map!;
-      bill.scale.y = k; bill.position.y = 1.09 + 0.475 * k; paper.repeat.y = k; paper.offset.y = 1 - k;
-      bill.visible = v !== 'party'; till.forEach((m) => { m.visible = v !== 'party'; });   // in the hook the till would stand at the right edge of the first frames
+      tre.forEach((o, i) => { o.position.y = 0.9 + 0.012 * Math.sin(f * 0.09 + i); o.rotation.y = 0.4 + i * 0.4 + 0.02 * Math.sin(f * 0.05); });
+      cups.forEach((c, i) => { c.position.y = 0.93 + 0.001 * i; });
+      op(lampo, 0.2 + 0.03 * Math.sin(f * 0.05));
+      void t;
+    },
+  };
+};
+
+// ------------------------------------------------------------------ chart: the chart table, and what is written on it
+const chartTex = () => tex('chart', 1024, 700, (g, w, h) => {
+  g.fillStyle = '#e8dfc4'; g.fillRect(0, 0, w, h);
+  g.fillStyle = '#cfd8c2'; g.fillRect(0, 0, w, h * 0.42);                       // the land
+  g.fillStyle = '#8ab4c8'; g.fillRect(0, h * 0.42, w, h);                       // the sea
+  g.strokeStyle = '#5a7a6a'; g.lineWidth = 4;
+  for (let i = 0; i < 7; i++) { g.beginPath(); g.moveTo(0, h * 0.42 + 26 + i * 34); g.bezierCurveTo(w * 0.3, h * 0.42 + 14 + i * 34, w * 0.6, h * 0.42 + 40 + i * 34, w, h * 0.42 + 20 + i * 34); g.stroke(); }
+  g.fillStyle = '#f4f0e2'; g.beginPath(); g.moveTo(w * 0.55, h * 0.42); g.lineTo(w * 0.78, h * 0.42); g.lineTo(w * 0.7, h * 0.56); g.lineTo(w * 0.52, h * 0.54); g.closePath(); g.fill();   // the island of Barú
+  g.strokeStyle = '#3a4a42'; g.lineWidth = 3; g.stroke();
+  g.fillStyle = '#2a3a32'; text(g, 'CARTAGENA', w * 0.62, h * 0.36, 26, '#2a3a32', {font: 'Montserrat'}); text(g, 'ISLA BARÚ', w * 0.66, h * 0.5, 18, '#2a3a32', {font: 'Montserrat'});
+  text(g, 'MAR CARIBE', w * 0.2, h * 0.62, 22, '#4a6a7a', {font: 'Montserrat'});
+  // the compass rose
+  g.strokeStyle = '#8a7a5a'; g.lineWidth = 3; g.beginPath(); g.arc(w * 0.14, h * 0.8, 60, 0, 7); g.stroke();
+  for (let i = 0; i < 8; i++) { const a = (i * Math.PI) / 4; g.beginPath(); g.moveTo(w * 0.14, h * 0.8); g.lineTo(w * 0.14 + 58 * Math.cos(a), h * 0.8 + 58 * Math.sin(a)); g.stroke(); }
+  text(g, 'N', w * 0.14, h * 0.8 - 78, 24, '#8a7a5a');
+});
+export const chart: Builder = (root) => {
+  backdrop(root, ['#4a4236', '#2a2620']);
+  floor(root, 12, 10, tmat(tiled(woodTex('chart-floor', '#6a4a2c', '#3a2818'), 4, 4)));
+  const top = grp(root, 0, 0.92, -0.6);
+  table(root, 0, 0, 7.2, 4.4, {h: 0.92, top: '#c9a86a', leg: '#5a3e28', skirt: '#8a6a44'});
+  const map = soft(panel(top, 5.6, 3.8, smat(chartTex(), 1.0), 0, 0.02, 0));
+  map.rotation.x = -Math.PI / 2;
+  // the site: a red cross, and the black bars that hide the numbers
+  const siteG = grp(top, 0.9, 0.04, -0.2);
+  const cross = (g: THREE.Group, c: string) => { box(g, 0.5, 0.02, 0.07, c, 0, 0, 0); box(g, 0.07, 0.02, 0.5, c, 0, 0, 0); };
+  cross(siteG, '#c0392b');
+  const bars = [0, 1, 2].map((i) => box(top, 0.9, 0.03, 0.13, '#15161b', 0.9, 0.06, -0.9 + i * 0.22));
+  const barsG = grp(top, 0, 0, 0); bars.forEach((b) => barsG.add(b));
+  // the two crosses of the dispute, ten kilometres apart, with a bar between them
+  const far = grp(top, -1.2, 0.04, 0.5); cross(far, '#3a6a9a');
+  const rule = box(top, 1.5, 0.02, 0.05, '#3a3a42', -0.6, 0.05, 0.5); rule.visible = false;
+  const ruleLabel = soft(panel(top, 1.2, 0.3, smat(signTex('tenk', 300, 90, '#f4f0e2', '#2a3a32', [['10 KM', 46]], {font: 'Anton'}), 1.0), -0.6, 0.07, 0.86));
+  ruleLabel.rotation.x = -Math.PI / 2;
+  // the 1984 decree, and the stamp that changes what a finder gets
+  const decree = grp(top, 1.1, 0.05, 0.9);
+  const paper = soft(panel(decree, 1.3, 0.85, smat(tex('decree', 620, 400, (g, w, h) => {
+    g.fillStyle = '#f4f0e2'; g.fillRect(0, 0, w, h); g.strokeStyle = '#b9b09a'; g.lineWidth = 4; g.strokeRect(8, 8, w - 16, h - 16);
+    g.fillStyle = '#3a3a42'; for (let i = 0; i < 7; i++) g.fillRect(46, 60 + i * 40, 190 + ((i * 61) % 190), 12);
+    text(g, 'DECRETO 1984', w - 46, 52, 26, '#8a2f2f', {font: 'Montserrat', align: 'right'});
+  }), 1.0), 0, 0.02, 0));
+  paper.rotation.x = -Math.PI / 2;
+  const stamp = grp(top, 1.1, 0.08, 1.15);
+  const stampPct = soft(panel(stamp, 0.9, 0.5, smat(signTex('pct5', 300, 180, '#c0392b', '#ffffff', [['5%', 110]], {font: 'Anton'}), 1.0), 0, 0.02, 0));
+  stampPct.rotation.x = -Math.PI / 2;
+  // a ledger of the estimates: two numbers and a range
+  const board = grp(root, 0, 1.5, -2.2);
+  board.visible = false;
+  soft(panel(board, 2.9, 1.35, smat(signTex('est', 640, 300, '#15161b', '#ffe14a', [['ESTIMATED', 40, 0.26], ['$4B — $20B', 104, 0.78]], {font: 'Anton', border: '#ffe14a'}), 1.05), 0, 0, 0));
+  return {
+    light: (v) => (v === 'estimate' ? LIGHT.paper : LIGHT.paper),
+    tick: ({f, t, shot, cam}) => {
+      const v = shot.v, barsOn = v === 'secret';
+      barsG.visible = barsOn;
+      bars.forEach((b, i) => { b.visible = barsOn; b.position.y = 0.06; b.scale.x = pop(f, shot.at + 6 + i * 4, 8); });
+      far.visible = v === 'tenk';
+      rule.visible = v === 'tenk'; ruleLabel.visible = v === 'tenk';
+      rule.scale.x = smooth(t, 6, 22);
+      decree.visible = v === 'decree'; stamp.visible = v === 'decree' && f > shot.at + 22;
+      stampPct.scale.setScalar(pop(f, shot.at + 22, 10));
+      board.visible = v === 'estimate';
+      siteG.visible = v === 'secret' || v === 'leak' || v === 'tenk';
+      barsG.visible = v === 'secret';
+      void f;
+      void t;
+    },
+  };
+};
+
+// ------------------------------------------------------------------ court: the claims, on one long table at The Hague
+export const court: Builder = (root) => {
+  backdrop(root, ['#3a2c22', '#1e1712']);
+  floor(root, 16, 12, tmat(tiled(woodTex('court-fl', '#6a4a30', '#3a2818'), 5, 5)));
+  panel(root, 16, 6, tmat(tiled(woodTex('court-wall', '#7a5638', '#4a3220'), 4, 3)), 0, 3, -4.2);
+  for (const x of [-5.4, -2.7, 0, 2.7, 5.4]) box(root, 0.24, 6, 0.24, '#3a2818', x, 3, -4.1);
+  table(root, 0, -0.4, 8.2, 2.2, {h: 0.95, top: '#8a6444', leg: '#3a2818', skirt: '#6b4a30'});
+  box(root, 8.4, 0.08, 2.4, '#3a2818', 0, 1.0, -0.4);
+  // the flags over the table
+  const flags = [clothFlag(root, flagTex('#f2c230', '#2f4a7a', '#c0392b'), -4.4, 5.0, -3.9, 1.5), clothFlag(root, flagTex('#c0392b', '#f2c230', '#c0392b'), -2.2, 5.0, -3.9, 1.5), clothFlag(root, flagTex('#2f4a7a', '#f4f6f8', '#2f4a7a'), 0, 5.0, -3.9, 1.5)];
+  // a model of her, on a stand: the ship the case is about
+  const model = grp(root, -3.6, 1.04, -0.2);
+  box(model, 0.06, 0.5, 0.06, '#3a2818', 0, 0.25, 0); box(model, 1.3, 0.2, 0.5, '#8a6a44', 0, 0.6, 0);
+  for (const x of [-0.4, 0, 0.4]) rod(model, [x, 0.6, 0], [x, 1.3, 0], 0.012, '#5a3e28');
+  for (const x of [-0.4, 0, 0.4]) soft(panel(model, 0.3, 0.34, smat(tex('sail', 80, 90, (g, w, h) => { g.fillStyle = '#f2e8d0'; g.fillRect(0, 0, w, h); }), 1.0), x, 1.05, 0));
+  // the wreath, for a war grave
+  const wreath = grp(root, -1.0, 1.04, -0.1);
+  torus(wreath, 0.3, 0.09, '#2f6a44', 0, 0.3, 0).rotation.x = Math.PI / 2;
+  for (let i = 0; i < 6; i++) ball(wreath, 0.06, '#e8e2d2', 0.3 * Math.cos(i * 1.05), 0.3, 0.3 * Math.sin(i * 1.05));
+  // the stack of the case, and a chart on the table
+  for (let i = 0; i < 5; i++) box(root, 0.8, 0.06, 0.56, '#f4f0e2', 2.4 + (i % 2) * 0.04, 1.03 + i * 0.06, 0.1).rotation.y = 0.04 * i;
+  // the people
+  const min = actor(root, MINISTER, {a: {expr: 'neutral', pose: 'both'}, b: {expr: 'stern', pose: 'point'}}, 0, 0, 0, {scale: 1.0, res: 1.0});
+  const salvor = actor(root, SALVOR, {a: {expr: 'grin', pose: 'hold', prop: 'paper'}, b: {expr: 'neutral', pose: 'shrug'}}, 1.9, 0, 0.2, {scale: 1.0, res: 1.0});
+  const counsel = actor(root, COUNSEL, {a: {expr: 'stern', pose: 'both'}, b: {expr: 'neutral', pose: 'hold'}}, -1.9, 0, 0.2, {scale: 1.0, res: 1.0});
+  const official = actor(root, OFFICIAL, {a: {expr: 'neutral', pose: 'cross'}, b: {expr: 'stern', pose: 'hold', prop: 'paper'}}, 3.7, 0, 0, {scale: 0.98, res: 0.9});
+  [min, salvor, counsel, official].forEach((a) => { a.node.visible = false; });
+  const four = [min, salvor, counsel, official];
+  return {
+    light: () => LIGHT.room,
+    tick: ({f, t, shot, cam}) => {
+      const v = shot.v;
+      four.forEach((a) => (a.node.visible = false));
+      model.visible = v === 'spain' || v === 'four'; wreath.visible = v === 'grave' || v === 'spain';
+      if (v === 'spain' || v === 'grave') { counsel.node.visible = true; counsel.show(v === 'grave' ? 'b' : 'a'); counsel.tick(f, cam); }
+      if (v === 'salvor') { salvor.node.visible = true; salvor.show('a'); salvor.tick(f, cam); }
+      if (v === 'deny') { official.node.visible = true; official.show(f > shot.at + 24 ? 'b' : 'a'); official.tick(f, cam); }
+      if (v === 'four') {
+        min.node.visible = salvor.node.visible = counsel.node.visible = official.node.visible = true;
+        min.node.position.set(-1.2, 0, 0.3); salvor.node.position.set(-0.4, 0, 0.3); counsel.node.position.set(0.4, 0, 0.3); official.node.position.set(1.2, 0, 0.3);
+        min.show('a'); salvor.show('b'); counsel.show('a'); official.show('b');
+        four.forEach((a) => a.tick(f, cam));
+      }
+      void t;
+    },
+  };
+};
+
+// ------------------------------------------------------------------ andes: the mountain the silver came out of
+export const andes: Builder = (root) => {
+  backdrop(root, ['#cfe4ff', '#a8c0e0', '#e8d8b8']);
+  // the Cerro Rico: a red mountain with adits and a road
+  const hillTex = tex('cerro', 1024, 512, (g, w, h) => {
+    g.fillStyle = '#cfe4ff'; g.fillRect(0, 0, w, h); g.fillStyle = '#e8d8b8'; g.fillRect(0, h * 0.55, w, h);
+    g.fillStyle = '#b06a4a'; g.beginPath(); g.moveTo(0, h); g.lineTo(w * 0.18, h * 0.52); g.lineTo(w * 0.34, h * 0.34); g.lineTo(w * 0.52, h * 0.2);
+    g.lineTo(w * 0.7, h * 0.4); g.lineTo(w * 0.86, h * 0.5); g.lineTo(w, h); g.closePath(); g.fill();
+    g.fillStyle = '#8a4a34'; for (let i = 0; i < 16; i++) { const x = 120 + i * 52, y = 300 + (i % 3) * 40; g.fillRect(x, y, 26, 20); }
+    g.strokeStyle = '#d8c8a8'; g.lineWidth = 7; g.beginPath(); g.moveTo(w * 0.08, h); g.lineTo(w * 0.4, h * 0.42); g.stroke();
+  });
+  soft(panel(root, 24, 10.5, smat(hillTex, 1.0), 0, 4.3, -12));
+  floor(root, 30, 24, tmat(tiled(grainTex('altiplano', '#c9a86a', 0.12), 6, 5)));
+  // a stone wall, a llama's worth of scrub, and the mine's headframe
+  for (let i = 0; i < 7; i++) box(root, 1.1, 0.6, 0.5, '#a89a86', -6 + i * 1.05, 0.3, -3.2);
+  const head = grp(root, 4.6, 0, -4.4);
+  for (const s of [-1, 1]) rod(head, [s * 0.7, 0, 0], [0, 2.6, 0], 0.07, '#5a4a38');
+  box(head, 1.7, 0.16, 0.16, '#5a4a38', 0, 2.6, 0); cyl(head, 0.28, 0.12, '#3a3a42', 0, 2.45, 0, 0.28, 14);
+  // the claim on the cloth: a silver bar and coins on a woven blanket
+  const cloth = grp(root, 0, 0.02, 0.4); cloth.visible = false;
+  const weave = tex('weave', 512, 400, (g, w, h) => {
+    g.fillStyle = '#a8322f'; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 9; i++) { g.fillStyle = i % 2 ? '#e8b93a' : '#2f4a6a'; for (let x = 0; x < w; x += 40) g.fillRect(x + (i % 2) * 20, i * 44, 22, 34); }
+  });
+  soft(panel(cloth, 3.6, 2.6, tmat(weave), 0, 0.03, 0));
+  const clothPanel = cloth.children[0] as THREE.Mesh; clothPanel.rotation.x = -Math.PI / 2;
+  const ingot = box(cloth, 0.9, 0.22, 0.4, '#cfd6dd', -0.5, 0.14, 0);
+  for (let i = 0; i < 6; i++) { const o = coin(cloth, 0.1); o.rotation.x = -Math.PI / 2; o.position.set(0.5 + (i % 3) * 0.28, 0.03, -0.2 + Math.floor(i / 3) * 0.3); }
+  const woman = actor(root, QHARA, {a: {expr: 'stern', pose: 'both'}, b: {expr: 'pained', pose: 'cross'}}, 0.1, 0, 1.4, {scale: 1.04, res: 0.9});
+  const miner = actor(root, CROWD(2), {a: {expr: 'neutral', pose: 'hold'}, b: {expr: 'pained', pose: 'cross'}}, -1.35, 0, -2.3, {scale: 0.9, res: 0.5});
+  return {
+    light: () => LIGHT.altiplano,
+    tick: ({f, shot, cam}) => {
+      const v = shot.v;
+      cloth.visible = v === 'claim';
+      woman.node.visible = v === 'claim'; woman.show(f > shot.at + 24 ? 'b' : 'a'); woman.tick(f, cam);
+      miner.node.visible = v === 'mountain'; miner.tick(f, cam);
+      ingot.position.y = 0.14;
+      void f;
+    },
+  };
+};
+
+// ------------------------------------------------------------------ press: the lectern, the announcement
+export const press: Builder = (root) => {
+  backdrop(root, ['#e8eef6', '#b9c4d2']);
+  floor(root, 14, 12, tmat(tiled(tileTex('press-fl', '#d8d2c4', '#b0a898'), 6, 6)));
+  // a wall of the ministry, with the flag and the two shields
+  panel(root, 14, 5.4, tmat(tiled(tileTex('press-wall', '#ede7da', '#cfc6b4'), 8, 4)), 0, 2.7, -3.6);
+  clothFlag(root, flagTex('#f2c230', '#2f4a7a', '#c0392b'), -3.2, 4.2, -3.4, 1.5);
+  soft(panel(root, 1.5, 0.75, smat(signTex('min', 640, 320, '#2f4a7a', '#ffffff', [['MINISTERIO', 54, 0.36], ['DE CULTURA', 54, 0.74]], {font: 'Anton'}), 1.0), -2.3, 3.7, -3.5));
+  const lect = grp(root, 0, 0, -0.4);
+  soft(panel(lect, 0.44, 0.25, smat(signTex('sello', 480, 270, '#f4f0e2', '#2f4a7a', [['SAN JOSÉ', 66, 0.4], ['1708', 54, 0.82]], {font: 'Anton'}), 1.0), 0, 0.55, 0.32));
+  box(lect, 1.0, 1.05, 0.6, '#8a6a44', 0, 0.52, 0);
+  box(lect, 1.1, 0.07, 0.7, '#c9a86a', 0, 1.06, 0);
+  // the model cannon and a cup, on the lectern: what came up
+  const can = grp(lect, -0.28, 1.1, 0.05);
+  const barrel = cyl(can, 0.07, 0.5, '#3f5a44', 0, 0.04, 0, 0.055, 12); barrel.rotation.z = Math.PI / 2;
+  cyl(can, 0.1, 0.12, '#3f5a44', 0.26, 0.04, 0, 0.1, 14).rotation.z = Math.PI / 2;
+  const cup = grp(lect, 0.28, 1.1, 0.05); cyl(cup, 0.09, 0.12, '#f4f6f8', 0, 0.06, 0, 0.11, 16); cyl(cup, 0.11, 0.02, '#c9d2dc', 0, 0.12, 0, 0.11, 16);
+  // the press: blank heads with cameras
+  const pressC = Array.from({length: 5}, (_, i) => actor(root, CROWD(i), {a: {expr: 'neutral', pose: 'hold'}}, -3.5 + i * 1.6, 0, 3.4 + (i % 2) * 0.5, {scale: 0.9, res: 0.45}));
+  const mina = actor(root, MINISTER, {a: {expr: 'neutral', pose: 'both'}, b: {expr: 'stern', pose: 'point'}}, 0, 0, -1.2, {scale: 1.02, res: 1.0});
+  const pres = actor(root, PRESIDENT, {a: {expr: 'stern', pose: 'point'}, b: {expr: 'neutral', pose: 'both'}}, 0, 0, -1.15, {scale: 1.04, res: 1.0});
+  const bulbs = [0, 1, 2, 3].map((k) => soft(panel(root, 0.5, 0.5, new THREE.MeshBasicMaterial({color: '#ffffff', transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending}), -2.6 + k * 1.7, 2.5, 1.9)));
+  return {
+    light: () => LIGHT.press,
+    tick: ({f, shot, cam}) => {
+      const v = shot.v;
+      const flashes = [0, 1, 2, 3];
+      mina.node.visible = v === 'science'; pres.node.visible = v === 'petro';
+      if (v === 'science') mina.tick(f, cam); else pres.tick(f, cam);
+      pressC.forEach((p, i) => { p.node.visible = i < 3 || v === 'petro'; p.tick(f, cam); });
+      // a flash bulb going off, now and then
+      flashes.forEach((k, i) => { const on = ((f + k * 17) % 53) < 3; op(bulbs[i], on ? 0.32 : 0); });
     },
   };
 };
