@@ -116,4 +116,34 @@ the second degree. Every effect is synthesized in the script.
 
 ## Result
 
-Filled in when the render is checked: file, SHA-256, run, loudness, what was and was not inspected.
+Delivered on 2026-11-14 on branch `arena/92d6dc1f-ntc-8f3a9x2k`. Four renders (the first two were reviewed as stills and
+plated again): the last is run `43591938036`.
+
+- File `shoots/pool/final-720p.mp4`, 39.6 MB, 2391 frames, 79.700 s, 720x1280 at 30 fps, H.264 / AAC 48 kHz stereo.
+- SHA-256 `9d55271dea207c6f2d17863f38445dea5ee89ca90eba25d3c2e8e9bf8d541f1e`.
+- Loudness -14.5 LUFS, LRA 2.2 LU, true peak -2.0 dBFS; no silences over 0.3 s. Audio: 293 words of voice, the score
+  and 61 effect cues, built by `audio/build_mix.py` (see `audio/cues.md` for every cue and its level).
+- Picture QA (`qa-report.md`, `templates/scripts/short_qa.py`): no black frame, no unplanned white, no frozen span
+  over 12 frames, no unplanned frame-diff spike; 9 % of frames held. All 44 shots inside the luma and saturation band
+  of the other news films.
+- Inspected frame by frame at 25 points across the film, and every close-up of the code page, the ledger, the counter
+  and the pit at the size of the delivery.
+
+Three picture faults were found in the delivered stills and fixed before this render, which is why there are four runs:
+
+1. **The code page overlapped itself and the captions.** The page carried four blocks at the spacing of a legal page and
+   the camera cropped them, so the caption band (76 % down) landed on a clause and the page's own text sat under the
+   words. The page is now three blocks with a blank band between them, one clause per screenful, and each close shot
+   frames its clause *above* the caption band; the "somebody else's land" block was dropped (the narration never says
+   it). The `state` shot was reframed twice: at 21° the stand's shelf hid the words "ARCHAEOLOGY.", which is the point
+   of the shot.
+2. **The town-hall close-up was a wall.** Shot 12 looked across the counter at nothing. It is now a three-quarter shot
+   from the side of the counter: the clerk, the ACCUEIL · RECEPTION band and the noticeboard ("a swimming pool needs a
+   permit") all in frame.
+3. **The pit let the sky through**, earlier in the loop: the walls stopped below the lawn. Two stacked slabs now close
+   it, and the night glow discs that read as a puddle of light were removed in favour of a beam.
+
+Known and kept, deliberately: the big "IT IS YOURS." sticker crosses the page's own text while it is on screen (it is
+an overprint, and it lands on the words it repeats); the first gold close-up is tight enough that five bars read as a
+wall of metal — the sticker and the caption carry the count; the reading stand's shelf cuts the page in the wide shot,
+which is what a lectern does.
