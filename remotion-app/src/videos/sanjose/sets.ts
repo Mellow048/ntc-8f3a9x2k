@@ -187,7 +187,10 @@ export const deep: Builder = (root) => {
   beam(root, 0.5, 1.4, 14, '#e8ffff', 0.06, -2.2, 9, -1.0);
   beam(root, 0.5, 1.4, 14, '#e8ffff', 0.055, 1.6, 9, -0.6);
   const snow = Array.from({length: 26}, (_, i) => { const o = soft(ball(root, 0.02, '#dff4ff', 0, 0, 0)); o.userData.i = i; return o; });
-  const cloud = Array.from({length: 14}, (_, i) => soft(ball(root, 0.9, '#b8ccd0', 0, 0, 0)));
+  // a cloud needs a material of its own: the shared colour materials are opaque, and an opacity on one of those
+  // would be ignored (and would dim every other thing of that colour)
+  const cloud = Array.from({length: 14}, () => soft(mesh(root, new THREE.SphereGeometry(0.9, 18, 12),
+    new THREE.MeshBasicMaterial({color: '#b8ccd0', transparent: true, opacity: 0, depthWrite: false}))));
   const cloudG = grp(root, 0, 0, 0);
   cloud.forEach((c, i) => { cloudG.add(c); c.userData.i = i; });
   cloudG.visible = false;
