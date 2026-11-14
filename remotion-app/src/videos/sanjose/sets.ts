@@ -213,7 +213,7 @@ export const deep: Builder = (root) => {
         rov.position.set(2.4, 4.2, 2.0);
       }
       if (silt) {
-        cloud.forEach((c, i) => { const u = (f * 0.006 + i * 0.125) % 1; c.position.set(lerp(-2.4, 2.4, (i % 4) / 3) - 3.0 * u, 0.5 + u * 2.6, -1.8 + ((i * 13) % 20) / 10); c.scale.setScalar(0.15 + 3.4 * u); op(c, 0.16 * (1 - u) * Math.min(1, u / 0.25)); });
+        cloud.forEach((c, i) => { const u = (f * 0.006 + i * 0.125) % 1; c.position.set(lerp(-2.4, 2.4, (i % 4) / 3) - 3.0 * u, 0.5 + u * 2.6, -1.8 + ((i * 13) % 20) / 10); c.scale.setScalar(2.4); op(c, 0.15 * Math.sin(Math.PI * u) ** 1.5); });
       }
     },
   };
