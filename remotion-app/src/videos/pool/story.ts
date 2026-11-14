@@ -49,11 +49,11 @@ export const SHOTS: Shot[] = [
   s(60, 'hall', 'clerk', [2.7, 1.7, 1.4], [1.35, 1.15, -2.2], 34, {push: 0.08, close: true}),
   // 4 "In France a treasure is a thing buried so long that nobody can prove they own it, and found by chance. On your own land, the code says, it is yours."
   s(65, 'code', 'page', [0, 2.0, 2.9], [0, 1.55, -1.45], 40, {push: 0.06, tag: 'FRENCH CIVIL CODE · ART. 716'}),
-  s(71, 'code', 'clause', [0.05, 2.28, 1.2], [0.05, 2.22, -1.45], 44, {push: 0.1, close: true}),
-  s(82, 'code', 'clause', [0.1, 2.05, 1.2], [0.1, 2.0, -1.45], 44, {push: 0.1, close: true}),
-  s(86, 'code', 'own', [0.0, 1.6, 1.2], [0.0, 1.57, -1.45], 44, {push: 0.1, close: true}),
+  s(71, 'code', 'clause', [0.03, 1.9, 1.2], [0.03, 1.86, -1.45], 28, {push: 0.03, close: true}),
+  s(82, 'code', 'clause', [-0.35, 2.3, 2.75], [-0.1, 1.5, -1.45], 38, {push: 0.06, close: true}),
+  s(86, 'code', 'own', [0.0, 1.46, 1.2], [0.0, 1.42, -1.45], 24.5, {push: 0.05, close: true}),
   // 5 "Unless it is archaeology. Then it belongs to the state. So the culture ministry's regional office came to look."
-  s(96, 'code', 'state', [0.0, 0.82, 1.2], [0.0, 0.79, -1.45], 44, {push: 0.09, close: true}),
+  s(96, 'code', 'state', [0.0, 1.29, 1.9], [0.0, 1.25, -1.45], 30, {push: 0.05, close: true}),
   s(106, 'drac', 'office', [-0.5, 2.0, 5.0], [0.2, 1.4, -0.4], 40, {push: 0.07, tag: 'THE REGIONAL CULTURE OFFICE'}),
   s(112, 'drac', 'office', [0.5, 2.0, 3.8], [1.0, 1.45, 0.2], 38, {push: 0.09, close: true}),
   // 6 "It found no history in it at all: the gold had been melted fifteen, twenty years ago, by a company in Lyon."

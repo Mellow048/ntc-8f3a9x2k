@@ -312,18 +312,14 @@ const pageTex = () => tex('code-page', 700, 960, (g, w, h) => {
   L('AND WHICH IS', 0.372, 30);
   L('FOUND BY CHANCE,', 0.415, 30);
   L('IS A TREASURE.', 0.475, 44, '#2a2418');
-  g.fillStyle = '#cfc6ae'; g.fillRect(w * 0.32, h * 0.53, w * 0.36, 3);
-  L('ON YOUR OWN LAND,', 0.578, 34);
-  L('IT IS YOURS.', 0.635, 54, '#b8232f');
-  g.fillStyle = '#cfc6ae'; g.fillRect(w * 0.32, h * 0.675, w * 0.36, 3);
-  L("SOMEBODY ELSE'S:", 0.725, 36, '#5a5344');
-  L('HALF TO THE OWNER,', 0.765, 30, '#5a5344');
-  L('HALF TO YOU.', 0.795, 30, '#5a5344');
-  g.fillStyle = '#cfc6ae'; g.fillRect(w * 0.32, h * 0.83, w * 0.36, 3);
-  L('UNLESS IT IS', 0.875, 30, '#2a2418');
-  L('ARCHAEOLOGY.', 0.915, 30, '#2a2418');
-  g.save(); g.strokeStyle = 'rgba(184,35,47,0.7)'; g.lineWidth = 5; g.beginPath(); g.arc(w * 0.84, h * 0.555, 40, 0, 7); g.stroke();
-  text(g, 'ETAT', w * 0.84, h * 0.555, 22, 'rgba(184,35,47,0.8)'); g.restore();
+  g.fillStyle = '#cfc6ae'; g.fillRect(w * 0.32, h * 0.545, w * 0.36, 3);
+  L('ON YOUR OWN LAND,', 0.575, 34);
+  L('IT IS YOURS.', 0.63, 54, '#b8232f');
+  g.save(); g.strokeStyle = 'rgba(184,35,47,0.7)'; g.lineWidth = 5; g.beginPath(); g.arc(w * 0.87, h * 0.60, 40, 0, 7); g.stroke();
+  text(g, 'ETAT', w * 0.87, h * 0.60, 22, 'rgba(184,35,47,0.8)'); g.restore();
+  g.fillStyle = '#cfc6ae'; g.fillRect(w * 0.32, h * 0.685, w * 0.36, 3);
+  L('UNLESS IT IS', 0.735, 30, '#2a2418');
+  L('ARCHAEOLOGY.', 0.79, 30, '#2a2418');
 });
 
 export const code: Builder = (root) => {
