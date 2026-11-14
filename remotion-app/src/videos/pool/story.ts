@@ -46,7 +46,7 @@ export const SHOTS: Shot[] = [
   // 3 "He had bought the house not long before. And he did the thing almost nobody does: he rang the town hall."
   s(44, 'hall', 'man', [0.7, 2.0, 6.4], [0.1, 1.35, 0.0], 40, {push: 0.07, tag: 'THE TOWN HALL'}),
   s(52, 'hall', 'man', [-0.9, 1.75, 4.2], [0.05, 1.4, 0.5], 36, {push: 0.08, close: true}),
-  s(60, 'hall', 'clerk', [2.7, 1.7, 1.4], [1.35, 1.15, -2.2], 34, {push: 0.08, close: true}),
+  s(60, 'hall', 'clerk', [3.1, 1.85, 0.75], [-1.6, 1.15, -1.9], 42, {push: 0.06, close: true}),
   // 4 "In France a treasure is a thing buried so long that nobody can prove they own it, and found by chance. On your own land, the code says, it is yours."
   s(65, 'code', 'page', [0, 2.0, 2.9], [0, 1.55, -1.45], 40, {push: 0.06, tag: 'FRENCH CIVIL CODE · ART. 716'}),
   s(71, 'code', 'clause', [0.03, 1.9, 1.2], [0.03, 1.86, -1.45], 28, {push: 0.03, close: true}),
