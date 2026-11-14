@@ -8,6 +8,7 @@ import { NvExitCompositions } from "./videos/nvexit/register";
 // regular shorts made with the same machinery
 import { MonaCompositions } from "./videos/mona/register";
 import { SanJoseCompositions } from "./videos/sanjose/register";
+import { PoolCompositions } from "./videos/pool/register";
 
 export const Root: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ export const Root: React.FC = () => {
       <NvExitCompositions />
       <MonaCompositions />
       <SanJoseCompositions />
+      <PoolCompositions />
     </>
   );
 };

@@ -1,0 +1,2346 @@
+[
+ {
+  "word": "In",
+  "start": 0.0,
+  "end": 0.127,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "May",
+  "start": 0.127,
+  "end": 0.666,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "a",
+  "start": 0.666,
+  "end": 0.734,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "man",
+  "start": 0.734,
+  "end": 0.97,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "outside",
+  "start": 0.97,
+  "end": 1.316,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Lyon",
+  "start": 1.316,
+  "end": 1.653,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hired",
+  "start": 1.653,
+  "end": 1.94,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 1.94,
+  "end": 1.982,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "digger",
+  "start": 1.982,
+  "end": 2.328,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 2.328,
+  "end": 2.429,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "cut",
+  "start": 2.429,
+  "end": 2.606,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 2.606,
+  "end": 2.64,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hole",
+  "start": 2.64,
+  "end": 2.884,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "for",
+  "start": 2.884,
+  "end": 3.036,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 3.036,
+  "end": 3.062,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "swimming",
+  "start": 3.062,
+  "end": 3.39,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "pool",
+  "start": 3.39,
+  "end": 3.77,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 3.84,
+  "end": 3.941,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 3.941,
+  "end": 4.0,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bucket",
+  "start": 4.0,
+  "end": 4.253,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "came",
+  "start": 4.253,
+  "end": 4.455,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "up",
+  "start": 4.455,
+  "end": 4.573,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "with",
+  "start": 4.573,
+  "end": 4.691,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "plastic",
+  "start": 4.691,
+  "end": 5.088,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bags",
+  "start": 5.088,
+  "end": 5.45,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "full",
+  "start": 5.45,
+  "end": 5.636,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "of",
+  "start": 5.636,
+  "end": 5.729,
+  "line": 1,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "gold",
+  "start": 5.729,
+  "end": 6.176,
+  "line": 1,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Five",
+  "start": 6.581,
+  "end": 6.826,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bars",
+  "start": 6.826,
+  "end": 7.323,
+  "line": 2,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Many",
+  "start": 7.426,
+  "end": 7.679,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "coins",
+  "start": 7.679,
+  "end": 8.245,
+  "line": 2,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "About",
+  "start": 8.391,
+  "end": 8.619,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "seven",
+  "start": 8.619,
+  "end": 8.897,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hundred",
+  "start": 8.897,
+  "end": 9.184,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "thousand",
+  "start": 9.184,
+  "end": 9.496,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "euros",
+  "start": 9.496,
+  "end": 10.027,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "in",
+  "start": 10.213,
+  "end": 10.306,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 10.306,
+  "end": 10.365,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "ground",
+  "start": 10.365,
+  "end": 10.703,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "of",
+  "start": 10.703,
+  "end": 10.787,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 10.787,
+  "end": 10.821,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "suburban",
+  "start": 10.821,
+  "end": 11.259,
+  "line": 2,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "garden",
+  "start": 11.259,
+  "end": 11.681,
+  "line": 2,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "He",
+  "start": 12.059,
+  "end": 12.144,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "had",
+  "start": 12.144,
+  "end": 12.228,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bought",
+  "start": 12.228,
+  "end": 12.405,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 12.405,
+  "end": 12.473,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "house",
+  "start": 12.473,
+  "end": 12.692,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "not",
+  "start": 12.692,
+  "end": 12.852,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "long",
+  "start": 12.852,
+  "end": 13.08,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "before",
+  "start": 13.08,
+  "end": 13.544,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "And",
+  "start": 13.687,
+  "end": 13.797,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "he",
+  "start": 13.797,
+  "end": 13.864,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "did",
+  "start": 13.864,
+  "end": 14.007,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 14.007,
+  "end": 14.067,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "thing",
+  "start": 14.067,
+  "end": 14.303,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "almost",
+  "start": 14.303,
+  "end": 14.598,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "nobody",
+  "start": 14.598,
+  "end": 14.91,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "does",
+  "start": 14.91,
+  "end": 15.34,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "he",
+  "start": 15.434,
+  "end": 15.594,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "rang",
+  "start": 15.594,
+  "end": 15.873,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 15.873,
+  "end": 15.949,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "town",
+  "start": 15.949,
+  "end": 16.202,
+  "line": 3,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hall",
+  "start": 16.202,
+  "end": 16.522,
+  "line": 3,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "In",
+  "start": 16.968,
+  "end": 17.095,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "France",
+  "start": 17.095,
+  "end": 17.491,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 17.491,
+  "end": 17.609,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "treasure",
+  "start": 17.609,
+  "end": 17.972,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "is",
+  "start": 17.972,
+  "end": 18.081,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 18.081,
+  "end": 18.115,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "thing",
+  "start": 18.115,
+  "end": 18.351,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "buried",
+  "start": 18.351,
+  "end": 18.604,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "so",
+  "start": 18.604,
+  "end": 18.798,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "long",
+  "start": 18.798,
+  "end": 19.119,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "that",
+  "start": 19.119,
+  "end": 19.237,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "nobody",
+  "start": 19.237,
+  "end": 19.583,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "can",
+  "start": 19.583,
+  "end": 19.717,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "prove",
+  "start": 19.717,
+  "end": 19.962,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "they",
+  "start": 19.962,
+  "end": 20.105,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "own",
+  "start": 20.105,
+  "end": 20.24,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 20.24,
+  "end": 20.384,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 20.5,
+  "end": 20.635,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "found",
+  "start": 20.635,
+  "end": 20.922,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "by",
+  "start": 20.922,
+  "end": 21.057,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "chance",
+  "start": 21.057,
+  "end": 21.529,
+  "line": 4,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "On",
+  "start": 21.668,
+  "end": 21.803,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "your",
+  "start": 21.803,
+  "end": 21.972,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "own",
+  "start": 21.972,
+  "end": 22.098,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "land",
+  "start": 22.098,
+  "end": 22.512,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "the",
+  "start": 22.512,
+  "end": 22.647,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "code",
+  "start": 22.647,
+  "end": 22.857,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "says",
+  "start": 22.857,
+  "end": 23.229,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "it",
+  "start": 23.33,
+  "end": 23.439,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "is",
+  "start": 23.439,
+  "end": 23.583,
+  "line": 4,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "yours",
+  "start": 23.583,
+  "end": 24.03,
+  "line": 4,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Unless",
+  "start": 24.179,
+  "end": 24.466,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 24.466,
+  "end": 24.517,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "is",
+  "start": 24.517,
+  "end": 24.626,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "archaeology",
+  "start": 24.626,
+  "end": 25.301,
+  "line": 5,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Then",
+  "start": 25.448,
+  "end": 25.625,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 25.625,
+  "end": 25.71,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "belongs",
+  "start": 25.71,
+  "end": 26.089,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 26.089,
+  "end": 26.182,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 26.182,
+  "end": 26.266,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "state",
+  "start": 26.266,
+  "end": 26.697,
+  "line": 5,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "So",
+  "start": 26.905,
+  "end": 27.065,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 27.065,
+  "end": 27.149,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "culture",
+  "start": 27.149,
+  "end": 27.453,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "ministry's",
+  "start": 27.453,
+  "end": 27.892,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "regional",
+  "start": 27.892,
+  "end": 28.288,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "office",
+  "start": 28.288,
+  "end": 28.668,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "came",
+  "start": 28.668,
+  "end": 28.87,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 28.87,
+  "end": 28.946,
+  "line": 5,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "look",
+  "start": 28.946,
+  "end": 29.275,
+  "line": 5,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "It",
+  "start": 29.67,
+  "end": 29.754,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "found",
+  "start": 29.754,
+  "end": 30.016,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "no",
+  "start": 30.016,
+  "end": 30.176,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "history",
+  "start": 30.176,
+  "end": 30.581,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 30.581,
+  "end": 30.674,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 30.674,
+  "end": 30.75,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "at",
+  "start": 30.75,
+  "end": 30.851,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "all",
+  "start": 30.851,
+  "end": 31.163,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "the",
+  "start": 31.512,
+  "end": 31.596,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "gold",
+  "start": 31.596,
+  "end": 31.866,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "had",
+  "start": 31.866,
+  "end": 31.967,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "been",
+  "start": 31.967,
+  "end": 32.069,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "melted",
+  "start": 32.069,
+  "end": 32.372,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "fifteen",
+  "start": 32.372,
+  "end": 32.963,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "twenty",
+  "start": 32.963,
+  "end": 33.207,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "years",
+  "start": 33.207,
+  "end": 33.46,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "ago",
+  "start": 33.46,
+  "end": 33.764,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "by",
+  "start": 33.9,
+  "end": 34.035,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 34.035,
+  "end": 34.068,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "company",
+  "start": 34.068,
+  "end": 34.397,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 34.397,
+  "end": 34.49,
+  "line": 6,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "Lyon",
+  "start": 34.49,
+  "end": 34.971,
+  "line": 6,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 35.372,
+  "end": 35.448,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bars",
+  "start": 35.448,
+  "end": 35.735,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "carry",
+  "start": 35.735,
+  "end": 35.979,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "serial",
+  "start": 35.979,
+  "end": 36.317,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "numbers",
+  "start": 36.317,
+  "end": 36.755,
+  "line": 7,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 36.89,
+  "end": 36.974,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "gendarmes",
+  "start": 36.974,
+  "end": 37.472,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "followed",
+  "start": 37.472,
+  "end": 37.893,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "them",
+  "start": 37.893,
+  "end": 38.129,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 38.239,
+  "end": 38.374,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "found",
+  "start": 38.374,
+  "end": 38.711,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "nothing",
+  "start": 38.711,
+  "end": 39.023,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "stolen",
+  "start": 39.023,
+  "end": 39.513,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "the",
+  "start": 39.648,
+  "end": 39.715,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "metal",
+  "start": 39.715,
+  "end": 39.985,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "was",
+  "start": 39.985,
+  "end": 40.162,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bought",
+  "start": 40.162,
+  "end": 40.348,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "legally",
+  "start": 40.348,
+  "end": 40.921,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 40.951,
+  "end": 41.112,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "never",
+  "start": 41.112,
+  "end": 41.348,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "reported",
+  "start": 41.348,
+  "end": 41.761,
+  "line": 7,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "missing",
+  "start": 41.761,
+  "end": 42.191,
+  "line": 7,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Then",
+  "start": 42.531,
+  "end": 42.674,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "they",
+  "start": 42.674,
+  "end": 42.75,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "went",
+  "start": 42.75,
+  "end": 42.927,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "looking",
+  "start": 42.927,
+  "end": 43.171,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "for",
+  "start": 43.171,
+  "end": 43.256,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 43.256,
+  "end": 43.315,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "man",
+  "start": 43.315,
+  "end": 43.509,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "who",
+  "start": 43.509,
+  "end": 43.618,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "buried",
+  "start": 43.618,
+  "end": 43.905,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 43.905,
+  "end": 44.091,
+  "line": 8,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 44.202,
+  "end": 44.286,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "previous",
+  "start": 44.286,
+  "end": 44.658,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "owner",
+  "start": 44.658,
+  "end": 44.852,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "of",
+  "start": 44.852,
+  "end": 44.919,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 44.919,
+  "end": 44.978,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "house",
+  "start": 44.978,
+  "end": 45.383,
+  "line": 8,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "He",
+  "start": 45.529,
+  "end": 45.613,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "was",
+  "start": 45.613,
+  "end": 45.748,
+  "line": 8,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "dead",
+  "start": 45.748,
+  "end": 46.077,
+  "line": 8,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "No",
+  "start": 46.532,
+  "end": 46.709,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "heir",
+  "start": 46.709,
+  "end": 46.886,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "came",
+  "start": 46.886,
+  "end": 47.088,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "forward",
+  "start": 47.088,
+  "end": 47.468,
+  "line": 9,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "In",
+  "start": 47.61,
+  "end": 47.719,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "November",
+  "start": 47.719,
+  "end": 48.141,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 48.141,
+  "end": 48.234,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "prefecture",
+  "start": 48.234,
+  "end": 48.765,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "said",
+  "start": 48.765,
+  "end": 48.984,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 48.984,
+  "end": 49.043,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "gold",
+  "start": 49.043,
+  "end": 49.33,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "was",
+  "start": 49.33,
+  "end": 49.507,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "not",
+  "start": 49.507,
+  "end": 49.726,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "heritage",
+  "start": 49.726,
+  "end": 50.207,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 50.377,
+  "end": 50.562,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 50.562,
+  "end": 50.621,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "went",
+  "start": 50.621,
+  "end": 50.824,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "to",
+  "start": 50.824,
+  "end": 50.908,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 50.908,
+  "end": 50.992,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "man",
+  "start": 50.992,
+  "end": 51.271,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "with",
+  "start": 51.271,
+  "end": 51.423,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 51.423,
+  "end": 51.49,
+  "line": 9,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "pool",
+  "start": 51.49,
+  "end": 51.903,
+  "line": 9,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Which",
+  "start": 52.386,
+  "end": 52.58,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "leaves",
+  "start": 52.58,
+  "end": 52.917,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 52.917,
+  "end": 53.001,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "tax",
+  "start": 53.001,
+  "end": 53.533,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Finding",
+  "start": 53.72,
+  "end": 54.065,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 54.065,
+  "end": 54.141,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "costs",
+  "start": 54.141,
+  "end": 54.453,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "nothing",
+  "start": 54.453,
+  "end": 54.833,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Selling",
+  "start": 55.029,
+  "end": 55.341,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 55.341,
+  "end": 55.434,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "costs",
+  "start": 55.434,
+  "end": 55.754,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "eleven",
+  "start": 55.754,
+  "end": 56.041,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "and",
+  "start": 56.041,
+  "end": 56.125,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 56.125,
+  "end": 56.151,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "half",
+  "start": 56.151,
+  "end": 56.361,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "per",
+  "start": 56.361,
+  "end": 56.505,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "cent",
+  "start": 56.505,
+  "end": 56.842,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "flat",
+  "start": 57.007,
+  "end": 57.378,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "eighty",
+  "start": 57.547,
+  "end": 57.758,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "thousand",
+  "start": 57.758,
+  "end": 58.087,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "five",
+  "start": 58.087,
+  "end": 58.323,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hundred",
+  "start": 58.323,
+  "end": 58.526,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "euros",
+  "start": 58.526,
+  "end": 58.93,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "He",
+  "start": 59.087,
+  "end": 59.247,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "keeps",
+  "start": 59.247,
+  "end": 59.644,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "six",
+  "start": 59.787,
+  "end": 60.023,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hundred",
+  "start": 60.023,
+  "end": 60.251,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "and",
+  "start": 60.251,
+  "end": 60.336,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "nineteen",
+  "start": 60.336,
+  "end": 60.707,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "thousand",
+  "start": 60.707,
+  "end": 61.027,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "five",
+  "start": 61.027,
+  "end": 61.255,
+  "line": 10,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hundred",
+  "start": 61.255,
+  "end": 61.592,
+  "line": 10,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "He",
+  "start": 61.776,
+  "end": 61.903,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "has",
+  "start": 61.903,
+  "end": 62.071,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "refused",
+  "start": 62.071,
+  "end": 62.619,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "every",
+  "start": 62.619,
+  "end": 62.915,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "interview",
+  "start": 62.915,
+  "end": 63.353,
+  "line": 11,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "The",
+  "start": 63.513,
+  "end": 63.614,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "local",
+  "start": 63.614,
+  "end": 63.943,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "paper",
+  "start": 63.943,
+  "end": 64.297,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "calls",
+  "start": 64.297,
+  "end": 64.567,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "him",
+  "start": 64.567,
+  "end": 64.719,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 64.913,
+  "end": 64.989,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "man",
+  "start": 64.989,
+  "end": 65.259,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "who",
+  "start": 65.259,
+  "end": 65.36,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "got",
+  "start": 65.36,
+  "end": 65.537,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "rich",
+  "start": 65.537,
+  "end": 65.942,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "digging",
+  "start": 65.942,
+  "end": 66.237,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 66.237,
+  "end": 66.288,
+  "line": 11,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "pool",
+  "start": 66.288,
+  "end": 66.659,
+  "line": 11,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "Somebody",
+  "start": 66.971,
+  "end": 67.342,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "put",
+  "start": 67.342,
+  "end": 67.545,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "seven",
+  "start": 67.545,
+  "end": 67.857,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hundred",
+  "start": 67.857,
+  "end": 68.152,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "thousand",
+  "start": 68.152,
+  "end": 68.515,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "euros",
+  "start": 68.515,
+  "end": 68.844,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 68.844,
+  "end": 68.92,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "plastic",
+  "start": 68.92,
+  "end": 69.299,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bags",
+  "start": 69.299,
+  "end": 69.611,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "in",
+  "start": 69.611,
+  "end": 69.679,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "that",
+  "start": 69.679,
+  "end": 69.822,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "garden",
+  "start": 69.822,
+  "end": 70.21,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "and",
+  "start": 70.387,
+  "end": 70.522,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "never",
+  "start": 70.522,
+  "end": 70.75,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "came",
+  "start": 70.75,
+  "end": 70.952,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "back",
+  "start": 70.952,
+  "end": 71.163,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "for",
+  "start": 71.163,
+  "end": 71.391,
+  "line": 12,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "it",
+  "start": 71.391,
+  "end": 71.5,
+  "line": 12,
+  "ends_sentence": true,
+  "comma": false
+ },
+ {
+  "word": "So",
+  "start": 71.964,
+  "end": 72.183,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "who",
+  "start": 72.183,
+  "end": 72.31,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "was",
+  "start": 72.31,
+  "end": 72.554,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "he",
+  "start": 72.554,
+  "end": 72.74,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "a",
+  "start": 73.031,
+  "end": 73.09,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "man",
+  "start": 73.09,
+  "end": 73.419,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "hiding",
+  "start": 73.419,
+  "end": 73.739,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "his",
+  "start": 73.739,
+  "end": 73.84,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "savings",
+  "start": 73.84,
+  "end": 74.228,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "from",
+  "start": 74.228,
+  "end": 74.38,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 74.38,
+  "end": 74.414,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "bank",
+  "start": 74.414,
+  "end": 74.751,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "from",
+  "start": 74.96,
+  "end": 75.121,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "a",
+  "start": 75.121,
+  "end": 75.154,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "divorce",
+  "start": 75.154,
+  "end": 75.833,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "from",
+  "start": 75.833,
+  "end": 75.959,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "the",
+  "start": 75.959,
+  "end": 76.043,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "tax",
+  "start": 76.043,
+  "end": 76.355,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "office",
+  "start": 76.355,
+  "end": 76.87,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": true
+ },
+ {
+  "word": "or",
+  "start": 76.87,
+  "end": 76.979,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "from",
+  "start": 76.979,
+  "end": 77.198,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "whoever",
+  "start": 77.198,
+  "end": 77.519,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "came",
+  "start": 77.519,
+  "end": 77.747,
+  "line": 13,
+  "ends_sentence": false,
+  "comma": false
+ },
+ {
+  "word": "next",
+  "start": 77.747,
+  "end": 78.151,
+  "line": 13,
+  "ends_sentence": true,
+  "comma": false
+ }
+]

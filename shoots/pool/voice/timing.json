@@ -1,0 +1,75 @@
+{
+ "source": "raw-take.mp3",
+ "voice": "Arena TTS voice-15 (en-US, masculine, conversational)",
+ "raw_seconds": 100.23,
+ "tight_seconds": 90.09,
+ "pauses_cut": 47,
+ "tempo": 1.1854,
+ "eq": {
+  "bass_shelf_db": -1.0,
+  "presence_db": 1.5
+ },
+ "squeezed": [],
+ "beats": [
+  {
+   "line": 1,
+   "after": "gold",
+   "at": 6.246,
+   "seconds": 0.28
+  },
+  {
+   "line": 2,
+   "after": "garden",
+   "at": 11.486,
+   "seconds": 0.24
+  },
+  {
+   "line": 3,
+   "after": "hall",
+   "at": 16.122,
+   "seconds": 0.26
+  },
+  {
+   "line": 5,
+   "after": "look",
+   "at": 28.59,
+   "seconds": 0.24
+  },
+  {
+   "line": 6,
+   "after": "Lyon",
+   "at": 34.011,
+   "seconds": 0.26
+  },
+  {
+   "line": 7,
+   "after": "missing",
+   "at": 40.976,
+   "seconds": 0.22
+  },
+  {
+   "line": 8,
+   "after": "dead",
+   "at": 44.667,
+   "seconds": 0.3
+  },
+  {
+   "line": 9,
+   "after": "pool",
+   "at": 50.263,
+   "seconds": 0.24
+  },
+  {
+   "line": 12,
+   "after": "it",
+   "at": 69.575,
+   "seconds": 0.3
+  }
+ ],
+ "seconds": 78.321,
+ "words": 293,
+ "words_per_second": 3.74,
+ "lufs": -16.6,
+ "lra": 2.7,
+ "peak": -1.6
+}
